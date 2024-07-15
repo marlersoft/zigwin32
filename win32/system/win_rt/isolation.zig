@@ -26,7 +26,10 @@ pub const IIsolatedEnvironmentInterop = extern union {
             return @as(*const IIsolatedEnvironmentInterop.VTable, @ptrCast(self.vtable)).GetHostHwndInterop(@as(*const IIsolatedEnvironmentInterop, @ptrCast(self)), containerHwnd, hostHwnd);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IIsolatedEnvironmentInterop.VTable, @ptrCast(self.vtable)).GetHostHwndInterop(@as(*const IIsolatedEnvironmentInterop, @ptrCast(self)), containerHwnd, hostHwnd);
+    }
 };
 
 

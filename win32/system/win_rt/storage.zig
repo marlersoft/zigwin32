@@ -26,7 +26,10 @@ pub const IRandomAccessStreamFileAccessMode = extern union {
             return @as(*const IRandomAccessStreamFileAccessMode.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IRandomAccessStreamFileAccessMode, @ptrCast(self)), fileAccessMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetMode(self: *const IRandomAccessStreamFileAccessMode, fileAccessMode: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRandomAccessStreamFileAccessMode.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IRandomAccessStreamFileAccessMode, @ptrCast(self)), fileAccessMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -48,7 +51,10 @@ pub const IUnbufferedFileHandleOplockCallback = extern union {
             return @as(*const IUnbufferedFileHandleOplockCallback.VTable, @ptrCast(self.vtable)).OnBrokenCallback(@as(*const IUnbufferedFileHandleOplockCallback, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnBrokenCallback(self: *const IUnbufferedFileHandleOplockCallback) callconv(.Inline) HRESULT {
+        return @as(*const IUnbufferedFileHandleOplockCallback.VTable, @ptrCast(self.vtable)).OnBrokenCallback(@as(*const IUnbufferedFileHandleOplockCallback, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -79,7 +85,13 @@ pub const IUnbufferedFileHandleProvider = extern union {
             return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).CloseUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OpenUnbufferedFileHandle(self: *const IUnbufferedFileHandleProvider, oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback, fileHandle: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).OpenUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)), oplockBreakCallback, fileHandle);
+    }
+    pub fn CloseUnbufferedFileHandle(self: *const IUnbufferedFileHandleProvider) callconv(.Inline) HRESULT {
+        return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).CloseUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)));
+    }
 };
 
 pub const HANDLE_OPTIONS = packed struct(u32) {
@@ -249,7 +261,10 @@ pub const IOplockBreakingHandler = extern union {
             return @as(*const IOplockBreakingHandler.VTable, @ptrCast(self.vtable)).OplockBreaking(@as(*const IOplockBreakingHandler, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OplockBreaking(self: *const IOplockBreakingHandler) callconv(.Inline) HRESULT {
+        return @as(*const IOplockBreakingHandler.VTable, @ptrCast(self.vtable)).OplockBreaking(@as(*const IOplockBreakingHandler, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -276,7 +291,10 @@ pub const IStorageItemHandleAccess = extern union {
             return @as(*const IStorageItemHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageItemHandleAccess, @ptrCast(self)), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IStorageItemHandleAccess, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IStorageItemHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageItemHandleAccess, @ptrCast(self)), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -305,7 +323,10 @@ pub const IStorageFolderHandleAccess = extern union {
             return @as(*const IStorageFolderHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageFolderHandleAccess, @ptrCast(self)), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IStorageFolderHandleAccess, fileName: ?[*:0]const u16, creationOptions: HANDLE_CREATION_OPTIONS, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IStorageFolderHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageFolderHandleAccess, @ptrCast(self)), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+    }
 };
 
 

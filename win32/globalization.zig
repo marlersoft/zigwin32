@@ -1695,7 +1695,19 @@ pub const ISpellingError = extern union {
             return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_Replacement(@as(*const ISpellingError, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_StartIndex(@as(*const ISpellingError, @ptrCast(self)), value);
+    }
+    pub fn get_Length(self: *const ISpellingError, value: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISpellingError, @ptrCast(self)), value);
+    }
+    pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_CorrectiveAction(@as(*const ISpellingError, @ptrCast(self)), value);
+    }
+    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_Replacement(@as(*const ISpellingError, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1718,7 +1730,10 @@ pub const IEnumSpellingError = extern union {
             return @as(*const IEnumSpellingError.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSpellingError, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSpellingError.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSpellingError, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1769,7 +1784,19 @@ pub const IOptionDescription = extern union {
             return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Labels(@as(*const IOptionDescription, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IOptionDescription, @ptrCast(self)), value);
+    }
+    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Heading(@as(*const IOptionDescription, @ptrCast(self)), value);
+    }
+    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IOptionDescription, @ptrCast(self)), value);
+    }
+    pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Labels(@as(*const IOptionDescription, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1792,7 +1819,10 @@ pub const ISpellCheckerChangedEventHandler = extern union {
             return @as(*const ISpellCheckerChangedEventHandler.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISpellCheckerChangedEventHandler, @ptrCast(self)), sender);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckerChangedEventHandler.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISpellCheckerChangedEventHandler, @ptrCast(self)), sender);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1930,7 +1960,49 @@ pub const ISpellChecker = extern union {
             return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const ISpellChecker, @ptrCast(self)), text, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_LanguageTag(@as(*const ISpellChecker, @ptrCast(self)), value);
+    }
+    pub fn Check(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Check(@as(*const ISpellChecker, @ptrCast(self)), text, value);
+    }
+    pub fn Suggest(self: *const ISpellChecker, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Suggest(@as(*const ISpellChecker, @ptrCast(self)), word, value);
+    }
+    pub fn Add(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Add(@as(*const ISpellChecker, @ptrCast(self)), word);
+    }
+    pub fn Ignore(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Ignore(@as(*const ISpellChecker, @ptrCast(self)), word);
+    }
+    pub fn AutoCorrect(self: *const ISpellChecker, from: ?[*:0]const u16, to: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).AutoCorrect(@as(*const ISpellChecker, @ptrCast(self)), from, to);
+    }
+    pub fn GetOptionValue(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).GetOptionValue(@as(*const ISpellChecker, @ptrCast(self)), optionId, value);
+    }
+    pub fn get_OptionIds(self: *const ISpellChecker, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_OptionIds(@as(*const ISpellChecker, @ptrCast(self)), value);
+    }
+    pub fn get_Id(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpellChecker, @ptrCast(self)), value);
+    }
+    pub fn get_LocalizedName(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_LocalizedName(@as(*const ISpellChecker, @ptrCast(self)), value);
+    }
+    pub fn add_SpellCheckerChanged(self: *const ISpellChecker, handler: ?*ISpellCheckerChangedEventHandler, eventCookie: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).add_SpellCheckerChanged(@as(*const ISpellChecker, @ptrCast(self)), handler, eventCookie);
+    }
+    pub fn remove_SpellCheckerChanged(self: *const ISpellChecker, eventCookie: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).remove_SpellCheckerChanged(@as(*const ISpellChecker, @ptrCast(self)), eventCookie);
+    }
+    pub fn GetOptionDescription(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).GetOptionDescription(@as(*const ISpellChecker, @ptrCast(self)), optionId, value);
+    }
+    pub fn ComprehensiveCheck(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const ISpellChecker, @ptrCast(self)), text, value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -1953,7 +2025,10 @@ pub const ISpellChecker2 = extern union {
             return @as(*const ISpellChecker2.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpellChecker2, @ptrCast(self)), word);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpellChecker.MethodMixin(@This());
+    pub fn Remove(self: *const ISpellChecker2, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpellChecker2.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpellChecker2, @ptrCast(self)), word);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1995,7 +2070,16 @@ pub const ISpellCheckerFactory = extern union {
             return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).CreateSpellChecker(@as(*const ISpellCheckerFactory, @ptrCast(self)), languageTag, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_SupportedLanguages(self: *const ISpellCheckerFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpellCheckerFactory, @ptrCast(self)), value);
+    }
+    pub fn IsSupported(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ISpellCheckerFactory, @ptrCast(self)), languageTag, value);
+    }
+    pub fn CreateSpellChecker(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellChecker) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).CreateSpellChecker(@as(*const ISpellCheckerFactory, @ptrCast(self)), languageTag, value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2028,7 +2112,13 @@ pub const IUserDictionariesRegistrar = extern union {
             return @as(*const IUserDictionariesRegistrar.VTable, @ptrCast(self.vtable)).UnregisterUserDictionary(@as(*const IUserDictionariesRegistrar, @ptrCast(self)), dictionaryPath, languageTag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IUserDictionariesRegistrar.VTable, @ptrCast(self.vtable)).RegisterUserDictionary(@as(*const IUserDictionariesRegistrar, @ptrCast(self)), dictionaryPath, languageTag);
+    }
+    pub fn UnregisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IUserDictionariesRegistrar.VTable, @ptrCast(self.vtable)).UnregisterUserDictionary(@as(*const IUserDictionariesRegistrar, @ptrCast(self)), dictionaryPath, languageTag);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2133,7 +2223,37 @@ pub const ISpellCheckProvider = extern union {
             return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).InitializeWordlist(@as(*const ISpellCheckProvider, @ptrCast(self)), wordlistType, words);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_LanguageTag(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
+    }
+    pub fn Check(self: *const ISpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).Check(@as(*const ISpellCheckProvider, @ptrCast(self)), text, value);
+    }
+    pub fn Suggest(self: *const ISpellCheckProvider, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).Suggest(@as(*const ISpellCheckProvider, @ptrCast(self)), word, value);
+    }
+    pub fn GetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).GetOptionValue(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
+    }
+    pub fn SetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: u8) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).SetOptionValue(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
+    }
+    pub fn get_OptionIds(self: *const ISpellCheckProvider, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_OptionIds(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
+    }
+    pub fn get_Id(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
+    }
+    pub fn get_LocalizedName(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_LocalizedName(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
+    }
+    pub fn GetOptionDescription(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).GetOptionDescription(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
+    }
+    pub fn InitializeWordlist(self: *const ISpellCheckProvider, wordlistType: WORDLIST_TYPE, words: ?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).InitializeWordlist(@as(*const ISpellCheckProvider, @ptrCast(self)), wordlistType, words);
+    }
 };
 
 const IID_IComprehensiveSpellCheckProvider_Value = Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
@@ -2156,7 +2276,10 @@ pub const IComprehensiveSpellCheckProvider = extern union {
             return @as(*const IComprehensiveSpellCheckProvider.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const IComprehensiveSpellCheckProvider, @ptrCast(self)), text, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+        return @as(*const IComprehensiveSpellCheckProvider.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const IComprehensiveSpellCheckProvider, @ptrCast(self)), text, value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2198,7 +2321,16 @@ pub const ISpellCheckProviderFactory = extern union {
             return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).CreateSpellCheckProvider(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), languageTag, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_SupportedLanguages(self: *const ISpellCheckProviderFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), value);
+    }
+    pub fn IsSupported(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), languageTag, value);
+    }
+    pub fn CreateSpellCheckProvider(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellCheckProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).CreateSpellCheckProvider(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), languageTag, value);
+    }
 };
 
 pub const SCRIPT_CONTROL = extern struct {
@@ -7202,7 +7334,22 @@ pub const IMLangStringBufW = extern union {
             return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchDelete);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMLangStringBufW, @ptrCast(self)), plFlags, pcchBuf);
+    }
+    pub fn LockBuf(self: *const IMLangStringBufW, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).LockBuf(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchMaxLock, ppszBuf, pcchBuf);
+    }
+    pub fn UnlockBuf(self: *const IMLangStringBufW, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).UnlockBuf(@as(*const IMLangStringBufW, @ptrCast(self)), pszBuf, cchOffset, cchWrite);
+    }
+    pub fn Insert(self: *const IMLangStringBufW, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).Insert(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchMaxInsert, pcchActual);
+    }
+    pub fn Delete(self: *const IMLangStringBufW, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchDelete);
+    }
 };
 
 const IID_IMLangStringBufA_Value = Guid.initString("d24acd23-ba72-11d0-b188-00aa0038c969");
@@ -7265,7 +7412,22 @@ pub const IMLangStringBufA = extern union {
             return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchDelete);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMLangStringBufA, @ptrCast(self)), plFlags, pcchBuf);
+    }
+    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).LockBuf(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchMaxLock, ppszBuf, pcchBuf);
+    }
+    pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).UnlockBuf(@as(*const IMLangStringBufA, @ptrCast(self)), pszBuf, cchOffset, cchWrite);
+    }
+    pub fn Insert(self: *const IMLangStringBufA, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).Insert(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchMaxInsert, pcchActual);
+    }
+    pub fn Delete(self: *const IMLangStringBufA, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchDelete);
+    }
 };
 
 const IID_IMLangString_Value = Guid.initString("c04d65ce-b70d-11d0-b188-00aa0038c969");
@@ -7322,7 +7484,19 @@ pub const IMLangString = extern union {
             return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).GetMLStr(@as(*const IMLangString, @ptrCast(self)), lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).Sync(@as(*const IMLangString, @ptrCast(self)), fNoAccess);
+    }
+    pub fn GetLength(self: *const IMLangString, plLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMLangString, @ptrCast(self)), plLen);
+    }
+    pub fn SetMLStr(self: *const IMLangString, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).SetMLStr(@as(*const IMLangString, @ptrCast(self)), lDestPos, lDestLen, pSrcMLStr, lSrcPos, lSrcLen);
+    }
+    pub fn GetMLStr(self: *const IMLangString, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).GetMLStr(@as(*const IMLangString, @ptrCast(self)), lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
+    }
 };
 
 const IID_IMLangStringWStr_Value = Guid.initString("c04d65d0-b70d-11d0-b188-00aa0038c969");
@@ -7432,7 +7606,31 @@ pub const IMLangStringWStr = extern union {
             return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMLangString.MethodMixin(@This());
+    pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetStrBufW(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetStrBufW(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, pSrcBuf, pcchActual, plActualLen);
+    }
+    pub fn GetWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcLen, pszDest, cchDest, pcchActual, plActualLen);
+    }
+    pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetStrBufW(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
+    }
+    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).LockWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
+    }
+    pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).UnlockWStr(@as(*const IMLangStringWStr, @ptrCast(self)), pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetLocale(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetLocale(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, locale);
+    }
+    pub fn GetLocale(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
+    }
 };
 
 const IID_IMLangStringAStr_Value = Guid.initString("c04d65d2-b70d-11d0-b188-00aa0038c969");
@@ -7549,7 +7747,31 @@ pub const IMLangStringAStr = extern union {
             return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMLangString.MethodMixin(@This());
+    pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetStrBufA(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetStrBufA(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, uCodePage, pSrcBuf, pcchActual, plActualLen);
+    }
+    pub fn GetAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcLen, uCodePageIn, puCodePageOut, pszDest, cchDest, pcchActual, plActualLen);
+    }
+    pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetStrBufA(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
+    }
+    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).LockAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
+    }
+    pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).UnlockAStr(@as(*const IMLangStringAStr, @ptrCast(self)), pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetLocale(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetLocale(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, locale);
+    }
+    pub fn GetLocale(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
+    }
 };
 
 const IID_IMLangLineBreakConsole_Value = Guid.initString("f5be2ee1-bfd7-11d0-b188-00aa0038c969");
@@ -7604,7 +7826,16 @@ pub const IMLangLineBreakConsole = extern union {
             return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineA(@as(*const IMLangLineBreakConsole, @ptrCast(self)), locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineML(@as(*const IMLangLineBreakConsole, @ptrCast(self)), pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
+    }
+    pub fn BreakLineW(self: *const IMLangLineBreakConsole, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineW(@as(*const IMLangLineBreakConsole, @ptrCast(self)), locale, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
+    }
+    pub fn BreakLineA(self: *const IMLangLineBreakConsole, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineA(@as(*const IMLangLineBreakConsole, @ptrCast(self)), locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
+    }
 };
 
 pub const MIMECONTF = enum(i32) {
@@ -7699,7 +7930,19 @@ pub const IEnumCodePage = extern union {
             return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCodePage, @ptrCast(self)), celt);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCodePage, @ptrCast(self)), ppEnum);
+    }
+    pub fn Next(self: *const IEnumCodePage, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCodePage, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumCodePage) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCodePage, @ptrCast(self)));
+    }
+    pub fn Skip(self: *const IEnumCodePage, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCodePage, @ptrCast(self)), celt);
+    }
 };
 
 pub const RFC1766INFO = extern struct {
@@ -7752,7 +7995,19 @@ pub const IEnumRfc1766 = extern union {
             return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRfc1766, @ptrCast(self)), celt);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRfc1766, @ptrCast(self)), ppEnum);
+    }
+    pub fn Next(self: *const IEnumRfc1766, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRfc1766, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumRfc1766) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRfc1766, @ptrCast(self)));
+    }
+    pub fn Skip(self: *const IEnumRfc1766, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRfc1766, @ptrCast(self)), celt);
+    }
 };
 
 pub const SCRIPTCONTF = enum(i32) {
@@ -7898,7 +8153,19 @@ pub const IEnumScript = extern union {
             return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumScript, @ptrCast(self)), celt);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.Inline) HRESULT {
+        return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumScript, @ptrCast(self)), ppEnum);
+    }
+    pub fn Next(self: *const IEnumScript, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumScript, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumScript) callconv(.Inline) HRESULT {
+        return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumScript, @ptrCast(self)));
+    }
+    pub fn Skip(self: *const IEnumScript, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumScript, @ptrCast(self)), celt);
+    }
 };
 
 pub const tagMLCONVCHARF = enum(i32) {
@@ -8019,7 +8286,28 @@ pub const IMLangConvertCharset = extern union {
             return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversionFromUnicode(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMLangConvertCharset, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty);
+    }
+    pub fn GetSourceCodePage(self: *const IMLangConvertCharset, puiSrcCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetSourceCodePage(@as(*const IMLangConvertCharset, @ptrCast(self)), puiSrcCodePage);
+    }
+    pub fn GetDestinationCodePage(self: *const IMLangConvertCharset, puiDstCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetDestinationCodePage(@as(*const IMLangConvertCharset, @ptrCast(self)), puiDstCodePage);
+    }
+    pub fn GetProperty(self: *const IMLangConvertCharset, pdwProperty: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IMLangConvertCharset, @ptrCast(self)), pdwProperty);
+    }
+    pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversion(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversionToUnicode(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversionFromUnicode(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
 };
 
 const IID_IMultiLanguage_Value = Guid.initString("275c23e1-3747-11d0-9fea-00aa003f8646");
@@ -8183,7 +8471,52 @@ pub const IMultiLanguage = extern union {
             return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).CreateConvertCharset(@as(*const IMultiLanguage, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetNumberOfCodePageInfo(@as(*const IMultiLanguage, @ptrCast(self)), pcCodePage);
+    }
+    pub fn GetCodePageInfo(self: *const IMultiLanguage, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetCodePageInfo(@as(*const IMultiLanguage, @ptrCast(self)), uiCodePage, pCodePageInfo);
+    }
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetFamilyCodePage(@as(*const IMultiLanguage, @ptrCast(self)), uiCodePage, puiFamilyCodePage);
+    }
+    pub fn EnumCodePages(self: *const IMultiLanguage, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).EnumCodePages(@as(*const IMultiLanguage, @ptrCast(self)), grfFlags, ppEnumCodePage);
+    }
+    pub fn GetCharsetInfo(self: *const IMultiLanguage, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetCharsetInfo(@as(*const IMultiLanguage, @ptrCast(self)), Charset, pCharsetInfo);
+    }
+    pub fn IsConvertible(self: *const IMultiLanguage, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).IsConvertible(@as(*const IMultiLanguage, @ptrCast(self)), dwSrcEncoding, dwDstEncoding);
+    }
+    pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertString(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringToUnicode(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicode(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringReset(@as(*const IMultiLanguage, @ptrCast(self)));
+    }
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetRfc1766FromLcid(@as(*const IMultiLanguage, @ptrCast(self)), Locale, pbstrRfc1766);
+    }
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetLcidFromRfc1766(@as(*const IMultiLanguage, @ptrCast(self)), pLocale, bstrRfc1766);
+    }
+    pub fn EnumRfc1766(self: *const IMultiLanguage, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).EnumRfc1766(@as(*const IMultiLanguage, @ptrCast(self)), ppEnumRfc1766);
+    }
+    pub fn GetRfc1766Info(self: *const IMultiLanguage, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetRfc1766Info(@as(*const IMultiLanguage, @ptrCast(self)), Locale, pRfc1766Info);
+    }
+    pub fn CreateConvertCharset(self: *const IMultiLanguage, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).CreateConvertCharset(@as(*const IMultiLanguage, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
+    }
 };
 
 pub const MLDETECTCP = enum(i32) {
@@ -8527,7 +8860,88 @@ pub const IMultiLanguage2 = extern union {
             return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ValidateCodePageEx(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, hwnd, dwfIODControl);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetNumberOfCodePageInfo(@as(*const IMultiLanguage2, @ptrCast(self)), pcCodePage);
+    }
+    pub fn GetCodePageInfo(self: *const IMultiLanguage2, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCodePageInfo(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, LangId, pCodePageInfo);
+    }
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage2, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetFamilyCodePage(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, puiFamilyCodePage);
+    }
+    pub fn EnumCodePages(self: *const IMultiLanguage2, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumCodePages(@as(*const IMultiLanguage2, @ptrCast(self)), grfFlags, LangId, ppEnumCodePage);
+    }
+    pub fn GetCharsetInfo(self: *const IMultiLanguage2, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCharsetInfo(@as(*const IMultiLanguage2, @ptrCast(self)), Charset, pCharsetInfo);
+    }
+    pub fn IsConvertible(self: *const IMultiLanguage2, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).IsConvertible(@as(*const IMultiLanguage2, @ptrCast(self)), dwSrcEncoding, dwDstEncoding);
+    }
+    pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertString(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringToUnicode(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicode(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringReset(@as(*const IMultiLanguage2, @ptrCast(self)));
+    }
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage2, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetRfc1766FromLcid(@as(*const IMultiLanguage2, @ptrCast(self)), Locale, pbstrRfc1766);
+    }
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage2, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetLcidFromRfc1766(@as(*const IMultiLanguage2, @ptrCast(self)), pLocale, bstrRfc1766);
+    }
+    pub fn EnumRfc1766(self: *const IMultiLanguage2, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumRfc1766(@as(*const IMultiLanguage2, @ptrCast(self)), LangId, ppEnumRfc1766);
+    }
+    pub fn GetRfc1766Info(self: *const IMultiLanguage2, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetRfc1766Info(@as(*const IMultiLanguage2, @ptrCast(self)), Locale, LangId, pRfc1766Info);
+    }
+    pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).CreateConvertCharset(@as(*const IMultiLanguage2, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
+    }
+    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringInIStream(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
+    }
+    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringToUnicodeEx(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
+    }
+    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicodeEx(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
+    }
+    pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).DetectCodepageInIStream(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
+    }
+    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).DetectInputCodepage(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
+    }
+    pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ValidateCodePage(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, hwnd);
+    }
+    pub fn GetCodePageDescription(self: *const IMultiLanguage2, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCodePageDescription(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, lcid, lpWideCharStr, cchWideChar);
+    }
+    pub fn IsCodePageInstallable(self: *const IMultiLanguage2, uiCodePage: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).IsCodePageInstallable(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage);
+    }
+    pub fn SetMimeDBSource(self: *const IMultiLanguage2, dwSource: MIMECONTF) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).SetMimeDBSource(@as(*const IMultiLanguage2, @ptrCast(self)), dwSource);
+    }
+    pub fn GetNumberOfScripts(self: *const IMultiLanguage2, pnScripts: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetNumberOfScripts(@as(*const IMultiLanguage2, @ptrCast(self)), pnScripts);
+    }
+    pub fn EnumScripts(self: *const IMultiLanguage2, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumScripts(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlags, LangId, ppEnumScript);
+    }
+    pub fn ValidateCodePageEx(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ValidateCodePageEx(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, hwnd, dwfIODControl);
+    }
 };
 
 const IID_IMLangCodePages_Value = Guid.initString("359f3443-bd4a-11d0-b188-00aa0038c969");
@@ -8581,7 +8995,19 @@ pub const IMLangCodePages = extern union {
             return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).CodePagesToCodePage(@as(*const IMLangCodePages, @ptrCast(self)), dwCodePages, uDefaultCodePage, puCodePage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).GetCharCodePages(@as(*const IMLangCodePages, @ptrCast(self)), chSrc, pdwCodePages);
+    }
+    pub fn GetStrCodePages(self: *const IMLangCodePages, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).GetStrCodePages(@as(*const IMLangCodePages, @ptrCast(self)), pszSrc, cchSrc, dwPriorityCodePages, pdwCodePages, pcchCodePages);
+    }
+    pub fn CodePageToCodePages(self: *const IMLangCodePages, uCodePage: u32, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).CodePageToCodePages(@as(*const IMLangCodePages, @ptrCast(self)), uCodePage, pdwCodePages);
+    }
+    pub fn CodePagesToCodePage(self: *const IMLangCodePages, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).CodePagesToCodePage(@as(*const IMLangCodePages, @ptrCast(self)), dwCodePages, uDefaultCodePage, puCodePage);
+    }
 };
 
 const IID_IMLangFontLink_Value = Guid.initString("359f3441-bd4a-11d0-b188-00aa0038c969");
@@ -8631,7 +9057,19 @@ pub const IMLangFontLink = extern union {
             return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).ResetFontMapping(@as(*const IMLangFontLink, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMLangCodePages.MethodMixin(@This());
+    pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).GetFontCodePages(@as(*const IMLangFontLink, @ptrCast(self)), hDC, hFont, pdwCodePages);
+    }
+    pub fn MapFont(self: *const IMLangFontLink, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).MapFont(@as(*const IMLangFontLink, @ptrCast(self)), hDC, dwCodePages, hSrcFont, phDestFont);
+    }
+    pub fn ReleaseFont(self: *const IMLangFontLink, hFont: ?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).ReleaseFont(@as(*const IMLangFontLink, @ptrCast(self)), hFont);
+    }
+    pub fn ResetFontMapping(self: *const IMLangFontLink) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).ResetFontMapping(@as(*const IMLangFontLink, @ptrCast(self)));
+    }
 };
 
 pub const UNICODERANGE = extern struct {
@@ -8716,7 +9154,28 @@ pub const IMLangFontLink2 = extern union {
             return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).CodePageToScriptID(@as(*const IMLangFontLink2, @ptrCast(self)), uiCodePage, pSid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMLangCodePages.MethodMixin(@This());
+    pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetFontCodePages(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, hFont, pdwCodePages);
+    }
+    pub fn ReleaseFont(self: *const IMLangFontLink2, hFont: ?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).ReleaseFont(@as(*const IMLangFontLink2, @ptrCast(self)), hFont);
+    }
+    pub fn ResetFontMapping(self: *const IMLangFontLink2) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).ResetFontMapping(@as(*const IMLangFontLink2, @ptrCast(self)));
+    }
+    pub fn MapFont(self: *const IMLangFontLink2, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).MapFont(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, dwCodePages, chSrc, pFont);
+    }
+    pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetFontUnicodeRanges(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, puiRanges, pUranges);
+    }
+    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetScriptFontInfo(@as(*const IMLangFontLink2, @ptrCast(self)), sid, dwFlags, puiFonts, pScriptFont);
+    }
+    pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).CodePageToScriptID(@as(*const IMLangFontLink2, @ptrCast(self)), uiCodePage, pSid);
+    }
 };
 
 const IID_IMultiLanguage3_Value = Guid.initString("4e5868ab-b157-4623-9acc-6a1d9caebe04");
@@ -8759,7 +9218,13 @@ pub const IMultiLanguage3 = extern union {
             return @as(*const IMultiLanguage3.VTable, @ptrCast(self.vtable)).DetectOutboundCodePageInIStream(@as(*const IMultiLanguage3, @ptrCast(self)), dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMultiLanguage2.MethodMixin(@This());
+    pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage3.VTable, @ptrCast(self.vtable)).DetectOutboundCodePage(@as(*const IMultiLanguage3, @ptrCast(self)), dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
+    }
+    pub fn DetectOutboundCodePageInIStream(self: *const IMultiLanguage3, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMultiLanguage3.VTable, @ptrCast(self.vtable)).DetectOutboundCodePageInIStream(@as(*const IMultiLanguage3, @ptrCast(self)), dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
+    }
 };
 
 pub const MLSTR_FLAGS = enum(i32) {

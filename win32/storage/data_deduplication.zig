@@ -74,7 +74,16 @@ pub const IDedupReadFileCallback = extern union {
             return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).PreviewContainerRead(@as(*const IDedupReadFileCallback, @ptrCast(self)), FileFullPath, NumberOfReads, ReadOffsets);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReadBackupFile(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, FileOffset: i64, SizeToRead: u32, FileBuffer: [*:0]u8, ReturnedSize: ?*u32, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).ReadBackupFile(@as(*const IDedupReadFileCallback, @ptrCast(self)), FileFullPath, FileOffset, SizeToRead, FileBuffer, ReturnedSize, Flags);
+    }
+    pub fn OrderContainersRestore(self: *const IDedupReadFileCallback, NumberOfContainers: u32, ContainerPaths: [*]?BSTR, ReadPlanEntries: ?*u32, ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).OrderContainersRestore(@as(*const IDedupReadFileCallback, @ptrCast(self)), NumberOfContainers, ContainerPaths, ReadPlanEntries, ReadPlan);
+    }
+    pub fn PreviewContainerRead(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, NumberOfReads: u32, ReadOffsets: [*]DDP_FILE_EXTENT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).PreviewContainerRead(@as(*const IDedupReadFileCallback, @ptrCast(self)), FileFullPath, NumberOfReads, ReadOffsets);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -101,7 +110,10 @@ pub const IDedupBackupSupport = extern union {
             return @as(*const IDedupBackupSupport.VTable, @ptrCast(self.vtable)).RestoreFiles(@as(*const IDedupBackupSupport, @ptrCast(self)), NumberOfFiles, FileFullPaths, Store, Flags, FileResults);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RestoreFiles(self: *const IDedupBackupSupport, NumberOfFiles: u32, FileFullPaths: [*]?BSTR, Store: ?*IDedupReadFileCallback, Flags: u32, FileResults: [*]HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupBackupSupport.VTable, @ptrCast(self.vtable)).RestoreFiles(@as(*const IDedupBackupSupport, @ptrCast(self)), NumberOfFiles, FileFullPaths, Store, Flags, FileResults);
+    }
 };
 
 pub const DEDUP_SET_PARAM_TYPE = enum(i32) {
@@ -167,7 +179,19 @@ pub const IDedupChunkLibrary = extern union {
             return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).StartChunking(@as(*const IDedupChunkLibrary, @ptrCast(self)), iidIteratorInterfaceID, ppChunksEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InitializeForPushBuffers(self: *const IDedupChunkLibrary) callconv(.Inline) HRESULT {
+        return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).InitializeForPushBuffers(@as(*const IDedupChunkLibrary, @ptrCast(self)));
+    }
+    pub fn Uninitialize(self: *const IDedupChunkLibrary) callconv(.Inline) HRESULT {
+        return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IDedupChunkLibrary, @ptrCast(self)));
+    }
+    pub fn SetParameter(self: *const IDedupChunkLibrary, dwParamType: u32, vParamValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).SetParameter(@as(*const IDedupChunkLibrary, @ptrCast(self)), dwParamType, vParamValue);
+    }
+    pub fn StartChunking(self: *const IDedupChunkLibrary, iidIteratorInterfaceID: Guid, ppChunksEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).StartChunking(@as(*const IDedupChunkLibrary, @ptrCast(self)), iidIteratorInterfaceID, ppChunksEnum);
+    }
 };
 
 const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
@@ -214,7 +238,19 @@ pub const IDedupIterateChunksHash32 = extern union {
             return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDedupIterateChunksHash32, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn PushBuffer(self: *const IDedupIterateChunksHash32, pBuffer: [*:0]u8, ulBufferLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).PushBuffer(@as(*const IDedupIterateChunksHash32, @ptrCast(self)), pBuffer, ulBufferLength);
+    }
+    pub fn Next(self: *const IDedupIterateChunksHash32, ulMaxChunks: u32, pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32, pulFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Next(@as(*const IDedupIterateChunksHash32, @ptrCast(self)), ulMaxChunks, pArrChunks, pulFetched);
+    }
+    pub fn Drain(self: *const IDedupIterateChunksHash32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Drain(@as(*const IDedupIterateChunksHash32, @ptrCast(self)));
+    }
+    pub fn Reset(self: *const IDedupIterateChunksHash32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDedupIterateChunksHash32, @ptrCast(self)));
+    }
 };
 
 pub const DedupDataPortManagerOption = enum(i32) {
@@ -465,7 +501,43 @@ pub const IDedupDataPort = extern union {
             return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetRequestResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, pBatchResult, pBatchCount, pStatus, ppItemResults);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStatus(self: *const IDedupDataPort, pStatus: ?*DedupDataPortVolumeStatus, pDataHeadroomMb: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDedupDataPort, @ptrCast(self)), pStatus, pDataHeadroomMb);
+    }
+    pub fn LookupChunks(self: *const IDedupDataPort, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).LookupChunks(@as(*const IDedupDataPort, @ptrCast(self)), Count, pHashes, pRequestId);
+    }
+    pub fn InsertChunks(self: *const IDedupDataPort, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkData: [*:0]u8, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).InsertChunks(@as(*const IDedupDataPort, @ptrCast(self)), ChunkCount, pChunkMetadata, DataByteCount, pChunkData, pRequestId);
+    }
+    pub fn InsertChunksWithStream(self: *const IDedupDataPort, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkDataStream: ?*IStream, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).InsertChunksWithStream(@as(*const IDedupDataPort, @ptrCast(self)), ChunkCount, pChunkMetadata, DataByteCount, pChunkDataStream, pRequestId);
+    }
+    pub fn CommitStreams(self: *const IDedupDataPort, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntries: [*]DedupStreamEntry, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).CommitStreams(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreams, EntryCount, pEntries, pRequestId);
+    }
+    pub fn CommitStreamsWithStream(self: *const IDedupDataPort, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntriesStream: ?*IStream, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).CommitStreamsWithStream(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreams, EntryCount, pEntriesStream, pRequestId);
+    }
+    pub fn GetStreams(self: *const IDedupDataPort, StreamCount: u32, pStreamPaths: [*]?BSTR, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStreams(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreamPaths, pRequestId);
+    }
+    pub fn GetStreamsResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, StreamEntryIndex: u32, pStreamCount: ?*u32, ppStreams: [*]?*DedupStream, pEntryCount: ?*u32, ppEntries: [*]?*DedupStreamEntry, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStreamsResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, StreamEntryIndex, pStreamCount, ppStreams, pEntryCount, ppEntries, pStatus, ppItemResults);
+    }
+    pub fn GetChunks(self: *const IDedupDataPort, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetChunks(@as(*const IDedupDataPort, @ptrCast(self)), Count, pHashes, pRequestId);
+    }
+    pub fn GetChunksResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, ChunkIndex: u32, pChunkCount: ?*u32, ppChunkMetadata: [*]?*DedupChunk, pDataByteCount: ?*u32, ppChunkData: [*]?*u8, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetChunksResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, ChunkIndex, pChunkCount, ppChunkMetadata, pDataByteCount, ppChunkData, pStatus, ppItemResults);
+    }
+    pub fn GetRequestStatus(self: *const IDedupDataPort, RequestId: Guid, pStatus: ?*DedupDataPortRequestStatus) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetRequestStatus(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, pStatus);
+    }
+    pub fn GetRequestResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, pBatchResult: ?*HRESULT, pBatchCount: ?*u32, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetRequestResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, pBatchResult, pBatchCount, pStatus, ppItemResults);
+    }
 };
 
 const IID_IDedupDataPortManager_Value = Guid.initString("44677452-b90a-445e-8192-cdcfe81511fb");
@@ -511,7 +583,16 @@ pub const IDedupDataPortManager = extern union {
             return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetVolumeDataPort(@as(*const IDedupDataPortManager, @ptrCast(self)), Options, Path, ppDataPort);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetConfiguration(self: *const IDedupDataPortManager, pMinChunkSize: ?*u32, pMaxChunkSize: ?*u32, pChunkingAlgorithm: ?*DedupChunkingAlgorithm, pHashingAlgorithm: ?*DedupHashingAlgorithm, pCompressionAlgorithm: ?*DedupCompressionAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IDedupDataPortManager, @ptrCast(self)), pMinChunkSize, pMaxChunkSize, pChunkingAlgorithm, pHashingAlgorithm, pCompressionAlgorithm);
+    }
+    pub fn GetVolumeStatus(self: *const IDedupDataPortManager, Options: u32, Path: ?BSTR, pStatus: ?*DedupDataPortVolumeStatus) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetVolumeStatus(@as(*const IDedupDataPortManager, @ptrCast(self)), Options, Path, pStatus);
+    }
+    pub fn GetVolumeDataPort(self: *const IDedupDataPortManager, Options: u32, Path: ?BSTR, ppDataPort: ?*?*IDedupDataPort) callconv(.Inline) HRESULT {
+        return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetVolumeDataPort(@as(*const IDedupDataPortManager, @ptrCast(self)), Options, Path, ppDataPort);
+    }
 };
 
 

@@ -553,7 +553,31 @@ pub const IDirectSound = extern union {
             return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSound, @ptrCast(self)), pcGuidDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateSoundBuffer(self: *const IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC, ppDSBuffer: ?*?*IDirectSoundBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).CreateSoundBuffer(@as(*const IDirectSound, @ptrCast(self)), pcDSBufferDesc, ppDSBuffer, pUnkOuter);
+    }
+    pub fn GetCaps(self: *const IDirectSound, pDSCaps: ?*DSCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSound, @ptrCast(self)), pDSCaps);
+    }
+    pub fn DuplicateSoundBuffer(self: *const IDirectSound, pDSBufferOriginal: ?*IDirectSoundBuffer, ppDSBufferDuplicate: ?*?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).DuplicateSoundBuffer(@as(*const IDirectSound, @ptrCast(self)), pDSBufferOriginal, ppDSBufferDuplicate);
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectSound, hwnd: ?HWND, dwLevel: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectSound, @ptrCast(self)), hwnd, dwLevel);
+    }
+    pub fn Compact(self: *const IDirectSound) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectSound, @ptrCast(self)));
+    }
+    pub fn GetSpeakerConfig(self: *const IDirectSound, pdwSpeakerConfig: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).GetSpeakerConfig(@as(*const IDirectSound, @ptrCast(self)), pdwSpeakerConfig);
+    }
+    pub fn SetSpeakerConfig(self: *const IDirectSound, dwSpeakerConfig: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).SetSpeakerConfig(@as(*const IDirectSound, @ptrCast(self)), dwSpeakerConfig);
+    }
+    pub fn Initialize(self: *const IDirectSound, pcGuidDevice: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSound, @ptrCast(self)), pcGuidDevice);
+    }
 };
 
 const IID_IDirectSound8_Value = Guid.initString("c50a7e93-f395-4834-9ef6-7fa99de50966");
@@ -575,7 +599,10 @@ pub const IDirectSound8 = extern union {
             return @as(*const IDirectSound8.VTable, @ptrCast(self.vtable)).VerifyCertification(@as(*const IDirectSound8, @ptrCast(self)), pdwCertified);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectSound.MethodMixin(@This());
+    pub fn VerifyCertification(self: *const IDirectSound8, pdwCertified: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound8.VTable, @ptrCast(self.vtable)).VerifyCertification(@as(*const IDirectSound8, @ptrCast(self)), pdwCertified);
+    }
 };
 
 const IID_IDirectSoundBuffer_Value = Guid.initString("279afa85-4981-11ce-a521-0020af0be560");
@@ -749,7 +776,61 @@ pub const IDirectSoundBuffer = extern union {
             return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectSoundBuffer, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCaps(self: *const IDirectSoundBuffer, pDSBufferCaps: ?*DSBCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundBuffer, @ptrCast(self)), pDSBufferCaps);
+    }
+    pub fn GetCurrentPosition(self: *const IDirectSoundBuffer, pdwCurrentPlayCursor: ?*u32, pdwCurrentWriteCursor: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwCurrentPlayCursor, pdwCurrentWriteCursor);
+    }
+    pub fn GetFormat(self: *const IDirectSoundBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectSoundBuffer, @ptrCast(self)), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
+    }
+    pub fn GetVolume(self: *const IDirectSoundBuffer, plVolume: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IDirectSoundBuffer, @ptrCast(self)), plVolume);
+    }
+    pub fn GetPan(self: *const IDirectSoundBuffer, plPan: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetPan(@as(*const IDirectSoundBuffer, @ptrCast(self)), plPan);
+    }
+    pub fn GetFrequency(self: *const IDirectSoundBuffer, pdwFrequency: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetFrequency(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwFrequency);
+    }
+    pub fn GetStatus(self: *const IDirectSoundBuffer, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwStatus);
+    }
+    pub fn Initialize(self: *const IDirectSoundBuffer, pDirectSound: ?*IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundBuffer, @ptrCast(self)), pDirectSound, pcDSBufferDesc);
+    }
+    pub fn Lock(self: *const IDirectSoundBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
+    }
+    pub fn Play(self: *const IDirectSoundBuffer, dwReserved1: u32, dwPriority: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Play(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwReserved1, dwPriority, dwFlags);
+    }
+    pub fn SetCurrentPosition(self: *const IDirectSoundBuffer, dwNewPosition: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwNewPosition);
+    }
+    pub fn SetFormat(self: *const IDirectSoundBuffer, pcfxFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IDirectSoundBuffer, @ptrCast(self)), pcfxFormat);
+    }
+    pub fn SetVolume(self: *const IDirectSoundBuffer, lVolume: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IDirectSoundBuffer, @ptrCast(self)), lVolume);
+    }
+    pub fn SetPan(self: *const IDirectSoundBuffer, lPan: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetPan(@as(*const IDirectSoundBuffer, @ptrCast(self)), lPan);
+    }
+    pub fn SetFrequency(self: *const IDirectSoundBuffer, dwFrequency: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetFrequency(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwFrequency);
+    }
+    pub fn Stop(self: *const IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectSoundBuffer, @ptrCast(self)));
+    }
+    pub fn Unlock(self: *const IDirectSoundBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectSoundBuffer, @ptrCast(self)), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
+    }
+    pub fn Restore(self: *const IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectSoundBuffer, @ptrCast(self)));
+    }
 };
 
 const IID_IDirectSoundBuffer8_Value = Guid.initString("6825a449-7524-4d82-920f-50e36ab3ab1e");
@@ -794,7 +875,16 @@ pub const IDirectSoundBuffer8 = extern union {
             return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).GetObjectInPath(@as(*const IDirectSoundBuffer8, @ptrCast(self)), rguidObject, dwIndex, rguidInterface, ppObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectSoundBuffer.MethodMixin(@This());
+    pub fn SetFX(self: *const IDirectSoundBuffer8, dwEffectsCount: u32, pDSFXDesc: ?[*]DSEFFECTDESC, pdwResultCodes: ?[*]u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).SetFX(@as(*const IDirectSoundBuffer8, @ptrCast(self)), dwEffectsCount, pDSFXDesc, pdwResultCodes);
+    }
+    pub fn AcquireResources(self: *const IDirectSoundBuffer8, dwFlags: u32, dwEffectsCount: u32, pdwResultCodes: [*]u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).AcquireResources(@as(*const IDirectSoundBuffer8, @ptrCast(self)), dwFlags, dwEffectsCount, pdwResultCodes);
+    }
+    pub fn GetObjectInPath(self: *const IDirectSoundBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).GetObjectInPath(@as(*const IDirectSoundBuffer8, @ptrCast(self)), rguidObject, dwIndex, rguidInterface, ppObject);
+    }
 };
 
 const IID_IDirectSound3DListener_Value = Guid.initString("279afa84-4981-11ce-a521-0020af0be560");
@@ -944,7 +1034,52 @@ pub const IDirectSound3DListener = extern union {
             return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).CommitDeferredSettings(@as(*const IDirectSound3DListener, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAllParameters(self: *const IDirectSound3DListener, pListener: ?*DS3DLISTENER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSound3DListener, @ptrCast(self)), pListener);
+    }
+    pub fn GetDistanceFactor(self: *const IDirectSound3DListener, pflDistanceFactor: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetDistanceFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflDistanceFactor);
+    }
+    pub fn GetDopplerFactor(self: *const IDirectSound3DListener, pflDopplerFactor: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetDopplerFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflDopplerFactor);
+    }
+    pub fn GetOrientation(self: *const IDirectSound3DListener, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetOrientation(@as(*const IDirectSound3DListener, @ptrCast(self)), pvOrientFront, pvOrientTop);
+    }
+    pub fn GetPosition(self: *const IDirectSound3DListener, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IDirectSound3DListener, @ptrCast(self)), pvPosition);
+    }
+    pub fn GetRolloffFactor(self: *const IDirectSound3DListener, pflRolloffFactor: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetRolloffFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflRolloffFactor);
+    }
+    pub fn GetVelocity(self: *const IDirectSound3DListener, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetVelocity(@as(*const IDirectSound3DListener, @ptrCast(self)), pvVelocity);
+    }
+    pub fn SetAllParameters(self: *const IDirectSound3DListener, pcListener: ?*DS3DLISTENER, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSound3DListener, @ptrCast(self)), pcListener, dwApply);
+    }
+    pub fn SetDistanceFactor(self: *const IDirectSound3DListener, flDistanceFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetDistanceFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flDistanceFactor, dwApply);
+    }
+    pub fn SetDopplerFactor(self: *const IDirectSound3DListener, flDopplerFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetDopplerFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flDopplerFactor, dwApply);
+    }
+    pub fn SetOrientation(self: *const IDirectSound3DListener, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetOrientation(@as(*const IDirectSound3DListener, @ptrCast(self)), xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
+    }
+    pub fn SetPosition(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IDirectSound3DListener, @ptrCast(self)), x, y, z, dwApply);
+    }
+    pub fn SetRolloffFactor(self: *const IDirectSound3DListener, flRolloffFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetRolloffFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flRolloffFactor, dwApply);
+    }
+    pub fn SetVelocity(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetVelocity(@as(*const IDirectSound3DListener, @ptrCast(self)), x, y, z, dwApply);
+    }
+    pub fn CommitDeferredSettings(self: *const IDirectSound3DListener) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).CommitDeferredSettings(@as(*const IDirectSound3DListener, @ptrCast(self)));
+    }
 };
 
 const IID_IDirectSound3DBuffer_Value = Guid.initString("279afa86-4981-11ce-a521-0020af0be560");
@@ -1119,7 +1254,61 @@ pub const IDirectSound3DBuffer = extern union {
             return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetVelocity(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAllParameters(self: *const IDirectSound3DBuffer, pDs3dBuffer: ?*DS3DBUFFER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pDs3dBuffer);
+    }
+    pub fn GetConeAngles(self: *const IDirectSound3DBuffer, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeAngles(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pdwInsideConeAngle, pdwOutsideConeAngle);
+    }
+    pub fn GetConeOrientation(self: *const IDirectSound3DBuffer, pvOrientation: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeOrientation(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvOrientation);
+    }
+    pub fn GetConeOutsideVolume(self: *const IDirectSound3DBuffer, plConeOutsideVolume: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeOutsideVolume(@as(*const IDirectSound3DBuffer, @ptrCast(self)), plConeOutsideVolume);
+    }
+    pub fn GetMaxDistance(self: *const IDirectSound3DBuffer, pflMaxDistance: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMaxDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pflMaxDistance);
+    }
+    pub fn GetMinDistance(self: *const IDirectSound3DBuffer, pflMinDistance: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMinDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pflMinDistance);
+    }
+    pub fn GetMode(self: *const IDirectSound3DBuffer, pdwMode: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pdwMode);
+    }
+    pub fn GetPosition(self: *const IDirectSound3DBuffer, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvPosition);
+    }
+    pub fn GetVelocity(self: *const IDirectSound3DBuffer, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetVelocity(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvVelocity);
+    }
+    pub fn SetAllParameters(self: *const IDirectSound3DBuffer, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pcDs3dBuffer, dwApply);
+    }
+    pub fn SetConeAngles(self: *const IDirectSound3DBuffer, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeAngles(@as(*const IDirectSound3DBuffer, @ptrCast(self)), dwInsideConeAngle, dwOutsideConeAngle, dwApply);
+    }
+    pub fn SetConeOrientation(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeOrientation(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
+    }
+    pub fn SetConeOutsideVolume(self: *const IDirectSound3DBuffer, lConeOutsideVolume: i32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeOutsideVolume(@as(*const IDirectSound3DBuffer, @ptrCast(self)), lConeOutsideVolume, dwApply);
+    }
+    pub fn SetMaxDistance(self: *const IDirectSound3DBuffer, flMaxDistance: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMaxDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), flMaxDistance, dwApply);
+    }
+    pub fn SetMinDistance(self: *const IDirectSound3DBuffer, flMinDistance: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMinDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), flMinDistance, dwApply);
+    }
+    pub fn SetMode(self: *const IDirectSound3DBuffer, dwMode: u32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDirectSound3DBuffer, @ptrCast(self)), dwMode, dwApply);
+    }
+    pub fn SetPosition(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
+    }
+    pub fn SetVelocity(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetVelocity(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
+    }
 };
 
 const IID_IDirectSoundCapture_Value = Guid.initString("b0210781-89cd-11d0-af08-00a0c925cd16");
@@ -1159,7 +1348,16 @@ pub const IDirectSoundCapture = extern union {
             return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundCapture, @ptrCast(self)), pcGuidDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateCaptureBuffer(self: *const IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC, ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).CreateCaptureBuffer(@as(*const IDirectSoundCapture, @ptrCast(self)), pcDSCBufferDesc, ppDSCBuffer, pUnkOuter);
+    }
+    pub fn GetCaps(self: *const IDirectSoundCapture, pDSCCaps: ?*DSCCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundCapture, @ptrCast(self)), pDSCCaps);
+    }
+    pub fn Initialize(self: *const IDirectSoundCapture, pcGuidDevice: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundCapture, @ptrCast(self)), pcGuidDevice);
+    }
 };
 
 const IID_IDirectSoundCaptureBuffer_Value = Guid.initString("b0210782-89cd-11d0-af08-00a0c925cd16");
@@ -1260,7 +1458,34 @@ pub const IDirectSoundCaptureBuffer = extern union {
             return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCaps(self: *const IDirectSoundCaptureBuffer, pDSCBCaps: ?*DSCBCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pDSCBCaps);
+    }
+    pub fn GetCurrentPosition(self: *const IDirectSoundCaptureBuffer, pdwCapturePosition: ?*u32, pdwReadPosition: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pdwCapturePosition, pdwReadPosition);
+    }
+    pub fn GetFormat(self: *const IDirectSoundCaptureBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
+    }
+    pub fn GetStatus(self: *const IDirectSoundCaptureBuffer, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pdwStatus);
+    }
+    pub fn Initialize(self: *const IDirectSoundCaptureBuffer, pDirectSoundCapture: ?*IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pDirectSoundCapture, pcDSCBufferDesc);
+    }
+    pub fn Lock(self: *const IDirectSoundCaptureBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
+    }
+    pub fn Start(self: *const IDirectSoundCaptureBuffer, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Start(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), dwFlags);
+    }
+    pub fn Stop(self: *const IDirectSoundCaptureBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)));
+    }
+    pub fn Unlock(self: *const IDirectSoundCaptureBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
+    }
 };
 
 const IID_IDirectSoundCaptureBuffer8_Value = Guid.initString("00990df4-0dbb-4872-833e-6d303e80aeb6");
@@ -1294,7 +1519,13 @@ pub const IDirectSoundCaptureBuffer8 = extern union {
             return @as(*const IDirectSoundCaptureBuffer8.VTable, @ptrCast(self.vtable)).GetFXStatus(@as(*const IDirectSoundCaptureBuffer8, @ptrCast(self)), dwEffectsCount, pdwFXStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectSoundCaptureBuffer.MethodMixin(@This());
+    pub fn GetObjectInPath(self: *const IDirectSoundCaptureBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer8.VTable, @ptrCast(self.vtable)).GetObjectInPath(@as(*const IDirectSoundCaptureBuffer8, @ptrCast(self)), rguidObject, dwIndex, rguidInterface, ppObject);
+    }
+    pub fn GetFXStatus(self: *const IDirectSoundCaptureBuffer8, dwEffectsCount: u32, pdwFXStatus: [*]u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureBuffer8.VTable, @ptrCast(self.vtable)).GetFXStatus(@as(*const IDirectSoundCaptureBuffer8, @ptrCast(self)), dwEffectsCount, pdwFXStatus);
+    }
 };
 
 const IID_IDirectSoundNotify_Value = Guid.initString("b0210783-89cd-11d0-af08-00a0c925cd16");
@@ -1317,7 +1548,10 @@ pub const IDirectSoundNotify = extern union {
             return @as(*const IDirectSoundNotify.VTable, @ptrCast(self.vtable)).SetNotificationPositions(@as(*const IDirectSoundNotify, @ptrCast(self)), dwPositionNotifies, pcPositionNotifies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetNotificationPositions(self: *const IDirectSoundNotify, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundNotify.VTable, @ptrCast(self.vtable)).SetNotificationPositions(@as(*const IDirectSoundNotify, @ptrCast(self)), dwPositionNotifies, pcPositionNotifies);
+    }
 };
 
 pub const DSFXGargle = extern struct {
@@ -1352,7 +1586,13 @@ pub const IDirectSoundFXGargle = extern union {
             return @as(*const IDirectSoundFXGargle.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXGargle, @ptrCast(self)), pDsFxGargle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXGargle, pcDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXGargle.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXGargle, @ptrCast(self)), pcDsFxGargle);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXGargle, pDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXGargle.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXGargle, @ptrCast(self)), pDsFxGargle);
+    }
 };
 
 pub const DSFXChorus = extern struct {
@@ -1392,7 +1632,13 @@ pub const IDirectSoundFXChorus = extern union {
             return @as(*const IDirectSoundFXChorus.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXChorus, @ptrCast(self)), pDsFxChorus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXChorus, pcDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXChorus.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXChorus, @ptrCast(self)), pcDsFxChorus);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXChorus, pDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXChorus.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXChorus, @ptrCast(self)), pDsFxChorus);
+    }
 };
 
 pub const DSFXFlanger = extern struct {
@@ -1432,7 +1678,13 @@ pub const IDirectSoundFXFlanger = extern union {
             return @as(*const IDirectSoundFXFlanger.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXFlanger, @ptrCast(self)), pDsFxFlanger);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXFlanger, pcDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXFlanger.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXFlanger, @ptrCast(self)), pcDsFxFlanger);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXFlanger, pDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXFlanger.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXFlanger, @ptrCast(self)), pDsFxFlanger);
+    }
 };
 
 pub const DSFXEcho = extern struct {
@@ -1470,7 +1722,13 @@ pub const IDirectSoundFXEcho = extern union {
             return @as(*const IDirectSoundFXEcho.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXEcho, @ptrCast(self)), pDsFxEcho);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXEcho, pcDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXEcho.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXEcho, @ptrCast(self)), pcDsFxEcho);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXEcho, pDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXEcho.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXEcho, @ptrCast(self)), pDsFxEcho);
+    }
 };
 
 pub const DSFXDistortion = extern struct {
@@ -1508,7 +1766,13 @@ pub const IDirectSoundFXDistortion = extern union {
             return @as(*const IDirectSoundFXDistortion.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXDistortion, @ptrCast(self)), pDsFxDistortion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXDistortion, pcDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXDistortion.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXDistortion, @ptrCast(self)), pcDsFxDistortion);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXDistortion, pDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXDistortion.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXDistortion, @ptrCast(self)), pDsFxDistortion);
+    }
 };
 
 pub const DSFXCompressor = extern struct {
@@ -1547,7 +1811,13 @@ pub const IDirectSoundFXCompressor = extern union {
             return @as(*const IDirectSoundFXCompressor.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXCompressor, @ptrCast(self)), pDsFxCompressor);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXCompressor, pcDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXCompressor.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXCompressor, @ptrCast(self)), pcDsFxCompressor);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXCompressor, pDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXCompressor.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXCompressor, @ptrCast(self)), pDsFxCompressor);
+    }
 };
 
 pub const DSFXParamEq = extern struct {
@@ -1583,7 +1853,13 @@ pub const IDirectSoundFXParamEq = extern union {
             return @as(*const IDirectSoundFXParamEq.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXParamEq, @ptrCast(self)), pDsFxParamEq);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXParamEq, pcDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXParamEq.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXParamEq, @ptrCast(self)), pcDsFxParamEq);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXParamEq, pDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXParamEq.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXParamEq, @ptrCast(self)), pDsFxParamEq);
+    }
 };
 
 pub const DSFXI3DL2Reverb = extern struct {
@@ -1660,7 +1936,25 @@ pub const IDirectSoundFXI3DL2Reverb = extern union {
             return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetQuality(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), plQuality);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pcDsFxI3DL2Reverb);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pDsFxI3DL2Reverb);
+    }
+    pub fn SetPreset(self: *const IDirectSoundFXI3DL2Reverb, dwPreset: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetPreset(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), dwPreset);
+    }
+    pub fn GetPreset(self: *const IDirectSoundFXI3DL2Reverb, pdwPreset: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetPreset(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pdwPreset);
+    }
+    pub fn SetQuality(self: *const IDirectSoundFXI3DL2Reverb, lQuality: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetQuality(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), lQuality);
+    }
+    pub fn GetQuality(self: *const IDirectSoundFXI3DL2Reverb, plQuality: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetQuality(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), plQuality);
+    }
 };
 
 pub const DSFXWavesReverb = extern struct {
@@ -1697,7 +1991,13 @@ pub const IDirectSoundFXWavesReverb = extern union {
             return @as(*const IDirectSoundFXWavesReverb.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXWavesReverb, @ptrCast(self)), pDsFxWavesReverb);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundFXWavesReverb, pcDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXWavesReverb.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXWavesReverb, @ptrCast(self)), pcDsFxWavesReverb);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXWavesReverb, pDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFXWavesReverb.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXWavesReverb, @ptrCast(self)), pDsFxWavesReverb);
+    }
 };
 
 pub const DSCFXAec = extern struct {
@@ -1748,7 +2048,19 @@ pub const IDirectSoundCaptureFXAec = extern union {
             return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pDscFxAec);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pDscFxAec);
+    }
+    pub fn GetStatus(self: *const IDirectSoundCaptureFXAec, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pdwStatus);
+    }
+    pub fn Reset(self: *const IDirectSoundCaptureFXAec) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)));
+    }
 };
 
 pub const DSCFXNoiseSuppress = extern struct {
@@ -1789,7 +2101,16 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern union {
             return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)), pcDscFxNoiseSuppress);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)), pDscFxNoiseSuppress);
+    }
+    pub fn Reset(self: *const IDirectSoundCaptureFXNoiseSuppress) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)));
+    }
 };
 
 const IID_IDirectSoundFullDuplex_Value = Guid.initString("edcb4c7a-daab-4216-a42e-6c50596ddc1d");
@@ -1818,7 +2139,10 @@ pub const IDirectSoundFullDuplex = extern union {
             return @as(*const IDirectSoundFullDuplex.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundFullDuplex, @ptrCast(self)), pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDirectSoundFullDuplex, pCaptureGuid: ?*const Guid, pRenderGuid: ?*const Guid, lpDscBufferDesc: ?*DSCBUFFERDESC, lpDsBufferDesc: ?*DSBUFFERDESC, hWnd: ?HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8) callconv(.Inline) HRESULT {
+        return @as(*const IDirectSoundFullDuplex.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundFullDuplex, @ptrCast(self)), pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
+    }
 };
 
 

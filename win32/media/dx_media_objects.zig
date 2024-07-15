@@ -135,7 +135,16 @@ pub const IMediaBuffer = extern union {
             return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).GetBufferAndLength(@as(*const IMediaBuffer, @ptrCast(self)), ppBuffer, pcbLength);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetLength(self: *const IMediaBuffer, cbLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IMediaBuffer, @ptrCast(self)), cbLength);
+    }
+    pub fn GetMaxLength(self: *const IMediaBuffer, pcbMaxLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IMediaBuffer, @ptrCast(self)), pcbMaxLength);
+    }
+    pub fn GetBufferAndLength(self: *const IMediaBuffer, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).GetBufferAndLength(@as(*const IMediaBuffer, @ptrCast(self)), ppBuffer, pcbLength);
+    }
 };
 
 pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
@@ -349,7 +358,70 @@ pub const IMediaObject = extern union {
             return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Lock(@as(*const IMediaObject, @ptrCast(self)), bLock);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStreamCount(self: *const IMediaObject, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMediaObject, @ptrCast(self)), pcInputStreams, pcOutputStreams);
+    }
+    pub fn GetInputStreamInfo(self: *const IMediaObject, dwInputStreamIndex: u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputStreamInfo(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pdwFlags);
+    }
+    pub fn GetOutputStreamInfo(self: *const IMediaObject, dwOutputStreamIndex: u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputStreamInfo(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pdwFlags);
+    }
+    pub fn GetInputType(self: *const IMediaObject, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, dwTypeIndex, pmt);
+    }
+    pub fn GetOutputType(self: *const IMediaObject, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, dwTypeIndex, pmt);
+    }
+    pub fn SetInputType(self: *const IMediaObject, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetInputType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pmt, dwFlags);
+    }
+    pub fn SetOutputType(self: *const IMediaObject, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetOutputType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pmt, dwFlags);
+    }
+    pub fn GetInputCurrentType(self: *const IMediaObject, dwInputStreamIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pmt);
+    }
+    pub fn GetOutputCurrentType(self: *const IMediaObject, dwOutputStreamIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pmt);
+    }
+    pub fn GetInputSizeInfo(self: *const IMediaObject, dwInputStreamIndex: u32, pcbSize: ?*u32, pcbMaxLookahead: ?*u32, pcbAlignment: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputSizeInfo(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
+    }
+    pub fn GetOutputSizeInfo(self: *const IMediaObject, dwOutputStreamIndex: u32, pcbSize: ?*u32, pcbAlignment: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputSizeInfo(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pcbSize, pcbAlignment);
+    }
+    pub fn GetInputMaxLatency(self: *const IMediaObject, dwInputStreamIndex: u32, prtMaxLatency: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputMaxLatency(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, prtMaxLatency);
+    }
+    pub fn SetInputMaxLatency(self: *const IMediaObject, dwInputStreamIndex: u32, rtMaxLatency: i64) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetInputMaxLatency(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, rtMaxLatency);
+    }
+    pub fn Flush(self: *const IMediaObject) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMediaObject, @ptrCast(self)));
+    }
+    pub fn Discontinuity(self: *const IMediaObject, dwInputStreamIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Discontinuity(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex);
+    }
+    pub fn AllocateStreamingResources(self: *const IMediaObject) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).AllocateStreamingResources(@as(*const IMediaObject, @ptrCast(self)));
+    }
+    pub fn FreeStreamingResources(self: *const IMediaObject) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).FreeStreamingResources(@as(*const IMediaObject, @ptrCast(self)));
+    }
+    pub fn GetInputStatus(self: *const IMediaObject, dwInputStreamIndex: u32, dwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputStatus(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, dwFlags);
+    }
+    pub fn ProcessInput(self: *const IMediaObject, dwInputStreamIndex: u32, pBuffer: ?*IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
+    }
+    pub fn ProcessOutput(self: *const IMediaObject, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMediaObject, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
+    }
+    pub fn Lock(self: *const IMediaObject, bLock: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Lock(@as(*const IMediaObject, @ptrCast(self)), bLock);
+    }
 };
 
 const IID_IEnumDMO_Value = Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
@@ -397,7 +469,19 @@ pub const IEnumDMO = extern union {
             return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDMO, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumDMO, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?PWSTR, pcItemsFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDMO, @ptrCast(self)), cItemsToFetch, pCLSID, Names, pcItemsFetched);
+    }
+    pub fn Skip(self: *const IEnumDMO, cItemsToSkip: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDMO, @ptrCast(self)), cItemsToSkip);
+    }
+    pub fn Reset(self: *const IEnumDMO) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDMO, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumDMO, ppEnum: ?*?*IEnumDMO) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDMO, @ptrCast(self)), ppEnum);
+    }
 };
 
 pub const _DMO_INPLACE_PROCESS_FLAGS = enum(i32) {
@@ -446,7 +530,16 @@ pub const IMediaObjectInPlace = extern union {
             return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).GetLatency(@as(*const IMediaObjectInPlace, @ptrCast(self)), pLatencyTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Process(self: *const IMediaObjectInPlace, ulSize: u32, pData: ?*u8, refTimeStart: i64, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).Process(@as(*const IMediaObjectInPlace, @ptrCast(self)), ulSize, pData, refTimeStart, dwFlags);
+    }
+    pub fn Clone(self: *const IMediaObjectInPlace, ppMediaObject: ?*?*IMediaObjectInPlace) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMediaObjectInPlace, @ptrCast(self)), ppMediaObject);
+    }
+    pub fn GetLatency(self: *const IMediaObjectInPlace, pLatencyTime: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).GetLatency(@as(*const IMediaObjectInPlace, @ptrCast(self)), pLatencyTime);
+    }
 };
 
 pub const _DMO_QUALITY_STATUS_FLAGS = enum(i32) {
@@ -489,7 +582,16 @@ pub const IDMOQualityControl = extern union {
             return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDMOQualityControl, @ptrCast(self)), pdwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetNow(self: *const IDMOQualityControl, rtNow: i64) callconv(.Inline) HRESULT {
+        return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).SetNow(@as(*const IDMOQualityControl, @ptrCast(self)), rtNow);
+    }
+    pub fn SetStatus(self: *const IDMOQualityControl, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IDMOQualityControl, @ptrCast(self)), dwFlags);
+    }
+    pub fn GetStatus(self: *const IDMOQualityControl, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDMOQualityControl, @ptrCast(self)), pdwFlags);
+    }
 };
 
 pub const _DMO_VIDEO_OUTPUT_STREAM_FLAGS = enum(i32) {
@@ -544,7 +646,19 @@ pub const IDMOVideoOutputOptimizations = extern union {
             return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).GetCurrentSampleRequirements(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwRequestedFeatures);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryOperationModePreferences(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedCapabilities: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).QueryOperationModePreferences(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwRequestedCapabilities);
+    }
+    pub fn SetOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).SetOperationMode(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, dwEnabledFeatures);
+    }
+    pub fn GetCurrentOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwEnabledFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).GetCurrentOperationMode(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwEnabledFeatures);
+    }
+    pub fn GetCurrentSampleRequirements(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).GetCurrentSampleRequirements(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwRequestedFeatures);
+    }
 };
 
 pub const DMO_PARTIAL_MEDIATYPE = extern struct {

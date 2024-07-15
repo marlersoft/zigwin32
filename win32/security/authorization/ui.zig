@@ -257,7 +257,28 @@ pub const ISecurityInformation = extern union {
             return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).PropertySheetPageCallback(@as(*const ISecurityInformation, @ptrCast(self)), hwnd, uMsg, uPage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObjectInformation(self: *const ISecurityInformation, pObjectInfo: ?*SI_OBJECT_INFO) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetObjectInformation(@as(*const ISecurityInformation, @ptrCast(self)), pObjectInfo);
+    }
+    pub fn GetSecurity(self: *const ISecurityInformation, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), RequestedInformation, ppSecurityDescriptor, fDefault);
+    }
+    pub fn SetSecurity(self: *const ISecurityInformation, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?PSECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), SecurityInformation, pSecurityDescriptor);
+    }
+    pub fn GetAccessRights(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetAccessRights(@as(*const ISecurityInformation, @ptrCast(self)), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
+    }
+    pub fn MapGeneric(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).MapGeneric(@as(*const ISecurityInformation, @ptrCast(self)), pguidObjectType, pAceFlags, pMask);
+    }
+    pub fn GetInheritTypes(self: *const ISecurityInformation, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetInheritTypes(@as(*const ISecurityInformation, @ptrCast(self)), ppInheritTypes, pcInheritTypes);
+    }
+    pub fn PropertySheetPageCallback(self: *const ISecurityInformation, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).PropertySheetPageCallback(@as(*const ISecurityInformation, @ptrCast(self)), hwnd, uMsg, uPage);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -290,7 +311,13 @@ pub const ISecurityInformation2 = extern union {
             return @as(*const ISecurityInformation2.VTable, @ptrCast(self.vtable)).LookupSids(@as(*const ISecurityInformation2, @ptrCast(self)), cSids, rgpSids, ppdo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsDaclCanonical(self: *const ISecurityInformation2, pDacl: ?*ACL) callconv(.Inline) BOOL {
+        return @as(*const ISecurityInformation2.VTable, @ptrCast(self.vtable)).IsDaclCanonical(@as(*const ISecurityInformation2, @ptrCast(self)), pDacl);
+    }
+    pub fn LookupSids(self: *const ISecurityInformation2, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation2.VTable, @ptrCast(self.vtable)).LookupSids(@as(*const ISecurityInformation2, @ptrCast(self)), cSids, rgpSids, ppdo);
+    }
 };
 
 pub const SID_INFO = extern struct {
@@ -332,7 +359,10 @@ pub const IEffectivePermission = extern union {
             return @as(*const IEffectivePermission.VTable, @ptrCast(self.vtable)).GetEffectivePermission(@as(*const IEffectivePermission, @ptrCast(self)), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEffectivePermission(self: *const IEffectivePermission, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEffectivePermission.VTable, @ptrCast(self.vtable)).GetEffectivePermission(@as(*const IEffectivePermission, @ptrCast(self)), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -357,7 +387,10 @@ pub const ISecurityObjectTypeInfo = extern union {
             return @as(*const ISecurityObjectTypeInfo.VTable, @ptrCast(self.vtable)).GetInheritSource(@as(*const ISecurityObjectTypeInfo, @ptrCast(self)), si, pACL, ppInheritArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInheritSource(self: *const ISecurityObjectTypeInfo, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityObjectTypeInfo.VTable, @ptrCast(self.vtable)).GetInheritSource(@as(*const ISecurityObjectTypeInfo, @ptrCast(self)), si, pACL, ppInheritArray);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -389,7 +422,13 @@ pub const ISecurityInformation3 = extern union {
             return @as(*const ISecurityInformation3.VTable, @ptrCast(self.vtable)).OpenElevatedEditor(@as(*const ISecurityInformation3, @ptrCast(self)), hWnd, uPage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFullResourceName(self: *const ISecurityInformation3, ppszResourceName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation3.VTable, @ptrCast(self.vtable)).GetFullResourceName(@as(*const ISecurityInformation3, @ptrCast(self)), ppszResourceName);
+    }
+    pub fn OpenElevatedEditor(self: *const ISecurityInformation3, hWnd: ?HWND, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation3.VTable, @ptrCast(self.vtable)).OpenElevatedEditor(@as(*const ISecurityInformation3, @ptrCast(self)), hWnd, uPage);
+    }
 };
 
 pub const SECURITY_OBJECT = extern struct {
@@ -430,7 +469,10 @@ pub const ISecurityInformation4 = extern union {
             return @as(*const ISecurityInformation4.VTable, @ptrCast(self.vtable)).GetSecondarySecurity(@as(*const ISecurityInformation4, @ptrCast(self)), pSecurityObjects, pSecurityObjectCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSecondarySecurity(self: *const ISecurityInformation4, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISecurityInformation4.VTable, @ptrCast(self.vtable)).GetSecondarySecurity(@as(*const ISecurityInformation4, @ptrCast(self)), pSecurityObjects, pSecurityObjectCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -466,7 +508,10 @@ pub const IEffectivePermission2 = extern union {
             return @as(*const IEffectivePermission2.VTable, @ptrCast(self.vtable)).ComputeEffectivePermissionWithSecondarySecurity(@as(*const IEffectivePermission2, @ptrCast(self)), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ComputeEffectivePermissionWithSecondarySecurity(self: *const IEffectivePermission2, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IEffectivePermission2.VTable, @ptrCast(self.vtable)).ComputeEffectivePermissionWithSecondarySecurity(@as(*const IEffectivePermission2, @ptrCast(self)), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
+    }
 };
 
 

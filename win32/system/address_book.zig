@@ -502,7 +502,10 @@ pub const IMAPIAdviseSink = extern union {
             return @as(*const IMAPIAdviseSink.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IMAPIAdviseSink, @ptrCast(self)), cNotif, lpNotifications);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnNotify(self: *const IMAPIAdviseSink, cNotif: u32, lpNotifications: ?*NOTIFICATION) callconv(.Inline) u32 {
+        return @as(*const IMAPIAdviseSink.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IMAPIAdviseSink, @ptrCast(self)), cNotif, lpNotifications);
+    }
 };
 
 pub const LPNOTIFCALLBACK = *const fn(
@@ -564,7 +567,22 @@ pub const IMAPIProgress = extern union {
             return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).SetLimits(@as(*const IMAPIProgress, @ptrCast(self)), lpulMin, lpulMax, lpulFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Progress(self: *const IMAPIProgress, ulValue: u32, ulCount: u32, ulTotal: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).Progress(@as(*const IMAPIProgress, @ptrCast(self)), ulValue, ulCount, ulTotal);
+    }
+    pub fn GetFlags(self: *const IMAPIProgress, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMAPIProgress, @ptrCast(self)), lpulFlags);
+    }
+    pub fn GetMax(self: *const IMAPIProgress, lpulMax: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).GetMax(@as(*const IMAPIProgress, @ptrCast(self)), lpulMax);
+    }
+    pub fn GetMin(self: *const IMAPIProgress, lpulMin: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).GetMin(@as(*const IMAPIProgress, @ptrCast(self)), lpulMin);
+    }
+    pub fn SetLimits(self: *const IMAPIProgress, lpulMin: ?*u32, lpulMax: ?*u32, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProgress.VTable, @ptrCast(self.vtable)).SetLimits(@as(*const IMAPIProgress, @ptrCast(self)), lpulMin, lpulMax, lpulFlags);
+    }
 };
 
 pub const MAPINAMEID = extern struct {
@@ -707,7 +725,40 @@ pub const IMAPIProp = extern union {
             return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetIDsFromNames(@as(*const IMAPIProp, @ptrCast(self)), cPropNames, lppPropNames, ulFlags, lppPropTags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLastError(self: *const IMAPIProp, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IMAPIProp, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn SaveChanges(self: *const IMAPIProp, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).SaveChanges(@as(*const IMAPIProp, @ptrCast(self)), ulFlags);
+    }
+    pub fn GetProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpcValues: ?*u32, lppPropArray: ?*?*SPropValue) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetProps(@as(*const IMAPIProp, @ptrCast(self)), lpPropTagArray, ulFlags, lpcValues, lppPropArray);
+    }
+    pub fn GetPropList(self: *const IMAPIProp, ulFlags: u32, lppPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetPropList(@as(*const IMAPIProp, @ptrCast(self)), ulFlags, lppPropTagArray);
+    }
+    pub fn OpenProperty(self: *const IMAPIProp, ulPropTag: u32, lpiid: ?*Guid, ulInterfaceOptions: u32, ulFlags: u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).OpenProperty(@as(*const IMAPIProp, @ptrCast(self)), ulPropTag, lpiid, ulInterfaceOptions, ulFlags, lppUnk);
+    }
+    pub fn SetProps(self: *const IMAPIProp, cValues: u32, lpPropArray: ?*SPropValue, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).SetProps(@as(*const IMAPIProp, @ptrCast(self)), cValues, lpPropArray, lppProblems);
+    }
+    pub fn DeleteProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).DeleteProps(@as(*const IMAPIProp, @ptrCast(self)), lpPropTagArray, lppProblems);
+    }
+    pub fn CopyTo(self: *const IMAPIProp, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).CopyTo(@as(*const IMAPIProp, @ptrCast(self)), ciidExclude, rgiidExclude, lpExcludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
+    }
+    pub fn CopyProps(self: *const IMAPIProp, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).CopyProps(@as(*const IMAPIProp, @ptrCast(self)), lpIncludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
+    }
+    pub fn GetNamesFromIDs(self: *const IMAPIProp, lppPropTags: ?*?*SPropTagArray, lpPropSetGuid: ?*Guid, ulFlags: u32, lpcPropNames: ?*u32, lpppPropNames: ?*?*?*MAPINAMEID) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetNamesFromIDs(@as(*const IMAPIProp, @ptrCast(self)), lppPropTags, lpPropSetGuid, ulFlags, lpcPropNames, lpppPropNames);
+    }
+    pub fn GetIDsFromNames(self: *const IMAPIProp, cPropNames: u32, lppPropNames: ?*?*MAPINAMEID, ulFlags: u32, lppPropTags: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIProp.VTable, @ptrCast(self.vtable)).GetIDsFromNames(@as(*const IMAPIProp, @ptrCast(self)), cPropNames, lppPropNames, ulFlags, lppPropTags);
+    }
 };
 
 pub const SSortOrder = extern struct {
@@ -1030,7 +1081,76 @@ pub const IMAPITable = extern union {
             return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SetCollapseState(@as(*const IMAPITable, @ptrCast(self)), ulFlags, cbCollapseState, pbCollapseState, lpbkLocation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLastError(self: *const IMAPITable, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IMAPITable, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn Advise(self: *const IMAPITable, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).Advise(@as(*const IMAPITable, @ptrCast(self)), ulEventMask, lpAdviseSink, lpulConnection);
+    }
+    pub fn Unadvise(self: *const IMAPITable, ulConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IMAPITable, @ptrCast(self)), ulConnection);
+    }
+    pub fn GetStatus(self: *const IMAPITable, lpulTableStatus: ?*u32, lpulTableType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMAPITable, @ptrCast(self)), lpulTableStatus, lpulTableType);
+    }
+    pub fn SetColumns(self: *const IMAPITable, lpPropTagArray: ?*SPropTagArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SetColumns(@as(*const IMAPITable, @ptrCast(self)), lpPropTagArray, ulFlags);
+    }
+    pub fn QueryColumns(self: *const IMAPITable, ulFlags: u32, lpPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).QueryColumns(@as(*const IMAPITable, @ptrCast(self)), ulFlags, lpPropTagArray);
+    }
+    pub fn GetRowCount(self: *const IMAPITable, ulFlags: u32, lpulCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).GetRowCount(@as(*const IMAPITable, @ptrCast(self)), ulFlags, lpulCount);
+    }
+    pub fn SeekRow(self: *const IMAPITable, bkOrigin: u32, lRowCount: i32, lplRowsSought: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SeekRow(@as(*const IMAPITable, @ptrCast(self)), bkOrigin, lRowCount, lplRowsSought);
+    }
+    pub fn SeekRowApprox(self: *const IMAPITable, ulNumerator: u32, ulDenominator: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SeekRowApprox(@as(*const IMAPITable, @ptrCast(self)), ulNumerator, ulDenominator);
+    }
+    pub fn QueryPosition(self: *const IMAPITable, lpulRow: ?*u32, lpulNumerator: ?*u32, lpulDenominator: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).QueryPosition(@as(*const IMAPITable, @ptrCast(self)), lpulRow, lpulNumerator, lpulDenominator);
+    }
+    pub fn FindRow(self: *const IMAPITable, lpRestriction: ?*SRestriction, bkOrigin: u32, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).FindRow(@as(*const IMAPITable, @ptrCast(self)), lpRestriction, bkOrigin, ulFlags);
+    }
+    pub fn Restrict(self: *const IMAPITable, lpRestriction: ?*SRestriction, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).Restrict(@as(*const IMAPITable, @ptrCast(self)), lpRestriction, ulFlags);
+    }
+    pub fn CreateBookmark(self: *const IMAPITable, lpbkPosition: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).CreateBookmark(@as(*const IMAPITable, @ptrCast(self)), lpbkPosition);
+    }
+    pub fn FreeBookmark(self: *const IMAPITable, bkPosition: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).FreeBookmark(@as(*const IMAPITable, @ptrCast(self)), bkPosition);
+    }
+    pub fn SortTable(self: *const IMAPITable, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SortTable(@as(*const IMAPITable, @ptrCast(self)), lpSortCriteria, ulFlags);
+    }
+    pub fn QuerySortOrder(self: *const IMAPITable, lppSortCriteria: ?*?*SSortOrderSet) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).QuerySortOrder(@as(*const IMAPITable, @ptrCast(self)), lppSortCriteria);
+    }
+    pub fn QueryRows(self: *const IMAPITable, lRowCount: i32, ulFlags: u32, lppRows: ?*?*SRowSet) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).QueryRows(@as(*const IMAPITable, @ptrCast(self)), lRowCount, ulFlags, lppRows);
+    }
+    pub fn Abort(self: *const IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMAPITable, @ptrCast(self)));
+    }
+    pub fn ExpandRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulRowCount: u32, ulFlags: u32, lppRows: ?*?*SRowSet, lpulMoreRows: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).ExpandRow(@as(*const IMAPITable, @ptrCast(self)), cbInstanceKey, pbInstanceKey, ulRowCount, ulFlags, lppRows, lpulMoreRows);
+    }
+    pub fn CollapseRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulFlags: u32, lpulRowCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).CollapseRow(@as(*const IMAPITable, @ptrCast(self)), cbInstanceKey, pbInstanceKey, ulFlags, lpulRowCount);
+    }
+    pub fn WaitForCompletion(self: *const IMAPITable, ulFlags: u32, ulTimeout: u32, lpulTableStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).WaitForCompletion(@as(*const IMAPITable, @ptrCast(self)), ulFlags, ulTimeout, lpulTableStatus);
+    }
+    pub fn GetCollapseState(self: *const IMAPITable, ulFlags: u32, cbInstanceKey: u32, lpbInstanceKey: ?*u8, lpcbCollapseState: ?*u32, lppbCollapseState: ?*?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).GetCollapseState(@as(*const IMAPITable, @ptrCast(self)), ulFlags, cbInstanceKey, lpbInstanceKey, lpcbCollapseState, lppbCollapseState);
+    }
+    pub fn SetCollapseState(self: *const IMAPITable, ulFlags: u32, cbCollapseState: u32, pbCollapseState: ?*u8, lpbkLocation: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPITable.VTable, @ptrCast(self.vtable)).SetCollapseState(@as(*const IMAPITable, @ptrCast(self)), ulFlags, cbCollapseState, pbCollapseState, lpbkLocation);
+    }
 };
 
 pub const IProfSect = extern union {
@@ -1042,7 +1162,7 @@ pub const IProfSect = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
 };
 
 pub const IMAPIStatus = extern union {
@@ -1093,7 +1213,19 @@ pub const IMAPIStatus = extern union {
             return @as(*const IMAPIStatus.VTable, @ptrCast(self.vtable)).FlushQueues(@as(*const IMAPIStatus, @ptrCast(self)), ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn ValidateState(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIStatus.VTable, @ptrCast(self.vtable)).ValidateState(@as(*const IMAPIStatus, @ptrCast(self)), ulUIParam, ulFlags);
+    }
+    pub fn SettingsDialog(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIStatus.VTable, @ptrCast(self.vtable)).SettingsDialog(@as(*const IMAPIStatus, @ptrCast(self)), ulUIParam, ulFlags);
+    }
+    pub fn ChangePassword(self: *const IMAPIStatus, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIStatus.VTable, @ptrCast(self.vtable)).ChangePassword(@as(*const IMAPIStatus, @ptrCast(self)), lpOldPass, lpNewPass, ulFlags);
+    }
+    pub fn FlushQueues(self: *const IMAPIStatus, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIStatus.VTable, @ptrCast(self.vtable)).FlushQueues(@as(*const IMAPIStatus, @ptrCast(self)), ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
+    }
 };
 
 pub const IMAPIContainer = extern union {
@@ -1158,7 +1290,22 @@ pub const IMAPIContainer = extern union {
             return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).GetSearchCriteria(@as(*const IMAPIContainer, @ptrCast(self)), ulFlags, lppRestriction, lppContainerList, lpulSearchState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn GetContentsTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).GetContentsTable(@as(*const IMAPIContainer, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn GetHierarchyTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).GetHierarchyTable(@as(*const IMAPIContainer, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn OpenEntry(self: *const IMAPIContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).OpenEntry(@as(*const IMAPIContainer, @ptrCast(self)), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    }
+    pub fn SetSearchCriteria(self: *const IMAPIContainer, lpRestriction: ?*SRestriction, lpContainerList: ?*SBinaryArray, ulSearchFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).SetSearchCriteria(@as(*const IMAPIContainer, @ptrCast(self)), lpRestriction, lpContainerList, ulSearchFlags);
+    }
+    pub fn GetSearchCriteria(self: *const IMAPIContainer, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIContainer.VTable, @ptrCast(self.vtable)).GetSearchCriteria(@as(*const IMAPIContainer, @ptrCast(self)), ulFlags, lppRestriction, lppContainerList, lpulSearchState);
+    }
 };
 
 pub const _flaglist = extern struct {
@@ -1219,7 +1366,19 @@ pub const IABContainer = extern union {
             return @as(*const IABContainer.VTable, @ptrCast(self.vtable)).ResolveNames(@as(*const IABContainer, @ptrCast(self)), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIContainer.MethodMixin(@This());
+    pub fn CreateEntry(self: *const IABContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
+        return @as(*const IABContainer.VTable, @ptrCast(self.vtable)).CreateEntry(@as(*const IABContainer, @ptrCast(self)), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
+    }
+    pub fn CopyEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IABContainer.VTable, @ptrCast(self.vtable)).CopyEntries(@as(*const IABContainer, @ptrCast(self)), lpEntries, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IABContainer.VTable, @ptrCast(self.vtable)).DeleteEntries(@as(*const IABContainer, @ptrCast(self)), lpEntries, ulFlags);
+    }
+    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
+        return @as(*const IABContainer.VTable, @ptrCast(self.vtable)).ResolveNames(@as(*const IABContainer, @ptrCast(self)), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1232,7 +1391,7 @@ pub const IMailUser = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1288,7 +1447,19 @@ pub const IDistList = extern union {
             return @as(*const IDistList.VTable, @ptrCast(self.vtable)).ResolveNames(@as(*const IDistList, @ptrCast(self)), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIContainer.MethodMixin(@This());
+    pub fn CreateEntry(self: *const IDistList, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
+        return @as(*const IDistList.VTable, @ptrCast(self.vtable)).CreateEntry(@as(*const IDistList, @ptrCast(self)), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
+    }
+    pub fn CopyEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDistList.VTable, @ptrCast(self.vtable)).CopyEntries(@as(*const IDistList, @ptrCast(self)), lpEntries, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDistList.VTable, @ptrCast(self.vtable)).DeleteEntries(@as(*const IDistList, @ptrCast(self)), lpEntries, ulFlags);
+    }
+    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
+        return @as(*const IDistList.VTable, @ptrCast(self.vtable)).ResolveNames(@as(*const IDistList, @ptrCast(self)), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
+    }
 };
 
 pub const IMAPIFolder = extern union {
@@ -1431,7 +1602,40 @@ pub const IMAPIFolder = extern union {
             return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).EmptyFolder(@as(*const IMAPIFolder, @ptrCast(self)), ulUIParam, lpProgress, ulFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIContainer.MethodMixin(@This());
+    pub fn CreateMessage(self: *const IMAPIFolder, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).CreateMessage(@as(*const IMAPIFolder, @ptrCast(self)), lpInterface, ulFlags, lppMessage);
+    }
+    pub fn CopyMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).CopyMessages(@as(*const IMAPIFolder, @ptrCast(self)), lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).DeleteMessages(@as(*const IMAPIFolder, @ptrCast(self)), lpMsgList, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn CreateFolder(self: *const IMAPIFolder, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).CreateFolder(@as(*const IMAPIFolder, @ptrCast(self)), ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
+    }
+    pub fn CopyFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).CopyFolder(@as(*const IMAPIFolder, @ptrCast(self)), cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).DeleteFolder(@as(*const IMAPIFolder, @ptrCast(self)), cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn SetReadFlags(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).SetReadFlags(@as(*const IMAPIFolder, @ptrCast(self)), lpMsgList, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn GetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).GetMessageStatus(@as(*const IMAPIFolder, @ptrCast(self)), cbEntryID, lpEntryID, ulFlags, lpulMessageStatus);
+    }
+    pub fn SetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).SetMessageStatus(@as(*const IMAPIFolder, @ptrCast(self)), cbEntryID, lpEntryID, ulNewStatus, ulNewStatusMask, lpulOldStatus);
+    }
+    pub fn SaveContentsSort(self: *const IMAPIFolder, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).SaveContentsSort(@as(*const IMAPIFolder, @ptrCast(self)), lpSortCriteria, ulFlags);
+    }
+    pub fn EmptyFolder(self: *const IMAPIFolder, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIFolder.VTable, @ptrCast(self.vtable)).EmptyFolder(@as(*const IMAPIFolder, @ptrCast(self)), ulUIParam, lpProgress, ulFlags);
+    }
 };
 
 pub const IMsgStore = extern union {
@@ -1582,7 +1786,46 @@ pub const IMsgStore = extern union {
             return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).NotifyNewMail(@as(*const IMsgStore, @ptrCast(self)), lpNotification);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn Advise(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).Advise(@as(*const IMsgStore, @ptrCast(self)), cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
+    }
+    pub fn Unadvise(self: *const IMsgStore, ulConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IMsgStore, @ptrCast(self)), ulConnection);
+    }
+    pub fn CompareEntryIDs(self: *const IMsgStore, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).CompareEntryIDs(@as(*const IMsgStore, @ptrCast(self)), cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
+    }
+    pub fn OpenEntry(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).OpenEntry(@as(*const IMsgStore, @ptrCast(self)), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, ppUnk);
+    }
+    pub fn SetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).SetReceiveFolder(@as(*const IMsgStore, @ptrCast(self)), lpszMessageClass, ulFlags, cbEntryID, lpEntryID);
+    }
+    pub fn GetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID, lppszExplicitClass: ?*?*i8) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).GetReceiveFolder(@as(*const IMsgStore, @ptrCast(self)), lpszMessageClass, ulFlags, lpcbEntryID, lppEntryID, lppszExplicitClass);
+    }
+    pub fn GetReceiveFolderTable(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).GetReceiveFolderTable(@as(*const IMsgStore, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn StoreLogoff(self: *const IMsgStore, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).StoreLogoff(@as(*const IMsgStore, @ptrCast(self)), lpulFlags);
+    }
+    pub fn AbortSubmit(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).AbortSubmit(@as(*const IMsgStore, @ptrCast(self)), cbEntryID, lpEntryID, ulFlags);
+    }
+    pub fn GetOutgoingQueue(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).GetOutgoingQueue(@as(*const IMsgStore, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn SetLockState(self: *const IMsgStore, lpMessage: ?*IMessage, ulLockState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).SetLockState(@as(*const IMsgStore, @ptrCast(self)), lpMessage, ulLockState);
+    }
+    pub fn FinishedMsg(self: *const IMsgStore, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).FinishedMsg(@as(*const IMsgStore, @ptrCast(self)), ulFlags, cbEntryID, lpEntryID);
+    }
+    pub fn NotifyNewMail(self: *const IMsgStore, lpNotification: ?*NOTIFICATION) callconv(.Inline) HRESULT {
+        return @as(*const IMsgStore.VTable, @ptrCast(self.vtable)).NotifyNewMail(@as(*const IMsgStore, @ptrCast(self)), lpNotification);
+    }
 };
 
 pub const IMessage = extern union {
@@ -1670,7 +1913,31 @@ pub const IMessage = extern union {
             return @as(*const IMessage.VTable, @ptrCast(self.vtable)).SetReadFlag(@as(*const IMessage, @ptrCast(self)), ulFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn GetAttachmentTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).GetAttachmentTable(@as(*const IMessage, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn OpenAttach(self: *const IMessage, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).OpenAttach(@as(*const IMessage, @ptrCast(self)), ulAttachmentNum, lpInterface, ulFlags, lppAttach);
+    }
+    pub fn CreateAttach(self: *const IMessage, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).CreateAttach(@as(*const IMessage, @ptrCast(self)), lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
+    }
+    pub fn DeleteAttach(self: *const IMessage, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).DeleteAttach(@as(*const IMessage, @ptrCast(self)), ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn GetRecipientTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).GetRecipientTable(@as(*const IMessage, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn ModifyRecipients(self: *const IMessage, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).ModifyRecipients(@as(*const IMessage, @ptrCast(self)), ulFlags, lpMods);
+    }
+    pub fn SubmitMessage(self: *const IMessage, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).SubmitMessage(@as(*const IMessage, @ptrCast(self)), ulFlags);
+    }
+    pub fn SetReadFlag(self: *const IMessage, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMessage.VTable, @ptrCast(self.vtable)).SetReadFlag(@as(*const IMessage, @ptrCast(self)), ulFlags);
+    }
 };
 
 pub const IAttach = extern union {
@@ -1682,7 +1949,7 @@ pub const IAttach = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
 };
 
 pub const LPFNABSDI = *const fn(
@@ -1761,7 +2028,16 @@ pub const IMAPIControl = extern union {
             return @as(*const IMAPIControl.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMAPIControl, @ptrCast(self)), ulFlags, lpulState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLastError(self: *const IMAPIControl, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIControl.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IMAPIControl, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn Activate(self: *const IMAPIControl, ulFlags: u32, ulUIParam: usize) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIControl.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMAPIControl, @ptrCast(self)), ulFlags, ulUIParam);
+    }
+    pub fn GetState(self: *const IMAPIControl, ulFlags: u32, lpulState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMAPIControl.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMAPIControl, @ptrCast(self)), ulFlags, lpulState);
+    }
 };
 
 pub const DTBLLABEL = extern struct {
@@ -1899,7 +2175,22 @@ pub const IProviderAdmin = extern union {
             return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).OpenProfileSection(@as(*const IProviderAdmin, @ptrCast(self)), lpUID, lpInterface, ulFlags, lppProfSect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLastError(self: *const IProviderAdmin, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IProviderAdmin, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn GetProviderTable(self: *const IProviderAdmin, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).GetProviderTable(@as(*const IProviderAdmin, @ptrCast(self)), ulFlags, lppTable);
+    }
+    pub fn CreateProvider(self: *const IProviderAdmin, lpszProvider: ?*i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
+        return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).CreateProvider(@as(*const IProviderAdmin, @ptrCast(self)), lpszProvider, cValues, lpProps, ulUIParam, ulFlags, lpUID);
+    }
+    pub fn DeleteProvider(self: *const IProviderAdmin, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
+        return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).DeleteProvider(@as(*const IProviderAdmin, @ptrCast(self)), lpUID);
+    }
+    pub fn OpenProfileSection(self: *const IProviderAdmin, lpUID: ?*MAPIUID, lpInterface: ?*Guid, ulFlags: u32, lppProfSect: ?*?*IProfSect) callconv(.Inline) HRESULT {
+        return @as(*const IProviderAdmin.VTable, @ptrCast(self.vtable)).OpenProfileSection(@as(*const IProviderAdmin, @ptrCast(self)), lpUID, lpInterface, ulFlags, lppProfSect);
+    }
 };
 
 pub const Gender = enum(i32) {
@@ -2007,7 +2298,34 @@ pub const ITableData = extern union {
             return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrDeleteRows(@as(*const ITableData, @ptrCast(self)), ulFlags, lprowsetToDelete, cRowsDeleted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HrGetView(self: *const ITableData, lpSSortOrderSet: ?*SSortOrderSet, lpfCallerRelease: ?*?CALLERRELEASE, ulCallerData: u32, lppMAPITable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrGetView(@as(*const ITableData, @ptrCast(self)), lpSSortOrderSet, lpfCallerRelease, ulCallerData, lppMAPITable);
+    }
+    pub fn HrModifyRow(self: *const ITableData, param0: ?*SRow) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrModifyRow(@as(*const ITableData, @ptrCast(self)), param0);
+    }
+    pub fn HrDeleteRow(self: *const ITableData, lpSPropValue: ?*SPropValue) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrDeleteRow(@as(*const ITableData, @ptrCast(self)), lpSPropValue);
+    }
+    pub fn HrQueryRow(self: *const ITableData, lpsPropValue: ?*SPropValue, lppSRow: ?*?*SRow, lpuliRow: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrQueryRow(@as(*const ITableData, @ptrCast(self)), lpsPropValue, lppSRow, lpuliRow);
+    }
+    pub fn HrEnumRow(self: *const ITableData, ulRowNumber: u32, lppSRow: ?*?*SRow) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrEnumRow(@as(*const ITableData, @ptrCast(self)), ulRowNumber, lppSRow);
+    }
+    pub fn HrNotify(self: *const ITableData, ulFlags: u32, cValues: u32, lpSPropValue: ?*SPropValue) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrNotify(@as(*const ITableData, @ptrCast(self)), ulFlags, cValues, lpSPropValue);
+    }
+    pub fn HrInsertRow(self: *const ITableData, uliRow: u32, lpSRow: ?*SRow) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrInsertRow(@as(*const ITableData, @ptrCast(self)), uliRow, lpSRow);
+    }
+    pub fn HrModifyRows(self: *const ITableData, ulFlags: u32, lpSRowSet: ?*SRowSet) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrModifyRows(@as(*const ITableData, @ptrCast(self)), ulFlags, lpSRowSet);
+    }
+    pub fn HrDeleteRows(self: *const ITableData, ulFlags: u32, lprowsetToDelete: ?*SRowSet, cRowsDeleted: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ITableData.VTable, @ptrCast(self.vtable)).HrDeleteRows(@as(*const ITableData, @ptrCast(self)), ulFlags, lprowsetToDelete, cRowsDeleted);
+    }
 };
 
 pub const IPropData = extern union {
@@ -2054,7 +2372,19 @@ pub const IPropData = extern union {
             return @as(*const IPropData.VTable, @ptrCast(self.vtable)).HrAddObjProps(@as(*const IPropData, @ptrCast(self)), lppPropTagArray, lprgulAccess);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn HrSetObjAccess(self: *const IPropData, ulAccess: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPropData.VTable, @ptrCast(self.vtable)).HrSetObjAccess(@as(*const IPropData, @ptrCast(self)), ulAccess);
+    }
+    pub fn HrSetPropAccess(self: *const IPropData, lpPropTagArray: ?*SPropTagArray, rgulAccess: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPropData.VTable, @ptrCast(self.vtable)).HrSetPropAccess(@as(*const IPropData, @ptrCast(self)), lpPropTagArray, rgulAccess);
+    }
+    pub fn HrGetPropAccess(self: *const IPropData, lppPropTagArray: ?*?*SPropTagArray, lprgulAccess: ?*?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPropData.VTable, @ptrCast(self.vtable)).HrGetPropAccess(@as(*const IPropData, @ptrCast(self)), lppPropTagArray, lprgulAccess);
+    }
+    pub fn HrAddObjProps(self: *const IPropData, lppPropTagArray: ?*SPropTagArray, lprgulAccess: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        return @as(*const IPropData.VTable, @ptrCast(self.vtable)).HrAddObjProps(@as(*const IPropData, @ptrCast(self)), lppPropTagArray, lprgulAccess);
+    }
 };
 
 pub const PFNIDLE = *const fn(
@@ -2321,7 +2651,61 @@ pub const IAddrBook = extern union {
             return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).PrepareRecips(@as(*const IAddrBook, @ptrCast(self)), ulFlags, lpPropTagArray, lpRecipList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMAPIProp.MethodMixin(@This());
+    pub fn OpenEntry(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).OpenEntry(@as(*const IAddrBook, @ptrCast(self)), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    }
+    pub fn CompareEntryIDs(self: *const IAddrBook, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).CompareEntryIDs(@as(*const IAddrBook, @ptrCast(self)), cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
+    }
+    pub fn Advise(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).Advise(@as(*const IAddrBook, @ptrCast(self)), cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
+    }
+    pub fn Unadvise(self: *const IAddrBook, ulConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IAddrBook, @ptrCast(self)), ulConnection);
+    }
+    pub fn CreateOneOff(self: *const IAddrBook, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).CreateOneOff(@as(*const IAddrBook, @ptrCast(self)), lpszName, lpszAdrType, lpszAddress, ulFlags, lpcbEntryID, lppEntryID);
+    }
+    pub fn NewEntry(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).NewEntry(@as(*const IAddrBook, @ptrCast(self)), ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
+    }
+    pub fn ResolveName(self: *const IAddrBook, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).ResolveName(@as(*const IAddrBook, @ptrCast(self)), ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
+    }
+    pub fn Address(self: *const IAddrBook, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).Address(@as(*const IAddrBook, @ptrCast(self)), lpulUIParam, lpAdrParms, lppAdrList);
+    }
+    pub fn Details(self: *const IAddrBook, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).Details(@as(*const IAddrBook, @ptrCast(self)), lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
+    }
+    pub fn RecipOptions(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).RecipOptions(@as(*const IAddrBook, @ptrCast(self)), ulUIParam, ulFlags, lpRecip);
+    }
+    pub fn QueryDefaultRecipOpt(self: *const IAddrBook, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).QueryDefaultRecipOpt(@as(*const IAddrBook, @ptrCast(self)), lpszAdrType, ulFlags, lpcValues, lppOptions);
+    }
+    pub fn GetPAB(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).GetPAB(@as(*const IAddrBook, @ptrCast(self)), lpcbEntryID, lppEntryID);
+    }
+    pub fn SetPAB(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).SetPAB(@as(*const IAddrBook, @ptrCast(self)), cbEntryID, lpEntryID);
+    }
+    pub fn GetDefaultDir(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).GetDefaultDir(@as(*const IAddrBook, @ptrCast(self)), lpcbEntryID, lppEntryID);
+    }
+    pub fn SetDefaultDir(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).SetDefaultDir(@as(*const IAddrBook, @ptrCast(self)), cbEntryID, lpEntryID);
+    }
+    pub fn GetSearchPath(self: *const IAddrBook, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).GetSearchPath(@as(*const IAddrBook, @ptrCast(self)), ulFlags, lppSearchPath);
+    }
+    pub fn SetSearchPath(self: *const IAddrBook, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).SetSearchPath(@as(*const IAddrBook, @ptrCast(self)), ulFlags, lpSearchPath);
+    }
+    pub fn PrepareRecips(self: *const IAddrBook, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.Inline) HRESULT {
+        return @as(*const IAddrBook.VTable, @ptrCast(self.vtable)).PrepareRecips(@as(*const IAddrBook, @ptrCast(self)), ulFlags, lpPropTagArray, lpRecipList);
+    }
 };
 
 pub const _WABACTIONITEM = extern struct {
@@ -2467,7 +2851,46 @@ pub const IWABObject = extern union {
             return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).SetMe(@as(*const IWABObject, @ptrCast(self)), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLastError(self: *const IWABObject, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IWABObject, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn AllocateBuffer(self: *const IWABObject, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).AllocateBuffer(@as(*const IWABObject, @ptrCast(self)), cbSize, lppBuffer);
+    }
+    pub fn AllocateMore(self: *const IWABObject, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).AllocateMore(@as(*const IWABObject, @ptrCast(self)), cbSize, lpObject, lppBuffer);
+    }
+    pub fn FreeBuffer(self: *const IWABObject, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IWABObject, @ptrCast(self)), lpBuffer);
+    }
+    pub fn Backup(self: *const IWABObject, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).Backup(@as(*const IWABObject, @ptrCast(self)), lpFileName);
+    }
+    pub fn Import(self: *const IWABObject, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).Import(@as(*const IWABObject, @ptrCast(self)), lpWIP);
+    }
+    pub fn Find(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).Find(@as(*const IWABObject, @ptrCast(self)), lpIAB, hWnd);
+    }
+    pub fn VCardDisplay(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).VCardDisplay(@as(*const IWABObject, @ptrCast(self)), lpIAB, hWnd, lpszFileName);
+    }
+    pub fn LDAPUrl(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).LDAPUrl(@as(*const IWABObject, @ptrCast(self)), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
+    }
+    pub fn VCardCreate(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).VCardCreate(@as(*const IWABObject, @ptrCast(self)), lpIAB, ulFlags, lpszVCard, lpMailUser);
+    }
+    pub fn VCardRetrieve(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).VCardRetrieve(@as(*const IWABObject, @ptrCast(self)), lpIAB, ulFlags, lpszVCard, lppMailUser);
+    }
+    pub fn GetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).GetMe(@as(*const IWABObject, @ptrCast(self)), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
+    }
+    pub fn SetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABObject.VTable, @ptrCast(self.vtable)).SetMe(@as(*const IWABObject, @ptrCast(self)), lpIAB, ulFlags, sbEID, hwnd);
+    }
 };
 
 pub const IWABOBJECT_QueryInterface_METHOD = *const fn(
@@ -2716,7 +3139,54 @@ pub const IWABOBJECT_ = extern union {
             return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).SetMe(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn QueryInterface(self: *const IWABOBJECT_, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).QueryInterface(@as(*const IWABOBJECT_, @ptrCast(self)), riid, ppvObj);
+    }
+    pub fn AddRef(self: *const IWABOBJECT_) callconv(.Inline) u32 {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).AddRef(@as(*const IWABOBJECT_, @ptrCast(self)));
+    }
+    pub fn Release(self: *const IWABOBJECT_) callconv(.Inline) u32 {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).Release(@as(*const IWABOBJECT_, @ptrCast(self)));
+    }
+    pub fn GetLastError(self: *const IWABOBJECT_, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IWABOBJECT_, @ptrCast(self)), hResult, ulFlags, lppMAPIError);
+    }
+    pub fn AllocateBuffer(self: *const IWABOBJECT_, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).AllocateBuffer(@as(*const IWABOBJECT_, @ptrCast(self)), cbSize, lppBuffer);
+    }
+    pub fn AllocateMore(self: *const IWABOBJECT_, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).AllocateMore(@as(*const IWABOBJECT_, @ptrCast(self)), cbSize, lpObject, lppBuffer);
+    }
+    pub fn FreeBuffer(self: *const IWABOBJECT_, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IWABOBJECT_, @ptrCast(self)), lpBuffer);
+    }
+    pub fn Backup(self: *const IWABOBJECT_, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).Backup(@as(*const IWABOBJECT_, @ptrCast(self)), lpFileName);
+    }
+    pub fn Import(self: *const IWABOBJECT_, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).Import(@as(*const IWABOBJECT_, @ptrCast(self)), lpWIP);
+    }
+    pub fn Find(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).Find(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, hWnd);
+    }
+    pub fn VCardDisplay(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).VCardDisplay(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, hWnd, lpszFileName);
+    }
+    pub fn LDAPUrl(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).LDAPUrl(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
+    }
+    pub fn VCardCreate(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).VCardCreate(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, ulFlags, lpszVCard, lpMailUser);
+    }
+    pub fn VCardRetrieve(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).VCardRetrieve(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, ulFlags, lpszVCard, lppMailUser);
+    }
+    pub fn GetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).GetMe(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
+    }
+    pub fn SetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWABOBJECT_.VTable, @ptrCast(self.vtable)).SetMe(@as(*const IWABOBJECT_, @ptrCast(self)), lpIAB, ulFlags, sbEID, hwnd);
+    }
 };
 
 pub const WAB_PARAM = extern struct {
@@ -2784,7 +3254,10 @@ pub const IWABExtInit = extern union {
             return @as(*const IWABExtInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWABExtInit, @ptrCast(self)), lpWABExtDisplay);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IWABExtInit, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.Inline) HRESULT {
+        return @as(*const IWABExtInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWABExtInit, @ptrCast(self)), lpWABExtDisplay);
+    }
 };
 
 pub const LPWABALLOCATEBUFFER = *const fn(

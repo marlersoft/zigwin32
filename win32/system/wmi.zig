@@ -1846,7 +1846,37 @@ pub const IWbemPathKeyList = extern union {
             return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemPathKeyList, @ptrCast(self)), lFlags, puBuffLength, pszText);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IWbemPathKeyList, puKeyCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IWbemPathKeyList, @ptrCast(self)), puKeyCount);
+    }
+    pub fn SetKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).SetKey(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags, uCimType, pKeyVal);
+    }
+    pub fn SetKey2(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).SetKey2(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags, uCimType, pKeyVal);
+    }
+    pub fn GetKey(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*anyopaque, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetKey(@as(*const IWbemPathKeyList, @ptrCast(self)), uKeyIx, uFlags, puNameBufSize, pszKeyName, puKeyValBufSize, pKeyVal, puApparentCimType);
+    }
+    pub fn GetKey2(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, pKeyValue: ?*VARIANT, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetKey2(@as(*const IWbemPathKeyList, @ptrCast(self)), uKeyIx, uFlags, puNameBufSize, pszKeyName, pKeyValue, puApparentCimType);
+    }
+    pub fn RemoveKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).RemoveKey(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags);
+    }
+    pub fn RemoveAllKeys(self: *const IWbemPathKeyList, uFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).RemoveAllKeys(@as(*const IWbemPathKeyList, @ptrCast(self)), uFlags);
+    }
+    pub fn MakeSingleton(self: *const IWbemPathKeyList, bSet: u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).MakeSingleton(@as(*const IWbemPathKeyList, @ptrCast(self)), bSet);
+    }
+    pub fn GetInfo(self: *const IWbemPathKeyList, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWbemPathKeyList, @ptrCast(self)), uRequestedInfo, puResponse);
+    }
+    pub fn GetText(self: *const IWbemPathKeyList, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemPathKeyList, @ptrCast(self)), lFlags, puBuffLength, pszText);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2087,7 +2117,85 @@ pub const IWbemPath = extern union {
             return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsSameClassName(@as(*const IWbemPath, @ptrCast(self)), wszClass);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetText(self: *const IWbemPath, uMode: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetText(@as(*const IWbemPath, @ptrCast(self)), uMode, pszPath);
+    }
+    pub fn GetText(self: *const IWbemPath, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemPath, @ptrCast(self)), lFlags, puBuffLength, pszText);
+    }
+    pub fn GetInfo(self: *const IWbemPath, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWbemPath, @ptrCast(self)), uRequestedInfo, puResponse);
+    }
+    pub fn SetServer(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetServer(@as(*const IWbemPath, @ptrCast(self)), Name);
+    }
+    pub fn GetServer(self: *const IWbemPath, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetServer(@as(*const IWbemPath, @ptrCast(self)), puNameBufLength, pName);
+    }
+    pub fn GetNamespaceCount(self: *const IWbemPath, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetNamespaceCount(@as(*const IWbemPath, @ptrCast(self)), puCount);
+    }
+    pub fn SetNamespaceAt(self: *const IWbemPath, uIndex: u32, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszName);
+    }
+    pub fn GetNamespaceAt(self: *const IWbemPath, uIndex: u32, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex, puNameBufLength, pName);
+    }
+    pub fn RemoveNamespaceAt(self: *const IWbemPath, uIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex);
+    }
+    pub fn RemoveAllNamespaces(self: *const IWbemPath) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveAllNamespaces(@as(*const IWbemPath, @ptrCast(self)));
+    }
+    pub fn GetScopeCount(self: *const IWbemPath, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScopeCount(@as(*const IWbemPath, @ptrCast(self)), puCount);
+    }
+    pub fn SetScope(self: *const IWbemPath, uIndex: u32, pszClass: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetScope(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszClass);
+    }
+    pub fn SetScopeFromText(self: *const IWbemPath, uIndex: u32, pszText: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetScopeFromText(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszText);
+    }
+    pub fn GetScope(self: *const IWbemPath, uIndex: u32, puClassNameBufSize: ?*u32, pszClass: [*:0]u16, pKeyList: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScope(@as(*const IWbemPath, @ptrCast(self)), uIndex, puClassNameBufSize, pszClass, pKeyList);
+    }
+    pub fn GetScopeAsText(self: *const IWbemPath, uIndex: u32, puTextBufSize: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScopeAsText(@as(*const IWbemPath, @ptrCast(self)), uIndex, puTextBufSize, pszText);
+    }
+    pub fn RemoveScope(self: *const IWbemPath, uIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveScope(@as(*const IWbemPath, @ptrCast(self)), uIndex);
+    }
+    pub fn RemoveAllScopes(self: *const IWbemPath) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveAllScopes(@as(*const IWbemPath, @ptrCast(self)));
+    }
+    pub fn SetClassName(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetClassName(@as(*const IWbemPath, @ptrCast(self)), Name);
+    }
+    pub fn GetClassName(self: *const IWbemPath, puBuffLength: ?*u32, pszName: ?[*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetClassName(@as(*const IWbemPath, @ptrCast(self)), puBuffLength, pszName);
+    }
+    pub fn GetKeyList(self: *const IWbemPath, pOut: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetKeyList(@as(*const IWbemPath, @ptrCast(self)), pOut);
+    }
+    pub fn CreateClassPart(self: *const IWbemPath, lFlags: i32, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).CreateClassPart(@as(*const IWbemPath, @ptrCast(self)), lFlags, Name);
+    }
+    pub fn DeleteClassPart(self: *const IWbemPath, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).DeleteClassPart(@as(*const IWbemPath, @ptrCast(self)), lFlags);
+    }
+    pub fn IsRelative(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR) callconv(.Inline) BOOL {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsRelative(@as(*const IWbemPath, @ptrCast(self)), wszMachine, wszNamespace);
+    }
+    pub fn IsRelativeOrChild(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR, lFlags: i32) callconv(.Inline) BOOL {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsRelativeOrChild(@as(*const IWbemPath, @ptrCast(self)), wszMachine, wszNamespace, lFlags);
+    }
+    pub fn IsLocal(self: *const IWbemPath, wszMachine: ?[*:0]const u16) callconv(.Inline) BOOL {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsLocal(@as(*const IWbemPath, @ptrCast(self)), wszMachine);
+    }
+    pub fn IsSameClassName(self: *const IWbemPath, wszClass: ?[*:0]const u16) callconv(.Inline) BOOL {
+        return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsSameClassName(@as(*const IWbemPath, @ptrCast(self)), wszClass);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2168,7 +2276,28 @@ pub const IWbemQuery = extern union {
             return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).GetQueryInfo(@as(*const IWbemQuery, @ptrCast(self)), uAnalysisType, uInfoId, uBufSize, pDestBuf);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Empty(self: *const IWbemQuery) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).Empty(@as(*const IWbemQuery, @ptrCast(self)));
+    }
+    pub fn SetLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).SetLanguageFeatures(@as(*const IWbemQuery, @ptrCast(self)), uFlags, uArraySize, puFeatures);
+    }
+    pub fn TestLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: ?*u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).TestLanguageFeatures(@as(*const IWbemQuery, @ptrCast(self)), uFlags, uArraySize, puFeatures);
+    }
+    pub fn Parse(self: *const IWbemQuery, pszLang: ?[*:0]const u16, pszQuery: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).Parse(@as(*const IWbemQuery, @ptrCast(self)), pszLang, pszQuery, uFlags);
+    }
+    pub fn GetAnalysis(self: *const IWbemQuery, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).GetAnalysis(@as(*const IWbemQuery, @ptrCast(self)), uAnalysisType, uFlags, pAnalysis);
+    }
+    pub fn FreeMemory(self: *const IWbemQuery, pMem: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).FreeMemory(@as(*const IWbemQuery, @ptrCast(self)), pMem);
+    }
+    pub fn GetQueryInfo(self: *const IWbemQuery, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).GetQueryInfo(@as(*const IWbemQuery, @ptrCast(self)), uAnalysisType, uInfoId, uBufSize, pDestBuf);
+    }
 };
 
 pub const WMIQ_ANALYSIS_TYPE = enum(i32) {
@@ -3436,7 +3565,79 @@ pub const IWbemClassObject = extern union {
             return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethodOrigin(@as(*const IWbemClassObject, @ptrCast(self)), wszMethodName, pstrClassName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetQualifierSet(self: *const IWbemClassObject, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), ppQualSet);
+    }
+    pub fn Get(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Get(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pVal, pType, plFlavor);
+    }
+    pub fn Put(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, Type: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Put(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pVal, Type);
+    }
+    pub fn Delete(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWbemClassObject, @ptrCast(self)), wszName);
+    }
+    pub fn GetNames(self: *const IWbemClassObject, wszQualifierName: ?[*:0]const u16, lFlags: i32, pQualifierVal: ?*VARIANT, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemClassObject, @ptrCast(self)), wszQualifierName, lFlags, pQualifierVal, pNames);
+    }
+    pub fn BeginEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemClassObject, @ptrCast(self)), lEnumFlags);
+    }
+    pub fn Next(self: *const IWbemClassObject, lFlags: i32, strName: ?*?BSTR, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, strName, pVal, pType, plFlavor);
+    }
+    pub fn EndEnumeration(self: *const IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemClassObject, @ptrCast(self)));
+    }
+    pub fn GetPropertyQualifierSet(self: *const IWbemClassObject, wszProperty: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetPropertyQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), wszProperty, ppQualSet);
+    }
+    pub fn Clone(self: *const IWbemClassObject, ppCopy: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWbemClassObject, @ptrCast(self)), ppCopy);
+    }
+    pub fn GetObjectText(self: *const IWbemClassObject, lFlags: i32, pstrObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetObjectText(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pstrObjectText);
+    }
+    pub fn SpawnDerivedClass(self: *const IWbemClassObject, lFlags: i32, ppNewClass: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).SpawnDerivedClass(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, ppNewClass);
+    }
+    pub fn SpawnInstance(self: *const IWbemClassObject, lFlags: i32, ppNewInstance: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).SpawnInstance(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, ppNewInstance);
+    }
+    pub fn CompareTo(self: *const IWbemClassObject, lFlags: i32, pCompareTo: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).CompareTo(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pCompareTo);
+    }
+    pub fn GetPropertyOrigin(self: *const IWbemClassObject, wszName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetPropertyOrigin(@as(*const IWbemClassObject, @ptrCast(self)), wszName, pstrClassName);
+    }
+    pub fn InheritsFrom(self: *const IWbemClassObject, strAncestor: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).InheritsFrom(@as(*const IWbemClassObject, @ptrCast(self)), strAncestor);
+    }
+    pub fn GetMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, ppInSignature, ppOutSignature);
+    }
+    pub fn PutMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pInSignature: ?*IWbemClassObject, pOutSignature: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).PutMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pInSignature, pOutSignature);
+    }
+    pub fn DeleteMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).DeleteMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName);
+    }
+    pub fn BeginMethodEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).BeginMethodEnumeration(@as(*const IWbemClassObject, @ptrCast(self)), lEnumFlags);
+    }
+    pub fn NextMethod(self: *const IWbemClassObject, lFlags: i32, pstrName: ?*?BSTR, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).NextMethod(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pstrName, ppInSignature, ppOutSignature);
+    }
+    pub fn EndMethodEnumeration(self: *const IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).EndMethodEnumeration(@as(*const IWbemClassObject, @ptrCast(self)));
+    }
+    pub fn GetMethodQualifierSet(self: *const IWbemClassObject, wszMethod: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethodQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), wszMethod, ppQualSet);
+    }
+    pub fn GetMethodOrigin(self: *const IWbemClassObject, wszMethodName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethodOrigin(@as(*const IWbemClassObject, @ptrCast(self)), wszMethodName, pstrClassName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3544,7 +3745,37 @@ pub const IWbemObjectAccess = extern union {
             return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IWbemObjectAccess, @ptrCast(self)), lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWbemClassObject.MethodMixin(@This());
+    pub fn GetPropertyHandle(self: *const IWbemObjectAccess, wszPropertyName: ?[*:0]const u16, pType: ?*i32, plHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).GetPropertyHandle(@as(*const IWbemObjectAccess, @ptrCast(self)), wszPropertyName, pType, plHandle);
+    }
+    pub fn WritePropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lNumBytes: i32, aData: [*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WritePropertyValue(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, lNumBytes, aData);
+    }
+    pub fn ReadPropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lBufferSize: i32, plNumBytes: ?*i32, aData: [*:0]u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadPropertyValue(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, lBufferSize, plNumBytes, aData);
+    }
+    pub fn ReadDWORD(self: *const IWbemObjectAccess, lHandle: i32, pdw: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadDWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pdw);
+    }
+    pub fn WriteDWORD(self: *const IWbemObjectAccess, lHandle: i32, dw: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WriteDWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, dw);
+    }
+    pub fn ReadQWORD(self: *const IWbemObjectAccess, lHandle: i32, pqw: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadQWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pqw);
+    }
+    pub fn WriteQWORD(self: *const IWbemObjectAccess, lHandle: i32, pw: u64) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WriteQWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pw);
+    }
+    pub fn GetPropertyInfoByHandle(self: *const IWbemObjectAccess, lHandle: i32, pstrName: ?*?BSTR, pType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).GetPropertyInfoByHandle(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pstrName, pType);
+    }
+    pub fn Lock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).Lock(@as(*const IWbemObjectAccess, @ptrCast(self)), lFlags);
+    }
+    pub fn Unlock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IWbemObjectAccess, @ptrCast(self)), lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3623,7 +3854,28 @@ pub const IWbemQualifierSet = extern union {
             return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemQualifierSet, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Get(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Get(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName, lFlags, pVal, plFlavor);
+    }
+    pub fn Put(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, pVal: ?*VARIANT, lFlavor: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Put(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName, pVal, lFlavor);
+    }
+    pub fn Delete(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName);
+    }
+    pub fn GetNames(self: *const IWbemQualifierSet, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags, pNames);
+    }
+    pub fn BeginEnumeration(self: *const IWbemQualifierSet, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags);
+    }
+    pub fn Next(self: *const IWbemQualifierSet, lFlags: i32, pstrName: ?*?BSTR, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags, pstrName, pVal, plFlavor);
+    }
+    pub fn EndEnumeration(self: *const IWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemQualifierSet, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3897,7 +4149,76 @@ pub const IWbemServices = extern union {
             return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecMethodAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, strMethodName, lFlags, pCtx, pInParams, pResponseHandler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OpenNamespace(self: *const IWbemServices, strNamespace: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).OpenNamespace(@as(*const IWbemServices, @ptrCast(self)), strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
+    }
+    pub fn CancelAsyncCall(self: *const IWbemServices, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IWbemServices, @ptrCast(self)), pSink);
+    }
+    pub fn QueryObjectSink(self: *const IWbemServices, lFlags: i32, ppResponseHandler: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).QueryObjectSink(@as(*const IWbemServices, @ptrCast(self)), lFlags, ppResponseHandler);
+    }
+    pub fn GetObject(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppObject: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, ppObject, ppCallResult);
+    }
+    pub fn GetObjectAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).GetObjectAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn PutClass(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutClass(@as(*const IWbemServices, @ptrCast(self)), pObject, lFlags, pCtx, ppCallResult);
+    }
+    pub fn PutClassAsync(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutClassAsync(@as(*const IWbemServices, @ptrCast(self)), pObject, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn DeleteClass(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteClass(@as(*const IWbemServices, @ptrCast(self)), strClass, lFlags, pCtx, ppCallResult);
+    }
+    pub fn DeleteClassAsync(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteClassAsync(@as(*const IWbemServices, @ptrCast(self)), strClass, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn CreateClassEnum(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateClassEnum(@as(*const IWbemServices, @ptrCast(self)), strSuperclass, lFlags, pCtx, ppEnum);
+    }
+    pub fn CreateClassEnumAsync(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateClassEnumAsync(@as(*const IWbemServices, @ptrCast(self)), strSuperclass, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn PutInstance(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutInstance(@as(*const IWbemServices, @ptrCast(self)), pInst, lFlags, pCtx, ppCallResult);
+    }
+    pub fn PutInstanceAsync(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutInstanceAsync(@as(*const IWbemServices, @ptrCast(self)), pInst, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn DeleteInstance(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteInstance(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, ppCallResult);
+    }
+    pub fn DeleteInstanceAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteInstanceAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn CreateInstanceEnum(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateInstanceEnum(@as(*const IWbemServices, @ptrCast(self)), strFilter, lFlags, pCtx, ppEnum);
+    }
+    pub fn CreateInstanceEnumAsync(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateInstanceEnumAsync(@as(*const IWbemServices, @ptrCast(self)), strFilter, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn ExecQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecQuery(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
+    }
+    pub fn ExecQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecQueryAsync(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn ExecNotificationQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQuery(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
+    }
+    pub fn ExecNotificationQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQueryAsync(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
+    }
+    pub fn ExecMethod(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, ppOutParams: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecMethod(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, strMethodName, lFlags, pCtx, pInParams, ppOutParams, ppCallResult);
+    }
+    pub fn ExecMethodAsync(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecMethodAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, strMethodName, lFlags, pCtx, pInParams, pResponseHandler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3927,7 +4248,10 @@ pub const IWbemLocator = extern union {
             return @as(*const IWbemLocator.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemLocator, @ptrCast(self)), strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectServer(self: *const IWbemLocator, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemLocator.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemLocator, @ptrCast(self)), strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3962,7 +4286,13 @@ pub const IWbemObjectSink = extern union {
             return @as(*const IWbemObjectSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemObjectSink, @ptrCast(self)), lFlags, hResult, strParam, pObjParam);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Indicate(self: *const IWbemObjectSink, lObjectCount: i32, apObjArray: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSink.VTable, @ptrCast(self.vtable)).Indicate(@as(*const IWbemObjectSink, @ptrCast(self)), lObjectCount, apObjArray);
+    }
+    pub fn SetStatus(self: *const IWbemObjectSink, lFlags: i32, hResult: HRESULT, strParam: ?BSTR, pObjParam: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemObjectSink, @ptrCast(self)), lFlags, hResult, strParam, pObjParam);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4021,7 +4351,22 @@ pub const IEnumWbemClassObject = extern union {
             return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWbemClassObject, @ptrCast(self)), lTimeout, nCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Reset(self: *const IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWbemClassObject, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IEnumWbemClassObject, lTimeout: i32, uCount: u32, apObjects: [*]?*IWbemClassObject, puReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWbemClassObject, @ptrCast(self)), lTimeout, uCount, apObjects, puReturned);
+    }
+    pub fn NextAsync(self: *const IEnumWbemClassObject, uCount: u32, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).NextAsync(@as(*const IEnumWbemClassObject, @ptrCast(self)), uCount, pSink);
+    }
+    pub fn Clone(self: *const IEnumWbemClassObject, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWbemClassObject, @ptrCast(self)), ppEnum);
+    }
+    pub fn Skip(self: *const IEnumWbemClassObject, lTimeout: i32, nCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWbemClassObject, @ptrCast(self)), lTimeout, nCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4072,7 +4417,19 @@ pub const IWbemCallResult = extern union {
             return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetCallStatus(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, plStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetResultObject(self: *const IWbemCallResult, lTimeout: i32, ppResultObject: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultObject(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, ppResultObject);
+    }
+    pub fn GetResultString(self: *const IWbemCallResult, lTimeout: i32, pstrResultString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultString(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, pstrResultString);
+    }
+    pub fn GetResultServices(self: *const IWbemCallResult, lTimeout: i32, ppServices: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultServices(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, ppServices);
+    }
+    pub fn GetCallStatus(self: *const IWbemCallResult, lTimeout: i32, plStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetCallStatus(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, plStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4165,7 +4522,34 @@ pub const IWbemContext = extern union {
             return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const IWbemContext, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IWbemContext, ppNewCopy: ?*?*IWbemContext) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWbemContext, @ptrCast(self)), ppNewCopy);
+    }
+    pub fn GetNames(self: *const IWbemContext, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemContext, @ptrCast(self)), lFlags, pNames);
+    }
+    pub fn BeginEnumeration(self: *const IWbemContext, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemContext, @ptrCast(self)), lFlags);
+    }
+    pub fn Next(self: *const IWbemContext, lFlags: i32, pstrName: ?*?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemContext, @ptrCast(self)), lFlags, pstrName, pValue);
+    }
+    pub fn EndEnumeration(self: *const IWbemContext) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemContext, @ptrCast(self)));
+    }
+    pub fn SetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags, pValue);
+    }
+    pub fn GetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags, pValue);
+    }
+    pub fn DeleteValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags);
+    }
+    pub fn DeleteAll(self: *const IWbemContext) callconv(.Inline) HRESULT {
+        return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const IWbemContext, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4189,7 +4573,10 @@ pub const IUnsecuredApartment = extern union {
             return @as(*const IUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateObjectStub(@as(*const IUnsecuredApartment, @ptrCast(self)), pObject, ppStub);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateObjectStub(self: *const IUnsecuredApartment, pObject: ?*IUnknown, ppStub: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateObjectStub(@as(*const IUnsecuredApartment, @ptrCast(self)), pObject, ppStub);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -4215,7 +4602,10 @@ pub const IWbemUnsecuredApartment = extern union {
             return @as(*const IWbemUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateSinkStub(@as(*const IWbemUnsecuredApartment, @ptrCast(self)), pSink, dwFlags, wszReserved, ppStub);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnsecuredApartment.MethodMixin(@This());
+    pub fn CreateSinkStub(self: *const IWbemUnsecuredApartment, pSink: ?*IWbemObjectSink, dwFlags: u32, wszReserved: ?[*:0]const u16, ppStub: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateSinkStub(@as(*const IWbemUnsecuredApartment, @ptrCast(self)), pSink, dwFlags, wszReserved, ppStub);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4252,7 +4642,13 @@ pub const IWbemStatusCodeText = extern union {
             return @as(*const IWbemStatusCodeText.VTable, @ptrCast(self.vtable)).GetFacilityCodeText(@as(*const IWbemStatusCodeText, @ptrCast(self)), hRes, LocaleId, lFlags, MessageText);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetErrorCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemStatusCodeText.VTable, @ptrCast(self.vtable)).GetErrorCodeText(@as(*const IWbemStatusCodeText, @ptrCast(self)), hRes, LocaleId, lFlags, MessageText);
+    }
+    pub fn GetFacilityCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemStatusCodeText.VTable, @ptrCast(self.vtable)).GetFacilityCodeText(@as(*const IWbemStatusCodeText, @ptrCast(self)), hRes, LocaleId, lFlags, MessageText);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4285,7 +4681,13 @@ pub const IWbemBackupRestore = extern union {
             return @as(*const IWbemBackupRestore.VTable, @ptrCast(self.vtable)).Restore(@as(*const IWbemBackupRestore, @ptrCast(self)), strRestoreFromFile, lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Backup(self: *const IWbemBackupRestore, strBackupToFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemBackupRestore.VTable, @ptrCast(self.vtable)).Backup(@as(*const IWbemBackupRestore, @ptrCast(self)), strBackupToFile, lFlags);
+    }
+    pub fn Restore(self: *const IWbemBackupRestore, strRestoreFromFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemBackupRestore.VTable, @ptrCast(self.vtable)).Restore(@as(*const IWbemBackupRestore, @ptrCast(self)), strRestoreFromFile, lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4314,7 +4716,13 @@ pub const IWbemBackupRestoreEx = extern union {
             return @as(*const IWbemBackupRestoreEx.VTable, @ptrCast(self.vtable)).Resume(@as(*const IWbemBackupRestoreEx, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWbemBackupRestore.MethodMixin(@This());
+    pub fn Pause(self: *const IWbemBackupRestoreEx) callconv(.Inline) HRESULT {
+        return @as(*const IWbemBackupRestoreEx.VTable, @ptrCast(self.vtable)).Pause(@as(*const IWbemBackupRestoreEx, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IWbemBackupRestoreEx) callconv(.Inline) HRESULT {
+        return @as(*const IWbemBackupRestoreEx.VTable, @ptrCast(self.vtable)).Resume(@as(*const IWbemBackupRestoreEx, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4337,7 +4745,10 @@ pub const IWbemRefresher = extern union {
             return @as(*const IWbemRefresher.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWbemRefresher, @ptrCast(self)), lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Refresh(self: *const IWbemRefresher, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemRefresher.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWbemRefresher, @ptrCast(self)), lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4392,7 +4803,19 @@ pub const IWbemHiPerfEnum = extern union {
             return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32, apObj: [*]?*IWbemObjectAccess) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).AddObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apIds, apObj);
+    }
+    pub fn RemoveObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).RemoveObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apIds);
+    }
+    pub fn GetObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apObj: [*]?*IWbemObjectAccess, puReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).GetObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apObj, puReturned);
+    }
+    pub fn RemoveAll(self: *const IWbemHiPerfEnum, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4465,7 +4888,22 @@ pub const IWbemConfigureRefresher = extern union {
             return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddEnum(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, wszClassName, lFlags, pContext, ppEnum, plId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddObjectByPath(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszPath: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddObjectByPath(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, wszPath, lFlags, pContext, ppRefreshable, plId);
+    }
+    pub fn AddObjectByTemplate(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemClassObject, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddObjectByTemplate(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, pTemplate, lFlags, pContext, ppRefreshable, plId);
+    }
+    pub fn AddRefresher(self: *const IWbemConfigureRefresher, pRefresher: ?*IWbemRefresher, lFlags: i32, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddRefresher(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pRefresher, lFlags, plId);
+    }
+    pub fn Remove(self: *const IWbemConfigureRefresher, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).Remove(@as(*const IWbemConfigureRefresher, @ptrCast(self)), lId, lFlags);
+    }
+    pub fn AddEnum(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszClassName: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppEnum: ?*?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddEnum(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, wszClassName, lFlags, pContext, ppEnum, plId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4531,7 +4969,22 @@ pub const IWbemObjectSinkEx = extern union {
             return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteStreamParameter(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strName, vtValue, ulType, ulFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWbemObjectSink.MethodMixin(@This());
+    pub fn WriteMessage(self: *const IWbemObjectSinkEx, uChannel: u32, strMessage: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteMessage(@as(*const IWbemObjectSinkEx, @ptrCast(self)), uChannel, strMessage);
+    }
+    pub fn WriteError(self: *const IWbemObjectSinkEx, pObjError: ?*IWbemClassObject, puReturned: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteError(@as(*const IWbemObjectSinkEx, @ptrCast(self)), pObjError, puReturned);
+    }
+    pub fn PromptUser(self: *const IWbemObjectSinkEx, strMessage: ?BSTR, uPromptType: u8, puReturned: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).PromptUser(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strMessage, uPromptType, puReturned);
+    }
+    pub fn WriteProgress(self: *const IWbemObjectSinkEx, strActivity: ?BSTR, strCurrentOperation: ?BSTR, strStatusDescription: ?BSTR, uPercentComplete: u32, uSecondsRemaining: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteProgress(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strActivity, strCurrentOperation, strStatusDescription, uPercentComplete, uSecondsRemaining);
+    }
+    pub fn WriteStreamParameter(self: *const IWbemObjectSinkEx, strName: ?BSTR, vtValue: ?*VARIANT, ulType: u32, ulFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteStreamParameter(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strName, vtValue, ulType, ulFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4556,7 +5009,10 @@ pub const IWbemShutdown = extern union {
             return @as(*const IWbemShutdown.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IWbemShutdown, @ptrCast(self)), uReason, uMaxMilliseconds, pCtx);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Shutdown(self: *const IWbemShutdown, uReason: i32, uMaxMilliseconds: u32, pCtx: ?*IWbemContext) callconv(.Inline) HRESULT {
+        return @as(*const IWbemShutdown.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IWbemShutdown, @ptrCast(self)), uReason, uMaxMilliseconds, pCtx);
+    }
 };
 
 pub const WMI_OBJ_TEXT = enum(i32) {
@@ -4624,7 +5080,13 @@ pub const IWbemObjectTextSrc = extern union {
             return @as(*const IWbemObjectTextSrc.VTable, @ptrCast(self.vtable)).CreateFromText(@as(*const IWbemObjectTextSrc, @ptrCast(self)), lFlags, strText, uObjTextFormat, pCtx, pNewObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetText(self: *const IWbemObjectTextSrc, lFlags: i32, pObj: ?*IWbemClassObject, uObjTextFormat: u32, pCtx: ?*IWbemContext, strText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectTextSrc.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemObjectTextSrc, @ptrCast(self)), lFlags, pObj, uObjTextFormat, pCtx, strText);
+    }
+    pub fn CreateFromText(self: *const IWbemObjectTextSrc, lFlags: i32, strText: ?BSTR, uObjTextFormat: u32, pCtx: ?*IWbemContext, pNewObj: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemObjectTextSrc.VTable, @ptrCast(self.vtable)).CreateFromText(@as(*const IWbemObjectTextSrc, @ptrCast(self)), lFlags, strText, uObjTextFormat, pCtx, pNewObj);
+    }
 };
 
 pub const WBEM_COMPILE_STATUS_INFO = extern struct {
@@ -4722,7 +5184,16 @@ pub const IMofCompiler = extern union {
             return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CreateBMOF(@as(*const IMofCompiler, @ptrCast(self)), TextFileName, BMOFFileName, ServerAndNamespace, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CompileFile(self: *const IMofCompiler, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CompileFile(@as(*const IMofCompiler, @ptrCast(self)), FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
+    }
+    pub fn CompileBuffer(self: *const IMofCompiler, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CompileBuffer(@as(*const IMofCompiler, @ptrCast(self)), BuffSize, pBuffer, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
+    }
+    pub fn CreateBMOF(self: *const IMofCompiler, TextFileName: ?PWSTR, BMOFFileName: ?PWSTR, ServerAndNamespace: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CreateBMOF(@as(*const IMofCompiler, @ptrCast(self)), TextFileName, BMOFFileName, ServerAndNamespace, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
+    }
 };
 
 pub const WBEM_UNSECAPP_FLAG_TYPE = enum(i32) {
@@ -4803,7 +5274,13 @@ pub const IWbemPropertyProvider = extern union {
             return @as(*const IWbemPropertyProvider.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IWbemPropertyProvider, @ptrCast(self)), lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPropertyProvider.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWbemPropertyProvider, @ptrCast(self)), lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
+    }
+    pub fn PutProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWbemPropertyProvider.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IWbemPropertyProvider, @ptrCast(self)), lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4828,7 +5305,10 @@ pub const IWbemUnboundObjectSink = extern union {
             return @as(*const IWbemUnboundObjectSink.VTable, @ptrCast(self.vtable)).IndicateToConsumer(@as(*const IWbemUnboundObjectSink, @ptrCast(self)), pLogicalConsumer, lNumObjects, apObjects);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IndicateToConsumer(self: *const IWbemUnboundObjectSink, pLogicalConsumer: ?*IWbemClassObject, lNumObjects: i32, apObjects: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemUnboundObjectSink.VTable, @ptrCast(self.vtable)).IndicateToConsumer(@as(*const IWbemUnboundObjectSink, @ptrCast(self)), pLogicalConsumer, lNumObjects, apObjects);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4852,7 +5332,10 @@ pub const IWbemEventProvider = extern union {
             return @as(*const IWbemEventProvider.VTable, @ptrCast(self.vtable)).ProvideEvents(@as(*const IWbemEventProvider, @ptrCast(self)), pSink, lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ProvideEvents(self: *const IWbemEventProvider, pSink: ?*IWbemObjectSink, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventProvider.VTable, @ptrCast(self.vtable)).ProvideEvents(@as(*const IWbemEventProvider, @ptrCast(self)), pSink, lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4885,7 +5368,13 @@ pub const IWbemEventProviderQuerySink = extern union {
             return @as(*const IWbemEventProviderQuerySink.VTable, @ptrCast(self.vtable)).CancelQuery(@as(*const IWbemEventProviderQuerySink, @ptrCast(self)), dwId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn NewQuery(self: *const IWbemEventProviderQuerySink, dwId: u32, wszQueryLanguage: ?*u16, wszQuery: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventProviderQuerySink.VTable, @ptrCast(self.vtable)).NewQuery(@as(*const IWbemEventProviderQuerySink, @ptrCast(self)), dwId, wszQueryLanguage, wszQuery);
+    }
+    pub fn CancelQuery(self: *const IWbemEventProviderQuerySink, dwId: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventProviderQuerySink.VTable, @ptrCast(self.vtable)).CancelQuery(@as(*const IWbemEventProviderQuerySink, @ptrCast(self)), dwId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4911,7 +5400,10 @@ pub const IWbemEventProviderSecurity = extern union {
             return @as(*const IWbemEventProviderSecurity.VTable, @ptrCast(self.vtable)).AccessCheck(@as(*const IWbemEventProviderSecurity, @ptrCast(self)), wszQueryLanguage, wszQuery, lSidLength, pSid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AccessCheck(self: *const IWbemEventProviderSecurity, wszQueryLanguage: ?*u16, wszQuery: ?*u16, lSidLength: i32, pSid: [*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventProviderSecurity.VTable, @ptrCast(self.vtable)).AccessCheck(@as(*const IWbemEventProviderSecurity, @ptrCast(self)), wszQueryLanguage, wszQuery, lSidLength, pSid);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4935,7 +5427,10 @@ pub const IWbemEventConsumerProvider = extern union {
             return @as(*const IWbemEventConsumerProvider.VTable, @ptrCast(self.vtable)).FindConsumer(@as(*const IWbemEventConsumerProvider, @ptrCast(self)), pLogicalConsumer, ppConsumer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindConsumer(self: *const IWbemEventConsumerProvider, pLogicalConsumer: ?*IWbemClassObject, ppConsumer: ?*?*IWbemUnboundObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventConsumerProvider.VTable, @ptrCast(self.vtable)).FindConsumer(@as(*const IWbemEventConsumerProvider, @ptrCast(self)), pLogicalConsumer, ppConsumer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4959,7 +5454,10 @@ pub const IWbemProviderInitSink = extern union {
             return @as(*const IWbemProviderInitSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemProviderInitSink, @ptrCast(self)), lStatus, lFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetStatus(self: *const IWbemProviderInitSink, lStatus: i32, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemProviderInitSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemProviderInitSink, @ptrCast(self)), lStatus, lFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4988,7 +5486,10 @@ pub const IWbemProviderInit = extern union {
             return @as(*const IWbemProviderInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemProviderInit, @ptrCast(self)), wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemProviderInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemProviderInit, @ptrCast(self)), wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5075,7 +5576,25 @@ pub const IWbemHiPerfProvider = extern union {
             return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).GetObjects(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, lNumObjects, apObj, lFlags, pContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).QueryInstances(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, wszClass, lFlags, pCtx, pSink);
+    }
+    pub fn CreateRefresher(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lFlags: i32, ppRefresher: ?*?*IWbemRefresher) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefresher(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, lFlags, ppRefresher);
+    }
+    pub fn CreateRefreshableObject(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemObjectAccess, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemObjectAccess, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefreshableObject(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, pTemplate, pRefresher, lFlags, pContext, ppRefreshable, plId);
+    }
+    pub fn StopRefreshing(self: *const IWbemHiPerfProvider, pRefresher: ?*IWbemRefresher, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).StopRefreshing(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pRefresher, lId, lFlags);
+    }
+    pub fn CreateRefreshableEnum(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?[*:0]const u16, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, pHiPerfEnum: ?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefreshableEnum(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, wszClass, pRefresher, lFlags, pContext, pHiPerfEnum, plId);
+    }
+    pub fn GetObjects(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lNumObjects: i32, apObj: [*]?*IWbemObjectAccess, lFlags: i32, pContext: ?*IWbemContext) callconv(.Inline) HRESULT {
+        return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).GetObjects(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, lNumObjects, apObj, lFlags, pContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5111,7 +5630,13 @@ pub const IWbemDecoupledRegistrar = extern union {
             return @as(*const IWbemDecoupledRegistrar.VTable, @ptrCast(self.vtable)).UnRegister(@as(*const IWbemDecoupledRegistrar, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Register(self: *const IWbemDecoupledRegistrar, a_Flags: i32, a_Context: ?*IWbemContext, a_User: ?[*:0]const u16, a_Locale: ?[*:0]const u16, a_Scope: ?[*:0]const u16, a_Registration: ?[*:0]const u16, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWbemDecoupledRegistrar.VTable, @ptrCast(self.vtable)).Register(@as(*const IWbemDecoupledRegistrar, @ptrCast(self)), a_Flags, a_Context, a_User, a_Locale, a_Scope, a_Registration, pIUnknown);
+    }
+    pub fn UnRegister(self: *const IWbemDecoupledRegistrar) callconv(.Inline) HRESULT {
+        return @as(*const IWbemDecoupledRegistrar.VTable, @ptrCast(self.vtable)).UnRegister(@as(*const IWbemDecoupledRegistrar, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5135,7 +5660,10 @@ pub const IWbemProviderIdentity = extern union {
             return @as(*const IWbemProviderIdentity.VTable, @ptrCast(self.vtable)).SetRegistrationObject(@as(*const IWbemProviderIdentity, @ptrCast(self)), lFlags, pProvReg);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetRegistrationObject(self: *const IWbemProviderIdentity, lFlags: i32, pProvReg: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+        return @as(*const IWbemProviderIdentity.VTable, @ptrCast(self.vtable)).SetRegistrationObject(@as(*const IWbemProviderIdentity, @ptrCast(self)), lFlags, pProvReg);
+    }
 };
 
 pub const WBEM_EXTRA_RETURN_CODES = enum(i32) {
@@ -5190,7 +5718,13 @@ pub const IWbemDecoupledBasicEventProvider = extern union {
             return @as(*const IWbemDecoupledBasicEventProvider.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWbemDecoupledBasicEventProvider, @ptrCast(self)), a_Flags, a_Context, a_Service);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWbemDecoupledRegistrar.MethodMixin(@This());
+    pub fn GetSink(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Sink: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemDecoupledBasicEventProvider.VTable, @ptrCast(self.vtable)).GetSink(@as(*const IWbemDecoupledBasicEventProvider, @ptrCast(self)), a_Flags, a_Context, a_Sink);
+    }
+    pub fn GetService(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Service: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemDecoupledBasicEventProvider.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWbemDecoupledBasicEventProvider, @ptrCast(self)), a_Flags, a_Context, a_Service);
+    }
 };
 
 pub const WBEM_BATCH_TYPE = enum(i32) {
@@ -5251,7 +5785,19 @@ pub const IWbemEventSink = extern union {
             return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).SetBatchingParameters(@as(*const IWbemEventSink, @ptrCast(self)), lFlags, dwMaxBufferSize, dwMaxSendLatency);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWbemObjectSink.MethodMixin(@This());
+    pub fn SetSinkSecurity(self: *const IWbemEventSink, lSDLength: i32, pSD: [*:0]u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).SetSinkSecurity(@as(*const IWbemEventSink, @ptrCast(self)), lSDLength, pSD);
+    }
+    pub fn IsActive(self: *const IWbemEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).IsActive(@as(*const IWbemEventSink, @ptrCast(self)));
+    }
+    pub fn GetRestrictedSink(self: *const IWbemEventSink, lNumQueries: i32, awszQueries: [*]const ?[*:0]const u16, pCallback: ?*IUnknown, ppSink: ?*?*IWbemEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).GetRestrictedSink(@as(*const IWbemEventSink, @ptrCast(self)), lNumQueries, awszQueries, pCallback, ppSink);
+    }
+    pub fn SetBatchingParameters(self: *const IWbemEventSink, lFlags: i32, dwMaxBufferSize: u32, dwMaxSendLatency: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).SetBatchingParameters(@as(*const IWbemEventSink, @ptrCast(self)), lFlags, dwMaxBufferSize, dwMaxSendLatency);
+    }
 };
 
 const CLSID_SWbemLocator_Value = Guid.initString("76a64158-cb41-11d1-8b02-00600806d9b6");
@@ -6065,7 +6611,64 @@ pub const ISWbemServices = extern union {
             return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemServices, @ptrCast(self)), objWbemSecurity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Get(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).Get(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, iFlags, objWbemNamedValueSet, objWbemObject);
+    }
+    pub fn GetAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).GetAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Delete(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, iFlags, objWbemNamedValueSet);
+    }
+    pub fn DeleteAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).DeleteAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn InstancesOf(self: *const ISWbemServices, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).InstancesOf(@as(*const ISWbemServices, @ptrCast(self)), strClass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn InstancesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).InstancesOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strClass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn SubclassesOf(self: *const ISWbemServices, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).SubclassesOf(@as(*const ISWbemServices, @ptrCast(self)), strSuperclass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn SubclassesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).SubclassesOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strSuperclass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn ExecQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecQuery(@as(*const ISWbemServices, @ptrCast(self)), strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn ExecQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, lFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecQueryAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strQuery, strQueryLanguage, lFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn AssociatorsOf(self: *const ISWbemServices, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).AssociatorsOf(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn AssociatorsOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).AssociatorsOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn ReferencesTo(self: *const ISWbemServices, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ReferencesTo(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn ReferencesToAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ReferencesToAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn ExecNotificationQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemEventSource: ?*?*ISWbemEventSource) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQuery(@as(*const ISWbemServices, @ptrCast(self)), strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemEventSource);
+    }
+    pub fn ExecNotificationQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQueryAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn ExecMethod(self: *const ISWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecMethod(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
+    }
+    pub fn ExecMethodAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecMethodAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn get_Security_(self: *const ISWbemServices, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemServices, @ptrCast(self)), objWbemSecurity);
+    }
 };
 
 const IID_ISWbemLocator_Value = Guid.initString("76a6415b-cb41-11d1-8b02-00600806d9b6");
@@ -6104,7 +6707,13 @@ pub const ISWbemLocator = extern union {
             return @as(*const ISWbemLocator.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemLocator, @ptrCast(self)), objWbemSecurity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn ConnectServer(self: *const ISWbemLocator, strServer: ?BSTR, strNamespace: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, strAuthority: ?BSTR, iSecurityFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemLocator.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const ISWbemLocator, @ptrCast(self)), strServer, strNamespace, strUser, strPassword, strLocale, strAuthority, iSecurityFlags, objWbemNamedValueSet, objWbemServices);
+    }
+    pub fn get_Security_(self: *const ISWbemLocator, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemLocator.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemLocator, @ptrCast(self)), objWbemSecurity);
+    }
 };
 
 const IID_ISWbemObject_Value = Guid.initString("76a6415a-cb41-11d1-8b02-00600806d9b6");
@@ -6393,7 +7002,82 @@ pub const ISWbemObject = extern union {
             return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSecurity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Put_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Put_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectPath);
+    }
+    pub fn PutAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).PutAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Delete_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Delete_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet);
+    }
+    pub fn DeleteAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).DeleteAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Instances_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Instances_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn InstancesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).InstancesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Subclasses_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Subclasses_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn SubclassesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SubclassesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Associators_(self: *const ISWbemObject, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Associators_(@as(*const ISWbemObject, @ptrCast(self)), strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn AssociatorsAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).AssociatorsAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn References_(self: *const ISWbemObject, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).References_(@as(*const ISWbemObject, @ptrCast(self)), strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
+    }
+    pub fn ReferencesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ReferencesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn ExecMethod_(self: *const ISWbemObject, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ExecMethod_(@as(*const ISWbemObject, @ptrCast(self)), strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
+    }
+    pub fn ExecMethodAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ExecMethodAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
+    pub fn Clone_(self: *const ISWbemObject, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Clone_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObject);
+    }
+    pub fn GetObjectText_(self: *const ISWbemObject, iFlags: i32, strObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).GetObjectText_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, strObjectText);
+    }
+    pub fn SpawnDerivedClass_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SpawnDerivedClass_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemObject);
+    }
+    pub fn SpawnInstance_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SpawnInstance_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemObject);
+    }
+    pub fn CompareTo_(self: *const ISWbemObject, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).CompareTo_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObject, iFlags, bResult);
+    }
+    pub fn get_Qualifiers_(self: *const ISWbemObject, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemObject, @ptrCast(self)), objWbemQualifierSet);
+    }
+    pub fn get_Properties_(self: *const ISWbemObject, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Properties_(@as(*const ISWbemObject, @ptrCast(self)), objWbemPropertySet);
+    }
+    pub fn get_Methods_(self: *const ISWbemObject, objWbemMethodSet: ?*?*ISWbemMethodSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Methods_(@as(*const ISWbemObject, @ptrCast(self)), objWbemMethodSet);
+    }
+    pub fn get_Derivation_(self: *const ISWbemObject, strClassNameArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Derivation_(@as(*const ISWbemObject, @ptrCast(self)), strClassNameArray);
+    }
+    pub fn get_Path_(self: *const ISWbemObject, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Path_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObjectPath);
+    }
+    pub fn get_Security_(self: *const ISWbemObject, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSecurity);
+    }
 };
 
 const IID_ISWbemObjectSet_Value = Guid.initString("76a6415f-cb41-11d1-8b02-00600806d9b6");
@@ -6453,7 +7137,22 @@ pub const ISWbemObjectSet = extern union {
             return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).ItemIndex(@as(*const ISWbemObjectSet, @ptrCast(self)), lIndex, objWbemObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemObjectSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemObjectSet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemObjectSet, strObjectPath: ?BSTR, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemObjectSet, @ptrCast(self)), strObjectPath, iFlags, objWbemObject);
+    }
+    pub fn get_Count(self: *const ISWbemObjectSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemObjectSet, @ptrCast(self)), iCount);
+    }
+    pub fn get_Security_(self: *const ISWbemObjectSet, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObjectSet, @ptrCast(self)), objWbemSecurity);
+    }
+    pub fn ItemIndex(self: *const ISWbemObjectSet, lIndex: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).ItemIndex(@as(*const ISWbemObjectSet, @ptrCast(self)), lIndex, objWbemObject);
+    }
 };
 
 const IID_ISWbemNamedValue_Value = Guid.initString("76a64164-cb41-11d1-8b02-00600806d9b6");
@@ -6494,7 +7193,16 @@ pub const ISWbemNamedValue = extern union {
             return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemNamedValue, @ptrCast(self)), strName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemNamedValue, @ptrCast(self)), varValue);
+    }
+    pub fn put_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemNamedValue, @ptrCast(self)), varValue);
+    }
+    pub fn get_Name(self: *const ISWbemNamedValue, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemNamedValue, @ptrCast(self)), strName);
+    }
 };
 
 const IID_ISWbemNamedValueSet_Value = Guid.initString("cf2376ea-ce8c-11d1-8b05-00600806d9b6");
@@ -6571,7 +7279,28 @@ pub const ISWbemNamedValueSet = extern union {
             return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemNamedValueSet, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemNamedValueSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemNamedValueSet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, iFlags, objWbemNamedValue);
+    }
+    pub fn get_Count(self: *const ISWbemNamedValueSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemNamedValueSet, @ptrCast(self)), iCount);
+    }
+    pub fn Add(self: *const ISWbemNamedValueSet, strName: ?BSTR, varValue: ?*VARIANT, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, varValue, iFlags, objWbemNamedValue);
+    }
+    pub fn Remove(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, iFlags);
+    }
+    pub fn Clone(self: *const ISWbemNamedValueSet, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISWbemNamedValueSet, @ptrCast(self)), objWbemNamedValueSet);
+    }
+    pub fn DeleteAll(self: *const ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemNamedValueSet, @ptrCast(self)));
+    }
 };
 
 const IID_ISWbemQualifier_Value = Guid.initString("79b05932-d3b7-11d1-8b06-00600806d9b6");
@@ -6684,7 +7413,40 @@ pub const ISWbemQualifier = extern union {
             return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsAmended(@as(*const ISWbemQualifier, @ptrCast(self)), bIsAmended);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemQualifier, @ptrCast(self)), varValue);
+    }
+    pub fn put_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemQualifier, @ptrCast(self)), varValue);
+    }
+    pub fn get_Name(self: *const ISWbemQualifier, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemQualifier, @ptrCast(self)), strName);
+    }
+    pub fn get_IsLocal(self: *const ISWbemQualifier, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const ISWbemQualifier, @ptrCast(self)), bIsLocal);
+    }
+    pub fn get_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_PropagatesToSubclass(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToSubclass);
+    }
+    pub fn put_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_PropagatesToSubclass(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToSubclass);
+    }
+    pub fn get_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_PropagatesToInstance(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToInstance);
+    }
+    pub fn put_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_PropagatesToInstance(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToInstance);
+    }
+    pub fn get_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsOverridable(@as(*const ISWbemQualifier, @ptrCast(self)), bIsOverridable);
+    }
+    pub fn put_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_IsOverridable(@as(*const ISWbemQualifier, @ptrCast(self)), bIsOverridable);
+    }
+    pub fn get_IsAmended(self: *const ISWbemQualifier, bIsAmended: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsAmended(@as(*const ISWbemQualifier, @ptrCast(self)), bIsAmended);
+    }
 };
 
 const IID_ISWbemQualifierSet_Value = Guid.initString("9b16ed16-d3df-11d1-8b08-00600806d9b6");
@@ -6749,7 +7511,22 @@ pub const ISWbemQualifierSet = extern union {
             return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemQualifierSet, @ptrCast(self)), strName, iFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemQualifierSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemQualifierSet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemQualifierSet, name: ?BSTR, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemQualifierSet, @ptrCast(self)), name, iFlags, objWbemQualifier);
+    }
+    pub fn get_Count(self: *const ISWbemQualifierSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemQualifierSet, @ptrCast(self)), iCount);
+    }
+    pub fn Add(self: *const ISWbemQualifierSet, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: i16, bPropagatesToInstance: i16, bIsOverridable: i16, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemQualifierSet, @ptrCast(self)), strName, varVal, bPropagatesToSubclass, bPropagatesToInstance, bIsOverridable, iFlags, objWbemQualifier);
+    }
+    pub fn Remove(self: *const ISWbemQualifierSet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemQualifierSet, @ptrCast(self)), strName, iFlags);
+    }
 };
 
 const IID_ISWbemProperty_Value = Guid.initString("1a388f98-d4ba-11d1-8b09-00600806d9b6");
@@ -6835,7 +7612,31 @@ pub const ISWbemProperty = extern union {
             return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_IsArray(@as(*const ISWbemProperty, @ptrCast(self)), bIsArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemProperty, @ptrCast(self)), varValue);
+    }
+    pub fn put_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemProperty, @ptrCast(self)), varValue);
+    }
+    pub fn get_Name(self: *const ISWbemProperty, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemProperty, @ptrCast(self)), strName);
+    }
+    pub fn get_IsLocal(self: *const ISWbemProperty, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const ISWbemProperty, @ptrCast(self)), bIsLocal);
+    }
+    pub fn get_Origin(self: *const ISWbemProperty, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Origin(@as(*const ISWbemProperty, @ptrCast(self)), strOrigin);
+    }
+    pub fn get_CIMType(self: *const ISWbemProperty, iCimType: ?*WbemCimtypeEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_CIMType(@as(*const ISWbemProperty, @ptrCast(self)), iCimType);
+    }
+    pub fn get_Qualifiers_(self: *const ISWbemProperty, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemProperty, @ptrCast(self)), objWbemQualifierSet);
+    }
+    pub fn get_IsArray(self: *const ISWbemProperty, bIsArray: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_IsArray(@as(*const ISWbemProperty, @ptrCast(self)), bIsArray);
+    }
 };
 
 const IID_ISWbemPropertySet_Value = Guid.initString("dea0a7b2-d4ba-11d1-8b09-00600806d9b6");
@@ -6898,7 +7699,22 @@ pub const ISWbemPropertySet = extern union {
             return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemPropertySet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemPropertySet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iFlags, objWbemProperty);
+    }
+    pub fn get_Count(self: *const ISWbemPropertySet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemPropertySet, @ptrCast(self)), iCount);
+    }
+    pub fn Add(self: *const ISWbemPropertySet, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: i16, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iCIMType, bIsArray, iFlags, objWbemProperty);
+    }
+    pub fn Remove(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iFlags);
+    }
 };
 
 const IID_ISWbemMethod_Value = Guid.initString("422e8e90-d955-11d1-8b09-00600806d9b6");
@@ -6957,7 +7773,22 @@ pub const ISWbemMethod = extern union {
             return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemMethod, @ptrCast(self)), objWbemQualifierSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const ISWbemMethod, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemMethod, @ptrCast(self)), strName);
+    }
+    pub fn get_Origin(self: *const ISWbemMethod, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Origin(@as(*const ISWbemMethod, @ptrCast(self)), strOrigin);
+    }
+    pub fn get_InParameters(self: *const ISWbemMethod, objWbemInParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_InParameters(@as(*const ISWbemMethod, @ptrCast(self)), objWbemInParameters);
+    }
+    pub fn get_OutParameters(self: *const ISWbemMethod, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_OutParameters(@as(*const ISWbemMethod, @ptrCast(self)), objWbemOutParameters);
+    }
+    pub fn get_Qualifiers_(self: *const ISWbemMethod, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemMethod, @ptrCast(self)), objWbemQualifierSet);
+    }
 };
 
 const IID_ISWbemMethodSet_Value = Guid.initString("c93ba292-d955-11d1-8b09-00600806d9b6");
@@ -6999,7 +7830,16 @@ pub const ISWbemMethodSet = extern union {
             return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemMethodSet, @ptrCast(self)), iCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemMethodSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemMethodSet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemMethodSet, strName: ?BSTR, iFlags: i32, objWbemMethod: ?*?*ISWbemMethod) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemMethodSet, @ptrCast(self)), strName, iFlags, objWbemMethod);
+    }
+    pub fn get_Count(self: *const ISWbemMethodSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemMethodSet, @ptrCast(self)), iCount);
+    }
 };
 
 const IID_ISWbemEventSource_Value = Guid.initString("27d54d92-0ebe-11d2-8b22-00600806d9b6");
@@ -7031,7 +7871,13 @@ pub const ISWbemEventSource = extern union {
             return @as(*const ISWbemEventSource.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemEventSource, @ptrCast(self)), objWbemSecurity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn NextEvent(self: *const ISWbemEventSource, iTimeoutMs: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemEventSource.VTable, @ptrCast(self.vtable)).NextEvent(@as(*const ISWbemEventSource, @ptrCast(self)), iTimeoutMs, objWbemObject);
+    }
+    pub fn get_Security_(self: *const ISWbemEventSource, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemEventSource.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemEventSource, @ptrCast(self)), objWbemSecurity);
+    }
 };
 
 const IID_ISWbemObjectPath_Value = Guid.initString("5791bc27-ce9c-11d1-97bf-0000f81e849c");
@@ -7248,7 +8094,76 @@ pub const ISWbemObjectPath = extern union {
             return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Authority(@as(*const ISWbemObjectPath, @ptrCast(self)), strAuthority);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Path(self: *const ISWbemObjectPath, strPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ISWbemObjectPath, @ptrCast(self)), strPath);
+    }
+    pub fn put_Path(self: *const ISWbemObjectPath, strPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Path(@as(*const ISWbemObjectPath, @ptrCast(self)), strPath);
+    }
+    pub fn get_RelPath(self: *const ISWbemObjectPath, strRelPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_RelPath(@as(*const ISWbemObjectPath, @ptrCast(self)), strRelPath);
+    }
+    pub fn put_RelPath(self: *const ISWbemObjectPath, strRelPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_RelPath(@as(*const ISWbemObjectPath, @ptrCast(self)), strRelPath);
+    }
+    pub fn get_Server(self: *const ISWbemObjectPath, strServer: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Server(@as(*const ISWbemObjectPath, @ptrCast(self)), strServer);
+    }
+    pub fn put_Server(self: *const ISWbemObjectPath, strServer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Server(@as(*const ISWbemObjectPath, @ptrCast(self)), strServer);
+    }
+    pub fn get_Namespace(self: *const ISWbemObjectPath, strNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strNamespace);
+    }
+    pub fn put_Namespace(self: *const ISWbemObjectPath, strNamespace: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Namespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strNamespace);
+    }
+    pub fn get_ParentNamespace(self: *const ISWbemObjectPath, strParentNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_ParentNamespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strParentNamespace);
+    }
+    pub fn get_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ISWbemObjectPath, @ptrCast(self)), strDisplayName);
+    }
+    pub fn put_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const ISWbemObjectPath, @ptrCast(self)), strDisplayName);
+    }
+    pub fn get_Class(self: *const ISWbemObjectPath, strClass: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Class(@as(*const ISWbemObjectPath, @ptrCast(self)), strClass);
+    }
+    pub fn put_Class(self: *const ISWbemObjectPath, strClass: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Class(@as(*const ISWbemObjectPath, @ptrCast(self)), strClass);
+    }
+    pub fn get_IsClass(self: *const ISWbemObjectPath, bIsClass: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_IsClass(@as(*const ISWbemObjectPath, @ptrCast(self)), bIsClass);
+    }
+    pub fn SetAsClass(self: *const ISWbemObjectPath) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).SetAsClass(@as(*const ISWbemObjectPath, @ptrCast(self)));
+    }
+    pub fn get_IsSingleton(self: *const ISWbemObjectPath, bIsSingleton: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_IsSingleton(@as(*const ISWbemObjectPath, @ptrCast(self)), bIsSingleton);
+    }
+    pub fn SetAsSingleton(self: *const ISWbemObjectPath) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).SetAsSingleton(@as(*const ISWbemObjectPath, @ptrCast(self)));
+    }
+    pub fn get_Keys(self: *const ISWbemObjectPath, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Keys(@as(*const ISWbemObjectPath, @ptrCast(self)), objWbemNamedValueSet);
+    }
+    pub fn get_Security_(self: *const ISWbemObjectPath, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObjectPath, @ptrCast(self)), objWbemSecurity);
+    }
+    pub fn get_Locale(self: *const ISWbemObjectPath, strLocale: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Locale(@as(*const ISWbemObjectPath, @ptrCast(self)), strLocale);
+    }
+    pub fn put_Locale(self: *const ISWbemObjectPath, strLocale: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Locale(@as(*const ISWbemObjectPath, @ptrCast(self)), strLocale);
+    }
+    pub fn get_Authority(self: *const ISWbemObjectPath, strAuthority: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Authority(@as(*const ISWbemObjectPath, @ptrCast(self)), strAuthority);
+    }
+    pub fn put_Authority(self: *const ISWbemObjectPath, strAuthority: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Authority(@as(*const ISWbemObjectPath, @ptrCast(self)), strAuthority);
+    }
 };
 
 const IID_ISWbemLastError_Value = Guid.initString("d962db84-d4bb-11d1-8b09-00600806d9b6");
@@ -7262,7 +8177,7 @@ pub const ISWbemLastError = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISWbemObject.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISWbemObject.MethodMixin(@This());
 };
 
 const IID_ISWbemSinkEvents_Value = Guid.initString("75718ca0-f029-11d1-a1ac-00c04fb6c223");
@@ -7276,7 +8191,7 @@ pub const ISWbemSinkEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_ISWbemSink_Value = Guid.initString("75718c9f-f029-11d1-a1ac-00c04fb6c223");
@@ -7297,7 +8212,10 @@ pub const ISWbemSink = extern union {
             return @as(*const ISWbemSink.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ISWbemSink, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Cancel(self: *const ISWbemSink) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSink.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ISWbemSink, @ptrCast(self)));
+    }
 };
 
 const IID_ISWbemSecurity_Value = Guid.initString("b54d66e6-2287-11d2-8b33-00600806d9b6");
@@ -7356,7 +8274,22 @@ pub const ISWbemSecurity = extern union {
             return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_Privileges(@as(*const ISWbemSecurity, @ptrCast(self)), objWbemPrivilegeSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: ?*WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_ImpersonationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iImpersonationLevel);
+    }
+    pub fn put_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).put_ImpersonationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iImpersonationLevel);
+    }
+    pub fn get_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: ?*WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_AuthenticationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iAuthenticationLevel);
+    }
+    pub fn put_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).put_AuthenticationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iAuthenticationLevel);
+    }
+    pub fn get_Privileges(self: *const ISWbemSecurity, objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_Privileges(@as(*const ISWbemSecurity, @ptrCast(self)), objWbemPrivilegeSet);
+    }
 };
 
 const IID_ISWbemPrivilege_Value = Guid.initString("26ee67bd-5804-11d2-8b4a-00600806d9b6");
@@ -7415,7 +8348,22 @@ pub const ISWbemPrivilege = extern union {
             return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const ISWbemPrivilege, @ptrCast(self)), iPrivilege);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_IsEnabled(@as(*const ISWbemPrivilege, @ptrCast(self)), bIsEnabled);
+    }
+    pub fn put_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).put_IsEnabled(@as(*const ISWbemPrivilege, @ptrCast(self)), bIsEnabled);
+    }
+    pub fn get_Name(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemPrivilege, @ptrCast(self)), strDisplayName);
+    }
+    pub fn get_DisplayName(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ISWbemPrivilege, @ptrCast(self)), strDisplayName);
+    }
+    pub fn get_Identifier(self: *const ISWbemPrivilege, iPrivilege: ?*WbemPrivilegeEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const ISWbemPrivilege, @ptrCast(self)), iPrivilege);
+    }
 };
 
 const IID_ISWbemPrivilegeSet_Value = Guid.initString("26ee67bf-5804-11d2-8b4a-00600806d9b6");
@@ -7491,7 +8439,28 @@ pub const ISWbemPrivilegeSet = extern union {
             return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).AddAsString(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), strPrivilege, bIsEnabled, objWbemPrivilege);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemPrivilegeSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege, objWbemPrivilege);
+    }
+    pub fn get_Count(self: *const ISWbemPrivilegeSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iCount);
+    }
+    pub fn Add(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege, bIsEnabled, objWbemPrivilege);
+    }
+    pub fn Remove(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege);
+    }
+    pub fn DeleteAll(self: *const ISWbemPrivilegeSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemPrivilegeSet, @ptrCast(self)));
+    }
+    pub fn AddAsString(self: *const ISWbemPrivilegeSet, strPrivilege: ?BSTR, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).AddAsString(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), strPrivilege, bIsEnabled, objWbemPrivilege);
+    }
 };
 
 const IID_ISWbemServicesEx_Value = Guid.initString("d2f68443-85dc-427e-91d8-366554cc754c");
@@ -7528,7 +8497,13 @@ pub const ISWbemServicesEx = extern union {
             return @as(*const ISWbemServicesEx.VTable, @ptrCast(self.vtable)).PutAsync(@as(*const ISWbemServicesEx, @ptrCast(self)), objWbemSink, objWbemObject, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISWbemServices.MethodMixin(@This());
+    pub fn Put(self: *const ISWbemServicesEx, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServicesEx.VTable, @ptrCast(self.vtable)).Put(@as(*const ISWbemServicesEx, @ptrCast(self)), objWbemObject, iFlags, objWbemNamedValueSet, objWbemObjectPath);
+    }
+    pub fn PutAsync(self: *const ISWbemServicesEx, objWbemSink: ?*ISWbemSink, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemServicesEx.VTable, @ptrCast(self.vtable)).PutAsync(@as(*const ISWbemServicesEx, @ptrCast(self)), objWbemSink, objWbemObject, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
+    }
 };
 
 const IID_ISWbemObjectEx_Value = Guid.initString("269ad56a-8a67-4129-bc8c-0506dcfe9880");
@@ -7582,7 +8557,19 @@ pub const ISWbemObjectEx = extern union {
             return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).SetFromText_(@as(*const ISWbemObjectEx, @ptrCast(self)), bsText, iObjectTextFormat, iFlags, objWbemNamedValueSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISWbemObject.MethodMixin(@This());
+    pub fn Refresh_(self: *const ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).Refresh_(@as(*const ISWbemObjectEx, @ptrCast(self)), iFlags, objWbemNamedValueSet);
+    }
+    pub fn get_SystemProperties_(self: *const ISWbemObjectEx, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).get_SystemProperties_(@as(*const ISWbemObjectEx, @ptrCast(self)), objWbemPropertySet);
+    }
+    pub fn GetText_(self: *const ISWbemObjectEx, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, bsText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).GetText_(@as(*const ISWbemObjectEx, @ptrCast(self)), iObjectTextFormat, iFlags, objWbemNamedValueSet, bsText);
+    }
+    pub fn SetFromText_(self: *const ISWbemObjectEx, bsText: ?BSTR, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).SetFromText_(@as(*const ISWbemObjectEx, @ptrCast(self)), bsText, iObjectTextFormat, iFlags, objWbemNamedValueSet);
+    }
 };
 
 const IID_ISWbemDateTime_Value = Guid.initString("5e97458a-cf77-11d3-b38f-00105a1f473a");
@@ -7956,7 +8943,127 @@ pub const ISWbemDateTime = extern union {
             return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).SetFileTime(@as(*const ISWbemDateTime, @ptrCast(self)), strFileTime, bIsLocal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Value(self: *const ISWbemDateTime, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemDateTime, @ptrCast(self)), strValue);
+    }
+    pub fn put_Value(self: *const ISWbemDateTime, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemDateTime, @ptrCast(self)), strValue);
+    }
+    pub fn get_Year(self: *const ISWbemDateTime, iYear: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Year(@as(*const ISWbemDateTime, @ptrCast(self)), iYear);
+    }
+    pub fn put_Year(self: *const ISWbemDateTime, iYear: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Year(@as(*const ISWbemDateTime, @ptrCast(self)), iYear);
+    }
+    pub fn get_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_YearSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bYearSpecified);
+    }
+    pub fn put_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_YearSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bYearSpecified);
+    }
+    pub fn get_Month(self: *const ISWbemDateTime, iMonth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Month(@as(*const ISWbemDateTime, @ptrCast(self)), iMonth);
+    }
+    pub fn put_Month(self: *const ISWbemDateTime, iMonth: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Month(@as(*const ISWbemDateTime, @ptrCast(self)), iMonth);
+    }
+    pub fn get_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MonthSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMonthSpecified);
+    }
+    pub fn put_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MonthSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMonthSpecified);
+    }
+    pub fn get_Day(self: *const ISWbemDateTime, iDay: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Day(@as(*const ISWbemDateTime, @ptrCast(self)), iDay);
+    }
+    pub fn put_Day(self: *const ISWbemDateTime, iDay: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Day(@as(*const ISWbemDateTime, @ptrCast(self)), iDay);
+    }
+    pub fn get_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_DaySpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bDaySpecified);
+    }
+    pub fn put_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_DaySpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bDaySpecified);
+    }
+    pub fn get_Hours(self: *const ISWbemDateTime, iHours: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Hours(@as(*const ISWbemDateTime, @ptrCast(self)), iHours);
+    }
+    pub fn put_Hours(self: *const ISWbemDateTime, iHours: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Hours(@as(*const ISWbemDateTime, @ptrCast(self)), iHours);
+    }
+    pub fn get_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_HoursSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bHoursSpecified);
+    }
+    pub fn put_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_HoursSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bHoursSpecified);
+    }
+    pub fn get_Minutes(self: *const ISWbemDateTime, iMinutes: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Minutes(@as(*const ISWbemDateTime, @ptrCast(self)), iMinutes);
+    }
+    pub fn put_Minutes(self: *const ISWbemDateTime, iMinutes: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Minutes(@as(*const ISWbemDateTime, @ptrCast(self)), iMinutes);
+    }
+    pub fn get_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MinutesSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMinutesSpecified);
+    }
+    pub fn put_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MinutesSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMinutesSpecified);
+    }
+    pub fn get_Seconds(self: *const ISWbemDateTime, iSeconds: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Seconds(@as(*const ISWbemDateTime, @ptrCast(self)), iSeconds);
+    }
+    pub fn put_Seconds(self: *const ISWbemDateTime, iSeconds: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Seconds(@as(*const ISWbemDateTime, @ptrCast(self)), iSeconds);
+    }
+    pub fn get_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_SecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bSecondsSpecified);
+    }
+    pub fn put_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_SecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bSecondsSpecified);
+    }
+    pub fn get_Microseconds(self: *const ISWbemDateTime, iMicroseconds: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Microseconds(@as(*const ISWbemDateTime, @ptrCast(self)), iMicroseconds);
+    }
+    pub fn put_Microseconds(self: *const ISWbemDateTime, iMicroseconds: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Microseconds(@as(*const ISWbemDateTime, @ptrCast(self)), iMicroseconds);
+    }
+    pub fn get_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MicrosecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMicrosecondsSpecified);
+    }
+    pub fn put_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MicrosecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMicrosecondsSpecified);
+    }
+    pub fn get_UTC(self: *const ISWbemDateTime, iUTC: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_UTC(@as(*const ISWbemDateTime, @ptrCast(self)), iUTC);
+    }
+    pub fn put_UTC(self: *const ISWbemDateTime, iUTC: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_UTC(@as(*const ISWbemDateTime, @ptrCast(self)), iUTC);
+    }
+    pub fn get_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_UTCSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bUTCSpecified);
+    }
+    pub fn put_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_UTCSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bUTCSpecified);
+    }
+    pub fn get_IsInterval(self: *const ISWbemDateTime, bIsInterval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_IsInterval(@as(*const ISWbemDateTime, @ptrCast(self)), bIsInterval);
+    }
+    pub fn put_IsInterval(self: *const ISWbemDateTime, bIsInterval: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_IsInterval(@as(*const ISWbemDateTime, @ptrCast(self)), bIsInterval);
+    }
+    pub fn GetVarDate(self: *const ISWbemDateTime, bIsLocal: i16, dVarDate: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).GetVarDate(@as(*const ISWbemDateTime, @ptrCast(self)), bIsLocal, dVarDate);
+    }
+    pub fn SetVarDate(self: *const ISWbemDateTime, dVarDate: f64, bIsLocal: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).SetVarDate(@as(*const ISWbemDateTime, @ptrCast(self)), dVarDate, bIsLocal);
+    }
+    pub fn GetFileTime(self: *const ISWbemDateTime, bIsLocal: i16, strFileTime: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).GetFileTime(@as(*const ISWbemDateTime, @ptrCast(self)), bIsLocal, strFileTime);
+    }
+    pub fn SetFileTime(self: *const ISWbemDateTime, strFileTime: ?BSTR, bIsLocal: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).SetFileTime(@as(*const ISWbemDateTime, @ptrCast(self)), strFileTime, bIsLocal);
+    }
 };
 
 const IID_ISWbemRefresher_Value = Guid.initString("14d8250e-d9c2-11d3-b38f-00105a1f473a");
@@ -8063,7 +9170,37 @@ pub const ISWbemRefresher = extern union {
             return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemRefresher, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const ISWbemRefresher, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemRefresher, @ptrCast(self)), pUnk);
+    }
+    pub fn Item(self: *const ISWbemRefresher, iIndex: i32, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemRefresher, @ptrCast(self)), iIndex, objWbemRefreshableItem);
+    }
+    pub fn get_Count(self: *const ISWbemRefresher, iCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemRefresher, @ptrCast(self)), iCount);
+    }
+    pub fn Add(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsInstancePath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemRefresher, @ptrCast(self)), objWbemServices, bsInstancePath, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
+    }
+    pub fn AddEnum(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsClassName: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).AddEnum(@as(*const ISWbemRefresher, @ptrCast(self)), objWbemServices, bsClassName, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
+    }
+    pub fn Remove(self: *const ISWbemRefresher, iIndex: i32, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemRefresher, @ptrCast(self)), iIndex, iFlags);
+    }
+    pub fn Refresh(self: *const ISWbemRefresher, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISWbemRefresher, @ptrCast(self)), iFlags);
+    }
+    pub fn get_AutoReconnect(self: *const ISWbemRefresher, bCount: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get_AutoReconnect(@as(*const ISWbemRefresher, @ptrCast(self)), bCount);
+    }
+    pub fn put_AutoReconnect(self: *const ISWbemRefresher, bCount: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).put_AutoReconnect(@as(*const ISWbemRefresher, @ptrCast(self)), bCount);
+    }
+    pub fn DeleteAll(self: *const ISWbemRefresher) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemRefresher, @ptrCast(self)));
+    }
 };
 
 const IID_ISWbemRefreshableItem_Value = Guid.initString("5ad4bf92-daab-11d3-b38f-00105a1f473a");
@@ -8130,7 +9267,25 @@ pub const ISWbemRefreshableItem = extern union {
             return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemRefreshableItem, @ptrCast(self)), iFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Index(self: *const ISWbemRefreshableItem, iIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Index(@as(*const ISWbemRefreshableItem, @ptrCast(self)), iIndex);
+    }
+    pub fn get_Refresher(self: *const ISWbemRefreshableItem, objWbemRefresher: ?*?*ISWbemRefresher) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Refresher(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemRefresher);
+    }
+    pub fn get_IsSet(self: *const ISWbemRefreshableItem, bIsSet: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_IsSet(@as(*const ISWbemRefreshableItem, @ptrCast(self)), bIsSet);
+    }
+    pub fn get_Object(self: *const ISWbemRefreshableItem, objWbemObject: ?*?*ISWbemObjectEx) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Object(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemObject);
+    }
+    pub fn get_ObjectSet(self: *const ISWbemRefreshableItem, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_ObjectSet(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemObjectSet);
+    }
+    pub fn Remove(self: *const ISWbemRefreshableItem, iFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemRefreshableItem, @ptrCast(self)), iFlags);
+    }
 };
 
 const CLSID_WMIExtension_Value = Guid.initString("f0975afe-5c7f-11d2-8b74-00104b2afb41");
@@ -8172,7 +9327,16 @@ pub const IWMIExtension = extern union {
             return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).GetWMIServices(@as(*const IWMIExtension, @ptrCast(self)), objWMIServices);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_WMIObjectPath(self: *const IWMIExtension, strWMIObjectPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).get_WMIObjectPath(@as(*const IWMIExtension, @ptrCast(self)), strWMIObjectPath);
+    }
+    pub fn GetWMIObject(self: *const IWMIExtension, objWMIObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+        return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).GetWMIObject(@as(*const IWMIExtension, @ptrCast(self)), objWMIObject);
+    }
+    pub fn GetWMIServices(self: *const IWMIExtension, objWMIServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).GetWMIServices(@as(*const IWMIExtension, @ptrCast(self)), objWMIServices);
+    }
 };
 
 const CLSID_WbemLevel1Login_Value = Guid.initString("8bc3f05e-d86b-11d0-a075-00c04fb68820");
@@ -8218,7 +9382,10 @@ pub const IWbemTransport = extern union {
             return @as(*const IWbemTransport.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemTransport, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IWbemTransport) callconv(.Inline) HRESULT {
+        return @as(*const IWbemTransport.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemTransport, @ptrCast(self)));
+    }
 };
 
 const IID_IWbemLevel1Login_Value = Guid.initString("f309ad18-d86a-11d0-a075-00c04fb68820");
@@ -8276,7 +9443,19 @@ pub const IWbemLevel1Login = extern union {
             return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).NTLMLogin(@as(*const IWbemLevel1Login, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).EstablishPosition(@as(*const IWbemLevel1Login, @ptrCast(self)), wszLocaleList, dwNumLocales, reserved);
+    }
+    pub fn RequestChallenge(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).RequestChallenge(@as(*const IWbemLevel1Login, @ptrCast(self)), wszNetworkResource, wszUser, Nonce);
+    }
+    pub fn WBEMLogin(self: *const IWbemLevel1Login, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).WBEMLogin(@as(*const IWbemLevel1Login, @ptrCast(self)), wszPreferredLocale, AccessToken, lFlags, pCtx, ppNamespace);
+    }
+    pub fn NTLMLogin(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).NTLMLogin(@as(*const IWbemLevel1Login, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
+    }
 };
 
 const IID_IWbemConnectorLogin_Value = Guid.initString("d8ec9cb1-b135-4f10-8b1b-c7188bb0d186");
@@ -8303,7 +9482,10 @@ pub const IWbemConnectorLogin = extern union {
             return @as(*const IWbemConnectorLogin.VTable, @ptrCast(self.vtable)).ConnectorLogin(@as(*const IWbemConnectorLogin, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConnectorLogin.VTable, @ptrCast(self.vtable)).ConnectorLogin(@as(*const IWbemConnectorLogin, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
+    }
 };
 
 const IID_IWbemAddressResolution_Value = Guid.initString("f7ce2e12-8c90-11d1-9e7b-00c04fc324a8");
@@ -8328,7 +9510,10 @@ pub const IWbemAddressResolution = extern union {
             return @as(*const IWbemAddressResolution.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IWbemAddressResolution, @ptrCast(self)), wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IWbemAddressResolution.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IWbemAddressResolution, @ptrCast(self)), wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
+    }
 };
 
 const IID_IWbemClientTransport_Value = Guid.initString("f7ce2e11-8c90-11d1-9e7b-00c04fc324a8");
@@ -8360,7 +9545,10 @@ pub const IWbemClientTransport = extern union {
             return @as(*const IWbemClientTransport.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemClientTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectServer(self: *const IWbemClientTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClientTransport.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemClientTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
+    }
 };
 
 const IID_IWbemClientConnectionTransport_Value = Guid.initString("a889c72a-fcc1-4a9e-af61-ed071333fb5b");
@@ -8420,7 +9608,16 @@ pub const IWbemClientConnectionTransport = extern union {
             return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), lFlags, pHandler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).Open(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
+    }
+    pub fn OpenAsync(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).OpenAsync(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pResponseHandler);
+    }
+    pub fn Cancel(self: *const IWbemClientConnectionTransport, lFlags: i32, pHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+        return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), lFlags, pHandler);
+    }
 };
 
 const IID_IWbemConstructClassObject_Value = Guid.initString("9ef76194-70d5-11d1-ad90-00c04fd8fdff");
@@ -8471,7 +9668,19 @@ pub const IWbemConstructClassObject = extern union {
             return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetServerNamespace(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszServer, wszNamespace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetInheritanceChain(@as(*const IWbemConstructClassObject, @ptrCast(self)), lNumAntecedents, awszAntecedents);
+    }
+    pub fn SetPropertyOrigin(self: *const IWbemConstructClassObject, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetPropertyOrigin(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszPropertyName, lOriginIndex);
+    }
+    pub fn SetMethodOrigin(self: *const IWbemConstructClassObject, wszMethodName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetMethodOrigin(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszMethodName, lOriginIndex);
+    }
+    pub fn SetServerNamespace(self: *const IWbemConstructClassObject, wszServer: ?[*:0]const u16, wszNamespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetServerNamespace(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszServer, wszNamespace);
+    }
 };
 
 

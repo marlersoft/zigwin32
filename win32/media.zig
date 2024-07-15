@@ -265,7 +265,19 @@ pub const IReferenceClock = extern union {
             return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IReferenceClock, @ptrCast(self)), dwAdviseCookie);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetTime(self: *const IReferenceClock, pTime: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IReferenceClock, @ptrCast(self)), pTime);
+    }
+    pub fn AdviseTime(self: *const IReferenceClock, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdviseTime(@as(*const IReferenceClock, @ptrCast(self)), baseTime, streamTime, hEvent, pdwAdviseCookie);
+    }
+    pub fn AdvisePeriodic(self: *const IReferenceClock, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdvisePeriodic(@as(*const IReferenceClock, @ptrCast(self)), startTime, periodTime, hSemaphore, pdwAdviseCookie);
+    }
+    pub fn Unadvise(self: *const IReferenceClock, dwAdviseCookie: usize) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IReferenceClock, @ptrCast(self)), dwAdviseCookie);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -296,7 +308,13 @@ pub const IReferenceClockTimerControl = extern union {
             return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).GetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), pTimerResolution);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDefaultTimerResolution(self: *const IReferenceClockTimerControl, timerResolution: i64) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).SetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), timerResolution);
+    }
+    pub fn GetDefaultTimerResolution(self: *const IReferenceClockTimerControl, pTimerResolution: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).GetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), pTimerResolution);
+    }
 };
 
 const IID_IReferenceClock2_Value = Guid.initString("36b73885-c2c8-11cf-8b46-00805f6cef60");
@@ -310,7 +328,7 @@ pub const IReferenceClock2 = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IReferenceClock.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IReferenceClock.MethodMixin(@This());
 };
 
 pub const TIMECODE = extern union {

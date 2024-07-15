@@ -217,7 +217,37 @@ pub const IDXCoreAdapter = extern union {
             return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const IDXCoreAdapter, @ptrCast(self)), riid, ppvFactory);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsValid(self: *const IDXCoreAdapter) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsValid(@as(*const IDXCoreAdapter, @ptrCast(self)));
+    }
+    pub fn IsAttributeSupported(self: *const IDXCoreAdapter, attributeGUID: ?*const Guid) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsAttributeSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), attributeGUID);
+    }
+    pub fn IsPropertySupported(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsPropertySupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
+    }
+    pub fn GetProperty(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDXCoreAdapter, @ptrCast(self)), property, bufferSize, propertyData);
+    }
+    pub fn GetPropertySize(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetPropertySize(@as(*const IDXCoreAdapter, @ptrCast(self)), property, bufferSize);
+    }
+    pub fn IsQueryStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsQueryStateSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
+    }
+    pub fn QueryState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).QueryState(@as(*const IDXCoreAdapter, @ptrCast(self)), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
+    }
+    pub fn IsSetStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsSetStateSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
+    }
+    pub fn SetState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).SetState(@as(*const IDXCoreAdapter, @ptrCast(self)), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
+    }
+    pub fn GetFactory(self: *const IDXCoreAdapter, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const IDXCoreAdapter, @ptrCast(self)), riid, ppvFactory);
+    }
 };
 
 const IID_IDXCoreAdapterList_Value = Guid.initString("526c7776-40e9-459b-b711-f32ad76dfc28");
@@ -281,7 +311,25 @@ pub const IDXCoreAdapterList = extern union {
             return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).IsAdapterPreferenceSupported(@as(*const IDXCoreAdapterList, @ptrCast(self)), preference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAdapter(self: *const IDXCoreAdapterList, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetAdapter(@as(*const IDXCoreAdapterList, @ptrCast(self)), index, riid, ppvAdapter);
+    }
+    pub fn GetAdapterCount(self: *const IDXCoreAdapterList) callconv(.Inline) u32 {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetAdapterCount(@as(*const IDXCoreAdapterList, @ptrCast(self)));
+    }
+    pub fn IsStale(self: *const IDXCoreAdapterList) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).IsStale(@as(*const IDXCoreAdapterList, @ptrCast(self)));
+    }
+    pub fn GetFactory(self: *const IDXCoreAdapterList, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const IDXCoreAdapterList, @ptrCast(self)), riid, ppvFactory);
+    }
+    pub fn Sort(self: *const IDXCoreAdapterList, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).Sort(@as(*const IDXCoreAdapterList, @ptrCast(self)), numPreferences, preferences);
+    }
+    pub fn IsAdapterPreferenceSupported(self: *const IDXCoreAdapterList, preference: DXCoreAdapterPreference) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).IsAdapterPreferenceSupported(@as(*const IDXCoreAdapterList, @ptrCast(self)), preference);
+    }
 };
 
 const IID_IDXCoreAdapterFactory_Value = Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
@@ -344,7 +392,22 @@ pub const IDXCoreAdapterFactory = extern union {
             return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).UnregisterEventNotification(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), eventCookie);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).CreateAdapterList(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), numAttributes, filterAttributes, riid, ppvAdapterList);
+    }
+    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).GetAdapterByLuid(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), adapterLUID, riid, ppvAdapter);
+    }
+    pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.Inline) bool {
+        return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).IsNotificationTypeSupported(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), notificationType);
+    }
+    pub fn RegisterEventNotification(self: *const IDXCoreAdapterFactory, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).RegisterEventNotification(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
+    }
+    pub fn UnregisterEventNotification(self: *const IDXCoreAdapterFactory, eventCookie: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).UnregisterEventNotification(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), eventCookie);
+    }
 };
 
 

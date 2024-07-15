@@ -71,7 +71,10 @@ pub const IDeviceRequestCompletionCallback = extern union {
             return @as(*const IDeviceRequestCompletionCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDeviceRequestCompletionCallback, @ptrCast(self)), requestResult, bytesReturned);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IDeviceRequestCompletionCallback, requestResult: HRESULT, bytesReturned: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceRequestCompletionCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDeviceRequestCompletionCallback, @ptrCast(self)), requestResult, bytesReturned);
+    }
 };
 
 const IID_IDeviceIoControl_Value = Guid.initString("9eefe161-23ab-4f18-9b49-991b586ae970");
@@ -120,7 +123,16 @@ pub const IDeviceIoControl = extern union {
             return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).CancelOperation(@as(*const IDeviceIoControl, @ptrCast(self)), cancelContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeviceIoControlSync(self: *const IDeviceIoControl, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, bytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).DeviceIoControlSync(@as(*const IDeviceIoControl, @ptrCast(self)), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, bytesReturned);
+    }
+    pub fn DeviceIoControlAsync(self: *const IDeviceIoControl, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: ?*IDeviceRequestCompletionCallback, cancelContext: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).DeviceIoControlAsync(@as(*const IDeviceIoControl, @ptrCast(self)), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, requestCompletionCallback, cancelContext);
+    }
+    pub fn CancelOperation(self: *const IDeviceIoControl, cancelContext: usize) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).CancelOperation(@as(*const IDeviceIoControl, @ptrCast(self)), cancelContext);
+    }
 };
 
 const IID_ICreateDeviceAccessAsync_Value = Guid.initString("3474628f-683d-42d2-abcb-db018c6503bc");
@@ -165,7 +177,19 @@ pub const ICreateDeviceAccessAsync = extern union {
             return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).GetResult(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)), riid, deviceAccess);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Cancel(self: *const ICreateDeviceAccessAsync) callconv(.Inline) HRESULT {
+        return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)));
+    }
+    pub fn Wait(self: *const ICreateDeviceAccessAsync, timeout: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)), timeout);
+    }
+    pub fn Close(self: *const ICreateDeviceAccessAsync) callconv(.Inline) HRESULT {
+        return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Close(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)));
+    }
+    pub fn GetResult(self: *const ICreateDeviceAccessAsync, riid: ?*const Guid, deviceAccess: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).GetResult(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)), riid, deviceAccess);
+    }
 };
 
 

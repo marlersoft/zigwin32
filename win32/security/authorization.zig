@@ -1446,7 +1446,160 @@ pub const IAzAuthorizationStore = extern union {
             return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CloseApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, lFlag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DomainTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
+    }
+    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_DomainTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
+    }
+    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ScriptEngineTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
+    }
+    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ScriptEngineTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
+    }
+    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_MaxScriptEngines(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
+    }
+    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_MaxScriptEngines(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
+    }
+    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_GenerateAudits(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbProp);
+    }
+    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_GenerateAudits(@as(*const IAzAuthorizationStore, @ptrCast(self)), bProp);
+    }
+    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzAuthorizationStore, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAzAuthorizationStore, @ptrCast(self)), lFlags, bstrPolicyURL, varReserved);
+    }
+    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).UpdateCache(@as(*const IAzAuthorizationStore, @ptrCast(self)), varReserved);
+    }
+    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Delete(@as(*const IAzAuthorizationStore, @ptrCast(self)), varReserved);
+    }
+    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Applications(@as(*const IAzAuthorizationStore, @ptrCast(self)), ppAppCollection);
+    }
+    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).OpenApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CreateApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved);
+    }
+    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzAuthorizationStore, @ptrCast(self)), ppGroupCollection);
+    }
+    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved);
+    }
+    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzAuthorizationStore, @ptrCast(self)), lFlags, varReserved);
+    }
+    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsers(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUser(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUser(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_TargetMachine(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrTargetMachine);
+    }
+    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplyStoreSacl(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbApplyStoreSacl);
+    }
+    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ApplyStoreSacl(@as(*const IAzAuthorizationStore, @ptrCast(self)), bApplyStoreSacl);
+    }
+    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsersName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUserName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUserName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CloseApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, lFlag);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1481,7 +1634,13 @@ pub const IAzAuthorizationStore2 = extern union {
             return @as(*const IAzAuthorizationStore2.VTable, @ptrCast(self.vtable)).CreateApplication2(@as(*const IAzAuthorizationStore2, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzAuthorizationStore.MethodMixin(@This());
+    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore2.VTable, @ptrCast(self.vtable)).OpenApplication2(@as(*const IAzAuthorizationStore2, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore2.VTable, @ptrCast(self.vtable)).CreateApplication2(@as(*const IAzAuthorizationStore2, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1538,7 +1697,22 @@ pub const IAzAuthorizationStore3 = extern union {
             return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).GetSchemaVersion(@as(*const IAzAuthorizationStore3, @ptrCast(self)), plMajorVersion, plMinorVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzAuthorizationStore2.MethodMixin(@This());
+    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).IsUpdateNeeded(@as(*const IAzAuthorizationStore3, @ptrCast(self)), pbIsUpdateNeeded);
+    }
+    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).BizruleGroupSupported(@as(*const IAzAuthorizationStore3, @ptrCast(self)), pbSupported);
+    }
+    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).UpgradeStoresFunctionalLevel(@as(*const IAzAuthorizationStore3, @ptrCast(self)), lFunctionalLevel);
+    }
+    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).IsFunctionalLevelUpgradeSupported(@as(*const IAzAuthorizationStore3, @ptrCast(self)), lFunctionalLevel, pbSupported);
+    }
+    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).GetSchemaVersion(@as(*const IAzAuthorizationStore3, @ptrCast(self)), plMajorVersion, plMinorVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2121,7 +2295,190 @@ pub const IAzApplication = extern union {
             return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUserName(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzApplication, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzApplication, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzApplication, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Description(self: *const IAzApplication, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzApplication, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzApplication, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzApplication, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzApplication, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzApplication, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzApplication, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzApplication, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn get_AuthzInterfaceClsid(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_AuthzInterfaceClsid(@as(*const IAzApplication, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_AuthzInterfaceClsid(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_AuthzInterfaceClsid(@as(*const IAzApplication, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_Version(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IAzApplication, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_Version(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Version(@as(*const IAzApplication, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_GenerateAudits(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_GenerateAudits(@as(*const IAzApplication, @ptrCast(self)), pbProp);
+    }
+    pub fn put_GenerateAudits(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_GenerateAudits(@as(*const IAzApplication, @ptrCast(self)), bProp);
+    }
+    pub fn get_ApplyStoreSacl(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplyStoreSacl(@as(*const IAzApplication, @ptrCast(self)), pbProp);
+    }
+    pub fn put_ApplyStoreSacl(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_ApplyStoreSacl(@as(*const IAzApplication, @ptrCast(self)), bProp);
+    }
+    pub fn get_Writable(self: *const IAzApplication, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzApplication, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzApplication, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzApplication, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn get_PolicyAdministrators(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzApplication, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReaders(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzApplication, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn get_Scopes(self: *const IAzApplication, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Scopes(@as(*const IAzApplication, @ptrCast(self)), ppScopeCollection);
+    }
+    pub fn OpenScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved, ppScope);
+    }
+    pub fn CreateScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved, ppScope);
+    }
+    pub fn DeleteScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved);
+    }
+    pub fn get_Operations(self: *const IAzApplication, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzApplication, @ptrCast(self)), ppOperationCollection);
+    }
+    pub fn OpenOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved, ppOperation);
+    }
+    pub fn CreateOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved, ppOperation);
+    }
+    pub fn DeleteOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved);
+    }
+    pub fn get_Tasks(self: *const IAzApplication, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzApplication, @ptrCast(self)), ppTaskCollection);
+    }
+    pub fn OpenTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
+    }
+    pub fn CreateTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
+    }
+    pub fn DeleteTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved);
+    }
+    pub fn get_ApplicationGroups(self: *const IAzApplication, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzApplication, @ptrCast(self)), ppGroupCollection);
+    }
+    pub fn OpenApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn CreateApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn DeleteApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved);
+    }
+    pub fn get_Roles(self: *const IAzApplication, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Roles(@as(*const IAzApplication, @ptrCast(self)), ppRoleCollection);
+    }
+    pub fn OpenRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
+    }
+    pub fn CreateRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
+    }
+    pub fn DeleteRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved);
+    }
+    pub fn InitializeClientContextFromToken(self: *const IAzApplication, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromToken(@as(*const IAzApplication, @ptrCast(self)), ullTokenHandle, varReserved, ppClientContext);
+    }
+    pub fn AddPropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzApplication, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzApplication, @ptrCast(self)), lFlags, varReserved);
+    }
+    pub fn InitializeClientContextFromName(self: *const IAzApplication, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromName(@as(*const IAzApplication, @ptrCast(self)), ClientName, DomainName, varReserved, ppClientContext);
+    }
+    pub fn get_DelegatedPolicyUsers(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsers(@as(*const IAzApplication, @ptrCast(self)), pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUser(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUser(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn InitializeClientContextFromStringSid(self: *const IAzApplication, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromStringSid(@as(*const IAzApplication, @ptrCast(self)), SidString, lOptions, varReserved, ppClientContext);
+    }
+    pub fn get_PolicyAdministratorsName(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzApplication, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReadersName(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzApplication, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsersName(@as(*const IAzApplication, @ptrCast(self)), pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUserName(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUserName(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2157,7 +2514,13 @@ pub const IAzApplication2 = extern union {
             return @as(*const IAzApplication2.VTable, @ptrCast(self.vtable)).InitializeClientContext2(@as(*const IAzApplication2, @ptrCast(self)), IdentifyingString, varReserved, ppClientContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzApplication.MethodMixin(@This());
+    pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication2.VTable, @ptrCast(self.vtable)).InitializeClientContextFromToken2(@as(*const IAzApplication2, @ptrCast(self)), ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
+    }
+    pub fn InitializeClientContext2(self: *const IAzApplication2, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication2.VTable, @ptrCast(self.vtable)).InitializeClientContext2(@as(*const IAzApplication2, @ptrCast(self)), IdentifyingString, varReserved, ppClientContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2199,7 +2562,16 @@ pub const IAzApplications = extern union {
             return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplications, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzApplications, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzApplications, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzApplications, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplications, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2324,7 +2696,43 @@ pub const IAzOperation = extern union {
             return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzOperation, @ptrCast(self)), lFlags, varReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzOperation, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzOperation, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzOperation, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Description(self: *const IAzOperation, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzOperation, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzOperation, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzOperation, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzOperation, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzOperation, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzOperation, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzOperation, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn get_OperationID(self: *const IAzOperation, plProp: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_OperationID(@as(*const IAzOperation, @ptrCast(self)), plProp);
+    }
+    pub fn put_OperationID(self: *const IAzOperation, lProp: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_OperationID(@as(*const IAzOperation, @ptrCast(self)), lProp);
+    }
+    pub fn get_Writable(self: *const IAzOperation, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzOperation, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzOperation, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzOperation, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzOperation, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzOperation, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzOperation, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzOperation, @ptrCast(self)), lFlags, varReserved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2366,7 +2774,16 @@ pub const IAzOperations = extern union {
             return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzOperations, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzOperations, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzOperations, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzOperations, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzOperations, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzOperations, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2619,7 +3036,85 @@ pub const IAzTask = extern union {
             return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzTask, @ptrCast(self)), lFlags, varReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzTask, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzTask, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzTask, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzTask, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzTask, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzTask, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRule(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRule(@as(*const IAzTask, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRuleLanguage(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRuleLanguage(@as(*const IAzTask, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRuleImportedPath(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRuleImportedPath(@as(*const IAzTask, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_IsRoleDefinition(@as(*const IAzTask, @ptrCast(self)), pfProp);
+    }
+    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_IsRoleDefinition(@as(*const IAzTask, @ptrCast(self)), fProp);
+    }
+    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzTask, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzTask, @ptrCast(self)), pvarProp);
+    }
+    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddOperation(@as(*const IAzTask, @ptrCast(self)), bstrOp, varReserved);
+    }
+    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzTask, @ptrCast(self)), bstrOp, varReserved);
+    }
+    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddTask(@as(*const IAzTask, @ptrCast(self)), bstrTask, varReserved);
+    }
+    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzTask, @ptrCast(self)), bstrTask, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzTask, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzTask, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzTask, @ptrCast(self)), lFlags, varReserved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2661,7 +3156,16 @@ pub const IAzTasks = extern union {
             return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzTasks, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzTasks, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzTasks, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzTasks, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3028,7 +3532,121 @@ pub const IAzScope = extern union {
             return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzScope, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzScope, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzScope, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Description(self: *const IAzScope, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzScope, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzScope, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzScope, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzScope, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzScope, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzScope, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzScope, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn get_Writable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzScope, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzScope, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzScope, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn get_PolicyAdministrators(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzScope, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReaders(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzScope, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn get_ApplicationGroups(self: *const IAzScope, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzScope, @ptrCast(self)), ppGroupCollection);
+    }
+    pub fn OpenApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn CreateApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn DeleteApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved);
+    }
+    pub fn get_Roles(self: *const IAzScope, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Roles(@as(*const IAzScope, @ptrCast(self)), ppRoleCollection);
+    }
+    pub fn OpenRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
+    }
+    pub fn CreateRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
+    }
+    pub fn DeleteRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved);
+    }
+    pub fn get_Tasks(self: *const IAzScope, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzScope, @ptrCast(self)), ppTaskCollection);
+    }
+    pub fn OpenTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
+    }
+    pub fn CreateTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
+    }
+    pub fn DeleteTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved);
+    }
+    pub fn Submit(self: *const IAzScope, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzScope, @ptrCast(self)), lFlags, varReserved);
+    }
+    pub fn get_CanBeDelegated(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_CanBeDelegated(@as(*const IAzScope, @ptrCast(self)), pfProp);
+    }
+    pub fn get_BizrulesWritable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_BizrulesWritable(@as(*const IAzScope, @ptrCast(self)), pfProp);
+    }
+    pub fn get_PolicyAdministratorsName(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzScope, @ptrCast(self)), pvarAdmins);
+    }
+    pub fn get_PolicyReadersName(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzScope, @ptrCast(self)), pvarReaders);
+    }
+    pub fn AddPolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3070,7 +3688,16 @@ pub const IAzScopes = extern union {
             return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzScopes, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzScopes, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzScopes, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzScopes, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3377,7 +4004,103 @@ pub const IAzApplicationGroup = extern union {
             return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_NonMembersName(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IAzApplicationGroup, @ptrCast(self)), plProp);
+    }
+    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IAzApplicationGroup, @ptrCast(self)), lProp);
+    }
+    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_LdapQuery(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_LdapQuery(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_AppMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_AppNonMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_NonMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrDescription);
+    }
+    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddAppMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteAppMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddAppNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteAppNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzApplicationGroup, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzApplicationGroup, @ptrCast(self)), lFlags, varReserved);
+    }
+    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddNonMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteNonMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_MembersName(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_NonMembersName(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3419,7 +4142,16 @@ pub const IAzApplicationGroups = extern union {
             return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplicationGroups, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzApplicationGroups, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzApplicationGroups, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplicationGroups, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3681,7 +4413,88 @@ pub const IAzRole = extern union {
             return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_MembersName(@as(*const IAzRole, @ptrCast(self)), pvarProp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzRole, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzRole, @ptrCast(self)), bstrName);
+    }
+    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzRole, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzRole, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzRole, @ptrCast(self)), pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzRole, @ptrCast(self)), bstrApplicationData);
+    }
+    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddAppMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteAppMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddTask(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddOperation(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzRole, @ptrCast(self)), pfProp);
+    }
+    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzRole, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_AppMembers(@as(*const IAzRole, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IAzRole, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzRole, @ptrCast(self)), pvarProp);
+    }
+    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzRole, @ptrCast(self)), pvarProp);
+    }
+    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzRole, @ptrCast(self)), lFlags, varReserved);
+    }
+    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddMemberName(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteMemberName(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
+    }
+    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_MembersName(@as(*const IAzRole, @ptrCast(self)), pvarProp);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3723,7 +4536,16 @@ pub const IAzRoles = extern union {
             return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoles, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoles, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoles, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoles, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3862,7 +4684,46 @@ pub const IAzClientContext = extern union {
             return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).put_RoleForAccessCheck(@as(*const IAzClientContext, @ptrCast(self)), bstrProp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).AccessCheck(@as(*const IAzClientContext, @ptrCast(self)), bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
+    }
+    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetBusinessRuleString(@as(*const IAzClientContext, @ptrCast(self)), pbstrBusinessRuleString);
+    }
+    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDn(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserSamCompat(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDisplay(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserGuid(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserCanonical(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserUpn(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDnsSamCompat(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzClientContext, @ptrCast(self)), lPropId, varReserved, pvarProp);
+    }
+    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetRoles(@as(*const IAzClientContext, @ptrCast(self)), bstrScopeName, pvarRoleNames);
+    }
+    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_RoleForAccessCheck(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).put_RoleForAccessCheck(@as(*const IAzClientContext, @ptrCast(self)), bstrProp);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -3931,7 +4792,25 @@ pub const IAzClientContext2 = extern union {
             return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).get_LDAPQueryDN(@as(*const IAzClientContext2, @ptrCast(self)), pbstrLDAPQueryDN);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzClientContext.MethodMixin(@This());
+    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).GetAssignedScopesPage(@as(*const IAzClientContext2, @ptrCast(self)), lOptions, PageSize, pvarCursor, pvarScopeNames);
+    }
+    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddRoles(@as(*const IAzClientContext2, @ptrCast(self)), varRoles, bstrScopeName);
+    }
+    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddApplicationGroups(@as(*const IAzClientContext2, @ptrCast(self)), varApplicationGroups);
+    }
+    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddStringSids(@as(*const IAzClientContext2, @ptrCast(self)), varStringSids);
+    }
+    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).put_LDAPQueryDN(@as(*const IAzClientContext2, @ptrCast(self)), bstrLDAPQueryDN);
+    }
+    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).get_LDAPQueryDN(@as(*const IAzClientContext2, @ptrCast(self)), pbstrLDAPQueryDN);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3982,7 +4861,19 @@ pub const IAzBizRuleContext = extern union {
             return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).GetParameter(@as(*const IAzBizRuleContext, @ptrCast(self)), bstrParameterName, pvarParameterValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).put_BusinessRuleResult(@as(*const IAzBizRuleContext, @ptrCast(self)), bResult);
+    }
+    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).put_BusinessRuleString(@as(*const IAzBizRuleContext, @ptrCast(self)), bstrBusinessRuleString);
+    }
+    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).get_BusinessRuleString(@as(*const IAzBizRuleContext, @ptrCast(self)), pbstrBusinessRuleString);
+    }
+    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).GetParameter(@as(*const IAzBizRuleContext, @ptrCast(self)), bstrParameterName, pvarParameterValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4048,7 +4939,25 @@ pub const IAzBizRuleParameters = extern union {
             return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleParameters, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).AddParameter(@as(*const IAzBizRuleParameters, @ptrCast(self)), bstrParameterName, varParameterValue);
+    }
+    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).AddParameters(@as(*const IAzBizRuleParameters, @ptrCast(self)), varParameterNames, varParameterValues);
+    }
+    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).GetParameterValue(@as(*const IAzBizRuleParameters, @ptrCast(self)), bstrParameterName, pvarParameterValue);
+    }
+    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAzBizRuleParameters, @ptrCast(self)), varParameterName);
+    }
+    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IAzBizRuleParameters, @ptrCast(self)));
+    }
+    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleParameters, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4117,7 +5026,25 @@ pub const IAzBizRuleInterfaces = extern union {
             return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).AddInterface(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName, lInterfaceFlag, varInterface);
+    }
+    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).AddInterfaces(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), varInterfaceNames, varInterfaceFlags, varInterfaces);
+    }
+    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).GetInterfaceValue(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName, lInterfaceFlag, varInterface);
+    }
+    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName);
+    }
+    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IAzBizRuleInterfaces, @ptrCast(self)));
+    }
+    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4208,7 +5135,31 @@ pub const IAzClientContext3 = extern union {
             return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_Sids(@as(*const IAzClientContext3, @ptrCast(self)), pStringSidArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzClientContext2.MethodMixin(@This());
+    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).AccessCheck2(@as(*const IAzClientContext3, @ptrCast(self)), bstrObjectName, bstrScopeName, lOperation, plResult);
+    }
+    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).IsInRoleAssignment(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, bstrRoleName, pbIsInRole);
+    }
+    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetOperations(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ppOperationCollection);
+    }
+    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetTasks(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ppTaskCollection);
+    }
+    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_BizRuleParameters(@as(*const IAzClientContext3, @ptrCast(self)), ppBizRuleParam);
+    }
+    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_BizRuleInterfaces(@as(*const IAzClientContext3, @ptrCast(self)), ppBizRuleInterfaces);
+    }
+    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetGroups(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ulOptions, pGroupArray);
+    }
+    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_Sids(@as(*const IAzClientContext3, @ptrCast(self)), pStringSidArray);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4293,7 +5244,31 @@ pub const IAzScope2 = extern union {
             return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).DeleteRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzScope.MethodMixin(@This());
+    pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzScope2, @ptrCast(self)), ppRoleDefinitions);
+    }
+    pub fn CreateRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).CreateRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn OpenRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).OpenRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName);
+    }
+    pub fn get_RoleAssignments(self: *const IAzScope2, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).get_RoleAssignments(@as(*const IAzScope2, @ptrCast(self)), ppRoleAssignments);
+    }
+    pub fn CreateRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).CreateRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn OpenRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).OpenRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn DeleteRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).DeleteRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4431,7 +5406,49 @@ pub const IAzApplication3 = extern union {
             return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).put_BizRulesEnabled(@as(*const IAzApplication3, @ptrCast(self)), bEnabled);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzApplication2.MethodMixin(@This());
+    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).ScopeExists(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, pbExist);
+    }
+    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, ppScope2);
+    }
+    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, ppScope2);
+    }
+    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzApplication3, @ptrCast(self)), ppRoleDefinitions);
+    }
+    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName);
+    }
+    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_RoleAssignments(@as(*const IAzApplication3, @ptrCast(self)), ppRoleAssignments);
+    }
+    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName);
+    }
+    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_BizRulesEnabled(@as(*const IAzApplication3, @ptrCast(self)), pbEnabled);
+    }
+    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).put_BizRulesEnabled(@as(*const IAzApplication3, @ptrCast(self)), bEnabled);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4456,7 +5473,10 @@ pub const IAzOperation2 = extern union {
             return @as(*const IAzOperation2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzOperation2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzOperation.MethodMixin(@This());
+    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzOperation2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzOperation2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4498,7 +5518,16 @@ pub const IAzRoleDefinitions = extern union {
             return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleDefinitions, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoleDefinitions, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoleDefinitions, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleDefinitions, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4548,7 +5577,19 @@ pub const IAzRoleDefinition = extern union {
             return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzRoleDefinition, @ptrCast(self)), ppRoleDefinitions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzTask.MethodMixin(@This());
+    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
+    }
+    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).AddRoleDefinition(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrRoleDefinition);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrRoleDefinition);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzRoleDefinition, @ptrCast(self)), ppRoleDefinitions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4597,7 +5638,19 @@ pub const IAzRoleAssignment = extern union {
             return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IAzRoleAssignment, @ptrCast(self)), ppScope);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzRole.MethodMixin(@This());
+    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).AddRoleDefinition(@as(*const IAzRoleAssignment, @ptrCast(self)), bstrRoleDefinition);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzRoleAssignment, @ptrCast(self)), bstrRoleDefinition);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzRoleAssignment, @ptrCast(self)), ppRoleDefinitions);
+    }
+    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IAzRoleAssignment, @ptrCast(self)), ppScope);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4639,7 +5692,16 @@ pub const IAzRoleAssignments = extern union {
             return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleAssignments, @ptrCast(self)), ppEnumPtr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoleAssignments, @ptrCast(self)), Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoleAssignments, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleAssignments, @ptrCast(self)), ppEnumPtr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4672,7 +5734,13 @@ pub const IAzPrincipalLocator = extern union {
             return @as(*const IAzPrincipalLocator.VTable, @ptrCast(self.vtable)).get_ObjectPicker(@as(*const IAzPrincipalLocator, @ptrCast(self)), ppObjectPicker);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
+        return @as(*const IAzPrincipalLocator.VTable, @ptrCast(self.vtable)).get_NameResolver(@as(*const IAzPrincipalLocator, @ptrCast(self)), ppNameResolver);
+    }
+    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
+        return @as(*const IAzPrincipalLocator.VTable, @ptrCast(self.vtable)).get_ObjectPicker(@as(*const IAzPrincipalLocator, @ptrCast(self)), ppObjectPicker);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4707,7 +5775,13 @@ pub const IAzNameResolver = extern union {
             return @as(*const IAzNameResolver.VTable, @ptrCast(self.vtable)).NamesFromSids(@as(*const IAzNameResolver, @ptrCast(self)), vSids, pvSidTypes, pvNames);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzNameResolver.VTable, @ptrCast(self.vtable)).NameFromSid(@as(*const IAzNameResolver, @ptrCast(self)), bstrSid, pSidType, pbstrName);
+    }
+    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzNameResolver.VTable, @ptrCast(self.vtable)).NamesFromSids(@as(*const IAzNameResolver, @ptrCast(self)), vSids, pvSidTypes, pvNames);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4743,7 +5817,13 @@ pub const IAzObjectPicker = extern union {
             return @as(*const IAzObjectPicker.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzObjectPicker, @ptrCast(self)), pbstrName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAzObjectPicker.VTable, @ptrCast(self.vtable)).GetPrincipals(@as(*const IAzObjectPicker, @ptrCast(self)), hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
+    }
+    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzObjectPicker.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzObjectPicker, @ptrCast(self)), pbstrName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4822,7 +5902,28 @@ pub const IAzApplicationGroup2 = extern union {
             return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzApplicationGroup.MethodMixin(@This());
+    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRule(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRule(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRuleLanguage(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRuleLanguage(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
+    }
+    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRuleImportedPath(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
+    }
+    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRuleImportedPath(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
+    }
+    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4847,7 +5948,10 @@ pub const IAzTask2 = extern union {
             return @as(*const IAzTask2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzTask2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAzTask.MethodMixin(@This());
+    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+        return @as(*const IAzTask2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzTask2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
+    }
 };
 
 pub const AZ_PROP_CONSTANTS = enum(i32) {

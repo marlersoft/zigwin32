@@ -644,7 +644,13 @@ pub const IXpsOMShareable = extern union {
             return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetType(@as(*const IXpsOMShareable, @ptrCast(self)), @"type");
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMShareable, owner: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMShareable, @ptrCast(self)), owner);
+    }
+    pub fn GetType(self: *const IXpsOMShareable, @"type": ?*XPS_OBJECT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetType(@as(*const IXpsOMShareable, @ptrCast(self)), @"type");
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -859,7 +865,82 @@ pub const IXpsOMVisual = extern union {
             return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMShareable.MethodMixin(@This());
+    pub fn GetTransform(self: *const IXpsOMVisual, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMVisual, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMVisual, matrixTransform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn GetClipGeometry(self: *const IXpsOMVisual, clipGeometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometry(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
+    }
+    pub fn GetClipGeometryLocal(self: *const IXpsOMVisual, clipGeometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
+    }
+    pub fn SetClipGeometryLocal(self: *const IXpsOMVisual, clipGeometry: ?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
+    }
+    pub fn GetClipGeometryLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn SetClipGeometryLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn GetOpacity(self: *const IXpsOMVisual, opacity: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
+    }
+    pub fn SetOpacity(self: *const IXpsOMVisual, opacity: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
+    }
+    pub fn GetOpacityMaskBrush(self: *const IXpsOMVisual, opacityMaskBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrush(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
+    }
+    pub fn GetOpacityMaskBrushLocal(self: *const IXpsOMVisual, opacityMaskBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
+    }
+    pub fn SetOpacityMaskBrushLocal(self: *const IXpsOMVisual, opacityMaskBrush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
+    }
+    pub fn GetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn SetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
+    }
+    pub fn GetName(self: *const IXpsOMVisual, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
+    }
+    pub fn SetName(self: *const IXpsOMVisual, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
+    }
+    pub fn GetIsHyperlinkTarget(self: *const IXpsOMVisual, isHyperlink: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
+    }
+    pub fn SetIsHyperlinkTarget(self: *const IXpsOMVisual, isHyperlink: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
+    }
+    pub fn GetHyperlinkNavigateUri(self: *const IXpsOMVisual, hyperlinkUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
+    }
+    pub fn SetHyperlinkNavigateUri(self: *const IXpsOMVisual, hyperlinkUri: ?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
+    }
+    pub fn GetLanguage(self: *const IXpsOMVisual, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMVisual, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -890,7 +971,13 @@ pub const IXpsOMPart = extern union {
             return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).SetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPartName(self: *const IXpsOMPart, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
+    }
+    pub fn SetPartName(self: *const IXpsOMPart, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).SetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1054,7 +1141,61 @@ pub const IXpsOMGlyphsEditor = extern union {
             return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ApplyEdits(self: *const IXpsOMGlyphsEditor) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).ApplyEdits(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)));
+    }
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
+    }
+    pub fn SetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
+    }
+    pub fn GetGlyphIndexCount(self: *const IXpsOMGlyphsEditor, indexCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount);
+    }
+    pub fn GetGlyphIndices(self: *const IXpsOMGlyphsEditor, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
+    }
+    pub fn SetGlyphIndices(self: *const IXpsOMGlyphsEditor, indexCount: u32, glyphIndices: ?*const XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
+    }
+    pub fn GetGlyphMappingCount(self: *const IXpsOMGlyphsEditor, glyphMappingCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount);
+    }
+    pub fn GetGlyphMappings(self: *const IXpsOMGlyphsEditor, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
+    }
+    pub fn SetGlyphMappings(self: *const IXpsOMGlyphsEditor, glyphMappingCount: u32, glyphMappings: ?*const XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
+    }
+    pub fn GetProhibitedCaretStopCount(self: *const IXpsOMGlyphsEditor, prohibitedCaretStopCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), prohibitedCaretStopCount);
+    }
+    pub fn GetProhibitedCaretStops(self: *const IXpsOMGlyphsEditor, count: ?*u32, prohibitedCaretStops: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
+    }
+    pub fn SetProhibitedCaretStops(self: *const IXpsOMGlyphsEditor, count: u32, prohibitedCaretStops: ?*const u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
+    }
+    pub fn GetBidiLevel(self: *const IXpsOMGlyphsEditor, bidiLevel: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
+    }
+    pub fn SetBidiLevel(self: *const IXpsOMGlyphsEditor, bidiLevel: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
+    }
+    pub fn GetIsSideways(self: *const IXpsOMGlyphsEditor, isSideways: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
+    }
+    pub fn SetIsSideways(self: *const IXpsOMGlyphsEditor, isSideways: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
+    }
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
+    }
+    pub fn SetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1288,7 +1429,88 @@ pub const IXpsOMGlyphs = extern union {
             return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMVisual.MethodMixin(@This());
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphs, unicodeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphs, @ptrCast(self)), unicodeString);
+    }
+    pub fn GetGlyphIndexCount(self: *const IXpsOMGlyphs, indexCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount);
+    }
+    pub fn GetGlyphIndices(self: *const IXpsOMGlyphs, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount, glyphIndices);
+    }
+    pub fn GetGlyphMappingCount(self: *const IXpsOMGlyphs, glyphMappingCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount);
+    }
+    pub fn GetGlyphMappings(self: *const IXpsOMGlyphs, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount, glyphMappings);
+    }
+    pub fn GetProhibitedCaretStopCount(self: *const IXpsOMGlyphs, prohibitedCaretStopCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount);
+    }
+    pub fn GetProhibitedCaretStops(self: *const IXpsOMGlyphs, prohibitedCaretStopCount: ?*u32, prohibitedCaretStops: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount, prohibitedCaretStops);
+    }
+    pub fn GetBidiLevel(self: *const IXpsOMGlyphs, bidiLevel: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphs, @ptrCast(self)), bidiLevel);
+    }
+    pub fn GetIsSideways(self: *const IXpsOMGlyphs, isSideways: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphs, @ptrCast(self)), isSideways);
+    }
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphs, deviceFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphs, @ptrCast(self)), deviceFontName);
+    }
+    pub fn GetStyleSimulations(self: *const IXpsOMGlyphs, styleSimulations: ?*XPS_STYLE_SIMULATION) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
+    }
+    pub fn SetStyleSimulations(self: *const IXpsOMGlyphs, styleSimulations: XPS_STYLE_SIMULATION) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
+    }
+    pub fn GetOrigin(self: *const IXpsOMGlyphs, origin: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
+    }
+    pub fn SetOrigin(self: *const IXpsOMGlyphs, origin: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
+    }
+    pub fn GetFontRenderingEmSize(self: *const IXpsOMGlyphs, fontRenderingEmSize: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
+    }
+    pub fn SetFontRenderingEmSize(self: *const IXpsOMGlyphs, fontRenderingEmSize: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
+    }
+    pub fn GetFontResource(self: *const IXpsOMGlyphs, fontResource: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
+    }
+    pub fn SetFontResource(self: *const IXpsOMGlyphs, fontResource: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
+    }
+    pub fn GetFontFaceIndex(self: *const IXpsOMGlyphs, fontFaceIndex: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
+    }
+    pub fn SetFontFaceIndex(self: *const IXpsOMGlyphs, fontFaceIndex: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
+    }
+    pub fn GetFillBrush(self: *const IXpsOMGlyphs, fillBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
+    }
+    pub fn GetFillBrushLocal(self: *const IXpsOMGlyphs, fillBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
+    }
+    pub fn SetFillBrushLocal(self: *const IXpsOMGlyphs, fillBrush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
+    }
+    pub fn GetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
+    }
+    pub fn SetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
+    }
+    pub fn GetGlyphsEditor(self: *const IXpsOMGlyphs, editor: ?*?*IXpsOMGlyphsEditor) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphsEditor(@as(*const IXpsOMGlyphs, @ptrCast(self)), editor);
+    }
+    pub fn Clone(self: *const IXpsOMGlyphs, glyphs: ?*?*IXpsOMGlyphs) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1354,7 +1576,25 @@ pub const IXpsOMDashCollection = extern union {
             return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDashCollection, @ptrCast(self)), dash);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMDashCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDashCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*XPS_DASH) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
+    }
+    pub fn InsertAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDashCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
+    }
+    pub fn Append(self: *const IXpsOMDashCollection, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDashCollection, @ptrCast(self)), dash);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1393,7 +1633,16 @@ pub const IXpsOMMatrixTransform = extern union {
             return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrixTransform);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMShareable.MethodMixin(@This());
+    pub fn GetMatrix(self: *const IXpsOMMatrixTransform, matrix: ?*XPS_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).GetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
+    }
+    pub fn SetMatrix(self: *const IXpsOMMatrixTransform, matrix: ?*const XPS_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
+    }
+    pub fn Clone(self: *const IXpsOMMatrixTransform, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrixTransform);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1480,7 +1729,34 @@ pub const IXpsOMGeometry = extern union {
             return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometry, @ptrCast(self)), geometry);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMShareable.MethodMixin(@This());
+    pub fn GetFigures(self: *const IXpsOMGeometry, figures: ?*?*IXpsOMGeometryFigureCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFigures(@as(*const IXpsOMGeometry, @ptrCast(self)), figures);
+    }
+    pub fn GetFillRule(self: *const IXpsOMGeometry, fillRule: ?*XPS_FILL_RULE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
+    }
+    pub fn SetFillRule(self: *const IXpsOMGeometry, fillRule: XPS_FILL_RULE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
+    }
+    pub fn GetTransform(self: *const IXpsOMGeometry, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMGeometry, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMGeometry, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMGeometry, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMGeometry, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
+    }
+    pub fn Clone(self: *const IXpsOMGeometry, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometry, @ptrCast(self)), geometry);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1622,7 +1898,52 @@ pub const IXpsOMGeometryFigure = extern union {
             return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), geometryFigure);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMGeometryFigure, owner: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), owner);
+    }
+    pub fn GetSegmentData(self: *const IXpsOMGeometryFigure, dataCount: ?*u32, segmentData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentData(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), dataCount, segmentData);
+    }
+    pub fn GetSegmentTypes(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32, segmentTypes: ?*XPS_SEGMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentTypes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentTypes);
+    }
+    pub fn GetSegmentStrokes(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32, segmentStrokes: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentStrokes);
+    }
+    pub fn SetSegments(self: *const IXpsOMGeometryFigure, segmentCount: u32, segmentDataCount: u32, segmentTypes: ?*const XPS_SEGMENT_TYPE, segmentData: ?*const f32, segmentStrokes: ?*const BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetSegments(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentDataCount, segmentTypes, segmentData, segmentStrokes);
+    }
+    pub fn GetStartPoint(self: *const IXpsOMGeometryFigure, startPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
+    }
+    pub fn SetStartPoint(self: *const IXpsOMGeometryFigure, startPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
+    }
+    pub fn GetIsClosed(self: *const IXpsOMGeometryFigure, isClosed: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
+    }
+    pub fn SetIsClosed(self: *const IXpsOMGeometryFigure, isClosed: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
+    }
+    pub fn GetIsFilled(self: *const IXpsOMGeometryFigure, isFilled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
+    }
+    pub fn SetIsFilled(self: *const IXpsOMGeometryFigure, isFilled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
+    }
+    pub fn GetSegmentCount(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount);
+    }
+    pub fn GetSegmentDataCount(self: *const IXpsOMGeometryFigure, segmentDataCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentDataCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentDataCount);
+    }
+    pub fn GetSegmentStrokePattern(self: *const IXpsOMGeometryFigure, segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokePattern(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentStrokePattern);
+    }
+    pub fn Clone(self: *const IXpsOMGeometryFigure, geometryFigure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), geometryFigure);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1688,7 +2009,25 @@ pub const IXpsOMGeometryFigureCollection = extern union {
             return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), geometryFigure);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMGeometryFigureCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
+    }
+    pub fn InsertAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
+    }
+    pub fn RemoveAt(self: *const IXpsOMGeometryFigureCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
+    }
+    pub fn Append(self: *const IXpsOMGeometryFigureCollection, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), geometryFigure);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1999,7 +2338,118 @@ pub const IXpsOMPath = extern union {
             return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPath, @ptrCast(self)), path);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMVisual.MethodMixin(@This());
+    pub fn GetGeometry(self: *const IXpsOMPath, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometry(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
+    }
+    pub fn GetGeometryLocal(self: *const IXpsOMPath, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
+    }
+    pub fn SetGeometryLocal(self: *const IXpsOMPath, geometry: ?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
+    }
+    pub fn GetGeometryLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn SetGeometryLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
+    }
+    pub fn SetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
+    }
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
+    }
+    pub fn SetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
+    }
+    pub fn GetSnapsToPixels(self: *const IXpsOMPath, snapsToPixels: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
+    }
+    pub fn SetSnapsToPixels(self: *const IXpsOMPath, snapsToPixels: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
+    }
+    pub fn GetStrokeBrush(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn GetStrokeBrushLocal(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn SetStrokeBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn GetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn SetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn GetStrokeDashes(self: *const IXpsOMPath, strokeDashes: ?*?*IXpsOMDashCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashes(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashes);
+    }
+    pub fn GetStrokeDashCap(self: *const IXpsOMPath, strokeDashCap: ?*XPS_DASH_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
+    }
+    pub fn SetStrokeDashCap(self: *const IXpsOMPath, strokeDashCap: XPS_DASH_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
+    }
+    pub fn GetStrokeDashOffset(self: *const IXpsOMPath, strokeDashOffset: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
+    }
+    pub fn SetStrokeDashOffset(self: *const IXpsOMPath, strokeDashOffset: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
+    }
+    pub fn GetStrokeStartLineCap(self: *const IXpsOMPath, strokeStartLineCap: ?*XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
+    }
+    pub fn SetStrokeStartLineCap(self: *const IXpsOMPath, strokeStartLineCap: XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
+    }
+    pub fn GetStrokeEndLineCap(self: *const IXpsOMPath, strokeEndLineCap: ?*XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
+    }
+    pub fn SetStrokeEndLineCap(self: *const IXpsOMPath, strokeEndLineCap: XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
+    }
+    pub fn GetStrokeLineJoin(self: *const IXpsOMPath, strokeLineJoin: ?*XPS_LINE_JOIN) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
+    }
+    pub fn SetStrokeLineJoin(self: *const IXpsOMPath, strokeLineJoin: XPS_LINE_JOIN) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
+    }
+    pub fn GetStrokeMiterLimit(self: *const IXpsOMPath, strokeMiterLimit: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
+    }
+    pub fn SetStrokeMiterLimit(self: *const IXpsOMPath, strokeMiterLimit: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
+    }
+    pub fn GetStrokeThickness(self: *const IXpsOMPath, strokeThickness: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
+    }
+    pub fn SetStrokeThickness(self: *const IXpsOMPath, strokeThickness: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
+    }
+    pub fn GetFillBrush(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn GetFillBrushLocal(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn SetFillBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
+    }
+    pub fn GetFillBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn SetFillBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
+    }
+    pub fn Clone(self: *const IXpsOMPath, path: ?*?*IXpsOMPath) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPath, @ptrCast(self)), path);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2030,7 +2480,13 @@ pub const IXpsOMBrush = extern union {
             return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMShareable.MethodMixin(@This());
+    pub fn GetOpacity(self: *const IXpsOMBrush, opacity: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
+    }
+    pub fn SetOpacity(self: *const IXpsOMBrush, opacity: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2096,7 +2552,25 @@ pub const IXpsOMGradientStopCollection = extern union {
             return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), stop);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMGradientStopCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
+    }
+    pub fn InsertAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
+    }
+    pub fn RemoveAt(self: *const IXpsOMGradientStopCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
+    }
+    pub fn Append(self: *const IXpsOMGradientStopCollection, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), stop);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2137,7 +2611,16 @@ pub const IXpsOMSolidColorBrush = extern union {
             return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), solidColorBrush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMBrush.MethodMixin(@This());
+    pub fn GetColor(self: *const IXpsOMSolidColorBrush, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
+    }
+    pub fn SetColor(self: *const IXpsOMSolidColorBrush, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
+    }
+    pub fn Clone(self: *const IXpsOMSolidColorBrush, solidColorBrush: ?*?*IXpsOMSolidColorBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), solidColorBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2240,7 +2723,40 @@ pub const IXpsOMTileBrush = extern union {
             return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMBrush.MethodMixin(@This());
+    pub fn GetTransform(self: *const IXpsOMTileBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMTileBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMTileBrush, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMTileBrush, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMTileBrush, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
+    }
+    pub fn GetViewbox(self: *const IXpsOMTileBrush, viewbox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
+    }
+    pub fn SetViewbox(self: *const IXpsOMTileBrush, viewbox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
+    }
+    pub fn GetViewport(self: *const IXpsOMTileBrush, viewport: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
+    }
+    pub fn SetViewport(self: *const IXpsOMTileBrush, viewport: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
+    }
+    pub fn GetTileMode(self: *const IXpsOMTileBrush, tileMode: ?*XPS_TILE_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
+    }
+    pub fn SetTileMode(self: *const IXpsOMTileBrush, tileMode: XPS_TILE_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2303,7 +2819,25 @@ pub const IXpsOMVisualBrush = extern union {
             return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visualBrush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMTileBrush.MethodMixin(@This());
+    pub fn GetVisual(self: *const IXpsOMVisualBrush, visual: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisual(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
+    }
+    pub fn GetVisualLocal(self: *const IXpsOMVisualBrush, visual: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
+    }
+    pub fn SetVisualLocal(self: *const IXpsOMVisualBrush, visual: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
+    }
+    pub fn GetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
+    }
+    pub fn SetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
+    }
+    pub fn Clone(self: *const IXpsOMVisualBrush, visualBrush: ?*?*IXpsOMVisualBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visualBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2358,7 +2892,22 @@ pub const IXpsOMImageBrush = extern union {
             return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageBrush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMTileBrush.MethodMixin(@This());
+    pub fn GetImageResource(self: *const IXpsOMImageBrush, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
+    }
+    pub fn SetImageResource(self: *const IXpsOMImageBrush, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
+    }
+    pub fn GetColorProfileResource(self: *const IXpsOMImageBrush, colorProfileResource: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
+    }
+    pub fn SetColorProfileResource(self: *const IXpsOMImageBrush, colorProfileResource: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
+    }
+    pub fn Clone(self: *const IXpsOMImageBrush, imageBrush: ?*?*IXpsOMImageBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2423,7 +2972,25 @@ pub const IXpsOMGradientStop = extern union {
             return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGradientStop, @ptrCast(self)), gradientStop);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMGradientStop, owner: ?*?*IXpsOMGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGradientStop, @ptrCast(self)), owner);
+    }
+    pub fn GetOffset(self: *const IXpsOMGradientStop, offset: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
+    }
+    pub fn SetOffset(self: *const IXpsOMGradientStop, offset: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
+    }
+    pub fn GetColor(self: *const IXpsOMGradientStop, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
+    }
+    pub fn SetColor(self: *const IXpsOMGradientStop, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
+    }
+    pub fn Clone(self: *const IXpsOMGradientStop, gradientStop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGradientStop, @ptrCast(self)), gradientStop);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2518,7 +3085,37 @@ pub const IXpsOMGradientBrush = extern union {
             return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMBrush.MethodMixin(@This());
+    pub fn GetGradientStops(self: *const IXpsOMGradientBrush, gradientStops: ?*?*IXpsOMGradientStopCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStops(@as(*const IXpsOMGradientBrush, @ptrCast(self)), gradientStops);
+    }
+    pub fn GetTransform(self: *const IXpsOMGradientBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMGradientBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMGradientBrush, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMGradientBrush, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMGradientBrush, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
+    }
+    pub fn GetSpreadMethod(self: *const IXpsOMGradientBrush, spreadMethod: ?*XPS_SPREAD_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
+    }
+    pub fn SetSpreadMethod(self: *const IXpsOMGradientBrush, spreadMethod: XPS_SPREAD_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
+    }
+    pub fn GetColorInterpolationMode(self: *const IXpsOMGradientBrush, colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
+    }
+    pub fn SetColorInterpolationMode(self: *const IXpsOMGradientBrush, colorInterpolationMode: XPS_COLOR_INTERPOLATION) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2573,7 +3170,22 @@ pub const IXpsOMLinearGradientBrush = extern union {
             return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), linearGradientBrush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMGradientBrush.MethodMixin(@This());
+    pub fn GetStartPoint(self: *const IXpsOMLinearGradientBrush, startPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
+    }
+    pub fn SetStartPoint(self: *const IXpsOMLinearGradientBrush, startPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
+    }
+    pub fn GetEndPoint(self: *const IXpsOMLinearGradientBrush, endPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
+    }
+    pub fn SetEndPoint(self: *const IXpsOMLinearGradientBrush, endPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
+    }
+    pub fn Clone(self: *const IXpsOMLinearGradientBrush, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), linearGradientBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2644,7 +3256,28 @@ pub const IXpsOMRadialGradientBrush = extern union {
             return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radialGradientBrush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMGradientBrush.MethodMixin(@This());
+    pub fn GetCenter(self: *const IXpsOMRadialGradientBrush, center: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
+    }
+    pub fn SetCenter(self: *const IXpsOMRadialGradientBrush, center: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
+    }
+    pub fn GetRadiiSizes(self: *const IXpsOMRadialGradientBrush, radiiSizes: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
+    }
+    pub fn SetRadiiSizes(self: *const IXpsOMRadialGradientBrush, radiiSizes: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
+    }
+    pub fn GetGradientOrigin(self: *const IXpsOMRadialGradientBrush, origin: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
+    }
+    pub fn SetGradientOrigin(self: *const IXpsOMRadialGradientBrush, origin: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
+    }
+    pub fn Clone(self: *const IXpsOMRadialGradientBrush, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radialGradientBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2659,7 +3292,7 @@ pub const IXpsOMResource = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXpsOMPart.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPart.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2706,7 +3339,19 @@ pub const IXpsOMPartResources = extern union {
             return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetRemoteDictionaryResources(@as(*const IXpsOMPartResources, @ptrCast(self)), dictionaryResources);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontResources(self: *const IXpsOMPartResources, fontResources: ?*?*IXpsOMFontResourceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetFontResources(@as(*const IXpsOMPartResources, @ptrCast(self)), fontResources);
+    }
+    pub fn GetImageResources(self: *const IXpsOMPartResources, imageResources: ?*?*IXpsOMImageResourceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetImageResources(@as(*const IXpsOMPartResources, @ptrCast(self)), imageResources);
+    }
+    pub fn GetColorProfileResources(self: *const IXpsOMPartResources, colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetColorProfileResources(@as(*const IXpsOMPartResources, @ptrCast(self)), colorProfileResources);
+    }
+    pub fn GetRemoteDictionaryResources(self: *const IXpsOMPartResources, dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetRemoteDictionaryResources(@as(*const IXpsOMPartResources, @ptrCast(self)), dictionaryResources);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2811,7 +3456,37 @@ pub const IXpsOMDictionary = extern union {
             return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDictionary, @ptrCast(self)), dictionary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMDictionary, owner: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDictionary, @ptrCast(self)), owner);
+    }
+    pub fn GetCount(self: *const IXpsOMDictionary, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDictionary, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMDictionary, index: u32, key: ?*?PWSTR, entry: ?*?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
+    }
+    pub fn GetByKey(self: *const IXpsOMDictionary, key: ?[*:0]const u16, beforeEntry: ?*IXpsOMShareable, entry: ?*?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetByKey(@as(*const IXpsOMDictionary, @ptrCast(self)), key, beforeEntry, entry);
+    }
+    pub fn GetIndex(self: *const IXpsOMDictionary, entry: ?*IXpsOMShareable, index: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IXpsOMDictionary, @ptrCast(self)), entry, index);
+    }
+    pub fn Append(self: *const IXpsOMDictionary, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDictionary, @ptrCast(self)), key, entry);
+    }
+    pub fn InsertAt(self: *const IXpsOMDictionary, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDictionary, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMDictionary, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
+    }
+    pub fn Clone(self: *const IXpsOMDictionary, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDictionary, @ptrCast(self)), dictionary);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2852,7 +3527,16 @@ pub const IXpsOMFontResource = extern union {
             return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetEmbeddingOption(@as(*const IXpsOMFontResource, @ptrCast(self)), embeddingOption);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMFontResource, readerStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMFontResource, @ptrCast(self)), readerStream);
+    }
+    pub fn SetContent(self: *const IXpsOMFontResource, sourceStream: ?*IStream, embeddingOption: XPS_FONT_EMBEDDING, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMFontResource, @ptrCast(self)), sourceStream, embeddingOption, partName);
+    }
+    pub fn GetEmbeddingOption(self: *const IXpsOMFontResource, embeddingOption: ?*XPS_FONT_EMBEDDING) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetEmbeddingOption(@as(*const IXpsOMFontResource, @ptrCast(self)), embeddingOption);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2927,7 +3611,28 @@ pub const IXpsOMFontResourceCollection = extern union {
             return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), partName, part);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMFontResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
+    }
+    pub fn SetAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
+    }
+    pub fn InsertAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
+    }
+    pub fn Append(self: *const IXpsOMFontResourceCollection, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), value);
+    }
+    pub fn RemoveAt(self: *const IXpsOMFontResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index);
+    }
+    pub fn GetByPartName(self: *const IXpsOMFontResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2968,7 +3673,16 @@ pub const IXpsOMImageResource = extern union {
             return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetImageType(@as(*const IXpsOMImageResource, @ptrCast(self)), imageType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMImageResource, readerStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMImageResource, @ptrCast(self)), readerStream);
+    }
+    pub fn SetContent(self: *const IXpsOMImageResource, sourceStream: ?*IStream, imageType: XPS_IMAGE_TYPE, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMImageResource, @ptrCast(self)), sourceStream, imageType, partName);
+    }
+    pub fn GetImageType(self: *const IXpsOMImageResource, imageType: ?*XPS_IMAGE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetImageType(@as(*const IXpsOMImageResource, @ptrCast(self)), imageType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3043,7 +3757,28 @@ pub const IXpsOMImageResourceCollection = extern union {
             return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), partName, part);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMImageResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMImageResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn Append(self: *const IXpsOMImageResourceCollection, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMImageResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3075,7 +3810,13 @@ pub const IXpsOMColorProfileResource = extern union {
             return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), sourceStream, partName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMColorProfileResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), stream);
+    }
+    pub fn SetContent(self: *const IXpsOMColorProfileResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3150,7 +3891,28 @@ pub const IXpsOMColorProfileResourceCollection = extern union {
             return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), partName, part);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMColorProfileResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMColorProfileResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn Append(self: *const IXpsOMColorProfileResourceCollection, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMColorProfileResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3182,7 +3944,13 @@ pub const IXpsOMPrintTicketResource = extern union {
             return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), sourceStream, partName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMPrintTicketResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), stream);
+    }
+    pub fn SetContent(self: *const IXpsOMPrintTicketResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3213,7 +3981,13 @@ pub const IXpsOMRemoteDictionaryResource = extern union {
             return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).SetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetDictionary(self: *const IXpsOMRemoteDictionaryResource, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
+    }
+    pub fn SetDictionary(self: *const IXpsOMRemoteDictionaryResource, dictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).SetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3288,7 +4062,28 @@ pub const IXpsOMRemoteDictionaryResourceCollection = extern union {
             return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), partName, remoteDictionaryResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMRemoteDictionaryResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
+    }
+    pub fn Append(self: *const IXpsOMRemoteDictionaryResourceCollection, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMRemoteDictionaryResourceCollection, partName: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), partName, remoteDictionaryResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3363,7 +4158,28 @@ pub const IXpsOMSignatureBlockResourceCollection = extern union {
             return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), partName, signatureBlockResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMSignatureBlockResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
+    }
+    pub fn InsertAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
+    }
+    pub fn RemoveAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
+    }
+    pub fn Append(self: *const IXpsOMSignatureBlockResourceCollection, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), signatureBlockResource);
+    }
+    pub fn GetByPartName(self: *const IXpsOMSignatureBlockResourceCollection, partName: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), partName, signatureBlockResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3403,7 +4219,16 @@ pub const IXpsOMDocumentStructureResource = extern union {
             return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), sourceStream, partName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMDocumentStructureResource, owner: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), owner);
+    }
+    pub fn GetStream(self: *const IXpsOMDocumentStructureResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), stream);
+    }
+    pub fn SetContent(self: *const IXpsOMDocumentStructureResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3443,7 +4268,16 @@ pub const IXpsOMStoryFragmentsResource = extern union {
             return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), sourceStream, partName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMStoryFragmentsResource, owner: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), owner);
+    }
+    pub fn GetStream(self: *const IXpsOMStoryFragmentsResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), stream);
+    }
+    pub fn SetContent(self: *const IXpsOMStoryFragmentsResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3483,7 +4317,16 @@ pub const IXpsOMSignatureBlockResource = extern union {
             return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), sourceStream, partName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMResource.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMSignatureBlockResource, owner: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), owner);
+    }
+    pub fn GetStream(self: *const IXpsOMSignatureBlockResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), stream);
+    }
+    pub fn SetContent(self: *const IXpsOMSignatureBlockResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3549,7 +4392,25 @@ pub const IXpsOMVisualCollection = extern union {
             return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMVisualCollection, @ptrCast(self)), object);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMVisualCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMVisualCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMVisualCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
+    }
+    pub fn Append(self: *const IXpsOMVisualCollection, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMVisualCollection, @ptrCast(self)), object);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3668,7 +4529,46 @@ pub const IXpsOMCanvas = extern union {
             return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCanvas, @ptrCast(self)), canvas);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMVisual.MethodMixin(@This());
+    pub fn GetVisuals(self: *const IXpsOMCanvas, visuals: ?*?*IXpsOMVisualCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMCanvas, @ptrCast(self)), visuals);
+    }
+    pub fn GetUseAliasedEdgeMode(self: *const IXpsOMCanvas, useAliasedEdgeMode: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
+    }
+    pub fn SetUseAliasedEdgeMode(self: *const IXpsOMCanvas, useAliasedEdgeMode: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
+    }
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
+    }
+    pub fn SetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
+    }
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
+    }
+    pub fn SetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
+    }
+    pub fn GetDictionary(self: *const IXpsOMCanvas, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn GetDictionaryLocal(self: *const IXpsOMCanvas, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn SetDictionaryLocal(self: *const IXpsOMCanvas, resourceDictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn GetDictionaryResource(self: *const IXpsOMCanvas, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
+    }
+    pub fn SetDictionaryResource(self: *const IXpsOMCanvas, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
+    }
+    pub fn Clone(self: *const IXpsOMCanvas, canvas: ?*?*IXpsOMCanvas) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCanvas, @ptrCast(self)), canvas);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3861,7 +4761,73 @@ pub const IXpsOMPage = extern union {
             return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPage, @ptrCast(self)), page);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPart.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMPage, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPage, @ptrCast(self)), pageReference);
+    }
+    pub fn GetVisuals(self: *const IXpsOMPage, visuals: ?*?*IXpsOMVisualCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMPage, @ptrCast(self)), visuals);
+    }
+    pub fn GetPageDimensions(self: *const IXpsOMPage, pageDimensions: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
+    }
+    pub fn SetPageDimensions(self: *const IXpsOMPage, pageDimensions: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
+    }
+    pub fn GetContentBox(self: *const IXpsOMPage, contentBox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
+    }
+    pub fn SetContentBox(self: *const IXpsOMPage, contentBox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
+    }
+    pub fn GetBleedBox(self: *const IXpsOMPage, bleedBox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
+    }
+    pub fn SetBleedBox(self: *const IXpsOMPage, bleedBox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
+    }
+    pub fn GetLanguage(self: *const IXpsOMPage, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMPage, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
+    }
+    pub fn GetName(self: *const IXpsOMPage, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
+    }
+    pub fn SetName(self: *const IXpsOMPage, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
+    }
+    pub fn GetIsHyperlinkTarget(self: *const IXpsOMPage, isHyperlinkTarget: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
+    }
+    pub fn SetIsHyperlinkTarget(self: *const IXpsOMPage, isHyperlinkTarget: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
+    }
+    pub fn GetDictionary(self: *const IXpsOMPage, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn GetDictionaryLocal(self: *const IXpsOMPage, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn SetDictionaryLocal(self: *const IXpsOMPage, resourceDictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
+    }
+    pub fn GetDictionaryResource(self: *const IXpsOMPage, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
+    }
+    pub fn SetDictionaryResource(self: *const IXpsOMPage, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
+    }
+    pub fn Write(self: *const IXpsOMPage, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Write(@as(*const IXpsOMPage, @ptrCast(self)), stream, optimizeMarkupSize);
+    }
+    pub fn GenerateUnusedLookupKey(self: *const IXpsOMPage, @"type": XPS_OBJECT_TYPE, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GenerateUnusedLookupKey(@as(*const IXpsOMPage, @ptrCast(self)), @"type", key);
+    }
+    pub fn Clone(self: *const IXpsOMPage, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPage, @ptrCast(self)), page);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4011,7 +4977,58 @@ pub const IXpsOMPageReference = extern union {
             return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPageReference, @ptrCast(self)), pageReference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMPageReference, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPageReference, @ptrCast(self)), document);
+    }
+    pub fn GetPage(self: *const IXpsOMPageReference, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
+    }
+    pub fn SetPage(self: *const IXpsOMPageReference, page: ?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
+    }
+    pub fn DiscardPage(self: *const IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).DiscardPage(@as(*const IXpsOMPageReference, @ptrCast(self)));
+    }
+    pub fn IsPageLoaded(self: *const IXpsOMPageReference, isPageLoaded: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).IsPageLoaded(@as(*const IXpsOMPageReference, @ptrCast(self)), isPageLoaded);
+    }
+    pub fn GetAdvisoryPageDimensions(self: *const IXpsOMPageReference, pageDimensions: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
+    }
+    pub fn SetAdvisoryPageDimensions(self: *const IXpsOMPageReference, pageDimensions: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
+    }
+    pub fn GetStoryFragmentsResource(self: *const IXpsOMPageReference, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
+    }
+    pub fn SetStoryFragmentsResource(self: *const IXpsOMPageReference, storyFragmentsResource: ?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMPageReference, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMPageReference, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
+    }
+    pub fn GetThumbnailResource(self: *const IXpsOMPageReference, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
+    }
+    pub fn SetThumbnailResource(self: *const IXpsOMPageReference, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
+    }
+    pub fn CollectLinkTargets(self: *const IXpsOMPageReference, linkTargets: ?*?*IXpsOMNameCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectLinkTargets(@as(*const IXpsOMPageReference, @ptrCast(self)), linkTargets);
+    }
+    pub fn CollectPartResources(self: *const IXpsOMPageReference, partResources: ?*?*IXpsOMPartResources) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectPartResources(@as(*const IXpsOMPageReference, @ptrCast(self)), partResources);
+    }
+    pub fn HasRestrictedFonts(self: *const IXpsOMPageReference, restrictedFonts: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).HasRestrictedFonts(@as(*const IXpsOMPageReference, @ptrCast(self)), restrictedFonts);
+    }
+    pub fn Clone(self: *const IXpsOMPageReference, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPageReference, @ptrCast(self)), pageReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4077,7 +5094,25 @@ pub const IXpsOMPageReferenceCollection = extern union {
             return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), pageReference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMPageReferenceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
+    }
+    pub fn InsertAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
+    }
+    pub fn RemoveAt(self: *const IXpsOMPageReferenceCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
+    }
+    pub fn Append(self: *const IXpsOMPageReferenceCollection, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), pageReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4156,7 +5191,31 @@ pub const IXpsOMDocument = extern union {
             return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDocument, @ptrCast(self)), document);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPart.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMDocument, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocument, @ptrCast(self)), documentSequence);
+    }
+    pub fn GetPageReferences(self: *const IXpsOMDocument, pageReferences: ?*?*IXpsOMPageReferenceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPageReferences(@as(*const IXpsOMDocument, @ptrCast(self)), pageReferences);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMDocument, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMDocument, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
+    }
+    pub fn GetDocumentStructureResource(self: *const IXpsOMDocument, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
+    }
+    pub fn SetDocumentStructureResource(self: *const IXpsOMDocument, documentStructureResource: ?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
+    }
+    pub fn GetSignatureBlockResources(self: *const IXpsOMDocument, signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetSignatureBlockResources(@as(*const IXpsOMDocument, @ptrCast(self)), signatureBlockResources);
+    }
+    pub fn Clone(self: *const IXpsOMDocument, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDocument, @ptrCast(self)), document);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4222,7 +5281,25 @@ pub const IXpsOMDocumentCollection = extern union {
             return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), document);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMDocumentCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
+    }
+    pub fn InsertAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDocumentCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
+    }
+    pub fn Append(self: *const IXpsOMDocumentCollection, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), document);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4269,7 +5346,19 @@ pub const IXpsOMDocumentSequence = extern union {
             return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPart.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMDocumentSequence, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), package);
+    }
+    pub fn GetDocuments(self: *const IXpsOMDocumentSequence, documents: ?*?*IXpsOMDocumentCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetDocuments(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), documents);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMDocumentSequence, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMDocumentSequence, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4556,7 +5645,109 @@ pub const IXpsOMCoreProperties = extern union {
             return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCoreProperties, @ptrCast(self)), coreProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPart.MethodMixin(@This());
+    pub fn GetOwner(self: *const IXpsOMCoreProperties, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMCoreProperties, @ptrCast(self)), package);
+    }
+    pub fn GetCategory(self: *const IXpsOMCoreProperties, category: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
+    }
+    pub fn SetCategory(self: *const IXpsOMCoreProperties, category: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
+    }
+    pub fn GetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
+    }
+    pub fn SetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
+    }
+    pub fn GetContentType(self: *const IXpsOMCoreProperties, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
+    }
+    pub fn SetContentType(self: *const IXpsOMCoreProperties, contentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
+    }
+    pub fn GetCreated(self: *const IXpsOMCoreProperties, created: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
+    }
+    pub fn SetCreated(self: *const IXpsOMCoreProperties, created: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
+    }
+    pub fn GetCreator(self: *const IXpsOMCoreProperties, creator: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
+    }
+    pub fn SetCreator(self: *const IXpsOMCoreProperties, creator: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
+    }
+    pub fn GetDescription(self: *const IXpsOMCoreProperties, description: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
+    }
+    pub fn SetDescription(self: *const IXpsOMCoreProperties, description: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
+    }
+    pub fn GetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
+    }
+    pub fn SetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
+    }
+    pub fn GetKeywords(self: *const IXpsOMCoreProperties, keywords: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
+    }
+    pub fn SetKeywords(self: *const IXpsOMCoreProperties, keywords: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
+    }
+    pub fn GetLanguage(self: *const IXpsOMCoreProperties, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMCoreProperties, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
+    }
+    pub fn GetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
+    }
+    pub fn SetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
+    }
+    pub fn GetLastPrinted(self: *const IXpsOMCoreProperties, lastPrinted: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
+    }
+    pub fn SetLastPrinted(self: *const IXpsOMCoreProperties, lastPrinted: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
+    }
+    pub fn GetModified(self: *const IXpsOMCoreProperties, modified: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
+    }
+    pub fn SetModified(self: *const IXpsOMCoreProperties, modified: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
+    }
+    pub fn GetRevision(self: *const IXpsOMCoreProperties, revision: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
+    }
+    pub fn SetRevision(self: *const IXpsOMCoreProperties, revision: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
+    }
+    pub fn GetSubject(self: *const IXpsOMCoreProperties, subject: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
+    }
+    pub fn SetSubject(self: *const IXpsOMCoreProperties, subject: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
+    }
+    pub fn GetTitle(self: *const IXpsOMCoreProperties, title: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
+    }
+    pub fn SetTitle(self: *const IXpsOMCoreProperties, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
+    }
+    pub fn GetVersion(self: *const IXpsOMCoreProperties, version: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
+    }
+    pub fn SetVersion(self: *const IXpsOMCoreProperties, version: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
+    }
+    pub fn Clone(self: *const IXpsOMCoreProperties, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCoreProperties, @ptrCast(self)), coreProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4655,7 +5846,37 @@ pub const IXpsOMPackage = extern union {
             return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToStream(@as(*const IXpsOMPackage, @ptrCast(self)), stream, optimizeMarkupSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDocumentSequence(self: *const IXpsOMPackage, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
+    }
+    pub fn SetDocumentSequence(self: *const IXpsOMPackage, documentSequence: ?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
+    }
+    pub fn GetCoreProperties(self: *const IXpsOMPackage, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
+    }
+    pub fn SetCoreProperties(self: *const IXpsOMPackage, coreProperties: ?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
+    }
+    pub fn GetDiscardControlPartName(self: *const IXpsOMPackage, discardControlPartUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
+    }
+    pub fn SetDiscardControlPartName(self: *const IXpsOMPackage, discardControlPartUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
+    }
+    pub fn GetThumbnailResource(self: *const IXpsOMPackage, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
+    }
+    pub fn SetThumbnailResource(self: *const IXpsOMPackage, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
+    }
+    pub fn WriteToFile(self: *const IXpsOMPackage, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToFile(@as(*const IXpsOMPackage, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize);
+    }
+    pub fn WriteToStream(self: *const IXpsOMPackage, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToStream(@as(*const IXpsOMPackage, @ptrCast(self)), stream, optimizeMarkupSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5045,7 +6266,118 @@ pub const IXpsOMObjectFactory = extern union {
             return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateReadOnlyStreamOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, stream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreatePackage(self: *const IXpsOMObjectFactory, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), package);
+    }
+    pub fn CreatePackageFromFile(self: *const IXpsOMObjectFactory, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, reuseObjects, package);
+    }
+    pub fn CreatePackageFromStream(self: *const IXpsOMObjectFactory, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), stream, reuseObjects, package);
+    }
+    pub fn CreateStoryFragmentsResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateStoryFragmentsResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, storyFragmentsResource);
+    }
+    pub fn CreateDocumentStructureResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentStructureResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, documentStructureResource);
+    }
+    pub fn CreateSignatureBlockResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSignatureBlockResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, signatureBlockResource);
+    }
+    pub fn CreateRemoteDictionaryResource(self: *const IXpsOMObjectFactory, dictionary: ?*IXpsOMDictionary, partUri: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary, partUri, remoteDictionaryResource);
+    }
+    pub fn CreateRemoteDictionaryResourceFromStream(self: *const IXpsOMObjectFactory, dictionaryMarkupStream: ?*IStream, dictionaryPartUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionaryMarkupStream, dictionaryPartUri, resources, dictionaryResource);
+    }
+    pub fn CreatePartResources(self: *const IXpsOMObjectFactory, partResources: ?*?*IXpsOMPartResources) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartResources(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partResources);
+    }
+    pub fn CreateDocumentSequence(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentSequence(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, documentSequence);
+    }
+    pub fn CreateDocument(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocument(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, document);
+    }
+    pub fn CreatePageReference(self: *const IXpsOMObjectFactory, advisoryPageDimensions: ?*const XPS_SIZE, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageReference(@as(*const IXpsOMObjectFactory, @ptrCast(self)), advisoryPageDimensions, pageReference);
+    }
+    pub fn CreatePage(self: *const IXpsOMObjectFactory, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageDimensions, language, partUri, page);
+    }
+    pub fn CreatePageFromStream(self: *const IXpsOMObjectFactory, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
+    }
+    pub fn CreateCanvas(self: *const IXpsOMObjectFactory, canvas: ?*?*IXpsOMCanvas) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCanvas(@as(*const IXpsOMObjectFactory, @ptrCast(self)), canvas);
+    }
+    pub fn CreateGlyphs(self: *const IXpsOMObjectFactory, fontResource: ?*IXpsOMFontResource, glyphs: ?*?*IXpsOMGlyphs) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGlyphs(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fontResource, glyphs);
+    }
+    pub fn CreatePath(self: *const IXpsOMObjectFactory, path: ?*?*IXpsOMPath) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePath(@as(*const IXpsOMObjectFactory, @ptrCast(self)), path);
+    }
+    pub fn CreateGeometry(self: *const IXpsOMObjectFactory, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometry(@as(*const IXpsOMObjectFactory, @ptrCast(self)), geometry);
+    }
+    pub fn CreateGeometryFigure(self: *const IXpsOMObjectFactory, startPoint: ?*const XPS_POINT, figure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometryFigure(@as(*const IXpsOMObjectFactory, @ptrCast(self)), startPoint, figure);
+    }
+    pub fn CreateMatrixTransform(self: *const IXpsOMObjectFactory, matrix: ?*const XPS_MATRIX, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IXpsOMObjectFactory, @ptrCast(self)), matrix, transform);
+    }
+    pub fn CreateSolidColorBrush(self: *const IXpsOMObjectFactory, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, solidColorBrush: ?*?*IXpsOMSolidColorBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSolidColorBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, solidColorBrush);
+    }
+    pub fn CreateColorProfileResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, colorProfileResource: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateColorProfileResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, colorProfileResource);
+    }
+    pub fn CreateImageBrush(self: *const IXpsOMObjectFactory, image: ?*IXpsOMImageResource, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, imageBrush: ?*?*IXpsOMImageBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), image, viewBox, viewPort, imageBrush);
+    }
+    pub fn CreateVisualBrush(self: *const IXpsOMObjectFactory, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, visualBrush: ?*?*IXpsOMVisualBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateVisualBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), viewBox, viewPort, visualBrush);
+    }
+    pub fn CreateImageResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, contentType: XPS_IMAGE_TYPE, partUri: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, contentType, partUri, imageResource);
+    }
+    pub fn CreatePrintTicketResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePrintTicketResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, printTicketResource);
+    }
+    pub fn CreateFontResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, fontEmbedding: XPS_FONT_EMBEDDING, partUri: ?*IOpcPartUri, isObfSourceStream: BOOL, fontResource: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, fontEmbedding, partUri, isObfSourceStream, fontResource);
+    }
+    pub fn CreateGradientStop(self: *const IXpsOMObjectFactory, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, offset: f32, gradientStop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGradientStop(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, offset, gradientStop);
+    }
+    pub fn CreateLinearGradientBrush(self: *const IXpsOMObjectFactory, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, startPoint: ?*const XPS_POINT, endPoint: ?*const XPS_POINT, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateLinearGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, startPoint, endPoint, linearGradientBrush);
+    }
+    pub fn CreateRadialGradientBrush(self: *const IXpsOMObjectFactory, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, centerPoint: ?*const XPS_POINT, gradientOrigin: ?*const XPS_POINT, radiiSizes: ?*const XPS_SIZE, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRadialGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, centerPoint, gradientOrigin, radiiSizes, radialGradientBrush);
+    }
+    pub fn CreateCoreProperties(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCoreProperties(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, coreProperties);
+    }
+    pub fn CreateDictionary(self: *const IXpsOMObjectFactory, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDictionary(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary);
+    }
+    pub fn CreatePartUriCollection(self: *const IXpsOMObjectFactory, partUriCollection: ?*?*IXpsOMPartUriCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUriCollection(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUriCollection);
+    }
+    pub fn CreatePackageWriterOnFile(self: *const IXpsOMObjectFactory, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+    }
+    pub fn CreatePackageWriterOnStream(self: *const IXpsOMObjectFactory, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+    }
+    pub fn CreatePartUri(self: *const IXpsOMObjectFactory, uri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUri(@as(*const IXpsOMObjectFactory, @ptrCast(self)), uri, partUri);
+    }
+    pub fn CreateReadOnlyStreamOnFile(self: *const IXpsOMObjectFactory, filename: ?[*:0]const u16, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateReadOnlyStreamOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, stream);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5077,7 +6409,13 @@ pub const IXpsOMNameCollection = extern union {
             return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMNameCollection, @ptrCast(self)), index, name);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMNameCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMNameCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMNameCollection, index: u32, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMNameCollection, @ptrCast(self)), index, name);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5143,7 +6481,25 @@ pub const IXpsOMPartUriCollection = extern union {
             return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), partUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMPartUriCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
+    }
+    pub fn InsertAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
+    }
+    pub fn RemoveAt(self: *const IXpsOMPartUriCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index);
+    }
+    pub fn SetAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
+    }
+    pub fn Append(self: *const IXpsOMPartUriCollection, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), partUri);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5206,7 +6562,22 @@ pub const IXpsOMPackageWriter = extern union {
             return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).IsClosed(@as(*const IXpsOMPackageWriter, @ptrCast(self)), isClosed);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn StartNewDocument(self: *const IXpsOMPackageWriter, documentPartName: ?*IOpcPartUri, documentPrintTicket: ?*IXpsOMPrintTicketResource, documentStructure: ?*IXpsOMDocumentStructureResource, signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection, restrictedFonts: ?*IXpsOMPartUriCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).StartNewDocument(@as(*const IXpsOMPackageWriter, @ptrCast(self)), documentPartName, documentPrintTicket, documentStructure, signatureBlockResources, restrictedFonts);
+    }
+    pub fn AddPage(self: *const IXpsOMPackageWriter, page: ?*IXpsOMPage, advisoryPageDimensions: ?*const XPS_SIZE, discardableResourceParts: ?*IXpsOMPartUriCollection, storyFragments: ?*IXpsOMStoryFragmentsResource, pagePrintTicket: ?*IXpsOMPrintTicketResource, pageThumbnail: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddPage(@as(*const IXpsOMPackageWriter, @ptrCast(self)), page, advisoryPageDimensions, discardableResourceParts, storyFragments, pagePrintTicket, pageThumbnail);
+    }
+    pub fn AddResource(self: *const IXpsOMPackageWriter, resource: ?*IXpsOMResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddResource(@as(*const IXpsOMPackageWriter, @ptrCast(self)), resource);
+    }
+    pub fn Close(self: *const IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsOMPackageWriter, @ptrCast(self)));
+    }
+    pub fn IsClosed(self: *const IXpsOMPackageWriter, isClosed: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).IsClosed(@as(*const IXpsOMPackageWriter, @ptrCast(self)), isClosed);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5232,7 +6603,10 @@ pub const IXpsOMPackageTarget = extern union {
             return @as(*const IXpsOMPackageTarget.VTable, @ptrCast(self.vtable)).CreateXpsOMPackageWriter(@as(*const IXpsOMPackageTarget, @ptrCast(self)), documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateXpsOMPackageWriter(self: *const IXpsOMPackageTarget, documentSequencePartName: ?*IOpcPartUri, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageTarget.VTable, @ptrCast(self.vtable)).CreateXpsOMPackageWriter(@as(*const IXpsOMPackageTarget, @ptrCast(self)), documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5259,7 +6633,10 @@ pub const IXpsOMThumbnailGenerator = extern union {
             return @as(*const IXpsOMThumbnailGenerator.VTable, @ptrCast(self.vtable)).GenerateThumbnail(@as(*const IXpsOMThumbnailGenerator, @ptrCast(self)), page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GenerateThumbnail(self: *const IXpsOMThumbnailGenerator, page: ?*IXpsOMPage, thumbnailType: XPS_IMAGE_TYPE, thumbnailSize: XPS_THUMBNAIL_SIZE, imageResourcePartName: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMThumbnailGenerator.VTable, @ptrCast(self.vtable)).GenerateThumbnail(@as(*const IXpsOMThumbnailGenerator, @ptrCast(self)), page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
+    }
 };
 
 pub const XPS_DOCUMENT_TYPE = enum(i32) {
@@ -5415,7 +6792,43 @@ pub const IXpsOMObjectFactory1 = extern union {
             return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), dictionaryMarkupStream, partUri, resources, dictionaryResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMObjectFactory.MethodMixin(@This());
+    pub fn GetDocumentTypeFromFile(self: *const IXpsOMObjectFactory1, filename: ?[*:0]const u16, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromFile(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, documentType);
+    }
+    pub fn GetDocumentTypeFromStream(self: *const IXpsOMObjectFactory1, xpsDocumentStream: ?*IStream, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromStream(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), xpsDocumentStream, documentType);
+    }
+    pub fn ConvertHDPhotoToJpegXR(self: *const IXpsOMObjectFactory1, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertHDPhotoToJpegXR(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
+    }
+    pub fn ConvertJpegXRToHDPhoto(self: *const IXpsOMObjectFactory1, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertJpegXRToHDPhoto(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
+    }
+    pub fn CreatePackageWriterOnFile1(self: *const IXpsOMObjectFactory1, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+    }
+    pub fn CreatePackageWriterOnStream1(self: *const IXpsOMObjectFactory1, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+    }
+    pub fn CreatePackage1(self: *const IXpsOMObjectFactory1, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), package);
+    }
+    pub fn CreatePackageFromStream1(self: *const IXpsOMObjectFactory1, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), stream, reuseObjects, package);
+    }
+    pub fn CreatePackageFromFile1(self: *const IXpsOMObjectFactory1, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, reuseObjects, package);
+    }
+    pub fn CreatePage1(self: *const IXpsOMObjectFactory1, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage1) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageDimensions, language, partUri, page);
+    }
+    pub fn CreatePageFromStream1(self: *const IXpsOMObjectFactory1, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage1) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
+    }
+    pub fn CreateRemoteDictionaryResourceFromStream1(self: *const IXpsOMObjectFactory1, dictionaryMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), dictionaryMarkupStream, partUri, resources, dictionaryResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5460,7 +6873,16 @@ pub const IXpsOMPackage1 = extern union {
             return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToStream1(@as(*const IXpsOMPackage1, @ptrCast(self)), outputStream, optimizeMarkupSize, documentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPackage.MethodMixin(@This());
+    pub fn GetDocumentType(self: *const IXpsOMPackage1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPackage1, @ptrCast(self)), documentType);
+    }
+    pub fn WriteToFile1(self: *const IXpsOMPackage1, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToFile1(@as(*const IXpsOMPackage1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, documentType);
+    }
+    pub fn WriteToStream1(self: *const IXpsOMPackage1, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToStream1(@as(*const IXpsOMPackage1, @ptrCast(self)), outputStream, optimizeMarkupSize, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5493,7 +6915,13 @@ pub const IXpsOMPage1 = extern union {
             return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMPage1, @ptrCast(self)), stream, optimizeMarkupSize, documentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPage.MethodMixin(@This());
+    pub fn GetDocumentType(self: *const IXpsOMPage1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPage1, @ptrCast(self)), documentType);
+    }
+    pub fn Write1(self: *const IXpsOMPage1, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMPage1, @ptrCast(self)), stream, optimizeMarkupSize, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5534,7 +6962,16 @@ pub const IXpsDocumentPackageTarget = extern union {
             return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsType(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetXpsOMPackageWriter(self: *const IXpsDocumentPackageTarget, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentSequencePartName, discardControlPartName, packageWriter);
+    }
+    pub fn GetXpsOMFactory(self: *const IXpsDocumentPackageTarget, xpsFactory: ?*?*IXpsOMObjectFactory) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), xpsFactory);
+    }
+    pub fn GetXpsType(self: *const IXpsDocumentPackageTarget, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsType(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5566,7 +7003,13 @@ pub const IXpsOMRemoteDictionaryResource1 = extern union {
             return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), stream, documentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMRemoteDictionaryResource.MethodMixin(@This());
+    pub fn GetDocumentType(self: *const IXpsOMRemoteDictionaryResource1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), documentType);
+    }
+    pub fn Write1(self: *const IXpsOMRemoteDictionaryResource1, stream: ?*ISequentialStream, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), stream, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5599,7 +7042,13 @@ pub const IXpsOMPackageWriter3D = extern union {
             return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).SetModelPrintTicket(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), printTicketPartName, printTicketData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXpsOMPackageWriter.MethodMixin(@This());
+    pub fn AddModelTexture(self: *const IXpsOMPackageWriter3D, texturePartName: ?*IOpcPartUri, textureData: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).AddModelTexture(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), texturePartName, textureData);
+    }
+    pub fn SetModelPrintTicket(self: *const IXpsOMPackageWriter3D, printTicketPartName: ?*IOpcPartUri, printTicketData: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).SetModelPrintTicket(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), printTicketPartName, printTicketData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5634,7 +7083,13 @@ pub const IXpsDocumentPackageTarget3D = extern union {
             return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), xpsFactory);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetXpsOMPackageWriter3D(self: *const IXpsDocumentPackageTarget3D, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, modelPartName: ?*IOpcPartUri, modelData: ?*IStream, packageWriter: ?*?*IXpsOMPackageWriter3D) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter3D(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), documentSequencePartName, discardControlPartName, modelPartName, modelData, packageWriter);
+    }
+    pub fn GetXpsOMFactory(self: *const IXpsDocumentPackageTarget3D, xpsFactory: ?*?*IXpsOMObjectFactory) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), xpsFactory);
+    }
 };
 
 const CLSID_XpsSignatureManager_Value = Guid.initString("b0c43320-2315-44a2-b70a-0943a140a8ee");
@@ -5823,7 +7278,58 @@ pub const IXpsSigningOptions = extern union {
             return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSignatureId(self: *const IXpsSigningOptions, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
+    }
+    pub fn SetSignatureId(self: *const IXpsSigningOptions, signatureId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
+    }
+    pub fn GetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
+    }
+    pub fn SetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
+    }
+    pub fn GetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
+    }
+    pub fn SetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
+    }
+    pub fn GetSignaturePartName(self: *const IXpsSigningOptions, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
+    }
+    pub fn SetSignaturePartName(self: *const IXpsSigningOptions, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
+    }
+    pub fn GetPolicy(self: *const IXpsSigningOptions, policy: ?*XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
+    }
+    pub fn SetPolicy(self: *const IXpsSigningOptions, policy: XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
+    }
+    pub fn GetSigningTimeFormat(self: *const IXpsSigningOptions, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
+    }
+    pub fn SetSigningTimeFormat(self: *const IXpsSigningOptions, timeFormat: OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
+    }
+    pub fn GetCustomObjects(self: *const IXpsSigningOptions, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomObjects(@as(*const IXpsSigningOptions, @ptrCast(self)), customObjectSet);
+    }
+    pub fn GetCustomReferences(self: *const IXpsSigningOptions, customReferenceSet: ?*?*IOpcSignatureReferenceSet) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomReferences(@as(*const IXpsSigningOptions, @ptrCast(self)), customReferenceSet);
+    }
+    pub fn GetCertificateSet(self: *const IXpsSigningOptions, certificateSet: ?*?*IOpcCertificateSet) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateSet(@as(*const IXpsSigningOptions, @ptrCast(self)), certificateSet);
+    }
+    pub fn GetFlags(self: *const IXpsSigningOptions, flags: ?*XPS_SIGN_FLAGS) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
+    }
+    pub fn SetFlags(self: *const IXpsSigningOptions, flags: XPS_SIGN_FLAGS) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5863,7 +7369,16 @@ pub const IXpsSignatureCollection = extern union {
             return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsSignatureCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsSignatureCollection, index: u32, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index, signature);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5978,7 +7493,43 @@ pub const IXpsSignature = extern union {
             return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).SetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSignatureId(self: *const IXpsSignature, sigId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSignature, @ptrCast(self)), sigId);
+    }
+    pub fn GetSignatureValue(self: *const IXpsSignature, signatureHashValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IXpsSignature, @ptrCast(self)), signatureHashValue, count);
+    }
+    pub fn GetCertificateEnumerator(self: *const IXpsSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCertificateEnumerator(@as(*const IXpsSignature, @ptrCast(self)), certificateEnumerator);
+    }
+    pub fn GetSigningTime(self: *const IXpsSignature, sigDateTimeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTime(@as(*const IXpsSignature, @ptrCast(self)), sigDateTimeString);
+    }
+    pub fn GetSigningTimeFormat(self: *const IXpsSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSignature, @ptrCast(self)), timeFormat);
+    }
+    pub fn GetSignaturePartName(self: *const IXpsSignature, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSignature, @ptrCast(self)), signaturePartName);
+    }
+    pub fn Verify(self: *const IXpsSignature, x509Certificate: ?*const CERT_CONTEXT, sigStatus: ?*XPS_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).Verify(@as(*const IXpsSignature, @ptrCast(self)), x509Certificate, sigStatus);
+    }
+    pub fn GetPolicy(self: *const IXpsSignature, policy: ?*XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSignature, @ptrCast(self)), policy);
+    }
+    pub fn GetCustomObjectEnumerator(self: *const IXpsSignature, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomObjectEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customObjectEnumerator);
+    }
+    pub fn GetCustomReferenceEnumerator(self: *const IXpsSignature, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomReferenceEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customReferenceEnumerator);
+    }
+    pub fn GetSignatureXml(self: *const IXpsSignature, signatureXml: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
+    }
+    pub fn SetSignatureXml(self: *const IXpsSignature, signatureXml: [*:0]const u8, count: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).SetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6018,7 +7569,16 @@ pub const IXpsSignatureBlockCollection = extern union {
             return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsSignatureBlockCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsSignatureBlockCollection, index: u32, signatureBlock: ?*?*IXpsSignatureBlock) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index, signatureBlock);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureBlockCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6074,7 +7634,22 @@ pub const IXpsSignatureBlock = extern union {
             return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IXpsSignatureBlock, @ptrCast(self)), requestId, signatureRequest);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRequests(self: *const IXpsSignatureBlock, requests: ?*?*IXpsSignatureRequestCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetRequests(@as(*const IXpsSignatureBlock, @ptrCast(self)), requests);
+    }
+    pub fn GetPartName(self: *const IXpsSignatureBlock, partName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsSignatureBlock, @ptrCast(self)), partName);
+    }
+    pub fn GetDocumentIndex(self: *const IXpsSignatureBlock, fixedDocumentIndex: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentIndex(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentIndex);
+    }
+    pub fn GetDocumentName(self: *const IXpsSignatureBlock, fixedDocumentName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentName(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentName);
+    }
+    pub fn CreateRequest(self: *const IXpsSignatureBlock, requestId: ?[*:0]const u16, signatureRequest: ?*?*IXpsSignatureRequest) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IXpsSignatureBlock, @ptrCast(self)), requestId, signatureRequest);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6114,7 +7689,16 @@ pub const IXpsSignatureRequestCollection = extern union {
             return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsSignatureRequestCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), count);
+    }
+    pub fn GetAt(self: *const IXpsSignatureRequestCollection, index: u32, signatureRequest: ?*?*IXpsSignatureRequest) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index, signatureRequest);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureRequestCollection, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6230,7 +7814,43 @@ pub const IXpsSignatureRequest = extern union {
             return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXpsSignatureRequest, @ptrCast(self)), signature);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIntent(self: *const IXpsSignatureRequest, intent: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
+    }
+    pub fn SetIntent(self: *const IXpsSignatureRequest, intent: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
+    }
+    pub fn GetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
+    }
+    pub fn SetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
+    }
+    pub fn GetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
+    }
+    pub fn SetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
+    }
+    pub fn GetSigningLocale(self: *const IXpsSignatureRequest, place: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
+    }
+    pub fn SetSigningLocale(self: *const IXpsSignatureRequest, place: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
+    }
+    pub fn GetSpotLocation(self: *const IXpsSignatureRequest, pageIndex: ?*i32, pagePartName: ?*?*IOpcPartUri, x: ?*f32, y: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, pagePartName, x, y);
+    }
+    pub fn SetSpotLocation(self: *const IXpsSignatureRequest, pageIndex: i32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, x, y);
+    }
+    pub fn GetRequestId(self: *const IXpsSignatureRequest, requestId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestId(@as(*const IXpsSignatureRequest, @ptrCast(self)), requestId);
+    }
+    pub fn GetSignature(self: *const IXpsSignatureRequest, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXpsSignatureRequest, @ptrCast(self)), signature);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6339,7 +7959,40 @@ pub const IXpsSignatureManager = extern union {
             return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LoadPackageFile(self: *const IXpsSignatureManager, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName);
+    }
+    pub fn LoadPackageStream(self: *const IXpsSignatureManager, stream: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
+    }
+    pub fn Sign(self: *const IXpsSignatureManager, signOptions: ?*IXpsSigningOptions, x509Certificate: ?*const CERT_CONTEXT, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).Sign(@as(*const IXpsSignatureManager, @ptrCast(self)), signOptions, x509Certificate, signature);
+    }
+    pub fn GetSignatureOriginPartName(self: *const IXpsSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
+    }
+    pub fn SetSignatureOriginPartName(self: *const IXpsSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
+    }
+    pub fn GetSignatures(self: *const IXpsSignatureManager, signatures: ?*?*IXpsSignatureCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatures(@as(*const IXpsSignatureManager, @ptrCast(self)), signatures);
+    }
+    pub fn AddSignatureBlock(self: *const IXpsSignatureManager, partName: ?*IOpcPartUri, fixedDocumentIndex: u32, signatureBlock: ?*?*IXpsSignatureBlock) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).AddSignatureBlock(@as(*const IXpsSignatureManager, @ptrCast(self)), partName, fixedDocumentIndex, signatureBlock);
+    }
+    pub fn GetSignatureBlocks(self: *const IXpsSignatureManager, signatureBlocks: ?*?*IXpsSignatureBlockCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureBlocks(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureBlocks);
+    }
+    pub fn CreateSigningOptions(self: *const IXpsSignatureManager, signingOptions: ?*?*IXpsSigningOptions) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).CreateSigningOptions(@as(*const IXpsSignatureManager, @ptrCast(self)), signingOptions);
+    }
+    pub fn SavePackageToFile(self: *const IXpsSignatureManager, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes);
+    }
+    pub fn SavePackageToStream(self: *const IXpsSignatureManager, stream: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
+    }
 };
 
 

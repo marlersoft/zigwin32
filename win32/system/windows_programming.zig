@@ -1056,7 +1056,22 @@ pub const ICameraUIControlEventCallback = extern union {
             return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnClosed(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStartupComplete(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+        return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnStartupComplete(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
+    }
+    pub fn OnSuspendComplete(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+        return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnSuspendComplete(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
+    }
+    pub fn OnItemCaptured(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.Inline) void {
+        return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnItemCaptured(@as(*const ICameraUIControlEventCallback, @ptrCast(self)), pszPath);
+    }
+    pub fn OnItemDeleted(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.Inline) void {
+        return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnItemDeleted(@as(*const ICameraUIControlEventCallback, @ptrCast(self)), pszPath);
+    }
+    pub fn OnClosed(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+        return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnClosed(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1140,7 +1155,31 @@ pub const ICameraUIControl = extern union {
             return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).RemoveCapturedItem(@as(*const ICameraUIControl, @ptrCast(self)), pszPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Show(self: *const ICameraUIControl, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Show(@as(*const ICameraUIControl, @ptrCast(self)), pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
+    }
+    pub fn Close(self: *const ICameraUIControl) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Close(@as(*const ICameraUIControl, @ptrCast(self)));
+    }
+    pub fn Suspend(self: *const ICameraUIControl, pbDeferralRequired: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Suspend(@as(*const ICameraUIControl, @ptrCast(self)), pbDeferralRequired);
+    }
+    pub fn Resume(self: *const ICameraUIControl) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Resume(@as(*const ICameraUIControl, @ptrCast(self)));
+    }
+    pub fn GetCurrentViewType(self: *const ICameraUIControl, pViewType: ?*CameraUIControlViewType) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetCurrentViewType(@as(*const ICameraUIControl, @ptrCast(self)), pViewType);
+    }
+    pub fn GetActiveItem(self: *const ICameraUIControl, pbstrActiveItemPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetActiveItem(@as(*const ICameraUIControl, @ptrCast(self)), pbstrActiveItemPath);
+    }
+    pub fn GetSelectedItems(self: *const ICameraUIControl, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetSelectedItems(@as(*const ICameraUIControl, @ptrCast(self)), ppSelectedItemPaths);
+    }
+    pub fn RemoveCapturedItem(self: *const ICameraUIControl, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).RemoveCapturedItem(@as(*const ICameraUIControl, @ptrCast(self)), pszPath);
+    }
 };
 
 const CLSID_EditionUpgradeHelper_Value = Guid.initString("01776df3-b9af-4e50-9b1c-56e93116d704");
@@ -1200,7 +1239,22 @@ pub const IEditionUpgradeHelper = extern union {
             return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).GetGenuineLocalStatus(@as(*const IEditionUpgradeHelper, @ptrCast(self)), isGenuine);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CanUpgrade(self: *const IEditionUpgradeHelper, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).CanUpgrade(@as(*const IEditionUpgradeHelper, @ptrCast(self)), isAllowed);
+    }
+    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeHelper, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).UpdateOperatingSystem(@as(*const IEditionUpgradeHelper, @ptrCast(self)), contentId);
+    }
+    pub fn ShowProductKeyUI(self: *const IEditionUpgradeHelper) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).ShowProductKeyUI(@as(*const IEditionUpgradeHelper, @ptrCast(self)));
+    }
+    pub fn GetOsProductContentId(self: *const IEditionUpgradeHelper, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).GetOsProductContentId(@as(*const IEditionUpgradeHelper, @ptrCast(self)), contentId);
+    }
+    pub fn GetGenuineLocalStatus(self: *const IEditionUpgradeHelper, isGenuine: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).GetGenuineLocalStatus(@as(*const IEditionUpgradeHelper, @ptrCast(self)), isGenuine);
+    }
 };
 
 const IID_IWindowsLockModeHelper_Value = Guid.initString("f342d19e-cc22-4648-bb5d-03ccf75b47c5");
@@ -1222,7 +1276,10 @@ pub const IWindowsLockModeHelper = extern union {
             return @as(*const IWindowsLockModeHelper.VTable, @ptrCast(self.vtable)).GetSMode(@as(*const IWindowsLockModeHelper, @ptrCast(self)), isSmode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSMode(self: *const IWindowsLockModeHelper, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsLockModeHelper.VTable, @ptrCast(self.vtable)).GetSMode(@as(*const IWindowsLockModeHelper, @ptrCast(self)), isSmode);
+    }
 };
 
 const IID_IEditionUpgradeBroker_Value = Guid.initString("ff19cbcf-9455-4937-b872-6b7929a460af");
@@ -1266,7 +1323,19 @@ pub const IEditionUpgradeBroker = extern union {
             return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).CanUpgrade(@as(*const IEditionUpgradeBroker, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).InitializeParentWindow(@as(*const IEditionUpgradeBroker, @ptrCast(self)), parentHandle);
+    }
+    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeBroker, parameter: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).UpdateOperatingSystem(@as(*const IEditionUpgradeBroker, @ptrCast(self)), parameter);
+    }
+    pub fn ShowProductKeyUI(self: *const IEditionUpgradeBroker) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).ShowProductKeyUI(@as(*const IEditionUpgradeBroker, @ptrCast(self)));
+    }
+    pub fn CanUpgrade(self: *const IEditionUpgradeBroker) callconv(.Inline) HRESULT {
+        return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).CanUpgrade(@as(*const IEditionUpgradeBroker, @ptrCast(self)));
+    }
 };
 
 const IID_IContainerActivationHelper_Value = Guid.initString("b524f93f-80d5-4ec7-ae9e-d66e93ade1fa");
@@ -1288,7 +1357,10 @@ pub const IContainerActivationHelper = extern union {
             return @as(*const IContainerActivationHelper.VTable, @ptrCast(self.vtable)).CanActivateClientVM(@as(*const IContainerActivationHelper, @ptrCast(self)), isAllowed);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IContainerActivationHelper.VTable, @ptrCast(self.vtable)).CanActivateClientVM(@as(*const IContainerActivationHelper, @ptrCast(self)), isAllowed);
+    }
 };
 
 const IID_IClipServiceNotificationHelper_Value = Guid.initString("c39948f0-6142-44fd-98ca-e1681a8d68b5");
@@ -1314,7 +1386,10 @@ pub const IClipServiceNotificationHelper = extern union {
             return @as(*const IClipServiceNotificationHelper.VTable, @ptrCast(self.vtable)).ShowToast(@as(*const IClipServiceNotificationHelper, @ptrCast(self)), titleText, bodyText, packageName, appId, launchCommand);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ShowToast(self: *const IClipServiceNotificationHelper, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IClipServiceNotificationHelper.VTable, @ptrCast(self.vtable)).ShowToast(@as(*const IClipServiceNotificationHelper, @ptrCast(self)), titleText, bodyText, packageName, appId, launchCommand);
+    }
 };
 
 pub const FEATURE_CHANGE_TIME = enum(i32) {
@@ -1820,7 +1895,10 @@ pub const IDefaultBrowserSyncSettings = extern union {
             return @as(*const IDefaultBrowserSyncSettings.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const IDefaultBrowserSyncSettings, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsEnabled(self: *const IDefaultBrowserSyncSettings) callconv(.Inline) BOOL {
+        return @as(*const IDefaultBrowserSyncSettings.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const IDefaultBrowserSyncSettings, @ptrCast(self)));
+    }
 };
 
 pub const DELAYLOAD_PROC_DESCRIPTOR = extern struct {
@@ -1856,7 +1934,10 @@ pub const IDeleteBrowsingHistory = extern union {
             return @as(*const IDeleteBrowsingHistory.VTable, @ptrCast(self.vtable)).DeleteBrowsingHistory(@as(*const IDeleteBrowsingHistory, @ptrCast(self)), dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeleteBrowsingHistory(self: *const IDeleteBrowsingHistory, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeleteBrowsingHistory.VTable, @ptrCast(self.vtable)).DeleteBrowsingHistory(@as(*const IDeleteBrowsingHistory, @ptrCast(self)), dwFlags);
+    }
 };
 
 

@@ -35,7 +35,10 @@ pub const IWsbApplicationBackupSupport = extern union {
             return @as(*const IWsbApplicationBackupSupport.VTable, @ptrCast(self.vtable)).CheckConsistency(@as(*const IWsbApplicationBackupSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationBackupSupport.VTable, @ptrCast(self.vtable)).CheckConsistency(@as(*const IWsbApplicationBackupSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -92,7 +95,19 @@ pub const IWsbApplicationRestoreSupport = extern union {
             return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).IsRollForwardSupported(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), pbRollForwardSupported);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PreRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
+    }
+    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PostRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
+    }
+    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).OrderComponents(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
+    }
+    pub fn IsRollForwardSupported(self: *const IWsbApplicationRestoreSupport, pbRollForwardSupported: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).IsRollForwardSupported(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), pbRollForwardSupported);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -122,7 +137,13 @@ pub const IWsbApplicationAsync = extern union {
             return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWsbApplicationAsync, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IWsbApplicationAsync, @ptrCast(self)), phrResult);
+    }
+    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.Inline) HRESULT {
+        return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWsbApplicationAsync, @ptrCast(self)));
+    }
 };
 
 pub const WSB_OB_STATUS_ENTRY_PAIR_TYPE = enum(i32) {

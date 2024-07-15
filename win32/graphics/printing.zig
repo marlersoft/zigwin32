@@ -1564,7 +1564,22 @@ pub const IBidiRequest = extern union {
             return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).GetEnumCount(@as(*const IBidiRequest, @ptrCast(self)), pdwTotal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSchema(self: *const IBidiRequest, pszSchema: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).SetSchema(@as(*const IBidiRequest, @ptrCast(self)), pszSchema);
+    }
+    pub fn SetInputData(self: *const IBidiRequest, dwType: u32, pData: ?*const u8, uSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).SetInputData(@as(*const IBidiRequest, @ptrCast(self)), dwType, pData, uSize);
+    }
+    pub fn GetResult(self: *const IBidiRequest, phr: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IBidiRequest, @ptrCast(self)), phr);
+    }
+    pub fn GetOutputData(self: *const IBidiRequest, dwIndex: u32, ppszSchema: ?*?PWSTR, pdwType: ?*u32, ppData: ?*?*u8, uSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).GetOutputData(@as(*const IBidiRequest, @ptrCast(self)), dwIndex, ppszSchema, pdwType, ppData, uSize);
+    }
+    pub fn GetEnumCount(self: *const IBidiRequest, pdwTotal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequest.VTable, @ptrCast(self.vtable)).GetEnumCount(@as(*const IBidiRequest, @ptrCast(self)), pdwTotal);
+    }
 };
 
 const IID_IBidiRequestContainer_Value = Guid.initString("d752f6c0-94a8-4275-a77d-8f1d1a1121ae");
@@ -1602,7 +1617,16 @@ pub const IBidiRequestContainer = extern union {
             return @as(*const IBidiRequestContainer.VTable, @ptrCast(self.vtable)).GetRequestCount(@as(*const IBidiRequestContainer, @ptrCast(self)), puCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddRequest(self: *const IBidiRequestContainer, pRequest: ?*IBidiRequest) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequestContainer.VTable, @ptrCast(self.vtable)).AddRequest(@as(*const IBidiRequestContainer, @ptrCast(self)), pRequest);
+    }
+    pub fn GetEnumObject(self: *const IBidiRequestContainer, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequestContainer.VTable, @ptrCast(self.vtable)).GetEnumObject(@as(*const IBidiRequestContainer, @ptrCast(self)), ppenum);
+    }
+    pub fn GetRequestCount(self: *const IBidiRequestContainer, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiRequestContainer.VTable, @ptrCast(self.vtable)).GetRequestCount(@as(*const IBidiRequestContainer, @ptrCast(self)), puCount);
+    }
 };
 
 const IID_IBidiSpl_Value = Guid.initString("d580dc0e-de39-4649-baa8-bf0b85a03a97");
@@ -1650,7 +1674,19 @@ pub const IBidiSpl = extern union {
             return @as(*const IBidiSpl.VTable, @ptrCast(self.vtable)).MultiSendRecv(@as(*const IBidiSpl, @ptrCast(self)), pszAction, pRequestContainer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BindDevice(self: *const IBidiSpl, pszDeviceName: ?[*:0]const u16, dwAccess: u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl.VTable, @ptrCast(self.vtable)).BindDevice(@as(*const IBidiSpl, @ptrCast(self)), pszDeviceName, dwAccess);
+    }
+    pub fn UnbindDevice(self: *const IBidiSpl) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl.VTable, @ptrCast(self.vtable)).UnbindDevice(@as(*const IBidiSpl, @ptrCast(self)));
+    }
+    pub fn SendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequest: ?*IBidiRequest) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl.VTable, @ptrCast(self.vtable)).SendRecv(@as(*const IBidiSpl, @ptrCast(self)), pszAction, pRequest);
+    }
+    pub fn MultiSendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequestContainer: ?*IBidiRequestContainer) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl.VTable, @ptrCast(self.vtable)).MultiSendRecv(@as(*const IBidiSpl, @ptrCast(self)), pszAction, pRequestContainer);
+    }
 };
 
 const IID_IBidiSpl2_Value = Guid.initString("0e8f51b8-8273-4906-8e7b-be453ffd2e2b");
@@ -1698,7 +1734,19 @@ pub const IBidiSpl2 = extern union {
             return @as(*const IBidiSpl2.VTable, @ptrCast(self.vtable)).SendRecvXMLStream(@as(*const IBidiSpl2, @ptrCast(self)), pSRequest, ppSResponse);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BindDevice(self: *const IBidiSpl2, pszDeviceName: ?[*:0]const u16, dwAccess: u32) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl2.VTable, @ptrCast(self.vtable)).BindDevice(@as(*const IBidiSpl2, @ptrCast(self)), pszDeviceName, dwAccess);
+    }
+    pub fn UnbindDevice(self: *const IBidiSpl2) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl2.VTable, @ptrCast(self.vtable)).UnbindDevice(@as(*const IBidiSpl2, @ptrCast(self)));
+    }
+    pub fn SendRecvXMLString(self: *const IBidiSpl2, bstrRequest: ?BSTR, pbstrResponse: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl2.VTable, @ptrCast(self.vtable)).SendRecvXMLString(@as(*const IBidiSpl2, @ptrCast(self)), bstrRequest, pbstrResponse);
+    }
+    pub fn SendRecvXMLStream(self: *const IBidiSpl2, pSRequest: ?*IStream, ppSResponse: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IBidiSpl2.VTable, @ptrCast(self.vtable)).SendRecvXMLStream(@as(*const IBidiSpl2, @ptrCast(self)), pSRequest, ppSResponse);
+    }
 };
 
 pub const ImgErrorInfo = extern struct {
@@ -1783,7 +1831,28 @@ pub const IImgErrorInfo = extern union {
             return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).DetachErrorInfo(@as(*const IImgErrorInfo, @ptrCast(self)), pErrorInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IErrorInfo.MethodMixin(@This());
+    pub fn GetDeveloperDescription(self: *const IImgErrorInfo, pbstrDevDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetDeveloperDescription(@as(*const IImgErrorInfo, @ptrCast(self)), pbstrDevDescription);
+    }
+    pub fn GetUserErrorId(self: *const IImgErrorInfo, pErrorId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetUserErrorId(@as(*const IImgErrorInfo, @ptrCast(self)), pErrorId);
+    }
+    pub fn GetUserParameterCount(self: *const IImgErrorInfo, pcUserParams: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetUserParameterCount(@as(*const IImgErrorInfo, @ptrCast(self)), pcUserParams);
+    }
+    pub fn GetUserParameter(self: *const IImgErrorInfo, cParam: u32, pbstrParam: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetUserParameter(@as(*const IImgErrorInfo, @ptrCast(self)), cParam, pbstrParam);
+    }
+    pub fn GetUserFallback(self: *const IImgErrorInfo, pbstrFallback: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetUserFallback(@as(*const IImgErrorInfo, @ptrCast(self)), pbstrFallback);
+    }
+    pub fn GetExceptionId(self: *const IImgErrorInfo, pExceptionId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetExceptionId(@as(*const IImgErrorInfo, @ptrCast(self)), pExceptionId);
+    }
+    pub fn DetachErrorInfo(self: *const IImgErrorInfo, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
+        return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).DetachErrorInfo(@as(*const IImgErrorInfo, @ptrCast(self)), pErrorInfo);
+    }
 };
 
 const IID_IImgCreateErrorInfo_Value = Guid.initString("1c55a64c-07cd-4fb5-90f7-b753d91f0c9e");
@@ -1805,7 +1874,10 @@ pub const IImgCreateErrorInfo = extern union {
             return @as(*const IImgCreateErrorInfo.VTable, @ptrCast(self.vtable)).AttachToErrorInfo(@as(*const IImgCreateErrorInfo, @ptrCast(self)), pErrorInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICreateErrorInfo.MethodMixin(@This());
+    pub fn AttachToErrorInfo(self: *const IImgCreateErrorInfo, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
+        return @as(*const IImgCreateErrorInfo.VTable, @ptrCast(self.vtable)).AttachToErrorInfo(@as(*const IImgCreateErrorInfo, @ptrCast(self)), pErrorInfo);
+    }
 };
 
 pub const EXpsCompressionOptions = enum(i32) {
@@ -1879,7 +1951,13 @@ pub const IPrintReadStream = extern union {
             return @as(*const IPrintReadStream.VTable, @ptrCast(self.vtable)).ReadBytes(@as(*const IPrintReadStream, @ptrCast(self)), pvBuffer, cbRequested, pcbRead, pbEndOfFile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Seek(self: *const IPrintReadStream, dlibMove: i64, dwOrigin: u32, plibNewPosition: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IPrintReadStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const IPrintReadStream, @ptrCast(self)), dlibMove, dwOrigin, plibNewPosition);
+    }
+    pub fn ReadBytes(self: *const IPrintReadStream, pvBuffer: ?*anyopaque, cbRequested: u32, pcbRead: ?*u32, pbEndOfFile: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrintReadStream.VTable, @ptrCast(self.vtable)).ReadBytes(@as(*const IPrintReadStream, @ptrCast(self)), pvBuffer, cbRequested, pcbRead, pbEndOfFile);
+    }
 };
 
 const IID_IPrintWriteStream_Value = Guid.initString("65bb7f1b-371e-4571-8ac7-912f510c1a38");
@@ -1911,7 +1989,13 @@ pub const IPrintWriteStream = extern union {
             return @as(*const IPrintWriteStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IPrintWriteStream, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn WriteBytes(self: *const IPrintWriteStream, pvBuffer: ?*const anyopaque, cbBuffer: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintWriteStream.VTable, @ptrCast(self.vtable)).WriteBytes(@as(*const IPrintWriteStream, @ptrCast(self)), pvBuffer, cbBuffer, pcbWritten);
+    }
+    pub fn Close(self: *const IPrintWriteStream) callconv(.Inline) void {
+        return @as(*const IPrintWriteStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IPrintWriteStream, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintWriteStreamFlush_Value = Guid.initString("07d11ff8-1753-4873-b749-6cdaf068e4c3");
@@ -1932,7 +2016,10 @@ pub const IPrintWriteStreamFlush = extern union {
             return @as(*const IPrintWriteStreamFlush.VTable, @ptrCast(self.vtable)).FlushData(@as(*const IPrintWriteStreamFlush, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FlushData(self: *const IPrintWriteStreamFlush) callconv(.Inline) HRESULT {
+        return @as(*const IPrintWriteStreamFlush.VTable, @ptrCast(self.vtable)).FlushData(@as(*const IPrintWriteStreamFlush, @ptrCast(self)));
+    }
 };
 
 const IID_IInterFilterCommunicator_Value = Guid.initString("4daf1e69-81fd-462d-940f-8cd3ddf56fca");
@@ -1962,7 +2049,13 @@ pub const IInterFilterCommunicator = extern union {
             return @as(*const IInterFilterCommunicator.VTable, @ptrCast(self.vtable)).RequestWriter(@as(*const IInterFilterCommunicator, @ptrCast(self)), ppIWriter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RequestReader(self: *const IInterFilterCommunicator, ppIReader: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IInterFilterCommunicator.VTable, @ptrCast(self.vtable)).RequestReader(@as(*const IInterFilterCommunicator, @ptrCast(self)), ppIReader);
+    }
+    pub fn RequestWriter(self: *const IInterFilterCommunicator, ppIWriter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IInterFilterCommunicator.VTable, @ptrCast(self.vtable)).RequestWriter(@as(*const IInterFilterCommunicator, @ptrCast(self)), ppIWriter);
+    }
 };
 
 const IID_IPrintPipelineManagerControl_Value = Guid.initString("aa3e4910-5889-4681-91ef-823ad4ed4e44");
@@ -1992,7 +2085,13 @@ pub const IPrintPipelineManagerControl = extern union {
             return @as(*const IPrintPipelineManagerControl.VTable, @ptrCast(self.vtable)).FilterFinished(@as(*const IPrintPipelineManagerControl, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RequestShutdown(self: *const IPrintPipelineManagerControl, hrReason: HRESULT, pReason: ?*IImgErrorInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineManagerControl.VTable, @ptrCast(self.vtable)).RequestShutdown(@as(*const IPrintPipelineManagerControl, @ptrCast(self)), hrReason, pReason);
+    }
+    pub fn FilterFinished(self: *const IPrintPipelineManagerControl) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineManagerControl.VTable, @ptrCast(self.vtable)).FilterFinished(@as(*const IPrintPipelineManagerControl, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintPipelinePropertyBag_Value = Guid.initString("8b8c99dc-7892-4a95-8a04-57422e9fbb47");
@@ -2032,7 +2131,16 @@ pub const IPrintPipelinePropertyBag = extern union {
             return @as(*const IPrintPipelinePropertyBag.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IPrintPipelinePropertyBag, @ptrCast(self)), pszName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelinePropertyBag.VTable, @ptrCast(self.vtable)).AddProperty(@as(*const IPrintPipelinePropertyBag, @ptrCast(self)), pszName, pVar);
+    }
+    pub fn GetProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelinePropertyBag.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IPrintPipelinePropertyBag, @ptrCast(self)), pszName, pVar);
+    }
+    pub fn DeleteProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16) callconv(.Inline) BOOL {
+        return @as(*const IPrintPipelinePropertyBag.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IPrintPipelinePropertyBag, @ptrCast(self)), pszName);
+    }
 };
 
 const IID_IPrintPipelineProgressReport_Value = Guid.initString("edc12c7c-ed40-4ea5-96a6-5e4397497a61");
@@ -2054,7 +2162,10 @@ pub const IPrintPipelineProgressReport = extern union {
             return @as(*const IPrintPipelineProgressReport.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const IPrintPipelineProgressReport, @ptrCast(self)), update);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReportProgress(self: *const IPrintPipelineProgressReport, update: EXpsJobConsumption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineProgressReport.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const IPrintPipelineProgressReport, @ptrCast(self)), update);
+    }
 };
 
 const IID_IPrintClassObjectFactory_Value = Guid.initString("9af593dd-9b02-48a8-9bad-69ace423f88b");
@@ -2078,7 +2189,10 @@ pub const IPrintClassObjectFactory = extern union {
             return @as(*const IPrintClassObjectFactory.VTable, @ptrCast(self.vtable)).GetPrintClassObject(@as(*const IPrintClassObjectFactory, @ptrCast(self)), pszPrinterName, riid, ppNewObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPrintClassObject(self: *const IPrintClassObjectFactory, pszPrinterName: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPrintClassObjectFactory.VTable, @ptrCast(self.vtable)).GetPrintClassObject(@as(*const IPrintClassObjectFactory, @ptrCast(self)), pszPrinterName, riid, ppNewObject);
+    }
 };
 
 const IID_IPrintPipelineFilter_Value = Guid.initString("cdb62fc0-8bed-434e-86fb-a2cae55f19ea");
@@ -2116,7 +2230,16 @@ pub const IPrintPipelineFilter = extern union {
             return @as(*const IPrintPipelineFilter.VTable, @ptrCast(self.vtable)).StartOperation(@as(*const IPrintPipelineFilter, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InitializeFilter(self: *const IPrintPipelineFilter, pINegotiation: ?*IInterFilterCommunicator, pIPropertyBag: ?*IPrintPipelinePropertyBag, pIPipelineControl: ?*IPrintPipelineManagerControl) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineFilter.VTable, @ptrCast(self.vtable)).InitializeFilter(@as(*const IPrintPipelineFilter, @ptrCast(self)), pINegotiation, pIPropertyBag, pIPipelineControl);
+    }
+    pub fn ShutdownOperation(self: *const IPrintPipelineFilter) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineFilter.VTable, @ptrCast(self.vtable)).ShutdownOperation(@as(*const IPrintPipelineFilter, @ptrCast(self)));
+    }
+    pub fn StartOperation(self: *const IPrintPipelineFilter) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPipelineFilter.VTable, @ptrCast(self.vtable)).StartOperation(@as(*const IPrintPipelineFilter, @ptrCast(self)));
+    }
 };
 
 const IID_IXpsDocumentProvider_Value = Guid.initString("b8cf8530-5562-47c4-ab67-b1f69ecf961e");
@@ -2138,7 +2261,10 @@ pub const IXpsDocumentProvider = extern union {
             return @as(*const IXpsDocumentProvider.VTable, @ptrCast(self.vtable)).GetXpsPart(@as(*const IXpsDocumentProvider, @ptrCast(self)), ppIXpsPart);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetXpsPart(self: *const IXpsDocumentProvider, ppIXpsPart: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentProvider.VTable, @ptrCast(self.vtable)).GetXpsPart(@as(*const IXpsDocumentProvider, @ptrCast(self)), ppIXpsPart);
+    }
 };
 
 const IID_IXpsDocumentConsumer_Value = Guid.initString("4368d8a2-4181-4a9f-b295-3d9a38bb9ba0");
@@ -2210,7 +2336,28 @@ pub const IXpsDocumentConsumer = extern union {
             return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).GetNewEmptyPart(@as(*const IXpsDocumentConsumer, @ptrCast(self)), uri, riid, ppNewObject, ppWriteStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SendXpsUnknown(self: *const IXpsDocumentConsumer, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).SendXpsUnknown(@as(*const IXpsDocumentConsumer, @ptrCast(self)), pUnknown);
+    }
+    pub fn SendXpsDocument(self: *const IXpsDocumentConsumer, pIXpsDocument: ?*IXpsDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).SendXpsDocument(@as(*const IXpsDocumentConsumer, @ptrCast(self)), pIXpsDocument);
+    }
+    pub fn SendFixedDocumentSequence(self: *const IXpsDocumentConsumer, pIFixedDocumentSequence: ?*IFixedDocumentSequence) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).SendFixedDocumentSequence(@as(*const IXpsDocumentConsumer, @ptrCast(self)), pIFixedDocumentSequence);
+    }
+    pub fn SendFixedDocument(self: *const IXpsDocumentConsumer, pIFixedDocument: ?*IFixedDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).SendFixedDocument(@as(*const IXpsDocumentConsumer, @ptrCast(self)), pIFixedDocument);
+    }
+    pub fn SendFixedPage(self: *const IXpsDocumentConsumer, pIFixedPage: ?*IFixedPage) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).SendFixedPage(@as(*const IXpsDocumentConsumer, @ptrCast(self)), pIFixedPage);
+    }
+    pub fn CloseSender(self: *const IXpsDocumentConsumer) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).CloseSender(@as(*const IXpsDocumentConsumer, @ptrCast(self)));
+    }
+    pub fn GetNewEmptyPart(self: *const IXpsDocumentConsumer, uri: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque, ppWriteStream: ?*?*IPrintWriteStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocumentConsumer.VTable, @ptrCast(self.vtable)).GetNewEmptyPart(@as(*const IXpsDocumentConsumer, @ptrCast(self)), uri, riid, ppNewObject, ppWriteStream);
+    }
 };
 
 const IID_IXpsDocument_Value = Guid.initString("e8d907db-62a9-4a95-abe7-e01763dd30f8");
@@ -2240,7 +2387,13 @@ pub const IXpsDocument = extern union {
             return @as(*const IXpsDocument.VTable, @ptrCast(self.vtable)).SetThumbnail(@as(*const IXpsDocument, @ptrCast(self)), pThumbnail);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetThumbnail(self: *const IXpsDocument, ppThumbnail: ?*?*IPartThumbnail) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocument.VTable, @ptrCast(self.vtable)).GetThumbnail(@as(*const IXpsDocument, @ptrCast(self)), ppThumbnail);
+    }
+    pub fn SetThumbnail(self: *const IXpsDocument, pThumbnail: ?*IPartThumbnail) callconv(.Inline) HRESULT {
+        return @as(*const IXpsDocument.VTable, @ptrCast(self.vtable)).SetThumbnail(@as(*const IXpsDocument, @ptrCast(self)), pThumbnail);
+    }
 };
 
 const IID_IFixedDocumentSequence_Value = Guid.initString("8028d181-2c32-4249-8493-1bfb22045574");
@@ -2278,7 +2431,16 @@ pub const IFixedDocumentSequence = extern union {
             return @as(*const IFixedDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicket(@as(*const IFixedDocumentSequence, @ptrCast(self)), pPrintTicket);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUri(self: *const IFixedDocumentSequence, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocumentSequence.VTable, @ptrCast(self.vtable)).GetUri(@as(*const IFixedDocumentSequence, @ptrCast(self)), uri);
+    }
+    pub fn GetPrintTicket(self: *const IFixedDocumentSequence, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocumentSequence.VTable, @ptrCast(self.vtable)).GetPrintTicket(@as(*const IFixedDocumentSequence, @ptrCast(self)), ppPrintTicket);
+    }
+    pub fn SetPrintTicket(self: *const IFixedDocumentSequence, pPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicket(@as(*const IFixedDocumentSequence, @ptrCast(self)), pPrintTicket);
+    }
 };
 
 const IID_IFixedDocument_Value = Guid.initString("f222ca9f-9968-4db9-81bd-abaebf15f93f");
@@ -2316,7 +2478,16 @@ pub const IFixedDocument = extern union {
             return @as(*const IFixedDocument.VTable, @ptrCast(self.vtable)).SetPrintTicket(@as(*const IFixedDocument, @ptrCast(self)), pPrintTicket);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUri(self: *const IFixedDocument, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocument.VTable, @ptrCast(self.vtable)).GetUri(@as(*const IFixedDocument, @ptrCast(self)), uri);
+    }
+    pub fn GetPrintTicket(self: *const IFixedDocument, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocument.VTable, @ptrCast(self.vtable)).GetPrintTicket(@as(*const IFixedDocument, @ptrCast(self)), ppPrintTicket);
+    }
+    pub fn SetPrintTicket(self: *const IFixedDocument, pPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedDocument.VTable, @ptrCast(self.vtable)).SetPrintTicket(@as(*const IFixedDocument, @ptrCast(self)), pPrintTicket);
+    }
 };
 
 const IID_IPartBase_Value = Guid.initString("36d51e28-369e-43ba-a666-9540c62c3f58");
@@ -2362,7 +2533,19 @@ pub const IPartBase = extern union {
             return @as(*const IPartBase.VTable, @ptrCast(self.vtable)).SetPartCompression(@as(*const IPartBase, @ptrCast(self)), compression);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUri(self: *const IPartBase, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPartBase.VTable, @ptrCast(self.vtable)).GetUri(@as(*const IPartBase, @ptrCast(self)), uri);
+    }
+    pub fn GetStream(self: *const IPartBase, ppStream: ?*?*IPrintReadStream) callconv(.Inline) HRESULT {
+        return @as(*const IPartBase.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IPartBase, @ptrCast(self)), ppStream);
+    }
+    pub fn GetPartCompression(self: *const IPartBase, pCompression: ?*EXpsCompressionOptions) callconv(.Inline) HRESULT {
+        return @as(*const IPartBase.VTable, @ptrCast(self.vtable)).GetPartCompression(@as(*const IPartBase, @ptrCast(self)), pCompression);
+    }
+    pub fn SetPartCompression(self: *const IPartBase, compression: EXpsCompressionOptions) callconv(.Inline) HRESULT {
+        return @as(*const IPartBase.VTable, @ptrCast(self.vtable)).SetPartCompression(@as(*const IPartBase, @ptrCast(self)), compression);
+    }
 };
 
 const IID_IFixedPage_Value = Guid.initString("3d9f6448-7e95-4cb5-94fb-0180c2883a57");
@@ -2433,7 +2616,28 @@ pub const IFixedPage = extern union {
             return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).GetXpsPartIterator(@as(*const IFixedPage, @ptrCast(self)), pXpsPartIt);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
+    pub fn GetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).GetPrintTicket(@as(*const IFixedPage, @ptrCast(self)), ppPrintTicket);
+    }
+    pub fn GetPagePart(self: *const IFixedPage, uri: ?[*:0]const u16, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).GetPagePart(@as(*const IFixedPage, @ptrCast(self)), uri, ppUnk);
+    }
+    pub fn GetWriteStream(self: *const IFixedPage, ppWriteStream: ?*?*IPrintWriteStream) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IFixedPage, @ptrCast(self)), ppWriteStream);
+    }
+    pub fn SetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).SetPrintTicket(@as(*const IFixedPage, @ptrCast(self)), ppPrintTicket);
+    }
+    pub fn SetPagePart(self: *const IFixedPage, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).SetPagePart(@as(*const IFixedPage, @ptrCast(self)), pUnk);
+    }
+    pub fn DeleteResource(self: *const IFixedPage, uri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).DeleteResource(@as(*const IFixedPage, @ptrCast(self)), uri);
+    }
+    pub fn GetXpsPartIterator(self: *const IFixedPage, pXpsPartIt: ?*?*IXpsPartIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFixedPage.VTable, @ptrCast(self.vtable)).GetXpsPartIterator(@as(*const IFixedPage, @ptrCast(self)), pXpsPartIt);
+    }
 };
 
 const IID_IPartImage_Value = Guid.initString("725f2e3c-401a-4705-9de0-fe6f1353b87f");
@@ -2463,7 +2667,13 @@ pub const IPartImage = extern union {
             return @as(*const IPartImage.VTable, @ptrCast(self.vtable)).SetImageContent(@as(*const IPartImage, @ptrCast(self)), pContentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
+    pub fn GetImageProperties(self: *const IPartImage, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPartImage.VTable, @ptrCast(self.vtable)).GetImageProperties(@as(*const IPartImage, @ptrCast(self)), pContentType);
+    }
+    pub fn SetImageContent(self: *const IPartImage, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPartImage.VTable, @ptrCast(self.vtable)).SetImageContent(@as(*const IPartImage, @ptrCast(self)), pContentType);
+    }
 };
 
 const IID_IPartFont_Value = Guid.initString("e07fe0ab-1124-43d0-a865-e8ffb6a3ea82");
@@ -2502,7 +2712,16 @@ pub const IPartFont = extern union {
             return @as(*const IPartFont.VTable, @ptrCast(self.vtable)).SetFontOptions(@as(*const IPartFont, @ptrCast(self)), options);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
+    pub fn GetFontProperties(self: *const IPartFont, pContentType: ?*?BSTR, pFontOptions: ?*EXpsFontOptions) callconv(.Inline) HRESULT {
+        return @as(*const IPartFont.VTable, @ptrCast(self.vtable)).GetFontProperties(@as(*const IPartFont, @ptrCast(self)), pContentType, pFontOptions);
+    }
+    pub fn SetFontContent(self: *const IPartFont, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPartFont.VTable, @ptrCast(self.vtable)).SetFontContent(@as(*const IPartFont, @ptrCast(self)), pContentType);
+    }
+    pub fn SetFontOptions(self: *const IPartFont, options: EXpsFontOptions) callconv(.Inline) HRESULT {
+        return @as(*const IPartFont.VTable, @ptrCast(self.vtable)).SetFontOptions(@as(*const IPartFont, @ptrCast(self)), options);
+    }
 };
 
 const IID_IPartFont2_Value = Guid.initString("511e025f-d6cb-43be-bf65-63fe88515a39");
@@ -2524,7 +2743,10 @@ pub const IPartFont2 = extern union {
             return @as(*const IPartFont2.VTable, @ptrCast(self.vtable)).GetFontRestriction(@as(*const IPartFont2, @ptrCast(self)), pRestriction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartFont.MethodMixin(@This());
+    pub fn GetFontRestriction(self: *const IPartFont2, pRestriction: ?*EXpsFontRestriction) callconv(.Inline) HRESULT {
+        return @as(*const IPartFont2.VTable, @ptrCast(self.vtable)).GetFontRestriction(@as(*const IPartFont2, @ptrCast(self)), pRestriction);
+    }
 };
 
 const IID_IPartThumbnail_Value = Guid.initString("027ed1c9-ba39-4cc5-aa55-7ec3a0de171a");
@@ -2554,7 +2776,13 @@ pub const IPartThumbnail = extern union {
             return @as(*const IPartThumbnail.VTable, @ptrCast(self.vtable)).SetThumbnailContent(@as(*const IPartThumbnail, @ptrCast(self)), pContentType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
+    pub fn GetThumbnailProperties(self: *const IPartThumbnail, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPartThumbnail.VTable, @ptrCast(self.vtable)).GetThumbnailProperties(@as(*const IPartThumbnail, @ptrCast(self)), pContentType);
+    }
+    pub fn SetThumbnailContent(self: *const IPartThumbnail, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPartThumbnail.VTable, @ptrCast(self.vtable)).SetThumbnailContent(@as(*const IPartThumbnail, @ptrCast(self)), pContentType);
+    }
 };
 
 const IID_IPartPrintTicket_Value = Guid.initString("4a0f50f6-f9a2-41f0-99e7-5ae955be8e9e");
@@ -2568,7 +2796,7 @@ pub const IPartPrintTicket = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPartBase.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
 };
 
 const IID_IPartColorProfile_Value = Guid.initString("63cca95b-7d18-4762-b15e-98658693d24a");
@@ -2582,7 +2810,7 @@ pub const IPartColorProfile = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPartBase.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
 };
 
 const IID_IPartResourceDictionary_Value = Guid.initString("16cfce6d-e744-4fb3-b474-f1d54f024a01");
@@ -2596,7 +2824,7 @@ pub const IPartResourceDictionary = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPartBase.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPartBase.MethodMixin(@This());
 };
 
 const IID_IXpsPartIterator_Value = Guid.initString("0021d3cd-af6f-42ab-9999-14bc82a62d2e");
@@ -2640,7 +2868,19 @@ pub const IXpsPartIterator = extern union {
             return @as(*const IXpsPartIterator.VTable, @ptrCast(self.vtable)).Next(@as(*const IXpsPartIterator, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Reset(self: *const IXpsPartIterator) callconv(.Inline) void {
+        return @as(*const IXpsPartIterator.VTable, @ptrCast(self.vtable)).Reset(@as(*const IXpsPartIterator, @ptrCast(self)));
+    }
+    pub fn Current(self: *const IXpsPartIterator, pUri: ?*?BSTR, ppXpsPart: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXpsPartIterator.VTable, @ptrCast(self.vtable)).Current(@as(*const IXpsPartIterator, @ptrCast(self)), pUri, ppXpsPart);
+    }
+    pub fn IsDone(self: *const IXpsPartIterator) callconv(.Inline) BOOL {
+        return @as(*const IXpsPartIterator.VTable, @ptrCast(self.vtable)).IsDone(@as(*const IXpsPartIterator, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IXpsPartIterator) callconv(.Inline) void {
+        return @as(*const IXpsPartIterator.VTable, @ptrCast(self.vtable)).Next(@as(*const IXpsPartIterator, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintReadStreamFactory_Value = Guid.initString("acb971e3-df8d-4fc2-bee6-0609d15f3cf9");
@@ -2662,7 +2902,10 @@ pub const IPrintReadStreamFactory = extern union {
             return @as(*const IPrintReadStreamFactory.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IPrintReadStreamFactory, @ptrCast(self)), ppStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStream(self: *const IPrintReadStreamFactory, ppStream: ?*?*IPrintReadStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrintReadStreamFactory.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IPrintReadStreamFactory, @ptrCast(self)), ppStream);
+    }
 };
 
 const IID_IPartDiscardControl_Value = Guid.initString("cc350c00-095b-42a5-bf0f-c8780edadb3c");
@@ -2685,7 +2928,10 @@ pub const IPartDiscardControl = extern union {
             return @as(*const IPartDiscardControl.VTable, @ptrCast(self.vtable)).GetDiscardProperties(@as(*const IPartDiscardControl, @ptrCast(self)), uriSentinelPage, uriPartToDiscard);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDiscardProperties(self: *const IPartDiscardControl, uriSentinelPage: ?*?BSTR, uriPartToDiscard: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPartDiscardControl.VTable, @ptrCast(self.vtable)).GetDiscardProperties(@as(*const IPartDiscardControl, @ptrCast(self)), uriSentinelPage, uriPartToDiscard);
+    }
 };
 
 pub const OPTPARAM = extern struct {
@@ -4320,7 +4566,34 @@ pub const IPrintCoreHelper = extern union {
             return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).CreateInstanceOfMSXMLObject(@as(*const IPrintCoreHelper, @ptrCast(self)), rclsid, pUnkOuter, dwClsContext, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOption(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).GetOption(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureRequested, ppszOption);
+    }
+    pub fn SetOptions(self: *const IPrintCoreHelper, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
+    }
+    pub fn EnumConstrainedOptions(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumConstrainedOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
+    }
+    pub fn WhyConstrained(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).WhyConstrained(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
+    }
+    pub fn EnumFeatures(self: *const IPrintCoreHelper, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumFeatures(@as(*const IPrintCoreHelper, @ptrCast(self)), pFeatureList, pdwNumFeatures);
+    }
+    pub fn EnumOptions(self: *const IPrintCoreHelper, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pszFeatureKeyword, pOptionList, pdwNumOptions);
+    }
+    pub fn GetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).GetFontSubstitution(@as(*const IPrintCoreHelper, @ptrCast(self)), pszTrueTypeFontName, ppszDevFontName);
+    }
+    pub fn SetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).SetFontSubstitution(@as(*const IPrintCoreHelper, @ptrCast(self)), pszTrueTypeFontName, pszDevFontName);
+    }
+    pub fn CreateInstanceOfMSXMLObject(self: *const IPrintCoreHelper, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).CreateInstanceOfMSXMLObject(@as(*const IPrintCoreHelper, @ptrCast(self)), rclsid, pUnkOuter, dwClsContext, riid, ppv);
+    }
 };
 
 const IID_IPrintCoreHelperUni_Value = Guid.initString("7e8e51d6-e5ee-4426-817b-958b9444eb79");
@@ -4354,7 +4627,13 @@ pub const IPrintCoreHelperUni = extern union {
             return @as(*const IPrintCoreHelperUni.VTable, @ptrCast(self.vtable)).CreateDefaultGDLSnapshot(@as(*const IPrintCoreHelperUni, @ptrCast(self)), dwFlags, ppSnapshotStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintCoreHelper.MethodMixin(@This());
+    pub fn CreateGDLSnapshot(self: *const IPrintCoreHelperUni, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperUni.VTable, @ptrCast(self.vtable)).CreateGDLSnapshot(@as(*const IPrintCoreHelperUni, @ptrCast(self)), pDevmode, cbSize, dwFlags, ppSnapshotStream);
+    }
+    pub fn CreateDefaultGDLSnapshot(self: *const IPrintCoreHelperUni, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperUni.VTable, @ptrCast(self.vtable)).CreateDefaultGDLSnapshot(@as(*const IPrintCoreHelperUni, @ptrCast(self)), dwFlags, ppSnapshotStream);
+    }
 };
 
 const IID_IPrintCoreHelperUni2_Value = Guid.initString("6c8afdfc-ead0-4d2d-8071-9bf0175a6c3a");
@@ -4381,7 +4660,10 @@ pub const IPrintCoreHelperUni2 = extern union {
             return @as(*const IPrintCoreHelperUni2.VTable, @ptrCast(self.vtable)).GetNamedCommand(@as(*const IPrintCoreHelperUni2, @ptrCast(self)), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintCoreHelperUni.MethodMixin(@This());
+    pub fn GetNamedCommand(self: *const IPrintCoreHelperUni2, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperUni2.VTable, @ptrCast(self.vtable)).GetNamedCommand(@as(*const IPrintCoreHelperUni2, @ptrCast(self)), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
+    }
 };
 
 const IID_IPrintCoreHelperPS_Value = Guid.initString("c2c14f6f-95d3-4d63-96cf-6bd9e6c907c2");
@@ -4431,7 +4713,16 @@ pub const IPrintCoreHelperPS = extern union {
             return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetOptionAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintCoreHelper.MethodMixin(@This());
+    pub fn GetGlobalAttribute(self: *const IPrintCoreHelperPS, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetGlobalAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszAttribute, pdwDataType, ppbData, pcbSize);
+    }
+    pub fn GetFeatureAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetFeatureAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+    }
+    pub fn GetOptionAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetOptionAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+    }
 };
 
 const IID_IPrintOemCommon_Value = Guid.initString("7f42285e-91d5-11d1-8820-00c04fb961ec");
@@ -4466,7 +4757,13 @@ pub const IPrintOemCommon = extern union {
             return @as(*const IPrintOemCommon.VTable, @ptrCast(self.vtable)).DevMode(@as(*const IPrintOemCommon, @ptrCast(self)), dwMode, pOemDMParam);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInfo(self: *const IPrintOemCommon, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemCommon.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IPrintOemCommon, @ptrCast(self)), dwMode, pBuffer, cbSize, pcbNeeded);
+    }
+    pub fn DevMode(self: *const IPrintOemCommon, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemCommon.VTable, @ptrCast(self.vtable)).DevMode(@as(*const IPrintOemCommon, @ptrCast(self)), dwMode, pOemDMParam);
+    }
 };
 
 const IID_IPrintOemUI_Value = Guid.initString("c6a7a9d0-774c-11d1-947f-00a0c90640b8");
@@ -4609,7 +4906,43 @@ pub const IPrintOemUI = extern union {
             return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).UpdateExternalFonts(@as(*const IPrintOemUI, @ptrCast(self)), hPrinter, hHeap, pwstrCartridges);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintOemCommon.MethodMixin(@This());
+    pub fn PublishDriverInterface(self: *const IPrintOemUI, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).PublishDriverInterface(@as(*const IPrintOemUI, @ptrCast(self)), pIUnknown);
+    }
+    pub fn CommonUIProp(self: *const IPrintOemUI, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).CommonUIProp(@as(*const IPrintOemUI, @ptrCast(self)), dwMode, pOemCUIPParam);
+    }
+    pub fn DocumentPropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DocumentPropertySheets(@as(*const IPrintOemUI, @ptrCast(self)), pPSUIInfo, lParam);
+    }
+    pub fn DevicePropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DevicePropertySheets(@as(*const IPrintOemUI, @ptrCast(self)), pPSUIInfo, lParam);
+    }
+    pub fn DevQueryPrintEx(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DevQueryPrintEx(@as(*const IPrintOemUI, @ptrCast(self)), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
+    }
+    pub fn DeviceCapabilitiesA(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DeviceCapabilitiesA(@as(*const IPrintOemUI, @ptrCast(self)), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
+    }
+    pub fn UpgradePrinter(self: *const IPrintOemUI, dwLevel: u32, pDriverUpgradeInfo: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).UpgradePrinter(@as(*const IPrintOemUI, @ptrCast(self)), dwLevel, pDriverUpgradeInfo);
+    }
+    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).PrinterEvent(@as(*const IPrintOemUI, @ptrCast(self)), pPrinterName, iDriverEvent, dwFlags, lParam);
+    }
+    pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DriverEvent(@as(*const IPrintOemUI, @ptrCast(self)), dwDriverEvent, dwLevel, pDriverInfo, lParam);
+    }
+    pub fn QueryColorProfile(self: *const IPrintOemUI, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).QueryColorProfile(@as(*const IPrintOemUI, @ptrCast(self)), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
+    }
+    pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).FontInstallerDlgProc(@as(*const IPrintOemUI, @ptrCast(self)), hWnd, usMsg, wParam, lParam);
+    }
+    pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).UpdateExternalFonts(@as(*const IPrintOemUI, @ptrCast(self)), hPrinter, hHeap, pwstrCartridges);
+    }
 };
 
 const IID_IPrintOemUI2_Value = Guid.initString("292515f9-b54b-489b-9275-bab56821395e");
@@ -4657,7 +4990,16 @@ pub const IPrintOemUI2 = extern union {
             return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).DocumentEvent(@as(*const IPrintOemUI2, @ptrCast(self)), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintOemUI.MethodMixin(@This());
+    pub fn QueryJobAttributes(self: *const IPrintOemUI2, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).QueryJobAttributes(@as(*const IPrintOemUI2, @ptrCast(self)), hPrinter, pDevmode, dwLevel, lpAttributeInfo);
+    }
+    pub fn HideStandardUI(self: *const IPrintOemUI2, dwMode: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).HideStandardUI(@as(*const IPrintOemUI2, @ptrCast(self)), dwMode);
+    }
+    pub fn DocumentEvent(self: *const IPrintOemUI2, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).DocumentEvent(@as(*const IPrintOemUI2, @ptrCast(self)), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
+    }
 };
 
 const IID_IPrintOemUIMXDC_Value = Guid.initString("7349d725-e2c1-4dca-afb5-c13e91bc9306");
@@ -4710,7 +5052,16 @@ pub const IPrintOemUIMXDC = extern union {
             return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustDPI(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AdjustImageableArea(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustImageableArea(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
+    }
+    pub fn AdjustImageCompression(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustImageCompression(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
+    }
+    pub fn AdjustDPI(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustDPI(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
+    }
 };
 
 const IID_IPrintOemDriverUI_Value = Guid.initString("92b05d50-78bc-11d1-9480-00a0c90640b8");
@@ -4758,7 +5109,16 @@ pub const IPrintOemDriverUI = extern union {
             return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvUpdateUISetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), pci, pOptItem, dwPreviousSelection, dwMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DrvGetDriverSetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvGetDriverSetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
+    }
+    pub fn DrvUpgradeRegistrySetting(self: *const IPrintOemDriverUI, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvUpgradeRegistrySetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), hPrinter, pFeature, pOption);
+    }
+    pub fn DrvUpdateUISetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvUpdateUISetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), pci, pOptItem, dwPreviousSelection, dwMode);
+    }
 };
 
 const IID_IPrintCoreUI2_Value = Guid.initString("085ccfca-3adf-4c9e-b491-d851a6edc997");
@@ -4918,7 +5278,37 @@ pub const IPrintCoreUI2 = extern union {
             return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).QuerySimulationSupport(@as(*const IPrintCoreUI2, @ptrCast(self)), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintOemDriverUI.MethodMixin(@This());
+    pub fn GetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
+    }
+    pub fn SetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
+    }
+    pub fn EnumConstrainedOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumConstrainedOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
+    }
+    pub fn WhyConstrained(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).WhyConstrained(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
+    }
+    pub fn GetGlobalAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetGlobalAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+    }
+    pub fn GetFeatureAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetFeatureAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+    }
+    pub fn GetOptionAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetOptionAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+    }
+    pub fn EnumFeatures(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumFeatures(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
+    }
+    pub fn EnumOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
+    }
+    pub fn QuerySimulationSupport(self: *const IPrintCoreUI2, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).QuerySimulationSupport(@as(*const IPrintCoreUI2, @ptrCast(self)), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
+    }
 };
 
 pub const SHIMOPTS = enum(i32) {
@@ -5009,7 +5399,28 @@ pub const IPrintTicketProvider = extern union {
             return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ValidatePrintTicket(@as(*const IPrintTicketProvider, @ptrCast(self)), pBaseTicket);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSupportedVersions(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).GetSupportedVersions(@as(*const IPrintTicketProvider, @ptrCast(self)), hPrinter, ppVersions, cVersions);
+    }
+    pub fn BindPrinter(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).BindPrinter(@as(*const IPrintTicketProvider, @ptrCast(self)), hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
+    }
+    pub fn QueryDeviceNamespace(self: *const IPrintTicketProvider, pDefaultNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).QueryDeviceNamespace(@as(*const IPrintTicketProvider, @ptrCast(self)), pDefaultNamespace);
+    }
+    pub fn ConvertPrintTicketToDevMode(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ConvertPrintTicketToDevMode(@as(*const IPrintTicketProvider, @ptrCast(self)), pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
+    }
+    pub fn ConvertDevModeToPrintTicket(self: *const IPrintTicketProvider, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ConvertDevModeToPrintTicket(@as(*const IPrintTicketProvider, @ptrCast(self)), cbDevmode, pDevmode, pPrintTicket);
+    }
+    pub fn GetPrintCapabilities(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).GetPrintCapabilities(@as(*const IPrintTicketProvider, @ptrCast(self)), pPrintTicket, ppCapabilities);
+    }
+    pub fn ValidatePrintTicket(self: *const IPrintTicketProvider, pBaseTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ValidatePrintTicket(@as(*const IPrintTicketProvider, @ptrCast(self)), pBaseTicket);
+    }
 };
 
 const IID_IPrintTicketProvider2_Value = Guid.initString("b8a70ab2-3dfc-4fec-a074-511b13c651cb");
@@ -5042,7 +5453,13 @@ pub const IPrintTicketProvider2 = extern union {
             return @as(*const IPrintTicketProvider2.VTable, @ptrCast(self.vtable)).GetPrintDeviceResources(@as(*const IPrintTicketProvider2, @ptrCast(self)), pszLocaleName, pPrintTicket, ppDeviceResources);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintTicketProvider.MethodMixin(@This());
+    pub fn GetPrintDeviceCapabilities(self: *const IPrintTicketProvider2, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider2.VTable, @ptrCast(self.vtable)).GetPrintDeviceCapabilities(@as(*const IPrintTicketProvider2, @ptrCast(self)), pPrintTicket, ppDeviceCapabilities);
+    }
+    pub fn GetPrintDeviceResources(self: *const IPrintTicketProvider2, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+        return @as(*const IPrintTicketProvider2.VTable, @ptrCast(self.vtable)).GetPrintDeviceResources(@as(*const IPrintTicketProvider2, @ptrCast(self)), pszLocaleName, pPrintTicket, ppDeviceResources);
+    }
 };
 
 const CLSID_PrinterQueue_Value = Guid.initString("eb54c230-798c-4c9e-b461-29fad04039b1");
@@ -5095,7 +5512,16 @@ pub const IPrintSchemaElement = extern union {
             return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_NamespaceUri(@as(*const IPrintSchemaElement, @ptrCast(self)), pbstrNamespaceUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_XmlNode(self: *const IPrintSchemaElement, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_XmlNode(@as(*const IPrintSchemaElement, @ptrCast(self)), ppXmlNode);
+    }
+    pub fn get_Name(self: *const IPrintSchemaElement, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrintSchemaElement, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_NamespaceUri(self: *const IPrintSchemaElement, pbstrNamespaceUri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_NamespaceUri(@as(*const IPrintSchemaElement, @ptrCast(self)), pbstrNamespaceUri);
+    }
 };
 
 const IID_IPrintSchemaDisplayableElement_Value = Guid.initString("af45af49-d6aa-407d-bf87-3912236e9d94");
@@ -5118,7 +5544,10 @@ pub const IPrintSchemaDisplayableElement = extern union {
             return @as(*const IPrintSchemaDisplayableElement.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IPrintSchemaDisplayableElement, @ptrCast(self)), pbstrDisplayName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaElement.MethodMixin(@This());
+    pub fn get_DisplayName(self: *const IPrintSchemaDisplayableElement, pbstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaDisplayableElement.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IPrintSchemaDisplayableElement, @ptrCast(self)), pbstrDisplayName);
+    }
 };
 
 pub const PrintSchemaConstrainedSetting = enum(i32) {
@@ -5171,7 +5600,16 @@ pub const IPrintSchemaOption = extern union {
             return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IPrintSchemaOption, @ptrCast(self)), bstrName, bstrNamespaceUri, ppXmlValueNode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(@This());
+    pub fn get_Selected(self: *const IPrintSchemaOption, pbIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const IPrintSchemaOption, @ptrCast(self)), pbIsSelected);
+    }
+    pub fn get_Constrained(self: *const IPrintSchemaOption, pSetting: ?*PrintSchemaConstrainedSetting) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).get_Constrained(@as(*const IPrintSchemaOption, @ptrCast(self)), pSetting);
+    }
+    pub fn GetPropertyValue(self: *const IPrintSchemaOption, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IPrintSchemaOption, @ptrCast(self)), bstrName, bstrNamespaceUri, ppXmlValueNode);
+    }
 };
 
 const IID_IPrintSchemaPageMediaSizeOption_Value = Guid.initString("68746729-f493-4830-a10f-69028774605d");
@@ -5203,7 +5641,13 @@ pub const IPrintSchemaPageMediaSizeOption = extern union {
             return @as(*const IPrintSchemaPageMediaSizeOption.VTable, @ptrCast(self.vtable)).get_HeightInMicrons(@as(*const IPrintSchemaPageMediaSizeOption, @ptrCast(self)), pulHeight);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaOption.MethodMixin(@This());
+    pub fn get_WidthInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulWidth: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageMediaSizeOption.VTable, @ptrCast(self.vtable)).get_WidthInMicrons(@as(*const IPrintSchemaPageMediaSizeOption, @ptrCast(self)), pulWidth);
+    }
+    pub fn get_HeightInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulHeight: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageMediaSizeOption.VTable, @ptrCast(self.vtable)).get_HeightInMicrons(@as(*const IPrintSchemaPageMediaSizeOption, @ptrCast(self)), pulHeight);
+    }
 };
 
 const IID_IPrintSchemaNUpOption_Value = Guid.initString("1f6342f2-d848-42e3-8995-c10a9ef9a3ba");
@@ -5226,7 +5670,10 @@ pub const IPrintSchemaNUpOption = extern union {
             return @as(*const IPrintSchemaNUpOption.VTable, @ptrCast(self.vtable)).get_PagesPerSheet(@as(*const IPrintSchemaNUpOption, @ptrCast(self)), pulPagesPerSheet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaOption.MethodMixin(@This());
+    pub fn get_PagesPerSheet(self: *const IPrintSchemaNUpOption, pulPagesPerSheet: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaNUpOption.VTable, @ptrCast(self.vtable)).get_PagesPerSheet(@as(*const IPrintSchemaNUpOption, @ptrCast(self)), pulPagesPerSheet);
+    }
 };
 
 pub const PrintSchemaSelectionType = enum(i32) {
@@ -5274,7 +5721,16 @@ pub const IPrintSchemaOptionCollection = extern union {
             return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IPrintSchemaOptionCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), pulCount);
+    }
+    pub fn GetAt(self: *const IPrintSchemaOptionCollection, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), ulIndex, ppOption);
+    }
+    pub fn get__NewEnum(self: *const IPrintSchemaOptionCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IPrintSchemaFeature_Value = Guid.initString("ef189461-5d62-4626-8e57-ff83583c4826");
@@ -5334,7 +5790,22 @@ pub const IPrintSchemaFeature = extern union {
             return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_DisplayUI(@as(*const IPrintSchemaFeature, @ptrCast(self)), pbShow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(@This());
+    pub fn get_SelectedOption(self: *const IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_SelectedOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), ppOption);
+    }
+    pub fn put_SelectedOption(self: *const IPrintSchemaFeature, pOption: ?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).put_SelectedOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), pOption);
+    }
+    pub fn get_SelectionType(self: *const IPrintSchemaFeature, pSelectionType: ?*PrintSchemaSelectionType) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_SelectionType(@as(*const IPrintSchemaFeature, @ptrCast(self)), pSelectionType);
+    }
+    pub fn GetOption(self: *const IPrintSchemaFeature, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).GetOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), bstrName, bstrNamespaceUri, ppOption);
+    }
+    pub fn get_DisplayUI(self: *const IPrintSchemaFeature, pbShow: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_DisplayUI(@as(*const IPrintSchemaFeature, @ptrCast(self)), pbShow);
+    }
 };
 
 const IID_IPrintSchemaPageImageableSize_Value = Guid.initString("7c85bf5e-dc7c-4f61-839b-4107e1c9b68e");
@@ -5402,7 +5873,25 @@ pub const IPrintSchemaPageImageableSize = extern union {
             return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ExtentHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulExtentHeight);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaElement.MethodMixin(@This());
+    pub fn get_ImageableSizeWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeWidth: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ImageableSizeWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulImageableSizeWidth);
+    }
+    pub fn get_ImageableSizeHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeHeight: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ImageableSizeHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulImageableSizeHeight);
+    }
+    pub fn get_OriginWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginWidth: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_OriginWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulOriginWidth);
+    }
+    pub fn get_OriginHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginHeight: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_OriginHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulOriginHeight);
+    }
+    pub fn get_ExtentWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentWidth: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ExtentWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulExtentWidth);
+    }
+    pub fn get_ExtentHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentHeight: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ExtentHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulExtentHeight);
+    }
 };
 
 pub const PrintSchemaParameterDataType = enum(i32) {
@@ -5470,7 +5959,22 @@ pub const IPrintSchemaParameterDefinition = extern union {
             return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_RangeMax(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pRangeMax);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(@This());
+    pub fn get_UserInputRequired(self: *const IPrintSchemaParameterDefinition, pbIsRequired: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_UserInputRequired(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pbIsRequired);
+    }
+    pub fn get_UnitType(self: *const IPrintSchemaParameterDefinition, pbstrUnitType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_UnitType(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pbstrUnitType);
+    }
+    pub fn get_DataType(self: *const IPrintSchemaParameterDefinition, pDataType: ?*PrintSchemaParameterDataType) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_DataType(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pDataType);
+    }
+    pub fn get_RangeMin(self: *const IPrintSchemaParameterDefinition, pRangeMin: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_RangeMin(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pRangeMin);
+    }
+    pub fn get_RangeMax(self: *const IPrintSchemaParameterDefinition, pRangeMax: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_RangeMax(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pRangeMax);
+    }
 };
 
 const IID_IPrintSchemaParameterInitializer_Value = Guid.initString("52027082-0b74-4648-9564-828cc6cb656c");
@@ -5502,7 +6006,13 @@ pub const IPrintSchemaParameterInitializer = extern union {
             return @as(*const IPrintSchemaParameterInitializer.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IPrintSchemaParameterInitializer, @ptrCast(self)), pVar);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaElement.MethodMixin(@This());
+    pub fn get_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterInitializer.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IPrintSchemaParameterInitializer, @ptrCast(self)), pVar);
+    }
+    pub fn put_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaParameterInitializer.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IPrintSchemaParameterInitializer, @ptrCast(self)), pVar);
+    }
 };
 
 const IID_IPrintSchemaCapabilities_Value = Guid.initString("5a577640-501d-4927-bcd0-5ef57a7ed175");
@@ -5580,7 +6090,28 @@ pub const IPrintSchemaCapabilities = extern union {
             return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pFeature, ppOptionCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaElement.MethodMixin(@This());
+    pub fn GetFeatureByKeyName(self: *const IPrintSchemaCapabilities, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetFeatureByKeyName(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), bstrKeyName, ppFeature);
+    }
+    pub fn GetFeature(self: *const IPrintSchemaCapabilities, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetFeature(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), bstrName, bstrNamespaceUri, ppFeature);
+    }
+    pub fn get_PageImageableSize(self: *const IPrintSchemaCapabilities, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_PageImageableSize(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), ppPageImageableSize);
+    }
+    pub fn get_JobCopiesAllDocumentsMinValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMinValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocumentsMinValue(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pulJobCopiesAllDocumentsMinValue);
+    }
+    pub fn get_JobCopiesAllDocumentsMaxValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMaxValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocumentsMaxValue(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pulJobCopiesAllDocumentsMaxValue);
+    }
+    pub fn GetSelectedOptionInPrintTicket(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetSelectedOptionInPrintTicket(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pFeature, ppOption);
+    }
+    pub fn GetOptions(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pFeature, ppOptionCollection);
+    }
 };
 
 const IID_IPrintSchemaCapabilities2_Value = Guid.initString("b58845f4-9970-4d87-a636-169fb82ed642");
@@ -5604,7 +6135,10 @@ pub const IPrintSchemaCapabilities2 = extern union {
             return @as(*const IPrintSchemaCapabilities2.VTable, @ptrCast(self.vtable)).GetParameterDefinition(@as(*const IPrintSchemaCapabilities2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterDefinition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaCapabilities.MethodMixin(@This());
+    pub fn GetParameterDefinition(self: *const IPrintSchemaCapabilities2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaCapabilities2.VTable, @ptrCast(self.vtable)).GetParameterDefinition(@as(*const IPrintSchemaCapabilities2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterDefinition);
+    }
 };
 
 const IID_IPrintSchemaAsyncOperation_Value = Guid.initString("143c8dcb-d37f-47f7-88e8-6b1d21f2c5f7");
@@ -5632,7 +6166,13 @@ pub const IPrintSchemaAsyncOperation = extern union {
             return @as(*const IPrintSchemaAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintSchemaAsyncOperation, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Start(self: *const IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaAsyncOperation.VTable, @ptrCast(self.vtable)).Start(@as(*const IPrintSchemaAsyncOperation, @ptrCast(self)));
+    }
+    pub fn Cancel(self: *const IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintSchemaAsyncOperation, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintSchemaTicket_Value = Guid.initString("e480b861-4708-4e6d-a5b4-a2b4eeb9baa4");
@@ -5715,7 +6255,31 @@ pub const IPrintSchemaTicket = extern union {
             return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).put_JobCopiesAllDocuments(@as(*const IPrintSchemaTicket, @ptrCast(self)), ulJobCopiesAllDocuments);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaElement.MethodMixin(@This());
+    pub fn GetFeatureByKeyName(self: *const IPrintSchemaTicket, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetFeatureByKeyName(@as(*const IPrintSchemaTicket, @ptrCast(self)), bstrKeyName, ppFeature);
+    }
+    pub fn GetFeature(self: *const IPrintSchemaTicket, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetFeature(@as(*const IPrintSchemaTicket, @ptrCast(self)), bstrName, bstrNamespaceUri, ppFeature);
+    }
+    pub fn ValidateAsync(self: *const IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).ValidateAsync(@as(*const IPrintSchemaTicket, @ptrCast(self)), ppAsyncOperation);
+    }
+    pub fn CommitAsync(self: *const IPrintSchemaTicket, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).CommitAsync(@as(*const IPrintSchemaTicket, @ptrCast(self)), pPrintTicketCommit, ppAsyncOperation);
+    }
+    pub fn NotifyXmlChanged(self: *const IPrintSchemaTicket) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).NotifyXmlChanged(@as(*const IPrintSchemaTicket, @ptrCast(self)));
+    }
+    pub fn GetCapabilities(self: *const IPrintSchemaTicket, ppCapabilities: ?*?*IPrintSchemaCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IPrintSchemaTicket, @ptrCast(self)), ppCapabilities);
+    }
+    pub fn get_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, pulJobCopiesAllDocuments: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocuments(@as(*const IPrintSchemaTicket, @ptrCast(self)), pulJobCopiesAllDocuments);
+    }
+    pub fn put_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, ulJobCopiesAllDocuments: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).put_JobCopiesAllDocuments(@as(*const IPrintSchemaTicket, @ptrCast(self)), ulJobCopiesAllDocuments);
+    }
 };
 
 const IID_IPrintSchemaTicket2_Value = Guid.initString("2ec1f844-766a-47a1-91f4-2eeb6190f80c");
@@ -5739,7 +6303,10 @@ pub const IPrintSchemaTicket2 = extern union {
             return @as(*const IPrintSchemaTicket2.VTable, @ptrCast(self.vtable)).GetParameterInitializer(@as(*const IPrintSchemaTicket2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterInitializer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintSchemaTicket.MethodMixin(@This());
+    pub fn GetParameterInitializer(self: *const IPrintSchemaTicket2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaTicket2.VTable, @ptrCast(self.vtable)).GetParameterInitializer(@as(*const IPrintSchemaTicket2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterInitializer);
+    }
 };
 
 const IID_IPrintSchemaAsyncOperationEvent_Value = Guid.initString("23adbb16-0133-4906-b29a-1dce1d026379");
@@ -5762,7 +6329,10 @@ pub const IPrintSchemaAsyncOperationEvent = extern union {
             return @as(*const IPrintSchemaAsyncOperationEvent.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrintSchemaAsyncOperationEvent, @ptrCast(self)), pTicket, hrOperation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Completed(self: *const IPrintSchemaAsyncOperationEvent, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintSchemaAsyncOperationEvent.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrintSchemaAsyncOperationEvent, @ptrCast(self)), pTicket, hrOperation);
+    }
 };
 
 const IID_IPrinterScriptableSequentialStream_Value = Guid.initString("2072838a-316f-467a-a949-27f68c44a854");
@@ -5794,7 +6364,13 @@ pub const IPrinterScriptableSequentialStream = extern union {
             return @as(*const IPrinterScriptableSequentialStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IPrinterScriptableSequentialStream, @ptrCast(self)), pArray, pcbWritten);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Read(self: *const IPrinterScriptableSequentialStream, cbRead: i32, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptableSequentialStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IPrinterScriptableSequentialStream, @ptrCast(self)), cbRead, ppArray);
+    }
+    pub fn Write(self: *const IPrinterScriptableSequentialStream, pArray: ?*IDispatch, pcbWritten: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptableSequentialStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IPrinterScriptableSequentialStream, @ptrCast(self)), pArray, pcbWritten);
+    }
 };
 
 const IID_IPrinterScriptableStream_Value = Guid.initString("7edf9a92-4750-41a5-a17f-879a6f4f7dcb");
@@ -5833,7 +6409,16 @@ pub const IPrinterScriptableStream = extern union {
             return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IPrinterScriptableStream, @ptrCast(self)), lSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrinterScriptableSequentialStream.MethodMixin(@This());
+    pub fn Commit(self: *const IPrinterScriptableStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).Commit(@as(*const IPrinterScriptableStream, @ptrCast(self)));
+    }
+    pub fn Seek(self: *const IPrinterScriptableStream, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const IPrinterScriptableStream, @ptrCast(self)), lOffset, streamSeek, plPosition);
+    }
+    pub fn SetSize(self: *const IPrinterScriptableStream, lSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IPrinterScriptableStream, @ptrCast(self)), lSize);
+    }
 };
 
 const IID_IPrinterPropertyBag_Value = Guid.initString("fea77364-df95-4a23-a905-019b79a8e481");
@@ -5939,7 +6524,37 @@ pub const IPrinterPropertyBag = extern union {
             return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetBool(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pbValue);
+    }
+    pub fn SetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetBool(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, bValue);
+    }
+    pub fn GetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetInt32(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pnValue);
+    }
+    pub fn SetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetInt32(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, nValue);
+    }
+    pub fn GetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetString(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pbstrValue);
+    }
+    pub fn SetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetString(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, bstrValue);
+    }
+    pub fn GetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetBytes(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pcbValue, ppValue);
+    }
+    pub fn SetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetBytes(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, cbValue, pValue);
+    }
+    pub fn GetReadStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetReadStream(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, ppValue);
+    }
+    pub fn GetWriteStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, ppValue);
+    }
 };
 
 const IID_IPrinterScriptablePropertyBag_Value = Guid.initString("91c7765f-ed57-49ad-8b01-dc24816a5294");
@@ -6043,7 +6658,37 @@ pub const IPrinterScriptablePropertyBag = extern union {
             return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetBool(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pbValue);
+    }
+    pub fn SetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetBool(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, bValue);
+    }
+    pub fn GetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetInt32(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pnValue);
+    }
+    pub fn SetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetInt32(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, nValue);
+    }
+    pub fn GetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetString(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pbstrValue);
+    }
+    pub fn SetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetString(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, bstrValue);
+    }
+    pub fn GetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetBytes(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppArray);
+    }
+    pub fn SetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pArray: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetBytes(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pArray);
+    }
+    pub fn GetReadStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetReadStream(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppStream);
+    }
+    pub fn GetWriteStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppStream);
+    }
 };
 
 const IID_IPrinterScriptablePropertyBag2_Value = Guid.initString("2a1c53c4-8638-4b3e-b518-2773c94556a3");
@@ -6066,7 +6711,10 @@ pub const IPrinterScriptablePropertyBag2 = extern union {
             return @as(*const IPrinterScriptablePropertyBag2.VTable, @ptrCast(self.vtable)).GetReadStreamAsXML(@as(*const IPrinterScriptablePropertyBag2, @ptrCast(self)), bstrName, ppXmlNode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrinterScriptablePropertyBag.MethodMixin(@This());
+    pub fn GetReadStreamAsXML(self: *const IPrinterScriptablePropertyBag2, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptablePropertyBag2.VTable, @ptrCast(self.vtable)).GetReadStreamAsXML(@as(*const IPrinterScriptablePropertyBag2, @ptrCast(self)), bstrName, ppXmlNode);
+    }
 };
 
 const IID_IPrinterQueue_Value = Guid.initString("3580a828-07fe-4b94-ac1a-757d9d2d3056");
@@ -6114,7 +6762,19 @@ pub const IPrinterQueue = extern union {
             return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IPrinterQueue, @ptrCast(self)), ppPropertyBag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Handle(self: *const IPrinterQueue, phPrinter: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPrinterQueue, @ptrCast(self)), phPrinter);
+    }
+    pub fn get_Name(self: *const IPrinterQueue, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrinterQueue, @ptrCast(self)), pbstrName);
+    }
+    pub fn SendBidiQuery(self: *const IPrinterQueue, bstrBidiQuery: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).SendBidiQuery(@as(*const IPrinterQueue, @ptrCast(self)), bstrBidiQuery);
+    }
+    pub fn GetProperties(self: *const IPrinterQueue, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IPrinterQueue, @ptrCast(self)), ppPropertyBag);
+    }
 };
 
 pub const PrintJobStatus = enum(i32) {
@@ -6220,7 +6880,28 @@ pub const IPrintJob = extern union {
             return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).RequestCancel(@as(*const IPrintJob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Name(self: *const IPrintJob, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrintJob, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_Id(self: *const IPrintJob, pulID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IPrintJob, @ptrCast(self)), pulID);
+    }
+    pub fn get_PrintedPages(self: *const IPrintJob, pulPages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_PrintedPages(@as(*const IPrintJob, @ptrCast(self)), pulPages);
+    }
+    pub fn get_TotalPages(self: *const IPrintJob, pulPages: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_TotalPages(@as(*const IPrintJob, @ptrCast(self)), pulPages);
+    }
+    pub fn get_Status(self: *const IPrintJob, pStatus: ?*PrintJobStatus) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IPrintJob, @ptrCast(self)), pStatus);
+    }
+    pub fn get_SubmissionTime(self: *const IPrintJob, pSubmissionTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IPrintJob, @ptrCast(self)), pSubmissionTime);
+    }
+    pub fn RequestCancel(self: *const IPrintJob) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).RequestCancel(@as(*const IPrintJob, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintJobCollection_Value = Guid.initString("72b82a24-a598-4e87-895f-cdb23a49e9dc");
@@ -6261,7 +6942,16 @@ pub const IPrintJobCollection = extern union {
             return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintJobCollection, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IPrintJobCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrintJobCollection, @ptrCast(self)), pulCount);
+    }
+    pub fn GetAt(self: *const IPrintJobCollection, ulIndex: u32, ppJob: ?*?*IPrintJob) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrintJobCollection, @ptrCast(self)), ulIndex, ppJob);
+    }
+    pub fn get__NewEnum(self: *const IPrintJobCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintJobCollection, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IPrinterQueueViewEvent_Value = Guid.initString("c5b6042b-fd21-404a-a0ef-e2fbb52b9080");
@@ -6286,7 +6976,10 @@ pub const IPrinterQueueViewEvent = extern union {
             return @as(*const IPrinterQueueViewEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IPrinterQueueViewEvent, @ptrCast(self)), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OnChanged(self: *const IPrinterQueueViewEvent, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueueViewEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IPrinterQueueViewEvent, @ptrCast(self)), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
+    }
 };
 
 const IID_IPrinterQueueView_Value = Guid.initString("476e2969-3b2b-4b3f-8277-cff6056042aa");
@@ -6309,7 +7002,10 @@ pub const IPrinterQueueView = extern union {
             return @as(*const IPrinterQueueView.VTable, @ptrCast(self.vtable)).SetViewRange(@as(*const IPrinterQueueView, @ptrCast(self)), ulViewOffset, ulViewSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn SetViewRange(self: *const IPrinterQueueView, ulViewOffset: u32, ulViewSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueueView.VTable, @ptrCast(self.vtable)).SetViewRange(@as(*const IPrinterQueueView, @ptrCast(self)), ulViewOffset, ulViewSize);
+    }
 };
 
 const IID_IPrinterQueueEvent_Value = Guid.initString("214685f6-7b78-4681-87e0-495f739273d1");
@@ -6332,7 +7028,10 @@ pub const IPrinterQueueEvent = extern union {
             return @as(*const IPrinterQueueEvent.VTable, @ptrCast(self.vtable)).OnBidiResponseReceived(@as(*const IPrinterQueueEvent, @ptrCast(self)), bstrResponse, hrStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OnBidiResponseReceived(self: *const IPrinterQueueEvent, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueueEvent.VTable, @ptrCast(self.vtable)).OnBidiResponseReceived(@as(*const IPrinterQueueEvent, @ptrCast(self)), bstrResponse, hrStatus);
+    }
 };
 
 const IID_IPrinterBidiSetRequestCallback_Value = Guid.initString("c52d32dd-f2b4-4052-8502-ec4305ecb71f");
@@ -6355,7 +7054,10 @@ pub const IPrinterBidiSetRequestCallback = extern union {
             return @as(*const IPrinterBidiSetRequestCallback.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrinterBidiSetRequestCallback, @ptrCast(self)), bstrResponse, hrStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Completed(self: *const IPrinterBidiSetRequestCallback, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterBidiSetRequestCallback.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrinterBidiSetRequestCallback, @ptrCast(self)), bstrResponse, hrStatus);
+    }
 };
 
 const IID_IPrinterExtensionAsyncOperation_Value = Guid.initString("108d6a23-6a4b-4552-9448-68b427186acd");
@@ -6376,7 +7078,10 @@ pub const IPrinterExtensionAsyncOperation = extern union {
             return @as(*const IPrinterExtensionAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrinterExtensionAsyncOperation, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Cancel(self: *const IPrinterExtensionAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrinterExtensionAsyncOperation, @ptrCast(self)));
+    }
 };
 
 const IID_IPrinterQueue2_Value = Guid.initString("8cd444e8-c9bb-49b3-8e38-e03209416131");
@@ -6410,7 +7115,13 @@ pub const IPrinterQueue2 = extern union {
             return @as(*const IPrinterQueue2.VTable, @ptrCast(self.vtable)).GetPrinterQueueView(@as(*const IPrinterQueue2, @ptrCast(self)), ulViewOffset, ulViewSize, ppJobView);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrinterQueue.MethodMixin(@This());
+    pub fn SendBidiSetRequestAsync(self: *const IPrinterQueue2, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue2.VTable, @ptrCast(self.vtable)).SendBidiSetRequestAsync(@as(*const IPrinterQueue2, @ptrCast(self)), bstrBidiRequest, pCallback, ppAsyncOperation);
+    }
+    pub fn GetPrinterQueueView(self: *const IPrinterQueue2, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterQueue2.VTable, @ptrCast(self.vtable)).GetPrinterQueueView(@as(*const IPrinterQueue2, @ptrCast(self)), ulViewOffset, ulViewSize, ppJobView);
+    }
 };
 
 const IID_IPrinterExtensionContext_Value = Guid.initString("39843bf2-c4d2-41fd-b4b2-aedbee5e1900");
@@ -6460,7 +7171,19 @@ pub const IPrinterExtensionContext = extern union {
             return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppPropertyBag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_PrinterQueue(self: *const IPrinterExtensionContext, ppQueue: ?*?*IPrinterQueue) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_PrinterQueue(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppQueue);
+    }
+    pub fn get_PrintSchemaTicket(self: *const IPrinterExtensionContext, ppTicket: ?*?*IPrintSchemaTicket) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_PrintSchemaTicket(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppTicket);
+    }
+    pub fn get_DriverProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppPropertyBag);
+    }
+    pub fn get_UserProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppPropertyBag);
+    }
 };
 
 const IID_IPrinterExtensionRequest_Value = Guid.initString("39843bf3-c4d2-41fd-b4b2-aedbee5e1900");
@@ -6490,7 +7213,13 @@ pub const IPrinterExtensionRequest = extern union {
             return @as(*const IPrinterExtensionRequest.VTable, @ptrCast(self.vtable)).Complete(@as(*const IPrinterExtensionRequest, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Cancel(self: *const IPrinterExtensionRequest, hrStatus: HRESULT, bstrLogMessage: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionRequest.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrinterExtensionRequest, @ptrCast(self)), hrStatus, bstrLogMessage);
+    }
+    pub fn Complete(self: *const IPrinterExtensionRequest) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionRequest.VTable, @ptrCast(self.vtable)).Complete(@as(*const IPrinterExtensionRequest, @ptrCast(self)));
+    }
 };
 
 const IID_IPrinterExtensionEventArgs_Value = Guid.initString("39843bf4-c4d2-41fd-b4b2-aedbee5e1900");
@@ -6567,7 +7296,28 @@ pub const IPrinterExtensionEventArgs = extern union {
             return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_WindowParent(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), phwndParent);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrinterExtensionContext.MethodMixin(@This());
+    pub fn get_BidiNotification(self: *const IPrinterExtensionEventArgs, pbstrBidiNotification: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_BidiNotification(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbstrBidiNotification);
+    }
+    pub fn get_ReasonId(self: *const IPrinterExtensionEventArgs, pReasonId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_ReasonId(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pReasonId);
+    }
+    pub fn get_Request(self: *const IPrinterExtensionEventArgs, ppRequest: ?*?*IPrinterExtensionRequest) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), ppRequest);
+    }
+    pub fn get_SourceApplication(self: *const IPrinterExtensionEventArgs, pbstrApplication: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_SourceApplication(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbstrApplication);
+    }
+    pub fn get_DetailedReasonId(self: *const IPrinterExtensionEventArgs, pDetailedReasonId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_DetailedReasonId(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pDetailedReasonId);
+    }
+    pub fn get_WindowModal(self: *const IPrinterExtensionEventArgs, pbModal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_WindowModal(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbModal);
+    }
+    pub fn get_WindowParent(self: *const IPrinterExtensionEventArgs, phwndParent: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_WindowParent(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), phwndParent);
+    }
 };
 
 const IID_IPrinterExtensionContextCollection_Value = Guid.initString("fb476970-9bab-4861-811e-3e98b0c5addf");
@@ -6608,7 +7358,16 @@ pub const IPrinterExtensionContextCollection = extern union {
             return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IPrinterExtensionContextCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), pulCount);
+    }
+    pub fn GetAt(self: *const IPrinterExtensionContextCollection, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), ulIndex, ppContext);
+    }
+    pub fn get__NewEnum(self: *const IPrinterExtensionContextCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IPrinterExtensionEvent_Value = Guid.initString("c093cb63-5ef5-4585-af8e-4d5637487b57");
@@ -6638,7 +7397,13 @@ pub const IPrinterExtensionEvent = extern union {
             return @as(*const IPrinterExtensionEvent.VTable, @ptrCast(self.vtable)).OnPrinterQueuesEnumerated(@as(*const IPrinterExtensionEvent, @ptrCast(self)), pContextCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OnDriverEvent(self: *const IPrinterExtensionEvent, pEventArgs: ?*IPrinterExtensionEventArgs) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEvent.VTable, @ptrCast(self.vtable)).OnDriverEvent(@as(*const IPrinterExtensionEvent, @ptrCast(self)), pEventArgs);
+    }
+    pub fn OnPrinterQueuesEnumerated(self: *const IPrinterExtensionEvent, pContextCollection: ?*IPrinterExtensionContextCollection) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionEvent.VTable, @ptrCast(self.vtable)).OnPrinterQueuesEnumerated(@as(*const IPrinterExtensionEvent, @ptrCast(self)), pContextCollection);
+    }
 };
 
 const IID_IPrinterExtensionManager_Value = Guid.initString("93c6eb8c-b001-4355-9629-8e8a1b3f8e77");
@@ -6667,7 +7432,13 @@ pub const IPrinterExtensionManager = extern union {
             return @as(*const IPrinterExtensionManager.VTable, @ptrCast(self.vtable)).DisableEvents(@as(*const IPrinterExtensionManager, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnableEvents(self: *const IPrinterExtensionManager, printerDriverId: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionManager.VTable, @ptrCast(self.vtable)).EnableEvents(@as(*const IPrinterExtensionManager, @ptrCast(self)), printerDriverId);
+    }
+    pub fn DisableEvents(self: *const IPrinterExtensionManager) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterExtensionManager.VTable, @ptrCast(self.vtable)).DisableEvents(@as(*const IPrinterExtensionManager, @ptrCast(self)));
+    }
 };
 
 const IID_IPrinterScriptContext_Value = Guid.initString("066acbca-8881-49c9-bb98-fae16b4889e1");
@@ -6708,7 +7479,16 @@ pub const IPrinterScriptContext = extern union {
             return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_DriverProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
+    }
+    pub fn get_QueueProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_QueueProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
+    }
+    pub fn get_UserProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
+    }
 };
 
 pub const PrintAsyncNotifyUserFilter = enum(i32) {
@@ -6754,7 +7534,13 @@ pub const IPrintAsyncNotifyDataObject = extern union {
             return @as(*const IPrintAsyncNotifyDataObject.VTable, @ptrCast(self.vtable)).ReleaseData(@as(*const IPrintAsyncNotifyDataObject, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AcquireData(self: *const IPrintAsyncNotifyDataObject, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyDataObject.VTable, @ptrCast(self.vtable)).AcquireData(@as(*const IPrintAsyncNotifyDataObject, @ptrCast(self)), ppNotificationData, pSize, ppSchema);
+    }
+    pub fn ReleaseData(self: *const IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyDataObject.VTable, @ptrCast(self.vtable)).ReleaseData(@as(*const IPrintAsyncNotifyDataObject, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6785,7 +7571,13 @@ pub const IPrintAsyncNotifyChannel = extern union {
             return @as(*const IPrintAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).CloseChannel(@as(*const IPrintAsyncNotifyChannel, @ptrCast(self)), pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SendNotification(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).SendNotification(@as(*const IPrintAsyncNotifyChannel, @ptrCast(self)), pData);
+    }
+    pub fn CloseChannel(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).CloseChannel(@as(*const IPrintAsyncNotifyChannel, @ptrCast(self)), pData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6818,7 +7610,13 @@ pub const IPrintAsyncNotifyCallback = extern union {
             return @as(*const IPrintAsyncNotifyCallback.VTable, @ptrCast(self.vtable)).ChannelClosed(@as(*const IPrintAsyncNotifyCallback, @ptrCast(self)), pChannel, pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnEventNotify(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyCallback.VTable, @ptrCast(self.vtable)).OnEventNotify(@as(*const IPrintAsyncNotifyCallback, @ptrCast(self)), pChannel, pData);
+    }
+    pub fn ChannelClosed(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyCallback.VTable, @ptrCast(self.vtable)).ChannelClosed(@as(*const IPrintAsyncNotifyCallback, @ptrCast(self)), pChannel, pData);
+    }
 };
 
 pub const PrintAsyncNotifyError = enum(i32) {
@@ -6897,7 +7695,13 @@ pub const IPrintAsyncNotifyRegistration = extern union {
             return @as(*const IPrintAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).UnregisterForNotifications(@as(*const IPrintAsyncNotifyRegistration, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterForNotifications(self: *const IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).RegisterForNotifications(@as(*const IPrintAsyncNotifyRegistration, @ptrCast(self)));
+    }
+    pub fn UnregisterForNotifications(self: *const IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).UnregisterForNotifications(@as(*const IPrintAsyncNotifyRegistration, @ptrCast(self)));
+    }
 };
 
 const IID_IPrintAsyncNotify_Value = Guid.initString("532818f7-921b-4fb2-bff8-2f4fd52ebebf");
@@ -6936,7 +7740,13 @@ pub const IPrintAsyncNotify = extern union {
             return @as(*const IPrintAsyncNotify.VTable, @ptrCast(self.vtable)).CreatePrintAsyncNotifyRegistration(@as(*const IPrintAsyncNotify, @ptrCast(self)), param0, param1, param2, param3, param4);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreatePrintAsyncNotifyChannel(self: *const IPrintAsyncNotify, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotify.VTable, @ptrCast(self.vtable)).CreatePrintAsyncNotifyChannel(@as(*const IPrintAsyncNotify, @ptrCast(self)), param0, param1, param2, param3, param4, param5);
+    }
+    pub fn CreatePrintAsyncNotifyRegistration(self: *const IPrintAsyncNotify, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotify.VTable, @ptrCast(self.vtable)).CreatePrintAsyncNotifyRegistration(@as(*const IPrintAsyncNotify, @ptrCast(self)), param0, param1, param2, param3, param4);
+    }
 };
 
 pub const IPrintAsyncCookie = extern union {
@@ -6964,7 +7774,13 @@ pub const IPrintAsyncCookie = extern union {
             return @as(*const IPrintAsyncCookie.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IPrintAsyncCookie, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FinishAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCall(@as(*const IPrintAsyncCookie, @ptrCast(self)), param0);
+    }
+    pub fn CancelAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncCookie.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IPrintAsyncCookie, @ptrCast(self)), param0);
+    }
 };
 
 pub const IPrintAsyncNewChannelCookie = extern union {
@@ -6985,7 +7801,10 @@ pub const IPrintAsyncNewChannelCookie = extern union {
             return @as(*const IPrintAsyncNewChannelCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IPrintAsyncNewChannelCookie, @ptrCast(self)), param0, param1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintAsyncCookie.MethodMixin(@This());
+    pub fn FinishAsyncCallWithData(self: *const IPrintAsyncNewChannelCookie, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNewChannelCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IPrintAsyncNewChannelCookie, @ptrCast(self)), param0, param1);
+    }
 };
 
 pub const IAsyncGetSendNotificationCookie = extern union {
@@ -7006,7 +7825,10 @@ pub const IAsyncGetSendNotificationCookie = extern union {
             return @as(*const IAsyncGetSendNotificationCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSendNotificationCookie, @ptrCast(self)), param0, param1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintAsyncCookie.MethodMixin(@This());
+    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSendNotificationCookie, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAsyncGetSendNotificationCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSendNotificationCookie, @ptrCast(self)), param0, param1);
+    }
 };
 
 pub const IAsyncGetSrvReferralCookie = extern union {
@@ -7042,7 +7864,16 @@ pub const IAsyncGetSrvReferralCookie = extern union {
             return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FinishAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCall(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
+    }
+    pub fn CancelAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
+    }
+    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSrvReferralCookie, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
+    }
 };
 
 pub const IPrintBidiAsyncNotifyRegistration = extern union {
@@ -7062,7 +7893,10 @@ pub const IPrintBidiAsyncNotifyRegistration = extern union {
             return @as(*const IPrintBidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNewChannel(@as(*const IPrintBidiAsyncNotifyRegistration, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(@This());
+    pub fn AsyncGetNewChannel(self: *const IPrintBidiAsyncNotifyRegistration, param0: ?*IPrintAsyncNewChannelCookie) callconv(.Inline) HRESULT {
+        return @as(*const IPrintBidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNewChannel(@as(*const IPrintBidiAsyncNotifyRegistration, @ptrCast(self)), param0);
+    }
 };
 
 pub const IPrintUnidiAsyncNotifyRegistration = extern union {
@@ -7082,7 +7916,10 @@ pub const IPrintUnidiAsyncNotifyRegistration = extern union {
             return @as(*const IPrintUnidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNotification(@as(*const IPrintUnidiAsyncNotifyRegistration, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(@This());
+    pub fn AsyncGetNotification(self: *const IPrintUnidiAsyncNotifyRegistration, param0: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
+        return @as(*const IPrintUnidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNotification(@as(*const IPrintUnidiAsyncNotifyRegistration, @ptrCast(self)), param0);
+    }
 };
 
 pub const IPrintAsyncNotifyServerReferral = extern union {
@@ -7118,7 +7955,16 @@ pub const IPrintAsyncNotifyServerReferral = extern union {
             return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).SetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), pRmtServerReferral);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).GetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), param0);
+    }
+    pub fn AsyncGetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*IAsyncGetSrvReferralCookie) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).AsyncGetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), param0);
+    }
+    pub fn SetServerReferral(self: *const IPrintAsyncNotifyServerReferral, pRmtServerReferral: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).SetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), pRmtServerReferral);
+    }
 };
 
 const IID_IBidiAsyncNotifyChannel_Value = Guid.initString("532818f7-921b-4fb2-bff8-2f4fd52ebebf");
@@ -7173,7 +8019,22 @@ pub const IBidiAsyncNotifyChannel = extern union {
             return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).AsyncCloseChannel(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0, param1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPrintAsyncNotifyChannel.MethodMixin(@This());
+    pub fn CreateNotificationChannel(self: *const IBidiAsyncNotifyChannel) callconv(.Inline) HRESULT {
+        return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).CreateNotificationChannel(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)));
+    }
+    pub fn GetPrintName(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).GetPrintName(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0);
+    }
+    pub fn GetChannelNotificationType(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).GetChannelNotificationType(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0);
+    }
+    pub fn AsyncGetNotificationSendResponse(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
+        return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).AsyncGetNotificationSendResponse(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0, param1);
+    }
+    pub fn AsyncCloseChannel(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) callconv(.Inline) HRESULT {
+        return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).AsyncCloseChannel(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0, param1);
+    }
 };
 
 pub const UNIFM_HDR = extern struct {
@@ -7850,7 +8711,10 @@ pub const IXpsRasterizerNotificationCallback = extern union {
             return @as(*const IXpsRasterizerNotificationCallback.VTable, @ptrCast(self.vtable)).Continue(@as(*const IXpsRasterizerNotificationCallback, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Continue(self: *const IXpsRasterizerNotificationCallback) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizerNotificationCallback.VTable, @ptrCast(self.vtable)).Continue(@as(*const IXpsRasterizerNotificationCallback, @ptrCast(self)));
+    }
 };
 
 pub const XPSRAS_RENDERING_MODE = enum(i32) {
@@ -7892,7 +8756,13 @@ pub const IXpsRasterizer = extern union {
             return @as(*const IXpsRasterizer.VTable, @ptrCast(self.vtable)).SetMinimalLineWidth(@as(*const IXpsRasterizer, @ptrCast(self)), width);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RasterizeRect(self: *const IXpsRasterizer, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizer.VTable, @ptrCast(self.vtable)).RasterizeRect(@as(*const IXpsRasterizer, @ptrCast(self)), x, y, width, height, notificationCallback, bitmap);
+    }
+    pub fn SetMinimalLineWidth(self: *const IXpsRasterizer, width: i32) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizer.VTable, @ptrCast(self.vtable)).SetMinimalLineWidth(@as(*const IXpsRasterizer, @ptrCast(self)), width);
+    }
 };
 
 const IID_IXpsRasterizationFactory_Value = Guid.initString("e094808a-24c6-482b-a3a7-c21ac9b55f17");
@@ -7918,7 +8788,10 @@ pub const IXpsRasterizationFactory = extern union {
             return @as(*const IXpsRasterizationFactory.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizationFactory.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
+    }
 };
 
 pub const XPSRAS_PIXEL_FORMAT = enum(i32) {
@@ -7954,7 +8827,10 @@ pub const IXpsRasterizationFactory1 = extern union {
             return @as(*const IXpsRasterizationFactory1.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory1, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory1, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizationFactory1.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory1, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
+    }
 };
 
 pub const XPSRAS_BACKGROUND_COLOR = enum(i32) {
@@ -7990,7 +8866,10 @@ pub const IXpsRasterizationFactory2 = extern union {
             return @as(*const IXpsRasterizationFactory2.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory2, @ptrCast(self)), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory2, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        return @as(*const IXpsRasterizationFactory2.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory2, @ptrCast(self)), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
+    }
 };
 
 pub const PageCountType = enum(i32) {
@@ -8038,7 +8917,16 @@ pub const IPrintPreviewDxgiPackageTarget = extern union {
             return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).InvalidatePreview(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetJobPageCount(self: *const IPrintPreviewDxgiPackageTarget, countType: PageCountType, count: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).SetJobPageCount(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)), countType, count);
+    }
+    pub fn DrawPage(self: *const IPrintPreviewDxgiPackageTarget, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).DrawPage(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)), jobPageNumber, pageImage, dpiX, dpiY);
+    }
+    pub fn InvalidatePreview(self: *const IPrintPreviewDxgiPackageTarget) callconv(.Inline) HRESULT {
+        return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).InvalidatePreview(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)));
+    }
 };
 
 

@@ -42,7 +42,10 @@ pub const IDDEInitializer = extern union {
             return @as(*const IDDEInitializer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDDEInitializer, @ptrCast(self)), fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDDEInitializer, fileExtensionOrProtocol: ?[*:0]const u16, method: CreateProcessMethod, currentDirectory: ?[*:0]const u16, execTarget: ?*IShellItem, site: ?*IUnknown, application: ?[*:0]const u16, targetFile: ?[*:0]const u16, arguments: ?[*:0]const u16, verb: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDDEInitializer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDDEInitializer, @ptrCast(self)), fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
+    }
 };
 
 

@@ -418,7 +418,61 @@ pub const INetDiagHelper = extern union {
             return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Cleanup(@as(*const INetDiagHelper, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const INetDiagHelper, celt: u32, rgAttributes: [*]HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INetDiagHelper, @ptrCast(self)), celt, rgAttributes);
+    }
+    pub fn GetDiagnosticsInfo(self: *const INetDiagHelper, ppInfo: ?*?*DiagnosticsInfo) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetDiagnosticsInfo(@as(*const INetDiagHelper, @ptrCast(self)), ppInfo);
+    }
+    pub fn GetKeyAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetKeyAttributes(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgAttributes);
+    }
+    pub fn LowHealth(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).LowHealth(@as(*const INetDiagHelper, @ptrCast(self)), pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
+    }
+    pub fn HighUtilization(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).HighUtilization(@as(*const INetDiagHelper, @ptrCast(self)), pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
+    }
+    pub fn GetLowerHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetLowerHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
+    }
+    pub fn GetDownStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetDownStreamHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
+    }
+    pub fn GetHigherHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetHigherHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
+    }
+    pub fn GetUpStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetUpStreamHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
+    }
+    pub fn Repair(self: *const INetDiagHelper, pInfo: ?*RepairInfo, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Repair(@as(*const INetDiagHelper, @ptrCast(self)), pInfo, pDeferredTime, pStatus);
+    }
+    pub fn Validate(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Validate(@as(*const INetDiagHelper, @ptrCast(self)), problem, pDeferredTime, pStatus);
+    }
+    pub fn GetRepairInfo(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pcelt: ?*u32, ppInfo: [*]?*RepairInfo) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetRepairInfo(@as(*const INetDiagHelper, @ptrCast(self)), problem, pcelt, ppInfo);
+    }
+    pub fn GetLifeTime(self: *const INetDiagHelper, pLifeTime: ?*LIFE_TIME) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetLifeTime(@as(*const INetDiagHelper, @ptrCast(self)), pLifeTime);
+    }
+    pub fn SetLifeTime(self: *const INetDiagHelper, lifeTime: LIFE_TIME) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).SetLifeTime(@as(*const INetDiagHelper, @ptrCast(self)), lifeTime);
+    }
+    pub fn GetCacheTime(self: *const INetDiagHelper, pCacheTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetCacheTime(@as(*const INetDiagHelper, @ptrCast(self)), pCacheTime);
+    }
+    pub fn GetAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgAttributes);
+    }
+    pub fn Cancel(self: *const INetDiagHelper) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Cancel(@as(*const INetDiagHelper, @ptrCast(self)));
+    }
+    pub fn Cleanup(self: *const INetDiagHelper) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Cleanup(@as(*const INetDiagHelper, @ptrCast(self)));
+    }
 };
 
 pub const HypothesisResult = extern struct {
@@ -447,7 +501,10 @@ pub const INetDiagHelperUtilFactory = extern union {
             return @as(*const INetDiagHelperUtilFactory.VTable, @ptrCast(self.vtable)).CreateUtilityInstance(@as(*const INetDiagHelperUtilFactory, @ptrCast(self)), riid, ppvObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelperUtilFactory.VTable, @ptrCast(self.vtable)).CreateUtilityInstance(@as(*const INetDiagHelperUtilFactory, @ptrCast(self)), riid, ppvObject);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -488,7 +545,16 @@ pub const INetDiagHelperEx = extern union {
             return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).ReproduceFailure(@as(*const INetDiagHelperEx, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).ReconfirmLowHealth(@as(*const INetDiagHelperEx, @ptrCast(self)), celt, pResults, ppwszUpdatedDescription, pUpdatedStatus);
+    }
+    pub fn SetUtilities(self: *const INetDiagHelperEx, pUtilities: ?*INetDiagHelperUtilFactory) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).SetUtilities(@as(*const INetDiagHelperEx, @ptrCast(self)), pUtilities);
+    }
+    pub fn ReproduceFailure(self: *const INetDiagHelperEx) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).ReproduceFailure(@as(*const INetDiagHelperEx, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -512,7 +578,10 @@ pub const INetDiagHelperInfo = extern union {
             return @as(*const INetDiagHelperInfo.VTable, @ptrCast(self.vtable)).GetAttributeInfo(@as(*const INetDiagHelperInfo, @ptrCast(self)), pcelt, pprgAttributeInfos);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAttributeInfo(self: *const INetDiagHelperInfo, pcelt: ?*u32, pprgAttributeInfos: [*]?*HelperAttributeInfo) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagHelperInfo.VTable, @ptrCast(self.vtable)).GetAttributeInfo(@as(*const INetDiagHelperInfo, @ptrCast(self)), pcelt, pprgAttributeInfos);
+    }
 };
 
 const IID_INetDiagExtensibleHelper_Value = Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
@@ -537,7 +606,10 @@ pub const INetDiagExtensibleHelper = extern union {
             return @as(*const INetDiagExtensibleHelper.VTable, @ptrCast(self.vtable)).ResolveAttributes(@as(*const INetDiagExtensibleHelper, @ptrCast(self)), celt, rgKeyAttributes, pcelt, prgMatchValues);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const INetDiagExtensibleHelper.VTable, @ptrCast(self.vtable)).ResolveAttributes(@as(*const INetDiagExtensibleHelper, @ptrCast(self)), celt, rgKeyAttributes, pcelt, prgMatchValues);
+    }
 };
 
 

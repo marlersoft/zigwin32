@@ -882,7 +882,19 @@ pub const ID3D11DeviceChild = extern union {
             return @as(*const ID3D11DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D11DeviceChild, @ptrCast(self)), guid, pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const ID3D11DeviceChild, ppDevice: ?*?*ID3D11Device) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D11DeviceChild, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetPrivateData(self: *const ID3D11DeviceChild, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceChild.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D11DeviceChild, @ptrCast(self)), guid, pDataSize, pData);
+    }
+    pub fn SetPrivateData(self: *const ID3D11DeviceChild, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D11DeviceChild, @ptrCast(self)), guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D11DeviceChild, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D11DeviceChild, @ptrCast(self)), guid, pData);
+    }
 };
 
 pub const D3D11_COMPARISON_FUNC = enum(i32) {
@@ -969,7 +981,10 @@ pub const ID3D11DepthStencilState = extern union {
             return @as(*const ID3D11DepthStencilState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11DepthStencilState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11DepthStencilState, pDesc: ?*D3D11_DEPTH_STENCIL_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11DepthStencilState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11DepthStencilState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_BLEND = enum(i32) {
@@ -1073,7 +1088,10 @@ pub const ID3D11BlendState = extern union {
             return @as(*const ID3D11BlendState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11BlendState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11BlendState, pDesc: ?*D3D11_BLEND_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11BlendState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11BlendState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_RASTERIZER_DESC = extern struct {
@@ -1110,7 +1128,10 @@ pub const ID3D11RasterizerState = extern union {
             return @as(*const ID3D11RasterizerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11RasterizerState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11RasterizerState, pDesc: ?*D3D11_RASTERIZER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11RasterizerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11RasterizerState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_SUBRESOURCE_DATA = extern struct {
@@ -1161,7 +1182,16 @@ pub const ID3D11Resource = extern union {
             return @as(*const ID3D11Resource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const ID3D11Resource, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetType(self: *const ID3D11Resource, pResourceDimension: ?*D3D11_RESOURCE_DIMENSION) callconv(.Inline) void {
+        return @as(*const ID3D11Resource.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D11Resource, @ptrCast(self)), pResourceDimension);
+    }
+    pub fn SetEvictionPriority(self: *const ID3D11Resource, EvictionPriority: u32) callconv(.Inline) void {
+        return @as(*const ID3D11Resource.VTable, @ptrCast(self.vtable)).SetEvictionPriority(@as(*const ID3D11Resource, @ptrCast(self)), EvictionPriority);
+    }
+    pub fn GetEvictionPriority(self: *const ID3D11Resource) callconv(.Inline) u32 {
+        return @as(*const ID3D11Resource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const ID3D11Resource, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_BUFFER_DESC = extern struct {
@@ -1194,7 +1224,10 @@ pub const ID3D11Buffer = extern union {
             return @as(*const ID3D11Buffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Buffer, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Resource.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Buffer, pDesc: ?*D3D11_BUFFER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Buffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Buffer, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEXTURE1D_DESC = extern struct {
@@ -1229,7 +1262,10 @@ pub const ID3D11Texture1D = extern union {
             return @as(*const ID3D11Texture1D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture1D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Resource.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Texture1D, pDesc: ?*D3D11_TEXTURE1D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Texture1D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture1D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEXTURE2D_DESC = extern struct {
@@ -1266,7 +1302,10 @@ pub const ID3D11Texture2D = extern union {
             return @as(*const ID3D11Texture2D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture2D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Resource.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Texture2D, pDesc: ?*D3D11_TEXTURE2D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Texture2D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture2D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEXTURE3D_DESC = extern struct {
@@ -1302,7 +1341,10 @@ pub const ID3D11Texture3D = extern union {
             return @as(*const ID3D11Texture3D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture3D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Resource.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Texture3D, pDesc: ?*D3D11_TEXTURE3D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Texture3D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Texture3D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEXTURECUBE_FACE = enum(i32) {
@@ -1341,7 +1383,10 @@ pub const ID3D11View = extern union {
             return @as(*const ID3D11View.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D11View, @ptrCast(self)), ppResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetResource(self: *const ID3D11View, ppResource: ?*?*ID3D11Resource) callconv(.Inline) void {
+        return @as(*const ID3D11View.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D11View, @ptrCast(self)), ppResource);
+    }
 };
 
 pub const D3D11_BUFFER_SRV = extern struct {
@@ -1455,7 +1500,10 @@ pub const ID3D11ShaderResourceView = extern union {
             return @as(*const ID3D11ShaderResourceView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderResourceView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11ShaderResourceView, pDesc: ?*D3D11_SHADER_RESOURCE_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11ShaderResourceView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderResourceView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_BUFFER_RTV = extern struct {
@@ -1540,7 +1588,10 @@ pub const ID3D11RenderTargetView = extern union {
             return @as(*const ID3D11RenderTargetView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11RenderTargetView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11RenderTargetView, pDesc: ?*D3D11_RENDER_TARGET_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11RenderTargetView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11RenderTargetView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEX1D_DSV = extern struct {
@@ -1614,7 +1665,10 @@ pub const ID3D11DepthStencilView = extern union {
             return @as(*const ID3D11DepthStencilView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11DepthStencilView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11DepthStencilView, pDesc: ?*D3D11_DEPTH_STENCIL_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11DepthStencilView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11DepthStencilView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_BUFFER_UAV_FLAG = enum(i32) {
@@ -1692,7 +1746,10 @@ pub const ID3D11UnorderedAccessView = extern union {
             return @as(*const ID3D11UnorderedAccessView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11UnorderedAccessView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11UnorderedAccessView, pDesc: ?*D3D11_UNORDERED_ACCESS_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11UnorderedAccessView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11UnorderedAccessView, @ptrCast(self)), pDesc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1708,7 +1765,7 @@ pub const ID3D11VertexShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1724,7 +1781,7 @@ pub const ID3D11HullShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1740,7 +1797,7 @@ pub const ID3D11DomainShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1756,7 +1813,7 @@ pub const ID3D11GeometryShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1772,7 +1829,7 @@ pub const ID3D11PixelShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1788,7 +1845,7 @@ pub const ID3D11ComputeShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1804,7 +1861,7 @@ pub const ID3D11InputLayout = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 pub const D3D11_FILTER = enum(i32) {
@@ -1947,7 +2004,10 @@ pub const ID3D11SamplerState = extern union {
             return @as(*const ID3D11SamplerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11SamplerState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11SamplerState, pDesc: ?*D3D11_SAMPLER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11SamplerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11SamplerState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_FORMAT_SUPPORT = enum(i32) {
@@ -2062,7 +2122,10 @@ pub const ID3D11Asynchronous = extern union {
             return @as(*const ID3D11Asynchronous.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const ID3D11Asynchronous, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDataSize(self: *const ID3D11Asynchronous) callconv(.Inline) u32 {
+        return @as(*const ID3D11Asynchronous.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const ID3D11Asynchronous, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_ASYNC_GETDATA_FLAG = enum(i32) {
@@ -2136,7 +2199,10 @@ pub const ID3D11Query = extern union {
             return @as(*const ID3D11Query.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Query, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Asynchronous.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Query, pDesc: ?*D3D11_QUERY_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Query.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Query, @ptrCast(self)), pDesc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2152,7 +2218,7 @@ pub const ID3D11Predicate = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11Query.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Query.MethodMixin(@This());
 };
 
 pub const D3D11_QUERY_DATA_TIMESTAMP_DISJOINT = extern struct {
@@ -2227,7 +2293,10 @@ pub const ID3D11Counter = extern union {
             return @as(*const ID3D11Counter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Counter, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Asynchronous.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11Counter, pDesc: ?*D3D11_COUNTER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11Counter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11Counter, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS = enum(i32) {
@@ -2302,7 +2371,19 @@ pub const ID3D11ClassInstance = extern union {
             return @as(*const ID3D11ClassInstance.VTable, @ptrCast(self.vtable)).GetTypeName(@as(*const ID3D11ClassInstance, @ptrCast(self)), pTypeName, pBufferLength);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetClassLinkage(self: *const ID3D11ClassInstance, ppLinkage: ?*?*ID3D11ClassLinkage) callconv(.Inline) void {
+        return @as(*const ID3D11ClassInstance.VTable, @ptrCast(self.vtable)).GetClassLinkage(@as(*const ID3D11ClassInstance, @ptrCast(self)), ppLinkage);
+    }
+    pub fn GetDesc(self: *const ID3D11ClassInstance, pDesc: ?*D3D11_CLASS_INSTANCE_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11ClassInstance.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ClassInstance, @ptrCast(self)), pDesc);
+    }
+    pub fn GetInstanceName(self: *const ID3D11ClassInstance, pInstanceName: ?[*:0]u8, pBufferLength: ?*usize) callconv(.Inline) void {
+        return @as(*const ID3D11ClassInstance.VTable, @ptrCast(self.vtable)).GetInstanceName(@as(*const ID3D11ClassInstance, @ptrCast(self)), pInstanceName, pBufferLength);
+    }
+    pub fn GetTypeName(self: *const ID3D11ClassInstance, pTypeName: ?[*:0]u8, pBufferLength: ?*usize) callconv(.Inline) void {
+        return @as(*const ID3D11ClassInstance.VTable, @ptrCast(self.vtable)).GetTypeName(@as(*const ID3D11ClassInstance, @ptrCast(self)), pTypeName, pBufferLength);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2341,7 +2422,13 @@ pub const ID3D11ClassLinkage = extern union {
             return @as(*const ID3D11ClassLinkage.VTable, @ptrCast(self.vtable)).CreateClassInstance(@as(*const ID3D11ClassLinkage, @ptrCast(self)), pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetClassInstance(self: *const ID3D11ClassLinkage, pClassInstanceName: ?[*:0]const u8, InstanceIndex: u32, ppInstance: ?*?*ID3D11ClassInstance) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ClassLinkage.VTable, @ptrCast(self.vtable)).GetClassInstance(@as(*const ID3D11ClassLinkage, @ptrCast(self)), pClassInstanceName, InstanceIndex, ppInstance);
+    }
+    pub fn CreateClassInstance(self: *const ID3D11ClassLinkage, pClassTypeName: ?[*:0]const u8, ConstantBufferOffset: u32, ConstantVectorOffset: u32, TextureOffset: u32, SamplerOffset: u32, ppInstance: ?*?*ID3D11ClassInstance) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ClassLinkage.VTable, @ptrCast(self.vtable)).CreateClassInstance(@as(*const ID3D11ClassLinkage, @ptrCast(self)), pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2364,7 +2451,10 @@ pub const ID3D11CommandList = extern union {
             return @as(*const ID3D11CommandList.VTable, @ptrCast(self.vtable)).GetContextFlags(@as(*const ID3D11CommandList, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetContextFlags(self: *const ID3D11CommandList) callconv(.Inline) u32 {
+        return @as(*const ID3D11CommandList.VTable, @ptrCast(self.vtable)).GetContextFlags(@as(*const ID3D11CommandList, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_FEATURE = enum(i32) {
@@ -3640,7 +3730,331 @@ pub const ID3D11DeviceContext = extern union {
             return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).FinishCommandList(@as(*const ID3D11DeviceContext, @ptrCast(self)), RestoreDeferredContextState, ppCommandList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn VSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn PSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn PSSetShader(self: *const ID3D11DeviceContext, pPixelShader: ?*ID3D11PixelShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pPixelShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn PSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn VSSetShader(self: *const ID3D11DeviceContext, pVertexShader: ?*ID3D11VertexShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pVertexShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn DrawIndexed(self: *const ID3D11DeviceContext, IndexCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawIndexed(@as(*const ID3D11DeviceContext, @ptrCast(self)), IndexCount, StartIndexLocation, BaseVertexLocation);
+    }
+    pub fn Draw(self: *const ID3D11DeviceContext, VertexCount: u32, StartVertexLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID3D11DeviceContext, @ptrCast(self)), VertexCount, StartVertexLocation);
+    }
+    pub fn Map(self: *const ID3D11DeviceContext, pResource: ?*ID3D11Resource, Subresource: u32, MapType: D3D11_MAP, MapFlags: u32, pMappedResource: ?*D3D11_MAPPED_SUBRESOURCE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D11DeviceContext, @ptrCast(self)), pResource, Subresource, MapType, MapFlags, pMappedResource);
+    }
+    pub fn Unmap(self: *const ID3D11DeviceContext, pResource: ?*ID3D11Resource, Subresource: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D11DeviceContext, @ptrCast(self)), pResource, Subresource);
+    }
+    pub fn PSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn IASetInputLayout(self: *const ID3D11DeviceContext, pInputLayout: ?*ID3D11InputLayout) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IASetInputLayout(@as(*const ID3D11DeviceContext, @ptrCast(self)), pInputLayout);
+    }
+    pub fn IASetVertexBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D11Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IASetVertexBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+    }
+    pub fn IASetIndexBuffer(self: *const ID3D11DeviceContext, pIndexBuffer: ?*ID3D11Buffer, Format: DXGI_FORMAT, Offset: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IASetIndexBuffer(@as(*const ID3D11DeviceContext, @ptrCast(self)), pIndexBuffer, Format, Offset);
+    }
+    pub fn DrawIndexedInstanced(self: *const ID3D11DeviceContext, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawIndexedInstanced(@as(*const ID3D11DeviceContext, @ptrCast(self)), IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
+    }
+    pub fn DrawInstanced(self: *const ID3D11DeviceContext, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawInstanced(@as(*const ID3D11DeviceContext, @ptrCast(self)), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
+    }
+    pub fn GSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn GSSetShader(self: *const ID3D11DeviceContext, pShader: ?*ID3D11GeometryShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn IASetPrimitiveTopology(self: *const ID3D11DeviceContext, Topology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IASetPrimitiveTopology(@as(*const ID3D11DeviceContext, @ptrCast(self)), Topology);
+    }
+    pub fn VSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn VSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn Begin(self: *const ID3D11DeviceContext, pAsync: ?*ID3D11Asynchronous) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Begin(@as(*const ID3D11DeviceContext, @ptrCast(self)), pAsync);
+    }
+    pub fn End(self: *const ID3D11DeviceContext, pAsync: ?*ID3D11Asynchronous) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).End(@as(*const ID3D11DeviceContext, @ptrCast(self)), pAsync);
+    }
+    pub fn GetData(self: *const ID3D11DeviceContext, pAsync: ?*ID3D11Asynchronous, pData: ?*anyopaque, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GetData(@as(*const ID3D11DeviceContext, @ptrCast(self)), pAsync, pData, DataSize, GetDataFlags);
+    }
+    pub fn SetPredication(self: *const ID3D11DeviceContext, pPredicate: ?*ID3D11Predicate, PredicateValue: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D11DeviceContext, @ptrCast(self)), pPredicate, PredicateValue);
+    }
+    pub fn GSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn GSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn OMSetRenderTargets(self: *const ID3D11DeviceContext, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView, pDepthStencilView: ?*ID3D11DepthStencilView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMSetRenderTargets(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumViews, ppRenderTargetViews, pDepthStencilView);
+    }
+    pub fn OMSetRenderTargetsAndUnorderedAccessViews(self: *const ID3D11DeviceContext, NumRTVs: u32, ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView, pDepthStencilView: ?*ID3D11DepthStencilView, UAVStartSlot: u32, NumUAVs: u32, ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView, pUAVInitialCounts: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMSetRenderTargetsAndUnorderedAccessViews(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumRTVs, ppRenderTargetViews, pDepthStencilView, UAVStartSlot, NumUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
+    }
+    pub fn OMSetBlendState(self: *const ID3D11DeviceContext, pBlendState: ?*ID3D11BlendState, BlendFactor: ?*const f32, SampleMask: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMSetBlendState(@as(*const ID3D11DeviceContext, @ptrCast(self)), pBlendState, BlendFactor, SampleMask);
+    }
+    pub fn OMSetDepthStencilState(self: *const ID3D11DeviceContext, pDepthStencilState: ?*ID3D11DepthStencilState, StencilRef: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMSetDepthStencilState(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDepthStencilState, StencilRef);
+    }
+    pub fn SOSetTargets(self: *const ID3D11DeviceContext, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D11Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).SOSetTargets(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumBuffers, ppSOTargets, pOffsets);
+    }
+    pub fn DrawAuto(self: *const ID3D11DeviceContext) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawAuto(@as(*const ID3D11DeviceContext, @ptrCast(self)));
+    }
+    pub fn DrawIndexedInstancedIndirect(self: *const ID3D11DeviceContext, pBufferForArgs: ?*ID3D11Buffer, AlignedByteOffsetForArgs: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawIndexedInstancedIndirect(@as(*const ID3D11DeviceContext, @ptrCast(self)), pBufferForArgs, AlignedByteOffsetForArgs);
+    }
+    pub fn DrawInstancedIndirect(self: *const ID3D11DeviceContext, pBufferForArgs: ?*ID3D11Buffer, AlignedByteOffsetForArgs: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DrawInstancedIndirect(@as(*const ID3D11DeviceContext, @ptrCast(self)), pBufferForArgs, AlignedByteOffsetForArgs);
+    }
+    pub fn Dispatch(self: *const ID3D11DeviceContext, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Dispatch(@as(*const ID3D11DeviceContext, @ptrCast(self)), ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
+    }
+    pub fn DispatchIndirect(self: *const ID3D11DeviceContext, pBufferForArgs: ?*ID3D11Buffer, AlignedByteOffsetForArgs: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DispatchIndirect(@as(*const ID3D11DeviceContext, @ptrCast(self)), pBufferForArgs, AlignedByteOffsetForArgs);
+    }
+    pub fn RSSetState(self: *const ID3D11DeviceContext, pRasterizerState: ?*ID3D11RasterizerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSSetState(@as(*const ID3D11DeviceContext, @ptrCast(self)), pRasterizerState);
+    }
+    pub fn RSSetViewports(self: *const ID3D11DeviceContext, NumViewports: u32, pViewports: ?[*]const D3D11_VIEWPORT) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSSetViewports(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumViewports, pViewports);
+    }
+    pub fn RSSetScissorRects(self: *const ID3D11DeviceContext, NumRects: u32, pRects: ?[*]const RECT) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSSetScissorRects(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumRects, pRects);
+    }
+    pub fn CopySubresourceRegion(self: *const ID3D11DeviceContext, pDstResource: ?*ID3D11Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D11Resource, SrcSubresource: u32, pSrcBox: ?*const D3D11_BOX) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CopySubresourceRegion(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox);
+    }
+    pub fn CopyResource(self: *const ID3D11DeviceContext, pDstResource: ?*ID3D11Resource, pSrcResource: ?*ID3D11Resource) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CopyResource(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDstResource, pSrcResource);
+    }
+    pub fn UpdateSubresource(self: *const ID3D11DeviceContext, pDstResource: ?*ID3D11Resource, DstSubresource: u32, pDstBox: ?*const D3D11_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).UpdateSubresource(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+    }
+    pub fn CopyStructureCount(self: *const ID3D11DeviceContext, pDstBuffer: ?*ID3D11Buffer, DstAlignedByteOffset: u32, pSrcView: ?*ID3D11UnorderedAccessView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CopyStructureCount(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDstBuffer, DstAlignedByteOffset, pSrcView);
+    }
+    pub fn ClearRenderTargetView(self: *const ID3D11DeviceContext, pRenderTargetView: ?*ID3D11RenderTargetView, ColorRGBA: ?*const f32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ClearRenderTargetView(@as(*const ID3D11DeviceContext, @ptrCast(self)), pRenderTargetView, ColorRGBA);
+    }
+    pub fn ClearUnorderedAccessViewUint(self: *const ID3D11DeviceContext, pUnorderedAccessView: ?*ID3D11UnorderedAccessView, Values: ?*const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewUint(@as(*const ID3D11DeviceContext, @ptrCast(self)), pUnorderedAccessView, Values);
+    }
+    pub fn ClearUnorderedAccessViewFloat(self: *const ID3D11DeviceContext, pUnorderedAccessView: ?*ID3D11UnorderedAccessView, Values: ?*const f32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewFloat(@as(*const ID3D11DeviceContext, @ptrCast(self)), pUnorderedAccessView, Values);
+    }
+    pub fn ClearDepthStencilView(self: *const ID3D11DeviceContext, pDepthStencilView: ?*ID3D11DepthStencilView, ClearFlags: u32, Depth: f32, Stencil: u8) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ClearDepthStencilView(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDepthStencilView, ClearFlags, Depth, Stencil);
+    }
+    pub fn GenerateMips(self: *const ID3D11DeviceContext, pShaderResourceView: ?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GenerateMips(@as(*const ID3D11DeviceContext, @ptrCast(self)), pShaderResourceView);
+    }
+    pub fn SetResourceMinLOD(self: *const ID3D11DeviceContext, pResource: ?*ID3D11Resource, MinLOD: f32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).SetResourceMinLOD(@as(*const ID3D11DeviceContext, @ptrCast(self)), pResource, MinLOD);
+    }
+    pub fn GetResourceMinLOD(self: *const ID3D11DeviceContext, pResource: ?*ID3D11Resource) callconv(.Inline) f32 {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GetResourceMinLOD(@as(*const ID3D11DeviceContext, @ptrCast(self)), pResource);
+    }
+    pub fn ResolveSubresource(self: *const ID3D11DeviceContext, pDstResource: ?*ID3D11Resource, DstSubresource: u32, pSrcResource: ?*ID3D11Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ResolveSubresource(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
+    }
+    pub fn ExecuteCommandList(self: *const ID3D11DeviceContext, pCommandList: ?*ID3D11CommandList, RestoreContextState: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ExecuteCommandList(@as(*const ID3D11DeviceContext, @ptrCast(self)), pCommandList, RestoreContextState);
+    }
+    pub fn HSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn HSSetShader(self: *const ID3D11DeviceContext, pHullShader: ?*ID3D11HullShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pHullShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn HSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn HSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn DSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn DSSetShader(self: *const ID3D11DeviceContext, pDomainShader: ?*ID3D11DomainShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pDomainShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn DSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn DSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn CSSetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSSetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn CSSetUnorderedAccessViews(self: *const ID3D11DeviceContext, StartSlot: u32, NumUAVs: u32, ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView, pUAVInitialCounts: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSSetUnorderedAccessViews(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
+    }
+    pub fn CSSetShader(self: *const ID3D11DeviceContext, pComputeShader: ?*ID3D11ComputeShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, NumClassInstances: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSSetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), pComputeShader, ppClassInstances, NumClassInstances);
+    }
+    pub fn CSSetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSSetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn CSSetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSSetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn VSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn PSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn PSGetShader(self: *const ID3D11DeviceContext, ppPixelShader: ?*?*ID3D11PixelShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppPixelShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn PSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn VSGetShader(self: *const ID3D11DeviceContext, ppVertexShader: ?*?*ID3D11VertexShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppVertexShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn PSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).PSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn IAGetInputLayout(self: *const ID3D11DeviceContext, ppInputLayout: ?*?*ID3D11InputLayout) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IAGetInputLayout(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppInputLayout);
+    }
+    pub fn IAGetVertexBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D11Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IAGetVertexBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+    }
+    pub fn IAGetIndexBuffer(self: *const ID3D11DeviceContext, pIndexBuffer: ?*?*ID3D11Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IAGetIndexBuffer(@as(*const ID3D11DeviceContext, @ptrCast(self)), pIndexBuffer, Format, Offset);
+    }
+    pub fn GSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn GSGetShader(self: *const ID3D11DeviceContext, ppGeometryShader: ?*?*ID3D11GeometryShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppGeometryShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn IAGetPrimitiveTopology(self: *const ID3D11DeviceContext, pTopology: ?*D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).IAGetPrimitiveTopology(@as(*const ID3D11DeviceContext, @ptrCast(self)), pTopology);
+    }
+    pub fn VSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn VSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).VSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn GetPredication(self: *const ID3D11DeviceContext, ppPredicate: ?*?*ID3D11Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GetPredication(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppPredicate, pPredicateValue);
+    }
+    pub fn GSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn GSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn OMGetRenderTargets(self: *const ID3D11DeviceContext, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView, ppDepthStencilView: ?*?*ID3D11DepthStencilView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMGetRenderTargets(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumViews, ppRenderTargetViews, ppDepthStencilView);
+    }
+    pub fn OMGetRenderTargetsAndUnorderedAccessViews(self: *const ID3D11DeviceContext, NumRTVs: u32, ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView, ppDepthStencilView: ?*?*ID3D11DepthStencilView, UAVStartSlot: u32, NumUAVs: u32, ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMGetRenderTargetsAndUnorderedAccessViews(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumRTVs, ppRenderTargetViews, ppDepthStencilView, UAVStartSlot, NumUAVs, ppUnorderedAccessViews);
+    }
+    pub fn OMGetBlendState(self: *const ID3D11DeviceContext, ppBlendState: ?*?*ID3D11BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMGetBlendState(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppBlendState, BlendFactor, pSampleMask);
+    }
+    pub fn OMGetDepthStencilState(self: *const ID3D11DeviceContext, ppDepthStencilState: ?*?*ID3D11DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).OMGetDepthStencilState(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppDepthStencilState, pStencilRef);
+    }
+    pub fn SOGetTargets(self: *const ID3D11DeviceContext, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).SOGetTargets(@as(*const ID3D11DeviceContext, @ptrCast(self)), NumBuffers, ppSOTargets);
+    }
+    pub fn RSGetState(self: *const ID3D11DeviceContext, ppRasterizerState: ?*?*ID3D11RasterizerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSGetState(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppRasterizerState);
+    }
+    pub fn RSGetViewports(self: *const ID3D11DeviceContext, pNumViewports: ?*u32, pViewports: ?[*]D3D11_VIEWPORT) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSGetViewports(@as(*const ID3D11DeviceContext, @ptrCast(self)), pNumViewports, pViewports);
+    }
+    pub fn RSGetScissorRects(self: *const ID3D11DeviceContext, pNumRects: ?*u32, pRects: ?[*]RECT) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).RSGetScissorRects(@as(*const ID3D11DeviceContext, @ptrCast(self)), pNumRects, pRects);
+    }
+    pub fn HSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn HSGetShader(self: *const ID3D11DeviceContext, ppHullShader: ?*?*ID3D11HullShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppHullShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn HSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn HSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).HSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn DSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn DSGetShader(self: *const ID3D11DeviceContext, ppDomainShader: ?*?*ID3D11DomainShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppDomainShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn DSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn DSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).DSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn CSGetShaderResources(self: *const ID3D11DeviceContext, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSGetShaderResources(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn CSGetUnorderedAccessViews(self: *const ID3D11DeviceContext, StartSlot: u32, NumUAVs: u32, ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSGetUnorderedAccessViews(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumUAVs, ppUnorderedAccessViews);
+    }
+    pub fn CSGetShader(self: *const ID3D11DeviceContext, ppComputeShader: ?*?*ID3D11ComputeShader, ppClassInstances: ?[*]?*ID3D11ClassInstance, pNumClassInstances: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSGetShader(@as(*const ID3D11DeviceContext, @ptrCast(self)), ppComputeShader, ppClassInstances, pNumClassInstances);
+    }
+    pub fn CSGetSamplers(self: *const ID3D11DeviceContext, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D11SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSGetSamplers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn CSGetConstantBuffers(self: *const ID3D11DeviceContext, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).CSGetConstantBuffers(@as(*const ID3D11DeviceContext, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn ClearState(self: *const ID3D11DeviceContext) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D11DeviceContext, @ptrCast(self)));
+    }
+    pub fn Flush(self: *const ID3D11DeviceContext) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).Flush(@as(*const ID3D11DeviceContext, @ptrCast(self)));
+    }
+    pub fn GetType(self: *const ID3D11DeviceContext) callconv(.Inline) D3D11_DEVICE_CONTEXT_TYPE {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D11DeviceContext, @ptrCast(self)));
+    }
+    pub fn GetContextFlags(self: *const ID3D11DeviceContext) callconv(.Inline) u32 {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).GetContextFlags(@as(*const ID3D11DeviceContext, @ptrCast(self)));
+    }
+    pub fn FinishCommandList(self: *const ID3D11DeviceContext, RestoreDeferredContextState: BOOL, ppCommandList: ?*?*ID3D11CommandList) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext.VTable, @ptrCast(self.vtable)).FinishCommandList(@as(*const ID3D11DeviceContext, @ptrCast(self)), RestoreDeferredContextState, ppCommandList);
+    }
 };
 
 pub const CD3D11_VIDEO_DEFAULT = extern struct {
@@ -3763,7 +4177,13 @@ pub const ID3D11VideoDecoder = extern union {
             return @as(*const ID3D11VideoDecoder.VTable, @ptrCast(self.vtable)).GetDriverHandle(@as(*const ID3D11VideoDecoder, @ptrCast(self)), pDriverHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetCreationParameters(self: *const ID3D11VideoDecoder, pVideoDesc: ?*D3D11_VIDEO_DECODER_DESC, pConfig: ?*D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDecoder.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const ID3D11VideoDecoder, @ptrCast(self)), pVideoDesc, pConfig);
+    }
+    pub fn GetDriverHandle(self: *const ID3D11VideoDecoder, pDriverHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDecoder.VTable, @ptrCast(self.vtable)).GetDriverHandle(@as(*const ID3D11VideoDecoder, @ptrCast(self)), pDriverHandle);
+    }
 };
 
 pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT = enum(i32) {
@@ -4103,7 +4523,25 @@ pub const ID3D11VideoProcessorEnumerator = extern union {
             return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorFilterRange(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), Filter, pRange);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetVideoProcessorContentDesc(self: *const ID3D11VideoProcessorEnumerator, pContentDesc: ?*D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorContentDesc(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), pContentDesc);
+    }
+    pub fn CheckVideoProcessorFormat(self: *const ID3D11VideoProcessorEnumerator, Format: DXGI_FORMAT, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).CheckVideoProcessorFormat(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), Format, pFlags);
+    }
+    pub fn GetVideoProcessorCaps(self: *const ID3D11VideoProcessorEnumerator, pCaps: ?*D3D11_VIDEO_PROCESSOR_CAPS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), pCaps);
+    }
+    pub fn GetVideoProcessorRateConversionCaps(self: *const ID3D11VideoProcessorEnumerator, TypeIndex: u32, pCaps: ?*D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorRateConversionCaps(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), TypeIndex, pCaps);
+    }
+    pub fn GetVideoProcessorCustomRate(self: *const ID3D11VideoProcessorEnumerator, TypeIndex: u32, CustomRateIndex: u32, pRate: ?*D3D11_VIDEO_PROCESSOR_CUSTOM_RATE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorCustomRate(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), TypeIndex, CustomRateIndex, pRate);
+    }
+    pub fn GetVideoProcessorFilterRange(self: *const ID3D11VideoProcessorEnumerator, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pRange: ?*D3D11_VIDEO_PROCESSOR_FILTER_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator.VTable, @ptrCast(self.vtable)).GetVideoProcessorFilterRange(@as(*const ID3D11VideoProcessorEnumerator, @ptrCast(self)), Filter, pRange);
+    }
 };
 
 pub const D3D11_VIDEO_COLOR_RGBA = extern struct {
@@ -4242,7 +4680,13 @@ pub const ID3D11VideoProcessor = extern union {
             return @as(*const ID3D11VideoProcessor.VTable, @ptrCast(self.vtable)).GetRateConversionCaps(@as(*const ID3D11VideoProcessor, @ptrCast(self)), pCaps);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetContentDesc(self: *const ID3D11VideoProcessor, pDesc: ?*D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11VideoProcessor.VTable, @ptrCast(self.vtable)).GetContentDesc(@as(*const ID3D11VideoProcessor, @ptrCast(self)), pDesc);
+    }
+    pub fn GetRateConversionCaps(self: *const ID3D11VideoProcessor, pCaps: ?*D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) void {
+        return @as(*const ID3D11VideoProcessor.VTable, @ptrCast(self.vtable)).GetRateConversionCaps(@as(*const ID3D11VideoProcessor, @ptrCast(self)), pCaps);
+    }
 };
 
 pub const D3D11_OMAC = extern struct {
@@ -4297,7 +4741,16 @@ pub const ID3D11AuthenticatedChannel = extern union {
             return @as(*const ID3D11AuthenticatedChannel.VTable, @ptrCast(self.vtable)).GetChannelHandle(@as(*const ID3D11AuthenticatedChannel, @ptrCast(self)), pChannelHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetCertificateSize(self: *const ID3D11AuthenticatedChannel, pCertificateSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11AuthenticatedChannel.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const ID3D11AuthenticatedChannel, @ptrCast(self)), pCertificateSize);
+    }
+    pub fn GetCertificate(self: *const ID3D11AuthenticatedChannel, CertificateSize: u32, pCertificate: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11AuthenticatedChannel.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const ID3D11AuthenticatedChannel, @ptrCast(self)), CertificateSize, pCertificate);
+    }
+    pub fn GetChannelHandle(self: *const ID3D11AuthenticatedChannel, pChannelHandle: ?*?HANDLE) callconv(.Inline) void {
+        return @as(*const ID3D11AuthenticatedChannel.VTable, @ptrCast(self.vtable)).GetChannelHandle(@as(*const ID3D11AuthenticatedChannel, @ptrCast(self)), pChannelHandle);
+    }
 };
 
 pub const D3D11_AUTHENTICATED_QUERY_INPUT = extern struct {
@@ -4560,7 +5013,22 @@ pub const ID3D11CryptoSession = extern union {
             return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetCryptoSessionHandle(@as(*const ID3D11CryptoSession, @ptrCast(self)), pCryptoSessionHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetCryptoType(self: *const ID3D11CryptoSession, pCryptoType: ?*Guid) callconv(.Inline) void {
+        return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetCryptoType(@as(*const ID3D11CryptoSession, @ptrCast(self)), pCryptoType);
+    }
+    pub fn GetDecoderProfile(self: *const ID3D11CryptoSession, pDecoderProfile: ?*Guid) callconv(.Inline) void {
+        return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetDecoderProfile(@as(*const ID3D11CryptoSession, @ptrCast(self)), pDecoderProfile);
+    }
+    pub fn GetCertificateSize(self: *const ID3D11CryptoSession, pCertificateSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const ID3D11CryptoSession, @ptrCast(self)), pCertificateSize);
+    }
+    pub fn GetCertificate(self: *const ID3D11CryptoSession, CertificateSize: u32, pCertificate: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const ID3D11CryptoSession, @ptrCast(self)), CertificateSize, pCertificate);
+    }
+    pub fn GetCryptoSessionHandle(self: *const ID3D11CryptoSession, pCryptoSessionHandle: ?*?HANDLE) callconv(.Inline) void {
+        return @as(*const ID3D11CryptoSession.VTable, @ptrCast(self.vtable)).GetCryptoSessionHandle(@as(*const ID3D11CryptoSession, @ptrCast(self)), pCryptoSessionHandle);
+    }
 };
 
 pub const D3D11_VDOV_DIMENSION = enum(i32) {
@@ -4603,7 +5071,10 @@ pub const ID3D11VideoDecoderOutputView = extern union {
             return @as(*const ID3D11VideoDecoderOutputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoDecoderOutputView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11VideoDecoderOutputView, pDesc: ?*D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11VideoDecoderOutputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoDecoderOutputView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_VPIV_DIMENSION = enum(i32) {
@@ -4647,7 +5118,10 @@ pub const ID3D11VideoProcessorInputView = extern union {
             return @as(*const ID3D11VideoProcessorInputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoProcessorInputView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11VideoProcessorInputView, pDesc: ?*D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11VideoProcessorInputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoProcessorInputView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_VPOV_DIMENSION = enum(i32) {
@@ -4698,7 +5172,10 @@ pub const ID3D11VideoProcessorOutputView = extern union {
             return @as(*const ID3D11VideoProcessorOutputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoProcessorOutputView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11VideoProcessorOutputView, pDesc: ?*D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D11VideoProcessorOutputView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11VideoProcessorOutputView, @ptrCast(self)), pDesc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5353,7 +5830,181 @@ pub const ID3D11VideoContext = extern union {
             return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamRotation(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnable, pRotation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn GetDecoderBuffer(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE, pBufferSize: ?*u32, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).GetDecoderBuffer(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder, Type, pBufferSize, ppBuffer);
+    }
+    pub fn ReleaseDecoderBuffer(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).ReleaseDecoderBuffer(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder, Type);
+    }
+    pub fn DecoderBeginFrame(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder, pView: ?*ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).DecoderBeginFrame(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder, pView, ContentKeySize, pContentKey);
+    }
+    pub fn DecoderEndFrame(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).DecoderEndFrame(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder);
+    }
+    pub fn SubmitDecoderBuffers(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).SubmitDecoderBuffers(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder, NumBuffers, pBufferDesc);
+    }
+    pub fn DecoderExtension(self: *const ID3D11VideoContext, pDecoder: ?*ID3D11VideoDecoder, pExtensionData: ?*const D3D11_VIDEO_DECODER_EXTENSION) callconv(.Inline) i32 {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).DecoderExtension(@as(*const ID3D11VideoContext, @ptrCast(self)), pDecoder, pExtensionData);
+    }
+    pub fn VideoProcessorSetOutputTargetRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputTargetRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, Enable, pRect);
+    }
+    pub fn VideoProcessorSetOutputBackgroundColor(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, YCbCr: BOOL, pColor: ?*const D3D11_VIDEO_COLOR) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputBackgroundColor(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, YCbCr, pColor);
+    }
+    pub fn VideoProcessorSetOutputColorSpace(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pColorSpace: ?*const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputColorSpace(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pColorSpace);
+    }
+    pub fn VideoProcessorSetOutputAlphaFillMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, StreamIndex: u32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputAlphaFillMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, AlphaFillMode, StreamIndex);
+    }
+    pub fn VideoProcessorSetOutputConstriction(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, Enable: BOOL, Size: SIZE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputConstriction(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, Enable, Size);
+    }
+    pub fn VideoProcessorSetOutputStereoMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, Enable: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputStereoMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, Enable);
+    }
+    pub fn VideoProcessorSetOutputExtension(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pExtensionGuid: ?*const Guid, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) i32 {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputExtension(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pExtensionGuid, DataSize, pData);
+    }
+    pub fn VideoProcessorGetOutputTargetRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, Enabled: ?*BOOL, pRect: ?*RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputTargetRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, Enabled, pRect);
+    }
+    pub fn VideoProcessorGetOutputBackgroundColor(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pYCbCr: ?*BOOL, pColor: ?*D3D11_VIDEO_COLOR) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputBackgroundColor(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pYCbCr, pColor);
+    }
+    pub fn VideoProcessorGetOutputColorSpace(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pColorSpace: ?*D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputColorSpace(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pColorSpace);
+    }
+    pub fn VideoProcessorGetOutputAlphaFillMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pAlphaFillMode: ?*D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, pStreamIndex: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputAlphaFillMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pAlphaFillMode, pStreamIndex);
+    }
+    pub fn VideoProcessorGetOutputConstriction(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pEnabled: ?*BOOL, pSize: ?*SIZE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputConstriction(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pEnabled, pSize);
+    }
+    pub fn VideoProcessorGetOutputStereoMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pEnabled: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputStereoMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pEnabled);
+    }
+    pub fn VideoProcessorGetOutputExtension(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pExtensionGuid: ?*const Guid, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) i32 {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputExtension(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pExtensionGuid, DataSize, pData);
+    }
+    pub fn VideoProcessorSetStreamFrameFormat(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, FrameFormat: D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamFrameFormat(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, FrameFormat);
+    }
+    pub fn VideoProcessorSetStreamColorSpace(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: ?*const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamColorSpace(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pColorSpace);
+    }
+    pub fn VideoProcessorSetStreamOutputRate(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, RepeatFrame: BOOL, pCustomRate: ?*const DXGI_RATIONAL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamOutputRate(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, OutputRate, RepeatFrame, pCustomRate);
+    }
+    pub fn VideoProcessorSetStreamSourceRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamSourceRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, pRect);
+    }
+    pub fn VideoProcessorSetStreamDestRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamDestRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, pRect);
+    }
+    pub fn VideoProcessorSetStreamAlpha(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Alpha: f32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamAlpha(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, Alpha);
+    }
+    pub fn VideoProcessorSetStreamPalette(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamPalette(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Count, pEntries);
+    }
+    pub fn VideoProcessorSetStreamPixelAspectRatio(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pSourceAspectRatio: ?*const DXGI_RATIONAL, pDestinationAspectRatio: ?*const DXGI_RATIONAL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamPixelAspectRatio(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, pSourceAspectRatio, pDestinationAspectRatio);
+    }
+    pub fn VideoProcessorSetStreamLumaKey(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Lower: f32, Upper: f32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamLumaKey(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, Lower, Upper);
+    }
+    pub fn VideoProcessorSetStreamStereoFormat(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Format: D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, LeftViewFrame0: BOOL, BaseViewFrame0: BOOL, FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: i32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamStereoFormat(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
+    }
+    pub fn VideoProcessorSetStreamAutoProcessingMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamAutoProcessingMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable);
+    }
+    pub fn VideoProcessorSetStreamFilter(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, Enable: BOOL, Level: i32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamFilter(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Filter, Enable, Level);
+    }
+    pub fn VideoProcessorSetStreamExtension(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: ?*const Guid, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) i32 {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamExtension(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
+    }
+    pub fn VideoProcessorGetStreamFrameFormat(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pFrameFormat: ?*D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamFrameFormat(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pFrameFormat);
+    }
+    pub fn VideoProcessorGetStreamColorSpace(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: ?*D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamColorSpace(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pColorSpace);
+    }
+    pub fn VideoProcessorGetStreamOutputRate(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pOutputRate: ?*D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, pRepeatFrame: ?*BOOL, pCustomRate: ?*DXGI_RATIONAL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamOutputRate(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pOutputRate, pRepeatFrame, pCustomRate);
+    }
+    pub fn VideoProcessorGetStreamSourceRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL, pRect: ?*RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamSourceRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled, pRect);
+    }
+    pub fn VideoProcessorGetStreamDestRect(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL, pRect: ?*RECT) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamDestRect(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled, pRect);
+    }
+    pub fn VideoProcessorGetStreamAlpha(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL, pAlpha: ?*f32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamAlpha(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled, pAlpha);
+    }
+    pub fn VideoProcessorGetStreamPalette(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: [*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamPalette(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Count, pEntries);
+    }
+    pub fn VideoProcessorGetStreamPixelAspectRatio(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL, pSourceAspectRatio: ?*DXGI_RATIONAL, pDestinationAspectRatio: ?*DXGI_RATIONAL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamPixelAspectRatio(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled, pSourceAspectRatio, pDestinationAspectRatio);
+    }
+    pub fn VideoProcessorGetStreamLumaKey(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL, pLower: ?*f32, pUpper: ?*f32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamLumaKey(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled, pLower, pUpper);
+    }
+    pub fn VideoProcessorGetStreamStereoFormat(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnable: ?*BOOL, pFormat: ?*D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, pLeftViewFrame0: ?*BOOL, pBaseViewFrame0: ?*BOOL, pFlipMode: ?*D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: ?*i32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamStereoFormat(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnable, pFormat, pLeftViewFrame0, pBaseViewFrame0, pFlipMode, MonoOffset);
+    }
+    pub fn VideoProcessorGetStreamAutoProcessingMode(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnabled: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamAutoProcessingMode(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnabled);
+    }
+    pub fn VideoProcessorGetStreamFilter(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pEnabled: ?*BOOL, pLevel: ?*i32) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamFilter(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Filter, pEnabled, pLevel);
+    }
+    pub fn VideoProcessorGetStreamExtension(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: ?*const Guid, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) i32 {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamExtension(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
+    }
+    pub fn VideoProcessorBlt(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, pView: ?*ID3D11VideoProcessorOutputView, OutputFrame: u32, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorBlt(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, pView, OutputFrame, StreamCount, pStreams);
+    }
+    pub fn NegotiateCryptoSessionKeyExchange(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).NegotiateCryptoSessionKeyExchange(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession, DataSize, pData);
+    }
+    pub fn EncryptionBlt(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession, pSrcSurface: ?*ID3D11Texture2D, pDstSurface: ?*ID3D11Texture2D, IVSize: u32, pIV: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).EncryptionBlt(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession, pSrcSurface, pDstSurface, IVSize, pIV);
+    }
+    pub fn DecryptionBlt(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession, pSrcSurface: ?*ID3D11Texture2D, pDstSurface: ?*ID3D11Texture2D, pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO, ContentKeySize: u32, pContentKey: ?*const anyopaque, IVSize: u32, pIV: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).DecryptionBlt(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession, pSrcSurface, pDstSurface, pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
+    }
+    pub fn StartSessionKeyRefresh(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession, RandomNumberSize: u32, pRandomNumber: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).StartSessionKeyRefresh(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession, RandomNumberSize, pRandomNumber);
+    }
+    pub fn FinishSessionKeyRefresh(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).FinishSessionKeyRefresh(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession);
+    }
+    pub fn GetEncryptionBltKey(self: *const ID3D11VideoContext, pCryptoSession: ?*ID3D11CryptoSession, KeySize: u32, pReadbackKey: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).GetEncryptionBltKey(@as(*const ID3D11VideoContext, @ptrCast(self)), pCryptoSession, KeySize, pReadbackKey);
+    }
+    pub fn NegotiateAuthenticatedChannelKeyExchange(self: *const ID3D11VideoContext, pChannel: ?*ID3D11AuthenticatedChannel, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).NegotiateAuthenticatedChannelKeyExchange(@as(*const ID3D11VideoContext, @ptrCast(self)), pChannel, DataSize, pData);
+    }
+    pub fn QueryAuthenticatedChannel(self: *const ID3D11VideoContext, pChannel: ?*ID3D11AuthenticatedChannel, InputSize: u32, pInput: ?*const anyopaque, OutputSize: u32, pOutput: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).QueryAuthenticatedChannel(@as(*const ID3D11VideoContext, @ptrCast(self)), pChannel, InputSize, pInput, OutputSize, pOutput);
+    }
+    pub fn ConfigureAuthenticatedChannel(self: *const ID3D11VideoContext, pChannel: ?*ID3D11AuthenticatedChannel, InputSize: u32, pInput: ?*const anyopaque, pOutput: ?*D3D11_AUTHENTICATED_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).ConfigureAuthenticatedChannel(@as(*const ID3D11VideoContext, @ptrCast(self)), pChannel, InputSize, pInput, pOutput);
+    }
+    pub fn VideoProcessorSetStreamRotation(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Rotation: D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamRotation(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, Rotation);
+    }
+    pub fn VideoProcessorGetStreamRotation(self: *const ID3D11VideoContext, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnable: ?*BOOL, pRotation: ?*D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamRotation(@as(*const ID3D11VideoContext, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnable, pRotation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5536,7 +6187,58 @@ pub const ID3D11VideoDevice = extern union {
             return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D11VideoDevice, @ptrCast(self)), guid, pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateVideoDecoder(self: *const ID3D11VideoDevice, pVideoDesc: ?*const D3D11_VIDEO_DECODER_DESC, pConfig: ?*const D3D11_VIDEO_DECODER_CONFIG, ppDecoder: ?*?*ID3D11VideoDecoder) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoder(@as(*const ID3D11VideoDevice, @ptrCast(self)), pVideoDesc, pConfig, ppDecoder);
+    }
+    pub fn CreateVideoProcessor(self: *const ID3D11VideoDevice, pEnum: ?*ID3D11VideoProcessorEnumerator, RateConversionIndex: u32, ppVideoProcessor: ?*?*ID3D11VideoProcessor) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const ID3D11VideoDevice, @ptrCast(self)), pEnum, RateConversionIndex, ppVideoProcessor);
+    }
+    pub fn CreateAuthenticatedChannel(self: *const ID3D11VideoDevice, ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE, ppAuthenticatedChannel: ?*?*ID3D11AuthenticatedChannel) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateAuthenticatedChannel(@as(*const ID3D11VideoDevice, @ptrCast(self)), ChannelType, ppAuthenticatedChannel);
+    }
+    pub fn CreateCryptoSession(self: *const ID3D11VideoDevice, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: ?*const Guid, ppCryptoSession: ?*?*ID3D11CryptoSession) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateCryptoSession(@as(*const ID3D11VideoDevice, @ptrCast(self)), pCryptoType, pDecoderProfile, pKeyExchangeType, ppCryptoSession);
+    }
+    pub fn CreateVideoDecoderOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC, ppVDOVView: ?*?*ID3D11VideoDecoderOutputView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoderOutputView(@as(*const ID3D11VideoDevice, @ptrCast(self)), pResource, pDesc, ppVDOVView);
+    }
+    pub fn CreateVideoProcessorInputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC, ppVPIView: ?*?*ID3D11VideoProcessorInputView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessorInputView(@as(*const ID3D11VideoDevice, @ptrCast(self)), pResource, pEnum, pDesc, ppVPIView);
+    }
+    pub fn CreateVideoProcessorOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC, ppVPOView: ?*?*ID3D11VideoProcessorOutputView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessorOutputView(@as(*const ID3D11VideoDevice, @ptrCast(self)), pResource, pEnum, pDesc, ppVPOView);
+    }
+    pub fn CreateVideoProcessorEnumerator(self: *const ID3D11VideoDevice, pDesc: ?*const D3D11_VIDEO_PROCESSOR_CONTENT_DESC, ppEnum: ?*?*ID3D11VideoProcessorEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessorEnumerator(@as(*const ID3D11VideoDevice, @ptrCast(self)), pDesc, ppEnum);
+    }
+    pub fn GetVideoDecoderProfileCount(self: *const ID3D11VideoDevice) callconv(.Inline) u32 {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).GetVideoDecoderProfileCount(@as(*const ID3D11VideoDevice, @ptrCast(self)));
+    }
+    pub fn GetVideoDecoderProfile(self: *const ID3D11VideoDevice, Index: u32, pDecoderProfile: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).GetVideoDecoderProfile(@as(*const ID3D11VideoDevice, @ptrCast(self)), Index, pDecoderProfile);
+    }
+    pub fn CheckVideoDecoderFormat(self: *const ID3D11VideoDevice, pDecoderProfile: ?*const Guid, Format: DXGI_FORMAT, pSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CheckVideoDecoderFormat(@as(*const ID3D11VideoDevice, @ptrCast(self)), pDecoderProfile, Format, pSupported);
+    }
+    pub fn GetVideoDecoderConfigCount(self: *const ID3D11VideoDevice, pDesc: ?*const D3D11_VIDEO_DECODER_DESC, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).GetVideoDecoderConfigCount(@as(*const ID3D11VideoDevice, @ptrCast(self)), pDesc, pCount);
+    }
+    pub fn GetVideoDecoderConfig(self: *const ID3D11VideoDevice, pDesc: ?*const D3D11_VIDEO_DECODER_DESC, Index: u32, pConfig: ?*D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).GetVideoDecoderConfig(@as(*const ID3D11VideoDevice, @ptrCast(self)), pDesc, Index, pConfig);
+    }
+    pub fn GetContentProtectionCaps(self: *const ID3D11VideoDevice, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pCaps: ?*D3D11_VIDEO_CONTENT_PROTECTION_CAPS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).GetContentProtectionCaps(@as(*const ID3D11VideoDevice, @ptrCast(self)), pCryptoType, pDecoderProfile, pCaps);
+    }
+    pub fn CheckCryptoKeyExchange(self: *const ID3D11VideoDevice, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, Index: u32, pKeyExchangeType: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).CheckCryptoKeyExchange(@as(*const ID3D11VideoDevice, @ptrCast(self)), pCryptoType, pDecoderProfile, Index, pKeyExchangeType);
+    }
+    pub fn SetPrivateData(self: *const ID3D11VideoDevice, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D11VideoDevice, @ptrCast(self)), guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D11VideoDevice, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D11VideoDevice, @ptrCast(self)), guid, pData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5945,7 +6647,127 @@ pub const ID3D11Device = extern union {
             return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetExceptionMode(@as(*const ID3D11Device, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateBuffer(self: *const ID3D11Device, pDesc: ?*const D3D11_BUFFER_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D11Buffer) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateBuffer(@as(*const ID3D11Device, @ptrCast(self)), pDesc, pInitialData, ppBuffer);
+    }
+    pub fn CreateTexture1D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE1D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D11Texture1D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateTexture1D(@as(*const ID3D11Device, @ptrCast(self)), pDesc, pInitialData, ppTexture1D);
+    }
+    pub fn CreateTexture2D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE2D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D11Texture2D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateTexture2D(@as(*const ID3D11Device, @ptrCast(self)), pDesc, pInitialData, ppTexture2D);
+    }
+    pub fn CreateTexture3D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE3D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D11Texture3D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateTexture3D(@as(*const ID3D11Device, @ptrCast(self)), pDesc, pInitialData, ppTexture3D);
+    }
+    pub fn CreateShaderResourceView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D11ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateShaderResourceView(@as(*const ID3D11Device, @ptrCast(self)), pResource, pDesc, ppSRView);
+    }
+    pub fn CreateUnorderedAccessView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC, ppUAView: ?*?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateUnorderedAccessView(@as(*const ID3D11Device, @ptrCast(self)), pResource, pDesc, ppUAView);
+    }
+    pub fn CreateRenderTargetView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D11RenderTargetView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateRenderTargetView(@as(*const ID3D11Device, @ptrCast(self)), pResource, pDesc, ppRTView);
+    }
+    pub fn CreateDepthStencilView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D11DepthStencilView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilView(@as(*const ID3D11Device, @ptrCast(self)), pResource, pDesc, ppDepthStencilView);
+    }
+    pub fn CreateInputLayout(self: *const ID3D11Device, pInputElementDescs: [*]const D3D11_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D11InputLayout) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateInputLayout(@as(*const ID3D11Device, @ptrCast(self)), pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
+    }
+    pub fn CreateVertexShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppVertexShader: ?*?*ID3D11VertexShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateVertexShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppVertexShader);
+    }
+    pub fn CreateGeometryShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?*?*ID3D11GeometryShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateGeometryShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppGeometryShader);
+    }
+    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D11_SO_DECLARATION_ENTRY, NumEntries: u32, pBufferStrides: ?[*]const u32, NumStrides: u32, RasterizedStream: u32, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?*?*ID3D11GeometryShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateGeometryShaderWithStreamOutput(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, pBufferStrides, NumStrides, RasterizedStream, pClassLinkage, ppGeometryShader);
+    }
+    pub fn CreatePixelShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppPixelShader: ?*?*ID3D11PixelShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreatePixelShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppPixelShader);
+    }
+    pub fn CreateHullShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppHullShader: ?*?*ID3D11HullShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateHullShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppHullShader);
+    }
+    pub fn CreateDomainShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppDomainShader: ?*?*ID3D11DomainShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateDomainShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppDomainShader);
+    }
+    pub fn CreateComputeShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppComputeShader: ?*?*ID3D11ComputeShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateComputeShader(@as(*const ID3D11Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pClassLinkage, ppComputeShader);
+    }
+    pub fn CreateClassLinkage(self: *const ID3D11Device, ppLinkage: ?*?*ID3D11ClassLinkage) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateClassLinkage(@as(*const ID3D11Device, @ptrCast(self)), ppLinkage);
+    }
+    pub fn CreateBlendState(self: *const ID3D11Device, pBlendStateDesc: ?*const D3D11_BLEND_DESC, ppBlendState: ?*?*ID3D11BlendState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateBlendState(@as(*const ID3D11Device, @ptrCast(self)), pBlendStateDesc, ppBlendState);
+    }
+    pub fn CreateDepthStencilState(self: *const ID3D11Device, pDepthStencilDesc: ?*const D3D11_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D11DepthStencilState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilState(@as(*const ID3D11Device, @ptrCast(self)), pDepthStencilDesc, ppDepthStencilState);
+    }
+    pub fn CreateRasterizerState(self: *const ID3D11Device, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D11RasterizerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateRasterizerState(@as(*const ID3D11Device, @ptrCast(self)), pRasterizerDesc, ppRasterizerState);
+    }
+    pub fn CreateSamplerState(self: *const ID3D11Device, pSamplerDesc: ?*const D3D11_SAMPLER_DESC, ppSamplerState: ?*?*ID3D11SamplerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateSamplerState(@as(*const ID3D11Device, @ptrCast(self)), pSamplerDesc, ppSamplerState);
+    }
+    pub fn CreateQuery(self: *const ID3D11Device, pQueryDesc: ?*const D3D11_QUERY_DESC, ppQuery: ?*?*ID3D11Query) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const ID3D11Device, @ptrCast(self)), pQueryDesc, ppQuery);
+    }
+    pub fn CreatePredicate(self: *const ID3D11Device, pPredicateDesc: ?*const D3D11_QUERY_DESC, ppPredicate: ?*?*ID3D11Predicate) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreatePredicate(@as(*const ID3D11Device, @ptrCast(self)), pPredicateDesc, ppPredicate);
+    }
+    pub fn CreateCounter(self: *const ID3D11Device, pCounterDesc: ?*const D3D11_COUNTER_DESC, ppCounter: ?*?*ID3D11Counter) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateCounter(@as(*const ID3D11Device, @ptrCast(self)), pCounterDesc, ppCounter);
+    }
+    pub fn CreateDeferredContext(self: *const ID3D11Device, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CreateDeferredContext(@as(*const ID3D11Device, @ptrCast(self)), ContextFlags, ppDeferredContext);
+    }
+    pub fn OpenSharedResource(self: *const ID3D11Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).OpenSharedResource(@as(*const ID3D11Device, @ptrCast(self)), hResource, ReturnedInterface, ppResource);
+    }
+    pub fn CheckFormatSupport(self: *const ID3D11Device, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CheckFormatSupport(@as(*const ID3D11Device, @ptrCast(self)), Format, pFormatSupport);
+    }
+    pub fn CheckMultisampleQualityLevels(self: *const ID3D11Device, Format: DXGI_FORMAT, SampleCount: u32, pNumQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CheckMultisampleQualityLevels(@as(*const ID3D11Device, @ptrCast(self)), Format, SampleCount, pNumQualityLevels);
+    }
+    pub fn CheckCounterInfo(self: *const ID3D11Device, pCounterInfo: ?*D3D11_COUNTER_INFO) callconv(.Inline) void {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CheckCounterInfo(@as(*const ID3D11Device, @ptrCast(self)), pCounterInfo);
+    }
+    pub fn CheckCounter(self: *const ID3D11Device, pDesc: ?*const D3D11_COUNTER_DESC, pType: ?*D3D11_COUNTER_TYPE, pActiveCounters: ?*u32, szName: ?[*:0]u8, pNameLength: ?*u32, szUnits: ?[*:0]u8, pUnitsLength: ?*u32, szDescription: ?[*:0]u8, pDescriptionLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CheckCounter(@as(*const ID3D11Device, @ptrCast(self)), pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
+    }
+    pub fn CheckFeatureSupport(self: *const ID3D11Device, Feature: D3D11_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D11Device, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
+    }
+    pub fn GetPrivateData(self: *const ID3D11Device, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D11Device, @ptrCast(self)), guid, pDataSize, pData);
+    }
+    pub fn SetPrivateData(self: *const ID3D11Device, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D11Device, @ptrCast(self)), guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D11Device, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D11Device, @ptrCast(self)), guid, pData);
+    }
+    pub fn GetFeatureLevel(self: *const ID3D11Device) callconv(.Inline) D3D_FEATURE_LEVEL {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetFeatureLevel(@as(*const ID3D11Device, @ptrCast(self)));
+    }
+    pub fn GetCreationFlags(self: *const ID3D11Device) callconv(.Inline) u32 {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const ID3D11Device, @ptrCast(self)));
+    }
+    pub fn GetDeviceRemovedReason(self: *const ID3D11Device) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const ID3D11Device, @ptrCast(self)));
+    }
+    pub fn GetImmediateContext(self: *const ID3D11Device, ppImmediateContext: ?*?*ID3D11DeviceContext) callconv(.Inline) void {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetImmediateContext(@as(*const ID3D11Device, @ptrCast(self)), ppImmediateContext);
+    }
+    pub fn SetExceptionMode(self: *const ID3D11Device, RaiseFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).SetExceptionMode(@as(*const ID3D11Device, @ptrCast(self)), RaiseFlags);
+    }
+    pub fn GetExceptionMode(self: *const ID3D11Device) callconv(.Inline) u32 {
+        return @as(*const ID3D11Device.VTable, @ptrCast(self.vtable)).GetExceptionMode(@as(*const ID3D11Device, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_CREATE_DEVICE_FLAG = packed struct(u32) {
@@ -6084,7 +6906,34 @@ pub const ID3D11Debug = extern union {
             return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).ValidateContextForDispatch(@as(*const ID3D11Debug, @ptrCast(self)), pContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetFeatureMask(self: *const ID3D11Debug, Mask: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D11Debug, @ptrCast(self)), Mask);
+    }
+    pub fn GetFeatureMask(self: *const ID3D11Debug) callconv(.Inline) u32 {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D11Debug, @ptrCast(self)));
+    }
+    pub fn SetPresentPerRenderOpDelay(self: *const ID3D11Debug, Milliseconds: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).SetPresentPerRenderOpDelay(@as(*const ID3D11Debug, @ptrCast(self)), Milliseconds);
+    }
+    pub fn GetPresentPerRenderOpDelay(self: *const ID3D11Debug) callconv(.Inline) u32 {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).GetPresentPerRenderOpDelay(@as(*const ID3D11Debug, @ptrCast(self)));
+    }
+    pub fn SetSwapChain(self: *const ID3D11Debug, pSwapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ID3D11Debug, @ptrCast(self)), pSwapChain);
+    }
+    pub fn GetSwapChain(self: *const ID3D11Debug, ppSwapChain: ?*?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).GetSwapChain(@as(*const ID3D11Debug, @ptrCast(self)), ppSwapChain);
+    }
+    pub fn ValidateContext(self: *const ID3D11Debug, pContext: ?*ID3D11DeviceContext) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).ValidateContext(@as(*const ID3D11Debug, @ptrCast(self)), pContext);
+    }
+    pub fn ReportLiveDeviceObjects(self: *const ID3D11Debug, Flags: D3D11_RLDO_FLAGS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).ReportLiveDeviceObjects(@as(*const ID3D11Debug, @ptrCast(self)), Flags);
+    }
+    pub fn ValidateContextForDispatch(self: *const ID3D11Debug, pContext: ?*ID3D11DeviceContext) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Debug.VTable, @ptrCast(self.vtable)).ValidateContextForDispatch(@as(*const ID3D11Debug, @ptrCast(self)), pContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6115,7 +6964,13 @@ pub const ID3D11SwitchToRef = extern union {
             return @as(*const ID3D11SwitchToRef.VTable, @ptrCast(self.vtable)).GetUseRef(@as(*const ID3D11SwitchToRef, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetUseRef(self: *const ID3D11SwitchToRef, UseRef: BOOL) callconv(.Inline) BOOL {
+        return @as(*const ID3D11SwitchToRef.VTable, @ptrCast(self.vtable)).SetUseRef(@as(*const ID3D11SwitchToRef, @ptrCast(self)), UseRef);
+    }
+    pub fn GetUseRef(self: *const ID3D11SwitchToRef) callconv(.Inline) BOOL {
+        return @as(*const ID3D11SwitchToRef.VTable, @ptrCast(self.vtable)).GetUseRef(@as(*const ID3D11SwitchToRef, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_SHADER_TRACKING_RESOURCE_TYPE = enum(i32) {
@@ -6201,7 +7056,13 @@ pub const ID3D11TracingDevice = extern union {
             return @as(*const ID3D11TracingDevice.VTable, @ptrCast(self.vtable)).SetShaderTrackingOptions(@as(*const ID3D11TracingDevice, @ptrCast(self)), pShader, Options);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetShaderTrackingOptionsByType(self: *const ID3D11TracingDevice, ResourceTypeFlags: u32, Options: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11TracingDevice.VTable, @ptrCast(self.vtable)).SetShaderTrackingOptionsByType(@as(*const ID3D11TracingDevice, @ptrCast(self)), ResourceTypeFlags, Options);
+    }
+    pub fn SetShaderTrackingOptions(self: *const ID3D11TracingDevice, pShader: ?*IUnknown, Options: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11TracingDevice.VTable, @ptrCast(self.vtable)).SetShaderTrackingOptions(@as(*const ID3D11TracingDevice, @ptrCast(self)), pShader, Options);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6225,7 +7086,10 @@ pub const ID3D11RefTrackingOptions = extern union {
             return @as(*const ID3D11RefTrackingOptions.VTable, @ptrCast(self.vtable)).SetTrackingOptions(@as(*const ID3D11RefTrackingOptions, @ptrCast(self)), uOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetTrackingOptions(self: *const ID3D11RefTrackingOptions, uOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11RefTrackingOptions.VTable, @ptrCast(self.vtable)).SetTrackingOptions(@as(*const ID3D11RefTrackingOptions, @ptrCast(self)), uOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6250,7 +7114,10 @@ pub const ID3D11RefDefaultTrackingOptions = extern union {
             return @as(*const ID3D11RefDefaultTrackingOptions.VTable, @ptrCast(self.vtable)).SetTrackingOptions(@as(*const ID3D11RefDefaultTrackingOptions, @ptrCast(self)), ResourceTypeFlags, Options);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetTrackingOptions(self: *const ID3D11RefDefaultTrackingOptions, ResourceTypeFlags: u32, Options: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11RefDefaultTrackingOptions.VTable, @ptrCast(self.vtable)).SetTrackingOptions(@as(*const ID3D11RefDefaultTrackingOptions, @ptrCast(self)), ResourceTypeFlags, Options);
+    }
 };
 
 pub const D3D11_MESSAGE_CATEGORY = enum(i32) {
@@ -9277,7 +10144,112 @@ pub const ID3D11InfoQueue = extern union {
             return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D11InfoQueue, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMessageCountLimit(self: *const ID3D11InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const ID3D11InfoQueue, @ptrCast(self)), MessageCountLimit);
+    }
+    pub fn ClearStoredMessages(self: *const ID3D11InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetMessage(self: *const ID3D11InfoQueue, MessageIndex: u64, pMessage: ?*D3D11_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const ID3D11InfoQueue, @ptrCast(self)), MessageIndex, pMessage, pMessageByteLength);
+    }
+    pub fn GetNumMessagesAllowedByStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumMessagesDeniedByStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumStoredMessages(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumStoredMessagesAllowedByRetrievalFilter(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetMessageCountLimit(self: *const ID3D11InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddStorageFilterEntries(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn GetStorageFilter(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
+    }
+    pub fn ClearStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushEmptyStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushCopyOfStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushStorageFilter(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn PopStorageFilter(self: *const ID3D11InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetStorageFilterStackSize(self: *const ID3D11InfoQueue) callconv(.Inline) u32 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddRetrievalFilterEntries(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn GetRetrievalFilter(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
+    }
+    pub fn ClearRetrievalFilter(self: *const ID3D11InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushEmptyRetrievalFilter(self: *const ID3D11InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushCopyOfRetrievalFilter(self: *const ID3D11InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushRetrievalFilter(self: *const ID3D11InfoQueue, pFilter: ?*D3D11_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn PopRetrievalFilter(self: *const ID3D11InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetRetrievalFilterStackSize(self: *const ID3D11InfoQueue) callconv(.Inline) u32 {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddMessage(self: *const ID3D11InfoQueue, Category: D3D11_MESSAGE_CATEGORY, Severity: D3D11_MESSAGE_SEVERITY, ID: D3D11_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const ID3D11InfoQueue, @ptrCast(self)), Category, Severity, ID, pDescription);
+    }
+    pub fn AddApplicationMessage(self: *const ID3D11InfoQueue, Severity: D3D11_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const ID3D11InfoQueue, @ptrCast(self)), Severity, pDescription);
+    }
+    pub fn SetBreakOnCategory(self: *const ID3D11InfoQueue, Category: D3D11_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const ID3D11InfoQueue, @ptrCast(self)), Category, bEnable);
+    }
+    pub fn SetBreakOnSeverity(self: *const ID3D11InfoQueue, Severity: D3D11_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const ID3D11InfoQueue, @ptrCast(self)), Severity, bEnable);
+    }
+    pub fn SetBreakOnID(self: *const ID3D11InfoQueue, ID: D3D11_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const ID3D11InfoQueue, @ptrCast(self)), ID, bEnable);
+    }
+    pub fn GetBreakOnCategory(self: *const ID3D11InfoQueue, Category: D3D11_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const ID3D11InfoQueue, @ptrCast(self)), Category);
+    }
+    pub fn GetBreakOnSeverity(self: *const ID3D11InfoQueue, Severity: D3D11_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const ID3D11InfoQueue, @ptrCast(self)), Severity);
+    }
+    pub fn GetBreakOnID(self: *const ID3D11InfoQueue, ID: D3D11_MESSAGE_ID) callconv(.Inline) BOOL {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const ID3D11InfoQueue, @ptrCast(self)), ID);
+    }
+    pub fn SetMuteDebugOutput(self: *const ID3D11InfoQueue, bMute: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const ID3D11InfoQueue, @ptrCast(self)), bMute);
+    }
+    pub fn GetMuteDebugOutput(self: *const ID3D11InfoQueue) callconv(.Inline) BOOL {
+        return @as(*const ID3D11InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D11InfoQueue, @ptrCast(self)));
+    }
 };
 
 pub const PFN_D3D11_CREATE_DEVICE = *const fn(
@@ -9390,7 +10362,10 @@ pub const ID3D11BlendState1 = extern union {
             return @as(*const ID3D11BlendState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11BlendState1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11BlendState.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11BlendState1, pDesc: ?*D3D11_BLEND_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11BlendState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11BlendState1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_RASTERIZER_DESC1 = extern struct {
@@ -9428,7 +10403,10 @@ pub const ID3D11RasterizerState1 = extern union {
             return @as(*const ID3D11RasterizerState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11RasterizerState1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11RasterizerState.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11RasterizerState1, pDesc: ?*D3D11_RASTERIZER_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11RasterizerState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11RasterizerState1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG = enum(i32) {
@@ -9449,7 +10427,7 @@ pub const ID3DDeviceContextState = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -9685,7 +10663,64 @@ pub const ID3D11DeviceContext1 = extern union {
             return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DiscardView1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pResourceView, pRects, NumRects);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceContext.MethodMixin(@This());
+    pub fn CopySubresourceRegion1(self: *const ID3D11DeviceContext1, pDstResource: ?*ID3D11Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D11Resource, SrcSubresource: u32, pSrcBox: ?*const D3D11_BOX, CopyFlags: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).CopySubresourceRegion1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox, CopyFlags);
+    }
+    pub fn UpdateSubresource1(self: *const ID3D11DeviceContext1, pDstResource: ?*ID3D11Resource, DstSubresource: u32, pDstBox: ?*const D3D11_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32, CopyFlags: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).UpdateSubresource1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch, CopyFlags);
+    }
+    pub fn DiscardResource(self: *const ID3D11DeviceContext1, pResource: ?*ID3D11Resource) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pResource);
+    }
+    pub fn DiscardView(self: *const ID3D11DeviceContext1, pResourceView: ?*ID3D11View) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DiscardView(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pResourceView);
+    }
+    pub fn VSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).VSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn HSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).HSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn DSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn GSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).GSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn PSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).PSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn CSSetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]const u32, pNumConstants: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).CSSetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn VSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).VSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn HSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).HSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn DSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn GSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).GSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn PSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).PSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn CSGetConstantBuffers1(self: *const ID3D11DeviceContext1, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D11Buffer, pFirstConstant: ?[*]u32, pNumConstants: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).CSGetConstantBuffers1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
+    }
+    pub fn SwapDeviceContextState(self: *const ID3D11DeviceContext1, pState: ?*ID3DDeviceContextState, ppPreviousState: ?*?*ID3DDeviceContextState) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).SwapDeviceContextState(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pState, ppPreviousState);
+    }
+    pub fn ClearView(self: *const ID3D11DeviceContext1, pView: ?*ID3D11View, Color: ?*const f32, pRect: ?[*]const RECT, NumRects: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).ClearView(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pView, Color, pRect, NumRects);
+    }
+    pub fn DiscardView1(self: *const ID3D11DeviceContext1, pResourceView: ?*ID3D11View, pRects: ?[*]const RECT, NumRects: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext1.VTable, @ptrCast(self.vtable)).DiscardView1(@as(*const ID3D11DeviceContext1, @ptrCast(self)), pResourceView, pRects, NumRects);
+    }
 };
 
 pub const D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK = extern struct {
@@ -9938,7 +10973,49 @@ pub const ID3D11VideoContext1 = extern union {
             return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetBehaviorHints(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, OutputWidth, OutputHeight, OutputFormat, StreamCount, pStreams, pBehaviorHints);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoContext.MethodMixin(@This());
+    pub fn SubmitDecoderBuffers1(self: *const ID3D11VideoContext1, pDecoder: ?*ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).SubmitDecoderBuffers1(@as(*const ID3D11VideoContext1, @ptrCast(self)), pDecoder, NumBuffers, pBufferDesc);
+    }
+    pub fn GetDataForNewHardwareKey(self: *const ID3D11VideoContext1, pCryptoSession: ?*ID3D11CryptoSession, PrivateInputSize: u32, pPrivatInputData: [*]const u8, pPrivateOutputData: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).GetDataForNewHardwareKey(@as(*const ID3D11VideoContext1, @ptrCast(self)), pCryptoSession, PrivateInputSize, pPrivatInputData, pPrivateOutputData);
+    }
+    pub fn CheckCryptoSessionStatus(self: *const ID3D11VideoContext1, pCryptoSession: ?*ID3D11CryptoSession, pStatus: ?*D3D11_CRYPTO_SESSION_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).CheckCryptoSessionStatus(@as(*const ID3D11VideoContext1, @ptrCast(self)), pCryptoSession, pStatus);
+    }
+    pub fn DecoderEnableDownsampling(self: *const ID3D11VideoContext1, pDecoder: ?*ID3D11VideoDecoder, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC, ReferenceFrameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).DecoderEnableDownsampling(@as(*const ID3D11VideoContext1, @ptrCast(self)), pDecoder, InputColorSpace, pOutputDesc, ReferenceFrameCount);
+    }
+    pub fn DecoderUpdateDownsampling(self: *const ID3D11VideoContext1, pDecoder: ?*ID3D11VideoDecoder, pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).DecoderUpdateDownsampling(@as(*const ID3D11VideoContext1, @ptrCast(self)), pDecoder, pOutputDesc);
+    }
+    pub fn VideoProcessorSetOutputColorSpace1(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputColorSpace1(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, ColorSpace);
+    }
+    pub fn VideoProcessorSetOutputShaderUsage(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, ShaderUsage: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputShaderUsage(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, ShaderUsage);
+    }
+    pub fn VideoProcessorGetOutputColorSpace1(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, pColorSpace: ?*DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputColorSpace1(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, pColorSpace);
+    }
+    pub fn VideoProcessorGetOutputShaderUsage(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, pShaderUsage: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputShaderUsage(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, pShaderUsage);
+    }
+    pub fn VideoProcessorSetStreamColorSpace1(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamColorSpace1(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, StreamIndex, ColorSpace);
+    }
+    pub fn VideoProcessorSetStreamMirror(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, FlipHorizontal: BOOL, FlipVertical: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamMirror(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, StreamIndex, Enable, FlipHorizontal, FlipVertical);
+    }
+    pub fn VideoProcessorGetStreamColorSpace1(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: ?*DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamColorSpace1(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, StreamIndex, pColorSpace);
+    }
+    pub fn VideoProcessorGetStreamMirror(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pEnable: ?*BOOL, pFlipHorizontal: ?*BOOL, pFlipVertical: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamMirror(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, StreamIndex, pEnable, pFlipHorizontal, pFlipVertical);
+    }
+    pub fn VideoProcessorGetBehaviorHints(self: *const ID3D11VideoContext1, pVideoProcessor: ?*ID3D11VideoProcessor, OutputWidth: u32, OutputHeight: u32, OutputFormat: DXGI_FORMAT, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT, pBehaviorHints: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext1.VTable, @ptrCast(self.vtable)).VideoProcessorGetBehaviorHints(@as(*const ID3D11VideoContext1, @ptrCast(self)), pVideoProcessor, OutputWidth, OutputHeight, OutputFormat, StreamCount, pStreams, pBehaviorHints);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -10006,7 +11083,19 @@ pub const ID3D11VideoDevice1 = extern union {
             return @as(*const ID3D11VideoDevice1.VTable, @ptrCast(self.vtable)).RecommendVideoDecoderDownsampleParameters(@as(*const ID3D11VideoDevice1, @ptrCast(self)), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pRecommendedOutputDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoDevice.MethodMixin(@This());
+    pub fn GetCryptoSessionPrivateDataSize(self: *const ID3D11VideoDevice1, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: ?*const Guid, pPrivateInputSize: ?*u32, pPrivateOutputSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice1.VTable, @ptrCast(self.vtable)).GetCryptoSessionPrivateDataSize(@as(*const ID3D11VideoDevice1, @ptrCast(self)), pCryptoType, pDecoderProfile, pKeyExchangeType, pPrivateInputSize, pPrivateOutputSize);
+    }
+    pub fn GetVideoDecoderCaps(self: *const ID3D11VideoDevice1, pDecoderProfile: ?*const Guid, SampleWidth: u32, SampleHeight: u32, pFrameRate: ?*const DXGI_RATIONAL, BitRate: u32, pCryptoType: ?*const Guid, pDecoderCaps: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice1.VTable, @ptrCast(self.vtable)).GetVideoDecoderCaps(@as(*const ID3D11VideoDevice1, @ptrCast(self)), pDecoderProfile, SampleWidth, SampleHeight, pFrameRate, BitRate, pCryptoType, pDecoderCaps);
+    }
+    pub fn CheckVideoDecoderDownsampling(self: *const ID3D11VideoDevice1, pInputDesc: ?*const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: ?*const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: ?*const DXGI_RATIONAL, pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC, pSupported: ?*BOOL, pRealTimeHint: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice1.VTable, @ptrCast(self.vtable)).CheckVideoDecoderDownsampling(@as(*const ID3D11VideoDevice1, @ptrCast(self)), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pOutputDesc, pSupported, pRealTimeHint);
+    }
+    pub fn RecommendVideoDecoderDownsampleParameters(self: *const ID3D11VideoDevice1, pInputDesc: ?*const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: ?*const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: ?*const DXGI_RATIONAL, pRecommendedOutputDesc: ?*D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice1.VTable, @ptrCast(self.vtable)).RecommendVideoDecoderDownsampleParameters(@as(*const ID3D11VideoDevice1, @ptrCast(self)), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pRecommendedOutputDesc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -10034,7 +11123,10 @@ pub const ID3D11VideoProcessorEnumerator1 = extern union {
             return @as(*const ID3D11VideoProcessorEnumerator1.VTable, @ptrCast(self.vtable)).CheckVideoProcessorFormatConversion(@as(*const ID3D11VideoProcessorEnumerator1, @ptrCast(self)), InputFormat, InputColorSpace, OutputFormat, OutputColorSpace, pSupported);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoProcessorEnumerator.MethodMixin(@This());
+    pub fn CheckVideoProcessorFormatConversion(self: *const ID3D11VideoProcessorEnumerator1, InputFormat: DXGI_FORMAT, InputColorSpace: DXGI_COLOR_SPACE_TYPE, OutputFormat: DXGI_FORMAT, OutputColorSpace: DXGI_COLOR_SPACE_TYPE, pSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoProcessorEnumerator1.VTable, @ptrCast(self.vtable)).CheckVideoProcessorFormatConversion(@as(*const ID3D11VideoProcessorEnumerator1, @ptrCast(self)), InputFormat, InputColorSpace, OutputFormat, OutputColorSpace, pSupported);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10120,7 +11212,28 @@ pub const ID3D11Device1 = extern union {
             return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).OpenSharedResourceByName(@as(*const ID3D11Device1, @ptrCast(self)), lpName, dwDesiredAccess, returnedInterface, ppResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Device.MethodMixin(@This());
+    pub fn GetImmediateContext1(self: *const ID3D11Device1, ppImmediateContext: ?*?*ID3D11DeviceContext1) callconv(.Inline) void {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).GetImmediateContext1(@as(*const ID3D11Device1, @ptrCast(self)), ppImmediateContext);
+    }
+    pub fn CreateDeferredContext1(self: *const ID3D11Device1, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).CreateDeferredContext1(@as(*const ID3D11Device1, @ptrCast(self)), ContextFlags, ppDeferredContext);
+    }
+    pub fn CreateBlendState1(self: *const ID3D11Device1, pBlendStateDesc: ?*const D3D11_BLEND_DESC1, ppBlendState: ?*?*ID3D11BlendState1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).CreateBlendState1(@as(*const ID3D11Device1, @ptrCast(self)), pBlendStateDesc, ppBlendState);
+    }
+    pub fn CreateRasterizerState1(self: *const ID3D11Device1, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC1, ppRasterizerState: ?*?*ID3D11RasterizerState1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).CreateRasterizerState1(@as(*const ID3D11Device1, @ptrCast(self)), pRasterizerDesc, ppRasterizerState);
+    }
+    pub fn CreateDeviceContextState(self: *const ID3D11Device1, Flags: u32, pFeatureLevels: [*]const D3D_FEATURE_LEVEL, FeatureLevels: u32, SDKVersion: u32, EmulatedInterface: ?*const Guid, pChosenFeatureLevel: ?*D3D_FEATURE_LEVEL, ppContextState: ?*?*ID3DDeviceContextState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).CreateDeviceContextState(@as(*const ID3D11Device1, @ptrCast(self)), Flags, pFeatureLevels, FeatureLevels, SDKVersion, EmulatedInterface, pChosenFeatureLevel, ppContextState);
+    }
+    pub fn OpenSharedResource1(self: *const ID3D11Device1, hResource: ?HANDLE, returnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).OpenSharedResource1(@as(*const ID3D11Device1, @ptrCast(self)), hResource, returnedInterface, ppResource);
+    }
+    pub fn OpenSharedResourceByName(self: *const ID3D11Device1, lpName: ?[*:0]const u16, dwDesiredAccess: u32, returnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device1.VTable, @ptrCast(self.vtable)).OpenSharedResourceByName(@as(*const ID3D11Device1, @ptrCast(self)), lpName, dwDesiredAccess, returnedInterface, ppResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10166,7 +11279,19 @@ pub const ID3DUserDefinedAnnotation = extern union {
             return @as(*const ID3DUserDefinedAnnotation.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ID3DUserDefinedAnnotation, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BeginEvent(self: *const ID3DUserDefinedAnnotation, Name: ?[*:0]const u16) callconv(.Inline) i32 {
+        return @as(*const ID3DUserDefinedAnnotation.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3DUserDefinedAnnotation, @ptrCast(self)), Name);
+    }
+    pub fn EndEvent(self: *const ID3DUserDefinedAnnotation) callconv(.Inline) i32 {
+        return @as(*const ID3DUserDefinedAnnotation.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3DUserDefinedAnnotation, @ptrCast(self)));
+    }
+    pub fn SetMarker(self: *const ID3DUserDefinedAnnotation, Name: ?[*:0]const u16) callconv(.Inline) void {
+        return @as(*const ID3DUserDefinedAnnotation.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3DUserDefinedAnnotation, @ptrCast(self)), Name);
+    }
+    pub fn GetStatus(self: *const ID3DUserDefinedAnnotation) callconv(.Inline) BOOL {
+        return @as(*const ID3DUserDefinedAnnotation.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ID3DUserDefinedAnnotation, @ptrCast(self)));
+    }
 };
 
 pub const D3D11_TILED_RESOURCE_COORDINATE = extern struct {
@@ -10350,7 +11475,37 @@ pub const ID3D11DeviceContext2 = extern union {
             return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D11DeviceContext2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceContext1.MethodMixin(@This());
+    pub fn UpdateTileMappings(self: *const ID3D11DeviceContext2, pTiledResource: ?*ID3D11Resource, NumTiledResourceRegions: u32, pTiledResourceRegionStartCoordinates: ?[*]const D3D11_TILED_RESOURCE_COORDINATE, pTiledResourceRegionSizes: ?[*]const D3D11_TILE_REGION_SIZE, pTilePool: ?*ID3D11Buffer, NumRanges: u32, pRangeFlags: ?[*]const u32, pTilePoolStartOffsets: ?[*]const u32, pRangeTileCounts: ?[*]const u32, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).UpdateTileMappings(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pTiledResource, NumTiledResourceRegions, pTiledResourceRegionStartCoordinates, pTiledResourceRegionSizes, pTilePool, NumRanges, pRangeFlags, pTilePoolStartOffsets, pRangeTileCounts, Flags);
+    }
+    pub fn CopyTileMappings(self: *const ID3D11DeviceContext2, pDestTiledResource: ?*ID3D11Resource, pDestRegionStartCoordinate: ?*const D3D11_TILED_RESOURCE_COORDINATE, pSourceTiledResource: ?*ID3D11Resource, pSourceRegionStartCoordinate: ?*const D3D11_TILED_RESOURCE_COORDINATE, pTileRegionSize: ?*const D3D11_TILE_REGION_SIZE, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).CopyTileMappings(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pDestTiledResource, pDestRegionStartCoordinate, pSourceTiledResource, pSourceRegionStartCoordinate, pTileRegionSize, Flags);
+    }
+    pub fn CopyTiles(self: *const ID3D11DeviceContext2, pTiledResource: ?*ID3D11Resource, pTileRegionStartCoordinate: ?*const D3D11_TILED_RESOURCE_COORDINATE, pTileRegionSize: ?*const D3D11_TILE_REGION_SIZE, pBuffer: ?*ID3D11Buffer, BufferStartOffsetInBytes: u64, Flags: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).CopyTiles(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pTiledResource, pTileRegionStartCoordinate, pTileRegionSize, pBuffer, BufferStartOffsetInBytes, Flags);
+    }
+    pub fn UpdateTiles(self: *const ID3D11DeviceContext2, pDestTiledResource: ?*ID3D11Resource, pDestTileRegionStartCoordinate: ?*const D3D11_TILED_RESOURCE_COORDINATE, pDestTileRegionSize: ?*const D3D11_TILE_REGION_SIZE, pSourceTileData: ?*const anyopaque, Flags: u32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).UpdateTiles(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pDestTiledResource, pDestTileRegionStartCoordinate, pDestTileRegionSize, pSourceTileData, Flags);
+    }
+    pub fn ResizeTilePool(self: *const ID3D11DeviceContext2, pTilePool: ?*ID3D11Buffer, NewSizeInBytes: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).ResizeTilePool(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pTilePool, NewSizeInBytes);
+    }
+    pub fn TiledResourceBarrier(self: *const ID3D11DeviceContext2, pTiledResourceOrViewAccessBeforeBarrier: ?*ID3D11DeviceChild, pTiledResourceOrViewAccessAfterBarrier: ?*ID3D11DeviceChild) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).TiledResourceBarrier(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pTiledResourceOrViewAccessBeforeBarrier, pTiledResourceOrViewAccessAfterBarrier);
+    }
+    pub fn IsAnnotationEnabled(self: *const ID3D11DeviceContext2) callconv(.Inline) BOOL {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).IsAnnotationEnabled(@as(*const ID3D11DeviceContext2, @ptrCast(self)));
+    }
+    pub fn SetMarkerInt(self: *const ID3D11DeviceContext2, pLabel: ?[*:0]const u16, Data: i32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).SetMarkerInt(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pLabel, Data);
+    }
+    pub fn BeginEventInt(self: *const ID3D11DeviceContext2, pLabel: ?[*:0]const u16, Data: i32) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).BeginEventInt(@as(*const ID3D11DeviceContext2, @ptrCast(self)), pLabel, Data);
+    }
+    pub fn EndEvent(self: *const ID3D11DeviceContext2) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext2.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D11DeviceContext2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -10408,7 +11563,19 @@ pub const ID3D11Device2 = extern union {
             return @as(*const ID3D11Device2.VTable, @ptrCast(self.vtable)).CheckMultisampleQualityLevels1(@as(*const ID3D11Device2, @ptrCast(self)), Format, SampleCount, Flags, pNumQualityLevels);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Device1.MethodMixin(@This());
+    pub fn GetImmediateContext2(self: *const ID3D11Device2, ppImmediateContext: ?*?*ID3D11DeviceContext2) callconv(.Inline) void {
+        return @as(*const ID3D11Device2.VTable, @ptrCast(self.vtable)).GetImmediateContext2(@as(*const ID3D11Device2, @ptrCast(self)), ppImmediateContext);
+    }
+    pub fn CreateDeferredContext2(self: *const ID3D11Device2, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext2) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device2.VTable, @ptrCast(self.vtable)).CreateDeferredContext2(@as(*const ID3D11Device2, @ptrCast(self)), ContextFlags, ppDeferredContext);
+    }
+    pub fn GetResourceTiling(self: *const ID3D11Device2, pTiledResource: ?*ID3D11Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D11_PACKED_MIP_DESC, pStandardTileShapeForNonPackedMips: ?*D3D11_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D11_SUBRESOURCE_TILING) callconv(.Inline) void {
+        return @as(*const ID3D11Device2.VTable, @ptrCast(self.vtable)).GetResourceTiling(@as(*const ID3D11Device2, @ptrCast(self)), pTiledResource, pNumTilesForEntireResource, pPackedMipDesc, pStandardTileShapeForNonPackedMips, pNumSubresourceTilings, FirstSubresourceTilingToGet, pSubresourceTilingsForNonPackedMips);
+    }
+    pub fn CheckMultisampleQualityLevels1(self: *const ID3D11Device2, Format: DXGI_FORMAT, SampleCount: u32, Flags: u32, pNumQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device2.VTable, @ptrCast(self.vtable)).CheckMultisampleQualityLevels1(@as(*const ID3D11Device2, @ptrCast(self)), Format, SampleCount, Flags, pNumQualityLevels);
+    }
 };
 
 pub const D3D11_CONTEXT_TYPE = enum(i32) {
@@ -10468,7 +11635,10 @@ pub const ID3D11Texture2D1 = extern union {
             return @as(*const ID3D11Texture2D1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Texture2D1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Texture2D.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11Texture2D1, pDesc: ?*D3D11_TEXTURE2D_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11Texture2D1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Texture2D1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEXTURE3D_DESC1 = extern struct {
@@ -10505,7 +11675,10 @@ pub const ID3D11Texture3D1 = extern union {
             return @as(*const ID3D11Texture3D1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Texture3D1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Texture3D.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11Texture3D1, pDesc: ?*D3D11_TEXTURE3D_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11Texture3D1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Texture3D1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_CONSERVATIVE_RASTERIZATION_MODE = enum(i32) {
@@ -10551,7 +11724,10 @@ pub const ID3D11RasterizerState2 = extern union {
             return @as(*const ID3D11RasterizerState2.VTable, @ptrCast(self.vtable)).GetDesc2(@as(*const ID3D11RasterizerState2, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11RasterizerState1.MethodMixin(@This());
+    pub fn GetDesc2(self: *const ID3D11RasterizerState2, pDesc: ?*D3D11_RASTERIZER_DESC2) callconv(.Inline) void {
+        return @as(*const ID3D11RasterizerState2.VTable, @ptrCast(self.vtable)).GetDesc2(@as(*const ID3D11RasterizerState2, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D11_TEX2D_SRV1 = extern struct {
@@ -10607,7 +11783,10 @@ pub const ID3D11ShaderResourceView1 = extern union {
             return @as(*const ID3D11ShaderResourceView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11ShaderResourceView1, @ptrCast(self)), pDesc1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11ShaderResourceView.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11ShaderResourceView1, pDesc1: ?*D3D11_SHADER_RESOURCE_VIEW_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11ShaderResourceView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11ShaderResourceView1, @ptrCast(self)), pDesc1);
+    }
 };
 
 pub const D3D11_TEX2D_RTV1 = extern struct {
@@ -10658,7 +11837,10 @@ pub const ID3D11RenderTargetView1 = extern union {
             return @as(*const ID3D11RenderTargetView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11RenderTargetView1, @ptrCast(self)), pDesc1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11RenderTargetView.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11RenderTargetView1, pDesc1: ?*D3D11_RENDER_TARGET_VIEW_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11RenderTargetView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11RenderTargetView1, @ptrCast(self)), pDesc1);
+    }
 };
 
 pub const D3D11_TEX2D_UAV1 = extern struct {
@@ -10707,7 +11889,10 @@ pub const ID3D11UnorderedAccessView1 = extern union {
             return @as(*const ID3D11UnorderedAccessView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11UnorderedAccessView1, @ptrCast(self)), pDesc1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11UnorderedAccessView.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11UnorderedAccessView1, pDesc1: ?*D3D11_UNORDERED_ACCESS_VIEW_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11UnorderedAccessView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11UnorderedAccessView1, @ptrCast(self)), pDesc1);
+    }
 };
 
 pub const D3D11_QUERY_DESC1 = extern struct {
@@ -10737,7 +11922,10 @@ pub const ID3D11Query1 = extern union {
             return @as(*const ID3D11Query1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Query1, @ptrCast(self)), pDesc1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Query.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D11Query1, pDesc1: ?*D3D11_QUERY_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D11Query1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D11Query1, @ptrCast(self)), pDesc1);
+    }
 };
 
 pub const D3D11_FENCE_FLAG = packed struct(u32) {
@@ -10816,7 +12004,16 @@ pub const ID3D11DeviceContext3 = extern union {
             return @as(*const ID3D11DeviceContext3.VTable, @ptrCast(self.vtable)).GetHardwareProtectionState(@as(*const ID3D11DeviceContext3, @ptrCast(self)), pHwProtectionEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceContext2.MethodMixin(@This());
+    pub fn Flush1(self: *const ID3D11DeviceContext3, ContextType: D3D11_CONTEXT_TYPE, hEvent: ?HANDLE) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext3.VTable, @ptrCast(self.vtable)).Flush1(@as(*const ID3D11DeviceContext3, @ptrCast(self)), ContextType, hEvent);
+    }
+    pub fn SetHardwareProtectionState(self: *const ID3D11DeviceContext3, HwProtectionEnable: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext3.VTable, @ptrCast(self.vtable)).SetHardwareProtectionState(@as(*const ID3D11DeviceContext3, @ptrCast(self)), HwProtectionEnable);
+    }
+    pub fn GetHardwareProtectionState(self: *const ID3D11DeviceContext3, pHwProtectionEnable: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D11DeviceContext3.VTable, @ptrCast(self.vtable)).GetHardwareProtectionState(@as(*const ID3D11DeviceContext3, @ptrCast(self)), pHwProtectionEnable);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -10858,7 +12055,16 @@ pub const ID3D11Fence = extern union {
             return @as(*const ID3D11Fence.VTable, @ptrCast(self.vtable)).SetEventOnCompletion(@as(*const ID3D11Fence, @ptrCast(self)), Value, hEvent);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceChild.MethodMixin(@This());
+    pub fn CreateSharedHandle(self: *const ID3D11Fence, pAttributes: ?*const SECURITY_ATTRIBUTES, dwAccess: u32, lpName: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Fence.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const ID3D11Fence, @ptrCast(self)), pAttributes, dwAccess, lpName, pHandle);
+    }
+    pub fn GetCompletedValue(self: *const ID3D11Fence) callconv(.Inline) u64 {
+        return @as(*const ID3D11Fence.VTable, @ptrCast(self.vtable)).GetCompletedValue(@as(*const ID3D11Fence, @ptrCast(self)));
+    }
+    pub fn SetEventOnCompletion(self: *const ID3D11Fence, Value: u64, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Fence.VTable, @ptrCast(self.vtable)).SetEventOnCompletion(@as(*const ID3D11Fence, @ptrCast(self)), Value, hEvent);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -10891,7 +12097,13 @@ pub const ID3D11DeviceContext4 = extern union {
             return @as(*const ID3D11DeviceContext4.VTable, @ptrCast(self.vtable)).Wait(@as(*const ID3D11DeviceContext4, @ptrCast(self)), pFence, Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11DeviceContext3.MethodMixin(@This());
+    pub fn Signal(self: *const ID3D11DeviceContext4, pFence: ?*ID3D11Fence, Value: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext4.VTable, @ptrCast(self.vtable)).Signal(@as(*const ID3D11DeviceContext4, @ptrCast(self)), pFence, Value);
+    }
+    pub fn Wait(self: *const ID3D11DeviceContext4, pFence: ?*ID3D11Fence, Value: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11DeviceContext4.VTable, @ptrCast(self.vtable)).Wait(@as(*const ID3D11DeviceContext4, @ptrCast(self)), pFence, Value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -11018,7 +12230,40 @@ pub const ID3D11Device3 = extern union {
             return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).ReadFromSubresource(@as(*const ID3D11Device3, @ptrCast(self)), pDstData, DstRowPitch, DstDepthPitch, pSrcResource, SrcSubresource, pSrcBox);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Device2.MethodMixin(@This());
+    pub fn CreateTexture2D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE2D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D11Texture2D1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateTexture2D1(@as(*const ID3D11Device3, @ptrCast(self)), pDesc1, pInitialData, ppTexture2D);
+    }
+    pub fn CreateTexture3D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE3D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D11Texture3D1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateTexture3D1(@as(*const ID3D11Device3, @ptrCast(self)), pDesc1, pInitialData, ppTexture3D);
+    }
+    pub fn CreateRasterizerState2(self: *const ID3D11Device3, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC2, ppRasterizerState: ?*?*ID3D11RasterizerState2) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateRasterizerState2(@as(*const ID3D11Device3, @ptrCast(self)), pRasterizerDesc, ppRasterizerState);
+    }
+    pub fn CreateShaderResourceView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC1, ppSRView1: ?*?*ID3D11ShaderResourceView1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateShaderResourceView1(@as(*const ID3D11Device3, @ptrCast(self)), pResource, pDesc1, ppSRView1);
+    }
+    pub fn CreateUnorderedAccessView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC1, ppUAView1: ?*?*ID3D11UnorderedAccessView1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateUnorderedAccessView1(@as(*const ID3D11Device3, @ptrCast(self)), pResource, pDesc1, ppUAView1);
+    }
+    pub fn CreateRenderTargetView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_RENDER_TARGET_VIEW_DESC1, ppRTView1: ?*?*ID3D11RenderTargetView1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateRenderTargetView1(@as(*const ID3D11Device3, @ptrCast(self)), pResource, pDesc1, ppRTView1);
+    }
+    pub fn CreateQuery1(self: *const ID3D11Device3, pQueryDesc1: ?*const D3D11_QUERY_DESC1, ppQuery1: ?*?*ID3D11Query1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateQuery1(@as(*const ID3D11Device3, @ptrCast(self)), pQueryDesc1, ppQuery1);
+    }
+    pub fn GetImmediateContext3(self: *const ID3D11Device3, ppImmediateContext: ?*?*ID3D11DeviceContext3) callconv(.Inline) void {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).GetImmediateContext3(@as(*const ID3D11Device3, @ptrCast(self)), ppImmediateContext);
+    }
+    pub fn CreateDeferredContext3(self: *const ID3D11Device3, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext3) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).CreateDeferredContext3(@as(*const ID3D11Device3, @ptrCast(self)), ContextFlags, ppDeferredContext);
+    }
+    pub fn WriteToSubresource(self: *const ID3D11Device3, pDstResource: ?*ID3D11Resource, DstSubresource: u32, pDstBox: ?*const D3D11_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).WriteToSubresource(@as(*const ID3D11Device3, @ptrCast(self)), pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+    }
+    pub fn ReadFromSubresource(self: *const ID3D11Device3, pDstData: ?*anyopaque, DstRowPitch: u32, DstDepthPitch: u32, pSrcResource: ?*ID3D11Resource, SrcSubresource: u32, pSrcBox: ?*const D3D11_BOX) callconv(.Inline) void {
+        return @as(*const ID3D11Device3.VTable, @ptrCast(self.vtable)).ReadFromSubresource(@as(*const ID3D11Device3, @ptrCast(self)), pDstData, DstRowPitch, DstDepthPitch, pSrcResource, SrcSubresource, pSrcBox);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11050,7 +12295,13 @@ pub const ID3D11Device4 = extern union {
             return @as(*const ID3D11Device4.VTable, @ptrCast(self.vtable)).UnregisterDeviceRemoved(@as(*const ID3D11Device4, @ptrCast(self)), dwCookie);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Device3.MethodMixin(@This());
+    pub fn RegisterDeviceRemovedEvent(self: *const ID3D11Device4, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device4.VTable, @ptrCast(self.vtable)).RegisterDeviceRemovedEvent(@as(*const ID3D11Device4, @ptrCast(self)), hEvent, pdwCookie);
+    }
+    pub fn UnregisterDeviceRemoved(self: *const ID3D11Device4, dwCookie: u32) callconv(.Inline) void {
+        return @as(*const ID3D11Device4.VTable, @ptrCast(self.vtable)).UnregisterDeviceRemoved(@as(*const ID3D11Device4, @ptrCast(self)), dwCookie);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11086,7 +12337,13 @@ pub const ID3D11Device5 = extern union {
             return @as(*const ID3D11Device5.VTable, @ptrCast(self.vtable)).CreateFence(@as(*const ID3D11Device5, @ptrCast(self)), InitialValue, Flags, ReturnedInterface, ppFence);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11Device4.MethodMixin(@This());
+    pub fn OpenSharedFence(self: *const ID3D11Device5, hFence: ?HANDLE, ReturnedInterface: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device5.VTable, @ptrCast(self.vtable)).OpenSharedFence(@as(*const ID3D11Device5, @ptrCast(self)), hFence, ReturnedInterface, ppFence);
+    }
+    pub fn CreateFence(self: *const ID3D11Device5, InitialValue: u64, Flags: D3D11_FENCE_FLAG, ReturnedInterface: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Device5.VTable, @ptrCast(self.vtable)).CreateFence(@as(*const ID3D11Device5, @ptrCast(self)), InitialValue, Flags, ReturnedInterface, ppFence);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11130,7 +12387,19 @@ pub const ID3D11Multithread = extern union {
             return @as(*const ID3D11Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID3D11Multithread, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Enter(self: *const ID3D11Multithread) callconv(.Inline) void {
+        return @as(*const ID3D11Multithread.VTable, @ptrCast(self.vtable)).Enter(@as(*const ID3D11Multithread, @ptrCast(self)));
+    }
+    pub fn Leave(self: *const ID3D11Multithread) callconv(.Inline) void {
+        return @as(*const ID3D11Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID3D11Multithread, @ptrCast(self)));
+    }
+    pub fn SetMultithreadProtected(self: *const ID3D11Multithread, bMTProtect: BOOL) callconv(.Inline) BOOL {
+        return @as(*const ID3D11Multithread.VTable, @ptrCast(self.vtable)).SetMultithreadProtected(@as(*const ID3D11Multithread, @ptrCast(self)), bMTProtect);
+    }
+    pub fn GetMultithreadProtected(self: *const ID3D11Multithread) callconv(.Inline) BOOL {
+        return @as(*const ID3D11Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID3D11Multithread, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -11196,7 +12465,19 @@ pub const ID3D11VideoContext2 = extern union {
             return @as(*const ID3D11VideoContext2.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamHDRMetaData(@as(*const ID3D11VideoContext2, @ptrCast(self)), pVideoProcessor, StreamIndex, pType, Size, pMetaData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoContext1.MethodMixin(@This());
+    pub fn VideoProcessorSetOutputHDRMetaData(self: *const ID3D11VideoContext2, pVideoProcessor: ?*ID3D11VideoProcessor, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?*const anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext2.VTable, @ptrCast(self.vtable)).VideoProcessorSetOutputHDRMetaData(@as(*const ID3D11VideoContext2, @ptrCast(self)), pVideoProcessor, Type, Size, pHDRMetaData);
+    }
+    pub fn VideoProcessorGetOutputHDRMetaData(self: *const ID3D11VideoContext2, pVideoProcessor: ?*ID3D11VideoProcessor, pType: ?*DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext2.VTable, @ptrCast(self.vtable)).VideoProcessorGetOutputHDRMetaData(@as(*const ID3D11VideoContext2, @ptrCast(self)), pVideoProcessor, pType, Size, pMetaData);
+    }
+    pub fn VideoProcessorSetStreamHDRMetaData(self: *const ID3D11VideoContext2, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?*const anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext2.VTable, @ptrCast(self.vtable)).VideoProcessorSetStreamHDRMetaData(@as(*const ID3D11VideoContext2, @ptrCast(self)), pVideoProcessor, StreamIndex, Type, Size, pHDRMetaData);
+    }
+    pub fn VideoProcessorGetStreamHDRMetaData(self: *const ID3D11VideoContext2, pVideoProcessor: ?*ID3D11VideoProcessor, StreamIndex: u32, pType: ?*DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ID3D11VideoContext2.VTable, @ptrCast(self.vtable)).VideoProcessorGetStreamHDRMetaData(@as(*const ID3D11VideoContext2, @ptrCast(self)), pVideoProcessor, StreamIndex, pType, Size, pMetaData);
+    }
 };
 
 pub const D3D11_FEATURE_VIDEO = enum(i32) {
@@ -11345,7 +12626,13 @@ pub const ID3D11VideoDevice2 = extern union {
             return @as(*const ID3D11VideoDevice2.VTable, @ptrCast(self.vtable)).NegotiateCryptoSessionKeyExchangeMT(@as(*const ID3D11VideoDevice2, @ptrCast(self)), pCryptoSession, flags, DataSize, pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoDevice1.MethodMixin(@This());
+    pub fn CheckFeatureSupport(self: *const ID3D11VideoDevice2, Feature: D3D11_FEATURE_VIDEO, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice2.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D11VideoDevice2, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
+    }
+    pub fn NegotiateCryptoSessionKeyExchangeMT(self: *const ID3D11VideoDevice2, pCryptoSession: ?*ID3D11CryptoSession, flags: D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoDevice2.VTable, @ptrCast(self.vtable)).NegotiateCryptoSessionKeyExchangeMT(@as(*const ID3D11VideoDevice2, @ptrCast(self)), pCryptoSession, flags, DataSize, pData);
+    }
 };
 
 pub const D3D11_VIDEO_DECODER_BUFFER_DESC2 = extern struct {
@@ -11397,7 +12684,13 @@ pub const ID3D11VideoContext3 = extern union {
             return @as(*const ID3D11VideoContext3.VTable, @ptrCast(self.vtable)).SubmitDecoderBuffers2(@as(*const ID3D11VideoContext3, @ptrCast(self)), pDecoder, NumBuffers, pBufferDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11VideoContext2.MethodMixin(@This());
+    pub fn DecoderBeginFrame1(self: *const ID3D11VideoContext3, pDecoder: ?*ID3D11VideoDecoder, pView: ?*ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?*const anyopaque, NumComponentHistograms: u32, pHistogramOffsets: ?[*]const u32, ppHistogramBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext3.VTable, @ptrCast(self.vtable)).DecoderBeginFrame1(@as(*const ID3D11VideoContext3, @ptrCast(self)), pDecoder, pView, ContentKeySize, pContentKey, NumComponentHistograms, pHistogramOffsets, ppHistogramBuffers);
+    }
+    pub fn SubmitDecoderBuffers2(self: *const ID3D11VideoContext3, pDecoder: ?*ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC2) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11VideoContext3.VTable, @ptrCast(self.vtable)).SubmitDecoderBuffers2(@as(*const ID3D11VideoContext3, @ptrCast(self)), pDecoder, NumBuffers, pBufferDesc);
+    }
 };
 
 pub const D3D11_FEATURE_DATA_D3D11_OPTIONS4 = extern struct {
@@ -11667,7 +12960,39 @@ pub const ID3D11ShaderReflectionType = extern union {
             return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).ImplementsInterface(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), pBase);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11ShaderReflectionType, pDesc: ?*D3D11_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), pDesc);
+    }
+    pub fn GetMemberTypeByIndex(self: *const ID3D11ShaderReflectionType, Index: u32) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), Index);
+    }
+    pub fn GetMemberTypeByName(self: *const ID3D11ShaderReflectionType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), Name);
+    }
+    pub fn GetMemberTypeName(self: *const ID3D11ShaderReflectionType, Index: u32) callconv(.Inline) ?PSTR {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), Index);
+    }
+    pub fn IsEqual(self: *const ID3D11ShaderReflectionType, pType: ?*ID3D11ShaderReflectionType) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), pType);
+    }
+    pub fn GetSubType(self: *const ID3D11ShaderReflectionType) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetSubType(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)));
+    }
+    pub fn GetBaseClass(self: *const ID3D11ShaderReflectionType) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetBaseClass(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)));
+    }
+    pub fn GetNumInterfaces(self: *const ID3D11ShaderReflectionType) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetNumInterfaces(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)));
+    }
+    pub fn GetInterfaceByIndex(self: *const ID3D11ShaderReflectionType, uIndex: u32) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetInterfaceByIndex(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), uIndex);
+    }
+    pub fn IsOfType(self: *const ID3D11ShaderReflectionType, pType: ?*ID3D11ShaderReflectionType) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsOfType(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), pType);
+    }
+    pub fn ImplementsInterface(self: *const ID3D11ShaderReflectionType, pBase: ?*ID3D11ShaderReflectionType) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionType.VTable, @ptrCast(self.vtable)).ImplementsInterface(@as(*const ID3D11ShaderReflectionType, @ptrCast(self)), pBase);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11709,7 +13034,18 @@ pub const ID3D11ShaderReflectionVariable = extern union {
             return @as(*const ID3D11ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetInterfaceSlot(@as(*const ID3D11ShaderReflectionVariable, @ptrCast(self)), uArrayIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11ShaderReflectionVariable, pDesc: ?*D3D11_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderReflectionVariable, @ptrCast(self)), pDesc);
+    }
+    pub fn GetType(self: *const ID3D11ShaderReflectionVariable) callconv(.Inline) ?*ID3D11ShaderReflectionType {
+        return @as(*const ID3D11ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D11ShaderReflectionVariable, @ptrCast(self)));
+    }
+    pub fn GetBuffer(self: *const ID3D11ShaderReflectionVariable) callconv(.Inline) ?*ID3D11ShaderReflectionConstantBuffer {
+        return @as(*const ID3D11ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ID3D11ShaderReflectionVariable, @ptrCast(self)));
+    }
+    pub fn GetInterfaceSlot(self: *const ID3D11ShaderReflectionVariable, uArrayIndex: u32) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetInterfaceSlot(@as(*const ID3D11ShaderReflectionVariable, @ptrCast(self)), uArrayIndex);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11745,7 +13081,15 @@ pub const ID3D11ShaderReflectionConstantBuffer = extern union {
             return @as(*const ID3D11ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D11ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11ShaderReflectionConstantBuffer, pDesc: ?*D3D11_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderReflectionConstantBuffer, @ptrCast(self)), pDesc);
+    }
+    pub fn GetVariableByIndex(self: *const ID3D11ShaderReflectionConstantBuffer, Index: u32) callconv(.Inline) ?*ID3D11ShaderReflectionVariable {
+        return @as(*const ID3D11ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D11ShaderReflectionConstantBuffer, @ptrCast(self)), Index);
+    }
+    pub fn GetVariableByName(self: *const ID3D11ShaderReflectionConstantBuffer, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionVariable {
+        return @as(*const ID3D11ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D11ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -11912,7 +13256,64 @@ pub const ID3D11ShaderReflection = extern union {
             return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetRequiresFlags(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11ShaderReflection, pDesc: ?*D3D11_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11ShaderReflection, @ptrCast(self)), pDesc);
+    }
+    pub fn GetConstantBufferByIndex(self: *const ID3D11ShaderReflection, Index: u32) callconv(.Inline) ?*ID3D11ShaderReflectionConstantBuffer {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D11ShaderReflection, @ptrCast(self)), Index);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D11ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionConstantBuffer {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D11ShaderReflection, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D11ShaderReflection, ResourceIndex: u32, pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D11ShaderReflection, @ptrCast(self)), ResourceIndex, pDesc);
+    }
+    pub fn GetInputParameterDesc(self: *const ID3D11ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D11ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetOutputParameterDesc(self: *const ID3D11ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D11ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetPatchConstantParameterDesc(self: *const ID3D11ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetPatchConstantParameterDesc(@as(*const ID3D11ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetVariableByName(self: *const ID3D11ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionVariable {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D11ShaderReflection, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDescByName(self: *const ID3D11ShaderReflection, Name: ?[*:0]const u8, pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D11ShaderReflection, @ptrCast(self)), Name, pDesc);
+    }
+    pub fn GetMovInstructionCount(self: *const ID3D11ShaderReflection) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovInstructionCount(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetMovcInstructionCount(self: *const ID3D11ShaderReflection) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovcInstructionCount(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetConversionInstructionCount(self: *const ID3D11ShaderReflection) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetConversionInstructionCount(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetBitwiseInstructionCount(self: *const ID3D11ShaderReflection) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetBitwiseInstructionCount(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetGSInputPrimitive(self: *const ID3D11ShaderReflection) callconv(.Inline) D3D_PRIMITIVE {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetGSInputPrimitive(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn IsSampleFrequencyShader(self: *const ID3D11ShaderReflection) callconv(.Inline) BOOL {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetNumInterfaceSlots(self: *const ID3D11ShaderReflection) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetNumInterfaceSlots(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
+    pub fn GetMinFeatureLevel(self: *const ID3D11ShaderReflection, pLevel: ?*D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetMinFeatureLevel(@as(*const ID3D11ShaderReflection, @ptrCast(self)), pLevel);
+    }
+    pub fn GetThreadGroupSize(self: *const ID3D11ShaderReflection, pSizeX: ?*u32, pSizeY: ?*u32, pSizeZ: ?*u32) callconv(.Inline) u32 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetThreadGroupSize(@as(*const ID3D11ShaderReflection, @ptrCast(self)), pSizeX, pSizeY, pSizeZ);
+    }
+    pub fn GetRequiresFlags(self: *const ID3D11ShaderReflection) callconv(.Inline) u64 {
+        return @as(*const ID3D11ShaderReflection.VTable, @ptrCast(self.vtable)).GetRequiresFlags(@as(*const ID3D11ShaderReflection, @ptrCast(self)));
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -11943,7 +13344,13 @@ pub const ID3D11LibraryReflection = extern union {
             return @as(*const ID3D11LibraryReflection.VTable, @ptrCast(self.vtable)).GetFunctionByIndex(@as(*const ID3D11LibraryReflection, @ptrCast(self)), FunctionIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11LibraryReflection, pDesc: ?*D3D11_LIBRARY_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11LibraryReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11LibraryReflection, @ptrCast(self)), pDesc);
+    }
+    pub fn GetFunctionByIndex(self: *const ID3D11LibraryReflection, FunctionIndex: i32) callconv(.Inline) ?*ID3D11FunctionReflection {
+        return @as(*const ID3D11LibraryReflection.VTable, @ptrCast(self.vtable)).GetFunctionByIndex(@as(*const ID3D11LibraryReflection, @ptrCast(self)), FunctionIndex);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12013,7 +13420,27 @@ pub const ID3D11FunctionReflection = extern union {
             return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetFunctionParameter(@as(*const ID3D11FunctionReflection, @ptrCast(self)), ParameterIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11FunctionReflection, pDesc: ?*D3D11_FUNCTION_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11FunctionReflection, @ptrCast(self)), pDesc);
+    }
+    pub fn GetConstantBufferByIndex(self: *const ID3D11FunctionReflection, BufferIndex: u32) callconv(.Inline) ?*ID3D11ShaderReflectionConstantBuffer {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D11FunctionReflection, @ptrCast(self)), BufferIndex);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D11FunctionReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionConstantBuffer {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D11FunctionReflection, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D11FunctionReflection, ResourceIndex: u32, pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D11FunctionReflection, @ptrCast(self)), ResourceIndex, pDesc);
+    }
+    pub fn GetVariableByName(self: *const ID3D11FunctionReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D11ShaderReflectionVariable {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D11FunctionReflection, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDescByName(self: *const ID3D11FunctionReflection, Name: ?[*:0]const u8, pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D11FunctionReflection, @ptrCast(self)), Name, pDesc);
+    }
+    pub fn GetFunctionParameter(self: *const ID3D11FunctionReflection, ParameterIndex: i32) callconv(.Inline) ?*ID3D11FunctionParameterReflection {
+        return @as(*const ID3D11FunctionReflection.VTable, @ptrCast(self.vtable)).GetFunctionParameter(@as(*const ID3D11FunctionReflection, @ptrCast(self)), ParameterIndex);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12033,7 +13460,9 @@ pub const ID3D11FunctionParameterReflection = extern union {
             return @as(*const ID3D11FunctionParameterReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11FunctionParameterReflection, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D11FunctionParameterReflection, pDesc: ?*D3D11_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionParameterReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D11FunctionParameterReflection, @ptrCast(self)), pDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12148,7 +13577,37 @@ pub const ID3D11ModuleInstance = extern union {
             return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindResourceAsUnorderedAccessViewByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pSrvName, uDstUavSlot, uCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BindConstantBuffer(self: *const ID3D11ModuleInstance, uSrcSlot: u32, uDstSlot: u32, cbDstOffset: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindConstantBuffer(@as(*const ID3D11ModuleInstance, @ptrCast(self)), uSrcSlot, uDstSlot, cbDstOffset);
+    }
+    pub fn BindConstantBufferByName(self: *const ID3D11ModuleInstance, pName: ?[*:0]const u8, uDstSlot: u32, cbDstOffset: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindConstantBufferByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pName, uDstSlot, cbDstOffset);
+    }
+    pub fn BindResource(self: *const ID3D11ModuleInstance, uSrcSlot: u32, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindResource(@as(*const ID3D11ModuleInstance, @ptrCast(self)), uSrcSlot, uDstSlot, uCount);
+    }
+    pub fn BindResourceByName(self: *const ID3D11ModuleInstance, pName: ?[*:0]const u8, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindResourceByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pName, uDstSlot, uCount);
+    }
+    pub fn BindSampler(self: *const ID3D11ModuleInstance, uSrcSlot: u32, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindSampler(@as(*const ID3D11ModuleInstance, @ptrCast(self)), uSrcSlot, uDstSlot, uCount);
+    }
+    pub fn BindSamplerByName(self: *const ID3D11ModuleInstance, pName: ?[*:0]const u8, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindSamplerByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pName, uDstSlot, uCount);
+    }
+    pub fn BindUnorderedAccessView(self: *const ID3D11ModuleInstance, uSrcSlot: u32, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindUnorderedAccessView(@as(*const ID3D11ModuleInstance, @ptrCast(self)), uSrcSlot, uDstSlot, uCount);
+    }
+    pub fn BindUnorderedAccessViewByName(self: *const ID3D11ModuleInstance, pName: ?[*:0]const u8, uDstSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindUnorderedAccessViewByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pName, uDstSlot, uCount);
+    }
+    pub fn BindResourceAsUnorderedAccessView(self: *const ID3D11ModuleInstance, uSrcSrvSlot: u32, uDstUavSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindResourceAsUnorderedAccessView(@as(*const ID3D11ModuleInstance, @ptrCast(self)), uSrcSrvSlot, uDstUavSlot, uCount);
+    }
+    pub fn BindResourceAsUnorderedAccessViewByName(self: *const ID3D11ModuleInstance, pSrvName: ?[*:0]const u8, uDstUavSlot: u32, uCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ModuleInstance.VTable, @ptrCast(self.vtable)).BindResourceAsUnorderedAccessViewByName(@as(*const ID3D11ModuleInstance, @ptrCast(self)), pSrvName, uDstUavSlot, uCount);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12172,7 +13631,10 @@ pub const ID3D11Module = extern union {
             return @as(*const ID3D11Module.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ID3D11Module, @ptrCast(self)), pNamespace, ppModuleInstance);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateInstance(self: *const ID3D11Module, pNamespace: ?[*:0]const u8, ppModuleInstance: ?*?*ID3D11ModuleInstance) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Module.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ID3D11Module, @ptrCast(self)), pNamespace, ppModuleInstance);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12217,7 +13679,16 @@ pub const ID3D11Linker = extern union {
             return @as(*const ID3D11Linker.VTable, @ptrCast(self.vtable)).AddClipPlaneFromCBuffer(@as(*const ID3D11Linker, @ptrCast(self)), uCBufferSlot, uCBufferEntry);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Link(self: *const ID3D11Linker, pEntry: ?*ID3D11ModuleInstance, pEntryName: ?[*:0]const u8, pTargetName: ?[*:0]const u8, uFlags: u32, ppShaderBlob: ?*?*ID3DBlob, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Linker.VTable, @ptrCast(self.vtable)).Link(@as(*const ID3D11Linker, @ptrCast(self)), pEntry, pEntryName, pTargetName, uFlags, ppShaderBlob, ppErrorBuffer);
+    }
+    pub fn UseLibrary(self: *const ID3D11Linker, pLibraryMI: ?*ID3D11ModuleInstance) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Linker.VTable, @ptrCast(self.vtable)).UseLibrary(@as(*const ID3D11Linker, @ptrCast(self)), pLibraryMI);
+    }
+    pub fn AddClipPlaneFromCBuffer(self: *const ID3D11Linker, uCBufferSlot: u32, uCBufferEntry: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11Linker.VTable, @ptrCast(self.vtable)).AddClipPlaneFromCBuffer(@as(*const ID3D11Linker, @ptrCast(self)), uCBufferSlot, uCBufferEntry);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12232,7 +13703,7 @@ pub const ID3D11LinkingNode = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 // This COM type is Agile, not sure what that means
@@ -12328,7 +13799,31 @@ pub const ID3D11FunctionLinkingGraph = extern union {
             return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).GenerateHlsl(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), uFlags, ppBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateModuleInstance(self: *const ID3D11FunctionLinkingGraph, ppModuleInstance: ?*?*ID3D11ModuleInstance, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).CreateModuleInstance(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), ppModuleInstance, ppErrorBuffer);
+    }
+    pub fn SetInputSignature(self: *const ID3D11FunctionLinkingGraph, pInputParameters: [*]const D3D11_PARAMETER_DESC, cInputParameters: u32, ppInputNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).SetInputSignature(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), pInputParameters, cInputParameters, ppInputNode);
+    }
+    pub fn SetOutputSignature(self: *const ID3D11FunctionLinkingGraph, pOutputParameters: [*]const D3D11_PARAMETER_DESC, cOutputParameters: u32, ppOutputNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).SetOutputSignature(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), pOutputParameters, cOutputParameters, ppOutputNode);
+    }
+    pub fn CallFunction(self: *const ID3D11FunctionLinkingGraph, pModuleInstanceNamespace: ?[*:0]const u8, pModuleWithFunctionPrototype: ?*ID3D11Module, pFunctionName: ?[*:0]const u8, ppCallNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).CallFunction(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), pModuleInstanceNamespace, pModuleWithFunctionPrototype, pFunctionName, ppCallNode);
+    }
+    pub fn PassValue(self: *const ID3D11FunctionLinkingGraph, pSrcNode: ?*ID3D11LinkingNode, SrcParameterIndex: i32, pDstNode: ?*ID3D11LinkingNode, DstParameterIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).PassValue(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), pSrcNode, SrcParameterIndex, pDstNode, DstParameterIndex);
+    }
+    pub fn PassValueWithSwizzle(self: *const ID3D11FunctionLinkingGraph, pSrcNode: ?*ID3D11LinkingNode, SrcParameterIndex: i32, pSrcSwizzle: ?[*:0]const u8, pDstNode: ?*ID3D11LinkingNode, DstParameterIndex: i32, pDstSwizzle: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).PassValueWithSwizzle(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), pSrcNode, SrcParameterIndex, pSrcSwizzle, pDstNode, DstParameterIndex, pDstSwizzle);
+    }
+    pub fn GetLastError(self: *const ID3D11FunctionLinkingGraph, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), ppErrorBuffer);
+    }
+    pub fn GenerateHlsl(self: *const ID3D11FunctionLinkingGraph, uFlags: u32, ppBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11FunctionLinkingGraph.VTable, @ptrCast(self.vtable)).GenerateHlsl(@as(*const ID3D11FunctionLinkingGraph, @ptrCast(self)), uFlags, ppBuffer);
+    }
 };
 
 pub const D3D11_SHADER_TYPE = enum(i32) {
@@ -12613,7 +14108,31 @@ pub const ID3D11ShaderTrace = extern union {
             return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetReadRegister(@as(*const ID3D11ShaderTrace, @ptrCast(self)), stepIndex, readRegisterIndex, pRegister, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn TraceReady(self: *const ID3D11ShaderTrace, pTestCount: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).TraceReady(@as(*const ID3D11ShaderTrace, @ptrCast(self)), pTestCount);
+    }
+    pub fn ResetTrace(self: *const ID3D11ShaderTrace) callconv(.Inline) void {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).ResetTrace(@as(*const ID3D11ShaderTrace, @ptrCast(self)));
+    }
+    pub fn GetTraceStats(self: *const ID3D11ShaderTrace, pTraceStats: ?*D3D11_TRACE_STATS) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetTraceStats(@as(*const ID3D11ShaderTrace, @ptrCast(self)), pTraceStats);
+    }
+    pub fn PSSelectStamp(self: *const ID3D11ShaderTrace, stampIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).PSSelectStamp(@as(*const ID3D11ShaderTrace, @ptrCast(self)), stampIndex);
+    }
+    pub fn GetInitialRegisterContents(self: *const ID3D11ShaderTrace, pRegister: ?*D3D11_TRACE_REGISTER, pValue: ?*D3D11_TRACE_VALUE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetInitialRegisterContents(@as(*const ID3D11ShaderTrace, @ptrCast(self)), pRegister, pValue);
+    }
+    pub fn GetStep(self: *const ID3D11ShaderTrace, stepIndex: u32, pTraceStep: ?*D3D11_TRACE_STEP) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetStep(@as(*const ID3D11ShaderTrace, @ptrCast(self)), stepIndex, pTraceStep);
+    }
+    pub fn GetWrittenRegister(self: *const ID3D11ShaderTrace, stepIndex: u32, writtenRegisterIndex: u32, pRegister: ?*D3D11_TRACE_REGISTER, pValue: ?*D3D11_TRACE_VALUE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetWrittenRegister(@as(*const ID3D11ShaderTrace, @ptrCast(self)), stepIndex, writtenRegisterIndex, pRegister, pValue);
+    }
+    pub fn GetReadRegister(self: *const ID3D11ShaderTrace, stepIndex: u32, readRegisterIndex: u32, pRegister: ?*D3D11_TRACE_REGISTER, pValue: ?*D3D11_TRACE_VALUE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTrace.VTable, @ptrCast(self.vtable)).GetReadRegister(@as(*const ID3D11ShaderTrace, @ptrCast(self)), stepIndex, readRegisterIndex, pRegister, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -12639,7 +14158,10 @@ pub const ID3D11ShaderTraceFactory = extern union {
             return @as(*const ID3D11ShaderTraceFactory.VTable, @ptrCast(self.vtable)).CreateShaderTrace(@as(*const ID3D11ShaderTraceFactory, @ptrCast(self)), pShader, pTraceDesc, ppShaderTrace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateShaderTrace(self: *const ID3D11ShaderTraceFactory, pShader: ?*IUnknown, pTraceDesc: ?*D3D11_SHADER_TRACE_DESC, ppShaderTrace: ?*?*ID3D11ShaderTrace) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11ShaderTraceFactory.VTable, @ptrCast(self.vtable)).CreateShaderTrace(@as(*const ID3D11ShaderTraceFactory, @ptrCast(self)), pShader, pTraceDesc, ppShaderTrace);
+    }
 };
 
 pub const D3DX11_SCAN_DATA_TYPE = enum(i32) {
@@ -12721,7 +14243,16 @@ pub const ID3DX11Scan = extern union {
             return @as(*const ID3DX11Scan.VTable, @ptrCast(self.vtable)).Multiscan(@as(*const ID3DX11Scan, @ptrCast(self)), ElementType, OpCode, ElementScanSize, ElementScanPitch, ScanCount, pSrc, pDst);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetScanDirection(self: *const ID3DX11Scan, Direction: D3DX11_SCAN_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11Scan.VTable, @ptrCast(self.vtable)).SetScanDirection(@as(*const ID3DX11Scan, @ptrCast(self)), Direction);
+    }
+    pub fn Scan(self: *const ID3DX11Scan, ElementType: D3DX11_SCAN_DATA_TYPE, OpCode: D3DX11_SCAN_OPCODE, ElementScanSize: u32, pSrc: ?*ID3D11UnorderedAccessView, pDst: ?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11Scan.VTable, @ptrCast(self.vtable)).Scan(@as(*const ID3DX11Scan, @ptrCast(self)), ElementType, OpCode, ElementScanSize, pSrc, pDst);
+    }
+    pub fn Multiscan(self: *const ID3DX11Scan, ElementType: D3DX11_SCAN_DATA_TYPE, OpCode: D3DX11_SCAN_OPCODE, ElementScanSize: u32, ElementScanPitch: u32, ScanCount: u32, pSrc: ?*ID3D11UnorderedAccessView, pDst: ?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11Scan.VTable, @ptrCast(self.vtable)).Multiscan(@as(*const ID3DX11Scan, @ptrCast(self)), ElementType, OpCode, ElementScanSize, ElementScanPitch, ScanCount, pSrc, pDst);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12757,7 +14288,13 @@ pub const ID3DX11SegmentedScan = extern union {
             return @as(*const ID3DX11SegmentedScan.VTable, @ptrCast(self.vtable)).SegScan(@as(*const ID3DX11SegmentedScan, @ptrCast(self)), ElementType, OpCode, ElementScanSize, pSrc, pSrcElementFlags, pDst);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetScanDirection(self: *const ID3DX11SegmentedScan, Direction: D3DX11_SCAN_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11SegmentedScan.VTable, @ptrCast(self.vtable)).SetScanDirection(@as(*const ID3DX11SegmentedScan, @ptrCast(self)), Direction);
+    }
+    pub fn SegScan(self: *const ID3DX11SegmentedScan, ElementType: D3DX11_SCAN_DATA_TYPE, OpCode: D3DX11_SCAN_OPCODE, ElementScanSize: u32, pSrc: ?*ID3D11UnorderedAccessView, pSrcElementFlags: ?*ID3D11UnorderedAccessView, pDst: ?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11SegmentedScan.VTable, @ptrCast(self.vtable)).SegScan(@as(*const ID3DX11SegmentedScan, @ptrCast(self)), ElementType, OpCode, ElementScanSize, pSrc, pSrcElementFlags, pDst);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -12831,7 +14368,28 @@ pub const ID3DX11FFT = extern union {
             return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).InverseTransform(@as(*const ID3DX11FFT, @ptrCast(self)), pInputBuffer, ppOutputBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetForwardScale(self: *const ID3DX11FFT, ForwardScale: f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).SetForwardScale(@as(*const ID3DX11FFT, @ptrCast(self)), ForwardScale);
+    }
+    pub fn GetForwardScale(self: *const ID3DX11FFT) callconv(.Inline) f32 {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).GetForwardScale(@as(*const ID3DX11FFT, @ptrCast(self)));
+    }
+    pub fn SetInverseScale(self: *const ID3DX11FFT, InverseScale: f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).SetInverseScale(@as(*const ID3DX11FFT, @ptrCast(self)), InverseScale);
+    }
+    pub fn GetInverseScale(self: *const ID3DX11FFT) callconv(.Inline) f32 {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).GetInverseScale(@as(*const ID3DX11FFT, @ptrCast(self)));
+    }
+    pub fn AttachBuffersAndPrecompute(self: *const ID3DX11FFT, NumTempBuffers: u32, ppTempBuffers: [*]?*ID3D11UnorderedAccessView, NumPrecomputeBuffers: u32, ppPrecomputeBufferSizes: [*]?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).AttachBuffersAndPrecompute(@as(*const ID3DX11FFT, @ptrCast(self)), NumTempBuffers, ppTempBuffers, NumPrecomputeBuffers, ppPrecomputeBufferSizes);
+    }
+    pub fn ForwardTransform(self: *const ID3DX11FFT, pInputBuffer: ?*ID3D11UnorderedAccessView, ppOutputBuffer: ?*?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).ForwardTransform(@as(*const ID3DX11FFT, @ptrCast(self)), pInputBuffer, ppOutputBuffer);
+    }
+    pub fn InverseTransform(self: *const ID3DX11FFT, pInputBuffer: ?*ID3D11UnorderedAccessView, ppOutputBuffer: ?*?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+        return @as(*const ID3DX11FFT.VTable, @ptrCast(self.vtable)).InverseTransform(@as(*const ID3DX11FFT, @ptrCast(self)), pInputBuffer, ppOutputBuffer);
+    }
 };
 
 pub const D3DX11_FFT_DATA_TYPE = enum(i32) {

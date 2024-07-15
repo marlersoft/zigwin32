@@ -4055,7 +4055,22 @@ pub const IDot11AdHocManager = extern union {
             return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), NetworkSignature, pNetwork);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).CreateNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
+    }
+    pub fn CommitCreatedNetwork(self: *const IDot11AdHocManager, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).CommitCreatedNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
+    }
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocManager, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocNetworks(@as(*const IDot11AdHocManager, @ptrCast(self)), pContextGuid, ppEnum);
+    }
+    pub fn GetIEnumDot11AdHocInterfaces(self: *const IDot11AdHocManager, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocInterfaces(@as(*const IDot11AdHocManager, @ptrCast(self)), ppEnum);
+    }
+    pub fn GetNetwork(self: *const IDot11AdHocManager, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), NetworkSignature, pNetwork);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4102,7 +4117,19 @@ pub const IDot11AdHocManagerNotificationSink = extern union {
             return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnInterfaceRemove(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), Signature);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnNetworkAdd(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), pIAdHocNetwork);
+    }
+    pub fn OnNetworkRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnNetworkRemove(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), Signature);
+    }
+    pub fn OnInterfaceAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnInterfaceAdd(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), pIAdHocInterface);
+    }
+    pub fn OnInterfaceRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnInterfaceRemove(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), Signature);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4150,7 +4177,19 @@ pub const IEnumDot11AdHocNetworks = extern union {
             return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), cElt, rgElt, pcEltFetched);
+    }
+    pub fn Skip(self: *const IEnumDot11AdHocNetworks, cElt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), cElt);
+    }
+    pub fn Reset(self: *const IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumDot11AdHocNetworks, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4263,7 +4302,43 @@ pub const IDot11AdHocNetwork = extern union {
             return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IDot11AdHocNetwork, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDot11AdHocNetwork, @ptrCast(self)), eStatus);
+    }
+    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSSID(@as(*const IDot11AdHocNetwork, @ptrCast(self)), ppszwSSID);
+    }
+    pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).HasProfile(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pf11d);
+    }
+    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetProfileName(@as(*const IDot11AdHocNetwork, @ptrCast(self)), ppszwProfileName);
+    }
+    pub fn DeleteProfile(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).DeleteProfile(@as(*const IDot11AdHocNetwork, @ptrCast(self)));
+    }
+    pub fn GetSignalQuality(self: *const IDot11AdHocNetwork, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSignalQuality(@as(*const IDot11AdHocNetwork, @ptrCast(self)), puStrengthValue, puStrengthMax);
+    }
+    pub fn GetSecuritySetting(self: *const IDot11AdHocNetwork, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSecuritySetting(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pAdHocSecuritySetting);
+    }
+    pub fn GetContextGuid(self: *const IDot11AdHocNetwork, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetContextGuid(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pContextGuid);
+    }
+    pub fn GetSignature(self: *const IDot11AdHocNetwork, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pSignature);
+    }
+    pub fn GetInterface(self: *const IDot11AdHocNetwork, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pAdHocInterface);
+    }
+    pub fn Connect(self: *const IDot11AdHocNetwork, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).Connect(@as(*const IDot11AdHocNetwork, @ptrCast(self)), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
+    }
+    pub fn Disconnect(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IDot11AdHocNetwork, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4294,7 +4369,13 @@ pub const IDot11AdHocNetworkNotificationSink = extern union {
             return @as(*const IDot11AdHocNetworkNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectFail(@as(*const IDot11AdHocNetworkNotificationSink, @ptrCast(self)), eFailReason);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetworkNotificationSink.VTable, @ptrCast(self.vtable)).OnStatusChange(@as(*const IDot11AdHocNetworkNotificationSink, @ptrCast(self)), eStatus);
+    }
+    pub fn OnConnectFail(self: *const IDot11AdHocNetworkNotificationSink, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocNetworkNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectFail(@as(*const IDot11AdHocNetworkNotificationSink, @ptrCast(self)), eFailReason);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4382,7 +4463,34 @@ pub const IDot11AdHocInterface = extern union {
             return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDot11AdHocInterface, @ptrCast(self)), pState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetDeviceSignature(@as(*const IDot11AdHocInterface, @ptrCast(self)), pSignature);
+    }
+    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppszName);
+    }
+    pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsDot11d(@as(*const IDot11AdHocInterface, @ptrCast(self)), pf11d);
+    }
+    pub fn IsAdHocCapable(self: *const IDot11AdHocInterface, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsAdHocCapable(@as(*const IDot11AdHocInterface, @ptrCast(self)), pfAdHocCapable);
+    }
+    pub fn IsRadioOn(self: *const IDot11AdHocInterface, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsRadioOn(@as(*const IDot11AdHocInterface, @ptrCast(self)), pfIsRadioOn);
+    }
+    pub fn GetActiveNetwork(self: *const IDot11AdHocInterface, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetActiveNetwork(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppNetwork);
+    }
+    pub fn GetIEnumSecuritySettings(self: *const IDot11AdHocInterface, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetIEnumSecuritySettings(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppEnum);
+    }
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocInterface, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocNetworks(@as(*const IDot11AdHocInterface, @ptrCast(self)), pFilterGuid, ppEnum);
+    }
+    pub fn GetStatus(self: *const IDot11AdHocInterface, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDot11AdHocInterface, @ptrCast(self)), pState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4430,7 +4538,19 @@ pub const IEnumDot11AdHocInterfaces = extern union {
             return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), cElt, rgElt, pcEltFetched);
+    }
+    pub fn Skip(self: *const IEnumDot11AdHocInterfaces, cElt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), cElt);
+    }
+    pub fn Reset(self: *const IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumDot11AdHocInterfaces, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4478,7 +4598,19 @@ pub const IEnumDot11AdHocSecuritySettings = extern union {
             return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), cElt, rgElt, pcEltFetched);
+    }
+    pub fn Skip(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), cElt);
+    }
+    pub fn Reset(self: *const IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumDot11AdHocSecuritySettings, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4509,7 +4641,13 @@ pub const IDot11AdHocSecuritySettings = extern union {
             return @as(*const IDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).GetDot11CipherAlgorithm(@as(*const IDot11AdHocSecuritySettings, @ptrCast(self)), pCipher);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).GetDot11AuthAlgorithm(@as(*const IDot11AdHocSecuritySettings, @ptrCast(self)), pAuth);
+    }
+    pub fn GetDot11CipherAlgorithm(self: *const IDot11AdHocSecuritySettings, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).GetDot11CipherAlgorithm(@as(*const IDot11AdHocSecuritySettings, @ptrCast(self)), pCipher);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4532,7 +4670,10 @@ pub const IDot11AdHocInterfaceNotificationSink = extern union {
             return @as(*const IDot11AdHocInterfaceNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectionStatusChange(@as(*const IDot11AdHocInterfaceNotificationSink, @ptrCast(self)), eStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDot11AdHocInterfaceNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectionStatusChange(@as(*const IDot11AdHocInterfaceNotificationSink, @ptrCast(self)), eStatus);
+    }
 };
 
 pub const DOT11_ADAPTER = extern struct {

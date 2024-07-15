@@ -70,7 +70,16 @@ pub const IDirect3DDevice9On12 = extern union {
             return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const IDirect3DDevice9On12, @ptrCast(self)), pResource, NumSync, pSignalValues, ppFences);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetD3D12Device(self: *const IDirect3DDevice9On12, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).GetD3D12Device(@as(*const IDirect3DDevice9On12, @ptrCast(self)), riid, ppvDevice);
+    }
+    pub fn UnwrapUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).UnwrapUnderlyingResource(@as(*const IDirect3DDevice9On12, @ptrCast(self)), pResource, pCommandQueue, riid, ppvResource12);
+    }
+    pub fn ReturnUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const IDirect3DDevice9On12, @ptrCast(self)), pResource, NumSync, pSignalValues, ppFences);
+    }
 };
 
 

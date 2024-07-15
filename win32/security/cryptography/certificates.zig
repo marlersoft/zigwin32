@@ -1419,7 +1419,37 @@ pub const IEnumCERTVIEWCOLUMN = extern union {
             return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Next(self: *const IEnumCERTVIEWCOLUMN, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pIndex);
+    }
+    pub fn GetName(self: *const IEnumCERTVIEWCOLUMN, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pstrOut);
+    }
+    pub fn GetDisplayName(self: *const IEnumCERTVIEWCOLUMN, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pstrOut);
+    }
+    pub fn GetType(self: *const IEnumCERTVIEWCOLUMN, pType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetType(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pType);
+    }
+    pub fn IsIndexed(self: *const IEnumCERTVIEWCOLUMN, pIndexed: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).IsIndexed(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pIndexed);
+    }
+    pub fn GetMaxLength(self: *const IEnumCERTVIEWCOLUMN, pMaxLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pMaxLength);
+    }
+    pub fn GetValue(self: *const IEnumCERTVIEWCOLUMN, Flags: ENUM_CERT_COLUMN_VALUE_FLAGS, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), Flags, pvarValue);
+    }
+    pub fn Skip(self: *const IEnumCERTVIEWCOLUMN, celt: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumCERTVIEWCOLUMN) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumCERTVIEWCOLUMN, ppenum: ?*?*IEnumCERTVIEWCOLUMN) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1481,7 +1511,25 @@ pub const IEnumCERTVIEWATTRIBUTE = extern union {
             return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Next(self: *const IEnumCERTVIEWATTRIBUTE, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pIndex);
+    }
+    pub fn GetName(self: *const IEnumCERTVIEWATTRIBUTE, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pstrOut);
+    }
+    pub fn GetValue(self: *const IEnumCERTVIEWATTRIBUTE, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pstrOut);
+    }
+    pub fn Skip(self: *const IEnumCERTVIEWATTRIBUTE, celt: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumCERTVIEWATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumCERTVIEWATTRIBUTE, ppenum: ?*?*IEnumCERTVIEWATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1553,7 +1601,28 @@ pub const IEnumCERTVIEWEXTENSION = extern union {
             return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Next(self: *const IEnumCERTVIEWEXTENSION, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pIndex);
+    }
+    pub fn GetName(self: *const IEnumCERTVIEWEXTENSION, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pstrOut);
+    }
+    pub fn GetFlags(self: *const IEnumCERTVIEWEXTENSION, pFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pFlags);
+    }
+    pub fn GetValue(self: *const IEnumCERTVIEWEXTENSION, Type: CERT_PROPERTY_TYPE, Flags: ENUM_CERT_COLUMN_VALUE_FLAGS, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), Type, Flags, pvarValue);
+    }
+    pub fn Skip(self: *const IEnumCERTVIEWEXTENSION, celt: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumCERTVIEWEXTENSION) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumCERTVIEWEXTENSION, ppenum: ?*?*IEnumCERTVIEWEXTENSION) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1633,7 +1702,31 @@ pub const IEnumCERTVIEWROW = extern union {
             return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).GetMaxIndex(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), pIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Next(self: *const IEnumCERTVIEWROW, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), pIndex);
+    }
+    pub fn EnumCertViewColumn(self: *const IEnumCERTVIEWROW, ppenum: ?*?*IEnumCERTVIEWCOLUMN) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewColumn(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), ppenum);
+    }
+    pub fn EnumCertViewAttribute(self: *const IEnumCERTVIEWROW, Flags: i32, ppenum: ?*?*IEnumCERTVIEWATTRIBUTE) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewAttribute(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), Flags, ppenum);
+    }
+    pub fn EnumCertViewExtension(self: *const IEnumCERTVIEWROW, Flags: i32, ppenum: ?*?*IEnumCERTVIEWEXTENSION) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewExtension(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), Flags, ppenum);
+    }
+    pub fn Skip(self: *const IEnumCERTVIEWROW, celt: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumCERTVIEWROW) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWROW, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumCERTVIEWROW, ppenum: ?*?*IEnumCERTVIEWROW) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), ppenum);
+    }
+    pub fn GetMaxIndex(self: *const IEnumCERTVIEWROW, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).GetMaxIndex(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), pIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1719,7 +1812,31 @@ pub const ICertView = extern union {
             return @as(*const ICertView.VTable, @ptrCast(self.vtable)).OpenView(@as(*const ICertView, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OpenConnection(self: *const ICertView, strConfig: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).OpenConnection(@as(*const ICertView, @ptrCast(self)), strConfig);
+    }
+    pub fn EnumCertViewColumn(self: *const ICertView, fResultColumn: CVRC_COLUMN, ppenum: ?*?*IEnumCERTVIEWCOLUMN) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).EnumCertViewColumn(@as(*const ICertView, @ptrCast(self)), fResultColumn, ppenum);
+    }
+    pub fn GetColumnCount(self: *const ICertView, fResultColumn: CVRC_COLUMN, pcColumn: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICertView, @ptrCast(self)), fResultColumn, pcColumn);
+    }
+    pub fn GetColumnIndex(self: *const ICertView, fResultColumn: CVRC_COLUMN, strColumnName: ?BSTR, pColumnIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).GetColumnIndex(@as(*const ICertView, @ptrCast(self)), fResultColumn, strColumnName, pColumnIndex);
+    }
+    pub fn SetResultColumnCount(self: *const ICertView, cResultColumn: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetResultColumnCount(@as(*const ICertView, @ptrCast(self)), cResultColumn);
+    }
+    pub fn SetResultColumn(self: *const ICertView, ColumnIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetResultColumn(@as(*const ICertView, @ptrCast(self)), ColumnIndex);
+    }
+    pub fn SetRestriction(self: *const ICertView, ColumnIndex: CERT_VIEW_COLUMN_INDEX, SeekOperator: CERT_VIEW_SEEK_OPERATOR_FLAGS, SortOrder: i32, pvarValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetRestriction(@as(*const ICertView, @ptrCast(self)), ColumnIndex, SeekOperator, SortOrder, pvarValue);
+    }
+    pub fn OpenView(self: *const ICertView, ppenum: ?*?*IEnumCERTVIEWROW) callconv(.Inline) HRESULT {
+        return @as(*const ICertView.VTable, @ptrCast(self.vtable)).OpenView(@as(*const ICertView, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1742,7 +1859,10 @@ pub const ICertView2 = extern union {
             return @as(*const ICertView2.VTable, @ptrCast(self.vtable)).SetTable(@as(*const ICertView2, @ptrCast(self)), Table);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertView.MethodMixin(@This());
+    pub fn SetTable(self: *const ICertView2, Table: CVRC_TABLE) callconv(.Inline) HRESULT {
+        return @as(*const ICertView2.VTable, @ptrCast(self.vtable)).SetTable(@as(*const ICertView2, @ptrCast(self)), Table);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1858,7 +1978,37 @@ pub const ICertAdmin = extern union {
             return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).ImportCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strCertificate, Flags, pRequestId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn IsValidCertificate(self: *const ICertAdmin, strConfig: ?BSTR, strSerialNumber: ?BSTR, pDisposition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).IsValidCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strSerialNumber, pDisposition);
+    }
+    pub fn GetRevocationReason(self: *const ICertAdmin, pReason: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).GetRevocationReason(@as(*const ICertAdmin, @ptrCast(self)), pReason);
+    }
+    pub fn RevokeCertificate(self: *const ICertAdmin, strConfig: ?BSTR, strSerialNumber: ?BSTR, Reason: i32, Date: f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).RevokeCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strSerialNumber, Reason, Date);
+    }
+    pub fn SetRequestAttributes(self: *const ICertAdmin, strConfig: ?BSTR, RequestId: i32, strAttributes: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).SetRequestAttributes(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, strAttributes);
+    }
+    pub fn SetCertificateExtension(self: *const ICertAdmin, strConfig: ?BSTR, RequestId: i32, strExtensionName: ?BSTR, Type: CERT_PROPERTY_TYPE, Flags: i32, pvarValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).SetCertificateExtension(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, strExtensionName, Type, Flags, pvarValue);
+    }
+    pub fn DenyRequest(self: *const ICertAdmin, strConfig: ?BSTR, RequestId: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).DenyRequest(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId);
+    }
+    pub fn ResubmitRequest(self: *const ICertAdmin, strConfig: ?BSTR, RequestId: i32, pDisposition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).ResubmitRequest(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, pDisposition);
+    }
+    pub fn PublishCRL(self: *const ICertAdmin, strConfig: ?BSTR, Date: f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).PublishCRL(@as(*const ICertAdmin, @ptrCast(self)), strConfig, Date);
+    }
+    pub fn GetCRL(self: *const ICertAdmin, strConfig: ?BSTR, Flags: i32, pstrCRL: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).GetCRL(@as(*const ICertAdmin, @ptrCast(self)), strConfig, Flags, pstrCRL);
+    }
+    pub fn ImportCertificate(self: *const ICertAdmin, strConfig: ?BSTR, strCertificate: ?BSTR, Flags: CERT_IMPORT_FLAGS, pRequestId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).ImportCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strCertificate, Flags, pRequestId);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -1995,7 +2145,40 @@ pub const ICertAdmin2 = extern union {
             return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).DeleteRow(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, Flags, Date, Table, RowId, pcDeleted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertAdmin.MethodMixin(@This());
+    pub fn PublishCRLs(self: *const ICertAdmin2, strConfig: ?BSTR, Date: f64, CRLFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).PublishCRLs(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, Date, CRLFlags);
+    }
+    pub fn GetCAProperty(self: *const ICertAdmin2, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: i32, Flags: i32, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+    }
+    pub fn SetCAProperty(self: *const ICertAdmin2, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: CERT_PROPERTY_TYPE, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).SetCAProperty(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, pvarPropertyValue);
+    }
+    pub fn GetCAPropertyFlags(self: *const ICertAdmin2, strConfig: ?BSTR, PropId: i32, pPropFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAPropertyFlags(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, pPropFlags);
+    }
+    pub fn GetCAPropertyDisplayName(self: *const ICertAdmin2, strConfig: ?BSTR, PropId: i32, pstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAPropertyDisplayName(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, pstrDisplayName);
+    }
+    pub fn GetArchivedKey(self: *const ICertAdmin2, strConfig: ?BSTR, RequestId: i32, Flags: i32, pstrArchivedKey: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetArchivedKey(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, RequestId, Flags, pstrArchivedKey);
+    }
+    pub fn GetConfigEntry(self: *const ICertAdmin2, strConfig: ?BSTR, strNodePath: ?BSTR, strEntryName: ?BSTR, pvarEntry: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetConfigEntry(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, strNodePath, strEntryName, pvarEntry);
+    }
+    pub fn SetConfigEntry(self: *const ICertAdmin2, strConfig: ?BSTR, strNodePath: ?BSTR, strEntryName: ?BSTR, pvarEntry: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).SetConfigEntry(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, strNodePath, strEntryName, pvarEntry);
+    }
+    pub fn ImportKey(self: *const ICertAdmin2, strConfig: ?BSTR, RequestId: i32, strCertHash: ?BSTR, Flags: CERT_IMPORT_FLAGS, strKey: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).ImportKey(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, RequestId, strCertHash, Flags, strKey);
+    }
+    pub fn GetMyRoles(self: *const ICertAdmin2, strConfig: ?BSTR, pRoles: ?*CERTADMIN_GET_ROLES_FLAGS) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetMyRoles(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, pRoles);
+    }
+    pub fn DeleteRow(self: *const ICertAdmin2, strConfig: ?BSTR, Flags: CERT_DELETE_ROW_FLAGS, Date: f64, Table: CVRC_TABLE, RowId: i32, pcDeleted: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).DeleteRow(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, Flags, Date, Table, RowId, pcDeleted);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2046,7 +2229,19 @@ pub const IOCSPProperty = extern union {
             return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IOCSPProperty, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
+    }
+    pub fn get_Value(self: *const IOCSPProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
+    }
+    pub fn put_Value(self: *const IOCSPProperty, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IOCSPProperty, @ptrCast(self)), newVal);
+    }
+    pub fn get_Modified(self: *const IOCSPProperty, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2131,7 +2326,31 @@ pub const IOCSPPropertyCollection = extern union {
             return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).GetAllProperties(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVarProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IOCSPPropertyCollection, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IOCSPPropertyCollection, @ptrCast(self)), ppVal);
+    }
+    pub fn get_Item(self: *const IOCSPPropertyCollection, Index: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IOCSPPropertyCollection, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IOCSPPropertyCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_ItemByName(self: *const IOCSPPropertyCollection, bstrPropName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName, pVal);
+    }
+    pub fn CreateProperty(self: *const IOCSPPropertyCollection, bstrPropName: ?BSTR, pVarPropValue: ?*const VARIANT, ppVal: ?*?*IOCSPProperty) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).CreateProperty(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName, pVarPropValue, ppVal);
+    }
+    pub fn DeleteProperty(self: *const IOCSPPropertyCollection, bstrPropName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName);
+    }
+    pub fn InitializeFromProperties(self: *const IOCSPPropertyCollection, pVarProperties: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).InitializeFromProperties(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVarProperties);
+    }
+    pub fn GetAllProperties(self: *const IOCSPPropertyCollection, pVarProperties: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).GetAllProperties(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVarProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2362,7 +2581,79 @@ pub const IOCSPCAConfiguration = extern union {
             return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_CAConfig(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Identifier(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_CACertificate(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CACertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_HashAlgorithm(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_HashAlgorithm(self: *const IOCSPCAConfiguration, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_SigningFlags(self: *const IOCSPCAConfiguration, pVal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningFlags(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_SigningFlags(self: *const IOCSPCAConfiguration, newVal: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningFlags(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_SigningCertificate(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningCertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_SigningCertificate(self: *const IOCSPCAConfiguration, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningCertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_ReminderDuration(self: *const IOCSPCAConfiguration, pVal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ReminderDuration(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_ReminderDuration(self: *const IOCSPCAConfiguration, newVal: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ReminderDuration(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_ErrorCode(self: *const IOCSPCAConfiguration, pVal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ErrorCode(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_CSPName(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CSPName(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_KeySpec(self: *const IOCSPCAConfiguration, pVal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_ProviderCLSID(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ProviderCLSID(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_ProviderCLSID(self: *const IOCSPCAConfiguration, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ProviderCLSID(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_ProviderProperties(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ProviderProperties(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_ProviderProperties(self: *const IOCSPCAConfiguration, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ProviderProperties(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_Modified(self: *const IOCSPCAConfiguration, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn get_LocalRevocationInformation(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_LocalRevocationInformation(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_LocalRevocationInformation(self: *const IOCSPCAConfiguration, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_LocalRevocationInformation(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_SigningCertificateTemplate(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningCertificateTemplate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_SigningCertificateTemplate(self: *const IOCSPCAConfiguration, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningCertificateTemplate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
+    pub fn get_CAConfig(self: *const IOCSPCAConfiguration, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CAConfig(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
+    }
+    pub fn put_CAConfig(self: *const IOCSPCAConfiguration, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_CAConfig(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2431,7 +2722,25 @@ pub const IOCSPCAConfigurationCollection = extern union {
             return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).DeleteCAConfiguration(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IOCSPCAConfigurationCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Item(self: *const IOCSPCAConfigurationCollection, Index: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IOCSPCAConfigurationCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_ItemByName(self: *const IOCSPCAConfigurationCollection, bstrIdentifier: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier, pVal);
+    }
+    pub fn CreateCAConfiguration(self: *const IOCSPCAConfigurationCollection, bstrIdentifier: ?BSTR, varCACert: VARIANT, ppVal: ?*?*IOCSPCAConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).CreateCAConfiguration(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier, varCACert, ppVal);
+    }
+    pub fn DeleteCAConfiguration(self: *const IOCSPCAConfigurationCollection, bstrIdentifier: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).DeleteCAConfiguration(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2537,7 +2846,37 @@ pub const IOCSPAdmin = extern union {
             return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bstrCAId, pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_OCSPServiceProperties(self: *const IOCSPAdmin, ppVal: ?*?*IOCSPPropertyCollection) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).get_OCSPServiceProperties(@as(*const IOCSPAdmin, @ptrCast(self)), ppVal);
+    }
+    pub fn get_OCSPCAConfigurationCollection(self: *const IOCSPAdmin, pVal: ?*?*IOCSPCAConfigurationCollection) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).get_OCSPCAConfigurationCollection(@as(*const IOCSPAdmin, @ptrCast(self)), pVal);
+    }
+    pub fn GetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: i16) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bForce);
+    }
+    pub fn SetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: i16) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bForce);
+    }
+    pub fn GetMyRoles(self: *const IOCSPAdmin, bstrServerName: ?BSTR, pRoles: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetMyRoles(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pRoles);
+    }
+    pub fn Ping(self: *const IOCSPAdmin, bstrServerName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).Ping(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName);
+    }
+    pub fn SetSecurity(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bstrVal);
+    }
+    pub fn GetSecurity(self: *const IOCSPAdmin, bstrServerName: ?BSTR, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pVal);
+    }
+    pub fn GetSigningCertificates(self: *const IOCSPAdmin, bstrServerName: ?BSTR, pCACertVar: ?*const VARIANT, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetSigningCertificates(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pCACertVar, pVal);
+    }
+    pub fn GetHashAlgorithms(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bstrCAId: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bstrCAId, pVal);
+    }
 };
 
 pub const OCSPSigningFlag = enum(i32) {
@@ -2821,7 +3160,49 @@ pub const ICertServerPolicy = extern union {
             return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerPolicy, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn SetContext(self: *const ICertServerPolicy, Context: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetContext(@as(*const ICertServerPolicy, @ptrCast(self)), Context);
+    }
+    pub fn GetRequestProperty(self: *const ICertServerPolicy, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetRequestProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
+    }
+    pub fn GetRequestAttribute(self: *const ICertServerPolicy, strAttributeName: ?BSTR, pstrAttributeValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetRequestAttribute(@as(*const ICertServerPolicy, @ptrCast(self)), strAttributeName, pstrAttributeValue);
+    }
+    pub fn GetCertificateProperty(self: *const ICertServerPolicy, strPropertyName: ?BSTR, PropertyType: CERT_PROPERTY_TYPE, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
+    }
+    pub fn SetCertificateProperty(self: *const ICertServerPolicy, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetCertificateProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
+    }
+    pub fn GetCertificateExtension(self: *const ICertServerPolicy, strExtensionName: ?BSTR, Type: CERT_PROPERTY_TYPE, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateExtension(@as(*const ICertServerPolicy, @ptrCast(self)), strExtensionName, Type, pvarValue);
+    }
+    pub fn GetCertificateExtensionFlags(self: *const ICertServerPolicy, pExtFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateExtensionFlags(@as(*const ICertServerPolicy, @ptrCast(self)), pExtFlags);
+    }
+    pub fn SetCertificateExtension(self: *const ICertServerPolicy, strExtensionName: ?BSTR, Type: i32, ExtFlags: i32, pvarValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetCertificateExtension(@as(*const ICertServerPolicy, @ptrCast(self)), strExtensionName, Type, ExtFlags, pvarValue);
+    }
+    pub fn EnumerateExtensionsSetup(self: *const ICertServerPolicy, Flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensionsSetup(@as(*const ICertServerPolicy, @ptrCast(self)), Flags);
+    }
+    pub fn EnumerateExtensions(self: *const ICertServerPolicy, pstrExtensionName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensions(@as(*const ICertServerPolicy, @ptrCast(self)), pstrExtensionName);
+    }
+    pub fn EnumerateExtensionsClose(self: *const ICertServerPolicy) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensionsClose(@as(*const ICertServerPolicy, @ptrCast(self)));
+    }
+    pub fn EnumerateAttributesSetup(self: *const ICertServerPolicy, Flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributesSetup(@as(*const ICertServerPolicy, @ptrCast(self)), Flags);
+    }
+    pub fn EnumerateAttributes(self: *const ICertServerPolicy, pstrAttributeName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributes(@as(*const ICertServerPolicy, @ptrCast(self)), pstrAttributeName);
+    }
+    pub fn EnumerateAttributesClose(self: *const ICertServerPolicy) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerPolicy, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -2937,7 +3318,43 @@ pub const ICertServerExit = extern union {
             return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerExit, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn SetContext(self: *const ICertServerExit, Context: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).SetContext(@as(*const ICertServerExit, @ptrCast(self)), Context);
+    }
+    pub fn GetRequestProperty(self: *const ICertServerExit, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetRequestProperty(@as(*const ICertServerExit, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
+    }
+    pub fn GetRequestAttribute(self: *const ICertServerExit, strAttributeName: ?BSTR, pstrAttributeValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetRequestAttribute(@as(*const ICertServerExit, @ptrCast(self)), strAttributeName, pstrAttributeValue);
+    }
+    pub fn GetCertificateProperty(self: *const ICertServerExit, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateProperty(@as(*const ICertServerExit, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
+    }
+    pub fn GetCertificateExtension(self: *const ICertServerExit, strExtensionName: ?BSTR, Type: i32, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateExtension(@as(*const ICertServerExit, @ptrCast(self)), strExtensionName, Type, pvarValue);
+    }
+    pub fn GetCertificateExtensionFlags(self: *const ICertServerExit, pExtFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateExtensionFlags(@as(*const ICertServerExit, @ptrCast(self)), pExtFlags);
+    }
+    pub fn EnumerateExtensionsSetup(self: *const ICertServerExit, Flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensionsSetup(@as(*const ICertServerExit, @ptrCast(self)), Flags);
+    }
+    pub fn EnumerateExtensions(self: *const ICertServerExit, pstrExtensionName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensions(@as(*const ICertServerExit, @ptrCast(self)), pstrExtensionName);
+    }
+    pub fn EnumerateExtensionsClose(self: *const ICertServerExit) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensionsClose(@as(*const ICertServerExit, @ptrCast(self)));
+    }
+    pub fn EnumerateAttributesSetup(self: *const ICertServerExit, Flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributesSetup(@as(*const ICertServerExit, @ptrCast(self)), Flags);
+    }
+    pub fn EnumerateAttributes(self: *const ICertServerExit, pstrAttributeName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributes(@as(*const ICertServerExit, @ptrCast(self)), pstrAttributeName);
+    }
+    pub fn EnumerateAttributesClose(self: *const ICertServerExit) callconv(.Inline) HRESULT {
+        return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerExit, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -2961,7 +3378,10 @@ pub const ICertGetConfig = extern union {
             return @as(*const ICertGetConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertGetConfig, @ptrCast(self)), Flags, pstrOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetConfig(self: *const ICertGetConfig, Flags: CERT_GET_CONFIG_FLAGS, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertGetConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertGetConfig, @ptrCast(self)), Flags, pstrOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -3011,7 +3431,19 @@ pub const ICertConfig = extern union {
             return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertConfig, @ptrCast(self)), Flags, pstrOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const ICertConfig, Index: i32, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertConfig, @ptrCast(self)), Index, pCount);
+    }
+    pub fn Next(self: *const ICertConfig, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).Next(@as(*const ICertConfig, @ptrCast(self)), pIndex);
+    }
+    pub fn GetField(self: *const ICertConfig, strFieldName: ?BSTR, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).GetField(@as(*const ICertConfig, @ptrCast(self)), strFieldName, pstrOut);
+    }
+    pub fn GetConfig(self: *const ICertConfig, Flags: i32, pstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertConfig, @ptrCast(self)), Flags, pstrOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -3034,7 +3466,10 @@ pub const ICertConfig2 = extern union {
             return @as(*const ICertConfig2.VTable, @ptrCast(self.vtable)).SetSharedFolder(@as(*const ICertConfig2, @ptrCast(self)), strSharedFolder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertConfig.MethodMixin(@This());
+    pub fn SetSharedFolder(self: *const ICertConfig2, strSharedFolder: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertConfig2.VTable, @ptrCast(self.vtable)).SetSharedFolder(@as(*const ICertConfig2, @ptrCast(self)), strSharedFolder);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3115,7 +3550,28 @@ pub const ICertRequest = extern union {
             return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const ICertRequest, @ptrCast(self)), Flags, pstrCertificate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Submit(self: *const ICertRequest, Flags: i32, strRequest: ?BSTR, strAttributes: ?BSTR, strConfig: ?BSTR, pDisposition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).Submit(@as(*const ICertRequest, @ptrCast(self)), Flags, strRequest, strAttributes, strConfig, pDisposition);
+    }
+    pub fn RetrievePending(self: *const ICertRequest, RequestId: i32, strConfig: ?BSTR, pDisposition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).RetrievePending(@as(*const ICertRequest, @ptrCast(self)), RequestId, strConfig, pDisposition);
+    }
+    pub fn GetLastStatus(self: *const ICertRequest, pStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetLastStatus(@as(*const ICertRequest, @ptrCast(self)), pStatus);
+    }
+    pub fn GetRequestId(self: *const ICertRequest, pRequestId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetRequestId(@as(*const ICertRequest, @ptrCast(self)), pRequestId);
+    }
+    pub fn GetDispositionMessage(self: *const ICertRequest, pstrDispositionMessage: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetDispositionMessage(@as(*const ICertRequest, @ptrCast(self)), pstrDispositionMessage);
+    }
+    pub fn GetCACertificate(self: *const ICertRequest, fExchangeCertificate: i32, strConfig: ?BSTR, Flags: i32, pstrCertificate: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetCACertificate(@as(*const ICertRequest, @ptrCast(self)), fExchangeCertificate, strConfig, Flags, pstrCertificate);
+    }
+    pub fn GetCertificate(self: *const ICertRequest, Flags: i32, pstrCertificate: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const ICertRequest, @ptrCast(self)), Flags, pstrCertificate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3196,7 +3652,25 @@ pub const ICertRequest2 = extern union {
             return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetFullResponseProperty(@as(*const ICertRequest2, @ptrCast(self)), PropId, PropIndex, PropType, Flags, pvarPropertyValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertRequest.MethodMixin(@This());
+    pub fn GetIssuedCertificate(self: *const ICertRequest2, strConfig: ?BSTR, RequestId: i32, strSerialNumber: ?BSTR, pDisposition: ?*CR_DISP) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetIssuedCertificate(@as(*const ICertRequest2, @ptrCast(self)), strConfig, RequestId, strSerialNumber, pDisposition);
+    }
+    pub fn GetErrorMessageText(self: *const ICertRequest2, hrMessage: i32, Flags: i32, pstrErrorMessageText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetErrorMessageText(@as(*const ICertRequest2, @ptrCast(self)), hrMessage, Flags, pstrErrorMessageText);
+    }
+    pub fn GetCAProperty(self: *const ICertRequest2, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: i32, Flags: i32, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+    }
+    pub fn GetCAPropertyFlags(self: *const ICertRequest2, strConfig: ?BSTR, PropId: i32, pPropFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAPropertyFlags(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, pPropFlags);
+    }
+    pub fn GetCAPropertyDisplayName(self: *const ICertRequest2, strConfig: ?BSTR, PropId: i32, pstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAPropertyDisplayName(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, pstrDisplayName);
+    }
+    pub fn GetFullResponseProperty(self: *const ICertRequest2, PropId: FULL_RESPONSE_PROPERTY_ID, PropIndex: i32, PropType: CERT_PROPERTY_TYPE, Flags: CERT_REQUEST_OUT_TYPE, pvarPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetFullResponseProperty(@as(*const ICertRequest2, @ptrCast(self)), PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+    }
 };
 
 pub const X509EnrollmentAuthFlags = enum(i32) {
@@ -3262,7 +3736,19 @@ pub const ICertRequest3 = extern union {
             return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetRefreshPolicy(@as(*const ICertRequest3, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertRequest2.MethodMixin(@This());
+    pub fn SetCredential(self: *const ICertRequest3, hWnd: i32, AuthType: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).SetCredential(@as(*const ICertRequest3, @ptrCast(self)), hWnd, AuthType, strCredential, strPassword);
+    }
+    pub fn GetRequestIdString(self: *const ICertRequest3, pstrRequestId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetRequestIdString(@as(*const ICertRequest3, @ptrCast(self)), pstrRequestId);
+    }
+    pub fn GetIssuedCertificate2(self: *const ICertRequest3, strConfig: ?BSTR, strRequestId: ?BSTR, strSerialNumber: ?BSTR, pDisposition: ?*CR_DISP) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetIssuedCertificate2(@as(*const ICertRequest3, @ptrCast(self)), strConfig, strRequestId, strSerialNumber, pDisposition);
+    }
+    pub fn GetRefreshPolicy(self: *const ICertRequest3, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetRefreshPolicy(@as(*const ICertRequest3, @ptrCast(self)), pValue);
+    }
 };
 
 const CLSID_CCertEncodeStringArray_Value = Guid.initString("19a76fe0-7494-11d0-8816-00a0c903b83c");
@@ -3560,7 +4046,16 @@ pub const ICertManageModule = extern union {
             return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).Configure(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, Flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetProperty(self: *const ICertManageModule, strConfig: ?BSTR, strStorageLocation: ?BSTR, strPropertyName: ?BSTR, Flags: i32, pvarProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
+    }
+    pub fn SetProperty(self: *const ICertManageModule, strConfig: ?BSTR, strStorageLocation: ?BSTR, strPropertyName: ?BSTR, Flags: i32, pvarProperty: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
+    }
+    pub fn Configure(self: *const ICertManageModule, strConfig: ?BSTR, strStorageLocation: ?BSTR, Flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).Configure(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, Flags);
+    }
 };
 
 pub const CERTTRANSBLOB = extern struct {
@@ -3623,7 +4118,19 @@ pub const ICertPolicy = extern union {
             return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).ShutDown(@as(*const ICertPolicy, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPolicy, strConfig: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPolicy, @ptrCast(self)), strConfig);
+    }
+    pub fn VerifyRequest(self: *const ICertPolicy, strConfig: ?BSTR, Context: i32, bNewRequest: i32, Flags: i32, pDisposition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).VerifyRequest(@as(*const ICertPolicy, @ptrCast(self)), strConfig, Context, bNewRequest, Flags, pDisposition);
+    }
+    pub fn GetDescription(self: *const ICertPolicy, pstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICertPolicy, @ptrCast(self)), pstrDescription);
+    }
+    pub fn ShutDown(self: *const ICertPolicy) callconv(.Inline) HRESULT {
+        return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).ShutDown(@as(*const ICertPolicy, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -3646,7 +4153,10 @@ pub const ICertPolicy2 = extern union {
             return @as(*const ICertPolicy2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertPolicy2, @ptrCast(self)), ppManageModule);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertPolicy.MethodMixin(@This());
+    pub fn GetManageModule(self: *const ICertPolicy2, ppManageModule: ?*?*ICertManageModule) callconv(.Inline) HRESULT {
+        return @as(*const ICertPolicy2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertPolicy2, @ptrCast(self)), ppManageModule);
+    }
 };
 
 pub const X509SCEPMessageType = enum(i32) {
@@ -3753,7 +4263,22 @@ pub const INDESPolicy = extern union {
             return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Notify(@as(*const INDESPolicy, @ptrCast(self)), pwszChallenge, pwszTransactionId, disposition, lastHResult, pctbIssuedCertEncoded);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const INDESPolicy) callconv(.Inline) HRESULT {
+        return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INDESPolicy, @ptrCast(self)));
+    }
+    pub fn Uninitialize(self: *const INDESPolicy) callconv(.Inline) HRESULT {
+        return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const INDESPolicy, @ptrCast(self)));
+    }
+    pub fn GenerateChallenge(self: *const INDESPolicy, pwszTemplate: ?[*:0]const u16, pwszParams: ?[*:0]const u16, ppwszResponse: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).GenerateChallenge(@as(*const INDESPolicy, @ptrCast(self)), pwszTemplate, pwszParams, ppwszResponse);
+    }
+    pub fn VerifyRequest(self: *const INDESPolicy, pctbRequest: ?*CERTTRANSBLOB, pctbSigningCertEncoded: ?*CERTTRANSBLOB, pwszTemplate: ?[*:0]const u16, pwszTransactionId: ?[*:0]const u16, pfVerified: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).VerifyRequest(@as(*const INDESPolicy, @ptrCast(self)), pctbRequest, pctbSigningCertEncoded, pwszTemplate, pwszTransactionId, pfVerified);
+    }
+    pub fn Notify(self: *const INDESPolicy, pwszChallenge: ?[*:0]const u16, pwszTransactionId: ?[*:0]const u16, disposition: X509SCEPDisposition, lastHResult: i32, pctbIssuedCertEncoded: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Notify(@as(*const INDESPolicy, @ptrCast(self)), pwszChallenge, pwszTransactionId, disposition, lastHResult, pctbIssuedCertEncoded);
+    }
 };
 
 pub const CERTENROLL_OBJECTID = enum(i32) {
@@ -4842,7 +5367,31 @@ pub const IObjectId = extern union {
             return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).GetAlgorithmName(@as(*const IObjectId, @ptrCast(self)), GroupId, KeyFlags, pstrAlgorithmName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeFromName(self: *const IObjectId, Name: CERTENROLL_OBJECTID) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromName(@as(*const IObjectId, @ptrCast(self)), Name);
+    }
+    pub fn InitializeFromValue(self: *const IObjectId, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromValue(@as(*const IObjectId, @ptrCast(self)), strValue);
+    }
+    pub fn InitializeFromAlgorithmName(self: *const IObjectId, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, AlgFlags: AlgorithmFlags, strAlgorithmName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromAlgorithmName(@as(*const IObjectId, @ptrCast(self)), GroupId, KeyFlags, AlgFlags, strAlgorithmName);
+    }
+    pub fn get_Name(self: *const IObjectId, pValue: ?*CERTENROLL_OBJECTID) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IObjectId, @ptrCast(self)), pValue);
+    }
+    pub fn get_FriendlyName(self: *const IObjectId, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IObjectId, @ptrCast(self)), pValue);
+    }
+    pub fn put_FriendlyName(self: *const IObjectId, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IObjectId, @ptrCast(self)), Value);
+    }
+    pub fn get_Value(self: *const IObjectId, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IObjectId, @ptrCast(self)), pValue);
+    }
+    pub fn GetAlgorithmName(self: *const IObjectId, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, pstrAlgorithmName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).GetAlgorithmName(@as(*const IObjectId, @ptrCast(self)), GroupId, KeyFlags, pstrAlgorithmName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4915,7 +5464,28 @@ pub const IObjectIds = extern union {
             return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IObjectIds, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IObjectIds, Index: i32, pVal: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IObjectIds, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IObjectIds, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IObjectIds, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IObjectIds, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IObjectIds, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IObjectIds, pVal: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Add(@as(*const IObjectIds, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IObjectIds, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Remove(@as(*const IObjectIds, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectIds, @ptrCast(self)));
+    }
+    pub fn AddRange(self: *const IObjectIds, pValue: ?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IObjectIds, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4961,7 +5531,16 @@ pub const IBinaryConverter = extern union {
             return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).StringToVariantByteArray(@as(*const IBinaryConverter, @ptrCast(self)), strEncoded, Encoding, pvarByteArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn StringToString(self: *const IBinaryConverter, strEncodedIn: ?BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncoded: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).StringToString(@as(*const IBinaryConverter, @ptrCast(self)), strEncodedIn, EncodingIn, Encoding, pstrEncoded);
+    }
+    pub fn VariantByteArrayToString(self: *const IBinaryConverter, pvarByteArray: ?*VARIANT, Encoding: EncodingType, pstrEncoded: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).VariantByteArrayToString(@as(*const IBinaryConverter, @ptrCast(self)), pvarByteArray, Encoding, pstrEncoded);
+    }
+    pub fn StringToVariantByteArray(self: *const IBinaryConverter, strEncoded: ?BSTR, Encoding: EncodingType, pvarByteArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).StringToVariantByteArray(@as(*const IBinaryConverter, @ptrCast(self)), strEncoded, Encoding, pvarByteArray);
+    }
 };
 
 const IID_IBinaryConverter2_Value = Guid.initString("8d7928b4-4e17-428d-9a17-728df00d1b2b");
@@ -4993,7 +5572,13 @@ pub const IBinaryConverter2 = extern union {
             return @as(*const IBinaryConverter2.VTable, @ptrCast(self.vtable)).VariantArrayToStringArray(@as(*const IBinaryConverter2, @ptrCast(self)), pvarVariantArray, pvarStringArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IBinaryConverter.MethodMixin(@This());
+    pub fn StringArrayToVariantArray(self: *const IBinaryConverter2, pvarStringArray: ?*VARIANT, pvarVariantArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IBinaryConverter2.VTable, @ptrCast(self.vtable)).StringArrayToVariantArray(@as(*const IBinaryConverter2, @ptrCast(self)), pvarStringArray, pvarVariantArray);
+    }
+    pub fn VariantArrayToStringArray(self: *const IBinaryConverter2, pvarVariantArray: ?*VARIANT, pvarStringArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IBinaryConverter2.VTable, @ptrCast(self.vtable)).VariantArrayToStringArray(@as(*const IBinaryConverter2, @ptrCast(self)), pvarVariantArray, pvarStringArray);
+    }
 };
 
 pub const X500NameFlags = enum(i32) {
@@ -5088,7 +5673,19 @@ pub const IX500DistinguishedName = extern union {
             return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).get_EncodedName(@as(*const IX500DistinguishedName, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const IX500DistinguishedName, strEncodedName: ?BSTR, Encoding: EncodingType, NameFlags: X500NameFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).Decode(@as(*const IX500DistinguishedName, @ptrCast(self)), strEncodedName, Encoding, NameFlags);
+    }
+    pub fn Encode(self: *const IX500DistinguishedName, strName: ?BSTR, NameFlags: X500NameFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX500DistinguishedName, @ptrCast(self)), strName, NameFlags);
+    }
+    pub fn get_Name(self: *const IX500DistinguishedName, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IX500DistinguishedName, @ptrCast(self)), pValue);
+    }
+    pub fn get_EncodedName(self: *const IX500DistinguishedName, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).get_EncodedName(@as(*const IX500DistinguishedName, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 pub const X509CertificateEnrollmentContext = enum(i32) {
@@ -5252,7 +5849,43 @@ pub const IX509EnrollmentStatus = extern union {
             return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_ErrorText(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AppendText(self: *const IX509EnrollmentStatus, strText: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).AppendText(@as(*const IX509EnrollmentStatus, @ptrCast(self)), strText);
+    }
+    pub fn get_Text(self: *const IX509EnrollmentStatus, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Text(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Text(self: *const IX509EnrollmentStatus, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Text(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_Selected(self: *const IX509EnrollmentStatus, pValue: ?*EnrollmentSelectionStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Selected(self: *const IX509EnrollmentStatus, Value: EnrollmentSelectionStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_Display(self: *const IX509EnrollmentStatus, pValue: ?*EnrollmentDisplayStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Display(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Display(self: *const IX509EnrollmentStatus, Value: EnrollmentDisplayStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Display(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_Status(self: *const IX509EnrollmentStatus, pValue: ?*EnrollmentEnrollStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Status(self: *const IX509EnrollmentStatus, Value: EnrollmentEnrollStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Status(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_Error(self: *const IX509EnrollmentStatus, pValue: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Error(self: *const IX509EnrollmentStatus, Value: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Error(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_ErrorText(self: *const IX509EnrollmentStatus, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_ErrorText(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
+    }
 };
 
 pub const X509ProviderType = enum(i32) {
@@ -5447,7 +6080,37 @@ pub const ICspAlgorithm = extern union {
             return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetAlgorithmOid(self: *const ICspAlgorithm, Length: i32, AlgFlags: AlgorithmFlags, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).GetAlgorithmOid(@as(*const ICspAlgorithm, @ptrCast(self)), Length, AlgFlags, ppValue);
+    }
+    pub fn get_DefaultLength(self: *const ICspAlgorithm, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_DefaultLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_IncrementLength(self: *const ICspAlgorithm, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_IncrementLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_LongName(self: *const ICspAlgorithm, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_LongName(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_Valid(self: *const ICspAlgorithm, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Valid(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_MaxLength(self: *const ICspAlgorithm, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_MaxLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_MinLength(self: *const ICspAlgorithm, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_MinLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_Name(self: *const ICspAlgorithm, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_Type(self: *const ICspAlgorithm, pValue: ?*AlgorithmType) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
+    pub fn get_Operations(self: *const ICspAlgorithm, pValue: ?*AlgorithmOperationFlags) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5530,7 +6193,31 @@ pub const ICspAlgorithms = extern union {
             return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const ICspAlgorithms, @ptrCast(self)), pObjectId, pIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICspAlgorithms, Index: i32, pVal: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspAlgorithms, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICspAlgorithms, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICspAlgorithms, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICspAlgorithms, pVal: ?*ICspAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICspAlgorithms, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspAlgorithms, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICspAlgorithms) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspAlgorithms, @ptrCast(self)));
+    }
+    pub fn get_ItemByName(self: *const ICspAlgorithms, strName: ?BSTR, ppValue: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspAlgorithms, @ptrCast(self)), strName, ppValue);
+    }
+    pub fn get_IndexByObjectId(self: *const ICspAlgorithms, pObjectId: ?*IObjectId, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const ICspAlgorithms, @ptrCast(self)), pObjectId, pIndex);
+    }
 };
 
 pub const X509KeySpec = enum(i32) {
@@ -5708,7 +6395,58 @@ pub const ICspInformation = extern union {
             return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).GetCspStatusFromOperations(@as(*const ICspInformation, @ptrCast(self)), pAlgorithm, Operations, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeFromName(self: *const ICspInformation, strName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).InitializeFromName(@as(*const ICspInformation, @ptrCast(self)), strName);
+    }
+    pub fn InitializeFromType(self: *const ICspInformation, Type: X509ProviderType, pAlgorithm: ?*IObjectId, MachineContext: i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).InitializeFromType(@as(*const ICspInformation, @ptrCast(self)), Type, pAlgorithm, MachineContext);
+    }
+    pub fn get_CspAlgorithms(self: *const ICspInformation, ppValue: ?*?*ICspAlgorithms) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_CspAlgorithms(@as(*const ICspInformation, @ptrCast(self)), ppValue);
+    }
+    pub fn get_HasHardwareRandomNumberGenerator(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_HasHardwareRandomNumberGenerator(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_IsHardwareDevice(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsHardwareDevice(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_IsRemovable(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsRemovable(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_IsSoftwareDevice(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsSoftwareDevice(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_Valid(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Valid(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_MaxKeyContainerNameLength(self: *const ICspInformation, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_MaxKeyContainerNameLength(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_Name(self: *const ICspInformation, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_Type(self: *const ICspInformation, pValue: ?*X509ProviderType) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_Version(self: *const ICspInformation, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Version(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_KeySpec(self: *const ICspInformation, pValue: ?*X509KeySpec) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_IsSmartCard(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsSmartCard(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn GetDefaultSecurityDescriptor(self: *const ICspInformation, MachineContext: i16, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).GetDefaultSecurityDescriptor(@as(*const ICspInformation, @ptrCast(self)), MachineContext, pValue);
+    }
+    pub fn get_LegacyCsp(self: *const ICspInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_LegacyCsp(@as(*const ICspInformation, @ptrCast(self)), pValue);
+    }
+    pub fn GetCspStatusFromOperations(self: *const ICspInformation, pAlgorithm: ?*IObjectId, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).GetCspStatusFromOperations(@as(*const ICspInformation, @ptrCast(self)), pAlgorithm, Operations, ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5827,7 +6565,43 @@ pub const ICspInformations = extern union {
             return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const ICspInformations, @ptrCast(self)), pCspInformation, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICspInformations, Index: i32, pVal: ?*?*ICspInformation) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspInformations, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICspInformations, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspInformations, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICspInformations, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspInformations, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICspInformations, pVal: ?*ICspInformation) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspInformations, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICspInformations, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspInformations, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspInformations, @ptrCast(self)));
+    }
+    pub fn AddAvailableCsps(self: *const ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).AddAvailableCsps(@as(*const ICspInformations, @ptrCast(self)));
+    }
+    pub fn get_ItemByName(self: *const ICspInformations, strName: ?BSTR, ppCspInformation: ?*?*ICspInformation) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspInformations, @ptrCast(self)), strName, ppCspInformation);
+    }
+    pub fn GetCspStatusFromProviderName(self: *const ICspInformations, strProviderName: ?BSTR, LegacyKeySpec: X509KeySpec, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetCspStatusFromProviderName(@as(*const ICspInformations, @ptrCast(self)), strProviderName, LegacyKeySpec, ppValue);
+    }
+    pub fn GetCspStatusesFromOperations(self: *const ICspInformations, Operations: AlgorithmOperationFlags, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetCspStatusesFromOperations(@as(*const ICspInformations, @ptrCast(self)), Operations, pCspInformation, ppValue);
+    }
+    pub fn GetEncryptionCspAlgorithms(self: *const ICspInformations, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspAlgorithms) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetEncryptionCspAlgorithms(@as(*const ICspInformations, @ptrCast(self)), pCspInformation, ppValue);
+    }
+    pub fn GetHashAlgorithms(self: *const ICspInformations, pCspInformation: ?*ICspInformation, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const ICspInformations, @ptrCast(self)), pCspInformation, ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5905,7 +6679,28 @@ pub const ICspStatus = extern union {
             return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ICspStatus, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ICspStatus, pCsp: ?*ICspInformation, pAlgorithm: ?*ICspAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICspStatus, @ptrCast(self)), pCsp, pAlgorithm);
+    }
+    pub fn get_Ordinal(self: *const ICspStatus, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_Ordinal(@as(*const ICspStatus, @ptrCast(self)), pValue);
+    }
+    pub fn put_Ordinal(self: *const ICspStatus, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).put_Ordinal(@as(*const ICspStatus, @ptrCast(self)), Value);
+    }
+    pub fn get_CspAlgorithm(self: *const ICspStatus, ppValue: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_CspAlgorithm(@as(*const ICspStatus, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CspInformation(self: *const ICspStatus, ppValue: ?*?*ICspInformation) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_CspInformation(@as(*const ICspStatus, @ptrCast(self)), ppValue);
+    }
+    pub fn get_EnrollmentStatus(self: *const ICspStatus, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_EnrollmentStatus(@as(*const ICspStatus, @ptrCast(self)), ppValue);
+    }
+    pub fn get_DisplayName(self: *const ICspStatus, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ICspStatus, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6009,7 +6804,37 @@ pub const ICspStatuses = extern union {
             return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByProvider(@as(*const ICspStatuses, @ptrCast(self)), pCspStatus, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICspStatuses, Index: i32, pVal: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspStatuses, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICspStatuses, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspStatuses, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICspStatuses, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspStatuses, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICspStatuses, pVal: ?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspStatuses, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICspStatuses, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspStatuses, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICspStatuses) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspStatuses, @ptrCast(self)));
+    }
+    pub fn get_ItemByName(self: *const ICspStatuses, strCspName: ?BSTR, strAlgorithmName: ?BSTR, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspStatuses, @ptrCast(self)), strCspName, strAlgorithmName, ppValue);
+    }
+    pub fn get_ItemByOrdinal(self: *const ICspStatuses, Ordinal: i32, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByOrdinal(@as(*const ICspStatuses, @ptrCast(self)), Ordinal, ppValue);
+    }
+    pub fn get_ItemByOperations(self: *const ICspStatuses, strCspName: ?BSTR, strAlgorithmName: ?BSTR, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByOperations(@as(*const ICspStatuses, @ptrCast(self)), strCspName, strAlgorithmName, Operations, ppValue);
+    }
+    pub fn get_ItemByProvider(self: *const ICspStatuses, pCspStatus: ?*ICspStatus, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByProvider(@as(*const ICspStatuses, @ptrCast(self)), pCspStatus, ppValue);
+    }
 };
 
 pub const KeyIdentifierHashAlgorithm = enum(i32) {
@@ -6103,7 +6928,28 @@ pub const IX509PublicKey = extern union {
             return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).ComputeKeyIdentifier(@as(*const IX509PublicKey, @ptrCast(self)), Algorithm, Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509PublicKey, pObjectId: ?*IObjectId, strEncodedKey: ?BSTR, strEncodedParameters: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PublicKey, @ptrCast(self)), pObjectId, strEncodedKey, strEncodedParameters, Encoding);
+    }
+    pub fn InitializeFromEncodedPublicKeyInfo(self: *const IX509PublicKey, strEncodedPublicKeyInfo: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).InitializeFromEncodedPublicKeyInfo(@as(*const IX509PublicKey, @ptrCast(self)), strEncodedPublicKeyInfo, Encoding);
+    }
+    pub fn get_Algorithm(self: *const IX509PublicKey, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_Algorithm(@as(*const IX509PublicKey, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Length(self: *const IX509PublicKey, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509PublicKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_EncodedKey(self: *const IX509PublicKey, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_EncodedKey(@as(*const IX509PublicKey, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_EncodedParameters(self: *const IX509PublicKey, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_EncodedParameters(@as(*const IX509PublicKey, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn ComputeKeyIdentifier(self: *const IX509PublicKey, Algorithm: KeyIdentifierHashAlgorithm, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).ComputeKeyIdentifier(@as(*const IX509PublicKey, @ptrCast(self)), Algorithm, Encoding, pValue);
+    }
 };
 
 pub const X509PrivateKeyExportFlags = enum(i32) {
@@ -6686,7 +7532,181 @@ pub const IX509PrivateKey = extern union {
             return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Open(self: *const IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Open(@as(*const IX509PrivateKey, @ptrCast(self)));
+    }
+    pub fn Create(self: *const IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Create(@as(*const IX509PrivateKey, @ptrCast(self)));
+    }
+    pub fn Close(self: *const IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Close(@as(*const IX509PrivateKey, @ptrCast(self)));
+    }
+    pub fn Delete(self: *const IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Delete(@as(*const IX509PrivateKey, @ptrCast(self)));
+    }
+    pub fn Verify(self: *const IX509PrivateKey, VerifyType: X509PrivateKeyVerify) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Verify(@as(*const IX509PrivateKey, @ptrCast(self)), VerifyType);
+    }
+    pub fn Import(self: *const IX509PrivateKey, strExportType: ?BSTR, strEncodedKey: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Import(@as(*const IX509PrivateKey, @ptrCast(self)), strExportType, strEncodedKey, Encoding);
+    }
+    pub fn Export(self: *const IX509PrivateKey, strExportType: ?BSTR, Encoding: EncodingType, pstrEncodedKey: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Export(@as(*const IX509PrivateKey, @ptrCast(self)), strExportType, Encoding, pstrEncodedKey);
+    }
+    pub fn ExportPublicKey(self: *const IX509PrivateKey, ppPublicKey: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).ExportPublicKey(@as(*const IX509PrivateKey, @ptrCast(self)), ppPublicKey);
+    }
+    pub fn get_ContainerName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ContainerName(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_ContainerNamePrefix(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ContainerNamePrefix(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ContainerNamePrefix(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ContainerNamePrefix(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_ReaderName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ReaderName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ReaderName(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ReaderName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_CspInformations(self: *const IX509PrivateKey, ppValue: ?*?*ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_CspInformations(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
+    }
+    pub fn put_CspInformations(self: *const IX509PrivateKey, pValue: ?*ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_CspInformations(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_CspStatus(self: *const IX509PrivateKey, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_CspStatus(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
+    }
+    pub fn put_CspStatus(self: *const IX509PrivateKey, pValue: ?*ICspStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_CspStatus(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_ProviderName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ProviderName(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_ProviderType(self: *const IX509PrivateKey, pValue: ?*X509ProviderType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ProviderType(self: *const IX509PrivateKey, Value: X509ProviderType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_LegacyCsp(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_LegacyCsp(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_LegacyCsp(self: *const IX509PrivateKey, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_LegacyCsp(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Algorithm(self: *const IX509PrivateKey, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Algorithm(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
+    }
+    pub fn put_Algorithm(self: *const IX509PrivateKey, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Algorithm(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_KeySpec(self: *const IX509PrivateKey, pValue: ?*X509KeySpec) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_KeySpec(self: *const IX509PrivateKey, Value: X509KeySpec) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Length(self: *const IX509PrivateKey, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_Length(self: *const IX509PrivateKey, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Length(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_ExportPolicy(self: *const IX509PrivateKey, pValue: ?*X509PrivateKeyExportFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ExportPolicy(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ExportPolicy(self: *const IX509PrivateKey, Value: X509PrivateKeyExportFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ExportPolicy(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_KeyUsage(self: *const IX509PrivateKey, pValue: ?*X509PrivateKeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeyUsage(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_KeyUsage(self: *const IX509PrivateKey, Value: X509PrivateKeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeyUsage(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_KeyProtection(self: *const IX509PrivateKey, pValue: ?*X509PrivateKeyProtection) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeyProtection(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_KeyProtection(self: *const IX509PrivateKey, Value: X509PrivateKeyProtection) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeyProtection(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_MachineContext(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_MachineContext(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_MachineContext(self: *const IX509PrivateKey, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_MachineContext(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_SecurityDescriptor(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_SecurityDescriptor(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_SecurityDescriptor(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_SecurityDescriptor(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Certificate(self: *const IX509PrivateKey, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509PrivateKey, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_Certificate(self: *const IX509PrivateKey, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Certificate(@as(*const IX509PrivateKey, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_UniqueContainerName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_UniqueContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_Opened(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Opened(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_DefaultContainer(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_DefaultContainer(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_Existing(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Existing(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_Existing(self: *const IX509PrivateKey, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Existing(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Silent(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_Silent(self: *const IX509PrivateKey, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_ParentWindow(self: *const IX509PrivateKey, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ParentWindow(self: *const IX509PrivateKey, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_UIContextMessage(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_UIContextMessage(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn put_Pin(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Pin(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_FriendlyName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_FriendlyName(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Description(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_Description(self: *const IX509PrivateKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
+    }
 };
 
 pub const X509HardwareKeyUsageFlags = enum(i32) {
@@ -6816,7 +7836,37 @@ pub const IX509PrivateKey2 = extern union {
             return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_ParametersExportType(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509PrivateKey.MethodMixin(@This());
+    pub fn get_HardwareKeyUsage(self: *const IX509PrivateKey2, pValue: ?*X509HardwareKeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_HardwareKeyUsage(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
+    }
+    pub fn put_HardwareKeyUsage(self: *const IX509PrivateKey2, Value: X509HardwareKeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_HardwareKeyUsage(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
+    }
+    pub fn get_AlternateStorageLocation(self: *const IX509PrivateKey2, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlternateStorageLocation(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
+    }
+    pub fn put_AlternateStorageLocation(self: *const IX509PrivateKey2, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlternateStorageLocation(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
+    }
+    pub fn get_AlgorithmName(self: *const IX509PrivateKey2, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlgorithmName(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
+    }
+    pub fn put_AlgorithmName(self: *const IX509PrivateKey2, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlgorithmName(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
+    }
+    pub fn get_AlgorithmParameters(self: *const IX509PrivateKey2, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlgorithmParameters(@as(*const IX509PrivateKey2, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_AlgorithmParameters(self: *const IX509PrivateKey2, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlgorithmParameters(@as(*const IX509PrivateKey2, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_ParametersExportType(self: *const IX509PrivateKey2, pValue: ?*X509KeyParametersExportType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_ParametersExportType(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
+    }
+    pub fn put_ParametersExportType(self: *const IX509PrivateKey2, Value: X509KeyParametersExportType) callconv(.Inline) HRESULT {
+        return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_ParametersExportType(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
+    }
 };
 
 const IID_IX509EndorsementKey_Value = Guid.initString("b11cd855-f4c4-4fc6-b710-4422237f09e9");
@@ -6926,7 +7976,40 @@ pub const IX509EndorsementKey = extern union {
             return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).Close(@as(*const IX509EndorsementKey, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ProviderName(self: *const IX509EndorsementKey, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
+    }
+    pub fn put_ProviderName(self: *const IX509EndorsementKey, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const IX509EndorsementKey, @ptrCast(self)), Value);
+    }
+    pub fn get_Length(self: *const IX509EndorsementKey, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
+    }
+    pub fn get_Opened(self: *const IX509EndorsementKey, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_Opened(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
+    }
+    pub fn AddCertificate(self: *const IX509EndorsementKey, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).AddCertificate(@as(*const IX509EndorsementKey, @ptrCast(self)), Encoding, strCertificate);
+    }
+    pub fn RemoveCertificate(self: *const IX509EndorsementKey, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).RemoveCertificate(@as(*const IX509EndorsementKey, @ptrCast(self)), Encoding, strCertificate);
+    }
+    pub fn GetCertificateByIndex(self: *const IX509EndorsementKey, ManufacturerOnly: i16, dwIndex: i32, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).GetCertificateByIndex(@as(*const IX509EndorsementKey, @ptrCast(self)), ManufacturerOnly, dwIndex, Encoding, pValue);
+    }
+    pub fn GetCertificateCount(self: *const IX509EndorsementKey, ManufacturerOnly: i16, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).GetCertificateCount(@as(*const IX509EndorsementKey, @ptrCast(self)), ManufacturerOnly, pCount);
+    }
+    pub fn ExportPublicKey(self: *const IX509EndorsementKey, ppPublicKey: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).ExportPublicKey(@as(*const IX509EndorsementKey, @ptrCast(self)), ppPublicKey);
+    }
+    pub fn Open(self: *const IX509EndorsementKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).Open(@as(*const IX509EndorsementKey, @ptrCast(self)));
+    }
+    pub fn Close(self: *const IX509EndorsementKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).Close(@as(*const IX509EndorsementKey, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6987,7 +8070,22 @@ pub const IX509Extension = extern union {
             return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).put_Critical(@as(*const IX509Extension, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509Extension, pObjectId: ?*IObjectId, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Extension, @ptrCast(self)), pObjectId, Encoding, strEncodedData);
+    }
+    pub fn get_ObjectId(self: *const IX509Extension, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IX509Extension, @ptrCast(self)), ppValue);
+    }
+    pub fn get_RawData(self: *const IX509Extension, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509Extension, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Critical(self: *const IX509Extension, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_Critical(@as(*const IX509Extension, @ptrCast(self)), pValue);
+    }
+    pub fn put_Critical(self: *const IX509Extension, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).put_Critical(@as(*const IX509Extension, @ptrCast(self)), Value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7069,7 +8167,31 @@ pub const IX509Extensions = extern union {
             return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509Extensions, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509Extensions, Index: i32, pVal: ?*?*IX509Extension) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509Extensions, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509Extensions, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509Extensions, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509Extensions, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509Extensions, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509Extensions, pVal: ?*IX509Extension) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509Extensions, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509Extensions, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509Extensions, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509Extensions, @ptrCast(self)));
+    }
+    pub fn get_IndexByObjectId(self: *const IX509Extensions, pObjectId: ?*IObjectId, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const IX509Extensions, @ptrCast(self)), pObjectId, pIndex);
+    }
+    pub fn AddRange(self: *const IX509Extensions, pValue: ?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509Extensions, @ptrCast(self)), pValue);
+    }
 };
 
 pub const X509KeyUsageFlags = enum(i32) {
@@ -7135,7 +8257,16 @@ pub const IX509ExtensionKeyUsage = extern union {
             return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).get_KeyUsage(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionKeyUsage, UsageFlags: X509KeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), UsageFlags);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionKeyUsage, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_KeyUsage(self: *const IX509ExtensionKeyUsage, pValue: ?*X509KeyUsageFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).get_KeyUsage(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7176,7 +8307,16 @@ pub const IX509ExtensionEnhancedKeyUsage = extern union {
             return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).get_EnhancedKeyUsage(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionEnhancedKeyUsage, pValue: ?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionEnhancedKeyUsage, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_EnhancedKeyUsage(self: *const IX509ExtensionEnhancedKeyUsage, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).get_EnhancedKeyUsage(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7217,7 +8357,16 @@ pub const IX509ExtensionTemplateName = extern union {
             return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionTemplateName, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), strTemplateName);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionTemplateName, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_TemplateName(self: *const IX509ExtensionTemplateName, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7278,7 +8427,22 @@ pub const IX509ExtensionTemplate = extern union {
             return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionTemplate, pTemplateOid: ?*IObjectId, MajorVersion: i32, MinorVersion: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pTemplateOid, MajorVersion, MinorVersion);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionTemplate, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionTemplate, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_TemplateOid(self: *const IX509ExtensionTemplate, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_TemplateOid(@as(*const IX509ExtensionTemplate, @ptrCast(self)), ppValue);
+    }
+    pub fn get_MajorVersion(self: *const IX509ExtensionTemplate, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pValue);
+    }
+    pub fn get_MinorVersion(self: *const IX509ExtensionTemplate, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pValue);
+    }
 };
 
 pub const AlternativeNameType = enum(i32) {
@@ -7386,7 +8550,28 @@ pub const IAlternativeName = extern union {
             return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IAlternativeName, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeFromString(self: *const IAlternativeName, Type: AlternativeNameType, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromString(@as(*const IAlternativeName, @ptrCast(self)), Type, strValue);
+    }
+    pub fn InitializeFromRawData(self: *const IAlternativeName, Type: AlternativeNameType, Encoding: EncodingType, strRawData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromRawData(@as(*const IAlternativeName, @ptrCast(self)), Type, Encoding, strRawData);
+    }
+    pub fn InitializeFromOtherName(self: *const IAlternativeName, pObjectId: ?*IObjectId, Encoding: EncodingType, strRawData: ?BSTR, ToBeWrapped: i16) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromOtherName(@as(*const IAlternativeName, @ptrCast(self)), pObjectId, Encoding, strRawData, ToBeWrapped);
+    }
+    pub fn get_Type(self: *const IAlternativeName, pValue: ?*AlternativeNameType) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IAlternativeName, @ptrCast(self)), pValue);
+    }
+    pub fn get_StrValue(self: *const IAlternativeName, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_StrValue(@as(*const IAlternativeName, @ptrCast(self)), pValue);
+    }
+    pub fn get_ObjectId(self: *const IAlternativeName, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IAlternativeName, @ptrCast(self)), ppValue);
+    }
+    pub fn get_RawData(self: *const IAlternativeName, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IAlternativeName, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7451,7 +8636,25 @@ pub const IAlternativeNames = extern union {
             return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Clear(@as(*const IAlternativeNames, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IAlternativeNames, Index: i32, pVal: ?*?*IAlternativeName) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IAlternativeNames, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IAlternativeNames, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IAlternativeNames, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IAlternativeNames, pVal: ?*IAlternativeName) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Add(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IAlternativeNames, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAlternativeNames, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IAlternativeNames) callconv(.Inline) HRESULT {
+        return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Clear(@as(*const IAlternativeNames, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7492,7 +8695,16 @@ pub const IX509ExtensionAlternativeNames = extern union {
             return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).get_AlternativeNames(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionAlternativeNames, pValue: ?*IAlternativeNames) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionAlternativeNames, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_AlternativeNames(self: *const IX509ExtensionAlternativeNames, ppValue: ?*?*IAlternativeNames) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).get_AlternativeNames(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7543,7 +8755,19 @@ pub const IX509ExtensionBasicConstraints = extern union {
             return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).get_PathLenConstraint(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionBasicConstraints, IsCA: i16, PathLenConstraint: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), IsCA, PathLenConstraint);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionBasicConstraints, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_IsCA(self: *const IX509ExtensionBasicConstraints, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).get_IsCA(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), pValue);
+    }
+    pub fn get_PathLenConstraint(self: *const IX509ExtensionBasicConstraints, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).get_PathLenConstraint(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7585,7 +8809,16 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern union {
             return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).get_SubjectKeyIdentifier(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionSubjectKeyIdentifier, Encoding: EncodingType, strKeyIdentifier: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, strKeyIdentifier);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionSubjectKeyIdentifier, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_SubjectKeyIdentifier(self: *const IX509ExtensionSubjectKeyIdentifier, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).get_SubjectKeyIdentifier(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7627,7 +8860,16 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern union {
             return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).get_AuthorityKeyIdentifier(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionAuthorityKeyIdentifier, Encoding: EncodingType, strKeyIdentifier: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, strKeyIdentifier);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionAuthorityKeyIdentifier, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_AuthorityKeyIdentifier(self: *const IX509ExtensionAuthorityKeyIdentifier, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).get_AuthorityKeyIdentifier(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7669,7 +8911,16 @@ pub const ISmimeCapability = extern union {
             return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).get_BitCount(@as(*const ISmimeCapability, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ISmimeCapability, pObjectId: ?*IObjectId, BitCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISmimeCapability, @ptrCast(self)), pObjectId, BitCount);
+    }
+    pub fn get_ObjectId(self: *const ISmimeCapability, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ISmimeCapability, @ptrCast(self)), ppValue);
+    }
+    pub fn get_BitCount(self: *const ISmimeCapability, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).get_BitCount(@as(*const ISmimeCapability, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7750,7 +9001,31 @@ pub const ISmimeCapabilities = extern union {
             return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).AddAvailableSmimeCapabilities(@as(*const ISmimeCapabilities, @ptrCast(self)), MachineContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ISmimeCapabilities, Index: i32, pVal: ?*?*ISmimeCapability) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ISmimeCapabilities, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ISmimeCapabilities, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ISmimeCapabilities, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ISmimeCapabilities, pVal: ?*ISmimeCapability) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Add(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ISmimeCapabilities, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISmimeCapabilities, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ISmimeCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISmimeCapabilities, @ptrCast(self)));
+    }
+    pub fn AddFromCsp(self: *const ISmimeCapabilities, pValue: ?*ICspInformation) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).AddFromCsp(@as(*const ISmimeCapabilities, @ptrCast(self)), pValue);
+    }
+    pub fn AddAvailableSmimeCapabilities(self: *const ISmimeCapabilities, MachineContext: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).AddAvailableSmimeCapabilities(@as(*const ISmimeCapabilities, @ptrCast(self)), MachineContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7791,7 +9066,16 @@ pub const IX509ExtensionSmimeCapabilities = extern union {
             return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).get_SmimeCapabilities(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionSmimeCapabilities, pValue: ?*ISmimeCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionSmimeCapabilities, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_SmimeCapabilities(self: *const IX509ExtensionSmimeCapabilities, ppValue: ?*?*ISmimeCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).get_SmimeCapabilities(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), ppValue);
+    }
 };
 
 pub const PolicyQualifierType = enum(i32) {
@@ -7862,7 +9146,22 @@ pub const IPolicyQualifier = extern union {
             return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IPolicyQualifier, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IPolicyQualifier, strQualifier: ?BSTR, Type: PolicyQualifierType) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IPolicyQualifier, @ptrCast(self)), strQualifier, Type);
+    }
+    pub fn get_ObjectId(self: *const IPolicyQualifier, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IPolicyQualifier, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Qualifier(self: *const IPolicyQualifier, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_Qualifier(@as(*const IPolicyQualifier, @ptrCast(self)), pValue);
+    }
+    pub fn get_Type(self: *const IPolicyQualifier, pValue: ?*PolicyQualifierType) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPolicyQualifier, @ptrCast(self)), pValue);
+    }
+    pub fn get_RawData(self: *const IPolicyQualifier, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IPolicyQualifier, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7927,7 +9226,25 @@ pub const IPolicyQualifiers = extern union {
             return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPolicyQualifiers, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IPolicyQualifiers, Index: i32, pVal: ?*?*IPolicyQualifier) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IPolicyQualifiers, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IPolicyQualifiers, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IPolicyQualifiers, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IPolicyQualifiers, pVal: ?*IPolicyQualifier) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Add(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IPolicyQualifiers, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Remove(@as(*const IPolicyQualifiers, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IPolicyQualifiers) callconv(.Inline) HRESULT {
+        return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPolicyQualifiers, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7968,7 +9285,16 @@ pub const ICertificatePolicy = extern union {
             return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).get_PolicyQualifiers(@as(*const ICertificatePolicy, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertificatePolicy, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertificatePolicy, @ptrCast(self)), pValue);
+    }
+    pub fn get_ObjectId(self: *const ICertificatePolicy, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ICertificatePolicy, @ptrCast(self)), ppValue);
+    }
+    pub fn get_PolicyQualifiers(self: *const ICertificatePolicy, ppValue: ?*?*IPolicyQualifiers) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).get_PolicyQualifiers(@as(*const ICertificatePolicy, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8033,7 +9359,25 @@ pub const ICertificatePolicies = extern union {
             return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertificatePolicies, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICertificatePolicies, Index: i32, pVal: ?*?*ICertificatePolicy) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertificatePolicies, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICertificatePolicies, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICertificatePolicies, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICertificatePolicies, pVal: ?*ICertificatePolicy) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICertificatePolicies, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertificatePolicies, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICertificatePolicies) callconv(.Inline) HRESULT {
+        return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertificatePolicies, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8074,7 +9418,16 @@ pub const IX509ExtensionCertificatePolicies = extern union {
             return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionCertificatePolicies, pValue: ?*ICertificatePolicies) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionCertificatePolicies, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_Policies(self: *const IX509ExtensionCertificatePolicies, ppValue: ?*?*ICertificatePolicies) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8115,7 +9468,16 @@ pub const IX509ExtensionMSApplicationPolicies = extern union {
             return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Extension.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509ExtensionMSApplicationPolicies, pValue: ?*ICertificatePolicies) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeDecode(self: *const IX509ExtensionMSApplicationPolicies, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_Policies(self: *const IX509ExtensionMSApplicationPolicies, ppValue: ?*?*ICertificatePolicies) callconv(.Inline) HRESULT {
+        return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8158,7 +9520,16 @@ pub const IX509Attribute = extern union {
             return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509Attribute, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509Attribute, pObjectId: ?*IObjectId, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Attribute, @ptrCast(self)), pObjectId, Encoding, strEncodedData);
+    }
+    pub fn get_ObjectId(self: *const IX509Attribute, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IX509Attribute, @ptrCast(self)), ppValue);
+    }
+    pub fn get_RawData(self: *const IX509Attribute, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509Attribute, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8223,7 +9594,25 @@ pub const IX509Attributes = extern union {
             return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509Attributes, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509Attributes, Index: i32, pVal: ?*?*IX509Attribute) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509Attributes, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509Attributes, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509Attributes, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509Attributes, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509Attributes, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509Attributes, pVal: ?*IX509Attribute) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509Attributes, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509Attributes, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509Attributes, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509Attributes) callconv(.Inline) HRESULT {
+        return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509Attributes, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8264,7 +9653,16 @@ pub const IX509AttributeExtensions = extern union {
             return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509AttributeExtensions, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeExtensions, pExtensions: ?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeExtensions, @ptrCast(self)), pExtensions);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeExtensions, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeExtensions, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_X509Extensions(self: *const IX509AttributeExtensions, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509AttributeExtensions, @ptrCast(self)), ppValue);
+    }
 };
 
 pub const RequestClientInfoClientId = enum(i32) {
@@ -8364,7 +9762,25 @@ pub const IX509AttributeClientId = extern union {
             return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_ProcessName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeClientId, ClientId: RequestClientInfoClientId, strMachineDnsName: ?BSTR, strUserSamName: ?BSTR, strProcessName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeClientId, @ptrCast(self)), ClientId, strMachineDnsName, strUserSamName, strProcessName);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeClientId, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeClientId, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_ClientId(self: *const IX509AttributeClientId, pValue: ?*RequestClientInfoClientId) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
+    }
+    pub fn get_MachineDnsName(self: *const IX509AttributeClientId, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_MachineDnsName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
+    }
+    pub fn get_UserSamName(self: *const IX509AttributeClientId, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_UserSamName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
+    }
+    pub fn get_ProcessName(self: *const IX509AttributeClientId, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_ProcessName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8406,7 +9822,16 @@ pub const IX509AttributeRenewalCertificate = extern union {
             return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeRenewalCertificate, Encoding: EncodingType, strCert: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, strCert);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeRenewalCertificate, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_RenewalCertificate(self: *const IX509AttributeRenewalCertificate, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8469,7 +9894,22 @@ pub const IX509AttributeArchiveKey = extern union {
             return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeArchiveKey, pKey: ?*IX509PrivateKey, Encoding: EncodingType, strCAXCert: ?BSTR, pAlgorithm: ?*IObjectId, EncryptionStrength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), pKey, Encoding, strCAXCert, pAlgorithm, EncryptionStrength);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeArchiveKey, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_EncryptedKeyBlob(self: *const IX509AttributeArchiveKey, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptedKeyBlob(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_EncryptionAlgorithm(self: *const IX509AttributeArchiveKey, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), ppValue);
+    }
+    pub fn get_EncryptionStrength(self: *const IX509AttributeArchiveKey, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8511,7 +9951,16 @@ pub const IX509AttributeArchiveKeyHash = extern union {
             return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).get_EncryptedKeyHashBlob(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncodeFromEncryptedKeyBlob(self: *const IX509AttributeArchiveKeyHash, Encoding: EncodingType, strEncryptedKeyBlob: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).InitializeEncodeFromEncryptedKeyBlob(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, strEncryptedKeyBlob);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeArchiveKeyHash, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_EncryptedKeyHashBlob(self: *const IX509AttributeArchiveKeyHash, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).get_EncryptedKeyHashBlob(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8552,7 +10001,16 @@ pub const IX509AttributeOSVersion = extern union {
             return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).get_OSVersion(@as(*const IX509AttributeOSVersion, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeOSVersion, strOSVersion: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeOSVersion, @ptrCast(self)), strOSVersion);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeOSVersion, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeOSVersion, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_OSVersion(self: *const IX509AttributeOSVersion, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).get_OSVersion(@as(*const IX509AttributeOSVersion, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8614,7 +10072,22 @@ pub const IX509AttributeCspProvider = extern union {
             return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509AttributeCspProvider, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Attribute.MethodMixin(@This());
+    pub fn InitializeEncode(self: *const IX509AttributeCspProvider, KeySpec: X509KeySpec, strProviderName: ?BSTR, Encoding: EncodingType, strSignature: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeCspProvider, @ptrCast(self)), KeySpec, strProviderName, Encoding, strSignature);
+    }
+    pub fn InitializeDecode(self: *const IX509AttributeCspProvider, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeCspProvider, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_KeySpec(self: *const IX509AttributeCspProvider, pValue: ?*X509KeySpec) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IX509AttributeCspProvider, @ptrCast(self)), pValue);
+    }
+    pub fn get_ProviderName(self: *const IX509AttributeCspProvider, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509AttributeCspProvider, @ptrCast(self)), pValue);
+    }
+    pub fn get_Signature(self: *const IX509AttributeCspProvider, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509AttributeCspProvider, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8663,7 +10136,19 @@ pub const ICryptAttribute = extern union {
             return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).get_Values(@as(*const ICryptAttribute, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeFromObjectId(self: *const ICryptAttribute, pObjectId: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).InitializeFromObjectId(@as(*const ICryptAttribute, @ptrCast(self)), pObjectId);
+    }
+    pub fn InitializeFromValues(self: *const ICryptAttribute, pAttributes: ?*IX509Attributes) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).InitializeFromValues(@as(*const ICryptAttribute, @ptrCast(self)), pAttributes);
+    }
+    pub fn get_ObjectId(self: *const ICryptAttribute, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ICryptAttribute, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Values(self: *const ICryptAttribute, ppValue: ?*?*IX509Attributes) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).get_Values(@as(*const ICryptAttribute, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8745,7 +10230,31 @@ pub const ICryptAttributes = extern union {
             return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).AddRange(@as(*const ICryptAttributes, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICryptAttributes, Index: i32, pVal: ?*?*ICryptAttribute) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICryptAttributes, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICryptAttributes, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICryptAttributes, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICryptAttributes, pVal: ?*ICryptAttribute) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Add(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICryptAttributes, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICryptAttributes, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICryptAttributes) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICryptAttributes, @ptrCast(self)));
+    }
+    pub fn get_IndexByObjectId(self: *const ICryptAttributes, pObjectId: ?*IObjectId, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const ICryptAttributes, @ptrCast(self)), pObjectId, pIndex);
+    }
+    pub fn AddRange(self: *const ICryptAttributes, pValue: ?*ICryptAttributes) callconv(.Inline) HRESULT {
+        return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).AddRange(@as(*const ICryptAttributes, @ptrCast(self)), pValue);
+    }
 };
 
 pub const CERTENROLL_PROPERTYID = enum(i32) {
@@ -9029,7 +10538,28 @@ pub const ICertProperty = extern union {
             return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).SetValueOnCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn InitializeFromCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
+    }
+    pub fn InitializeDecode(self: *const ICertProperty, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const ICertProperty, @ptrCast(self)), Encoding, strEncodedData);
+    }
+    pub fn get_PropertyId(self: *const ICertProperty, pValue: ?*CERTENROLL_PROPERTYID) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const ICertProperty, @ptrCast(self)), pValue);
+    }
+    pub fn put_PropertyId(self: *const ICertProperty, Value: CERTENROLL_PROPERTYID) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).put_PropertyId(@as(*const ICertProperty, @ptrCast(self)), Value);
+    }
+    pub fn get_RawData(self: *const ICertProperty, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const ICertProperty, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn RemoveFromCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).RemoveFromCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
+    }
+    pub fn SetValueOnCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).SetValueOnCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9104,7 +10634,28 @@ pub const ICertProperties = extern union {
             return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const ICertProperties, @ptrCast(self)), MachineContext, Encoding, strCertificate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICertProperties, Index: i32, pVal: ?*?*ICertProperty) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertProperties, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICertProperties, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertProperties, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICertProperties, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertProperties, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICertProperties, pVal: ?*ICertProperty) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertProperties, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICertProperties, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertProperties, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICertProperties) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertProperties, @ptrCast(self)));
+    }
+    pub fn InitializeFromCertificate(self: *const ICertProperties, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const ICertProperties, @ptrCast(self)), MachineContext, Encoding, strCertificate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9136,7 +10687,13 @@ pub const ICertPropertyFriendlyName = extern union {
             return @as(*const ICertPropertyFriendlyName.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyFriendlyName, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyFriendlyName, strFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyFriendlyName.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyFriendlyName, @ptrCast(self)), strFriendlyName);
+    }
+    pub fn get_FriendlyName(self: *const ICertPropertyFriendlyName, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyFriendlyName.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyFriendlyName, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9168,7 +10725,13 @@ pub const ICertPropertyDescription = extern union {
             return @as(*const ICertPropertyDescription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ICertPropertyDescription, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyDescription, strDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyDescription.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyDescription, @ptrCast(self)), strDescription);
+    }
+    pub fn get_Description(self: *const ICertPropertyDescription, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyDescription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ICertPropertyDescription, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9200,7 +10763,13 @@ pub const ICertPropertyAutoEnroll = extern union {
             return @as(*const ICertPropertyAutoEnroll.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const ICertPropertyAutoEnroll, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyAutoEnroll, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyAutoEnroll.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyAutoEnroll, @ptrCast(self)), strTemplateName);
+    }
+    pub fn get_TemplateName(self: *const ICertPropertyAutoEnroll, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyAutoEnroll.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const ICertPropertyAutoEnroll, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9239,7 +10808,16 @@ pub const ICertPropertyRequestOriginator = extern union {
             return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).get_RequestOriginator(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyRequestOriginator, strRequestOriginator: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)), strRequestOriginator);
+    }
+    pub fn InitializeFromLocalRequestOriginator(self: *const ICertPropertyRequestOriginator) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).InitializeFromLocalRequestOriginator(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)));
+    }
+    pub fn get_RequestOriginator(self: *const ICertPropertyRequestOriginator, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).get_RequestOriginator(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9272,7 +10850,13 @@ pub const ICertPropertySHA1Hash = extern union {
             return @as(*const ICertPropertySHA1Hash.VTable, @ptrCast(self.vtable)).get_SHA1Hash(@as(*const ICertPropertySHA1Hash, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertySHA1Hash, Encoding: EncodingType, strRenewalValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertySHA1Hash.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertySHA1Hash, @ptrCast(self)), Encoding, strRenewalValue);
+    }
+    pub fn get_SHA1Hash(self: *const ICertPropertySHA1Hash, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertySHA1Hash.VTable, @ptrCast(self.vtable)).get_SHA1Hash(@as(*const ICertPropertySHA1Hash, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9304,7 +10888,13 @@ pub const ICertPropertyKeyProvInfo = extern union {
             return @as(*const ICertPropertyKeyProvInfo.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const ICertPropertyKeyProvInfo, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyKeyProvInfo, pValue: ?*IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyKeyProvInfo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyKeyProvInfo, @ptrCast(self)), pValue);
+    }
+    pub fn get_PrivateKey(self: *const ICertPropertyKeyProvInfo, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyKeyProvInfo.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const ICertPropertyKeyProvInfo, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9336,7 +10926,13 @@ pub const ICertPropertyArchived = extern union {
             return @as(*const ICertPropertyArchived.VTable, @ptrCast(self.vtable)).get_Archived(@as(*const ICertPropertyArchived, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyArchived, ArchivedValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyArchived.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyArchived, @ptrCast(self)), ArchivedValue);
+    }
+    pub fn get_Archived(self: *const ICertPropertyArchived, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyArchived.VTable, @ptrCast(self.vtable)).get_Archived(@as(*const ICertPropertyArchived, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9386,7 +10982,19 @@ pub const ICertPropertyBackedUp = extern union {
             return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).get_BackedUpTime(@as(*const ICertPropertyBackedUp, @ptrCast(self)), pDate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn InitializeFromCurrentTime(self: *const ICertPropertyBackedUp, BackedUpValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).InitializeFromCurrentTime(@as(*const ICertPropertyBackedUp, @ptrCast(self)), BackedUpValue);
+    }
+    pub fn Initialize(self: *const ICertPropertyBackedUp, BackedUpValue: i16, Date: f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyBackedUp, @ptrCast(self)), BackedUpValue, Date);
+    }
+    pub fn get_BackedUpValue(self: *const ICertPropertyBackedUp, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).get_BackedUpValue(@as(*const ICertPropertyBackedUp, @ptrCast(self)), pValue);
+    }
+    pub fn get_BackedUpTime(self: *const ICertPropertyBackedUp, pDate: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).get_BackedUpTime(@as(*const ICertPropertyBackedUp, @ptrCast(self)), pDate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9448,7 +11056,22 @@ pub const ICertPropertyEnrollment = extern union {
             return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyEnrollment, RequestId: i32, strCADnsName: ?BSTR, strCAName: ?BSTR, strFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyEnrollment, @ptrCast(self)), RequestId, strCADnsName, strCAName, strFriendlyName);
+    }
+    pub fn get_RequestId(self: *const ICertPropertyEnrollment, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_RequestId(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_CADnsName(self: *const ICertPropertyEnrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_CADnsName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_CAName(self: *const ICertPropertyEnrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_CAName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_FriendlyName(self: *const ICertPropertyEnrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9491,7 +11114,16 @@ pub const ICertPropertyRenewal = extern union {
             return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).get_Renewal(@as(*const ICertPropertyRenewal, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyRenewal, Encoding: EncodingType, strRenewalValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyRenewal, @ptrCast(self)), Encoding, strRenewalValue);
+    }
+    pub fn InitializeFromCertificateHash(self: *const ICertPropertyRenewal, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).InitializeFromCertificateHash(@as(*const ICertPropertyRenewal, @ptrCast(self)), MachineContext, Encoding, strCertificate);
+    }
+    pub fn get_Renewal(self: *const ICertPropertyRenewal, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).get_Renewal(@as(*const ICertPropertyRenewal, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9524,7 +11156,13 @@ pub const ICertPropertyArchivedKeyHash = extern union {
             return @as(*const ICertPropertyArchivedKeyHash.VTable, @ptrCast(self.vtable)).get_ArchivedKeyHash(@as(*const ICertPropertyArchivedKeyHash, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyArchivedKeyHash, Encoding: EncodingType, strArchivedKeyHashValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyArchivedKeyHash.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyArchivedKeyHash, @ptrCast(self)), Encoding, strArchivedKeyHashValue);
+    }
+    pub fn get_ArchivedKeyHash(self: *const ICertPropertyArchivedKeyHash, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyArchivedKeyHash.VTable, @ptrCast(self.vtable)).get_ArchivedKeyHash(@as(*const ICertPropertyArchivedKeyHash, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 pub const EnrollmentPolicyServerPropertyFlags = enum(i32) {
@@ -9640,7 +11278,34 @@ pub const ICertPropertyEnrollmentPolicyServer = extern union {
             return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetEnrollmentServerAuthentication(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertProperty.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertPropertyEnrollmentPolicyServer, PropertyFlags: EnrollmentPolicyServerPropertyFlags, AuthFlags: X509EnrollmentAuthFlags, EnrollmentServerAuthFlags: X509EnrollmentAuthFlags, UrlFlags: PolicyServerUrlFlags, strRequestId: ?BSTR, strUrl: ?BSTR, strId: ?BSTR, strEnrollmentServerUrl: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), PropertyFlags, AuthFlags, EnrollmentServerAuthFlags, UrlFlags, strRequestId, strUrl, strId, strEnrollmentServerUrl);
+    }
+    pub fn GetPolicyServerUrl(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerUrl(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetPolicyServerId(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerId(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetEnrollmentServerUrl(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetEnrollmentServerUrl(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetRequestIdString(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetRequestIdString(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetPropertyFlags(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*EnrollmentPolicyServerPropertyFlags) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPropertyFlags(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetUrlFlags(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*PolicyServerUrlFlags) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetUrlFlags(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetAuthentication(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAuthentication(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetEnrollmentServerAuthentication(self: *const ICertPropertyEnrollmentPolicyServer, pValue: ?*X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetEnrollmentServerAuthentication(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9771,7 +11436,46 @@ pub const IX509SignatureInformation = extern union {
             return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).SetDefaultValues(@as(*const IX509SignatureInformation, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HashAlgorithm(self: *const IX509SignatureInformation, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), ppValue);
+    }
+    pub fn put_HashAlgorithm(self: *const IX509SignatureInformation, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_PublicKeyAlgorithm(self: *const IX509SignatureInformation, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_PublicKeyAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), ppValue);
+    }
+    pub fn put_PublicKeyAlgorithm(self: *const IX509SignatureInformation, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_PublicKeyAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_Parameters(self: *const IX509SignatureInformation, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IX509SignatureInformation, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_Parameters(self: *const IX509SignatureInformation, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IX509SignatureInformation, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
+    }
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), Value);
+    }
+    pub fn get_AlternateSignatureAlgorithmSet(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithmSet(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
+    }
+    pub fn get_NullSigned(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
+    }
+    pub fn put_NullSigned(self: *const IX509SignatureInformation, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_NullSigned(@as(*const IX509SignatureInformation, @ptrCast(self)), Value);
+    }
+    pub fn GetSignatureAlgorithm(self: *const IX509SignatureInformation, Pkcs7Signature: i16, SignatureKey: i16, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).GetSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), Pkcs7Signature, SignatureKey, ppValue);
+    }
+    pub fn SetDefaultValues(self: *const IX509SignatureInformation) callconv(.Inline) HRESULT {
+        return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).SetDefaultValues(@as(*const IX509SignatureInformation, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9887,7 +11591,40 @@ pub const ISignerCertificate = extern union {
             return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const ISignerCertificate, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ISignerCertificate, MachineContext: i16, VerifyType: X509PrivateKeyVerify, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISignerCertificate, @ptrCast(self)), MachineContext, VerifyType, Encoding, strCertificate);
+    }
+    pub fn get_Certificate(self: *const ISignerCertificate, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const ISignerCertificate, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_PrivateKey(self: *const ISignerCertificate, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const ISignerCertificate, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Silent(self: *const ISignerCertificate, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn put_Silent(self: *const ISignerCertificate, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const ISignerCertificate, @ptrCast(self)), Value);
+    }
+    pub fn get_ParentWindow(self: *const ISignerCertificate, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn put_ParentWindow(self: *const ISignerCertificate, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const ISignerCertificate, @ptrCast(self)), Value);
+    }
+    pub fn get_UIContextMessage(self: *const ISignerCertificate, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn put_UIContextMessage(self: *const ISignerCertificate, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const ISignerCertificate, @ptrCast(self)), Value);
+    }
+    pub fn put_Pin(self: *const ISignerCertificate, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_Pin(@as(*const ISignerCertificate, @ptrCast(self)), Value);
+    }
+    pub fn get_SignatureInformation(self: *const ISignerCertificate, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const ISignerCertificate, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9961,7 +11698,28 @@ pub const ISignerCertificates = extern union {
             return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Find(@as(*const ISignerCertificates, @ptrCast(self)), pSignerCert, piSignerCert);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ISignerCertificates, Index: i32, pVal: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ISignerCertificates, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ISignerCertificates, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ISignerCertificates, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ISignerCertificates, pVal: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Add(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ISignerCertificates, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISignerCertificates, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ISignerCertificates) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISignerCertificates, @ptrCast(self)));
+    }
+    pub fn Find(self: *const ISignerCertificates, pSignerCert: ?*ISignerCertificate, piSignerCert: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Find(@as(*const ISignerCertificates, @ptrCast(self)), pSignerCert, piSignerCert);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10003,7 +11761,16 @@ pub const IX509NameValuePair = extern union {
             return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IX509NameValuePair, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509NameValuePair, strName: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509NameValuePair, @ptrCast(self)), strName, strValue);
+    }
+    pub fn get_Value(self: *const IX509NameValuePair, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IX509NameValuePair, @ptrCast(self)), pValue);
+    }
+    pub fn get_Name(self: *const IX509NameValuePair, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IX509NameValuePair, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10068,7 +11835,25 @@ pub const IX509NameValuePairs = extern union {
             return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509NameValuePairs, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509NameValuePairs, Index: i32, pVal: ?*?*IX509NameValuePair) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509NameValuePairs, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509NameValuePairs, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509NameValuePairs, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509NameValuePairs, pVal: ?*IX509NameValuePair) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509NameValuePairs, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509NameValuePairs, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509NameValuePairs) callconv(.Inline) HRESULT {
+        return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509NameValuePairs, @ptrCast(self)));
+    }
 };
 
 pub const EnrollmentTemplateProperty = enum(i32) {
@@ -10157,7 +11942,10 @@ pub const IX509CertificateTemplate = extern union {
             return @as(*const IX509CertificateTemplate.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IX509CertificateTemplate, @ptrCast(self)), property, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Property(self: *const IX509CertificateTemplate, property: EnrollmentTemplateProperty, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplate.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IX509CertificateTemplate, @ptrCast(self)), property, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10240,7 +12028,31 @@ pub const IX509CertificateTemplates = extern union {
             return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByOid(@as(*const IX509CertificateTemplates, @ptrCast(self)), pOid, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509CertificateTemplates, Index: i32, pVal: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509CertificateTemplates, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509CertificateTemplates, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509CertificateTemplates, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509CertificateTemplates, pVal: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509CertificateTemplates, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509CertificateTemplates, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509CertificateTemplates) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509CertificateTemplates, @ptrCast(self)));
+    }
+    pub fn get_ItemByName(self: *const IX509CertificateTemplates, bstrName: ?BSTR, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IX509CertificateTemplates, @ptrCast(self)), bstrName, ppValue);
+    }
+    pub fn get_ItemByOid(self: *const IX509CertificateTemplates, pOid: ?*IObjectId, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByOid(@as(*const IX509CertificateTemplates, @ptrCast(self)), pOid, ppValue);
+    }
 };
 
 pub const CommitTemplateFlags = enum(i32) {
@@ -10310,7 +12122,22 @@ pub const IX509CertificateTemplateWritable = extern union {
             return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509CertificateTemplateWritable, pValue: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), pValue);
+    }
+    pub fn Commit(self: *const IX509CertificateTemplateWritable, commitFlags: CommitTemplateFlags, strServerContext: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).Commit(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), commitFlags, strServerContext);
+    }
+    pub fn get_Property(self: *const IX509CertificateTemplateWritable, property: EnrollmentTemplateProperty, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), property, pValue);
+    }
+    pub fn put_Property(self: *const IX509CertificateTemplateWritable, property: EnrollmentTemplateProperty, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).put_Property(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), property, value);
+    }
+    pub fn get_Template(self: *const IX509CertificateTemplateWritable, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), ppValue);
+    }
 };
 
 pub const EnrollmentCAProperty = enum(i32) {
@@ -10361,7 +12188,10 @@ pub const ICertificationAuthority = extern union {
             return @as(*const ICertificationAuthority.VTable, @ptrCast(self.vtable)).get_Property(@as(*const ICertificationAuthority, @ptrCast(self)), property, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Property(self: *const ICertificationAuthority, property: EnrollmentCAProperty, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthority.VTable, @ptrCast(self.vtable)).get_Property(@as(*const ICertificationAuthority, @ptrCast(self)), property, pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10442,7 +12272,31 @@ pub const ICertificationAuthorities = extern union {
             return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICertificationAuthorities, @ptrCast(self)), strName, ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const ICertificationAuthorities, Index: i32, pVal: ?*?*ICertificationAuthority) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertificationAuthorities, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const ICertificationAuthorities, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const ICertificationAuthorities, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const ICertificationAuthorities, pVal: ?*ICertificationAuthority) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const ICertificationAuthorities, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertificationAuthorities, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const ICertificationAuthorities) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertificationAuthorities, @ptrCast(self)));
+    }
+    pub fn ComputeSiteCosts(self: *const ICertificationAuthorities) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).ComputeSiteCosts(@as(*const ICertificationAuthorities, @ptrCast(self)));
+    }
+    pub fn get_ItemByName(self: *const ICertificationAuthorities, strName: ?BSTR, ppValue: ?*?*ICertificationAuthority) callconv(.Inline) HRESULT {
+        return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICertificationAuthorities, @ptrCast(self)), strName, ppValue);
+    }
 };
 
 pub const X509EnrollmentPolicyLoadOption = enum(i32) {
@@ -10693,7 +12547,79 @@ pub const IX509EnrollmentPolicyServer = extern union {
             return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).put_Cost(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509EnrollmentPolicyServer, bstrPolicyServerUrl: ?BSTR, bstrPolicyServerId: ?BSTR, authFlags: X509EnrollmentAuthFlags, fIsUnTrusted: i16, context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), bstrPolicyServerUrl, bstrPolicyServerId, authFlags, fIsUnTrusted, context);
+    }
+    pub fn LoadPolicy(self: *const IX509EnrollmentPolicyServer, option: X509EnrollmentPolicyLoadOption) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).LoadPolicy(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), option);
+    }
+    pub fn GetTemplates(self: *const IX509EnrollmentPolicyServer, pTemplates: ?*?*IX509CertificateTemplates) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetTemplates(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pTemplates);
+    }
+    pub fn GetCAsForTemplate(self: *const IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate, ppCAs: ?*?*ICertificationAuthorities) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCAsForTemplate(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pTemplate, ppCAs);
+    }
+    pub fn GetCAs(self: *const IX509EnrollmentPolicyServer, ppCAs: ?*?*ICertificationAuthorities) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCAs(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), ppCAs);
+    }
+    pub fn Validate(self: *const IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Validate(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)));
+    }
+    pub fn GetCustomOids(self: *const IX509EnrollmentPolicyServer, ppObjectIds: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCustomOids(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), ppObjectIds);
+    }
+    pub fn GetNextUpdateTime(self: *const IX509EnrollmentPolicyServer, pDate: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetNextUpdateTime(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pDate);
+    }
+    pub fn GetLastUpdateTime(self: *const IX509EnrollmentPolicyServer, pDate: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetLastUpdateTime(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pDate);
+    }
+    pub fn GetPolicyServerUrl(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerUrl(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetPolicyServerId(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerId(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetFriendlyName(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetIsDefaultCEP(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetIsDefaultCEP(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetUseClientId(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetUseClientId(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetAllowUnTrustedCA(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAllowUnTrustedCA(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetCachePath(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCachePath(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetCacheDir(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCacheDir(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn GetAuthFlags(self: *const IX509EnrollmentPolicyServer, pValue: ?*X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAuthFlags(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn SetCredential(self: *const IX509EnrollmentPolicyServer, hWndParent: i32, flag: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).SetCredential(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), hWndParent, flag, strCredential, strPassword);
+    }
+    pub fn QueryChanges(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).QueryChanges(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn InitializeImport(self: *const IX509EnrollmentPolicyServer, val: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).InitializeImport(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), val);
+    }
+    pub fn Export(self: *const IX509EnrollmentPolicyServer, exportFlags: X509EnrollmentPolicyExportFlags, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Export(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), exportFlags, pVal);
+    }
+    pub fn get_Cost(self: *const IX509EnrollmentPolicyServer, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).get_Cost(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
+    }
+    pub fn put_Cost(self: *const IX509EnrollmentPolicyServer, value: u32) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).put_Cost(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10840,7 +12766,52 @@ pub const IX509PolicyServerUrl = extern union {
             return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).RemoveFromRegistry(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509PolicyServerUrl, context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
+    }
+    pub fn get_Url(self: *const IX509PolicyServerUrl, ppValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Url(@as(*const IX509PolicyServerUrl, @ptrCast(self)), ppValue);
+    }
+    pub fn put_Url(self: *const IX509PolicyServerUrl, pValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Url(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
+    }
+    pub fn get_Default(self: *const IX509PolicyServerUrl, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Default(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
+    }
+    pub fn put_Default(self: *const IX509PolicyServerUrl, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Default(@as(*const IX509PolicyServerUrl, @ptrCast(self)), value);
+    }
+    pub fn get_Flags(self: *const IX509PolicyServerUrl, pValue: ?*PolicyServerUrlFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
+    }
+    pub fn put_Flags(self: *const IX509PolicyServerUrl, Flags: PolicyServerUrlFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), Flags);
+    }
+    pub fn get_AuthFlags(self: *const IX509PolicyServerUrl, pValue: ?*X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_AuthFlags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
+    }
+    pub fn put_AuthFlags(self: *const IX509PolicyServerUrl, Flags: X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_AuthFlags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), Flags);
+    }
+    pub fn get_Cost(self: *const IX509PolicyServerUrl, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Cost(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
+    }
+    pub fn put_Cost(self: *const IX509PolicyServerUrl, value: u32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Cost(@as(*const IX509PolicyServerUrl, @ptrCast(self)), value);
+    }
+    pub fn GetStringProperty(self: *const IX509PolicyServerUrl, propertyId: PolicyServerUrlPropertyID, ppValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).GetStringProperty(@as(*const IX509PolicyServerUrl, @ptrCast(self)), propertyId, ppValue);
+    }
+    pub fn SetStringProperty(self: *const IX509PolicyServerUrl, propertyId: PolicyServerUrlPropertyID, pValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).SetStringProperty(@as(*const IX509PolicyServerUrl, @ptrCast(self)), propertyId, pValue);
+    }
+    pub fn UpdateRegistry(self: *const IX509PolicyServerUrl, context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).UpdateRegistry(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
+    }
+    pub fn RemoveFromRegistry(self: *const IX509PolicyServerUrl, context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).RemoveFromRegistry(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10914,7 +12885,28 @@ pub const IX509PolicyServerListManager = extern union {
             return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PolicyServerListManager, @ptrCast(self)), context, Flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509PolicyServerListManager, Index: i32, pVal: ?*?*IX509PolicyServerUrl) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509PolicyServerListManager, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509PolicyServerListManager, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509PolicyServerListManager, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509PolicyServerListManager, pVal: ?*IX509PolicyServerUrl) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509PolicyServerListManager, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509PolicyServerListManager, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509PolicyServerListManager) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509PolicyServerListManager, @ptrCast(self)));
+    }
+    pub fn Initialize(self: *const IX509PolicyServerListManager, context: X509CertificateEnrollmentContext, Flags: PolicyServerUrlFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PolicyServerListManager, @ptrCast(self)), context, Flags);
+    }
 };
 
 pub const X509RequestType = enum(i32) {
@@ -11200,7 +13192,82 @@ pub const IX509CertificateRequest = extern union {
             return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509CertificateRequest, Context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRequest, @ptrCast(self)), Context);
+    }
+    pub fn Encode(self: *const IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX509CertificateRequest, @ptrCast(self)));
+    }
+    pub fn ResetForEncode(self: *const IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).ResetForEncode(@as(*const IX509CertificateRequest, @ptrCast(self)));
+    }
+    pub fn GetInnerRequest(self: *const IX509CertificateRequest, Level: InnerRequestLevel, ppValue: ?*?*IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).GetInnerRequest(@as(*const IX509CertificateRequest, @ptrCast(self)), Level, ppValue);
+    }
+    pub fn get_Type(self: *const IX509CertificateRequest, pValue: ?*X509RequestType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn get_EnrollmentContext(self: *const IX509CertificateRequest, pValue: ?*X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_EnrollmentContext(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn get_Silent(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_Silent(self: *const IX509CertificateRequest, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_ParentWindow(self: *const IX509CertificateRequest, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_ParentWindow(self: *const IX509CertificateRequest, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_UIContextMessage(self: *const IX509CertificateRequest, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_UIContextMessage(self: *const IX509CertificateRequest, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_SuppressDefaults(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_SuppressDefaults(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_SuppressDefaults(self: *const IX509CertificateRequest, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_SuppressDefaults(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_RenewalCertificate(self: *const IX509CertificateRequest, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_RenewalCertificate(self: *const IX509CertificateRequest, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_RenewalCertificate(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_ClientId(self: *const IX509CertificateRequest, pValue: ?*RequestClientInfoClientId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_ClientId(self: *const IX509CertificateRequest, Value: RequestClientInfoClientId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_CspInformations(self: *const IX509CertificateRequest, ppValue: ?*?*ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_CspInformations(@as(*const IX509CertificateRequest, @ptrCast(self)), ppValue);
+    }
+    pub fn put_CspInformations(self: *const IX509CertificateRequest, pValue: ?*ICspInformations) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_CspInformations(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn get_HashAlgorithm(self: *const IX509CertificateRequest, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), ppValue);
+    }
+    pub fn put_HashAlgorithm(self: *const IX509CertificateRequest, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
+    }
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
+    }
+    pub fn get_RawData(self: *const IX509CertificateRequest, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 pub const Pkcs10AllowedSignatureTypes = enum(i32) {
@@ -11476,7 +13543,91 @@ pub const IX509CertificateRequestPkcs10 = extern union {
             return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).GetCspStatuses(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), KeySpec, ppCspStatuses);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequest.MethodMixin(@This());
+    pub fn InitializeFromTemplateName(self: *const IX509CertificateRequestPkcs10, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, strTemplateName);
+    }
+    pub fn InitializeFromPrivateKey(self: *const IX509CertificateRequestPkcs10, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, pPrivateKey, strTemplateName);
+    }
+    pub fn InitializeFromPublicKey(self: *const IX509CertificateRequestPkcs10, Context: X509CertificateEnrollmentContext, pPublicKey: ?*IX509PublicKey, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromPublicKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, pPublicKey, strTemplateName);
+    }
+    pub fn InitializeFromCertificate(self: *const IX509CertificateRequestPkcs10, Context: X509CertificateEnrollmentContext, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, strCertificate, Encoding, InheritOptions);
+    }
+    pub fn InitializeDecode(self: *const IX509CertificateRequestPkcs10, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn CheckSignature(self: *const IX509CertificateRequestPkcs10, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), AllowedSignatureTypes);
+    }
+    pub fn IsSmartCard(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).IsSmartCard(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn get_TemplateObjectId(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_TemplateObjectId(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_PublicKey(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_PublicKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_PrivateKey(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_NullSigned(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn get_ReuseKey(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_ReuseKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn get_OldCertificate(self: *const IX509CertificateRequestPkcs10, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_OldCertificate(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Subject(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn put_Subject(self: *const IX509CertificateRequestPkcs10, pValue: ?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn get_CspStatuses(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CspStatuses(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SmimeCapabilities(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn put_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_SmimeCapabilities(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Value);
+    }
+    pub fn get_SignatureInformation(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_KeyContainerNamePrefix(self: *const IX509CertificateRequestPkcs10, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_KeyContainerNamePrefix(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
+    }
+    pub fn put_KeyContainerNamePrefix(self: *const IX509CertificateRequestPkcs10, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_KeyContainerNamePrefix(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Value);
+    }
+    pub fn get_CryptAttributes(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*ICryptAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CryptAttributes(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_X509Extensions(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CriticalExtensions(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_SuppressOids(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SuppressOids(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
+    }
+    pub fn get_RawDataToBeSigned(self: *const IX509CertificateRequestPkcs10, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_RawDataToBeSigned(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Signature(self: *const IX509CertificateRequestPkcs10, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn GetCspStatuses(self: *const IX509CertificateRequestPkcs10, KeySpec: X509KeySpec, ppCspStatuses: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).GetCspStatuses(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), KeySpec, ppCspStatuses);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -11541,7 +13692,22 @@ pub const IX509CertificateRequestPkcs10V2 = extern union {
             return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), ppTemplate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs10.MethodMixin(@This());
+    pub fn InitializeFromTemplate(self: *const IX509CertificateRequestPkcs10V2, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), context, pPolicyServer, pTemplate);
+    }
+    pub fn InitializeFromPrivateKeyTemplate(self: *const IX509CertificateRequestPkcs10V2, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKeyTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), Context, pPrivateKey, pPolicyServer, pTemplate);
+    }
+    pub fn InitializeFromPublicKeyTemplate(self: *const IX509CertificateRequestPkcs10V2, Context: X509CertificateEnrollmentContext, pPublicKey: ?*IX509PublicKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromPublicKeyTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), Context, pPublicKey, pPolicyServer, pTemplate);
+    }
+    pub fn get_PolicyServer(self: *const IX509CertificateRequestPkcs10V2, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), ppPolicyServer);
+    }
+    pub fn get_Template(self: *const IX509CertificateRequestPkcs10V2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), ppTemplate);
+    }
 };
 
 const IID_IX509CertificateRequestPkcs10V3_Value = Guid.initString("54ea9942-3d66-4530-b76e-7c9170d3ec52");
@@ -11654,7 +13820,40 @@ pub const IX509CertificateRequestPkcs10V3 = extern union {
             return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs10V2.MethodMixin(@This());
+    pub fn get_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_AttestPrivateKey(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
+    }
+    pub fn put_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_AttestPrivateKey(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
+    }
+    pub fn get_AttestationEncryptionCertificate(self: *const IX509CertificateRequestPkcs10V3, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_AttestationEncryptionCertificate(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_AttestationEncryptionCertificate(self: *const IX509CertificateRequestPkcs10V3, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_AttestationEncryptionCertificate(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_EncryptionAlgorithm(self: *const IX509CertificateRequestPkcs10V3, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), ppValue);
+    }
+    pub fn put_EncryptionAlgorithm(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_EncryptionAlgorithm(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
+    }
+    pub fn get_EncryptionStrength(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
+    }
+    pub fn put_EncryptionStrength(self: *const IX509CertificateRequestPkcs10V3, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_EncryptionStrength(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
+    }
+    pub fn get_ChallengePassword(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_ChallengePassword(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
+    }
+    pub fn put_ChallengePassword(self: *const IX509CertificateRequestPkcs10V3, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_ChallengePassword(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
+    }
+    pub fn get_NameValuePairs(self: *const IX509CertificateRequestPkcs10V3, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), ppValue);
+    }
 };
 
 pub const KeyAttestationClaimType = enum(i32) {
@@ -11717,7 +13916,19 @@ pub const IX509CertificateRequestPkcs10V4 = extern union {
             return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).put_AttestPrivateKeyPreferred(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs10V3.MethodMixin(@This());
+    pub fn get_ClaimType(self: *const IX509CertificateRequestPkcs10V4, pValue: ?*KeyAttestationClaimType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).get_ClaimType(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), pValue);
+    }
+    pub fn put_ClaimType(self: *const IX509CertificateRequestPkcs10V4, Value: KeyAttestationClaimType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).put_ClaimType(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), Value);
+    }
+    pub fn get_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).get_AttestPrivateKeyPreferred(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), pValue);
+    }
+    pub fn put_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).put_AttestPrivateKeyPreferred(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), Value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11830,7 +14041,40 @@ pub const IX509CertificateRequestCertificate = extern union {
             return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs10.MethodMixin(@This());
+    pub fn CheckPublicKeySignature(self: *const IX509CertificateRequestCertificate, pPublicKey: ?*IX509PublicKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).CheckPublicKeySignature(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pPublicKey);
+    }
+    pub fn get_Issuer(self: *const IX509CertificateRequestCertificate, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_Issuer(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), ppValue);
+    }
+    pub fn put_Issuer(self: *const IX509CertificateRequestCertificate, pValue: ?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_Issuer(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn get_NotBefore(self: *const IX509CertificateRequestCertificate, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_NotBefore(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn put_NotBefore(self: *const IX509CertificateRequestCertificate, Value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_NotBefore(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Value);
+    }
+    pub fn get_NotAfter(self: *const IX509CertificateRequestCertificate, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_NotAfter(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
+    }
+    pub fn put_NotAfter(self: *const IX509CertificateRequestCertificate, Value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_NotAfter(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Value);
+    }
+    pub fn get_SerialNumber(self: *const IX509CertificateRequestCertificate, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_SerialNumber(self: *const IX509CertificateRequestCertificate, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_SerialNumber(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_SignerCertificate(self: *const IX509CertificateRequestCertificate, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), ppValue);
+    }
+    pub fn put_SignerCertificate(self: *const IX509CertificateRequestCertificate, pValue: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -11884,7 +14128,19 @@ pub const IX509CertificateRequestCertificate2 = extern union {
             return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), ppTemplate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestCertificate.MethodMixin(@This());
+    pub fn InitializeFromTemplate(self: *const IX509CertificateRequestCertificate2, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), context, pPolicyServer, pTemplate);
+    }
+    pub fn InitializeFromPrivateKeyTemplate(self: *const IX509CertificateRequestCertificate2, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKeyTemplate(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), Context, pPrivateKey, pPolicyServer, pTemplate);
+    }
+    pub fn get_PolicyServer(self: *const IX509CertificateRequestCertificate2, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), ppPolicyServer);
+    }
+    pub fn get_Template(self: *const IX509CertificateRequestCertificate2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), ppTemplate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11973,7 +14229,31 @@ pub const IX509CertificateRequestPkcs7 = extern union {
             return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequest.MethodMixin(@This());
+    pub fn InitializeFromTemplateName(self: *const IX509CertificateRequestPkcs7, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Context, strTemplateName);
+    }
+    pub fn InitializeFromCertificate(self: *const IX509CertificateRequestPkcs7, Context: X509CertificateEnrollmentContext, RenewalRequest: i16, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Context, RenewalRequest, strCertificate, Encoding, InheritOptions);
+    }
+    pub fn InitializeFromInnerRequest(self: *const IX509CertificateRequestPkcs7, pInnerRequest: ?*IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequest(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pInnerRequest);
+    }
+    pub fn InitializeDecode(self: *const IX509CertificateRequestPkcs7, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn get_RequesterName(self: *const IX509CertificateRequestPkcs7, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).get_RequesterName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pValue);
+    }
+    pub fn put_RequesterName(self: *const IX509CertificateRequestPkcs7, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).put_RequesterName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Value);
+    }
+    pub fn get_SignerCertificate(self: *const IX509CertificateRequestPkcs7, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), ppValue);
+    }
+    pub fn put_SignerCertificate(self: *const IX509CertificateRequestPkcs7, pValue: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -12024,7 +14304,19 @@ pub const IX509CertificateRequestPkcs7V2 = extern union {
             return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ValidateCertificateChain);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs7.MethodMixin(@This());
+    pub fn InitializeFromTemplate(self: *const IX509CertificateRequestPkcs7V2, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), context, pPolicyServer, pTemplate);
+    }
+    pub fn get_PolicyServer(self: *const IX509CertificateRequestPkcs7V2, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ppPolicyServer);
+    }
+    pub fn get_Template(self: *const IX509CertificateRequestPkcs7V2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ppTemplate);
+    }
+    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestPkcs7V2, ValidateCertificateChain: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ValidateCertificateChain);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -12246,7 +14538,76 @@ pub const IX509CertificateRequestCmc = extern union {
             return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SignerCertificates(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestPkcs7.MethodMixin(@This());
+    pub fn InitializeFromInnerRequestTemplateName(self: *const IX509CertificateRequestCmc, pInnerRequest: ?*IX509CertificateRequest, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequestTemplateName(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pInnerRequest, strTemplateName);
+    }
+    pub fn get_TemplateObjectId(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_TemplateObjectId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_NullSigned(self: *const IX509CertificateRequestCmc, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
+    }
+    pub fn get_CryptAttributes(self: *const IX509CertificateRequestCmc, ppValue: ?*?*ICryptAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_CryptAttributes(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_NameValuePairs(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_X509Extensions(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CriticalExtensions(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_SuppressOids(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SuppressOids(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_TransactionId(self: *const IX509CertificateRequestCmc, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
+    }
+    pub fn put_TransactionId(self: *const IX509CertificateRequestCmc, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_TransactionId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
+    }
+    pub fn get_SenderNonce(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SenderNonce(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_SenderNonce(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_SenderNonce(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_SignatureInformation(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn get_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_ArchivePrivateKey(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
+    }
+    pub fn put_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_ArchivePrivateKey(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
+    }
+    pub fn get_KeyArchivalCertificate(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_KeyArchivalCertificate(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_KeyArchivalCertificate(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_KeyArchivalCertificate(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_EncryptionAlgorithm(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
+    pub fn put_EncryptionAlgorithm(self: *const IX509CertificateRequestCmc, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_EncryptionAlgorithm(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
+    }
+    pub fn get_EncryptionStrength(self: *const IX509CertificateRequestCmc, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
+    }
+    pub fn put_EncryptionStrength(self: *const IX509CertificateRequestCmc, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_EncryptionStrength(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
+    }
+    pub fn get_EncryptedKeyHash(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptedKeyHash(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_SignerCertificates(self: *const IX509CertificateRequestCmc, ppValue: ?*?*ISignerCertificates) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SignerCertificates(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -12316,7 +14677,25 @@ pub const IX509CertificateRequestCmc2 = extern union {
             return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), pSignerCertificate, ValidateCertificateChain);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509CertificateRequestCmc.MethodMixin(@This());
+    pub fn InitializeFromTemplate(self: *const IX509CertificateRequestCmc2, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), context, pPolicyServer, pTemplate);
+    }
+    pub fn InitializeFromInnerRequestTemplate(self: *const IX509CertificateRequestCmc2, pInnerRequest: ?*IX509CertificateRequest, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequestTemplate(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), pInnerRequest, pPolicyServer, pTemplate);
+    }
+    pub fn get_PolicyServer(self: *const IX509CertificateRequestCmc2, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), ppPolicyServer);
+    }
+    pub fn get_Template(self: *const IX509CertificateRequestCmc2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), ppTemplate);
+    }
+    pub fn CheckSignature(self: *const IX509CertificateRequestCmc2, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), AllowedSignatureTypes);
+    }
+    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestCmc2, pSignerCertificate: ?*ISignerCertificate, ValidateCertificateChain: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), pSignerCertificate, ValidateCertificateChain);
+    }
 };
 
 pub const InstallResponseRestrictionFlags = enum(i32) {
@@ -12549,7 +14928,76 @@ pub const IX509Enrollment = extern union {
             return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CAConfigString(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509Enrollment, Context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Enrollment, @ptrCast(self)), Context);
+    }
+    pub fn InitializeFromTemplateName(self: *const IX509Enrollment, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509Enrollment, @ptrCast(self)), Context, strTemplateName);
+    }
+    pub fn InitializeFromRequest(self: *const IX509Enrollment, pRequest: ?*IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InitializeFromRequest(@as(*const IX509Enrollment, @ptrCast(self)), pRequest);
+    }
+    pub fn CreateRequest(self: *const IX509Enrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn Enroll(self: *const IX509Enrollment) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509Enrollment, @ptrCast(self)));
+    }
+    pub fn InstallResponse(self: *const IX509Enrollment, Restrictions: InstallResponseRestrictionFlags, strResponse: ?BSTR, Encoding: EncodingType, strPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InstallResponse(@as(*const IX509Enrollment, @ptrCast(self)), Restrictions, strResponse, Encoding, strPassword);
+    }
+    pub fn CreatePFX(self: *const IX509Enrollment, strPassword: ?BSTR, ExportOptions: PFXExportOptions, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).CreatePFX(@as(*const IX509Enrollment, @ptrCast(self)), strPassword, ExportOptions, Encoding, pValue);
+    }
+    pub fn get_Request(self: *const IX509Enrollment, pValue: ?*?*IX509CertificateRequest) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_Silent(self: *const IX509Enrollment, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_Silent(self: *const IX509Enrollment, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509Enrollment, @ptrCast(self)), Value);
+    }
+    pub fn get_ParentWindow(self: *const IX509Enrollment, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_ParentWindow(self: *const IX509Enrollment, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509Enrollment, @ptrCast(self)), Value);
+    }
+    pub fn get_NameValuePairs(self: *const IX509Enrollment, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509Enrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn get_EnrollmentContext(self: *const IX509Enrollment, pValue: ?*X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_EnrollmentContext(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_Status(self: *const IX509Enrollment, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509Enrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Certificate(self: *const IX509Enrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Response(self: *const IX509Enrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Response(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_CertificateFriendlyName(self: *const IX509Enrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CertificateFriendlyName(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_CertificateFriendlyName(self: *const IX509Enrollment, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_CertificateFriendlyName(@as(*const IX509Enrollment, @ptrCast(self)), strValue);
+    }
+    pub fn get_CertificateDescription(self: *const IX509Enrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CertificateDescription(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_CertificateDescription(self: *const IX509Enrollment, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_CertificateDescription(@as(*const IX509Enrollment, @ptrCast(self)), strValue);
+    }
+    pub fn get_RequestId(self: *const IX509Enrollment, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_RequestId(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_CAConfigString(self: *const IX509Enrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CAConfigString(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -12616,7 +15064,22 @@ pub const IX509Enrollment2 = extern union {
             return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_RequestIdString(@as(*const IX509Enrollment2, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509Enrollment.MethodMixin(@This());
+    pub fn InitializeFromTemplate(self: *const IX509Enrollment2, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509Enrollment2, @ptrCast(self)), context, pPolicyServer, pTemplate);
+    }
+    pub fn InstallResponse2(self: *const IX509Enrollment2, Restrictions: InstallResponseRestrictionFlags, strResponse: ?BSTR, Encoding: EncodingType, strPassword: ?BSTR, strEnrollmentPolicyServerUrl: ?BSTR, strEnrollmentPolicyServerID: ?BSTR, EnrollmentPolicyServerFlags: PolicyServerUrlFlags, authFlags: X509EnrollmentAuthFlags) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).InstallResponse2(@as(*const IX509Enrollment2, @ptrCast(self)), Restrictions, strResponse, Encoding, strPassword, strEnrollmentPolicyServerUrl, strEnrollmentPolicyServerID, EnrollmentPolicyServerFlags, authFlags);
+    }
+    pub fn get_PolicyServer(self: *const IX509Enrollment2, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509Enrollment2, @ptrCast(self)), ppPolicyServer);
+    }
+    pub fn get_Template(self: *const IX509Enrollment2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509Enrollment2, @ptrCast(self)), ppTemplate);
+    }
+    pub fn get_RequestIdString(self: *const IX509Enrollment2, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_RequestIdString(@as(*const IX509Enrollment2, @ptrCast(self)), pValue);
+    }
 };
 
 pub const WebEnrollmentFlags = enum(i32) {
@@ -12680,7 +15143,19 @@ pub const IX509EnrollmentHelper = extern union {
             return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509EnrollmentHelper, @ptrCast(self)), Context);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AddPolicyServer(self: *const IX509EnrollmentHelper, strEnrollmentPolicyServerURI: ?BSTR, strEnrollmentPolicyID: ?BSTR, EnrollmentPolicyServerFlags: PolicyServerUrlFlags, authFlags: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).AddPolicyServer(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentPolicyServerURI, strEnrollmentPolicyID, EnrollmentPolicyServerFlags, authFlags, strCredential, strPassword);
+    }
+    pub fn AddEnrollmentServer(self: *const IX509EnrollmentHelper, strEnrollmentServerURI: ?BSTR, authFlags: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).AddEnrollmentServer(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentServerURI, authFlags, strCredential, strPassword);
+    }
+    pub fn Enroll(self: *const IX509EnrollmentHelper, strEnrollmentPolicyServerURI: ?BSTR, strTemplateName: ?BSTR, Encoding: EncodingType, enrollFlags: WebEnrollmentFlags, pstrCertificate: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentPolicyServerURI, strTemplateName, Encoding, enrollFlags, pstrCertificate);
+    }
+    pub fn Initialize(self: *const IX509EnrollmentHelper, Context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509EnrollmentHelper, @ptrCast(self)), Context);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -12704,7 +15179,10 @@ pub const IX509EnrollmentWebClassFactory = extern union {
             return @as(*const IX509EnrollmentWebClassFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509EnrollmentWebClassFactory, @ptrCast(self)), strProgID, ppIUnknown);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn CreateObject(self: *const IX509EnrollmentWebClassFactory, strProgID: ?BSTR, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509EnrollmentWebClassFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509EnrollmentWebClassFactory, @ptrCast(self)), strProgID, ppIUnknown);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -12728,7 +15206,10 @@ pub const IX509MachineEnrollmentFactory = extern union {
             return @as(*const IX509MachineEnrollmentFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509MachineEnrollmentFactory, @ptrCast(self)), strProgID, ppIHelper);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn CreateObject(self: *const IX509MachineEnrollmentFactory, strProgID: ?BSTR, ppIHelper: ?*?*IX509EnrollmentHelper) callconv(.Inline) HRESULT {
+        return @as(*const IX509MachineEnrollmentFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509MachineEnrollmentFactory, @ptrCast(self)), strProgID, ppIHelper);
+    }
 };
 
 pub const CRLRevocationReason = enum(i32) {
@@ -12829,7 +15310,28 @@ pub const IX509CertificateRevocationListEntry = extern union {
             return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), ppValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509CertificateRevocationListEntry, Encoding: EncodingType, SerialNumber: ?BSTR, RevocationDate: f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Encoding, SerialNumber, RevocationDate);
+    }
+    pub fn get_SerialNumber(self: *const IX509CertificateRevocationListEntry, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_RevocationDate(self: *const IX509CertificateRevocationListEntry, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_RevocationDate(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), pValue);
+    }
+    pub fn get_RevocationReason(self: *const IX509CertificateRevocationListEntry, pValue: ?*CRLRevocationReason) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_RevocationReason(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), pValue);
+    }
+    pub fn put_RevocationReason(self: *const IX509CertificateRevocationListEntry, Value: CRLRevocationReason) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).put_RevocationReason(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Value);
+    }
+    pub fn get_X509Extensions(self: *const IX509CertificateRevocationListEntry, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CriticalExtensions(self: *const IX509CertificateRevocationListEntry, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), ppValue);
+    }
 };
 
 const IID_IX509CertificateRevocationListEntries_Value = Guid.initString("728ab35f-217d-11da-b2a4-000e7bbb2b09");
@@ -12911,7 +15413,31 @@ pub const IX509CertificateRevocationListEntries = extern union {
             return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ItemByIndex(self: *const IX509CertificateRevocationListEntries, Index: i32, pVal: ?*?*IX509CertificateRevocationListEntry) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Index, pVal);
+    }
+    pub fn get_Count(self: *const IX509CertificateRevocationListEntries, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
+    }
+    pub fn get__NewEnum(self: *const IX509CertificateRevocationListEntries, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
+    }
+    pub fn Add(self: *const IX509CertificateRevocationListEntries, pVal: ?*IX509CertificateRevocationListEntry) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IX509CertificateRevocationListEntries, Index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Index);
+    }
+    pub fn Clear(self: *const IX509CertificateRevocationListEntries) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)));
+    }
+    pub fn get_IndexBySerialNumber(self: *const IX509CertificateRevocationListEntries, Encoding: EncodingType, SerialNumber: ?BSTR, pIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_IndexBySerialNumber(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Encoding, SerialNumber, pIndex);
+    }
+    pub fn AddRange(self: *const IX509CertificateRevocationListEntries, pValue: ?*IX509CertificateRevocationListEntries) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pValue);
+    }
 };
 
 const IID_IX509CertificateRevocationList_Value = Guid.initString("728ab360-217d-11da-b2a4-000e7bbb2b09");
@@ -13195,7 +15721,100 @@ pub const IX509CertificateRevocationList = extern union {
             return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509CertificateRevocationList) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
+    }
+    pub fn InitializeDecode(self: *const IX509CertificateRevocationList, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRevocationList, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn Encode(self: *const IX509CertificateRevocationList) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
+    }
+    pub fn ResetForEncode(self: *const IX509CertificateRevocationList) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).ResetForEncode(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
+    }
+    pub fn CheckPublicKeySignature(self: *const IX509CertificateRevocationList, pPublicKey: ?*IX509PublicKey) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).CheckPublicKeySignature(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pPublicKey);
+    }
+    pub fn CheckSignature(self: *const IX509CertificateRevocationList) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
+    }
+    pub fn get_Issuer(self: *const IX509CertificateRevocationList, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_Issuer(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn put_Issuer(self: *const IX509CertificateRevocationList, pValue: ?*IX500DistinguishedName) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_Issuer(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_ThisUpdate(self: *const IX509CertificateRevocationList, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_ThisUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn put_ThisUpdate(self: *const IX509CertificateRevocationList, Value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_ThisUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
+    }
+    pub fn get_NextUpdate(self: *const IX509CertificateRevocationList, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_NextUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn put_NextUpdate(self: *const IX509CertificateRevocationList, Value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_NextUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
+    }
+    pub fn get_X509CRLEntries(self: *const IX509CertificateRevocationList, ppValue: ?*?*IX509CertificateRevocationListEntries) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_X509CRLEntries(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn get_X509Extensions(self: *const IX509CertificateRevocationList, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CriticalExtensions(self: *const IX509CertificateRevocationList, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn get_SignerCertificate(self: *const IX509CertificateRevocationList, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn put_SignerCertificate(self: *const IX509CertificateRevocationList, pValue: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_CRLNumber(self: *const IX509CertificateRevocationList, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CRLNumber(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_CRLNumber(self: *const IX509CertificateRevocationList, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_CRLNumber(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_CAVersion(self: *const IX509CertificateRevocationList, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CAVersion(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn put_CAVersion(self: *const IX509CertificateRevocationList, pValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_CAVersion(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_BaseCRL(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_BaseCRL(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_NullSigned(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_HashAlgorithm(self: *const IX509CertificateRevocationList, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn put_HashAlgorithm(self: *const IX509CertificateRevocationList, pValue: ?*IObjectId) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
+    }
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
+    }
+    pub fn get_SignatureInformation(self: *const IX509CertificateRevocationList, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
+    }
+    pub fn get_RawData(self: *const IX509CertificateRevocationList, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_RawDataToBeSigned(self: *const IX509CertificateRevocationList, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_RawDataToBeSigned(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Signature(self: *const IX509CertificateRevocationList, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
+    }
 };
 
 const IID_ICertificateAttestationChallenge_Value = Guid.initString("6f175a7c-4a3a-40ae-9dba-592fd6bbf9b8");
@@ -13236,7 +15855,16 @@ pub const ICertificateAttestationChallenge = extern union {
             return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).get_RequestID(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), pstrRequestID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertificateAttestationChallenge, Encoding: EncodingType, strPendingFullCmcResponseWithChallenge: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), Encoding, strPendingFullCmcResponseWithChallenge);
+    }
+    pub fn DecryptChallenge(self: *const ICertificateAttestationChallenge, Encoding: EncodingType, pstrEnvelopedPkcs7ReencryptedToCA: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).DecryptChallenge(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), Encoding, pstrEnvelopedPkcs7ReencryptedToCA);
+    }
+    pub fn get_RequestID(self: *const ICertificateAttestationChallenge, pstrRequestID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).get_RequestID(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), pstrRequestID);
+    }
 };
 
 const IID_ICertificateAttestationChallenge2_Value = Guid.initString("4631334d-e266-47d6-bd79-be53cb2e2753");
@@ -13268,7 +15896,13 @@ pub const ICertificateAttestationChallenge2 = extern union {
             return @as(*const ICertificateAttestationChallenge2.VTable, @ptrCast(self.vtable)).put_KeyBlob(@as(*const ICertificateAttestationChallenge2, @ptrCast(self)), Encoding, Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertificateAttestationChallenge.MethodMixin(@This());
+    pub fn put_KeyContainerName(self: *const ICertificateAttestationChallenge2, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertificateAttestationChallenge2.VTable, @ptrCast(self.vtable)).put_KeyContainerName(@as(*const ICertificateAttestationChallenge2, @ptrCast(self)), Value);
+    }
+    pub fn put_KeyBlob(self: *const ICertificateAttestationChallenge2, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertificateAttestationChallenge2.VTable, @ptrCast(self.vtable)).put_KeyBlob(@as(*const ICertificateAttestationChallenge2, @ptrCast(self)), Encoding, Value);
+    }
 };
 
 const IID_IX509SCEPEnrollment_Value = Guid.initString("728ab361-217d-11da-b2a4-000e7bbb2b09");
@@ -13486,7 +16120,73 @@ pub const IX509SCEPEnrollment = extern union {
             return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).DeleteRequest(@as(*const IX509SCEPEnrollment, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509SCEPEnrollment, pRequest: ?*IX509CertificateRequestPkcs10, strThumbprint: ?BSTR, ThumprintEncoding: EncodingType, strServerCertificates: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pRequest, strThumbprint, ThumprintEncoding, strServerCertificates, Encoding);
+    }
+    pub fn InitializeForPending(self: *const IX509SCEPEnrollment, Context: X509CertificateEnrollmentContext) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).InitializeForPending(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Context);
+    }
+    pub fn CreateRequestMessage(self: *const IX509SCEPEnrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRequestMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn CreateRetrievePendingMessage(self: *const IX509SCEPEnrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRetrievePendingMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn CreateRetrieveCertificateMessage(self: *const IX509SCEPEnrollment, Context: X509CertificateEnrollmentContext, strIssuer: ?BSTR, IssuerEncoding: EncodingType, strSerialNumber: ?BSTR, SerialNumberEncoding: EncodingType, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRetrieveCertificateMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Context, strIssuer, IssuerEncoding, strSerialNumber, SerialNumberEncoding, Encoding, pValue);
+    }
+    pub fn ProcessResponseMessage(self: *const IX509SCEPEnrollment, strResponse: ?BSTR, Encoding: EncodingType, pDisposition: ?*X509SCEPDisposition) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).ProcessResponseMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), strResponse, Encoding, pDisposition);
+    }
+    pub fn put_ServerCapabilities(self: *const IX509SCEPEnrollment, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_ServerCapabilities(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
+    }
+    pub fn get_FailInfo(self: *const IX509SCEPEnrollment, pValue: ?*X509SCEPFailInfo) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_FailInfo(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_SignerCertificate(self: *const IX509SCEPEnrollment, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn put_SignerCertificate(self: *const IX509SCEPEnrollment, pValue: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_OldCertificate(self: *const IX509SCEPEnrollment, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_OldCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn put_OldCertificate(self: *const IX509SCEPEnrollment, pValue: ?*ISignerCertificate) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_OldCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn get_TransactionId(self: *const IX509SCEPEnrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn put_TransactionId(self: *const IX509SCEPEnrollment, Encoding: EncodingType, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_TransactionId(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, Value);
+    }
+    pub fn get_Request(self: *const IX509SCEPEnrollment, ppValue: ?*?*IX509CertificateRequestPkcs10) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn get_CertificateFriendlyName(self: *const IX509SCEPEnrollment, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_CertificateFriendlyName(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_CertificateFriendlyName(self: *const IX509SCEPEnrollment, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_CertificateFriendlyName(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
+    }
+    pub fn get_Status(self: *const IX509SCEPEnrollment, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
+    }
+    pub fn get_Certificate(self: *const IX509SCEPEnrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn get_Silent(self: *const IX509SCEPEnrollment, pValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
+    }
+    pub fn put_Silent(self: *const IX509SCEPEnrollment, Value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
+    }
+    pub fn DeleteRequest(self: *const IX509SCEPEnrollment) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).DeleteRequest(@as(*const IX509SCEPEnrollment, @ptrCast(self)));
+    }
 };
 
 pub const X509SCEPProcessMessageFlags = enum(i32) {
@@ -13578,7 +16278,25 @@ pub const IX509SCEPEnrollment2 = extern union {
             return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).put_ActivityId(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IX509SCEPEnrollment.MethodMixin(@This());
+    pub fn CreateChallengeAnswerMessage(self: *const IX509SCEPEnrollment2, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).CreateChallengeAnswerMessage(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Encoding, pValue);
+    }
+    pub fn ProcessResponseMessage2(self: *const IX509SCEPEnrollment2, Flags: X509SCEPProcessMessageFlags, strResponse: ?BSTR, Encoding: EncodingType, pDisposition: ?*X509SCEPDisposition) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).ProcessResponseMessage2(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Flags, strResponse, Encoding, pDisposition);
+    }
+    pub fn get_ResultMessageText(self: *const IX509SCEPEnrollment2, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_ResultMessageText(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
+    }
+    pub fn get_DelayRetry(self: *const IX509SCEPEnrollment2, pValue: ?*DelayRetryAction) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_DelayRetry(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
+    }
+    pub fn get_ActivityId(self: *const IX509SCEPEnrollment2, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_ActivityId(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
+    }
+    pub fn put_ActivityId(self: *const IX509SCEPEnrollment2, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).put_ActivityId(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Value);
+    }
 };
 
 const IID_IX509SCEPEnrollmentHelper_Value = Guid.initString("728ab365-217d-11da-b2a4-000e7bbb2b09");
@@ -13650,7 +16368,25 @@ pub const IX509SCEPEnrollmentHelper = extern union {
             return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).get_ResultMessageText(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), pValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const IX509SCEPEnrollmentHelper, strServerUrl: ?BSTR, strRequestHeaders: ?BSTR, pRequest: ?*IX509CertificateRequestPkcs10, strCACertificateThumbprint: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), strServerUrl, strRequestHeaders, pRequest, strCACertificateThumbprint);
+    }
+    pub fn InitializeForPending(self: *const IX509SCEPEnrollmentHelper, strServerUrl: ?BSTR, strRequestHeaders: ?BSTR, Context: X509CertificateEnrollmentContext, strTransactionId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).InitializeForPending(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), strServerUrl, strRequestHeaders, Context, strTransactionId);
+    }
+    pub fn Enroll(self: *const IX509SCEPEnrollmentHelper, ProcessFlags: X509SCEPProcessMessageFlags, pDisposition: ?*X509SCEPDisposition) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ProcessFlags, pDisposition);
+    }
+    pub fn FetchPending(self: *const IX509SCEPEnrollmentHelper, ProcessFlags: X509SCEPProcessMessageFlags, pDisposition: ?*X509SCEPDisposition) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).FetchPending(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ProcessFlags, pDisposition);
+    }
+    pub fn get_X509SCEPEnrollment(self: *const IX509SCEPEnrollmentHelper, ppValue: ?*?*IX509SCEPEnrollment) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).get_X509SCEPEnrollment(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ppValue);
+    }
+    pub fn get_ResultMessageText(self: *const IX509SCEPEnrollmentHelper, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).get_ResultMessageText(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), pValue);
+    }
 };
 
 pub const X509CertificateTemplateGeneralFlag = enum(i32) {
@@ -13902,7 +16638,28 @@ pub const ICertEncodeStringArray = extern union {
             return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeStringArray, @ptrCast(self)), pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeStringArray, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeStringArray, @ptrCast(self)), strBinary);
+    }
+    pub fn GetStringType(self: *const ICertEncodeStringArray, pStringType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetStringType(@as(*const ICertEncodeStringArray, @ptrCast(self)), pStringType);
+    }
+    pub fn GetCount(self: *const ICertEncodeStringArray, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeStringArray, @ptrCast(self)), pCount);
+    }
+    pub fn GetValue(self: *const ICertEncodeStringArray, Index: i32, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeStringArray, @ptrCast(self)), Index, pstr);
+    }
+    pub fn Reset(self: *const ICertEncodeStringArray, Count: i32, StringType: CERT_RDN_ATTR_VALUE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeStringArray, @ptrCast(self)), Count, StringType);
+    }
+    pub fn SetValue(self: *const ICertEncodeStringArray, Index: i32, str: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeStringArray, @ptrCast(self)), Index, str);
+    }
+    pub fn Encode(self: *const ICertEncodeStringArray, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeStringArray, @ptrCast(self)), pstrBinary);
+    }
 };
 
 const IID_ICertEncodeStringArray2_Value = Guid.initString("9c680d93-9b7d-4e95-9018-4ffe10ba5ada");
@@ -13934,7 +16691,13 @@ pub const ICertEncodeStringArray2 = extern union {
             return @as(*const ICertEncodeStringArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeStringArray2, @ptrCast(self)), Encoding, pstrEncodedData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeStringArray.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeStringArray2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeStringArray2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeStringArray2, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeStringArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeStringArray2, @ptrCast(self)), Encoding, pstrEncodedData);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -13999,7 +16762,25 @@ pub const ICertEncodeLongArray = extern union {
             return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeLongArray, @ptrCast(self)), pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeLongArray, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeLongArray, @ptrCast(self)), strBinary);
+    }
+    pub fn GetCount(self: *const ICertEncodeLongArray, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeLongArray, @ptrCast(self)), pCount);
+    }
+    pub fn GetValue(self: *const ICertEncodeLongArray, Index: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeLongArray, @ptrCast(self)), Index, pValue);
+    }
+    pub fn Reset(self: *const ICertEncodeLongArray, Count: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeLongArray, @ptrCast(self)), Count);
+    }
+    pub fn SetValue(self: *const ICertEncodeLongArray, Index: i32, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeLongArray, @ptrCast(self)), Index, Value);
+    }
+    pub fn Encode(self: *const ICertEncodeLongArray, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeLongArray, @ptrCast(self)), pstrBinary);
+    }
 };
 
 const IID_ICertEncodeLongArray2_Value = Guid.initString("4efde84a-bd9b-4fc2-a108-c347d478840f");
@@ -14031,7 +16812,13 @@ pub const ICertEncodeLongArray2 = extern union {
             return @as(*const ICertEncodeLongArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeLongArray2, @ptrCast(self)), Encoding, pstrEncodedData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeLongArray.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeLongArray2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeLongArray2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeLongArray2, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeLongArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeLongArray2, @ptrCast(self)), Encoding, pstrEncodedData);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14096,7 +16883,25 @@ pub const ICertEncodeDateArray = extern union {
             return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeDateArray, @ptrCast(self)), pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeDateArray, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeDateArray, @ptrCast(self)), strBinary);
+    }
+    pub fn GetCount(self: *const ICertEncodeDateArray, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeDateArray, @ptrCast(self)), pCount);
+    }
+    pub fn GetValue(self: *const ICertEncodeDateArray, Index: i32, pValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeDateArray, @ptrCast(self)), Index, pValue);
+    }
+    pub fn Reset(self: *const ICertEncodeDateArray, Count: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeDateArray, @ptrCast(self)), Count);
+    }
+    pub fn SetValue(self: *const ICertEncodeDateArray, Index: i32, Value: f64) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeDateArray, @ptrCast(self)), Index, Value);
+    }
+    pub fn Encode(self: *const ICertEncodeDateArray, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeDateArray, @ptrCast(self)), pstrBinary);
+    }
 };
 
 const IID_ICertEncodeDateArray2_Value = Guid.initString("99a4edb5-2b8e-448d-bf95-bba8d7789dc8");
@@ -14128,7 +16933,13 @@ pub const ICertEncodeDateArray2 = extern union {
             return @as(*const ICertEncodeDateArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeDateArray2, @ptrCast(self)), Encoding, pstrEncodedData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeDateArray.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeDateArray2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeDateArray2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeDateArray2, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeDateArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeDateArray2, @ptrCast(self)), Encoding, pstrEncodedData);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14224,7 +17035,34 @@ pub const ICertEncodeCRLDistInfo = extern union {
             return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeCRLDistInfo, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), strBinary);
+    }
+    pub fn GetDistPointCount(self: *const ICertEncodeCRLDistInfo, pDistPointCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetDistPointCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), pDistPointCount);
+    }
+    pub fn GetNameCount(self: *const ICertEncodeCRLDistInfo, DistPointIndex: i32, pNameCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, pNameCount);
+    }
+    pub fn GetNameChoice(self: *const ICertEncodeCRLDistInfo, DistPointIndex: i32, NameIndex: i32, pNameChoice: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetNameChoice(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, pNameChoice);
+    }
+    pub fn GetName(self: *const ICertEncodeCRLDistInfo, DistPointIndex: i32, NameIndex: i32, pstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetName(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, pstrName);
+    }
+    pub fn Reset(self: *const ICertEncodeCRLDistInfo, DistPointCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointCount);
+    }
+    pub fn SetNameCount(self: *const ICertEncodeCRLDistInfo, DistPointIndex: i32, NameCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).SetNameCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameCount);
+    }
+    pub fn SetNameEntry(self: *const ICertEncodeCRLDistInfo, DistPointIndex: i32, NameIndex: i32, NameChoice: CERT_ALT_NAME, strName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).SetNameEntry(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, NameChoice, strName);
+    }
+    pub fn Encode(self: *const ICertEncodeCRLDistInfo, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), pstrBinary);
+    }
 };
 
 const IID_ICertEncodeCRLDistInfo2_Value = Guid.initString("b4275d4b-3e30-446f-ad36-09d03120b078");
@@ -14256,7 +17094,13 @@ pub const ICertEncodeCRLDistInfo2 = extern union {
             return @as(*const ICertEncodeCRLDistInfo2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeCRLDistInfo2, @ptrCast(self)), Encoding, pstrEncodedData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeCRLDistInfo.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeCRLDistInfo2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeCRLDistInfo2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeCRLDistInfo2, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeCRLDistInfo2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeCRLDistInfo2, @ptrCast(self)), Encoding, pstrEncodedData);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14331,7 +17175,28 @@ pub const ICertEncodeAltName = extern union {
             return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeAltName, @ptrCast(self)), pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeAltName, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeAltName, @ptrCast(self)), strBinary);
+    }
+    pub fn GetNameCount(self: *const ICertEncodeAltName, pNameCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const ICertEncodeAltName, @ptrCast(self)), pNameCount);
+    }
+    pub fn GetNameChoice(self: *const ICertEncodeAltName, NameIndex: i32, pNameChoice: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetNameChoice(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, pNameChoice);
+    }
+    pub fn GetName(self: *const ICertEncodeAltName, NameIndex: i32, pstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetName(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, pstrName);
+    }
+    pub fn Reset(self: *const ICertEncodeAltName, NameCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeAltName, @ptrCast(self)), NameCount);
+    }
+    pub fn SetNameEntry(self: *const ICertEncodeAltName, NameIndex: i32, NameChoice: CERT_ALT_NAME, strName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).SetNameEntry(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, NameChoice, strName);
+    }
+    pub fn Encode(self: *const ICertEncodeAltName, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeAltName, @ptrCast(self)), pstrBinary);
+    }
 };
 
 const IID_ICertEncodeAltName2_Value = Guid.initString("f67fe177-5ef1-4535-b4ce-29df15e2e0c3");
@@ -14384,7 +17249,19 @@ pub const ICertEncodeAltName2 = extern union {
             return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).SetNameEntryBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), NameIndex, NameChoice, strName, Encoding);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeAltName.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeAltName2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeAltName2, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), Encoding, pstrEncodedData);
+    }
+    pub fn GetNameBlob(self: *const ICertEncodeAltName2, NameIndex: i32, Encoding: EncodingType, pstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).GetNameBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), NameIndex, Encoding, pstrName);
+    }
+    pub fn SetNameEntryBlob(self: *const ICertEncodeAltName2, NameIndex: i32, NameChoice: i32, strName: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).SetNameEntryBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), NameIndex, NameChoice, strName, Encoding);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14433,7 +17310,19 @@ pub const ICertEncodeBitString = extern union {
             return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeBitString, @ptrCast(self)), BitCount, strBitString, pstrBinary);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Decode(self: *const ICertEncodeBitString, strBinary: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeBitString, @ptrCast(self)), strBinary);
+    }
+    pub fn GetBitCount(self: *const ICertEncodeBitString, pBitCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).GetBitCount(@as(*const ICertEncodeBitString, @ptrCast(self)), pBitCount);
+    }
+    pub fn GetBitString(self: *const ICertEncodeBitString, pstrBitString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).GetBitString(@as(*const ICertEncodeBitString, @ptrCast(self)), pstrBitString);
+    }
+    pub fn Encode(self: *const ICertEncodeBitString, BitCount: i32, strBitString: ?BSTR, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeBitString, @ptrCast(self)), BitCount, strBitString, pstrBinary);
+    }
 };
 
 const IID_ICertEncodeBitString2_Value = Guid.initString("e070d6e7-23ef-4dd2-8242-ebd9c928cb30");
@@ -14477,7 +17366,16 @@ pub const ICertEncodeBitString2 = extern union {
             return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).GetBitStringBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), Encoding, pstrBitString);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertEncodeBitString.MethodMixin(@This());
+    pub fn DecodeBlob(self: *const ICertEncodeBitString2, strEncodedData: ?BSTR, Encoding: EncodingType) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), strEncodedData, Encoding);
+    }
+    pub fn EncodeBlob(self: *const ICertEncodeBitString2, BitCount: i32, strBitString: ?BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), BitCount, strBitString, EncodingIn, Encoding, pstrEncodedData);
+    }
+    pub fn GetBitStringBlob(self: *const ICertEncodeBitString2, Encoding: EncodingType, pstrBitString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).GetBitStringBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), Encoding, pstrBitString);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14518,7 +17416,16 @@ pub const ICertExit = extern union {
             return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICertExit, @ptrCast(self)), pstrDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Initialize(self: *const ICertExit, strConfig: ?BSTR, pEventMask: ?*CERT_EXIT_EVENT_MASK) callconv(.Inline) HRESULT {
+        return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertExit, @ptrCast(self)), strConfig, pEventMask);
+    }
+    pub fn Notify(self: *const ICertExit, ExitEvent: i32, Context: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).Notify(@as(*const ICertExit, @ptrCast(self)), ExitEvent, Context);
+    }
+    pub fn GetDescription(self: *const ICertExit, pstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICertExit, @ptrCast(self)), pstrDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -14541,7 +17448,10 @@ pub const ICertExit2 = extern union {
             return @as(*const ICertExit2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertExit2, @ptrCast(self)), ppManageModule);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertExit.MethodMixin(@This());
+    pub fn GetManageModule(self: *const ICertExit2, ppManageModule: ?*?*ICertManageModule) callconv(.Inline) HRESULT {
+        return @as(*const ICertExit2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertExit2, @ptrCast(self)), ppManageModule);
+    }
 };
 
 pub const ENUM_CATYPES = enum(i32) {
@@ -15092,7 +18002,175 @@ pub const ICEnroll = extern union {
             return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const ICEnroll, @ptrCast(self)), bstr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn createFilePKCS10(self: *const ICEnroll, DNName: ?BSTR, Usage: ?BSTR, wszPKCS10FileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).createFilePKCS10(@as(*const ICEnroll, @ptrCast(self)), DNName, Usage, wszPKCS10FileName);
+    }
+    pub fn acceptFilePKCS7(self: *const ICEnroll, wszPKCS7FileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).acceptFilePKCS7(@as(*const ICEnroll, @ptrCast(self)), wszPKCS7FileName);
+    }
+    pub fn createPKCS10(self: *const ICEnroll, DNName: ?BSTR, Usage: ?BSTR, pPKCS10: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).createPKCS10(@as(*const ICEnroll, @ptrCast(self)), DNName, Usage, pPKCS10);
+    }
+    pub fn acceptPKCS7(self: *const ICEnroll, PKCS7: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).acceptPKCS7(@as(*const ICEnroll, @ptrCast(self)), PKCS7);
+    }
+    pub fn getCertFromPKCS7(self: *const ICEnroll, wszPKCS7: ?BSTR, pbstrCert: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).getCertFromPKCS7(@as(*const ICEnroll, @ptrCast(self)), wszPKCS7, pbstrCert);
+    }
+    pub fn enumProviders(self: *const ICEnroll, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).enumProviders(@as(*const ICEnroll, @ptrCast(self)), dwIndex, dwFlags, pbstrProvName);
+    }
+    pub fn enumContainers(self: *const ICEnroll, dwIndex: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).enumContainers(@as(*const ICEnroll, @ptrCast(self)), dwIndex, pbstr);
+    }
+    pub fn freeRequestInfo(self: *const ICEnroll, PKCS7OrPKCS10: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).freeRequestInfo(@as(*const ICEnroll, @ptrCast(self)), PKCS7OrPKCS10);
+    }
+    pub fn get_MyStoreName(self: *const ICEnroll, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_MyStoreName(self: *const ICEnroll, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
+    }
+    pub fn get_MyStoreType(self: *const ICEnroll, pbstrType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
+    }
+    pub fn put_MyStoreType(self: *const ICEnroll, bstrType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
+    }
+    pub fn get_MyStoreFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_MyStoreFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_CAStoreName(self: *const ICEnroll, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_CAStoreName(self: *const ICEnroll, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
+    }
+    pub fn get_CAStoreType(self: *const ICEnroll, pbstrType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
+    }
+    pub fn put_CAStoreType(self: *const ICEnroll, bstrType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
+    }
+    pub fn get_CAStoreFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_CAStoreFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_RootStoreName(self: *const ICEnroll, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_RootStoreName(self: *const ICEnroll, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
+    }
+    pub fn get_RootStoreType(self: *const ICEnroll, pbstrType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
+    }
+    pub fn put_RootStoreType(self: *const ICEnroll, bstrType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
+    }
+    pub fn get_RootStoreFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_RootStoreFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_RequestStoreName(self: *const ICEnroll, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_RequestStoreName(self: *const ICEnroll, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
+    }
+    pub fn get_RequestStoreType(self: *const ICEnroll, pbstrType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
+    }
+    pub fn put_RequestStoreType(self: *const ICEnroll, bstrType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
+    }
+    pub fn get_RequestStoreFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_RequestStoreFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_ContainerName(self: *const ICEnroll, pbstrContainer: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ContainerName(@as(*const ICEnroll, @ptrCast(self)), pbstrContainer);
+    }
+    pub fn put_ContainerName(self: *const ICEnroll, bstrContainer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ContainerName(@as(*const ICEnroll, @ptrCast(self)), bstrContainer);
+    }
+    pub fn get_ProviderName(self: *const ICEnroll, pbstrProvider: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const ICEnroll, @ptrCast(self)), pbstrProvider);
+    }
+    pub fn put_ProviderName(self: *const ICEnroll, bstrProvider: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const ICEnroll, @ptrCast(self)), bstrProvider);
+    }
+    pub fn get_ProviderType(self: *const ICEnroll, pdwType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const ICEnroll, @ptrCast(self)), pdwType);
+    }
+    pub fn put_ProviderType(self: *const ICEnroll, dwType: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const ICEnroll, @ptrCast(self)), dwType);
+    }
+    pub fn get_KeySpec(self: *const ICEnroll, pdw: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const ICEnroll, @ptrCast(self)), pdw);
+    }
+    pub fn put_KeySpec(self: *const ICEnroll, dw: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const ICEnroll, @ptrCast(self)), dw);
+    }
+    pub fn get_ProviderFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_ProviderFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_UseExistingKeySet(self: *const ICEnroll, fUseExistingKeys: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_UseExistingKeySet(@as(*const ICEnroll, @ptrCast(self)), fUseExistingKeys);
+    }
+    pub fn put_UseExistingKeySet(self: *const ICEnroll, fUseExistingKeys: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_UseExistingKeySet(@as(*const ICEnroll, @ptrCast(self)), fUseExistingKeys);
+    }
+    pub fn get_GenKeyFlags(self: *const ICEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_GenKeyFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_GenKeyFlags(self: *const ICEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_GenKeyFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_DeleteRequestCert(self: *const ICEnroll, fDelete: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_DeleteRequestCert(@as(*const ICEnroll, @ptrCast(self)), fDelete);
+    }
+    pub fn put_DeleteRequestCert(self: *const ICEnroll, fDelete: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_DeleteRequestCert(@as(*const ICEnroll, @ptrCast(self)), fDelete);
+    }
+    pub fn get_WriteCertToCSP(self: *const ICEnroll, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToCSP(@as(*const ICEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn put_WriteCertToCSP(self: *const ICEnroll, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToCSP(@as(*const ICEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn get_SPCFileName(self: *const ICEnroll, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_SPCFileName(@as(*const ICEnroll, @ptrCast(self)), pbstr);
+    }
+    pub fn put_SPCFileName(self: *const ICEnroll, bstr: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_SPCFileName(@as(*const ICEnroll, @ptrCast(self)), bstr);
+    }
+    pub fn get_PVKFileName(self: *const ICEnroll, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_PVKFileName(@as(*const ICEnroll, @ptrCast(self)), pbstr);
+    }
+    pub fn put_PVKFileName(self: *const ICEnroll, bstr: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_PVKFileName(@as(*const ICEnroll, @ptrCast(self)), bstr);
+    }
+    pub fn get_HashAlgorithm(self: *const ICEnroll, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const ICEnroll, @ptrCast(self)), pbstr);
+    }
+    pub fn put_HashAlgorithm(self: *const ICEnroll, bstr: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const ICEnroll, @ptrCast(self)), bstr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -15160,7 +18238,25 @@ pub const ICEnroll2 = extern union {
             return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).put_EnableT61DNEncoding(@as(*const ICEnroll2, @ptrCast(self)), fBool);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICEnroll.MethodMixin(@This());
+    pub fn addCertTypeToRequest(self: *const ICEnroll2, CertType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).addCertTypeToRequest(@as(*const ICEnroll2, @ptrCast(self)), CertType);
+    }
+    pub fn addNameValuePairToSignature(self: *const ICEnroll2, Name: ?BSTR, Value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).addNameValuePairToSignature(@as(*const ICEnroll2, @ptrCast(self)), Name, Value);
+    }
+    pub fn get_WriteCertToUserDS(self: *const ICEnroll2, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).get_WriteCertToUserDS(@as(*const ICEnroll2, @ptrCast(self)), fBool);
+    }
+    pub fn put_WriteCertToUserDS(self: *const ICEnroll2, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).put_WriteCertToUserDS(@as(*const ICEnroll2, @ptrCast(self)), fBool);
+    }
+    pub fn get_EnableT61DNEncoding(self: *const ICEnroll2, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).get_EnableT61DNEncoding(@as(*const ICEnroll2, @ptrCast(self)), fBool);
+    }
+    pub fn put_EnableT61DNEncoding(self: *const ICEnroll2, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).put_EnableT61DNEncoding(@as(*const ICEnroll2, @ptrCast(self)), fBool);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -15299,7 +18395,49 @@ pub const ICEnroll3 = extern union {
             return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const ICEnroll3, @ptrCast(self)), fEnableSMIMECapabilities);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICEnroll2.MethodMixin(@This());
+    pub fn InstallPKCS7(self: *const ICEnroll3, PKCS7: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).InstallPKCS7(@as(*const ICEnroll3, @ptrCast(self)), PKCS7);
+    }
+    pub fn Reset(self: *const ICEnroll3) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICEnroll3, @ptrCast(self)));
+    }
+    pub fn GetSupportedKeySpec(self: *const ICEnroll3, pdwKeySpec: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetSupportedKeySpec(@as(*const ICEnroll3, @ptrCast(self)), pdwKeySpec);
+    }
+    pub fn GetKeyLen(self: *const ICEnroll3, fMin: BOOL, fExchange: BOOL, pdwKeySize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetKeyLen(@as(*const ICEnroll3, @ptrCast(self)), fMin, fExchange, pdwKeySize);
+    }
+    pub fn EnumAlgs(self: *const ICEnroll3, dwIndex: i32, algClass: i32, pdwAlgID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).EnumAlgs(@as(*const ICEnroll3, @ptrCast(self)), dwIndex, algClass, pdwAlgID);
+    }
+    pub fn GetAlgName(self: *const ICEnroll3, algID: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetAlgName(@as(*const ICEnroll3, @ptrCast(self)), algID, pbstr);
+    }
+    pub fn put_ReuseHardwareKeyIfUnableToGenNew(self: *const ICEnroll3, fReuseHardwareKeyIfUnableToGenNew: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_ReuseHardwareKeyIfUnableToGenNew(@as(*const ICEnroll3, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
+    }
+    pub fn get_ReuseHardwareKeyIfUnableToGenNew(self: *const ICEnroll3, fReuseHardwareKeyIfUnableToGenNew: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_ReuseHardwareKeyIfUnableToGenNew(@as(*const ICEnroll3, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
+    }
+    pub fn put_HashAlgID(self: *const ICEnroll3, hashAlgID: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_HashAlgID(@as(*const ICEnroll3, @ptrCast(self)), hashAlgID);
+    }
+    pub fn get_HashAlgID(self: *const ICEnroll3, hashAlgID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_HashAlgID(@as(*const ICEnroll3, @ptrCast(self)), hashAlgID);
+    }
+    pub fn put_LimitExchangeKeyToEncipherment(self: *const ICEnroll3, fLimitExchangeKeyToEncipherment: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_LimitExchangeKeyToEncipherment(@as(*const ICEnroll3, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
+    }
+    pub fn get_LimitExchangeKeyToEncipherment(self: *const ICEnroll3, fLimitExchangeKeyToEncipherment: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_LimitExchangeKeyToEncipherment(@as(*const ICEnroll3, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
+    }
+    pub fn put_EnableSMIMECapabilities(self: *const ICEnroll3, fEnableSMIMECapabilities: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_EnableSMIMECapabilities(@as(*const ICEnroll3, @ptrCast(self)), fEnableSMIMECapabilities);
+    }
+    pub fn get_EnableSMIMECapabilities(self: *const ICEnroll3, fEnableSMIMECapabilities: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const ICEnroll3, @ptrCast(self)), fEnableSMIMECapabilities);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -15619,7 +18757,106 @@ pub const ICEnroll4 = extern union {
             return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const ICEnroll4, @ptrCast(self)), pfInclude);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICEnroll3.MethodMixin(@This());
+    pub fn put_PrivateKeyArchiveCertificate(self: *const ICEnroll4, bstrCert: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_PrivateKeyArchiveCertificate(@as(*const ICEnroll4, @ptrCast(self)), bstrCert);
+    }
+    pub fn get_PrivateKeyArchiveCertificate(self: *const ICEnroll4, pbstrCert: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_PrivateKeyArchiveCertificate(@as(*const ICEnroll4, @ptrCast(self)), pbstrCert);
+    }
+    pub fn put_ThumbPrint(self: *const ICEnroll4, bstrThumbPrint: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_ThumbPrint(@as(*const ICEnroll4, @ptrCast(self)), bstrThumbPrint);
+    }
+    pub fn get_ThumbPrint(self: *const ICEnroll4, pbstrThumbPrint: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_ThumbPrint(@as(*const ICEnroll4, @ptrCast(self)), pbstrThumbPrint);
+    }
+    pub fn binaryToString(self: *const ICEnroll4, Flags: i32, strBinary: ?BSTR, pstrEncoded: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).binaryToString(@as(*const ICEnroll4, @ptrCast(self)), Flags, strBinary, pstrEncoded);
+    }
+    pub fn stringToBinary(self: *const ICEnroll4, Flags: i32, strEncoded: ?BSTR, pstrBinary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).stringToBinary(@as(*const ICEnroll4, @ptrCast(self)), Flags, strEncoded, pstrBinary);
+    }
+    pub fn addExtensionToRequest(self: *const ICEnroll4, Flags: i32, strName: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addExtensionToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
+    }
+    pub fn addAttributeToRequest(self: *const ICEnroll4, Flags: i32, strName: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addAttributeToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
+    }
+    pub fn addNameValuePairToRequest(self: *const ICEnroll4, Flags: i32, strName: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addNameValuePairToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
+    }
+    pub fn resetExtensions(self: *const ICEnroll4) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetExtensions(@as(*const ICEnroll4, @ptrCast(self)));
+    }
+    pub fn resetAttributes(self: *const ICEnroll4) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetAttributes(@as(*const ICEnroll4, @ptrCast(self)));
+    }
+    pub fn createRequest(self: *const ICEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, strDNName: ?BSTR, Usage: ?BSTR, pstrRequest: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strDNName, Usage, pstrRequest);
+    }
+    pub fn createFileRequest(self: *const ICEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, strDNName: ?BSTR, strUsage: ?BSTR, strRequestFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createFileRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strDNName, strUsage, strRequestFileName);
+    }
+    pub fn acceptResponse(self: *const ICEnroll4, strResponse: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).acceptResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponse);
+    }
+    pub fn acceptFileResponse(self: *const ICEnroll4, strResponseFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).acceptFileResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponseFileName);
+    }
+    pub fn getCertFromResponse(self: *const ICEnroll4, strResponse: ?BSTR, pstrCert: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getCertFromResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponse, pstrCert);
+    }
+    pub fn getCertFromFileResponse(self: *const ICEnroll4, strResponseFileName: ?BSTR, pstrCert: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getCertFromFileResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponseFileName, pstrCert);
+    }
+    pub fn createPFX(self: *const ICEnroll4, strPassword: ?BSTR, pstrPFX: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createPFX(@as(*const ICEnroll4, @ptrCast(self)), strPassword, pstrPFX);
+    }
+    pub fn createFilePFX(self: *const ICEnroll4, strPassword: ?BSTR, strPFXFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createFilePFX(@as(*const ICEnroll4, @ptrCast(self)), strPassword, strPFXFileName);
+    }
+    pub fn setPendingRequestInfo(self: *const ICEnroll4, lRequestID: i32, strCADNS: ?BSTR, strCAName: ?BSTR, strFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).setPendingRequestInfo(@as(*const ICEnroll4, @ptrCast(self)), lRequestID, strCADNS, strCAName, strFriendlyName);
+    }
+    pub fn enumPendingRequest(self: *const ICEnroll4, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, pvarProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).enumPendingRequest(@as(*const ICEnroll4, @ptrCast(self)), lIndex, lDesiredProperty, pvarProperty);
+    }
+    pub fn removePendingRequest(self: *const ICEnroll4, strThumbprint: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).removePendingRequest(@as(*const ICEnroll4, @ptrCast(self)), strThumbprint);
+    }
+    pub fn GetKeyLenEx(self: *const ICEnroll4, lSizeSpec: XEKL_KEYSIZE, lKeySpec: XEKL_KEYSPEC, pdwKeySize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).GetKeyLenEx(@as(*const ICEnroll4, @ptrCast(self)), lSizeSpec, lKeySpec, pdwKeySize);
+    }
+    pub fn InstallPKCS7Ex(self: *const ICEnroll4, PKCS7: ?BSTR, plCertInstalled: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).InstallPKCS7Ex(@as(*const ICEnroll4, @ptrCast(self)), PKCS7, plCertInstalled);
+    }
+    pub fn addCertTypeToRequestEx(self: *const ICEnroll4, lType: ADDED_CERT_TYPE, bstrOIDOrName: ?BSTR, lMajorVersion: i32, fMinorVersion: BOOL, lMinorVersion: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addCertTypeToRequestEx(@as(*const ICEnroll4, @ptrCast(self)), lType, bstrOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
+    }
+    pub fn getProviderType(self: *const ICEnroll4, strProvName: ?BSTR, plProvType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getProviderType(@as(*const ICEnroll4, @ptrCast(self)), strProvName, plProvType);
+    }
+    pub fn put_SignerCertificate(self: *const ICEnroll4, bstrCert: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const ICEnroll4, @ptrCast(self)), bstrCert);
+    }
+    pub fn put_ClientId(self: *const ICEnroll4, lClientId: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const ICEnroll4, @ptrCast(self)), lClientId);
+    }
+    pub fn get_ClientId(self: *const ICEnroll4, plClientId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const ICEnroll4, @ptrCast(self)), plClientId);
+    }
+    pub fn addBlobPropertyToCertificate(self: *const ICEnroll4, lPropertyId: i32, lReserved: i32, bstrProperty: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addBlobPropertyToCertificate(@as(*const ICEnroll4, @ptrCast(self)), lPropertyId, lReserved, bstrProperty);
+    }
+    pub fn resetBlobProperties(self: *const ICEnroll4) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetBlobProperties(@as(*const ICEnroll4, @ptrCast(self)));
+    }
+    pub fn put_IncludeSubjectKeyID(self: *const ICEnroll4, fInclude: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_IncludeSubjectKeyID(@as(*const ICEnroll4, @ptrCast(self)), fInclude);
+    }
+    pub fn get_IncludeSubjectKeyID(self: *const ICEnroll4, pfInclude: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const ICEnroll4, @ptrCast(self)), pfInclude);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -16255,7 +19492,217 @@ pub const IEnroll = extern union {
             return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).CreatePKCS7RequestFromRequest(@as(*const IEnroll, @ptrCast(self)), pRequest, pSigningCertContext, pPkcs7Blob);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn createFilePKCS10WStr(self: *const IEnroll, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, wszPKCS10FileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).createFilePKCS10WStr(@as(*const IEnroll, @ptrCast(self)), DNName, Usage, wszPKCS10FileName);
+    }
+    pub fn acceptFilePKCS7WStr(self: *const IEnroll, wszPKCS7FileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).acceptFilePKCS7WStr(@as(*const IEnroll, @ptrCast(self)), wszPKCS7FileName);
+    }
+    pub fn createPKCS10WStr(self: *const IEnroll, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, pPkcs10Blob: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).createPKCS10WStr(@as(*const IEnroll, @ptrCast(self)), DNName, Usage, pPkcs10Blob);
+    }
+    pub fn acceptPKCS7Blob(self: *const IEnroll, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).acceptPKCS7Blob(@as(*const IEnroll, @ptrCast(self)), pBlobPKCS7);
+    }
+    pub fn getCertContextFromPKCS7(self: *const IEnroll, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.Inline) ?*CERT_CONTEXT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getCertContextFromPKCS7(@as(*const IEnroll, @ptrCast(self)), pBlobPKCS7);
+    }
+    pub fn getMyStore(self: *const IEnroll) callconv(.Inline) ?HCERTSTORE {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getMyStore(@as(*const IEnroll, @ptrCast(self)));
+    }
+    pub fn getCAStore(self: *const IEnroll) callconv(.Inline) ?HCERTSTORE {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getCAStore(@as(*const IEnroll, @ptrCast(self)));
+    }
+    pub fn getROOTHStore(self: *const IEnroll) callconv(.Inline) ?HCERTSTORE {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getROOTHStore(@as(*const IEnroll, @ptrCast(self)));
+    }
+    pub fn enumProvidersWStr(self: *const IEnroll, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).enumProvidersWStr(@as(*const IEnroll, @ptrCast(self)), dwIndex, dwFlags, pbstrProvName);
+    }
+    pub fn enumContainersWStr(self: *const IEnroll, dwIndex: i32, pbstr: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).enumContainersWStr(@as(*const IEnroll, @ptrCast(self)), dwIndex, pbstr);
+    }
+    pub fn freeRequestInfoBlob(self: *const IEnroll, pkcs7OrPkcs10: CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).freeRequestInfoBlob(@as(*const IEnroll, @ptrCast(self)), pkcs7OrPkcs10);
+    }
+    pub fn get_MyStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn put_MyStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn get_MyStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn put_MyStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn get_MyStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_MyStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_CAStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn put_CAStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn get_CAStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn put_CAStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn get_CAStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_CAStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_RootStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn put_RootStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn get_RootStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn put_RootStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn get_RootStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_RootStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_RequestStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn put_RequestStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
+    }
+    pub fn get_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn put_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
+    }
+    pub fn get_RequestStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_RequestStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_ContainerNameWStr(self: *const IEnroll, szwContainer: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ContainerNameWStr(@as(*const IEnroll, @ptrCast(self)), szwContainer);
+    }
+    pub fn put_ContainerNameWStr(self: *const IEnroll, szwContainer: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ContainerNameWStr(@as(*const IEnroll, @ptrCast(self)), szwContainer);
+    }
+    pub fn get_ProviderNameWStr(self: *const IEnroll, szwProvider: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderNameWStr(@as(*const IEnroll, @ptrCast(self)), szwProvider);
+    }
+    pub fn put_ProviderNameWStr(self: *const IEnroll, szwProvider: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderNameWStr(@as(*const IEnroll, @ptrCast(self)), szwProvider);
+    }
+    pub fn get_ProviderType(self: *const IEnroll, pdwType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const IEnroll, @ptrCast(self)), pdwType);
+    }
+    pub fn put_ProviderType(self: *const IEnroll, dwType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const IEnroll, @ptrCast(self)), dwType);
+    }
+    pub fn get_KeySpec(self: *const IEnroll, pdw: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IEnroll, @ptrCast(self)), pdw);
+    }
+    pub fn put_KeySpec(self: *const IEnroll, dw: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const IEnroll, @ptrCast(self)), dw);
+    }
+    pub fn get_ProviderFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_ProviderFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_UseExistingKeySet(self: *const IEnroll, fUseExistingKeys: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_UseExistingKeySet(@as(*const IEnroll, @ptrCast(self)), fUseExistingKeys);
+    }
+    pub fn put_UseExistingKeySet(self: *const IEnroll, fUseExistingKeys: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_UseExistingKeySet(@as(*const IEnroll, @ptrCast(self)), fUseExistingKeys);
+    }
+    pub fn get_GenKeyFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_GenKeyFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
+    }
+    pub fn put_GenKeyFlags(self: *const IEnroll, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_GenKeyFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
+    }
+    pub fn get_DeleteRequestCert(self: *const IEnroll, fDelete: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_DeleteRequestCert(@as(*const IEnroll, @ptrCast(self)), fDelete);
+    }
+    pub fn put_DeleteRequestCert(self: *const IEnroll, fDelete: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_DeleteRequestCert(@as(*const IEnroll, @ptrCast(self)), fDelete);
+    }
+    pub fn get_WriteCertToUserDS(self: *const IEnroll, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToUserDS(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn put_WriteCertToUserDS(self: *const IEnroll, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToUserDS(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn get_EnableT61DNEncoding(self: *const IEnroll, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_EnableT61DNEncoding(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn put_EnableT61DNEncoding(self: *const IEnroll, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_EnableT61DNEncoding(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn get_WriteCertToCSP(self: *const IEnroll, fBool: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToCSP(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn put_WriteCertToCSP(self: *const IEnroll, fBool: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToCSP(@as(*const IEnroll, @ptrCast(self)), fBool);
+    }
+    pub fn get_SPCFileNameWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_SPCFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn put_SPCFileNameWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_SPCFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn get_PVKFileNameWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_PVKFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn put_PVKFileNameWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_PVKFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn get_HashAlgorithmWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_HashAlgorithmWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn put_HashAlgorithmWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_HashAlgorithmWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn get_RenewalCertificate(self: *const IEnroll, ppCertContext: ?*?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IEnroll, @ptrCast(self)), ppCertContext);
+    }
+    pub fn put_RenewalCertificate(self: *const IEnroll, pCertContext: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RenewalCertificate(@as(*const IEnroll, @ptrCast(self)), pCertContext);
+    }
+    pub fn AddCertTypeToRequestWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddCertTypeToRequestWStr(@as(*const IEnroll, @ptrCast(self)), szw);
+    }
+    pub fn AddNameValuePairToSignatureWStr(self: *const IEnroll, Name: ?PWSTR, Value: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddNameValuePairToSignatureWStr(@as(*const IEnroll, @ptrCast(self)), Name, Value);
+    }
+    pub fn AddExtensionsToRequest(self: *const IEnroll, pCertExtensions: ?*CERT_EXTENSIONS) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddExtensionsToRequest(@as(*const IEnroll, @ptrCast(self)), pCertExtensions);
+    }
+    pub fn AddAuthenticatedAttributesToPKCS7Request(self: *const IEnroll, pAttributes: ?*CRYPT_ATTRIBUTES) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddAuthenticatedAttributesToPKCS7Request(@as(*const IEnroll, @ptrCast(self)), pAttributes);
+    }
+    pub fn CreatePKCS7RequestFromRequest(self: *const IEnroll, pRequest: ?*CRYPTOAPI_BLOB, pSigningCertContext: ?*const CERT_CONTEXT, pPkcs7Blob: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).CreatePKCS7RequestFromRequest(@as(*const IEnroll, @ptrCast(self)), pRequest, pSigningCertContext, pPkcs7Blob);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -16426,7 +19873,61 @@ pub const IEnroll2 = extern union {
             return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const IEnroll2, @ptrCast(self)), fEnableSMIMECapabilities);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IEnroll.MethodMixin(@This());
+    pub fn InstallPKCS7Blob(self: *const IEnroll2, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).InstallPKCS7Blob(@as(*const IEnroll2, @ptrCast(self)), pBlobPKCS7);
+    }
+    pub fn Reset(self: *const IEnroll2) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnroll2, @ptrCast(self)));
+    }
+    pub fn GetSupportedKeySpec(self: *const IEnroll2, pdwKeySpec: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetSupportedKeySpec(@as(*const IEnroll2, @ptrCast(self)), pdwKeySpec);
+    }
+    pub fn GetKeyLen(self: *const IEnroll2, fMin: BOOL, fExchange: BOOL, pdwKeySize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetKeyLen(@as(*const IEnroll2, @ptrCast(self)), fMin, fExchange, pdwKeySize);
+    }
+    pub fn EnumAlgs(self: *const IEnroll2, dwIndex: i32, algClass: i32, pdwAlgID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).EnumAlgs(@as(*const IEnroll2, @ptrCast(self)), dwIndex, algClass, pdwAlgID);
+    }
+    pub fn GetAlgNameWStr(self: *const IEnroll2, algID: i32, ppwsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetAlgNameWStr(@as(*const IEnroll2, @ptrCast(self)), algID, ppwsz);
+    }
+    pub fn put_ReuseHardwareKeyIfUnableToGenNew(self: *const IEnroll2, fReuseHardwareKeyIfUnableToGenNew: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_ReuseHardwareKeyIfUnableToGenNew(@as(*const IEnroll2, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
+    }
+    pub fn get_ReuseHardwareKeyIfUnableToGenNew(self: *const IEnroll2, fReuseHardwareKeyIfUnableToGenNew: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_ReuseHardwareKeyIfUnableToGenNew(@as(*const IEnroll2, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
+    }
+    pub fn put_HashAlgID(self: *const IEnroll2, hashAlgID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_HashAlgID(@as(*const IEnroll2, @ptrCast(self)), hashAlgID);
+    }
+    pub fn get_HashAlgID(self: *const IEnroll2, hashAlgID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_HashAlgID(@as(*const IEnroll2, @ptrCast(self)), hashAlgID);
+    }
+    pub fn SetHStoreMy(self: *const IEnroll2, hStore: ?HCERTSTORE) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreMy(@as(*const IEnroll2, @ptrCast(self)), hStore);
+    }
+    pub fn SetHStoreCA(self: *const IEnroll2, hStore: ?HCERTSTORE) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreCA(@as(*const IEnroll2, @ptrCast(self)), hStore);
+    }
+    pub fn SetHStoreROOT(self: *const IEnroll2, hStore: ?HCERTSTORE) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreROOT(@as(*const IEnroll2, @ptrCast(self)), hStore);
+    }
+    pub fn SetHStoreRequest(self: *const IEnroll2, hStore: ?HCERTSTORE) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreRequest(@as(*const IEnroll2, @ptrCast(self)), hStore);
+    }
+    pub fn put_LimitExchangeKeyToEncipherment(self: *const IEnroll2, fLimitExchangeKeyToEncipherment: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_LimitExchangeKeyToEncipherment(@as(*const IEnroll2, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
+    }
+    pub fn get_LimitExchangeKeyToEncipherment(self: *const IEnroll2, fLimitExchangeKeyToEncipherment: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_LimitExchangeKeyToEncipherment(@as(*const IEnroll2, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
+    }
+    pub fn put_EnableSMIMECapabilities(self: *const IEnroll2, fEnableSMIMECapabilities: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_EnableSMIMECapabilities(@as(*const IEnroll2, @ptrCast(self)), fEnableSMIMECapabilities);
+    }
+    pub fn get_EnableSMIMECapabilities(self: *const IEnroll2, fEnableSMIMECapabilities: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const IEnroll2, @ptrCast(self)), fEnableSMIMECapabilities);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -16737,7 +20238,103 @@ pub const IEnroll4 = extern union {
             return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const IEnroll4, @ptrCast(self)), pfInclude);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IEnroll2.MethodMixin(@This());
+    pub fn put_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_ThumbPrintWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
+    }
+    pub fn get_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_ThumbPrintWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
+    }
+    pub fn SetPrivateKeyArchiveCertificate(self: *const IEnroll4, pPrivateKeyArchiveCert: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).SetPrivateKeyArchiveCertificate(@as(*const IEnroll4, @ptrCast(self)), pPrivateKeyArchiveCert);
+    }
+    pub fn GetPrivateKeyArchiveCertificate(self: *const IEnroll4) callconv(.Inline) ?*CERT_CONTEXT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).GetPrivateKeyArchiveCertificate(@as(*const IEnroll4, @ptrCast(self)));
+    }
+    pub fn binaryBlobToString(self: *const IEnroll4, Flags: i32, pblobBinary: ?*CRYPTOAPI_BLOB, ppwszString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).binaryBlobToString(@as(*const IEnroll4, @ptrCast(self)), Flags, pblobBinary, ppwszString);
+    }
+    pub fn stringToBinaryBlob(self: *const IEnroll4, Flags: i32, pwszString: ?[*:0]const u16, pblobBinary: ?*CRYPTOAPI_BLOB, pdwSkip: ?*i32, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).stringToBinaryBlob(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszString, pblobBinary, pdwSkip, pdwFlags);
+    }
+    pub fn addExtensionToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addExtensionToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pblobValue);
+    }
+    pub fn addAttributeToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addAttributeToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pblobValue);
+    }
+    pub fn addNameValuePairToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addNameValuePairToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pwszValue);
+    }
+    pub fn resetExtensions(self: *const IEnroll4) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).resetExtensions(@as(*const IEnroll4, @ptrCast(self)));
+    }
+    pub fn resetAttributes(self: *const IEnroll4) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).resetAttributes(@as(*const IEnroll4, @ptrCast(self)));
+    }
+    pub fn createRequestWStr(self: *const IEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pblobRequest: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszDNName, pwszUsage, pblobRequest);
+    }
+    pub fn createFileRequestWStr(self: *const IEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pwszRequestFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createFileRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszDNName, pwszUsage, pwszRequestFileName);
+    }
+    pub fn acceptResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).acceptResponseBlob(@as(*const IEnroll4, @ptrCast(self)), pblobResponse);
+    }
+    pub fn acceptFileResponseWStr(self: *const IEnroll4, pwszResponseFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).acceptFileResponseWStr(@as(*const IEnroll4, @ptrCast(self)), pwszResponseFileName);
+    }
+    pub fn getCertContextFromResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPTOAPI_BLOB, ppCertContext: ?*?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getCertContextFromResponseBlob(@as(*const IEnroll4, @ptrCast(self)), pblobResponse, ppCertContext);
+    }
+    pub fn getCertContextFromFileResponseWStr(self: *const IEnroll4, pwszResponseFileName: ?[*:0]const u16, ppCertContext: ?*?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getCertContextFromFileResponseWStr(@as(*const IEnroll4, @ptrCast(self)), pwszResponseFileName, ppCertContext);
+    }
+    pub fn createPFXWStr(self: *const IEnroll4, pwszPassword: ?[*:0]const u16, pblobPFX: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createPFXWStr(@as(*const IEnroll4, @ptrCast(self)), pwszPassword, pblobPFX);
+    }
+    pub fn createFilePFXWStr(self: *const IEnroll4, pwszPassword: ?[*:0]const u16, pwszPFXFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createFilePFXWStr(@as(*const IEnroll4, @ptrCast(self)), pwszPassword, pwszPFXFileName);
+    }
+    pub fn setPendingRequestInfoWStr(self: *const IEnroll4, lRequestID: i32, pwszCADNS: ?[*:0]const u16, pwszCAName: ?[*:0]const u16, pwszFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).setPendingRequestInfoWStr(@as(*const IEnroll4, @ptrCast(self)), lRequestID, pwszCADNS, pwszCAName, pwszFriendlyName);
+    }
+    pub fn enumPendingRequestWStr(self: *const IEnroll4, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, ppProperty: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).enumPendingRequestWStr(@as(*const IEnroll4, @ptrCast(self)), lIndex, lDesiredProperty, ppProperty);
+    }
+    pub fn removePendingRequestWStr(self: *const IEnroll4, thumbPrintBlob: CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).removePendingRequestWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
+    }
+    pub fn GetKeyLenEx(self: *const IEnroll4, lSizeSpec: XEKL_KEYSIZE, lKeySpec: XEKL_KEYSPEC, pdwKeySize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).GetKeyLenEx(@as(*const IEnroll4, @ptrCast(self)), lSizeSpec, lKeySpec, pdwKeySize);
+    }
+    pub fn InstallPKCS7BlobEx(self: *const IEnroll4, pBlobPKCS7: ?*CRYPTOAPI_BLOB, plCertInstalled: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).InstallPKCS7BlobEx(@as(*const IEnroll4, @ptrCast(self)), pBlobPKCS7, plCertInstalled);
+    }
+    pub fn AddCertTypeToRequestWStrEx(self: *const IEnroll4, lType: ADDED_CERT_TYPE, pwszOIDOrName: ?[*:0]const u16, lMajorVersion: i32, fMinorVersion: BOOL, lMinorVersion: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).AddCertTypeToRequestWStrEx(@as(*const IEnroll4, @ptrCast(self)), lType, pwszOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
+    }
+    pub fn getProviderTypeWStr(self: *const IEnroll4, pwszProvName: ?[*:0]const u16, plProvType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getProviderTypeWStr(@as(*const IEnroll4, @ptrCast(self)), pwszProvName, plProvType);
+    }
+    pub fn addBlobPropertyToCertificateWStr(self: *const IEnroll4, lPropertyId: i32, lReserved: i32, pBlobProperty: ?*CRYPTOAPI_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addBlobPropertyToCertificateWStr(@as(*const IEnroll4, @ptrCast(self)), lPropertyId, lReserved, pBlobProperty);
+    }
+    pub fn SetSignerCertificate(self: *const IEnroll4, pSignerCert: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).SetSignerCertificate(@as(*const IEnroll4, @ptrCast(self)), pSignerCert);
+    }
+    pub fn put_ClientId(self: *const IEnroll4, lClientId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const IEnroll4, @ptrCast(self)), lClientId);
+    }
+    pub fn get_ClientId(self: *const IEnroll4, plClientId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IEnroll4, @ptrCast(self)), plClientId);
+    }
+    pub fn put_IncludeSubjectKeyID(self: *const IEnroll4, fInclude: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_IncludeSubjectKeyID(@as(*const IEnroll4, @ptrCast(self)), fInclude);
+    }
+    pub fn get_IncludeSubjectKeyID(self: *const IEnroll4, pfInclude: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const IEnroll4, @ptrCast(self)), pfInclude);
+    }
 };
 
 const IID_ICertRequestD_Value = Guid.initString("d99e6e70-fc88-11d0-b498-00a0c90312f3");
@@ -16785,7 +20382,16 @@ pub const ICertRequestD = extern union {
             return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).Ping(@as(*const ICertRequestD, @ptrCast(self)), pwszAuthority);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Request(self: *const ICertRequestD, dwFlags: u32, pwszAuthority: ?[*:0]const u16, pdwRequestId: ?*u32, pdwDisposition: ?*u32, pwszAttributes: ?[*:0]const u16, pctbRequest: ?*const CERTTRANSBLOB, pctbCertChain: ?*CERTTRANSBLOB, pctbEncodedCert: ?*CERTTRANSBLOB, pctbDispositionMessage: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).Request(@as(*const ICertRequestD, @ptrCast(self)), dwFlags, pwszAuthority, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbCertChain, pctbEncodedCert, pctbDispositionMessage);
+    }
+    pub fn GetCACert(self: *const ICertRequestD, fchain: u32, pwszAuthority: ?[*:0]const u16, pctbOut: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).GetCACert(@as(*const ICertRequestD, @ptrCast(self)), fchain, pwszAuthority, pctbOut);
+    }
+    pub fn Ping(self: *const ICertRequestD, pwszAuthority: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).Ping(@as(*const ICertRequestD, @ptrCast(self)), pwszAuthority);
+    }
 };
 
 const IID_ICertRequestD2_Value = Guid.initString("5422fd3a-d4b8-4cef-a12e-e87d4ca22e90");
@@ -16846,7 +20452,19 @@ pub const ICertRequestD2 = extern union {
             return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).Ping2(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICertRequestD.MethodMixin(@This());
+    pub fn Request2(self: *const ICertRequestD2, pwszAuthority: ?[*:0]const u16, dwFlags: u32, pwszSerialNumber: ?[*:0]const u16, pdwRequestId: ?*u32, pdwDisposition: ?*u32, pwszAttributes: ?[*:0]const u16, pctbRequest: ?*const CERTTRANSBLOB, pctbFullResponse: ?*CERTTRANSBLOB, pctbEncodedCert: ?*CERTTRANSBLOB, pctbDispositionMessage: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).Request2(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, dwFlags, pwszSerialNumber, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbFullResponse, pctbEncodedCert, pctbDispositionMessage);
+    }
+    pub fn GetCAProperty(self: *const ICertRequestD2, pwszAuthority: ?[*:0]const u16, PropId: i32, PropIndex: i32, PropType: i32, pctbPropertyValue: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, PropId, PropIndex, PropType, pctbPropertyValue);
+    }
+    pub fn GetCAPropertyInfo(self: *const ICertRequestD2, pwszAuthority: ?[*:0]const u16, pcProperty: ?*i32, pctbPropInfo: ?*CERTTRANSBLOB) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).GetCAPropertyInfo(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, pcProperty, pctbPropInfo);
+    }
+    pub fn Ping2(self: *const ICertRequestD2, pwszAuthority: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).Ping2(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority);
+    }
 };
 
 

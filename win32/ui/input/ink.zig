@@ -28,7 +28,10 @@ pub const IInkCommitRequestHandler = extern union {
             return @as(*const IInkCommitRequestHandler.VTable, @ptrCast(self.vtable)).OnCommitRequested(@as(*const IInkCommitRequestHandler, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnCommitRequested(self: *const IInkCommitRequestHandler) callconv(.Inline) HRESULT {
+        return @as(*const IInkCommitRequestHandler.VTable, @ptrCast(self.vtable)).OnCommitRequested(@as(*const IInkCommitRequestHandler, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -85,7 +88,22 @@ pub const IInkPresenterDesktop = extern union {
             return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).OnHighContrastChanged(@as(*const IInkPresenterDesktop, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetRootVisual(self: *const IInkPresenterDesktop, rootVisual: ?*IUnknown, device: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetRootVisual(@as(*const IInkPresenterDesktop, @ptrCast(self)), rootVisual, device);
+    }
+    pub fn SetCommitRequestHandler(self: *const IInkPresenterDesktop, handler: ?*IInkCommitRequestHandler) callconv(.Inline) HRESULT {
+        return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetCommitRequestHandler(@as(*const IInkPresenterDesktop, @ptrCast(self)), handler);
+    }
+    pub fn GetSize(self: *const IInkPresenterDesktop, width: ?*f32, height: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IInkPresenterDesktop, @ptrCast(self)), width, height);
+    }
+    pub fn SetSize(self: *const IInkPresenterDesktop, width: f32, height: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IInkPresenterDesktop, @ptrCast(self)), width, height);
+    }
+    pub fn OnHighContrastChanged(self: *const IInkPresenterDesktop) callconv(.Inline) HRESULT {
+        return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).OnHighContrastChanged(@as(*const IInkPresenterDesktop, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -107,7 +125,10 @@ pub const IInkHostWorkItem = extern union {
             return @as(*const IInkHostWorkItem.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInkHostWorkItem, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IInkHostWorkItem) callconv(.Inline) HRESULT {
+        return @as(*const IInkHostWorkItem.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInkHostWorkItem, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -151,7 +172,16 @@ pub const IInkDesktopHost = extern union {
             return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).CreateAndInitializeInkPresenter(@as(*const IInkDesktopHost, @ptrCast(self)), rootVisual, width, height, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueueWorkItem(self: *const IInkDesktopHost, workItem: ?*IInkHostWorkItem) callconv(.Inline) HRESULT {
+        return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).QueueWorkItem(@as(*const IInkDesktopHost, @ptrCast(self)), workItem);
+    }
+    pub fn CreateInkPresenter(self: *const IInkDesktopHost, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).CreateInkPresenter(@as(*const IInkDesktopHost, @ptrCast(self)), riid, ppv);
+    }
+    pub fn CreateAndInitializeInkPresenter(self: *const IInkDesktopHost, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).CreateAndInitializeInkPresenter(@as(*const IInkDesktopHost, @ptrCast(self)), rootVisual, width, height, riid, ppv);
+    }
 };
 
 const CLSID_InkD2DRenderer_Value = Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
@@ -188,7 +218,10 @@ pub const IInkD2DRenderer = extern union {
             return @as(*const IInkD2DRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Draw(self: *const IInkD2DRenderer, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IInkD2DRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
+    }
 };
 
 const IID_IInkD2DRenderer2_Value = Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
@@ -212,7 +245,10 @@ pub const IInkD2DRenderer2 = extern union {
             return @as(*const IInkD2DRenderer2.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer2, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Draw(self: *const IInkD2DRenderer2, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.Inline) HRESULT {
+        return @as(*const IInkD2DRenderer2.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer2, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
+    }
 };
 
 

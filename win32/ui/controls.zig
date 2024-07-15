@@ -6226,7 +6226,94 @@ pub const IImageList = extern union {
             return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetOverlayImage(@as(*const IImageList, @ptrCast(self)), iOverlay, piIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Add(self: *const IImageList, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Add(@as(*const IImageList, @ptrCast(self)), hbmImage, hbmMask, pi);
+    }
+    pub fn ReplaceIcon(self: *const IImageList, i: i32, hicon: ?HICON, pi: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).ReplaceIcon(@as(*const IImageList, @ptrCast(self)), i, hicon, pi);
+    }
+    pub fn SetOverlayImage(self: *const IImageList, iImage: i32, iOverlay: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetOverlayImage(@as(*const IImageList, @ptrCast(self)), iImage, iOverlay);
+    }
+    pub fn Replace(self: *const IImageList, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Replace(@as(*const IImageList, @ptrCast(self)), i, hbmImage, hbmMask);
+    }
+    pub fn AddMasked(self: *const IImageList, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).AddMasked(@as(*const IImageList, @ptrCast(self)), hbmImage, crMask, pi);
+    }
+    pub fn Draw(self: *const IImageList, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Draw(@as(*const IImageList, @ptrCast(self)), pimldp);
+    }
+    pub fn Remove(self: *const IImageList, i: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Remove(@as(*const IImageList, @ptrCast(self)), i);
+    }
+    pub fn GetIcon(self: *const IImageList, i: i32, flags: u32, picon: ?*?HICON) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IImageList, @ptrCast(self)), i, flags, picon);
+    }
+    pub fn GetImageInfo(self: *const IImageList, i: i32, pImageInfo: ?*IMAGEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IImageList, @ptrCast(self)), i, pImageInfo);
+    }
+    pub fn Copy(self: *const IImageList, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Copy(@as(*const IImageList, @ptrCast(self)), iDst, punkSrc, iSrc, uFlags);
+    }
+    pub fn Merge(self: *const IImageList, @"i1": i32, punk2: ?*IUnknown, @"i2": i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IImageList, @ptrCast(self)), @"i1", punk2, @"i2", dx, dy, riid, ppv);
+    }
+    pub fn Clone(self: *const IImageList, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Clone(@as(*const IImageList, @ptrCast(self)), riid, ppv);
+    }
+    pub fn GetImageRect(self: *const IImageList, i: i32, prc: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageRect(@as(*const IImageList, @ptrCast(self)), i, prc);
+    }
+    pub fn GetIconSize(self: *const IImageList, cx: ?*i32, cy: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetIconSize(@as(*const IImageList, @ptrCast(self)), cx, cy);
+    }
+    pub fn SetIconSize(self: *const IImageList, cx: i32, cy: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetIconSize(@as(*const IImageList, @ptrCast(self)), cx, cy);
+    }
+    pub fn GetImageCount(self: *const IImageList, pi: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageCount(@as(*const IImageList, @ptrCast(self)), pi);
+    }
+    pub fn SetImageCount(self: *const IImageList, uNewCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetImageCount(@as(*const IImageList, @ptrCast(self)), uNewCount);
+    }
+    pub fn SetBkColor(self: *const IImageList, clrBk: u32, pclr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetBkColor(@as(*const IImageList, @ptrCast(self)), clrBk, pclr);
+    }
+    pub fn GetBkColor(self: *const IImageList, pclr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetBkColor(@as(*const IImageList, @ptrCast(self)), pclr);
+    }
+    pub fn BeginDrag(self: *const IImageList, iTrack: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).BeginDrag(@as(*const IImageList, @ptrCast(self)), iTrack, dxHotspot, dyHotspot);
+    }
+    pub fn EndDrag(self: *const IImageList) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).EndDrag(@as(*const IImageList, @ptrCast(self)));
+    }
+    pub fn DragEnter(self: *const IImageList, hwndLock: ?HWND, x: i32, y: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragEnter(@as(*const IImageList, @ptrCast(self)), hwndLock, x, y);
+    }
+    pub fn DragLeave(self: *const IImageList, hwndLock: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragLeave(@as(*const IImageList, @ptrCast(self)), hwndLock);
+    }
+    pub fn DragMove(self: *const IImageList, x: i32, y: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragMove(@as(*const IImageList, @ptrCast(self)), x, y);
+    }
+    pub fn SetDragCursorImage(self: *const IImageList, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetDragCursorImage(@as(*const IImageList, @ptrCast(self)), punk, iDrag, dxHotspot, dyHotspot);
+    }
+    pub fn DragShowNolock(self: *const IImageList, fShow: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragShowNolock(@as(*const IImageList, @ptrCast(self)), fShow);
+    }
+    pub fn GetDragImage(self: *const IImageList, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetDragImage(@as(*const IImageList, @ptrCast(self)), ppt, pptHotspot, riid, ppv);
+    }
+    pub fn GetItemFlags(self: *const IImageList, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetItemFlags(@as(*const IImageList, @ptrCast(self)), i, dwFlags);
+    }
+    pub fn GetOverlayImage(self: *const IImageList, iOverlay: i32, piIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetOverlayImage(@as(*const IImageList, @ptrCast(self)), iOverlay, piIndex);
+    }
 };
 
 pub const IMAGELISTSTATS = extern struct {
@@ -6366,7 +6453,43 @@ pub const IImageList2 = extern union {
             return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).ReplaceFromImageList(@as(*const IImageList2, @ptrCast(self)), i, pil, iSrc, punk, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IImageList.MethodMixin(@This());
+    pub fn Resize(self: *const IImageList2, cxNewIconSize: i32, cyNewIconSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Resize(@as(*const IImageList2, @ptrCast(self)), cxNewIconSize, cyNewIconSize);
+    }
+    pub fn GetOriginalSize(self: *const IImageList2, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetOriginalSize(@as(*const IImageList2, @ptrCast(self)), iImage, dwFlags, pcx, pcy);
+    }
+    pub fn SetOriginalSize(self: *const IImageList2, iImage: i32, cx: i32, cy: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).SetOriginalSize(@as(*const IImageList2, @ptrCast(self)), iImage, cx, cy);
+    }
+    pub fn SetCallback(self: *const IImageList2, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IImageList2, @ptrCast(self)), punk);
+    }
+    pub fn GetCallback(self: *const IImageList2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetCallback(@as(*const IImageList2, @ptrCast(self)), riid, ppv);
+    }
+    pub fn ForceImagePresent(self: *const IImageList2, iImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).ForceImagePresent(@as(*const IImageList2, @ptrCast(self)), iImage, dwFlags);
+    }
+    pub fn DiscardImages(self: *const IImageList2, iFirstImage: i32, iLastImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).DiscardImages(@as(*const IImageList2, @ptrCast(self)), iFirstImage, iLastImage, dwFlags);
+    }
+    pub fn PreloadImages(self: *const IImageList2, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).PreloadImages(@as(*const IImageList2, @ptrCast(self)), pimldp);
+    }
+    pub fn GetStatistics(self: *const IImageList2, pils: ?*IMAGELISTSTATS) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IImageList2, @ptrCast(self)), pils);
+    }
+    pub fn Initialize(self: *const IImageList2, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IImageList2, @ptrCast(self)), cx, cy, flags, cInitial, cGrow);
+    }
+    pub fn Replace2(self: *const IImageList2, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Replace2(@as(*const IImageList2, @ptrCast(self)), i, hbmImage, hbmMask, punk, dwFlags);
+    }
+    pub fn ReplaceFromImageList(self: *const IImageList2, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).ReplaceFromImageList(@as(*const IImageList2, @ptrCast(self)), i, pil, iSrc, punk, dwFlags);
+    }
 };
 
 pub const TA_PROPERTY = enum(i32) {

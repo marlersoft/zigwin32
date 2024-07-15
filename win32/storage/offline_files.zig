@@ -700,7 +700,82 @@ pub const IOfflineFilesEvents = extern union {
             return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).Ping(@as(*const IOfflineFilesEvents, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CacheMoved(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).CacheMoved(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszOldPath, pszNewPath);
+    }
+    pub fn CacheIsFull(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).CacheIsFull(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
+    pub fn CacheIsCorrupted(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).CacheIsCorrupted(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
+    pub fn Enabled(self: *const IOfflineFilesEvents, bEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).Enabled(@as(*const IOfflineFilesEvents, @ptrCast(self)), bEnabled);
+    }
+    pub fn EncryptionChanged(self: *const IOfflineFilesEvents, bWasEncrypted: BOOL, bWasPartial: BOOL, bIsEncrypted: BOOL, bIsPartial: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).EncryptionChanged(@as(*const IOfflineFilesEvents, @ptrCast(self)), bWasEncrypted, bWasPartial, bIsEncrypted, bIsPartial);
+    }
+    pub fn SyncBegin(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncBegin(@as(*const IOfflineFilesEvents, @ptrCast(self)), rSyncId);
+    }
+    pub fn SyncFileResult(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, pszFile: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncFileResult(@as(*const IOfflineFilesEvents, @ptrCast(self)), rSyncId, pszFile, hrResult);
+    }
+    pub fn SyncConflictRecAdded(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncConflictRecAdded(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+    }
+    pub fn SyncConflictRecUpdated(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncConflictRecUpdated(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+    }
+    pub fn SyncConflictRecRemoved(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncConflictRecRemoved(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+    }
+    pub fn SyncEnd(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).SyncEnd(@as(*const IOfflineFilesEvents, @ptrCast(self)), rSyncId, hrResult);
+    }
+    pub fn NetTransportArrived(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).NetTransportArrived(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
+    pub fn NoNetTransports(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).NoNetTransports(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
+    pub fn ItemDisconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemDisconnected(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemReconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemReconnected(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemAvailableOffline(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemNotAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemNotAvailableOffline(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemPinned(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemNotPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemNotPinned(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemModified(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemModified(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType, bModifiedData, bModifiedAttributes);
+    }
+    pub fn ItemAddedToCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemAddedToCache(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemDeletedFromCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemDeletedFromCache(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszPath, ItemType);
+    }
+    pub fn ItemRenamed(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).ItemRenamed(@as(*const IOfflineFilesEvents, @ptrCast(self)), pszOldPath, pszNewPath, ItemType);
+    }
+    pub fn DataLost(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).DataLost(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
+    pub fn Ping(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents.VTable, @ptrCast(self.vtable)).Ping(@as(*const IOfflineFilesEvents, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -780,7 +855,34 @@ pub const IOfflineFilesEvents2 = extern union {
             return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).SettingsChangesApplied(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesEvents.MethodMixin(@This());
+    pub fn ItemReconnectBegin(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).ItemReconnectBegin(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn ItemReconnectEnd(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).ItemReconnectEnd(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn CacheEvictBegin(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).CacheEvictBegin(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn CacheEvictEnd(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).CacheEvictEnd(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn BackgroundSyncBegin(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).BackgroundSyncBegin(@as(*const IOfflineFilesEvents2, @ptrCast(self)), dwSyncControlFlags);
+    }
+    pub fn BackgroundSyncEnd(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).BackgroundSyncEnd(@as(*const IOfflineFilesEvents2, @ptrCast(self)), dwSyncControlFlags);
+    }
+    pub fn PolicyChangeDetected(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).PolicyChangeDetected(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn PreferenceChangeDetected(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).PreferenceChangeDetected(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
+    pub fn SettingsChangesApplied(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents2.VTable, @ptrCast(self.vtable)).SettingsChangesApplied(@as(*const IOfflineFilesEvents2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -825,7 +927,16 @@ pub const IOfflineFilesEvents3 = extern union {
             return @as(*const IOfflineFilesEvents3.VTable, @ptrCast(self.vtable)).PrefetchFileEnd(@as(*const IOfflineFilesEvents3, @ptrCast(self)), pszPath, hrResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesEvents2.MethodMixin(@This());
+    pub fn TransparentCacheItemNotify(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, EventType: OFFLINEFILES_EVENTS, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL, pzsOldPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents3.VTable, @ptrCast(self.vtable)).TransparentCacheItemNotify(@as(*const IOfflineFilesEvents3, @ptrCast(self)), pszPath, EventType, ItemType, bModifiedData, bModifiedAttributes, pzsOldPath);
+    }
+    pub fn PrefetchFileBegin(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents3.VTable, @ptrCast(self.vtable)).PrefetchFileBegin(@as(*const IOfflineFilesEvents3, @ptrCast(self)), pszPath);
+    }
+    pub fn PrefetchFileEnd(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents3.VTable, @ptrCast(self.vtable)).PrefetchFileEnd(@as(*const IOfflineFilesEvents3, @ptrCast(self)), pszPath, hrResult);
+    }
 };
 
 const IID_IOfflineFilesEvents4_Value = Guid.initString("dbd69b1e-c7d2-473e-b35f-9d8c24c0c484");
@@ -856,7 +967,13 @@ pub const IOfflineFilesEvents4 = extern union {
             return @as(*const IOfflineFilesEvents4.VTable, @ptrCast(self.vtable)).PrefetchCloseHandleEnd(@as(*const IOfflineFilesEvents4, @ptrCast(self)), dwClosedHandleCount, dwOpenHandleCount, hrResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesEvents3.MethodMixin(@This());
+    pub fn PrefetchCloseHandleBegin(self: *const IOfflineFilesEvents4) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents4.VTable, @ptrCast(self.vtable)).PrefetchCloseHandleBegin(@as(*const IOfflineFilesEvents4, @ptrCast(self)));
+    }
+    pub fn PrefetchCloseHandleEnd(self: *const IOfflineFilesEvents4, dwClosedHandleCount: u32, dwOpenHandleCount: u32, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEvents4.VTable, @ptrCast(self.vtable)).PrefetchCloseHandleEnd(@as(*const IOfflineFilesEvents4, @ptrCast(self)), dwClosedHandleCount, dwOpenHandleCount, hrResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -900,7 +1017,16 @@ pub const IOfflineFilesEventsFilter = extern union {
             return @as(*const IOfflineFilesEventsFilter.VTable, @ptrCast(self.vtable)).GetExcludedEvents(@as(*const IOfflineFilesEventsFilter, @ptrCast(self)), cElements, prgEvents, pcEvents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPathFilter(self: *const IOfflineFilesEventsFilter, ppszFilter: ?*?PWSTR, pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEventsFilter.VTable, @ptrCast(self.vtable)).GetPathFilter(@as(*const IOfflineFilesEventsFilter, @ptrCast(self)), ppszFilter, pMatch);
+    }
+    pub fn GetIncludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEventsFilter.VTable, @ptrCast(self.vtable)).GetIncludedEvents(@as(*const IOfflineFilesEventsFilter, @ptrCast(self)), cElements, prgEvents, pcEvents);
+    }
+    pub fn GetExcludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesEventsFilter.VTable, @ptrCast(self.vtable)).GetExcludedEvents(@as(*const IOfflineFilesEventsFilter, @ptrCast(self)), cElements, prgEvents, pcEvents);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -931,7 +1057,13 @@ pub const IOfflineFilesErrorInfo = extern union {
             return @as(*const IOfflineFilesErrorInfo.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IOfflineFilesErrorInfo, @ptrCast(self)), ppszDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRawData(self: *const IOfflineFilesErrorInfo, ppBlob: ?*?*BYTE_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesErrorInfo.VTable, @ptrCast(self.vtable)).GetRawData(@as(*const IOfflineFilesErrorInfo, @ptrCast(self)), ppBlob);
+    }
+    pub fn GetDescription(self: *const IOfflineFilesErrorInfo, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesErrorInfo.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IOfflineFilesErrorInfo, @ptrCast(self)), ppszDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -971,7 +1103,16 @@ pub const IOfflineFilesSyncErrorItemInfo = extern union {
             return @as(*const IOfflineFilesSyncErrorItemInfo.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IOfflineFilesSyncErrorItemInfo, @ptrCast(self)), pSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFileAttributes(self: *const IOfflineFilesSyncErrorItemInfo, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorItemInfo.VTable, @ptrCast(self.vtable)).GetFileAttributes(@as(*const IOfflineFilesSyncErrorItemInfo, @ptrCast(self)), pdwAttributes);
+    }
+    pub fn GetFileTimes(self: *const IOfflineFilesSyncErrorItemInfo, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorItemInfo.VTable, @ptrCast(self.vtable)).GetFileTimes(@as(*const IOfflineFilesSyncErrorItemInfo, @ptrCast(self)), pftLastWrite, pftChange);
+    }
+    pub fn GetFileSize(self: *const IOfflineFilesSyncErrorItemInfo, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorItemInfo.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IOfflineFilesSyncErrorItemInfo, @ptrCast(self)), pSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1046,7 +1187,28 @@ pub const IOfflineFilesSyncErrorInfo = extern union {
             return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetOriginalInfo(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), ppInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesErrorInfo.MethodMixin(@This());
+    pub fn GetSyncOperation(self: *const IOfflineFilesSyncErrorInfo, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetSyncOperation(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), pSyncOp);
+    }
+    pub fn GetItemChangeFlags(self: *const IOfflineFilesSyncErrorInfo, pdwItemChangeFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetItemChangeFlags(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), pdwItemChangeFlags);
+    }
+    pub fn InfoEnumerated(self: *const IOfflineFilesSyncErrorInfo, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).InfoEnumerated(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
+    }
+    pub fn InfoAvailable(self: *const IOfflineFilesSyncErrorInfo, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).InfoAvailable(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
+    }
+    pub fn GetLocalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetLocalInfo(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), ppInfo);
+    }
+    pub fn GetRemoteInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetRemoteInfo(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), ppInfo);
+    }
+    pub fn GetOriginalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncErrorInfo.VTable, @ptrCast(self.vtable)).GetOriginalInfo(@as(*const IOfflineFilesSyncErrorInfo, @ptrCast(self)), ppInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1085,7 +1247,16 @@ pub const IOfflineFilesProgress = extern union {
             return @as(*const IOfflineFilesProgress.VTable, @ptrCast(self.vtable)).End(@as(*const IOfflineFilesProgress, @ptrCast(self)), hrResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesProgress.VTable, @ptrCast(self.vtable)).Begin(@as(*const IOfflineFilesProgress, @ptrCast(self)), pbAbort);
+    }
+    pub fn QueryAbort(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesProgress.VTable, @ptrCast(self.vtable)).QueryAbort(@as(*const IOfflineFilesProgress, @ptrCast(self)), pbAbort);
+    }
+    pub fn End(self: *const IOfflineFilesProgress, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesProgress.VTable, @ptrCast(self.vtable)).End(@as(*const IOfflineFilesProgress, @ptrCast(self)), hrResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1119,7 +1290,13 @@ pub const IOfflineFilesSimpleProgress = extern union {
             return @as(*const IOfflineFilesSimpleProgress.VTable, @ptrCast(self.vtable)).ItemResult(@as(*const IOfflineFilesSimpleProgress, @ptrCast(self)), pszFile, hrResult, pResponse);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesProgress.MethodMixin(@This());
+    pub fn ItemBegin(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSimpleProgress.VTable, @ptrCast(self.vtable)).ItemBegin(@as(*const IOfflineFilesSimpleProgress, @ptrCast(self)), pszFile, pResponse);
+    }
+    pub fn ItemResult(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSimpleProgress.VTable, @ptrCast(self.vtable)).ItemResult(@as(*const IOfflineFilesSimpleProgress, @ptrCast(self)), pszFile, hrResult, pResponse);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1154,7 +1331,13 @@ pub const IOfflineFilesSyncProgress = extern union {
             return @as(*const IOfflineFilesSyncProgress.VTable, @ptrCast(self.vtable)).SyncItemResult(@as(*const IOfflineFilesSyncProgress, @ptrCast(self)), pszFile, hrResult, pErrorInfo, pResponse);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesProgress.MethodMixin(@This());
+    pub fn SyncItemBegin(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncProgress.VTable, @ptrCast(self.vtable)).SyncItemBegin(@as(*const IOfflineFilesSyncProgress, @ptrCast(self)), pszFile, pResponse);
+    }
+    pub fn SyncItemResult(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncProgress.VTable, @ptrCast(self.vtable)).SyncItemResult(@as(*const IOfflineFilesSyncProgress, @ptrCast(self)), pszFile, hrResult, pErrorInfo, pResponse);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1182,7 +1365,10 @@ pub const IOfflineFilesSyncConflictHandler = extern union {
             return @as(*const IOfflineFilesSyncConflictHandler.VTable, @ptrCast(self.vtable)).ResolveConflict(@as(*const IOfflineFilesSyncConflictHandler, @ptrCast(self)), pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ResolveConflict(self: *const IOfflineFilesSyncConflictHandler, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSyncConflictHandler.VTable, @ptrCast(self.vtable)).ResolveConflict(@as(*const IOfflineFilesSyncConflictHandler, @ptrCast(self)), pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1226,7 +1412,16 @@ pub const IOfflineFilesItemFilter = extern union {
             return @as(*const IOfflineFilesItemFilter.VTable, @ptrCast(self.vtable)).GetPatternFilter(@as(*const IOfflineFilesItemFilter, @ptrCast(self)), pszPattern, cchPattern);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFilterFlags(self: *const IOfflineFilesItemFilter, pullFlags: ?*u64, pullMask: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItemFilter.VTable, @ptrCast(self.vtable)).GetFilterFlags(@as(*const IOfflineFilesItemFilter, @ptrCast(self)), pullFlags, pullMask);
+    }
+    pub fn GetTimeFilter(self: *const IOfflineFilesItemFilter, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItemFilter.VTable, @ptrCast(self.vtable)).GetTimeFilter(@as(*const IOfflineFilesItemFilter, @ptrCast(self)), pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
+    }
+    pub fn GetPatternFilter(self: *const IOfflineFilesItemFilter, pszPattern: [*:0]u16, cchPattern: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItemFilter.VTable, @ptrCast(self.vtable)).GetPatternFilter(@as(*const IOfflineFilesItemFilter, @ptrCast(self)), pszPattern, cchPattern);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1281,7 +1476,22 @@ pub const IOfflineFilesItem = extern union {
             return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).IsMarkedForDeletion(@as(*const IOfflineFilesItem, @ptrCast(self)), pbMarkedForDeletion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemType(self: *const IOfflineFilesItem, pItemType: ?*OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IOfflineFilesItem, @ptrCast(self)), pItemType);
+    }
+    pub fn GetPath(self: *const IOfflineFilesItem, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IOfflineFilesItem, @ptrCast(self)), ppszPath);
+    }
+    pub fn GetParentItem(self: *const IOfflineFilesItem, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).GetParentItem(@as(*const IOfflineFilesItem, @ptrCast(self)), ppItem);
+    }
+    pub fn Refresh(self: *const IOfflineFilesItem, dwQueryFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IOfflineFilesItem, @ptrCast(self)), dwQueryFlags);
+    }
+    pub fn IsMarkedForDeletion(self: *const IOfflineFilesItem, pbMarkedForDeletion: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItem.VTable, @ptrCast(self.vtable)).IsMarkedForDeletion(@as(*const IOfflineFilesItem, @ptrCast(self)), pbMarkedForDeletion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1296,7 +1506,7 @@ pub const IOfflineFilesServerItem = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOfflineFilesItem.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesItem.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1311,7 +1521,7 @@ pub const IOfflineFilesShareItem = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOfflineFilesItem.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesItem.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1326,7 +1536,7 @@ pub const IOfflineFilesDirectoryItem = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOfflineFilesItem.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesItem.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1357,7 +1567,13 @@ pub const IOfflineFilesFileItem = extern union {
             return @as(*const IOfflineFilesFileItem.VTable, @ptrCast(self.vtable)).IsEncrypted(@as(*const IOfflineFilesFileItem, @ptrCast(self)), pbIsEncrypted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesItem.MethodMixin(@This());
+    pub fn IsSparse(self: *const IOfflineFilesFileItem, pbIsSparse: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesFileItem.VTable, @ptrCast(self.vtable)).IsSparse(@as(*const IOfflineFilesFileItem, @ptrCast(self)), pbIsSparse);
+    }
+    pub fn IsEncrypted(self: *const IOfflineFilesFileItem, pbIsEncrypted: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesFileItem.VTable, @ptrCast(self.vtable)).IsEncrypted(@as(*const IOfflineFilesFileItem, @ptrCast(self)), pbIsEncrypted);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1405,7 +1621,19 @@ pub const IEnumOfflineFilesItems = extern union {
             return @as(*const IEnumOfflineFilesItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOfflineFilesItems, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumOfflineFilesItems, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOfflineFilesItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumOfflineFilesItems, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOfflineFilesItems, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOfflineFilesItems, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumOfflineFilesItems, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOfflineFilesItems, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1443,7 +1671,13 @@ pub const IOfflineFilesItemContainer = extern union {
             return @as(*const IOfflineFilesItemContainer.VTable, @ptrCast(self.vtable)).EnumItemsEx(@as(*const IOfflineFilesItemContainer, @ptrCast(self)), pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumItems(self: *const IOfflineFilesItemContainer, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItemContainer.VTable, @ptrCast(self.vtable)).EnumItems(@as(*const IOfflineFilesItemContainer, @ptrCast(self)), dwQueryFlags, ppenum);
+    }
+    pub fn EnumItemsEx(self: *const IOfflineFilesItemContainer, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesItemContainer.VTable, @ptrCast(self.vtable)).EnumItemsEx(@as(*const IOfflineFilesItemContainer, @ptrCast(self)), pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1506,7 +1740,25 @@ pub const IOfflineFilesChangeInfo = extern union {
             return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsLocallyModifiedTime(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbLocallyModifiedTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsDirty(self: *const IOfflineFilesChangeInfo, pbDirty: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbDirty);
+    }
+    pub fn IsDeletedOffline(self: *const IOfflineFilesChangeInfo, pbDeletedOffline: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsDeletedOffline(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbDeletedOffline);
+    }
+    pub fn IsCreatedOffline(self: *const IOfflineFilesChangeInfo, pbCreatedOffline: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsCreatedOffline(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbCreatedOffline);
+    }
+    pub fn IsLocallyModifiedData(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedData: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsLocallyModifiedData(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbLocallyModifiedData);
+    }
+    pub fn IsLocallyModifiedAttributes(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedAttributes: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsLocallyModifiedAttributes(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbLocallyModifiedAttributes);
+    }
+    pub fn IsLocallyModifiedTime(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedTime: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesChangeInfo.VTable, @ptrCast(self.vtable)).IsLocallyModifiedTime(@as(*const IOfflineFilesChangeInfo, @ptrCast(self)), pbLocallyModifiedTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1537,7 +1789,13 @@ pub const IOfflineFilesDirtyInfo = extern union {
             return @as(*const IOfflineFilesDirtyInfo.VTable, @ptrCast(self.vtable)).RemoteDirtyByteCount(@as(*const IOfflineFilesDirtyInfo, @ptrCast(self)), pDirtyByteCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LocalDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesDirtyInfo.VTable, @ptrCast(self.vtable)).LocalDirtyByteCount(@as(*const IOfflineFilesDirtyInfo, @ptrCast(self)), pDirtyByteCount);
+    }
+    pub fn RemoteDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesDirtyInfo.VTable, @ptrCast(self.vtable)).RemoteDirtyByteCount(@as(*const IOfflineFilesDirtyInfo, @ptrCast(self)), pDirtyByteCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1582,7 +1840,16 @@ pub const IOfflineFilesFileSysInfo = extern union {
             return @as(*const IOfflineFilesFileSysInfo.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IOfflineFilesFileSysInfo, @ptrCast(self)), copy, pSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAttributes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesFileSysInfo.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IOfflineFilesFileSysInfo, @ptrCast(self)), copy, pdwAttributes);
+    }
+    pub fn GetTimes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesFileSysInfo.VTable, @ptrCast(self.vtable)).GetTimes(@as(*const IOfflineFilesFileSysInfo, @ptrCast(self)), copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
+    }
+    pub fn GetFileSize(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesFileSysInfo.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IOfflineFilesFileSysInfo, @ptrCast(self)), copy, pSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1641,7 +1908,22 @@ pub const IOfflineFilesPinInfo = extern union {
             return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinnedForFolderRedirection(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinnedForFolderRedirection, pbInherit);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsPinned(self: *const IOfflineFilesPinInfo, pbPinned: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinned(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinned);
+    }
+    pub fn IsPinnedForUser(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinnedForUser(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinnedForUser, pbInherit);
+    }
+    pub fn IsPinnedForUserByPolicy(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinnedForUserByPolicy(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinnedForUser, pbInherit);
+    }
+    pub fn IsPinnedForComputer(self: *const IOfflineFilesPinInfo, pbPinnedForComputer: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinnedForComputer(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinnedForComputer, pbInherit);
+    }
+    pub fn IsPinnedForFolderRedirection(self: *const IOfflineFilesPinInfo, pbPinnedForFolderRedirection: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo.VTable, @ptrCast(self.vtable)).IsPinnedForFolderRedirection(@as(*const IOfflineFilesPinInfo, @ptrCast(self)), pbPinnedForFolderRedirection, pbInherit);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1664,7 +1946,10 @@ pub const IOfflineFilesPinInfo2 = extern union {
             return @as(*const IOfflineFilesPinInfo2.VTable, @ptrCast(self.vtable)).IsPartlyPinned(@as(*const IOfflineFilesPinInfo2, @ptrCast(self)), pbPartlyPinned);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesPinInfo.MethodMixin(@This());
+    pub fn IsPartlyPinned(self: *const IOfflineFilesPinInfo2, pbPartlyPinned: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesPinInfo2.VTable, @ptrCast(self.vtable)).IsPartlyPinned(@as(*const IOfflineFilesPinInfo2, @ptrCast(self)), pbPartlyPinned);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1687,7 +1972,10 @@ pub const IOfflineFilesTransparentCacheInfo = extern union {
             return @as(*const IOfflineFilesTransparentCacheInfo.VTable, @ptrCast(self.vtable)).IsTransparentlyCached(@as(*const IOfflineFilesTransparentCacheInfo, @ptrCast(self)), pbTransparentlyCached);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsTransparentlyCached(self: *const IOfflineFilesTransparentCacheInfo, pbTransparentlyCached: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesTransparentCacheInfo.VTable, @ptrCast(self.vtable)).IsTransparentlyCached(@as(*const IOfflineFilesTransparentCacheInfo, @ptrCast(self)), pbTransparentlyCached);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1710,7 +1998,10 @@ pub const IOfflineFilesGhostInfo = extern union {
             return @as(*const IOfflineFilesGhostInfo.VTable, @ptrCast(self.vtable)).IsGhosted(@as(*const IOfflineFilesGhostInfo, @ptrCast(self)), pbGhosted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsGhosted(self: *const IOfflineFilesGhostInfo, pbGhosted: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesGhostInfo.VTable, @ptrCast(self.vtable)).IsGhosted(@as(*const IOfflineFilesGhostInfo, @ptrCast(self)), pbGhosted);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1764,7 +2055,19 @@ pub const IOfflineFilesConnectionInfo = extern union {
             return @as(*const IOfflineFilesConnectionInfo.VTable, @ptrCast(self.vtable)).TransitionOffline(@as(*const IOfflineFilesConnectionInfo, @ptrCast(self)), hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetConnectState(self: *const IOfflineFilesConnectionInfo, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesConnectionInfo.VTable, @ptrCast(self.vtable)).GetConnectState(@as(*const IOfflineFilesConnectionInfo, @ptrCast(self)), pConnectState, pOfflineReason);
+    }
+    pub fn SetConnectState(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesConnectionInfo.VTable, @ptrCast(self.vtable)).SetConnectState(@as(*const IOfflineFilesConnectionInfo, @ptrCast(self)), hwndParent, dwFlags, ConnectState);
+    }
+    pub fn TransitionOnline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesConnectionInfo.VTable, @ptrCast(self.vtable)).TransitionOnline(@as(*const IOfflineFilesConnectionInfo, @ptrCast(self)), hwndParent, dwFlags);
+    }
+    pub fn TransitionOffline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesConnectionInfo.VTable, @ptrCast(self.vtable)).TransitionOffline(@as(*const IOfflineFilesConnectionInfo, @ptrCast(self)), hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1803,7 +2106,16 @@ pub const IOfflineFilesShareInfo = extern union {
             return @as(*const IOfflineFilesShareInfo.VTable, @ptrCast(self.vtable)).IsShareDfsJunction(@as(*const IOfflineFilesShareInfo, @ptrCast(self)), pbIsDfsJunction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetShareItem(self: *const IOfflineFilesShareInfo, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesShareInfo.VTable, @ptrCast(self.vtable)).GetShareItem(@as(*const IOfflineFilesShareInfo, @ptrCast(self)), ppShareItem);
+    }
+    pub fn GetShareCachingMode(self: *const IOfflineFilesShareInfo, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesShareInfo.VTable, @ptrCast(self.vtable)).GetShareCachingMode(@as(*const IOfflineFilesShareInfo, @ptrCast(self)), pCachingMode);
+    }
+    pub fn IsShareDfsJunction(self: *const IOfflineFilesShareInfo, pbIsDfsJunction: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesShareInfo.VTable, @ptrCast(self.vtable)).IsShareDfsJunction(@as(*const IOfflineFilesShareInfo, @ptrCast(self)), pbIsDfsJunction);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1826,7 +2138,10 @@ pub const IOfflineFilesSuspend = extern union {
             return @as(*const IOfflineFilesSuspend.VTable, @ptrCast(self.vtable)).SuspendRoot(@as(*const IOfflineFilesSuspend, @ptrCast(self)), bSuspend);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SuspendRoot(self: *const IOfflineFilesSuspend, bSuspend: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSuspend.VTable, @ptrCast(self.vtable)).SuspendRoot(@as(*const IOfflineFilesSuspend, @ptrCast(self)), bSuspend);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1850,7 +2165,10 @@ pub const IOfflineFilesSuspendInfo = extern union {
             return @as(*const IOfflineFilesSuspendInfo.VTable, @ptrCast(self.vtable)).IsSuspended(@as(*const IOfflineFilesSuspendInfo, @ptrCast(self)), pbSuspended, pbSuspendedRoot);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsSuspended(self: *const IOfflineFilesSuspendInfo, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSuspendInfo.VTable, @ptrCast(self.vtable)).IsSuspended(@as(*const IOfflineFilesSuspendInfo, @ptrCast(self)), pbSuspended, pbSuspendedRoot);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1941,7 +2259,34 @@ pub const IOfflineFilesSetting = extern union {
             return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IOfflineFilesSetting, @ptrCast(self)), pvarValue, pbSetByPolicy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetName(self: *const IOfflineFilesSetting, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetName(@as(*const IOfflineFilesSetting, @ptrCast(self)), ppszName);
+    }
+    pub fn GetValueType(self: *const IOfflineFilesSetting, pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetValueType(@as(*const IOfflineFilesSetting, @ptrCast(self)), pType);
+    }
+    pub fn GetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetPreference(@as(*const IOfflineFilesSetting, @ptrCast(self)), pvarValue, dwScope);
+    }
+    pub fn GetPreferenceScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetPreferenceScope(@as(*const IOfflineFilesSetting, @ptrCast(self)), pdwScope);
+    }
+    pub fn SetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*const VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).SetPreference(@as(*const IOfflineFilesSetting, @ptrCast(self)), pvarValue, dwScope);
+    }
+    pub fn DeletePreference(self: *const IOfflineFilesSetting, dwScope: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).DeletePreference(@as(*const IOfflineFilesSetting, @ptrCast(self)), dwScope);
+    }
+    pub fn GetPolicy(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IOfflineFilesSetting, @ptrCast(self)), pvarValue, dwScope);
+    }
+    pub fn GetPolicyScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetPolicyScope(@as(*const IOfflineFilesSetting, @ptrCast(self)), pdwScope);
+    }
+    pub fn GetValue(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, pbSetByPolicy: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesSetting.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IOfflineFilesSetting, @ptrCast(self)), pvarValue, pbSetByPolicy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1989,7 +2334,19 @@ pub const IEnumOfflineFilesSettings = extern union {
             return @as(*const IEnumOfflineFilesSettings.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOfflineFilesSettings, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumOfflineFilesSettings, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesSettings.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOfflineFilesSettings, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumOfflineFilesSettings, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesSettings.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOfflineFilesSettings, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesSettings.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOfflineFilesSettings, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumOfflineFilesSettings, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOfflineFilesSettings.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOfflineFilesSettings, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2192,7 +2549,58 @@ pub const IOfflineFilesCache = extern union {
             return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).IsPathCacheable(@as(*const IOfflineFilesCache, @ptrCast(self)), pszPath, pbCacheable, pShareCachingMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Synchronize(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).Synchronize(@as(*const IOfflineFilesCache, @ptrCast(self)), hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
+    }
+    pub fn DeleteItems(self: *const IOfflineFilesCache, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).DeleteItems(@as(*const IOfflineFilesCache, @ptrCast(self)), rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+    }
+    pub fn DeleteItemsForUser(self: *const IOfflineFilesCache, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).DeleteItemsForUser(@as(*const IOfflineFilesCache, @ptrCast(self)), pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+    }
+    pub fn Pin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).Pin(@as(*const IOfflineFilesCache, @ptrCast(self)), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+    }
+    pub fn Unpin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).Unpin(@as(*const IOfflineFilesCache, @ptrCast(self)), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+    }
+    pub fn GetEncryptionStatus(self: *const IOfflineFilesCache, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).GetEncryptionStatus(@as(*const IOfflineFilesCache, @ptrCast(self)), pbEncrypted, pbPartial);
+    }
+    pub fn Encrypt(self: *const IOfflineFilesCache, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).Encrypt(@as(*const IOfflineFilesCache, @ptrCast(self)), hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
+    }
+    pub fn FindItem(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).FindItem(@as(*const IOfflineFilesCache, @ptrCast(self)), pszPath, dwQueryFlags, ppItem);
+    }
+    pub fn FindItemEx(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).FindItemEx(@as(*const IOfflineFilesCache, @ptrCast(self)), pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
+    }
+    pub fn RenameItem(self: *const IOfflineFilesCache, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).RenameItem(@as(*const IOfflineFilesCache, @ptrCast(self)), pszPathOriginal, pszPathNew, bReplaceIfExists);
+    }
+    pub fn GetLocation(self: *const IOfflineFilesCache, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).GetLocation(@as(*const IOfflineFilesCache, @ptrCast(self)), ppszPath);
+    }
+    pub fn GetDiskSpaceInformation(self: *const IOfflineFilesCache, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).GetDiskSpaceInformation(@as(*const IOfflineFilesCache, @ptrCast(self)), pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
+    }
+    pub fn SetDiskSpaceLimits(self: *const IOfflineFilesCache, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).SetDiskSpaceLimits(@as(*const IOfflineFilesCache, @ptrCast(self)), cbLimit, cbUnpinnedLimit);
+    }
+    pub fn ProcessAdminPinPolicy(self: *const IOfflineFilesCache, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).ProcessAdminPinPolicy(@as(*const IOfflineFilesCache, @ptrCast(self)), pPinProgress, pUnpinProgress);
+    }
+    pub fn GetSettingObject(self: *const IOfflineFilesCache, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).GetSettingObject(@as(*const IOfflineFilesCache, @ptrCast(self)), pszSettingName, ppSetting);
+    }
+    pub fn EnumSettingObjects(self: *const IOfflineFilesCache, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).EnumSettingObjects(@as(*const IOfflineFilesCache, @ptrCast(self)), ppEnum);
+    }
+    pub fn IsPathCacheable(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache.VTable, @ptrCast(self.vtable)).IsPathCacheable(@as(*const IOfflineFilesCache, @ptrCast(self)), pszPath, pbCacheable, pShareCachingMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2217,7 +2625,10 @@ pub const IOfflineFilesCache2 = extern union {
             return @as(*const IOfflineFilesCache2.VTable, @ptrCast(self.vtable)).RenameItemEx(@as(*const IOfflineFilesCache2, @ptrCast(self)), pszPathOriginal, pszPathNew, bReplaceIfExists);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOfflineFilesCache.MethodMixin(@This());
+    pub fn RenameItemEx(self: *const IOfflineFilesCache2, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOfflineFilesCache2.VTable, @ptrCast(self.vtable)).RenameItemEx(@as(*const IOfflineFilesCache2, @ptrCast(self)), pszPathOriginal, pszPathNew, bReplaceIfExists);
+    }
 };
 
 

@@ -187,7 +187,16 @@ pub const IItemEnumerator = extern union {
             return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).Reset(@as(*const IItemEnumerator, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Current(self: *const IItemEnumerator, Item: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).Current(@as(*const IItemEnumerator, @ptrCast(self)), Item);
+    }
+    pub fn MoveNext(self: *const IItemEnumerator, ItemValid: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IItemEnumerator, @ptrCast(self)), ItemValid);
+    }
+    pub fn Reset(self: *const IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).Reset(@as(*const IItemEnumerator, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -238,7 +247,19 @@ pub const ISettingsIdentity = extern union {
             return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const ISettingsIdentity, @ptrCast(self)), Flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsIdentity, @ptrCast(self)), Reserved, Name, Value);
+    }
+    pub fn SetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).SetAttribute(@as(*const ISettingsIdentity, @ptrCast(self)), Reserved, Name, Value);
+    }
+    pub fn GetFlags(self: *const ISettingsIdentity, Flags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISettingsIdentity, @ptrCast(self)), Flags);
+    }
+    pub fn SetFlags(self: *const ISettingsIdentity, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const ISettingsIdentity, @ptrCast(self)), Flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -434,7 +455,70 @@ pub const ITargetInfo = extern union {
             return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetSchemaHiveMountName(@as(*const ITargetInfo, @ptrCast(self)), pMountName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetMode(@as(*const ITargetInfo, @ptrCast(self)), TargetMode);
+    }
+    pub fn SetTargetMode(self: *const ITargetInfo, TargetMode: WcmTargetMode) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetMode(@as(*const ITargetInfo, @ptrCast(self)), TargetMode);
+    }
+    pub fn GetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTemporaryStoreLocation(@as(*const ITargetInfo, @ptrCast(self)), TemporaryStoreLocation);
+    }
+    pub fn SetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTemporaryStoreLocation(@as(*const ITargetInfo, @ptrCast(self)), TemporaryStoreLocation);
+    }
+    pub fn GetTargetID(self: *const ITargetInfo, TargetID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetID(@as(*const ITargetInfo, @ptrCast(self)), TargetID);
+    }
+    pub fn SetTargetID(self: *const ITargetInfo, TargetID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetID(@as(*const ITargetInfo, @ptrCast(self)), TargetID);
+    }
+    pub fn GetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetProcessorArchitecture(@as(*const ITargetInfo, @ptrCast(self)), ProcessorArchitecture);
+    }
+    pub fn SetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetProcessorArchitecture(@as(*const ITargetInfo, @ptrCast(self)), ProcessorArchitecture);
+    }
+    pub fn GetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITargetInfo, @ptrCast(self)), Offline, Property, Value);
+    }
+    pub fn SetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITargetInfo, @ptrCast(self)), Offline, Property, Value);
+    }
+    pub fn GetEnumerator(self: *const ITargetInfo, Enumerator: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const ITargetInfo, @ptrCast(self)), Enumerator);
+    }
+    pub fn ExpandTarget(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).ExpandTarget(@as(*const ITargetInfo, @ptrCast(self)), Offline, Location, ExpandedLocation);
+    }
+    pub fn ExpandTargetPath(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).ExpandTargetPath(@as(*const ITargetInfo, @ptrCast(self)), Offline, Location, ExpandedLocation);
+    }
+    pub fn SetModulePath(self: *const ITargetInfo, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetModulePath(@as(*const ITargetInfo, @ptrCast(self)), Module, Path);
+    }
+    pub fn LoadModule(self: *const ITargetInfo, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).LoadModule(@as(*const ITargetInfo, @ptrCast(self)), Module, ModuleHandle);
+    }
+    pub fn SetWow64Context(self: *const ITargetInfo, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetWow64Context(@as(*const ITargetInfo, @ptrCast(self)), InstallerModule, Wow64Context);
+    }
+    pub fn TranslateWow64(self: *const ITargetInfo, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).TranslateWow64(@as(*const ITargetInfo, @ptrCast(self)), ClientArchitecture, Value, TranslatedValue);
+    }
+    pub fn SetSchemaHiveLocation(self: *const ITargetInfo, pwzHiveDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetSchemaHiveLocation(@as(*const ITargetInfo, @ptrCast(self)), pwzHiveDir);
+    }
+    pub fn GetSchemaHiveLocation(self: *const ITargetInfo, pHiveLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetSchemaHiveLocation(@as(*const ITargetInfo, @ptrCast(self)), pHiveLocation);
+    }
+    pub fn SetSchemaHiveMountName(self: *const ITargetInfo, pwzMountName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetSchemaHiveMountName(@as(*const ITargetInfo, @ptrCast(self)), pwzMountName);
+    }
+    pub fn GetSchemaHiveMountName(self: *const ITargetInfo, pMountName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetSchemaHiveMountName(@as(*const ITargetInfo, @ptrCast(self)), pMountName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -592,7 +676,55 @@ pub const ISettingsEngine = extern union {
             return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNamespaces(self: *const ISettingsEngine, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const ISettingsEngine, @ptrCast(self)), Flags, Reserved, Namespaces);
+    }
+    pub fn GetNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, Access, Reserved, NamespaceItem);
+    }
+    pub fn GetErrorDescription(self: *const ISettingsEngine, HResult: i32, Message: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const ISettingsEngine, @ptrCast(self)), HResult, Message);
+    }
+    pub fn CreateSettingsIdentity(self: *const ISettingsEngine, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateSettingsIdentity(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID);
+    }
+    pub fn GetStoreStatus(self: *const ISettingsEngine, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetStoreStatus(@as(*const ISettingsEngine, @ptrCast(self)), Reserved, Status);
+    }
+    pub fn LoadStore(self: *const ISettingsEngine, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).LoadStore(@as(*const ISettingsEngine, @ptrCast(self)), Flags);
+    }
+    pub fn UnloadStore(self: *const ISettingsEngine, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).UnloadStore(@as(*const ISettingsEngine, @ptrCast(self)), Reserved);
+    }
+    pub fn RegisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).RegisterNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, Stream, PushSettings, Results);
+    }
+    pub fn UnregisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).UnregisterNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, RemoveSettings);
+    }
+    pub fn CreateTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
+    }
+    pub fn GetTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
+    }
+    pub fn SetTargetInfo(self: *const ISettingsEngine, Target: ?*ITargetInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).SetTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
+    }
+    pub fn CreateSettingsContext(self: *const ISettingsEngine, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), Flags, Reserved, SettingsContext);
+    }
+    pub fn SetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).SetSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext);
+    }
+    pub fn ApplySettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).ApplySettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext, pppwzIdentities, pcIdentities);
+    }
+    pub fn GetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -737,8 +869,8 @@ pub const ISettingsItem = extern union {
             return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).HasChild(@as(*const ISettingsItem, @ptrCast(self)), ItemHasChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Children(self: *const T, Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Children(@as(*const ISettingsItem, @ptrCast(self)), Children);
+        pub fn ISettingsItem_Children(self: *const T, _param_Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Children(@as(*const ISettingsItem, @ptrCast(self)), _param_Children);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISettingsItem_GetChild(self: *const T, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
@@ -769,8 +901,8 @@ pub const ISettingsItem = extern union {
             return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).RemoveListElement(@as(*const ISettingsItem, @ptrCast(self)), ElementName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Attributes(self: *const T, Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Attributes(@as(*const ISettingsItem, @ptrCast(self)), Attributes);
+        pub fn ISettingsItem_Attributes(self: *const T, _param_Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Attributes(@as(*const ISettingsItem, @ptrCast(self)), _param_Attributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISettingsItem_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
@@ -793,7 +925,73 @@ pub const ISettingsItem = extern union {
             return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetKeyValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetName(self: *const ISettingsItem, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetName(@as(*const ISettingsItem, @ptrCast(self)), Name);
+    }
+    pub fn GetValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
+    }
+    pub fn SetValue(self: *const ISettingsItem, Value: ?*const VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
+    }
+    pub fn GetSettingType(self: *const ISettingsItem, Type: ?*WcmSettingType) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetSettingType(@as(*const ISettingsItem, @ptrCast(self)), Type);
+    }
+    pub fn GetDataType(self: *const ISettingsItem, Type: ?*WcmDataType) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetDataType(@as(*const ISettingsItem, @ptrCast(self)), Type);
+    }
+    pub fn GetValueRaw(self: *const ISettingsItem, Data: [*]?*u8, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetValueRaw(@as(*const ISettingsItem, @ptrCast(self)), Data, DataSize);
+    }
+    pub fn SetValueRaw(self: *const ISettingsItem, DataType: i32, Data: [*:0]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).SetValueRaw(@as(*const ISettingsItem, @ptrCast(self)), DataType, Data, DataSize);
+    }
+    pub fn HasChild(self: *const ISettingsItem, ItemHasChild: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).HasChild(@as(*const ISettingsItem, @ptrCast(self)), ItemHasChild);
+    }
+    pub fn Children(self: *const ISettingsItem, _param_Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Children(@as(*const ISettingsItem, @ptrCast(self)), _param_Children);
+    }
+    pub fn GetChild(self: *const ISettingsItem, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetChild(@as(*const ISettingsItem, @ptrCast(self)), Name, Child);
+    }
+    pub fn GetSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path, Setting);
+    }
+    pub fn CreateSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).CreateSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path, Setting);
+    }
+    pub fn RemoveSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).RemoveSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path);
+    }
+    pub fn GetListKeyInformation(self: *const ISettingsItem, KeyName: ?*?BSTR, DataType: ?*WcmDataType) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetListKeyInformation(@as(*const ISettingsItem, @ptrCast(self)), KeyName, DataType);
+    }
+    pub fn CreateListElement(self: *const ISettingsItem, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).CreateListElement(@as(*const ISettingsItem, @ptrCast(self)), KeyData, Child);
+    }
+    pub fn RemoveListElement(self: *const ISettingsItem, ElementName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).RemoveListElement(@as(*const ISettingsItem, @ptrCast(self)), ElementName);
+    }
+    pub fn Attributes(self: *const ISettingsItem, _param_Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Attributes(@as(*const ISettingsItem, @ptrCast(self)), _param_Attributes);
+    }
+    pub fn GetAttribute(self: *const ISettingsItem, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsItem, @ptrCast(self)), Name, Value);
+    }
+    pub fn GetPath(self: *const ISettingsItem, Path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetPath(@as(*const ISettingsItem, @ptrCast(self)), Path);
+    }
+    pub fn GetRestrictionFacets(self: *const ISettingsItem, RestrictionFacets: ?*WcmRestrictionFacets) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetRestrictionFacets(@as(*const ISettingsItem, @ptrCast(self)), RestrictionFacets);
+    }
+    pub fn GetRestriction(self: *const ISettingsItem, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetRestriction(@as(*const ISettingsItem, @ptrCast(self)), RestrictionFacet, FacetData);
+    }
+    pub fn GetKeyValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetKeyValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -844,8 +1042,8 @@ pub const ISettingsNamespace = extern union {
             return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetIdentity(@as(*const ISettingsNamespace, @ptrCast(self)), SettingsID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_Settings(self: *const T, Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Settings(@as(*const ISettingsNamespace, @ptrCast(self)), Settings);
+        pub fn ISettingsNamespace_Settings(self: *const T, _param_Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Settings(@as(*const ISettingsNamespace, @ptrCast(self)), _param_Settings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISettingsNamespace_Save(self: *const T, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.Inline) HRESULT {
@@ -868,7 +1066,28 @@ pub const ISettingsNamespace = extern union {
             return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsNamespace, @ptrCast(self)), Name, Value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIdentity(self: *const ISettingsNamespace, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetIdentity(@as(*const ISettingsNamespace, @ptrCast(self)), SettingsID);
+    }
+    pub fn Settings(self: *const ISettingsNamespace, _param_Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Settings(@as(*const ISettingsNamespace, @ptrCast(self)), _param_Settings);
+    }
+    pub fn Save(self: *const ISettingsNamespace, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Save(@as(*const ISettingsNamespace, @ptrCast(self)), PushSettings, Result);
+    }
+    pub fn GetSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path, Setting);
+    }
+    pub fn CreateSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).CreateSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path, Setting);
+    }
+    pub fn RemoveSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).RemoveSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path);
+    }
+    pub fn GetAttribute(self: *const ISettingsNamespace, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsNamespace, @ptrCast(self)), Name, Value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -931,7 +1150,25 @@ pub const ISettingsResult = extern union {
             return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ISettingsResult, @ptrCast(self)), file);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ISettingsResult, @ptrCast(self)), description);
+    }
+    pub fn GetErrorCode(self: *const ISettingsResult, hrOut: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const ISettingsResult, @ptrCast(self)), hrOut);
+    }
+    pub fn GetContextDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetContextDescription(@as(*const ISettingsResult, @ptrCast(self)), description);
+    }
+    pub fn GetLine(self: *const ISettingsResult, dwLine: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetLine(@as(*const ISettingsResult, @ptrCast(self)), dwLine);
+    }
+    pub fn GetColumn(self: *const ISettingsResult, dwColumn: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const ISettingsResult, @ptrCast(self)), dwColumn);
+    }
+    pub fn GetSource(self: *const ISettingsResult, file: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ISettingsResult, @ptrCast(self)), file);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1010,7 +1247,28 @@ pub const ISettingsContext = extern union {
             return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).RevertSetting(@as(*const ISettingsContext, @ptrCast(self)), pIdentity, pwzSetting);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISettingsContext, @ptrCast(self)), pStream, pTarget);
+    }
+    pub fn Deserialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const ISettingsContext, @ptrCast(self)), pStream, pTarget, pppResults, pcResultCount);
+    }
+    pub fn SetUserData(self: *const ISettingsContext, pUserData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).SetUserData(@as(*const ISettingsContext, @ptrCast(self)), pUserData);
+    }
+    pub fn GetUserData(self: *const ISettingsContext, pUserData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetUserData(@as(*const ISettingsContext, @ptrCast(self)), pUserData);
+    }
+    pub fn GetNamespaces(self: *const ISettingsContext, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const ISettingsContext, @ptrCast(self)), ppNamespaceIds);
+    }
+    pub fn GetStoredSettings(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetStoredSettings(@as(*const ISettingsContext, @ptrCast(self)), pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
+    }
+    pub fn RevertSetting(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).RevertSetting(@as(*const ISettingsContext, @ptrCast(self)), pIdentity, pwzSetting);
+    }
 };
 
 

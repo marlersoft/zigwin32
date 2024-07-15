@@ -715,7 +715,16 @@ pub const IKsControl = extern union {
             return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsEvent(@as(*const IKsControl, @ptrCast(self)), Event, EventLength, EventData, DataLength, BytesReturned);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn KsProperty(self: *const IKsControl, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsProperty(@as(*const IKsControl, @ptrCast(self)), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
+    }
+    pub fn KsMethod(self: *const IKsControl, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsMethod(@as(*const IKsControl, @ptrCast(self)), Method, MethodLength, MethodData, DataLength, BytesReturned);
+    }
+    pub fn KsEvent(self: *const IKsControl, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsEvent(@as(*const IKsControl, @ptrCast(self)), Event, EventLength, EventData, DataLength, BytesReturned);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -748,7 +757,13 @@ pub const IKsFormatSupport = extern union {
             return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).GetDevicePreferredFormat(@as(*const IKsFormatSupport, @ptrCast(self)), ppKsFormat);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsFormatSupported(self: *const IKsFormatSupport, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).IsFormatSupported(@as(*const IKsFormatSupport, @ptrCast(self)), pKsFormat, cbFormat, pbSupported);
+    }
+    pub fn GetDevicePreferredFormat(self: *const IKsFormatSupport, ppKsFormat: ?*?*KSDATAFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).GetDevicePreferredFormat(@as(*const IKsFormatSupport, @ptrCast(self)), ppKsFormat);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -780,7 +795,13 @@ pub const IKsJackDescription = extern union {
             return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackDescription(@as(*const IKsJackDescription, @ptrCast(self)), nJack, pDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetJackCount(self: *const IKsJackDescription, pcJacks: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription, @ptrCast(self)), pcJacks);
+    }
+    pub fn GetJackDescription(self: *const IKsJackDescription, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackDescription(@as(*const IKsJackDescription, @ptrCast(self)), nJack, pDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -812,7 +833,13 @@ pub const IKsJackDescription2 = extern union {
             return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackDescription2(@as(*const IKsJackDescription2, @ptrCast(self)), nJack, pDescription2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetJackCount(self: *const IKsJackDescription2, pcJacks: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription2, @ptrCast(self)), pcJacks);
+    }
+    pub fn GetJackDescription2(self: *const IKsJackDescription2, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackDescription2(@as(*const IKsJackDescription2, @ptrCast(self)), nJack, pDescription2);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -835,7 +862,10 @@ pub const IKsJackSinkInformation = extern union {
             return @as(*const IKsJackSinkInformation.VTable, @ptrCast(self.vtable)).GetJackSinkInformation(@as(*const IKsJackSinkInformation, @ptrCast(self)), pJackSinkInformation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetJackSinkInformation(self: *const IKsJackSinkInformation, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackSinkInformation.VTable, @ptrCast(self.vtable)).GetJackSinkInformation(@as(*const IKsJackSinkInformation, @ptrCast(self)), pJackSinkInformation);
+    }
 };
 
 const IID_IKsJackContainerId_Value = Guid.initString("c99af463-d629-4ec4-8c00-e54d68154248");
@@ -857,7 +887,10 @@ pub const IKsJackContainerId = extern union {
             return @as(*const IKsJackContainerId.VTable, @ptrCast(self.vtable)).GetJackContainerId(@as(*const IKsJackContainerId, @ptrCast(self)), pJackContainerId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetJackContainerId(self: *const IKsJackContainerId, pJackContainerId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IKsJackContainerId.VTable, @ptrCast(self.vtable)).GetJackContainerId(@as(*const IKsJackContainerId, @ptrCast(self)), pJackContainerId);
+    }
 };
 
 const CLSID_GUID_NULL_Value = Guid.initString("00000000-0000-0000-0000-000000000000");
@@ -7180,7 +7213,16 @@ pub const IKsPropertySet = extern union {
             return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).QuerySupported(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, TypeSupport);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Set(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Set(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
+    }
+    pub fn Get(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Get(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
+    }
+    pub fn QuerySupported(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).QuerySupported(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, TypeSupport);
+    }
 };
 
 const IID_IKsAggregateControl_Value = Guid.initString("7f40eac0-3947-11d2-874e-00a0c9223196");
@@ -7210,7 +7252,13 @@ pub const IKsAggregateControl = extern union {
             return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsRemoveAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn KsAddAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsAddAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
+    }
+    pub fn KsRemoveAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsRemoveAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
+    }
 };
 
 const IID_IKsTopology_Value = Guid.initString("28f54683-06fd-11d2-b27a-00a0c9223196");
@@ -7237,7 +7285,10 @@ pub const IKsTopology = extern union {
             return @as(*const IKsTopology.VTable, @ptrCast(self.vtable)).CreateNodeInstance(@as(*const IKsTopology, @ptrCast(self)), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateNodeInstance(self: *const IKsTopology, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IKsTopology.VTable, @ptrCast(self.vtable)).CreateNodeInstance(@as(*const IKsTopology, @ptrCast(self)), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
+    }
 };
 
 

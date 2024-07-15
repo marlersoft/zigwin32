@@ -962,7 +962,10 @@ pub const IFtpProviderConstruct = extern union {
             return @as(*const IFtpProviderConstruct.VTable, @ptrCast(self.vtable)).Construct(@as(*const IFtpProviderConstruct, @ptrCast(self)), configurationEntries);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Construct(self: *const IFtpProviderConstruct, configurationEntries: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IFtpProviderConstruct.VTable, @ptrCast(self.vtable)).Construct(@as(*const IFtpProviderConstruct, @ptrCast(self)), configurationEntries);
+    }
 };
 
 const IID_IFtpAuthenticationProvider_Value = Guid.initString("4659f95c-d5a8-4707-b2fc-6fd5794246cf");
@@ -989,7 +992,10 @@ pub const IFtpAuthenticationProvider = extern union {
             return @as(*const IFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).AuthenticateUser(@as(*const IFtpAuthenticationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AuthenticateUser(self: *const IFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).AuthenticateUser(@as(*const IFtpAuthenticationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
+    }
 };
 
 const IID_AsyncIFtpAuthenticationProvider_Value = Guid.initString("c24efb65-9f3e-4996-8fb1-ce166916bab5");
@@ -1023,7 +1029,13 @@ pub const AsyncIFtpAuthenticationProvider = extern union {
             return @as(*const AsyncIFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).Finish_AuthenticateUser(@as(*const AsyncIFtpAuthenticationProvider, @ptrCast(self)), ppszCanonicalUserName, pfAuthenticated);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_AuthenticateUser(self: *const AsyncIFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).Begin_AuthenticateUser(@as(*const AsyncIFtpAuthenticationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszPassword);
+    }
+    pub fn Finish_AuthenticateUser(self: *const AsyncIFtpAuthenticationProvider, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).Finish_AuthenticateUser(@as(*const AsyncIFtpAuthenticationProvider, @ptrCast(self)), ppszCanonicalUserName, pfAuthenticated);
+    }
 };
 
 const IID_IFtpRoleProvider_Value = Guid.initString("909c850d-8ca0-4674-96b8-cc2941535725");
@@ -1049,7 +1061,10 @@ pub const IFtpRoleProvider = extern union {
             return @as(*const IFtpRoleProvider.VTable, @ptrCast(self.vtable)).IsUserInRole(@as(*const IFtpRoleProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsUserInRole(self: *const IFtpRoleProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16, pfIsInRole: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFtpRoleProvider.VTable, @ptrCast(self.vtable)).IsUserInRole(@as(*const IFtpRoleProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
+    }
 };
 
 const IID_AsyncIFtpRoleProvider_Value = Guid.initString("3e83bf99-70ec-41ca-84b6-aca7c7a62caf");
@@ -1082,7 +1097,13 @@ pub const AsyncIFtpRoleProvider = extern union {
             return @as(*const AsyncIFtpRoleProvider.VTable, @ptrCast(self.vtable)).Finish_IsUserInRole(@as(*const AsyncIFtpRoleProvider, @ptrCast(self)), pfIsInRole);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_IsUserInRole(self: *const AsyncIFtpRoleProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpRoleProvider.VTable, @ptrCast(self.vtable)).Begin_IsUserInRole(@as(*const AsyncIFtpRoleProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszRole);
+    }
+    pub fn Finish_IsUserInRole(self: *const AsyncIFtpRoleProvider, pfIsInRole: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpRoleProvider.VTable, @ptrCast(self.vtable)).Finish_IsUserInRole(@as(*const AsyncIFtpRoleProvider, @ptrCast(self)), pfIsInRole);
+    }
 };
 
 const IID_IFtpHomeDirectoryProvider_Value = Guid.initString("0933b392-18dd-4097-8b9c-83325c35d9a6");
@@ -1107,7 +1128,10 @@ pub const IFtpHomeDirectoryProvider = extern union {
             return @as(*const IFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).GetUserHomeDirectoryData(@as(*const IFtpHomeDirectoryProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUserHomeDirectoryData(self: *const IFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).GetUserHomeDirectoryData(@as(*const IFtpHomeDirectoryProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
+    }
 };
 
 const IID_AsyncIFtpHomeDirectoryProvider_Value = Guid.initString("73f81638-6295-42bd-a2be-4a657f7c479c");
@@ -1139,7 +1163,13 @@ pub const AsyncIFtpHomeDirectoryProvider = extern union {
             return @as(*const AsyncIFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserHomeDirectoryData(@as(*const AsyncIFtpHomeDirectoryProvider, @ptrCast(self)), ppszHomeDirectoryData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).Begin_GetUserHomeDirectoryData(@as(*const AsyncIFtpHomeDirectoryProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName);
+    }
+    pub fn Finish_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, ppszHomeDirectoryData: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserHomeDirectoryData(@as(*const AsyncIFtpHomeDirectoryProvider, @ptrCast(self)), ppszHomeDirectoryData);
+    }
 };
 
 pub const LOGGING_PARAMETERS = extern struct {
@@ -1182,7 +1212,10 @@ pub const IFtpLogProvider = extern union {
             return @as(*const IFtpLogProvider.VTable, @ptrCast(self.vtable)).Log(@as(*const IFtpLogProvider, @ptrCast(self)), pLoggingParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Log(self: *const IFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const IFtpLogProvider.VTable, @ptrCast(self.vtable)).Log(@as(*const IFtpLogProvider, @ptrCast(self)), pLoggingParameters);
+    }
 };
 
 const IID_AsyncIFtpLogProvider_Value = Guid.initString("00a0ae46-2498-48b2-95e6-df678ed7d49f");
@@ -1211,7 +1244,13 @@ pub const AsyncIFtpLogProvider = extern union {
             return @as(*const AsyncIFtpLogProvider.VTable, @ptrCast(self.vtable)).Finish_Log(@as(*const AsyncIFtpLogProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_Log(self: *const AsyncIFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpLogProvider.VTable, @ptrCast(self.vtable)).Begin_Log(@as(*const AsyncIFtpLogProvider, @ptrCast(self)), pLoggingParameters);
+    }
+    pub fn Finish_Log(self: *const AsyncIFtpLogProvider) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpLogProvider.VTable, @ptrCast(self.vtable)).Finish_Log(@as(*const AsyncIFtpLogProvider, @ptrCast(self)));
+    }
 };
 
 pub const FTP_ACCESS = enum(i32) {
@@ -1248,7 +1287,10 @@ pub const IFtpAuthorizationProvider = extern union {
             return @as(*const IFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).GetUserAccessPermission(@as(*const IFtpAuthorizationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUserAccessPermission(self: *const IFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pFtpAccess: ?*FTP_ACCESS) callconv(.Inline) HRESULT {
+        return @as(*const IFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).GetUserAccessPermission(@as(*const IFtpAuthorizationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
+    }
 };
 
 const IID_AsyncIFtpAuthorizationProvider_Value = Guid.initString("860dc339-07e5-4a5c-9c61-8820cea012bc");
@@ -1281,7 +1323,13 @@ pub const AsyncIFtpAuthorizationProvider = extern union {
             return @as(*const AsyncIFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserAccessPermission(@as(*const AsyncIFtpAuthorizationProvider, @ptrCast(self)), pFtpAccess);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).Begin_GetUserAccessPermission(@as(*const AsyncIFtpAuthorizationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszVirtualPath, pszUserName);
+    }
+    pub fn Finish_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pFtpAccess: ?*FTP_ACCESS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserAccessPermission(@as(*const AsyncIFtpAuthorizationProvider, @ptrCast(self)), pFtpAccess);
+    }
 };
 
 pub const FTP_PROCESS_STATUS = enum(i32) {
@@ -1331,7 +1379,10 @@ pub const IFtpPreprocessProvider = extern union {
             return @as(*const IFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).HandlePreprocess(@as(*const IFtpPreprocessProvider, @ptrCast(self)), pPreProcessParameters, pFtpProcessStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandlePreprocess(self: *const IFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).HandlePreprocess(@as(*const IFtpPreprocessProvider, @ptrCast(self)), pPreProcessParameters, pFtpProcessStatus);
+    }
 };
 
 const IID_AsyncIFtpPreprocessProvider_Value = Guid.initString("6ff5fd8f-fd8e-48b1-a3e0-bf7073db4db5");
@@ -1361,7 +1412,13 @@ pub const AsyncIFtpPreprocessProvider = extern union {
             return @as(*const AsyncIFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePreprocess(@as(*const AsyncIFtpPreprocessProvider, @ptrCast(self)), pFtpProcessStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).Begin_HandlePreprocess(@as(*const AsyncIFtpPreprocessProvider, @ptrCast(self)), pPreProcessParameters);
+    }
+    pub fn Finish_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePreprocess(@as(*const AsyncIFtpPreprocessProvider, @ptrCast(self)), pFtpProcessStatus);
+    }
 };
 
 pub const POST_PROCESS_PARAMETERS = extern struct {
@@ -1407,7 +1464,10 @@ pub const IFtpPostprocessProvider = extern union {
             return @as(*const IFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).HandlePostprocess(@as(*const IFtpPostprocessProvider, @ptrCast(self)), pPostProcessParameters, pFtpProcessStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandlePostprocess(self: *const IFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).HandlePostprocess(@as(*const IFtpPostprocessProvider, @ptrCast(self)), pPostProcessParameters, pFtpProcessStatus);
+    }
 };
 
 const IID_AsyncIFtpPostprocessProvider_Value = Guid.initString("a16b2542-9694-4eb1-a564-6c2e91fdc133");
@@ -1437,7 +1497,13 @@ pub const AsyncIFtpPostprocessProvider = extern union {
             return @as(*const AsyncIFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePostprocess(@as(*const AsyncIFtpPostprocessProvider, @ptrCast(self)), pFtpProcessStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).Begin_HandlePostprocess(@as(*const AsyncIFtpPostprocessProvider, @ptrCast(self)), pPostProcessParameters);
+    }
+    pub fn Finish_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePostprocess(@as(*const AsyncIFtpPostprocessProvider, @ptrCast(self)), pFtpProcessStatus);
+    }
 };
 
 const IID_IADMEXT_Value = Guid.initString("51dfe970-f6f2-11d0-b9bd-00a0c922e750");
@@ -1474,7 +1540,16 @@ pub const IADMEXT = extern union {
             return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IADMEXT, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IADMEXT) callconv(.Inline) HRESULT {
+        return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IADMEXT, @ptrCast(self)));
+    }
+    pub fn EnumDcomCLSIDs(self: *const IADMEXT, pclsidDcom: ?*Guid, dwEnumIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).EnumDcomCLSIDs(@as(*const IADMEXT, @ptrCast(self)), pclsidDcom, dwEnumIndex);
+    }
+    pub fn Terminate(self: *const IADMEXT) callconv(.Inline) HRESULT {
+        return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IADMEXT, @ptrCast(self)));
+    }
 };
 
 pub const METADATATYPES = enum(i32) {
@@ -1867,7 +1942,100 @@ pub const IMSAdminBaseW = extern union {
             return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetServerGuid(@as(*const IMSAdminBaseW, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddKey(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).AddKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
+    }
+    pub fn DeleteKey(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
+    }
+    pub fn DeleteChildKeys(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteChildKeys(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
+    }
+    pub fn EnumKeys(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pszMDName: *[256]u16, dwMDEnumObjectIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pszMDName, dwMDEnumObjectIndex);
+    }
+    pub fn CopyKey(self: *const IMSAdminBaseW, hMDSourceHandle: u32, pszMDSourcePath: ?[*:0]const u16, hMDDestHandle: u32, pszMDDestPath: ?[*:0]const u16, bMDOverwriteFlag: BOOL, bMDCopyFlag: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CopyKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, bMDOverwriteFlag, bMDCopyFlag);
+    }
+    pub fn RenameKey(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pszMDNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).RenameKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pszMDNewName);
+    }
+    pub fn SetData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SetData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData);
+    }
+    pub fn GetData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD, pdwMDRequiredDataLen: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData, pdwMDRequiredDataLen);
+    }
+    pub fn DeleteData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDIdentifier: u32, dwMDDataType: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType);
+    }
+    pub fn EnumData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD, dwMDEnumDataIndex: u32, pdwMDRequiredDataLen: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData, dwMDEnumDataIndex, pdwMDRequiredDataLen);
+    }
+    pub fn GetAllData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDAttributes: u32, dwMDUserType: u32, dwMDDataType: u32, pdwMDNumDataEntries: ?*u32, pdwMDDataSetNumber: ?*u32, dwMDBufferSize: u32, pbMDBuffer: ?*u8, pdwMDRequiredBufferSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetAllData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDAttributes, dwMDUserType, dwMDDataType, pdwMDNumDataEntries, pdwMDDataSetNumber, dwMDBufferSize, pbMDBuffer, pdwMDRequiredBufferSize);
+    }
+    pub fn DeleteAllData(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDUserType: u32, dwMDDataType: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteAllData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDUserType, dwMDDataType);
+    }
+    pub fn CopyData(self: *const IMSAdminBaseW, hMDSourceHandle: u32, pszMDSourcePath: ?[*:0]const u16, hMDDestHandle: u32, pszMDDestPath: ?[*:0]const u16, dwMDAttributes: u32, dwMDUserType: u32, dwMDDataType: u32, bMDCopyFlag: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CopyData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, dwMDAttributes, dwMDUserType, dwMDDataType, bMDCopyFlag);
+    }
+    pub fn GetDataPaths(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDIdentifier: u32, dwMDDataType: u32, dwMDBufferSize: u32, pszBuffer: [*:0]u16, pdwMDRequiredBufferSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetDataPaths(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
+    }
+    pub fn OpenKey(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDAccessRequested: u32, dwMDTimeOut: u32, phMDNewHandle: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDAccessRequested, dwMDTimeOut, phMDNewHandle);
+    }
+    pub fn CloseKey(self: *const IMSAdminBaseW, hMDHandle: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CloseKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle);
+    }
+    pub fn ChangePermissions(self: *const IMSAdminBaseW, hMDHandle: u32, dwMDTimeOut: u32, dwMDAccessRequested: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).ChangePermissions(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, dwMDTimeOut, dwMDAccessRequested);
+    }
+    pub fn SaveData(self: *const IMSAdminBaseW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SaveData(@as(*const IMSAdminBaseW, @ptrCast(self)));
+    }
+    pub fn GetHandleInfo(self: *const IMSAdminBaseW, hMDHandle: u32, pmdhiInfo: ?*METADATA_HANDLE_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetHandleInfo(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pmdhiInfo);
+    }
+    pub fn GetSystemChangeNumber(self: *const IMSAdminBaseW, pdwSystemChangeNumber: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetSystemChangeNumber(@as(*const IMSAdminBaseW, @ptrCast(self)), pdwSystemChangeNumber);
+    }
+    pub fn GetDataSetNumber(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pdwMDDataSetNumber: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetDataSetNumber(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pdwMDDataSetNumber);
+    }
+    pub fn SetLastChangeTime(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pftMDLastChangeTime: ?*FILETIME, bLocalTime: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SetLastChangeTime(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
+    }
+    pub fn GetLastChangeTime(self: *const IMSAdminBaseW, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pftMDLastChangeTime: ?*FILETIME, bLocalTime: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetLastChangeTime(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
+    }
+    pub fn KeyExchangePhase1(self: *const IMSAdminBaseW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).KeyExchangePhase1(@as(*const IMSAdminBaseW, @ptrCast(self)));
+    }
+    pub fn KeyExchangePhase2(self: *const IMSAdminBaseW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).KeyExchangePhase2(@as(*const IMSAdminBaseW, @ptrCast(self)));
+    }
+    pub fn Backup(self: *const IMSAdminBaseW, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).Backup(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags);
+    }
+    pub fn Restore(self: *const IMSAdminBaseW, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).Restore(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags);
+    }
+    pub fn EnumBackups(self: *const IMSAdminBaseW, pszMDBackupLocation: *[256]u16, pdwMDVersion: ?*u32, pftMDBackupTime: ?*FILETIME, dwMDEnumIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumBackups(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, pdwMDVersion, pftMDBackupTime, dwMDEnumIndex);
+    }
+    pub fn DeleteBackup(self: *const IMSAdminBaseW, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteBackup(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion);
+    }
+    pub fn UnmarshalInterface(self: *const IMSAdminBaseW, piadmbwInterface: ?*?*IMSAdminBaseW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMSAdminBaseW, @ptrCast(self)), piadmbwInterface);
+    }
+    pub fn GetServerGuid(self: *const IMSAdminBaseW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetServerGuid(@as(*const IMSAdminBaseW, @ptrCast(self)));
+    }
 };
 
 pub const _IIS_CRYPTO_BLOB = extern struct {
@@ -1953,7 +2121,25 @@ pub const IMSAdminBase2W = extern union {
             return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).EnumHistory(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSAdminBaseW.MethodMixin(@This());
+    pub fn BackupWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).BackupWithPasswd(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+    }
+    pub fn RestoreWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).RestoreWithPasswd(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+    }
+    pub fn Export(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, dwMDFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).Export(@as(*const IMSAdminBase2W, @ptrCast(self)), pszPasswd, pszFileName, pszSourcePath, dwMDFlags);
+    }
+    pub fn Import(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, pszDestPath: ?[*:0]const u16, dwMDFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).Import(@as(*const IMSAdminBase2W, @ptrCast(self)), pszPasswd, pszFileName, pszSourcePath, pszDestPath, dwMDFlags);
+    }
+    pub fn RestoreHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: ?[*:0]const u16, dwMDMajorVersion: u32, dwMDMinorVersion: u32, dwMDFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).RestoreHistory(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDHistoryLocation, dwMDMajorVersion, dwMDMinorVersion, dwMDFlags);
+    }
+    pub fn EnumHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: *[256]u16, pdwMDMajorVersion: ?*u32, pdwMDMinorVersion: ?*u32, pftMDHistoryTime: ?*FILETIME, dwMDEnumIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).EnumHistory(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
+    }
 };
 
 const IID_IMSAdminBase3W_Value = Guid.initString("f612954d-3b0b-4c56-9563-227b7be624b4");
@@ -1979,7 +2165,10 @@ pub const IMSAdminBase3W = extern union {
             return @as(*const IMSAdminBase3W.VTable, @ptrCast(self.vtable)).GetChildPaths(@as(*const IMSAdminBase3W, @ptrCast(self)), hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSAdminBase2W.MethodMixin(@This());
+    pub fn GetChildPaths(self: *const IMSAdminBase3W, hMDHandle: u32, pszMDPath: ?[*:0]const u16, cchMDBufferSize: u32, pszBuffer: ?[*:0]u16, pcchMDRequiredBufferSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBase3W.VTable, @ptrCast(self.vtable)).GetChildPaths(@as(*const IMSAdminBase3W, @ptrCast(self)), hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
+    }
 };
 
 const IID_IMSImpExpHelpW_Value = Guid.initString("29ff67ff-8050-480f-9f30-cc41635f2f9d");
@@ -2005,7 +2194,10 @@ pub const IMSImpExpHelpW = extern union {
             return @as(*const IMSImpExpHelpW.VTable, @ptrCast(self.vtable)).EnumeratePathsInFile(@as(*const IMSImpExpHelpW, @ptrCast(self)), pszFileName, pszKeyType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumeratePathsInFile(self: *const IMSImpExpHelpW, pszFileName: ?[*:0]const u16, pszKeyType: ?[*:0]const u16, dwMDBufferSize: u32, pszBuffer: ?[*:0]u16, pdwMDRequiredBufferSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMSImpExpHelpW.VTable, @ptrCast(self.vtable)).EnumeratePathsInFile(@as(*const IMSImpExpHelpW, @ptrCast(self)), pszFileName, pszKeyType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
+    }
 };
 
 const IID_IMSAdminBaseSinkW_Value = Guid.initString("a9e69612-b80d-11d0-b9b9-00a0c922e750");
@@ -2035,7 +2227,13 @@ pub const IMSAdminBaseSinkW = extern union {
             return @as(*const IMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).ShutdownNotify(@as(*const IMSAdminBaseSinkW, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SinkNotify(self: *const IMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).SinkNotify(@as(*const IMSAdminBaseSinkW, @ptrCast(self)), dwMDNumElements, pcoChangeList);
+    }
+    pub fn ShutdownNotify(self: *const IMSAdminBaseSinkW) callconv(.Inline) HRESULT {
+        return @as(*const IMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).ShutdownNotify(@as(*const IMSAdminBaseSinkW, @ptrCast(self)));
+    }
 };
 
 const IID_AsyncIMSAdminBaseSinkW_Value = Guid.initString("a9e69613-b80d-11d0-b9b9-00a0c922e750");
@@ -2079,7 +2277,19 @@ pub const AsyncIMSAdminBaseSinkW = extern union {
             return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Finish_ShutdownNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin_SinkNotify(self: *const AsyncIMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Begin_SinkNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)), dwMDNumElements, pcoChangeList);
+    }
+    pub fn Finish_SinkNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Finish_SinkNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
+    }
+    pub fn Begin_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Begin_ShutdownNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
+    }
+    pub fn Finish_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.Inline) HRESULT {
+        return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Finish_ShutdownNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
+    }
 };
 
 pub const HSE_VERSION_INFO = extern struct {

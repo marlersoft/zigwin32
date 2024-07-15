@@ -149,7 +149,16 @@ pub const IOpcUri = extern union {
             return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).CombinePartUri(@as(*const IOpcUri, @ptrCast(self)), relativeUri, combinedUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUri.MethodMixin(@This());
+    pub fn GetRelationshipsPartUri(self: *const IOpcUri, relationshipPartUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).GetRelationshipsPartUri(@as(*const IOpcUri, @ptrCast(self)), relationshipPartUri);
+    }
+    pub fn GetRelativeUri(self: *const IOpcUri, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).GetRelativeUri(@as(*const IOpcUri, @ptrCast(self)), targetPartUri, relativeUri);
+    }
+    pub fn CombinePartUri(self: *const IOpcUri, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).CombinePartUri(@as(*const IOpcUri, @ptrCast(self)), relativeUri, combinedUri);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -189,7 +198,16 @@ pub const IOpcPartUri = extern union {
             return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).IsRelationshipsPartUri(@as(*const IOpcPartUri, @ptrCast(self)), isRelationshipUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOpcUri.MethodMixin(@This());
+    pub fn ComparePartUri(self: *const IOpcPartUri, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).ComparePartUri(@as(*const IOpcPartUri, @ptrCast(self)), partUri, comparisonResult);
+    }
+    pub fn GetSourceUri(self: *const IOpcPartUri, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcPartUri, @ptrCast(self)), sourceUri);
+    }
+    pub fn IsRelationshipsPartUri(self: *const IOpcPartUri, isRelationshipUri: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).IsRelationshipsPartUri(@as(*const IOpcPartUri, @ptrCast(self)), isRelationshipUri);
+    }
 };
 
 pub const OPC_URI_TARGET_MODE = enum(i32) {
@@ -376,7 +394,13 @@ pub const IOpcPackage = extern union {
             return @as(*const IOpcPackage.VTable, @ptrCast(self.vtable)).GetRelationshipSet(@as(*const IOpcPackage, @ptrCast(self)), relationshipSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPartSet(self: *const IOpcPackage, partSet: ?*?*IOpcPartSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPackage.VTable, @ptrCast(self.vtable)).GetPartSet(@as(*const IOpcPackage, @ptrCast(self)), partSet);
+    }
+    pub fn GetRelationshipSet(self: *const IOpcPackage, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPackage.VTable, @ptrCast(self.vtable)).GetRelationshipSet(@as(*const IOpcPackage, @ptrCast(self)), relationshipSet);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -431,7 +455,22 @@ pub const IOpcPart = extern union {
             return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetCompressionOptions(@as(*const IOpcPart, @ptrCast(self)), compressionOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRelationshipSet(self: *const IOpcPart, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetRelationshipSet(@as(*const IOpcPart, @ptrCast(self)), relationshipSet);
+    }
+    pub fn GetContentStream(self: *const IOpcPart, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetContentStream(@as(*const IOpcPart, @ptrCast(self)), stream);
+    }
+    pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetName(@as(*const IOpcPart, @ptrCast(self)), name);
+    }
+    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IOpcPart, @ptrCast(self)), contentType);
+    }
+    pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetCompressionOptions(@as(*const IOpcPart, @ptrCast(self)), compressionOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -486,7 +525,22 @@ pub const IOpcRelationship = extern union {
             return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetTargetMode(@as(*const IOpcRelationship, @ptrCast(self)), targetMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetId(@as(*const IOpcRelationship, @ptrCast(self)), relationshipIdentifier);
+    }
+    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetRelationshipType(@as(*const IOpcRelationship, @ptrCast(self)), relationshipType);
+    }
+    pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcRelationship, @ptrCast(self)), sourceUri);
+    }
+    pub fn GetTargetUri(self: *const IOpcRelationship, targetUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetTargetUri(@as(*const IOpcRelationship, @ptrCast(self)), targetUri);
+    }
+    pub fn GetTargetMode(self: *const IOpcRelationship, targetMode: ?*OPC_URI_TARGET_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetTargetMode(@as(*const IOpcRelationship, @ptrCast(self)), targetMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -546,7 +600,22 @@ pub const IOpcPartSet = extern union {
             return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcPartSet, @ptrCast(self)), partEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPart(self: *const IOpcPartSet, name: ?*IOpcPartUri, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).GetPart(@as(*const IOpcPartSet, @ptrCast(self)), name, part);
+    }
+    pub fn CreatePart(self: *const IOpcPartSet, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).CreatePart(@as(*const IOpcPartSet, @ptrCast(self)), name, contentType, compressionOptions, part);
+    }
+    pub fn DeletePart(self: *const IOpcPartSet, name: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).DeletePart(@as(*const IOpcPartSet, @ptrCast(self)), name);
+    }
+    pub fn PartExists(self: *const IOpcPartSet, name: ?*IOpcPartUri, partExists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).PartExists(@as(*const IOpcPartSet, @ptrCast(self)), name, partExists);
+    }
+    pub fn GetEnumerator(self: *const IOpcPartSet, partEnumerator: ?*?*IOpcPartEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcPartSet, @ptrCast(self)), partEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -624,7 +693,28 @@ pub const IOpcRelationshipSet = extern union {
             return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetRelationshipsContentStream(@as(*const IOpcRelationshipSet, @ptrCast(self)), contents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationship);
+    }
+    pub fn CreateRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).CreateRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
+    }
+    pub fn DeleteRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).DeleteRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier);
+    }
+    pub fn RelationshipExists(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).RelationshipExists(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationshipExists);
+    }
+    pub fn GetEnumerator(self: *const IOpcRelationshipSet, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipEnumerator);
+    }
+    pub fn GetEnumeratorForType(self: *const IOpcRelationshipSet, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetEnumeratorForType(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipType, relationshipEnumerator);
+    }
+    pub fn GetRelationshipsContentStream(self: *const IOpcRelationshipSet, contents: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetRelationshipsContentStream(@as(*const IOpcRelationshipSet, @ptrCast(self)), contents);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -671,7 +761,19 @@ pub const IOpcPartEnumerator = extern union {
             return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcPartEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcPartEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcPartEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcPartEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcPartEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcPartEnumerator, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcPartEnumerator, @ptrCast(self)), part);
+    }
+    pub fn Clone(self: *const IOpcPartEnumerator, copy: ?*?*IOpcPartEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcPartEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -718,7 +820,19 @@ pub const IOpcRelationshipEnumerator = extern union {
             return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcRelationshipEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcRelationshipEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcRelationshipEnumerator, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), relationship);
+    }
+    pub fn Clone(self: *const IOpcRelationshipEnumerator, copy: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -774,7 +888,22 @@ pub const IOpcSignaturePartReference = extern union {
             return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), transformMethod);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IOpcSignaturePartReference, @ptrCast(self)), partName);
+    }
+    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IOpcSignaturePartReference, @ptrCast(self)), contentType);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestValue, count);
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignaturePartReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), transformMethod);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -838,7 +967,25 @@ pub const IOpcSignatureRelationshipReference = extern union {
             return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetRelationshipSelectorEnumerator(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), selectorEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), sourceUri);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestValue, count);
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignatureRelationshipReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), transformMethod);
+    }
+    pub fn GetRelationshipSigningOption(self: *const IOpcSignatureRelationshipReference, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetRelationshipSigningOption(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), relationshipSigningOption);
+    }
+    pub fn GetRelationshipSelectorEnumerator(self: *const IOpcSignatureRelationshipReference, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetRelationshipSelectorEnumerator(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), selectorEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -869,7 +1016,13 @@ pub const IOpcRelationshipSelector = extern union {
             return @as(*const IOpcRelationshipSelector.VTable, @ptrCast(self.vtable)).GetSelectionCriterion(@as(*const IOpcRelationshipSelector, @ptrCast(self)), selectionCriterion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelector.VTable, @ptrCast(self.vtable)).GetSelectorType(@as(*const IOpcRelationshipSelector, @ptrCast(self)), selector);
+    }
+    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelector.VTable, @ptrCast(self.vtable)).GetSelectionCriterion(@as(*const IOpcRelationshipSelector, @ptrCast(self)), selectionCriterion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -933,7 +1086,25 @@ pub const IOpcSignatureReference = extern union {
             return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureReference, @ptrCast(self)), digestValue, count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetId(@as(*const IOpcSignatureReference, @ptrCast(self)), referenceId);
+    }
+    pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetUri(@as(*const IOpcSignatureReference, @ptrCast(self)), referenceUri);
+    }
+    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetType(@as(*const IOpcSignatureReference, @ptrCast(self)), @"type");
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignatureReference, @ptrCast(self)), transformMethod);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureReference, @ptrCast(self)), digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureReference, @ptrCast(self)), digestValue, count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -957,7 +1128,10 @@ pub const IOpcSignatureCustomObject = extern union {
             return @as(*const IOpcSignatureCustomObject.VTable, @ptrCast(self.vtable)).GetXml(@as(*const IOpcSignatureCustomObject, @ptrCast(self)), xmlMarkup, count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetXml(self: *const IOpcSignatureCustomObject, xmlMarkup: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObject.VTable, @ptrCast(self.vtable)).GetXml(@as(*const IOpcSignatureCustomObject, @ptrCast(self)), xmlMarkup, count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1096,7 +1270,52 @@ pub const IOpcDigitalSignature = extern union {
             return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureXml, count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNamespaces(self: *const IOpcDigitalSignature, prefixes: [*]?*?PWSTR, namespaces: [*]?*?PWSTR, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const IOpcDigitalSignature, @ptrCast(self)), prefixes, namespaces, count);
+    }
+    pub fn GetSignatureId(self: *const IOpcDigitalSignature, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureId);
+    }
+    pub fn GetSignaturePartName(self: *const IOpcDigitalSignature, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IOpcDigitalSignature, @ptrCast(self)), signaturePartName);
+    }
+    pub fn GetSignatureMethod(self: *const IOpcDigitalSignature, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureMethod);
+    }
+    pub fn GetCanonicalizationMethod(self: *const IOpcDigitalSignature, canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCanonicalizationMethod(@as(*const IOpcDigitalSignature, @ptrCast(self)), canonicalizationMethod);
+    }
+    pub fn GetSignatureValue(self: *const IOpcDigitalSignature, signatureValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureValue, count);
+    }
+    pub fn GetSignaturePartReferenceEnumerator(self: *const IOpcDigitalSignature, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), partReferenceEnumerator);
+    }
+    pub fn GetSignatureRelationshipReferenceEnumerator(self: *const IOpcDigitalSignature, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureRelationshipReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), relationshipReferenceEnumerator);
+    }
+    pub fn GetSigningTime(self: *const IOpcDigitalSignature, signingTime: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSigningTime(@as(*const IOpcDigitalSignature, @ptrCast(self)), signingTime);
+    }
+    pub fn GetTimeFormat(self: *const IOpcDigitalSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetTimeFormat(@as(*const IOpcDigitalSignature, @ptrCast(self)), timeFormat);
+    }
+    pub fn GetPackageObjectReference(self: *const IOpcDigitalSignature, packageObjectReference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetPackageObjectReference(@as(*const IOpcDigitalSignature, @ptrCast(self)), packageObjectReference);
+    }
+    pub fn GetCertificateEnumerator(self: *const IOpcDigitalSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCertificateEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), certificateEnumerator);
+    }
+    pub fn GetCustomReferenceEnumerator(self: *const IOpcDigitalSignature, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCustomReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), customReferenceEnumerator);
+    }
+    pub fn GetCustomObjectEnumerator(self: *const IOpcDigitalSignature, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCustomObjectEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), customObjectEnumerator);
+    }
+    pub fn GetSignatureXml(self: *const IOpcDigitalSignature, signatureXml: ?*?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureXml, count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1247,7 +1466,58 @@ pub const IOpcSigningOptions = extern union {
             return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IOpcSigningOptions, @ptrCast(self)), signaturePartName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSignatureId(self: *const IOpcSigningOptions, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureId);
+    }
+    pub fn SetSignatureId(self: *const IOpcSigningOptions, signatureId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureId(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureId);
+    }
+    pub fn GetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureMethod);
+    }
+    pub fn SetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureMethod);
+    }
+    pub fn GetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetDefaultDigestMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), digestMethod);
+    }
+    pub fn SetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetDefaultDigestMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), digestMethod);
+    }
+    pub fn GetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: ?*OPC_CERTIFICATE_EMBEDDING_OPTION) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateEmbeddingOption(@as(*const IOpcSigningOptions, @ptrCast(self)), embeddingOption);
+    }
+    pub fn SetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetCertificateEmbeddingOption(@as(*const IOpcSigningOptions, @ptrCast(self)), embeddingOption);
+    }
+    pub fn GetTimeFormat(self: *const IOpcSigningOptions, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetTimeFormat(@as(*const IOpcSigningOptions, @ptrCast(self)), timeFormat);
+    }
+    pub fn SetTimeFormat(self: *const IOpcSigningOptions, timeFormat: OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetTimeFormat(@as(*const IOpcSigningOptions, @ptrCast(self)), timeFormat);
+    }
+    pub fn GetSignaturePartReferenceSet(self: *const IOpcSigningOptions, partReferenceSet: ?*?*IOpcSignaturePartReferenceSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), partReferenceSet);
+    }
+    pub fn GetSignatureRelationshipReferenceSet(self: *const IOpcSigningOptions, relationshipReferenceSet: ?*?*IOpcSignatureRelationshipReferenceSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureRelationshipReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), relationshipReferenceSet);
+    }
+    pub fn GetCustomObjectSet(self: *const IOpcSigningOptions, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomObjectSet(@as(*const IOpcSigningOptions, @ptrCast(self)), customObjectSet);
+    }
+    pub fn GetCustomReferenceSet(self: *const IOpcSigningOptions, customReferenceSet: ?*?*IOpcSignatureReferenceSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), customReferenceSet);
+    }
+    pub fn GetCertificateSet(self: *const IOpcSigningOptions, certificateSet: ?*?*IOpcCertificateSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateSet(@as(*const IOpcSigningOptions, @ptrCast(self)), certificateSet);
+    }
+    pub fn GetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IOpcSigningOptions, @ptrCast(self)), signaturePartName);
+    }
+    pub fn SetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IOpcSigningOptions, @ptrCast(self)), signaturePartName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1333,7 +1603,31 @@ pub const IOpcDigitalSignatureManager = extern union {
             return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).ReplaceSignatureXml(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signaturePartName, newSignatureXml, count, digitalSignature);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureOriginPartName(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureOriginPartName);
+    }
+    pub fn SetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).SetSignatureOriginPartName(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureOriginPartName);
+    }
+    pub fn GetSignatureEnumerator(self: *const IOpcDigitalSignatureManager, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureEnumerator(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureEnumerator);
+    }
+    pub fn RemoveSignature(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).RemoveSignature(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signaturePartName);
+    }
+    pub fn CreateSigningOptions(self: *const IOpcDigitalSignatureManager, signingOptions: ?*?*IOpcSigningOptions) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).CreateSigningOptions(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signingOptions);
+    }
+    pub fn Validate(self: *const IOpcDigitalSignatureManager, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).Validate(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signature, certificate, validationResult);
+    }
+    pub fn Sign(self: *const IOpcDigitalSignatureManager, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).Sign(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), certificate, signingOptions, digitalSignature);
+    }
+    pub fn ReplaceSignatureXml(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).ReplaceSignatureXml(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signaturePartName, newSignatureXml, count, digitalSignature);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1380,7 +1674,19 @@ pub const IOpcSignaturePartReferenceEnumerator = extern union {
             return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcSignaturePartReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignaturePartReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignaturePartReferenceEnumerator, partReference: ?*?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), partReference);
+    }
+    pub fn Clone(self: *const IOpcSignaturePartReferenceEnumerator, copy: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1427,7 +1733,19 @@ pub const IOpcSignatureRelationshipReferenceEnumerator = extern union {
             return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureRelationshipReferenceEnumerator, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), relationshipReference);
+    }
+    pub fn Clone(self: *const IOpcSignatureRelationshipReferenceEnumerator, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1474,7 +1792,19 @@ pub const IOpcRelationshipSelectorEnumerator = extern union {
             return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcRelationshipSelectorEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcRelationshipSelectorEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcRelationshipSelectorEnumerator, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), relationshipSelector);
+    }
+    pub fn Clone(self: *const IOpcRelationshipSelectorEnumerator, copy: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1521,7 +1851,19 @@ pub const IOpcSignatureReferenceEnumerator = extern union {
             return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcSignatureReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureReferenceEnumerator, reference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), reference);
+    }
+    pub fn Clone(self: *const IOpcSignatureReferenceEnumerator, copy: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1568,7 +1910,19 @@ pub const IOpcSignatureCustomObjectEnumerator = extern union {
             return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcSignatureCustomObjectEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureCustomObjectEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureCustomObjectEnumerator, customObject: ?*?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), customObject);
+    }
+    pub fn Clone(self: *const IOpcSignatureCustomObjectEnumerator, copy: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1615,7 +1969,19 @@ pub const IOpcCertificateEnumerator = extern union {
             return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcCertificateEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcCertificateEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcCertificateEnumerator, certificate: ?*const ?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), certificate);
+    }
+    pub fn Clone(self: *const IOpcCertificateEnumerator, copy: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1662,7 +2028,19 @@ pub const IOpcDigitalSignatureEnumerator = extern union {
             return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), copy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IOpcDigitalSignatureEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcDigitalSignatureEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcDigitalSignatureEnumerator, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), digitalSignature);
+    }
+    pub fn Clone(self: *const IOpcDigitalSignatureEnumerator, copy: ?*?*IOpcDigitalSignatureEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), copy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1704,7 +2082,16 @@ pub const IOpcSignaturePartReferenceSet = extern union {
             return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partReferenceEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IOpcSignaturePartReferenceSet, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partUri, digestMethod, transformMethod, partReference);
+    }
+    pub fn Delete(self: *const IOpcSignaturePartReferenceSet, partReference: ?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partReference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignaturePartReferenceSet, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partReferenceEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1756,7 +2143,19 @@ pub const IOpcSignatureRelationshipReferenceSet = extern union {
             return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), relationshipReferenceEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IOpcSignatureRelationshipReferenceSet, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
+    }
+    pub fn CreateRelationshipSelectorSet(self: *const IOpcSignatureRelationshipReferenceSet, selectorSet: ?*?*IOpcRelationshipSelectorSet) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).CreateRelationshipSelectorSet(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), selectorSet);
+    }
+    pub fn Delete(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReference: ?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), relationshipReference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), relationshipReferenceEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1797,7 +2196,16 @@ pub const IOpcRelationshipSelectorSet = extern union {
             return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), relationshipSelectorEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IOpcRelationshipSelectorSet, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), selector, selectionCriterion, relationshipSelector);
+    }
+    pub fn Delete(self: *const IOpcRelationshipSelectorSet, relationshipSelector: ?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), relationshipSelector);
+    }
+    pub fn GetEnumerator(self: *const IOpcRelationshipSelectorSet, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), relationshipSelectorEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1841,7 +2249,16 @@ pub const IOpcSignatureReferenceSet = extern union {
             return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), referenceEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IOpcSignatureReferenceSet, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, @"type": ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), referenceUri, referenceId, @"type", digestMethod, transformMethod, reference);
+    }
+    pub fn Delete(self: *const IOpcSignatureReferenceSet, reference: ?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), reference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureReferenceSet, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), referenceEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1882,7 +2299,16 @@ pub const IOpcSignatureCustomObjectSet = extern union {
             return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), customObjectEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IOpcSignatureCustomObjectSet, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), xmlMarkup, count, customObject);
+    }
+    pub fn Delete(self: *const IOpcSignatureCustomObjectSet, customObject: ?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), customObject);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureCustomObjectSet, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), customObjectEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1921,7 +2347,16 @@ pub const IOpcCertificateSet = extern union {
             return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcCertificateSet, @ptrCast(self)), certificateEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Add(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IOpcCertificateSet, @ptrCast(self)), certificate);
+    }
+    pub fn Remove(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const IOpcCertificateSet, @ptrCast(self)), certificate);
+    }
+    pub fn GetEnumerator(self: *const IOpcCertificateSet, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcCertificateSet, @ptrCast(self)), certificateEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2002,7 +2437,28 @@ pub const IOpcFactory = extern union {
             return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreateDigitalSignatureManager(@as(*const IOpcFactory, @ptrCast(self)), package, signatureManager);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreatePackageRootUri(self: *const IOpcFactory, rootUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePackageRootUri(@as(*const IOpcFactory, @ptrCast(self)), rootUri);
+    }
+    pub fn CreatePartUri(self: *const IOpcFactory, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePartUri(@as(*const IOpcFactory, @ptrCast(self)), pwzUri, partUri);
+    }
+    pub fn CreateStreamOnFile(self: *const IOpcFactory, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreateStreamOnFile(@as(*const IOpcFactory, @ptrCast(self)), filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
+    }
+    pub fn CreatePackage(self: *const IOpcFactory, package: ?*?*IOpcPackage) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePackage(@as(*const IOpcFactory, @ptrCast(self)), package);
+    }
+    pub fn ReadPackageFromStream(self: *const IOpcFactory, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).ReadPackageFromStream(@as(*const IOpcFactory, @ptrCast(self)), stream, flags, package);
+    }
+    pub fn WritePackageToStream(self: *const IOpcFactory, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).WritePackageToStream(@as(*const IOpcFactory, @ptrCast(self)), package, flags, stream);
+    }
+    pub fn CreateDigitalSignatureManager(self: *const IOpcFactory, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) callconv(.Inline) HRESULT {
+        return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreateDigitalSignatureManager(@as(*const IOpcFactory, @ptrCast(self)), package, signatureManager);
+    }
 };
 
 

@@ -582,7 +582,13 @@ pub const ID3DBlob = extern union {
             return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const ID3DBlob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.Inline) ?*anyopaque {
+        return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferPointer(@as(*const ID3DBlob, @ptrCast(self)));
+    }
+    pub fn GetBufferSize(self: *const ID3DBlob) callconv(.Inline) usize {
+        return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const ID3DBlob, @ptrCast(self)));
+    }
 };
 
 pub const PFN_DESTRUCTION_CALLBACK = *const fn(
@@ -620,7 +626,13 @@ pub const ID3DDestructionNotifier = extern union {
             return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).UnregisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).RegisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackFn, pData, pCallbackID);
+    }
+    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).UnregisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackID);
+    }
 };
 
 pub const D3D_INCLUDE_TYPE = enum(i32) {
@@ -663,7 +675,12 @@ pub const ID3DInclude = extern union {
             return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3DInclude, @ptrCast(self)), pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Open(@as(*const ID3DInclude, @ptrCast(self)), IncludeType, pFileName, pParentData, ppData, pBytes);
+    }
+    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3DInclude, @ptrCast(self)), pData);
+    }
 };
 
 pub const D3D_SHADER_VARIABLE_CLASS = enum(i32) {

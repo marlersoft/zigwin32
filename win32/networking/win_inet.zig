@@ -1718,7 +1718,10 @@ pub const IDialEventSink = extern union {
             return @as(*const IDialEventSink.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IDialEventSink, @ptrCast(self)), dwEvent, dwStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnEvent(self: *const IDialEventSink, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDialEventSink.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IDialEventSink, @ptrCast(self)), dwEvent, dwStatus);
+    }
 };
 
 const IID_IDialEngine_Value = Guid.initString("39fd782b-7905-40d5-9148-3c9b190423d5");
@@ -1790,7 +1793,28 @@ pub const IDialEngine = extern union {
             return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectHandle(@as(*const IDialEngine, @ptrCast(self)), pdwHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialEngine, @ptrCast(self)), pwzConnectoid, pIDES);
+    }
+    pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue, dwBufSize);
+    }
+    pub fn SetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue);
+    }
+    pub fn Dial(self: *const IDialEngine) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Dial(@as(*const IDialEngine, @ptrCast(self)));
+    }
+    pub fn HangUp(self: *const IDialEngine) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).HangUp(@as(*const IDialEngine, @ptrCast(self)));
+    }
+    pub fn GetConnectedState(self: *const IDialEngine, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectedState(@as(*const IDialEngine, @ptrCast(self)), pdwState);
+    }
+    pub fn GetConnectHandle(self: *const IDialEngine, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectHandle(@as(*const IDialEngine, @ptrCast(self)), pdwHandle);
+    }
 };
 
 const IID_IDialBranding_Value = Guid.initString("8aecafa9-4306-43cc-8c5a-765f2979cc16");
@@ -1821,7 +1845,13 @@ pub const IDialBranding = extern union {
             return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IDialBranding, @ptrCast(self)), dwIndex, phBitmap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDialBranding, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialBranding, @ptrCast(self)), pwzConnectoid);
+    }
+    pub fn GetBitmap(self: *const IDialBranding, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+        return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IDialBranding, @ptrCast(self)), dwIndex, phBitmap);
+    }
 };
 
 pub const INTERNET_PREFETCH_STATUS = extern struct {
@@ -2257,7 +2287,10 @@ pub const IProofOfPossessionCookieInfoManager = extern union {
             return @as(*const IProofOfPossessionCookieInfoManager.VTable, @ptrCast(self.vtable)).GetCookieInfoForUri(@as(*const IProofOfPossessionCookieInfoManager, @ptrCast(self)), uri, cookieInfoCount, cookieInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCookieInfoForUri(self: *const IProofOfPossessionCookieInfoManager, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+        return @as(*const IProofOfPossessionCookieInfoManager.VTable, @ptrCast(self.vtable)).GetCookieInfoForUri(@as(*const IProofOfPossessionCookieInfoManager, @ptrCast(self)), uri, cookieInfoCount, cookieInfo);
+    }
 };
 
 const IID_IProofOfPossessionCookieInfoManager2_Value = Guid.initString("15e41407-b42f-4ae7-9966-34a087b2d713");
@@ -2282,7 +2315,10 @@ pub const IProofOfPossessionCookieInfoManager2 = extern union {
             return @as(*const IProofOfPossessionCookieInfoManager2.VTable, @ptrCast(self.vtable)).GetCookieInfoWithUriForAccount(@as(*const IProofOfPossessionCookieInfoManager2, @ptrCast(self)), webAccount, uri, cookieInfoCount, cookieInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCookieInfoWithUriForAccount(self: *const IProofOfPossessionCookieInfoManager2, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+        return @as(*const IProofOfPossessionCookieInfoManager2.VTable, @ptrCast(self.vtable)).GetCookieInfoWithUriForAccount(@as(*const IProofOfPossessionCookieInfoManager2, @ptrCast(self)), webAccount, uri, cookieInfoCount, cookieInfo);
+    }
 };
 
 

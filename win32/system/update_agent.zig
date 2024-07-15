@@ -727,7 +727,10 @@ pub const IUpdateLockdown = extern union {
             return @as(*const IUpdateLockdown.VTable, @ptrCast(self.vtable)).LockDown(@as(*const IUpdateLockdown, @ptrCast(self)), flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LockDown(self: *const IUpdateLockdown, flags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateLockdown.VTable, @ptrCast(self.vtable)).LockDown(@as(*const IUpdateLockdown, @ptrCast(self)), flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -828,7 +831,37 @@ pub const IStringCollection = extern union {
             return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IStringCollection, @ptrCast(self)), index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IStringCollection, index: i32, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IStringCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn put_Item(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).put_Item(@as(*const IStringCollection, @ptrCast(self)), index, value);
+    }
+    pub fn get__NewEnum(self: *const IStringCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IStringCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IStringCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IStringCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_ReadOnly(self: *const IStringCollection, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IStringCollection, @ptrCast(self)), retval);
+    }
+    pub fn Add(self: *const IStringCollection, value: ?BSTR, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IStringCollection, @ptrCast(self)), value, retval);
+    }
+    pub fn Clear(self: *const IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IStringCollection, @ptrCast(self)));
+    }
+    pub fn Copy(self: *const IStringCollection, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Copy(@as(*const IStringCollection, @ptrCast(self)), retval);
+    }
+    pub fn Insert(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IStringCollection, @ptrCast(self)), index, value);
+    }
+    pub fn RemoveAt(self: *const IStringCollection, index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IStringCollection, @ptrCast(self)), index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -968,7 +1001,49 @@ pub const IWebProxy = extern union {
             return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_AutoDetect(@as(*const IWebProxy, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Address(self: *const IWebProxy, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn put_Address(self: *const IWebProxy, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
+    pub fn get_BypassList(self: *const IWebProxy, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_BypassList(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn put_BypassList(self: *const IWebProxy, value: ?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_BypassList(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
+    pub fn get_BypassProxyOnLocal(self: *const IWebProxy, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_BypassProxyOnLocal(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn put_BypassProxyOnLocal(self: *const IWebProxy, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_BypassProxyOnLocal(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
+    pub fn get_ReadOnly(self: *const IWebProxy, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn get_UserName(self: *const IWebProxy, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn put_UserName(self: *const IWebProxy, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_UserName(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
+    pub fn SetPassword(self: *const IWebProxy, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
+    pub fn PromptForCredentials(self: *const IWebProxy, parentWindow: ?*IUnknown, title: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).PromptForCredentials(@as(*const IWebProxy, @ptrCast(self)), parentWindow, title);
+    }
+    pub fn PromptForCredentialsFromHwnd(self: *const IWebProxy, parentWindow: ?HWND, title: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).PromptForCredentialsFromHwnd(@as(*const IWebProxy, @ptrCast(self)), parentWindow, title);
+    }
+    pub fn get_AutoDetect(self: *const IWebProxy, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_AutoDetect(@as(*const IWebProxy, @ptrCast(self)), retval);
+    }
+    pub fn put_AutoDetect(self: *const IWebProxy, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_AutoDetect(@as(*const IWebProxy, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1001,7 +1076,13 @@ pub const ISystemInformation = extern union {
             return @as(*const ISystemInformation.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const ISystemInformation, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_OemHardwareSupportLink(self: *const ISystemInformation, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISystemInformation.VTable, @ptrCast(self.vtable)).get_OemHardwareSupportLink(@as(*const ISystemInformation, @ptrCast(self)), retval);
+    }
+    pub fn get_RebootRequired(self: *const ISystemInformation, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISystemInformation.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const ISystemInformation, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1025,7 +1106,10 @@ pub const IWindowsUpdateAgentInfo = extern union {
             return @as(*const IWindowsUpdateAgentInfo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWindowsUpdateAgentInfo, @ptrCast(self)), varInfoIdentifier, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetInfo(self: *const IWindowsUpdateAgentInfo, varInfoIdentifier: VARIANT, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsUpdateAgentInfo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWindowsUpdateAgentInfo, @ptrCast(self)), varInfoIdentifier, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1058,7 +1142,13 @@ pub const IAutomaticUpdatesResults = extern union {
             return @as(*const IAutomaticUpdatesResults.VTable, @ptrCast(self.vtable)).get_LastInstallationSuccessDate(@as(*const IAutomaticUpdatesResults, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_LastSearchSuccessDate(self: *const IAutomaticUpdatesResults, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesResults.VTable, @ptrCast(self.vtable)).get_LastSearchSuccessDate(@as(*const IAutomaticUpdatesResults, @ptrCast(self)), retval);
+    }
+    pub fn get_LastInstallationSuccessDate(self: *const IAutomaticUpdatesResults, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesResults.VTable, @ptrCast(self.vtable)).get_LastInstallationSuccessDate(@as(*const IAutomaticUpdatesResults, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1159,7 +1249,37 @@ pub const IAutomaticUpdatesSettings = extern union {
             return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).Save(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_NotificationLevel(self: *const IAutomaticUpdatesSettings, retval: ?*AutomaticUpdatesNotificationLevel) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_NotificationLevel(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
+    }
+    pub fn put_NotificationLevel(self: *const IAutomaticUpdatesSettings, value: AutomaticUpdatesNotificationLevel) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_NotificationLevel(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
+    }
+    pub fn get_ReadOnly(self: *const IAutomaticUpdatesSettings, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
+    }
+    pub fn get_Required(self: *const IAutomaticUpdatesSettings, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_Required(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
+    }
+    pub fn get_ScheduledInstallationDay(self: *const IAutomaticUpdatesSettings, retval: ?*AutomaticUpdatesScheduledInstallationDay) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ScheduledInstallationDay(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
+    }
+    pub fn put_ScheduledInstallationDay(self: *const IAutomaticUpdatesSettings, value: AutomaticUpdatesScheduledInstallationDay) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_ScheduledInstallationDay(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
+    }
+    pub fn get_ScheduledInstallationTime(self: *const IAutomaticUpdatesSettings, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ScheduledInstallationTime(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
+    }
+    pub fn put_ScheduledInstallationTime(self: *const IAutomaticUpdatesSettings, value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_ScheduledInstallationTime(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
+    }
+    pub fn Refresh(self: *const IAutomaticUpdatesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IAutomaticUpdatesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).Save(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1202,7 +1322,16 @@ pub const IAutomaticUpdatesSettings2 = extern union {
             return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).CheckPermission(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), userType, permissionType, userHasPermission);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAutomaticUpdatesSettings.MethodMixin(@This());
+    pub fn get_IncludeRecommendedUpdates(self: *const IAutomaticUpdatesSettings2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).get_IncludeRecommendedUpdates(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), retval);
+    }
+    pub fn put_IncludeRecommendedUpdates(self: *const IAutomaticUpdatesSettings2, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).put_IncludeRecommendedUpdates(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), value);
+    }
+    pub fn CheckPermission(self: *const IAutomaticUpdatesSettings2, userType: AutomaticUpdatesUserType, permissionType: AutomaticUpdatesPermissionType, userHasPermission: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).CheckPermission(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), userType, permissionType, userHasPermission);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1253,7 +1382,19 @@ pub const IAutomaticUpdatesSettings3 = extern union {
             return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).put_FeaturedUpdatesEnabled(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAutomaticUpdatesSettings2.MethodMixin(@This());
+    pub fn get_NonAdministratorsElevated(self: *const IAutomaticUpdatesSettings3, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).get_NonAdministratorsElevated(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), retval);
+    }
+    pub fn put_NonAdministratorsElevated(self: *const IAutomaticUpdatesSettings3, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).put_NonAdministratorsElevated(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), value);
+    }
+    pub fn get_FeaturedUpdatesEnabled(self: *const IAutomaticUpdatesSettings3, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).get_FeaturedUpdatesEnabled(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), retval);
+    }
+    pub fn put_FeaturedUpdatesEnabled(self: *const IAutomaticUpdatesSettings3, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).put_FeaturedUpdatesEnabled(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1321,7 +1462,28 @@ pub const IAutomaticUpdates = extern union {
             return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).EnableService(@as(*const IAutomaticUpdates, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn DetectNow(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).DetectNow(@as(*const IAutomaticUpdates, @ptrCast(self)));
+    }
+    pub fn Pause(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).Pause(@as(*const IAutomaticUpdates, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).Resume(@as(*const IAutomaticUpdates, @ptrCast(self)));
+    }
+    pub fn ShowSettingsDialog(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).ShowSettingsDialog(@as(*const IAutomaticUpdates, @ptrCast(self)));
+    }
+    pub fn get_Settings(self: *const IAutomaticUpdates, retval: ?*?*IAutomaticUpdatesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).get_Settings(@as(*const IAutomaticUpdates, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceEnabled(self: *const IAutomaticUpdates, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).get_ServiceEnabled(@as(*const IAutomaticUpdates, @ptrCast(self)), retval);
+    }
+    pub fn EnableService(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).EnableService(@as(*const IAutomaticUpdates, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1345,7 +1507,10 @@ pub const IAutomaticUpdates2 = extern union {
             return @as(*const IAutomaticUpdates2.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IAutomaticUpdates2, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAutomaticUpdates.MethodMixin(@This());
+    pub fn get_Results(self: *const IAutomaticUpdates2, retval: ?*?*IAutomaticUpdatesResults) callconv(.Inline) HRESULT {
+        return @as(*const IAutomaticUpdates2.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IAutomaticUpdates2, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1378,7 +1543,13 @@ pub const IUpdateIdentity = extern union {
             return @as(*const IUpdateIdentity.VTable, @ptrCast(self.vtable)).get_UpdateID(@as(*const IUpdateIdentity, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_RevisionNumber(self: *const IUpdateIdentity, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateIdentity.VTable, @ptrCast(self.vtable)).get_RevisionNumber(@as(*const IUpdateIdentity, @ptrCast(self)), retval);
+    }
+    pub fn get_UpdateID(self: *const IUpdateIdentity, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateIdentity.VTable, @ptrCast(self.vtable)).get_UpdateID(@as(*const IUpdateIdentity, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1429,7 +1600,19 @@ pub const IImageInformation = extern union {
             return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IImageInformation, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AltText(self: *const IImageInformation, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_AltText(@as(*const IImageInformation, @ptrCast(self)), retval);
+    }
+    pub fn get_Height(self: *const IImageInformation, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IImageInformation, @ptrCast(self)), retval);
+    }
+    pub fn get_Source(self: *const IImageInformation, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Source(@as(*const IImageInformation, @ptrCast(self)), retval);
+    }
+    pub fn get_Width(self: *const IImageInformation, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IImageInformation, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1525,7 +1708,34 @@ pub const ICategory = extern union {
             return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const ICategory, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const ICategory, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_CategoryID(self: *const ICategory, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_CategoryID(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Children(self: *const ICategory, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const ICategory, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Image(self: *const ICategory, retval: ?*?*IImageInformation) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Image(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Order(self: *const ICategory, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Order(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Parent(self: *const ICategory, retval: ?*?*ICategory) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Type(self: *const ICategory, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICategory, @ptrCast(self)), retval);
+    }
+    pub fn get_Updates(self: *const ICategory, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const ICategory, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1567,7 +1777,16 @@ pub const ICategoryCollection = extern union {
             return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICategoryCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const ICategoryCollection, index: i32, retval: ?*?*ICategory) callconv(.Inline) HRESULT {
+        return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICategoryCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const ICategoryCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICategoryCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const ICategoryCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICategoryCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1618,7 +1837,19 @@ pub const IInstallationBehavior = extern union {
             return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_RequiresNetworkConnectivity(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CanRequestUserInput(self: *const IInstallationBehavior, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_CanRequestUserInput(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
+    }
+    pub fn get_Impact(self: *const IInstallationBehavior, retval: ?*InstallationImpact) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_Impact(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
+    }
+    pub fn get_RebootBehavior(self: *const IInstallationBehavior, retval: ?*InstallationRebootBehavior) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_RebootBehavior(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
+    }
+    pub fn get_RequiresNetworkConnectivity(self: *const IInstallationBehavior, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_RequiresNetworkConnectivity(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1642,7 +1873,10 @@ pub const IUpdateDownloadContent = extern union {
             return @as(*const IUpdateDownloadContent.VTable, @ptrCast(self.vtable)).get_DownloadUrl(@as(*const IUpdateDownloadContent, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_DownloadUrl(self: *const IUpdateDownloadContent, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadContent.VTable, @ptrCast(self.vtable)).get_DownloadUrl(@as(*const IUpdateDownloadContent, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1666,7 +1900,10 @@ pub const IUpdateDownloadContent2 = extern union {
             return @as(*const IUpdateDownloadContent2.VTable, @ptrCast(self.vtable)).get_IsDeltaCompressedContent(@as(*const IUpdateDownloadContent2, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateDownloadContent.MethodMixin(@This());
+    pub fn get_IsDeltaCompressedContent(self: *const IUpdateDownloadContent2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadContent2.VTable, @ptrCast(self.vtable)).get_IsDeltaCompressedContent(@as(*const IUpdateDownloadContent2, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1708,7 +1945,16 @@ pub const IUpdateDownloadContentCollection = extern union {
             return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IUpdateDownloadContentCollection, index: i32, retval: ?*?*IUpdateDownloadContent) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const IUpdateDownloadContentCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IUpdateDownloadContentCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2126,7 +2372,142 @@ pub const IUpdate = extern union {
             return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DownloadContents(@as(*const IUpdate, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Title(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_AutoSelectOnWebSites(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_AutoSelectOnWebSites(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_BundledUpdates(self: *const IUpdate, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_BundledUpdates(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_CanRequireSource(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_CanRequireSource(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Categories(self: *const IUpdate, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Categories(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Deadline(self: *const IUpdate, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Deadline(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DeltaCompressedContentAvailable(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeltaCompressedContentAvailable(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DeltaCompressedContentPreferred(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeltaCompressedContentPreferred(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_EulaAccepted(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_EulaAccepted(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_EulaText(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_EulaText(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_HandlerID(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_HandlerID(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Identity(self: *const IUpdate, retval: ?*?*IUpdateIdentity) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Identity(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Image(self: *const IUpdate, retval: ?*?*IImageInformation) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Image(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_InstallationBehavior(self: *const IUpdate, retval: ?*?*IInstallationBehavior) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_InstallationBehavior(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_IsBeta(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsBeta(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_IsDownloaded(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsDownloaded(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_IsHidden(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsHidden(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn put_IsHidden(self: *const IUpdate, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).put_IsHidden(@as(*const IUpdate, @ptrCast(self)), value);
+    }
+    pub fn get_IsInstalled(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsInstalled(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_IsMandatory(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsMandatory(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_IsUninstallable(self: *const IUpdate, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsUninstallable(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Languages(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Languages(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_LastDeploymentChangeTime(self: *const IUpdate, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_LastDeploymentChangeTime(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_MaxDownloadSize(self: *const IUpdate, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MaxDownloadSize(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_MinDownloadSize(self: *const IUpdate, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MinDownloadSize(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_MoreInfoUrls(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MoreInfoUrls(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_MsrcSeverity(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MsrcSeverity(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_RecommendedCpuSpeed(self: *const IUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedCpuSpeed(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_RecommendedHardDiskSpace(self: *const IUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedHardDiskSpace(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_RecommendedMemory(self: *const IUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedMemory(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_ReleaseNotes(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_ReleaseNotes(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_SecurityBulletinIDs(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SecurityBulletinIDs(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_SupersededUpdateIDs(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SupersededUpdateIDs(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_SupportUrl(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SupportUrl(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_Type(self: *const IUpdate, retval: ?*UpdateType) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_UninstallationNotes(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationNotes(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_UninstallationBehavior(self: *const IUpdate, retval: ?*?*IInstallationBehavior) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationBehavior(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_UninstallationSteps(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationSteps(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_KBArticleIDs(self: *const IUpdate, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_KBArticleIDs(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn AcceptEula(self: *const IUpdate) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).AcceptEula(@as(*const IUpdate, @ptrCast(self)));
+    }
+    pub fn get_DeploymentAction(self: *const IUpdate, retval: ?*DeploymentAction) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeploymentAction(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn CopyFromCache(self: *const IUpdate, path: ?BSTR, toExtractCabFiles: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).CopyFromCache(@as(*const IUpdate, @ptrCast(self)), path, toExtractCabFiles);
+    }
+    pub fn get_DownloadPriority(self: *const IUpdate, retval: ?*DownloadPriority) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DownloadPriority(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DownloadContents(self: *const IUpdate, retval: ?*?*IUpdateDownloadContentCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DownloadContents(@as(*const IUpdate, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2213,7 +2594,31 @@ pub const IWindowsDriverUpdate = extern union {
             return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdate.MethodMixin(@This());
+    pub fn get_DriverClass(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverClass(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverHardwareID(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverManufacturer(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverModel(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverModel(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverProvider(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverProvider(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdate, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverVerDate(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DeviceProblemNumber(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
+    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2263,7 +2668,19 @@ pub const IUpdate2 = extern union {
             return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IUpdate2, @ptrCast(self)), pFiles);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdate.MethodMixin(@This());
+    pub fn get_RebootRequired(self: *const IUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn get_IsPresent(self: *const IUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_IsPresent(@as(*const IUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn get_CveIDs(self: *const IUpdate2, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_CveIDs(@as(*const IUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn CopyToCache(self: *const IUpdate2, pFiles: ?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IUpdate2, @ptrCast(self)), pFiles);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2287,7 +2704,10 @@ pub const IUpdate3 = extern union {
             return @as(*const IUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IUpdate3, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdate2.MethodMixin(@This());
+    pub fn get_BrowseOnly(self: *const IUpdate3, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IUpdate3, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2311,7 +2731,10 @@ pub const IUpdate4 = extern union {
             return @as(*const IUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IUpdate4, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdate3.MethodMixin(@This());
+    pub fn get_PerUser(self: *const IUpdate4, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IUpdate4, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2344,7 +2767,13 @@ pub const IUpdate5 = extern union {
             return @as(*const IUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IUpdate5, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdate4.MethodMixin(@This());
+    pub fn get_AutoSelection(self: *const IUpdate5, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate5.VTable, @ptrCast(self.vtable)).get_AutoSelection(@as(*const IUpdate5, @ptrCast(self)), retval);
+    }
+    pub fn get_AutoDownload(self: *const IUpdate5, retval: ?*AutoDownloadMode) callconv(.Inline) HRESULT {
+        return @as(*const IUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IUpdate5, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2394,7 +2823,19 @@ pub const IWindowsDriverUpdate2 = extern union {
             return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), pFiles);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowsDriverUpdate.MethodMixin(@This());
+    pub fn get_RebootRequired(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn get_IsPresent(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_IsPresent(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn get_CveIDs(self: *const IWindowsDriverUpdate2, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_CveIDs(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
+    }
+    pub fn CopyToCache(self: *const IWindowsDriverUpdate2, pFiles: ?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), pFiles);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2418,7 +2859,10 @@ pub const IWindowsDriverUpdate3 = extern union {
             return @as(*const IWindowsDriverUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IWindowsDriverUpdate3, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowsDriverUpdate2.MethodMixin(@This());
+    pub fn get_BrowseOnly(self: *const IWindowsDriverUpdate3, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IWindowsDriverUpdate3, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2505,7 +2949,31 @@ pub const IWindowsDriverUpdateEntry = extern union {
             return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_DriverClass(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverClass(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverHardwareID(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverManufacturer(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverModel(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverModel(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverProvider(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverProvider(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdateEntry, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverVerDate(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DeviceProblemNumber(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2547,7 +3015,16 @@ pub const IWindowsDriverUpdateEntryCollection = extern union {
             return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IWindowsDriverUpdateEntryCollection, index: i32, retval: ?*?*IWindowsDriverUpdateEntry) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2580,7 +3057,13 @@ pub const IWindowsDriverUpdate4 = extern union {
             return @as(*const IWindowsDriverUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IWindowsDriverUpdate4, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowsDriverUpdate3.MethodMixin(@This());
+    pub fn get_WindowsDriverUpdateEntries(self: *const IWindowsDriverUpdate4, retval: ?*?*IWindowsDriverUpdateEntryCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate4.VTable, @ptrCast(self.vtable)).get_WindowsDriverUpdateEntries(@as(*const IWindowsDriverUpdate4, @ptrCast(self)), retval);
+    }
+    pub fn get_PerUser(self: *const IWindowsDriverUpdate4, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IWindowsDriverUpdate4, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2613,7 +3096,13 @@ pub const IWindowsDriverUpdate5 = extern union {
             return @as(*const IWindowsDriverUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IWindowsDriverUpdate5, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowsDriverUpdate4.MethodMixin(@This());
+    pub fn get_AutoSelection(self: *const IWindowsDriverUpdate5, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate5.VTable, @ptrCast(self.vtable)).get_AutoSelection(@as(*const IWindowsDriverUpdate5, @ptrCast(self)), retval);
+    }
+    pub fn get_AutoDownload(self: *const IWindowsDriverUpdate5, retval: ?*AutoDownloadMode) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsDriverUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IWindowsDriverUpdate5, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2714,7 +3203,37 @@ pub const IUpdateCollection = extern union {
             return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUpdateCollection, @ptrCast(self)), index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IUpdateCollection, index: i32, retval: ?*?*IUpdate) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn put_Item(self: *const IUpdateCollection, index: i32, value: ?*IUpdate) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).put_Item(@as(*const IUpdateCollection, @ptrCast(self)), index, value);
+    }
+    pub fn get__NewEnum(self: *const IUpdateCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IUpdateCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_ReadOnly(self: *const IUpdateCollection, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IUpdateCollection, @ptrCast(self)), retval);
+    }
+    pub fn Add(self: *const IUpdateCollection, value: ?*IUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IUpdateCollection, @ptrCast(self)), value, retval);
+    }
+    pub fn Clear(self: *const IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IUpdateCollection, @ptrCast(self)));
+    }
+    pub fn Copy(self: *const IUpdateCollection, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Copy(@as(*const IUpdateCollection, @ptrCast(self)), retval);
+    }
+    pub fn Insert(self: *const IUpdateCollection, index: i32, value: ?*IUpdate) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IUpdateCollection, @ptrCast(self)), index, value);
+    }
+    pub fn RemoveAt(self: *const IUpdateCollection, index: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUpdateCollection, @ptrCast(self)), index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2756,7 +3275,16 @@ pub const IUpdateException = extern union {
             return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_Context(@as(*const IUpdateException, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Message(self: *const IUpdateException, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IUpdateException, @ptrCast(self)), retval);
+    }
+    pub fn get_HResult(self: *const IUpdateException, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateException, @ptrCast(self)), retval);
+    }
+    pub fn get_Context(self: *const IUpdateException, retval: ?*UpdateExceptionContext) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_Context(@as(*const IUpdateException, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2780,7 +3308,10 @@ pub const IInvalidProductLicenseException = extern union {
             return @as(*const IInvalidProductLicenseException.VTable, @ptrCast(self.vtable)).get_Product(@as(*const IInvalidProductLicenseException, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateException.MethodMixin(@This());
+    pub fn get_Product(self: *const IInvalidProductLicenseException, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInvalidProductLicenseException.VTable, @ptrCast(self.vtable)).get_Product(@as(*const IInvalidProductLicenseException, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2822,7 +3353,16 @@ pub const IUpdateExceptionCollection = extern union {
             return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateExceptionCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IUpdateExceptionCollection, index: i32, retval: ?*?*IUpdateException) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateExceptionCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const IUpdateExceptionCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateExceptionCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IUpdateExceptionCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateExceptionCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2873,7 +3413,19 @@ pub const ISearchResult = extern union {
             return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_Warnings(@as(*const ISearchResult, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ResultCode(self: *const ISearchResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const ISearchResult, @ptrCast(self)), retval);
+    }
+    pub fn get_RootCategories(self: *const ISearchResult, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_RootCategories(@as(*const ISearchResult, @ptrCast(self)), retval);
+    }
+    pub fn get_Updates(self: *const ISearchResult, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const ISearchResult, @ptrCast(self)), retval);
+    }
+    pub fn get_Warnings(self: *const ISearchResult, retval: ?*?*IUpdateExceptionCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_Warnings(@as(*const ISearchResult, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2920,7 +3472,19 @@ pub const ISearchJob = extern union {
             return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const ISearchJob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AsyncState(self: *const ISearchJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const ISearchJob, @ptrCast(self)), retval);
+    }
+    pub fn get_IsCompleted(self: *const ISearchJob, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const ISearchJob, @ptrCast(self)), retval);
+    }
+    pub fn CleanUp(self: *const ISearchJob) callconv(.Inline) HRESULT {
+        return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const ISearchJob, @ptrCast(self)));
+    }
+    pub fn RequestAbort(self: *const ISearchJob) callconv(.Inline) HRESULT {
+        return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const ISearchJob, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2935,7 +3499,7 @@ pub const ISearchCompletedCallbackArgs = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2959,7 +3523,10 @@ pub const ISearchCompletedCallback = extern union {
             return @as(*const ISearchCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISearchCompletedCallback, @ptrCast(self)), searchJob, callbackArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const ISearchCompletedCallback, searchJob: ?*ISearchJob, callbackArgs: ?*ISearchCompletedCallbackArgs) callconv(.Inline) HRESULT {
+        return @as(*const ISearchCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISearchCompletedCallback, @ptrCast(self)), searchJob, callbackArgs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3100,7 +3667,49 @@ pub const IUpdateHistoryEntry = extern union {
             return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_SupportUrl(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Operation(self: *const IUpdateHistoryEntry, retval: ?*UpdateOperation) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Operation(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_ResultCode(self: *const IUpdateHistoryEntry, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_HResult(self: *const IUpdateHistoryEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_Date(self: *const IUpdateHistoryEntry, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Date(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_UpdateIdentity(self: *const IUpdateHistoryEntry, retval: ?*?*IUpdateIdentity) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UpdateIdentity(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_Title(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_UnmappedResultCode(self: *const IUpdateHistoryEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UnmappedResultCode(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_ClientApplicationID(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_ServerSelection(self: *const IUpdateHistoryEntry, retval: ?*ServerSelection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ServerSelection(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_UninstallationSteps(self: *const IUpdateHistoryEntry, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UninstallationSteps(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_UninstallationNotes(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UninstallationNotes(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
+    pub fn get_SupportUrl(self: *const IUpdateHistoryEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_SupportUrl(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3124,7 +3733,10 @@ pub const IUpdateHistoryEntry2 = extern union {
             return @as(*const IUpdateHistoryEntry2.VTable, @ptrCast(self.vtable)).get_Categories(@as(*const IUpdateHistoryEntry2, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateHistoryEntry.MethodMixin(@This());
+    pub fn get_Categories(self: *const IUpdateHistoryEntry2, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntry2.VTable, @ptrCast(self.vtable)).get_Categories(@as(*const IUpdateHistoryEntry2, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3166,7 +3778,16 @@ pub const IUpdateHistoryEntryCollection = extern union {
             return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IUpdateHistoryEntryCollection, index: i32, retval: ?*?*IUpdateHistoryEntry) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const IUpdateHistoryEntryCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IUpdateHistoryEntryCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3345,7 +3966,61 @@ pub const IUpdateSearcher = extern union {
             return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ServiceID(@as(*const IUpdateSearcher, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_CanAutomaticallyUpgradeService(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_CanAutomaticallyUpgradeService(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
+    pub fn get_ClientApplicationID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
+    pub fn get_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_IncludePotentiallySupersededUpdates(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_IncludePotentiallySupersededUpdates(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
+    pub fn get_ServerSelection(self: *const IUpdateSearcher, retval: ?*ServerSelection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ServerSelection(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_ServerSelection(self: *const IUpdateSearcher, value: ServerSelection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ServerSelection(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
+    pub fn BeginSearch(self: *const IUpdateSearcher, criteria: ?BSTR, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*ISearchJob) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).BeginSearch(@as(*const IUpdateSearcher, @ptrCast(self)), criteria, onCompleted, state, retval);
+    }
+    pub fn EndSearch(self: *const IUpdateSearcher, searchJob: ?*ISearchJob, retval: ?*?*ISearchResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).EndSearch(@as(*const IUpdateSearcher, @ptrCast(self)), searchJob, retval);
+    }
+    pub fn EscapeString(self: *const IUpdateSearcher, unescaped: ?BSTR, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).EscapeString(@as(*const IUpdateSearcher, @ptrCast(self)), unescaped, retval);
+    }
+    pub fn QueryHistory(self: *const IUpdateSearcher, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).QueryHistory(@as(*const IUpdateSearcher, @ptrCast(self)), startIndex, count, retval);
+    }
+    pub fn Search(self: *const IUpdateSearcher, criteria: ?BSTR, retval: ?*?*ISearchResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).Search(@as(*const IUpdateSearcher, @ptrCast(self)), criteria, retval);
+    }
+    pub fn get_Online(self: *const IUpdateSearcher, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_Online(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_Online(self: *const IUpdateSearcher, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_Online(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
+    pub fn GetTotalHistoryCount(self: *const IUpdateSearcher, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).GetTotalHistoryCount(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
+    }
+    pub fn put_ServiceID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ServiceID(@as(*const IUpdateSearcher, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3378,7 +4053,13 @@ pub const IUpdateSearcher2 = extern union {
             return @as(*const IUpdateSearcher2.VTable, @ptrCast(self.vtable)).put_IgnoreDownloadPriority(@as(*const IUpdateSearcher2, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateSearcher.MethodMixin(@This());
+    pub fn get_IgnoreDownloadPriority(self: *const IUpdateSearcher2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher2.VTable, @ptrCast(self.vtable)).get_IgnoreDownloadPriority(@as(*const IUpdateSearcher2, @ptrCast(self)), retval);
+    }
+    pub fn put_IgnoreDownloadPriority(self: *const IUpdateSearcher2, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher2.VTable, @ptrCast(self.vtable)).put_IgnoreDownloadPriority(@as(*const IUpdateSearcher2, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3411,7 +4092,13 @@ pub const IUpdateSearcher3 = extern union {
             return @as(*const IUpdateSearcher3.VTable, @ptrCast(self.vtable)).put_SearchScope(@as(*const IUpdateSearcher3, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateSearcher2.MethodMixin(@This());
+    pub fn get_SearchScope(self: *const IUpdateSearcher3, retval: ?*SearchScope) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher3.VTable, @ptrCast(self.vtable)).get_SearchScope(@as(*const IUpdateSearcher3, @ptrCast(self)), retval);
+    }
+    pub fn put_SearchScope(self: *const IUpdateSearcher3, value: SearchScope) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSearcher3.VTable, @ptrCast(self.vtable)).put_SearchScope(@as(*const IUpdateSearcher3, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3444,7 +4131,13 @@ pub const IUpdateDownloadResult = extern union {
             return @as(*const IUpdateDownloadResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateDownloadResult, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HResult(self: *const IUpdateDownloadResult, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateDownloadResult, @ptrCast(self)), retval);
+    }
+    pub fn get_ResultCode(self: *const IUpdateDownloadResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloadResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateDownloadResult, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3486,7 +4179,16 @@ pub const IDownloadResult = extern union {
             return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IDownloadResult, @ptrCast(self)), updateIndex, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HResult(self: *const IDownloadResult, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IDownloadResult, @ptrCast(self)), retval);
+    }
+    pub fn get_ResultCode(self: *const IDownloadResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IDownloadResult, @ptrCast(self)), retval);
+    }
+    pub fn GetUpdateResult(self: *const IDownloadResult, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IDownloadResult, @ptrCast(self)), updateIndex, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3582,7 +4284,34 @@ pub const IDownloadProgress = extern union {
             return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdatePercentComplete(@as(*const IDownloadProgress, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CurrentUpdateBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateBytesDownloaded(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_CurrentUpdateBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateBytesToDownload(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_CurrentUpdateIndex(self: *const IDownloadProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateIndex(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_PercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_PercentComplete(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_TotalBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_TotalBytesDownloaded(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_TotalBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_TotalBytesToDownload(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn GetUpdateResult(self: *const IDownloadProgress, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IDownloadProgress, @ptrCast(self)), updateIndex, retval);
+    }
+    pub fn get_CurrentUpdateDownloadPhase(self: *const IDownloadProgress, retval: ?*DownloadPhase) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateDownloadPhase(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_CurrentUpdatePercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdatePercentComplete(@as(*const IDownloadProgress, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3646,7 +4375,25 @@ pub const IDownloadJob = extern union {
             return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IDownloadJob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AsyncState(self: *const IDownloadJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const IDownloadJob, @ptrCast(self)), retval);
+    }
+    pub fn get_IsCompleted(self: *const IDownloadJob, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const IDownloadJob, @ptrCast(self)), retval);
+    }
+    pub fn get_Updates(self: *const IDownloadJob, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IDownloadJob, @ptrCast(self)), retval);
+    }
+    pub fn CleanUp(self: *const IDownloadJob) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const IDownloadJob, @ptrCast(self)));
+    }
+    pub fn GetProgress(self: *const IDownloadJob, retval: ?*?*IDownloadProgress) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IDownloadJob, @ptrCast(self)), retval);
+    }
+    pub fn RequestAbort(self: *const IDownloadJob) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IDownloadJob, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3661,7 +4408,7 @@ pub const IDownloadCompletedCallbackArgs = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3685,7 +4432,10 @@ pub const IDownloadCompletedCallback = extern union {
             return @as(*const IDownloadCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadCompletedCallback, @ptrCast(self)), downloadJob, callbackArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IDownloadCompletedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadCompletedCallbackArgs) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadCompletedCallback, @ptrCast(self)), downloadJob, callbackArgs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3709,7 +4459,10 @@ pub const IDownloadProgressChangedCallbackArgs = extern union {
             return @as(*const IDownloadProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IDownloadProgressChangedCallbackArgs, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Progress(self: *const IDownloadProgressChangedCallbackArgs, retval: ?*?*IDownloadProgress) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IDownloadProgressChangedCallbackArgs, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3733,7 +4486,10 @@ pub const IDownloadProgressChangedCallback = extern union {
             return @as(*const IDownloadProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadProgressChangedCallback, @ptrCast(self)), downloadJob, callbackArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IDownloadProgressChangedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
+        return @as(*const IDownloadProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadProgressChangedCallback, @ptrCast(self)), downloadJob, callbackArgs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3848,7 +4604,40 @@ pub const IUpdateDownloader = extern union {
             return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).EndDownload(@as(*const IUpdateDownloader, @ptrCast(self)), value, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ClientApplicationID(self: *const IUpdateDownloader, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateDownloader, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateDownloader, @ptrCast(self)), value);
+    }
+    pub fn get_IsForced(self: *const IUpdateDownloader, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_IsForced(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
+    }
+    pub fn put_IsForced(self: *const IUpdateDownloader, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_IsForced(@as(*const IUpdateDownloader, @ptrCast(self)), value);
+    }
+    pub fn get_Priority(self: *const IUpdateDownloader, retval: ?*DownloadPriority) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
+    }
+    pub fn put_Priority(self: *const IUpdateDownloader, value: DownloadPriority) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IUpdateDownloader, @ptrCast(self)), value);
+    }
+    pub fn get_Updates(self: *const IUpdateDownloader, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
+    }
+    pub fn put_Updates(self: *const IUpdateDownloader, value: ?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_Updates(@as(*const IUpdateDownloader, @ptrCast(self)), value);
+    }
+    pub fn BeginDownload(self: *const IUpdateDownloader, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IDownloadJob) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IUpdateDownloader, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
+    }
+    pub fn Download(self: *const IUpdateDownloader, retval: ?*?*IDownloadResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).Download(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
+    }
+    pub fn EndDownload(self: *const IUpdateDownloader, value: ?*IDownloadJob, retval: ?*?*IDownloadResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).EndDownload(@as(*const IUpdateDownloader, @ptrCast(self)), value, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3890,7 +4679,16 @@ pub const IUpdateInstallationResult = extern union {
             return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HResult(self: *const IUpdateInstallationResult, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
+    }
+    pub fn get_RebootRequired(self: *const IUpdateInstallationResult, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
+    }
+    pub fn get_ResultCode(self: *const IUpdateInstallationResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3941,7 +4739,19 @@ pub const IInstallationResult = extern union {
             return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationResult, @ptrCast(self)), updateIndex, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HResult(self: *const IInstallationResult, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IInstallationResult, @ptrCast(self)), retval);
+    }
+    pub fn get_RebootRequired(self: *const IInstallationResult, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IInstallationResult, @ptrCast(self)), retval);
+    }
+    pub fn get_ResultCode(self: *const IInstallationResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IInstallationResult, @ptrCast(self)), retval);
+    }
+    pub fn GetUpdateResult(self: *const IInstallationResult, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationResult, @ptrCast(self)), updateIndex, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3992,7 +4802,19 @@ pub const IInstallationProgress = extern union {
             return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationProgress, @ptrCast(self)), updateIndex, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CurrentUpdateIndex(self: *const IInstallationProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateIndex(@as(*const IInstallationProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_CurrentUpdatePercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdatePercentComplete(@as(*const IInstallationProgress, @ptrCast(self)), retval);
+    }
+    pub fn get_PercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_PercentComplete(@as(*const IInstallationProgress, @ptrCast(self)), retval);
+    }
+    pub fn GetUpdateResult(self: *const IInstallationProgress, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationProgress, @ptrCast(self)), updateIndex, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4056,7 +4878,25 @@ pub const IInstallationJob = extern union {
             return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IInstallationJob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AsyncState(self: *const IInstallationJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const IInstallationJob, @ptrCast(self)), retval);
+    }
+    pub fn get_IsCompleted(self: *const IInstallationJob, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const IInstallationJob, @ptrCast(self)), retval);
+    }
+    pub fn get_Updates(self: *const IInstallationJob, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IInstallationJob, @ptrCast(self)), retval);
+    }
+    pub fn CleanUp(self: *const IInstallationJob) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const IInstallationJob, @ptrCast(self)));
+    }
+    pub fn GetProgress(self: *const IInstallationJob, retval: ?*?*IInstallationProgress) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IInstallationJob, @ptrCast(self)), retval);
+    }
+    pub fn RequestAbort(self: *const IInstallationJob) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IInstallationJob, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4071,7 +4911,7 @@ pub const IInstallationCompletedCallbackArgs = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4095,7 +4935,10 @@ pub const IInstallationCompletedCallback = extern union {
             return @as(*const IInstallationCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationCompletedCallback, @ptrCast(self)), installationJob, callbackArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IInstallationCompletedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationCompletedCallbackArgs) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationCompletedCallback, @ptrCast(self)), installationJob, callbackArgs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4119,7 +4962,10 @@ pub const IInstallationProgressChangedCallbackArgs = extern union {
             return @as(*const IInstallationProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IInstallationProgressChangedCallbackArgs, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Progress(self: *const IInstallationProgressChangedCallbackArgs, retval: ?*?*IInstallationProgress) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IInstallationProgressChangedCallbackArgs, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4143,7 +4989,10 @@ pub const IInstallationProgressChangedCallback = extern union {
             return @as(*const IInstallationProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationProgressChangedCallback, @ptrCast(self)), installationJob, callbackArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IInstallationProgressChangedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationProgressChangedCallback, @ptrCast(self)), installationJob, callbackArgs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4349,7 +5198,70 @@ pub const IUpdateInstaller = extern union {
             return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_RebootRequiredBeforeInstallation(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ClientApplicationID(self: *const IUpdateInstaller, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateInstaller, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn get_IsForced(self: *const IUpdateInstaller, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_IsForced(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn put_IsForced(self: *const IUpdateInstaller, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_IsForced(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn get_ParentHwnd(self: *const IUpdateInstaller, retval: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ParentHwnd(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn put_ParentHwnd(self: *const IUpdateInstaller, value: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ParentHwnd(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn put_ParentWindow(self: *const IUpdateInstaller, value: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn get_ParentWindow(self: *const IUpdateInstaller, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn get_Updates(self: *const IUpdateInstaller, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn put_Updates(self: *const IUpdateInstaller, value: ?*IUpdateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_Updates(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn BeginInstall(self: *const IUpdateInstaller, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IInstallationJob) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).BeginInstall(@as(*const IUpdateInstaller, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
+    }
+    pub fn BeginUninstall(self: *const IUpdateInstaller, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IInstallationJob) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).BeginUninstall(@as(*const IUpdateInstaller, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
+    }
+    pub fn EndInstall(self: *const IUpdateInstaller, value: ?*IInstallationJob, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).EndInstall(@as(*const IUpdateInstaller, @ptrCast(self)), value, retval);
+    }
+    pub fn EndUninstall(self: *const IUpdateInstaller, value: ?*IInstallationJob, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).EndUninstall(@as(*const IUpdateInstaller, @ptrCast(self)), value, retval);
+    }
+    pub fn Install(self: *const IUpdateInstaller, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).Install(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn RunWizard(self: *const IUpdateInstaller, dialogTitle: ?BSTR, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).RunWizard(@as(*const IUpdateInstaller, @ptrCast(self)), dialogTitle, retval);
+    }
+    pub fn get_IsBusy(self: *const IUpdateInstaller, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_IsBusy(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn Uninstall(self: *const IUpdateInstaller, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).Uninstall(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn get_AllowSourcePrompts(self: *const IUpdateInstaller, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_AllowSourcePrompts(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
+    pub fn put_AllowSourcePrompts(self: *const IUpdateInstaller, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_AllowSourcePrompts(@as(*const IUpdateInstaller, @ptrCast(self)), value);
+    }
+    pub fn get_RebootRequiredBeforeInstallation(self: *const IUpdateInstaller, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_RebootRequiredBeforeInstallation(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4382,7 +5294,13 @@ pub const IUpdateInstaller2 = extern union {
             return @as(*const IUpdateInstaller2.VTable, @ptrCast(self.vtable)).put_ForceQuiet(@as(*const IUpdateInstaller2, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateInstaller.MethodMixin(@This());
+    pub fn get_ForceQuiet(self: *const IUpdateInstaller2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller2.VTable, @ptrCast(self.vtable)).get_ForceQuiet(@as(*const IUpdateInstaller2, @ptrCast(self)), retval);
+    }
+    pub fn put_ForceQuiet(self: *const IUpdateInstaller2, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller2.VTable, @ptrCast(self.vtable)).put_ForceQuiet(@as(*const IUpdateInstaller2, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
@@ -4415,7 +5333,13 @@ pub const IUpdateInstaller3 = extern union {
             return @as(*const IUpdateInstaller3.VTable, @ptrCast(self.vtable)).put_AttemptCloseAppsIfNecessary(@as(*const IUpdateInstaller3, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateInstaller2.MethodMixin(@This());
+    pub fn get_AttemptCloseAppsIfNecessary(self: *const IUpdateInstaller3, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller3.VTable, @ptrCast(self.vtable)).get_AttemptCloseAppsIfNecessary(@as(*const IUpdateInstaller3, @ptrCast(self)), retval);
+    }
+    pub fn put_AttemptCloseAppsIfNecessary(self: *const IUpdateInstaller3, value: i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller3.VTable, @ptrCast(self.vtable)).put_AttemptCloseAppsIfNecessary(@as(*const IUpdateInstaller3, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -4438,7 +5362,10 @@ pub const IUpdateInstaller4 = extern union {
             return @as(*const IUpdateInstaller4.VTable, @ptrCast(self.vtable)).Commit(@as(*const IUpdateInstaller4, @ptrCast(self)), dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateInstaller3.MethodMixin(@This());
+    pub fn Commit(self: *const IUpdateInstaller4, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateInstaller4.VTable, @ptrCast(self.vtable)).Commit(@as(*const IUpdateInstaller4, @ptrCast(self)), dwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4522,7 +5449,31 @@ pub const IUpdateSession = extern union {
             return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateInstaller(@as(*const IUpdateSession, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ClientApplicationID(self: *const IUpdateSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateSession, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateSession, @ptrCast(self)), value);
+    }
+    pub fn get_ReadOnly(self: *const IUpdateSession, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
+    pub fn get_WebProxy(self: *const IUpdateSession, retval: ?*?*IWebProxy) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_WebProxy(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
+    pub fn put_WebProxy(self: *const IUpdateSession, value: ?*IWebProxy) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).put_WebProxy(@as(*const IUpdateSession, @ptrCast(self)), value);
+    }
+    pub fn CreateUpdateSearcher(self: *const IUpdateSession, retval: ?*?*IUpdateSearcher) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateSearcher(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
+    pub fn CreateUpdateDownloader(self: *const IUpdateSession, retval: ?*?*IUpdateDownloader) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateDownloader(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
+    pub fn CreateUpdateInstaller(self: *const IUpdateSession, retval: ?*?*IUpdateInstaller) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateInstaller(@as(*const IUpdateSession, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4555,7 +5506,13 @@ pub const IUpdateSession2 = extern union {
             return @as(*const IUpdateSession2.VTable, @ptrCast(self.vtable)).put_UserLocale(@as(*const IUpdateSession2, @ptrCast(self)), lcid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateSession.MethodMixin(@This());
+    pub fn get_UserLocale(self: *const IUpdateSession2, retval: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession2.VTable, @ptrCast(self.vtable)).get_UserLocale(@as(*const IUpdateSession2, @ptrCast(self)), retval);
+    }
+    pub fn put_UserLocale(self: *const IUpdateSession2, lcid: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession2.VTable, @ptrCast(self.vtable)).put_UserLocale(@as(*const IUpdateSession2, @ptrCast(self)), lcid);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4589,7 +5546,13 @@ pub const IUpdateSession3 = extern union {
             return @as(*const IUpdateSession3.VTable, @ptrCast(self.vtable)).QueryHistory(@as(*const IUpdateSession3, @ptrCast(self)), criteria, startIndex, count, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateSession2.MethodMixin(@This());
+    pub fn CreateUpdateServiceManager(self: *const IUpdateSession3, retval: ?*?*IUpdateServiceManager2) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession3.VTable, @ptrCast(self.vtable)).CreateUpdateServiceManager(@as(*const IUpdateSession3, @ptrCast(self)), retval);
+    }
+    pub fn QueryHistory(self: *const IUpdateSession3, criteria: ?BSTR, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateSession3.VTable, @ptrCast(self.vtable)).QueryHistory(@as(*const IUpdateSession3, @ptrCast(self)), criteria, startIndex, count, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4721,7 +5684,46 @@ pub const IUpdateService = extern union {
             return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_SetupPrefix(@as(*const IUpdateService, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IUpdateService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_ContentValidationCert(self: *const IUpdateService, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ContentValidationCert(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_ExpirationDate(self: *const IUpdateService, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ExpirationDate(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_IsManaged(self: *const IUpdateService, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsManaged(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_IsRegisteredWithAU(self: *const IUpdateService, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsRegisteredWithAU(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_IssueDate(self: *const IUpdateService, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IssueDate(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_OffersWindowsUpdates(self: *const IUpdateService, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_OffersWindowsUpdates(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_RedirectUrls(self: *const IUpdateService, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_RedirectUrls(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_IsScanPackageService(self: *const IUpdateService, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsScanPackageService(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_CanRegisterWithAU(self: *const IUpdateService, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_CanRegisterWithAU(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceUrl(self: *const IUpdateService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ServiceUrl(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
+    pub fn get_SetupPrefix(self: *const IUpdateService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_SetupPrefix(@as(*const IUpdateService, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4745,7 +5747,10 @@ pub const IUpdateService2 = extern union {
             return @as(*const IUpdateService2.VTable, @ptrCast(self.vtable)).get_IsDefaultAUService(@as(*const IUpdateService2, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateService.MethodMixin(@This());
+    pub fn get_IsDefaultAUService(self: *const IUpdateService2, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateService2.VTable, @ptrCast(self.vtable)).get_IsDefaultAUService(@as(*const IUpdateService2, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4787,7 +5792,16 @@ pub const IUpdateServiceCollection = extern union {
             return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateServiceCollection, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IUpdateServiceCollection, index: i32, retval: ?*?*IUpdateService) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateServiceCollection, @ptrCast(self)), index, retval);
+    }
+    pub fn get__NewEnum(self: *const IUpdateServiceCollection, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateServiceCollection, @ptrCast(self)), retval);
+    }
+    pub fn get_Count(self: *const IUpdateServiceCollection, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateServiceCollection, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4838,7 +5852,19 @@ pub const IUpdateServiceRegistration = extern union {
             return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_Service(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_RegistrationState(self: *const IUpdateServiceRegistration, retval: ?*UpdateServiceRegistrationState) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_RegistrationState(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateServiceRegistration, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
+    }
+    pub fn get_IsPendingRegistrationWithAU(self: *const IUpdateServiceRegistration, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_IsPendingRegistrationWithAU(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
+    }
+    pub fn get_Service(self: *const IUpdateServiceRegistration, retval: ?*?*IUpdateService2) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_Service(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4916,7 +5942,28 @@ pub const IUpdateServiceManager = extern union {
             return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).SetOption(@as(*const IUpdateServiceManager, @ptrCast(self)), optionName, optionValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Services(self: *const IUpdateServiceManager, retval: ?*?*IUpdateServiceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUpdateServiceManager, @ptrCast(self)), retval);
+    }
+    pub fn AddService(self: *const IUpdateServiceManager, serviceID: ?BSTR, authorizationCabPath: ?BSTR, retval: ?*?*IUpdateService) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).AddService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID, authorizationCabPath, retval);
+    }
+    pub fn RegisterServiceWithAU(self: *const IUpdateServiceManager, serviceID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).RegisterServiceWithAU(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
+    }
+    pub fn RemoveService(self: *const IUpdateServiceManager, serviceID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).RemoveService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
+    }
+    pub fn UnregisterServiceWithAU(self: *const IUpdateServiceManager, serviceID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).UnregisterServiceWithAU(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
+    }
+    pub fn AddScanPackageService(self: *const IUpdateServiceManager, serviceName: ?BSTR, scanFileLocation: ?BSTR, flags: i32, ppService: ?*?*IUpdateService) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).AddScanPackageService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceName, scanFileLocation, flags, ppService);
+    }
+    pub fn SetOption(self: *const IUpdateServiceManager, optionName: ?BSTR, optionValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).SetOption(@as(*const IUpdateServiceManager, @ptrCast(self)), optionName, optionValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4969,7 +6016,19 @@ pub const IUpdateServiceManager2 = extern union {
             return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).AddService2(@as(*const IUpdateServiceManager2, @ptrCast(self)), serviceID, flags, authorizationCabPath, retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUpdateServiceManager.MethodMixin(@This());
+    pub fn get_ClientApplicationID(self: *const IUpdateServiceManager2, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateServiceManager2, @ptrCast(self)), retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateServiceManager2, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateServiceManager2, @ptrCast(self)), value);
+    }
+    pub fn QueryServiceRegistration(self: *const IUpdateServiceManager2, serviceID: ?BSTR, retval: ?*?*IUpdateServiceRegistration) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).QueryServiceRegistration(@as(*const IUpdateServiceManager2, @ptrCast(self)), serviceID, retval);
+    }
+    pub fn AddService2(self: *const IUpdateServiceManager2, serviceID: ?BSTR, flags: i32, authorizationCabPath: ?BSTR, retval: ?*?*IUpdateServiceRegistration) callconv(.Inline) HRESULT {
+        return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).AddService2(@as(*const IUpdateServiceManager2, @ptrCast(self)), serviceID, flags, authorizationCabPath, retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4994,7 +6053,10 @@ pub const IInstallationAgent = extern union {
             return @as(*const IInstallationAgent.VTable, @ptrCast(self.vtable)).RecordInstallationResult(@as(*const IInstallationAgent, @ptrCast(self)), installationResultCookie, hresult, extendedReportingData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn RecordInstallationResult(self: *const IInstallationAgent, installationResultCookie: ?BSTR, hresult: i32, extendedReportingData: ?*IStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const IInstallationAgent.VTable, @ptrCast(self.vtable)).RecordInstallationResult(@as(*const IInstallationAgent, @ptrCast(self)), installationResultCookie, hresult, extendedReportingData);
+    }
 };
 
 pub const UpdateLockdownOption = enum(i32) {

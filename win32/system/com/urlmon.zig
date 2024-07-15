@@ -390,7 +390,25 @@ pub const IPersistMoniker = extern union {
             return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).GetCurMoniker(@as(*const IPersistMoniker, @ptrCast(self)), ppimkName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClassID(self: *const IPersistMoniker, pClassID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).GetClassID(@as(*const IPersistMoniker, @ptrCast(self)), pClassID);
+    }
+    pub fn IsDirty(self: *const IPersistMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IPersistMoniker, @ptrCast(self)));
+    }
+    pub fn Load(self: *const IPersistMoniker, fFullyAvailable: BOOL, pimkName: ?*IMoniker, pibc: ?*IBindCtx, grfMode: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistMoniker, @ptrCast(self)), fFullyAvailable, pimkName, pibc, grfMode);
+    }
+    pub fn Save(self: *const IPersistMoniker, pimkName: ?*IMoniker, pbc: ?*IBindCtx, fRemember: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistMoniker, @ptrCast(self)), pimkName, pbc, fRemember);
+    }
+    pub fn SaveCompleted(self: *const IPersistMoniker, pimkName: ?*IMoniker, pibc: ?*IBindCtx) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).SaveCompleted(@as(*const IPersistMoniker, @ptrCast(self)), pimkName, pibc);
+    }
+    pub fn GetCurMoniker(self: *const IPersistMoniker, ppimkName: ?*?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).GetCurMoniker(@as(*const IPersistMoniker, @ptrCast(self)), ppimkName);
+    }
 };
 
 pub const MONIKERPROPERTY = enum(i32) {
@@ -426,7 +444,10 @@ pub const IMonikerProp = extern union {
             return @as(*const IMonikerProp.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IMonikerProp, @ptrCast(self)), mkp, val);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn PutProperty(self: *const IMonikerProp, mkp: MONIKERPROPERTY, val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMonikerProp.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IMonikerProp, @ptrCast(self)), mkp, val);
+    }
 };
 
 const IID_IBindProtocol_Value = Guid.initString("79eac9cd-baf9-11ce-8c82-00aa004ba90b");
@@ -450,7 +471,10 @@ pub const IBindProtocol = extern union {
             return @as(*const IBindProtocol.VTable, @ptrCast(self.vtable)).CreateBinding(@as(*const IBindProtocol, @ptrCast(self)), szUrl, pbc, ppb);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateBinding(self: *const IBindProtocol, szUrl: ?[*:0]const u16, pbc: ?*IBindCtx, ppb: ?*?*IBinding) callconv(.Inline) HRESULT {
+        return @as(*const IBindProtocol.VTable, @ptrCast(self.vtable)).CreateBinding(@as(*const IBindProtocol, @ptrCast(self)), szUrl, pbc, ppb);
+    }
 };
 
 pub const BINDVERB = enum(i32) {
@@ -888,7 +912,13 @@ pub const IHttpNegotiate = extern union {
             return @as(*const IHttpNegotiate.VTable, @ptrCast(self.vtable)).OnResponse(@as(*const IHttpNegotiate, @ptrCast(self)), dwResponseCode, szResponseHeaders, szRequestHeaders, pszAdditionalRequestHeaders);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BeginningTransaction(self: *const IHttpNegotiate, szURL: ?[*:0]const u16, szHeaders: ?[*:0]const u16, dwReserved: u32, pszAdditionalHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IHttpNegotiate.VTable, @ptrCast(self.vtable)).BeginningTransaction(@as(*const IHttpNegotiate, @ptrCast(self)), szURL, szHeaders, dwReserved, pszAdditionalHeaders);
+    }
+    pub fn OnResponse(self: *const IHttpNegotiate, dwResponseCode: u32, szResponseHeaders: ?[*:0]const u16, szRequestHeaders: ?[*:0]const u16, pszAdditionalRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IHttpNegotiate.VTable, @ptrCast(self.vtable)).OnResponse(@as(*const IHttpNegotiate, @ptrCast(self)), dwResponseCode, szResponseHeaders, szRequestHeaders, pszAdditionalRequestHeaders);
+    }
 };
 
 const IID_IHttpNegotiate2_Value = Guid.initString("4f9f9fcb-e0f4-48eb-b7ab-fa2ea9365cb4");
@@ -912,7 +942,10 @@ pub const IHttpNegotiate2 = extern union {
             return @as(*const IHttpNegotiate2.VTable, @ptrCast(self.vtable)).GetRootSecurityId(@as(*const IHttpNegotiate2, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IHttpNegotiate.MethodMixin(@This());
+    pub fn GetRootSecurityId(self: *const IHttpNegotiate2, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IHttpNegotiate2.VTable, @ptrCast(self.vtable)).GetRootSecurityId(@as(*const IHttpNegotiate2, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
+    }
 };
 
 const IID_IHttpNegotiate3_Value = Guid.initString("57b6c80a-34c2-4602-bc26-66a02fc57153");
@@ -935,7 +968,10 @@ pub const IHttpNegotiate3 = extern union {
             return @as(*const IHttpNegotiate3.VTable, @ptrCast(self.vtable)).GetSerializedClientCertContext(@as(*const IHttpNegotiate3, @ptrCast(self)), ppbCert, pcbCert);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IHttpNegotiate2.MethodMixin(@This());
+    pub fn GetSerializedClientCertContext(self: *const IHttpNegotiate3, ppbCert: [*]?*u8, pcbCert: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IHttpNegotiate3.VTable, @ptrCast(self.vtable)).GetSerializedClientCertContext(@as(*const IHttpNegotiate3, @ptrCast(self)), ppbCert, pcbCert);
+    }
 };
 
 const IID_IWinInetFileStream_Value = Guid.initString("f134c4b7-b1f8-4e75-b886-74b90943becb");
@@ -966,7 +1002,13 @@ pub const IWinInetFileStream = extern union {
             return @as(*const IWinInetFileStream.VTable, @ptrCast(self.vtable)).SetDeleteFile(@as(*const IWinInetFileStream, @ptrCast(self)), dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetHandleForUnlock(self: *const IWinInetFileStream, hWinInetLockHandle: usize, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetFileStream.VTable, @ptrCast(self.vtable)).SetHandleForUnlock(@as(*const IWinInetFileStream, @ptrCast(self)), hWinInetLockHandle, dwReserved);
+    }
+    pub fn SetDeleteFile(self: *const IWinInetFileStream, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetFileStream.VTable, @ptrCast(self.vtable)).SetDeleteFile(@as(*const IWinInetFileStream, @ptrCast(self)), dwReserved);
+    }
 };
 
 const IID_IWindowForBindingUI_Value = Guid.initString("79eac9d5-bafa-11ce-8c82-00aa004ba90b");
@@ -989,7 +1031,10 @@ pub const IWindowForBindingUI = extern union {
             return @as(*const IWindowForBindingUI.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IWindowForBindingUI, @ptrCast(self)), rguidReason, phwnd);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWindow(self: *const IWindowForBindingUI, rguidReason: ?*const Guid, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IWindowForBindingUI.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IWindowForBindingUI, @ptrCast(self)), rguidReason, phwnd);
+    }
 };
 
 pub const CIP_STATUS = enum(i32) {
@@ -1037,7 +1082,10 @@ pub const ICodeInstall = extern union {
             return @as(*const ICodeInstall.VTable, @ptrCast(self.vtable)).OnCodeInstallProblem(@as(*const ICodeInstall, @ptrCast(self)), ulStatusCode, szDestination, szSource, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowForBindingUI.MethodMixin(@This());
+    pub fn OnCodeInstallProblem(self: *const ICodeInstall, ulStatusCode: u32, szDestination: ?[*:0]const u16, szSource: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICodeInstall.VTable, @ptrCast(self.vtable)).OnCodeInstallProblem(@as(*const ICodeInstall, @ptrCast(self)), ulStatusCode, szDestination, szSource, dwReserved);
+    }
 };
 
 pub const Uri_HOST_TYPE = enum(i32) {
@@ -1072,7 +1120,10 @@ pub const IUriContainer = extern union {
             return @as(*const IUriContainer.VTable, @ptrCast(self.vtable)).GetIUri(@as(*const IUriContainer, @ptrCast(self)), ppIUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIUri(self: *const IUriContainer, ppIUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return @as(*const IUriContainer.VTable, @ptrCast(self.vtable)).GetIUri(@as(*const IUriContainer, @ptrCast(self)), ppIUri);
+    }
 };
 
 const IID_IUriBuilderFactory_Value = Guid.initString("e982ce48-0b96-440c-bc37-0c869b27a29e");
@@ -1106,7 +1157,13 @@ pub const IUriBuilderFactory = extern union {
             return @as(*const IUriBuilderFactory.VTable, @ptrCast(self.vtable)).CreateInitializedIUriBuilder(@as(*const IUriBuilderFactory, @ptrCast(self)), dwFlags, dwReserved, ppIUriBuilder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.Inline) HRESULT {
+        return @as(*const IUriBuilderFactory.VTable, @ptrCast(self.vtable)).CreateIUriBuilder(@as(*const IUriBuilderFactory, @ptrCast(self)), dwFlags, dwReserved, ppIUriBuilder);
+    }
+    pub fn CreateInitializedIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.Inline) HRESULT {
+        return @as(*const IUriBuilderFactory.VTable, @ptrCast(self.vtable)).CreateInitializedIUriBuilder(@as(*const IUriBuilderFactory, @ptrCast(self)), dwFlags, dwReserved, ppIUriBuilder);
+    }
 };
 
 const IID_IWinInetInfo_Value = Guid.initString("79eac9d6-bafa-11ce-8c82-00aa004ba90b");
@@ -1130,7 +1187,10 @@ pub const IWinInetInfo = extern union {
             return @as(*const IWinInetInfo.VTable, @ptrCast(self.vtable)).QueryOption(@as(*const IWinInetInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryOption(self: *const IWinInetInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetInfo.VTable, @ptrCast(self.vtable)).QueryOption(@as(*const IWinInetInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf);
+    }
 };
 
 const IID_IHttpSecurity_Value = Guid.initString("79eac9d7-bafa-11ce-8c82-00aa004ba90b");
@@ -1152,7 +1212,10 @@ pub const IHttpSecurity = extern union {
             return @as(*const IHttpSecurity.VTable, @ptrCast(self.vtable)).OnSecurityProblem(@as(*const IHttpSecurity, @ptrCast(self)), dwProblem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowForBindingUI.MethodMixin(@This());
+    pub fn OnSecurityProblem(self: *const IHttpSecurity, dwProblem: u32) callconv(.Inline) HRESULT {
+        return @as(*const IHttpSecurity.VTable, @ptrCast(self.vtable)).OnSecurityProblem(@as(*const IHttpSecurity, @ptrCast(self)), dwProblem);
+    }
 };
 
 const IID_IWinInetHttpInfo_Value = Guid.initString("79eac9d8-bafa-11ce-8c82-00aa004ba90b");
@@ -1178,7 +1241,10 @@ pub const IWinInetHttpInfo = extern union {
             return @as(*const IWinInetHttpInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IWinInetHttpInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWinInetInfo.MethodMixin(@This());
+    pub fn QueryInfo(self: *const IWinInetHttpInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32, pdwFlags: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetHttpInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IWinInetHttpInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
+    }
 };
 
 const IID_IWinInetHttpTimeouts_Value = Guid.initString("f286fa56-c1fd-4270-8e67-b3eb790a81e8");
@@ -1202,7 +1268,10 @@ pub const IWinInetHttpTimeouts = extern union {
             return @as(*const IWinInetHttpTimeouts.VTable, @ptrCast(self.vtable)).GetRequestTimeouts(@as(*const IWinInetHttpTimeouts, @ptrCast(self)), pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRequestTimeouts(self: *const IWinInetHttpTimeouts, pdwConnectTimeout: ?*u32, pdwSendTimeout: ?*u32, pdwReceiveTimeout: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetHttpTimeouts.VTable, @ptrCast(self.vtable)).GetRequestTimeouts(@as(*const IWinInetHttpTimeouts, @ptrCast(self)), pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
+    }
 };
 
 const IID_IWinInetCacheHints_Value = Guid.initString("dd1ec3b3-8391-4fdb-a9e6-347c3caaa7dd");
@@ -1228,7 +1297,10 @@ pub const IWinInetCacheHints = extern union {
             return @as(*const IWinInetCacheHints.VTable, @ptrCast(self.vtable)).SetCacheExtension(@as(*const IWinInetCacheHints, @ptrCast(self)), pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetCacheExtension(self: *const IWinInetCacheHints, pwzExt: ?[*:0]const u16, pszCacheFile: [*]u8, pcbCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetCacheHints.VTable, @ptrCast(self.vtable)).SetCacheExtension(@as(*const IWinInetCacheHints, @ptrCast(self)), pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
+    }
 };
 
 const IID_IWinInetCacheHints2_Value = Guid.initString("7857aeac-d31f-49bf-884e-dd46df36780a");
@@ -1254,7 +1326,10 @@ pub const IWinInetCacheHints2 = extern union {
             return @as(*const IWinInetCacheHints2.VTable, @ptrCast(self.vtable)).SetCacheExtension2(@as(*const IWinInetCacheHints2, @ptrCast(self)), pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWinInetCacheHints.MethodMixin(@This());
+    pub fn SetCacheExtension2(self: *const IWinInetCacheHints2, pwzExt: ?[*:0]const u16, pwzCacheFile: ?PWSTR, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWinInetCacheHints2.VTable, @ptrCast(self.vtable)).SetCacheExtension2(@as(*const IWinInetCacheHints2, @ptrCast(self)), pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
+    }
 };
 
 const IID_IInternet_Value = Guid.initString("79eac9e0-baf9-11ce-8c82-00aa004ba90b");
@@ -1268,7 +1343,7 @@ pub const IInternet = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 pub const BINDSTRING = enum(i32) {
@@ -1357,7 +1432,13 @@ pub const IInternetBindInfo = extern union {
             return @as(*const IInternetBindInfo.VTable, @ptrCast(self.vtable)).GetBindString(@as(*const IInternetBindInfo, @ptrCast(self)), ulStringType, ppwzStr, cEl, pcElFetched);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBindInfo(self: *const IInternetBindInfo, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO) callconv(.Inline) HRESULT {
+        return @as(*const IInternetBindInfo.VTable, @ptrCast(self.vtable)).GetBindInfo(@as(*const IInternetBindInfo, @ptrCast(self)), grfBINDF, pbindinfo);
+    }
+    pub fn GetBindString(self: *const IInternetBindInfo, ulStringType: u32, ppwzStr: ?*?PWSTR, cEl: u32, pcElFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetBindInfo.VTable, @ptrCast(self.vtable)).GetBindString(@as(*const IInternetBindInfo, @ptrCast(self)), ulStringType, ppwzStr, cEl, pcElFetched);
+    }
 };
 
 const IID_IInternetBindInfoEx_Value = Guid.initString("a3e015b7-a82c-4dcd-a150-569aeeed36ab");
@@ -1382,7 +1463,10 @@ pub const IInternetBindInfoEx = extern union {
             return @as(*const IInternetBindInfoEx.VTable, @ptrCast(self.vtable)).GetBindInfoEx(@as(*const IInternetBindInfoEx, @ptrCast(self)), grfBINDF, pbindinfo, grfBINDF2, pdwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetBindInfo.MethodMixin(@This());
+    pub fn GetBindInfoEx(self: *const IInternetBindInfoEx, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO, grfBINDF2: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetBindInfoEx.VTable, @ptrCast(self.vtable)).GetBindInfoEx(@as(*const IInternetBindInfoEx, @ptrCast(self)), grfBINDF, pbindinfo, grfBINDF2, pdwReserved);
+    }
 };
 
 pub const PI_FLAGS = enum(i32) {
@@ -1493,7 +1577,25 @@ pub const IInternetProtocolRoot = extern union {
             return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Resume(@as(*const IInternetProtocolRoot, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Start(self: *const IInternetProtocolRoot, szUrl: ?[*:0]const u16, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Start(@as(*const IInternetProtocolRoot, @ptrCast(self)), szUrl, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+    }
+    pub fn Continue(self: *const IInternetProtocolRoot, pProtocolData: ?*PROTOCOLDATA) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Continue(@as(*const IInternetProtocolRoot, @ptrCast(self)), pProtocolData);
+    }
+    pub fn Abort(self: *const IInternetProtocolRoot, hrReason: HRESULT, dwOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Abort(@as(*const IInternetProtocolRoot, @ptrCast(self)), hrReason, dwOptions);
+    }
+    pub fn Terminate(self: *const IInternetProtocolRoot, dwOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IInternetProtocolRoot, @ptrCast(self)), dwOptions);
+    }
+    pub fn Suspend(self: *const IInternetProtocolRoot) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IInternetProtocolRoot, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IInternetProtocolRoot) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Resume(@as(*const IInternetProtocolRoot, @ptrCast(self)));
+    }
 };
 
 const IID_IInternetProtocol_Value = Guid.initString("79eac9e4-baf9-11ce-8c82-00aa004ba90b");
@@ -1542,7 +1644,19 @@ pub const IInternetProtocol = extern union {
             return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).UnlockRequest(@as(*const IInternetProtocol, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetProtocolRoot.MethodMixin(@This());
+    pub fn Read(self: *const IInternetProtocol, pv: [*]u8, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).Read(@as(*const IInternetProtocol, @ptrCast(self)), pv, cb, pcbRead);
+    }
+    pub fn Seek(self: *const IInternetProtocol, dlibMove: LARGE_INTEGER, dwOrigin: u32, plibNewPosition: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).Seek(@as(*const IInternetProtocol, @ptrCast(self)), dlibMove, dwOrigin, plibNewPosition);
+    }
+    pub fn LockRequest(self: *const IInternetProtocol, dwOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).LockRequest(@as(*const IInternetProtocol, @ptrCast(self)), dwOptions);
+    }
+    pub fn UnlockRequest(self: *const IInternetProtocol) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).UnlockRequest(@as(*const IInternetProtocol, @ptrCast(self)));
+    }
 };
 
 const IID_IInternetProtocolEx_Value = Guid.initString("c7a98e66-1010-492c-a1c8-c809e1f75905");
@@ -1568,7 +1682,10 @@ pub const IInternetProtocolEx = extern union {
             return @as(*const IInternetProtocolEx.VTable, @ptrCast(self.vtable)).StartEx(@as(*const IInternetProtocolEx, @ptrCast(self)), pUri, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetProtocol.MethodMixin(@This());
+    pub fn StartEx(self: *const IInternetProtocolEx, pUri: ?*IUri, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolEx.VTable, @ptrCast(self.vtable)).StartEx(@as(*const IInternetProtocolEx, @ptrCast(self)), pUri, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+    }
 };
 
 const IID_IInternetProtocolSink_Value = Guid.initString("79eac9e5-baf9-11ce-8c82-00aa004ba90b");
@@ -1619,7 +1736,19 @@ pub const IInternetProtocolSink = extern union {
             return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportResult(@as(*const IInternetProtocolSink, @ptrCast(self)), hrResult, dwError, szResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Switch(self: *const IInternetProtocolSink, pProtocolData: ?*PROTOCOLDATA) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).Switch(@as(*const IInternetProtocolSink, @ptrCast(self)), pProtocolData);
+    }
+    pub fn ReportProgress(self: *const IInternetProtocolSink, ulStatusCode: u32, szStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const IInternetProtocolSink, @ptrCast(self)), ulStatusCode, szStatusText);
+    }
+    pub fn ReportData(self: *const IInternetProtocolSink, grfBSCF: u32, ulProgress: u32, ulProgressMax: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportData(@as(*const IInternetProtocolSink, @ptrCast(self)), grfBSCF, ulProgress, ulProgressMax);
+    }
+    pub fn ReportResult(self: *const IInternetProtocolSink, hrResult: HRESULT, dwError: u32, szResult: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportResult(@as(*const IInternetProtocolSink, @ptrCast(self)), hrResult, dwError, szResult);
+    }
 };
 
 const IID_IInternetProtocolSinkStackable_Value = Guid.initString("79eac9f0-baf9-11ce-8c82-00aa004ba90b");
@@ -1655,7 +1784,16 @@ pub const IInternetProtocolSinkStackable = extern union {
             return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).RollbackSwitch(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SwitchSink(self: *const IInternetProtocolSinkStackable, pOIProtSink: ?*IInternetProtocolSink) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).SwitchSink(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)), pOIProtSink);
+    }
+    pub fn CommitSwitch(self: *const IInternetProtocolSinkStackable) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).CommitSwitch(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)));
+    }
+    pub fn RollbackSwitch(self: *const IInternetProtocolSinkStackable) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).RollbackSwitch(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)));
+    }
 };
 
 pub const OIBDG_FLAGS = enum(i32) {
@@ -1752,7 +1890,28 @@ pub const IInternetSession = extern union {
             return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).GetSessionOption(@as(*const IInternetSession, @ptrCast(self)), dwOption, pBuffer, pdwBufferLength, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?PWSTR, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).RegisterNameSpace(@as(*const IInternetSession, @ptrCast(self)), pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
+    }
+    pub fn UnregisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, pszProtocol: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).UnregisterNameSpace(@as(*const IInternetSession, @ptrCast(self)), pCF, pszProtocol);
+    }
+    pub fn RegisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).RegisterMimeFilter(@as(*const IInternetSession, @ptrCast(self)), pCF, rclsid, pwzType);
+    }
+    pub fn UnregisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, pwzType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).UnregisterMimeFilter(@as(*const IInternetSession, @ptrCast(self)), pCF, pwzType);
+    }
+    pub fn CreateBinding(self: *const IInternetSession, pBC: ?*IBindCtx, szUrl: ?[*:0]const u16, pUnkOuter: ?*IUnknown, ppUnk: ?*?*IUnknown, ppOInetProt: ?*?*IInternetProtocol, dwOption: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).CreateBinding(@as(*const IInternetSession, @ptrCast(self)), pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
+    }
+    pub fn SetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, dwBufferLength: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).SetSessionOption(@as(*const IInternetSession, @ptrCast(self)), dwOption, pBuffer, dwBufferLength, dwReserved);
+    }
+    pub fn GetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, pdwBufferLength: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).GetSessionOption(@as(*const IInternetSession, @ptrCast(self)), dwOption, pBuffer, pdwBufferLength, dwReserved);
+    }
 };
 
 const IID_IInternetThreadSwitch_Value = Guid.initString("79eac9e8-baf9-11ce-8c82-00aa004ba90b");
@@ -1780,7 +1939,13 @@ pub const IInternetThreadSwitch = extern union {
             return @as(*const IInternetThreadSwitch.VTable, @ptrCast(self.vtable)).Continue(@as(*const IInternetThreadSwitch, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Prepare(self: *const IInternetThreadSwitch) callconv(.Inline) HRESULT {
+        return @as(*const IInternetThreadSwitch.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IInternetThreadSwitch, @ptrCast(self)));
+    }
+    pub fn Continue(self: *const IInternetThreadSwitch) callconv(.Inline) HRESULT {
+        return @as(*const IInternetThreadSwitch.VTable, @ptrCast(self.vtable)).Continue(@as(*const IInternetThreadSwitch, @ptrCast(self)));
+    }
 };
 
 const IID_IInternetPriority_Value = Guid.initString("79eac9eb-baf9-11ce-8c82-00aa004ba90b");
@@ -1810,7 +1975,13 @@ pub const IInternetPriority = extern union {
             return @as(*const IInternetPriority.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IInternetPriority, @ptrCast(self)), pnPriority);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetPriority(self: *const IInternetPriority, nPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetPriority.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IInternetPriority, @ptrCast(self)), nPriority);
+    }
+    pub fn GetPriority(self: *const IInternetPriority, pnPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetPriority.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IInternetPriority, @ptrCast(self)), pnPriority);
+    }
 };
 
 pub const PARSEACTION = enum(i32) {
@@ -1959,7 +2130,19 @@ pub const IInternetProtocolInfo = extern union {
             return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ParseUrl(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).ParseUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
+    }
+    pub fn CombineUrl(self: *const IInternetProtocolInfo, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).CombineUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
+    }
+    pub fn CompareUrl(self: *const IInternetProtocolInfo, pwzUrl1: ?[*:0]const u16, pwzUrl2: ?[*:0]const u16, dwCompareFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).CompareUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl1, pwzUrl2, dwCompareFlags);
+    }
+    pub fn QueryInfo(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, OueryOption: QUERYOPTION, dwQueryFlags: u32, pBuffer: [*]u8, cbBuffer: u32, pcbBuf: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
+    }
 };
 
 pub const INTERNETFEATURELIST = enum(i32) {
@@ -2050,7 +2233,13 @@ pub const IInternetSecurityMgrSite = extern union {
             return @as(*const IInternetSecurityMgrSite.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IInternetSecurityMgrSite, @ptrCast(self)), fEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWindow(self: *const IInternetSecurityMgrSite, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityMgrSite.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IInternetSecurityMgrSite, @ptrCast(self)), phwnd);
+    }
+    pub fn EnableModeless(self: *const IInternetSecurityMgrSite, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityMgrSite.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IInternetSecurityMgrSite, @ptrCast(self)), fEnable);
+    }
 };
 
 pub const PUAF = enum(i32) {
@@ -2209,7 +2398,31 @@ pub const IInternetSecurityManager = extern union {
             return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetZoneMappings(@as(*const IInternetSecurityManager, @ptrCast(self)), dwZone, ppenumString, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSecuritySite(self: *const IInternetSecurityManager, pSite: ?*IInternetSecurityMgrSite) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).SetSecuritySite(@as(*const IInternetSecurityManager, @ptrCast(self)), pSite);
+    }
+    pub fn GetSecuritySite(self: *const IInternetSecurityManager, ppSite: ?*?*IInternetSecurityMgrSite) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetSecuritySite(@as(*const IInternetSecurityManager, @ptrCast(self)), ppSite);
+    }
+    pub fn MapUrlToZone(self: *const IInternetSecurityManager, pwszUrl: ?[*:0]const u16, pdwZone: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).MapUrlToZone(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, pdwZone, dwFlags);
+    }
+    pub fn GetSecurityId(self: *const IInternetSecurityManager, pwszUrl: ?[*:0]const u16, pbSecurityId: *[512]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetSecurityId(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, pbSecurityId, pcbSecurityId, dwReserved);
+    }
+    pub fn ProcessUrlAction(self: *const IInternetSecurityManager, pwszUrl: ?[*:0]const u16, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).ProcessUrlAction(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
+    }
+    pub fn QueryCustomPolicy(self: *const IInternetSecurityManager, pwszUrl: ?[*:0]const u16, guidKey: ?*const Guid, ppPolicy: [*]?*u8, pcbPolicy: ?*u32, pContext: ?*u8, cbContext: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).QueryCustomPolicy(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+    }
+    pub fn SetZoneMapping(self: *const IInternetSecurityManager, dwZone: u32, lpszPattern: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).SetZoneMapping(@as(*const IInternetSecurityManager, @ptrCast(self)), dwZone, lpszPattern, dwFlags);
+    }
+    pub fn GetZoneMappings(self: *const IInternetSecurityManager, dwZone: u32, ppenumString: ?*?*IEnumString, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetZoneMappings(@as(*const IInternetSecurityManager, @ptrCast(self)), dwZone, ppenumString, dwFlags);
+    }
 };
 
 const IID_IInternetSecurityManagerEx_Value = Guid.initString("f164edf1-cc7c-4f0d-9a94-34222625c393");
@@ -2239,7 +2452,10 @@ pub const IInternetSecurityManagerEx = extern union {
             return @as(*const IInternetSecurityManagerEx.VTable, @ptrCast(self.vtable)).ProcessUrlActionEx(@as(*const IInternetSecurityManagerEx, @ptrCast(self)), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetSecurityManager.MethodMixin(@This());
+    pub fn ProcessUrlActionEx(self: *const IInternetSecurityManagerEx, pwszUrl: ?[*:0]const u16, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: u32, pdwOutFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManagerEx.VTable, @ptrCast(self.vtable)).ProcessUrlActionEx(@as(*const IInternetSecurityManagerEx, @ptrCast(self)), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
+    }
 };
 
 const IID_IInternetSecurityManagerEx2_Value = Guid.initString("f1e50292-a795-4117-8e09-2b560a72ac60");
@@ -2306,7 +2522,19 @@ pub const IInternetSecurityManagerEx2 = extern union {
             return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).QueryCustomPolicyEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetSecurityManagerEx.MethodMixin(@This());
+    pub fn MapUrlToZoneEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, pdwZone: ?*u32, dwFlags: u32, ppwszMappedUrl: ?*?PWSTR, pdwOutFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).MapUrlToZoneEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, pdwZone, dwFlags, ppwszMappedUrl, pdwOutFlags);
+    }
+    pub fn ProcessUrlActionEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: usize, pdwOutFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).ProcessUrlActionEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
+    }
+    pub fn GetSecurityIdEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, pbSecurityId: *[512]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).GetSecurityIdEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, pbSecurityId, pcbSecurityId, dwReserved);
+    }
+    pub fn QueryCustomPolicyEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, guidKey: ?*const Guid, ppPolicy: [*]?*u8, pcbPolicy: ?*u32, pContext: ?*u8, cbContext: u32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).QueryCustomPolicyEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+    }
 };
 
 const IID_IZoneIdentifier_Value = Guid.initString("cd45f185-1b21-48e2-967b-ead743a8914e");
@@ -2343,7 +2571,16 @@ pub const IZoneIdentifier = extern union {
             return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).Remove(@as(*const IZoneIdentifier, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetId(self: *const IZoneIdentifier, pdwZone: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).GetId(@as(*const IZoneIdentifier, @ptrCast(self)), pdwZone);
+    }
+    pub fn SetId(self: *const IZoneIdentifier, dwZone: u32) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).SetId(@as(*const IZoneIdentifier, @ptrCast(self)), dwZone);
+    }
+    pub fn Remove(self: *const IZoneIdentifier) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).Remove(@as(*const IZoneIdentifier, @ptrCast(self)));
+    }
 };
 
 const IID_IZoneIdentifier2_Value = Guid.initString("eb5e760c-09ef-45c0-b510-70830ce31e6a");
@@ -2403,7 +2640,25 @@ pub const IZoneIdentifier2 = extern union {
             return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).RemoveAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IZoneIdentifier.MethodMixin(@This());
+    pub fn GetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).GetLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)), packageFamilyName);
+    }
+    pub fn SetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).SetLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)), packageFamilyName);
+    }
+    pub fn RemoveLastWriterPackageFamilyName(self: *const IZoneIdentifier2) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).RemoveLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)));
+    }
+    pub fn GetAppZoneId(self: *const IZoneIdentifier2, zone: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).GetAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)), zone);
+    }
+    pub fn SetAppZoneId(self: *const IZoneIdentifier2, zone: u32) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).SetAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)), zone);
+    }
+    pub fn RemoveAppZoneId(self: *const IZoneIdentifier2) callconv(.Inline) HRESULT {
+        return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).RemoveAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)));
+    }
 };
 
 const IID_IInternetHostSecurityManager_Value = Guid.initString("3af280b6-cb3f-11d0-891e-00c04fb6bfc4");
@@ -2454,7 +2709,16 @@ pub const IInternetHostSecurityManager = extern union {
             return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).QueryCustomPolicy(@as(*const IInternetHostSecurityManager, @ptrCast(self)), guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSecurityId(self: *const IInternetHostSecurityManager, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).GetSecurityId(@as(*const IInternetHostSecurityManager, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
+    }
+    pub fn ProcessUrlAction(self: *const IInternetHostSecurityManager, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).ProcessUrlAction(@as(*const IInternetHostSecurityManager, @ptrCast(self)), dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
+    }
+    pub fn QueryCustomPolicy(self: *const IInternetHostSecurityManager, guidKey: ?*const Guid, ppPolicy: ?[*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).QueryCustomPolicy(@as(*const IInternetHostSecurityManager, @ptrCast(self)), guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+    }
 };
 
 pub const URLZONE = enum(i32) {
@@ -2691,7 +2955,43 @@ pub const IInternetZoneManager = extern union {
             return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).CopyTemplatePoliciesToZone(@as(*const IInternetZoneManager, @ptrCast(self)), dwTemplate, dwZone, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetZoneAttributes(self: *const IInternetZoneManager, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneAttributes(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, pZoneAttributes);
+    }
+    pub fn SetZoneAttributes(self: *const IInternetZoneManager, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneAttributes(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, pZoneAttributes);
+    }
+    pub fn GetZoneCustomPolicy(self: *const IInternetZoneManager, dwZone: u32, guidKey: ?*const Guid, ppPolicy: ?*?*u8, pcbPolicy: ?*u32, urlZoneReg: URLZONEREG) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneCustomPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, guidKey, ppPolicy, pcbPolicy, urlZoneReg);
+    }
+    pub fn SetZoneCustomPolicy(self: *const IInternetZoneManager, dwZone: u32, guidKey: ?*const Guid, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneCustomPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, guidKey, pPolicy, cbPolicy, urlZoneReg);
+    }
+    pub fn GetZoneActionPolicy(self: *const IInternetZoneManager, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneActionPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
+    }
+    pub fn SetZoneActionPolicy(self: *const IInternetZoneManager, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneActionPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
+    }
+    pub fn PromptAction(self: *const IInternetZoneManager, dwAction: u32, hwndParent: ?HWND, pwszUrl: ?[*:0]const u16, pwszText: ?[*:0]const u16, dwPromptFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).PromptAction(@as(*const IInternetZoneManager, @ptrCast(self)), dwAction, hwndParent, pwszUrl, pwszText, dwPromptFlags);
+    }
+    pub fn LogAction(self: *const IInternetZoneManager, dwAction: u32, pwszUrl: ?[*:0]const u16, pwszText: ?[*:0]const u16, dwLogFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).LogAction(@as(*const IInternetZoneManager, @ptrCast(self)), dwAction, pwszUrl, pwszText, dwLogFlags);
+    }
+    pub fn CreateZoneEnumerator(self: *const IInternetZoneManager, pdwEnum: ?*u32, pdwCount: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).CreateZoneEnumerator(@as(*const IInternetZoneManager, @ptrCast(self)), pdwEnum, pdwCount, dwFlags);
+    }
+    pub fn GetZoneAt(self: *const IInternetZoneManager, dwEnum: u32, dwIndex: u32, pdwZone: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneAt(@as(*const IInternetZoneManager, @ptrCast(self)), dwEnum, dwIndex, pdwZone);
+    }
+    pub fn DestroyZoneEnumerator(self: *const IInternetZoneManager, dwEnum: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).DestroyZoneEnumerator(@as(*const IInternetZoneManager, @ptrCast(self)), dwEnum);
+    }
+    pub fn CopyTemplatePoliciesToZone(self: *const IInternetZoneManager, dwTemplate: u32, dwZone: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).CopyTemplatePoliciesToZone(@as(*const IInternetZoneManager, @ptrCast(self)), dwTemplate, dwZone, dwReserved);
+    }
 };
 
 const IID_IInternetZoneManagerEx_Value = Guid.initString("a4c23339-8e06-431e-9bf4-7e711c085648");
@@ -2731,7 +3031,13 @@ pub const IInternetZoneManagerEx = extern union {
             return @as(*const IInternetZoneManagerEx.VTable, @ptrCast(self.vtable)).SetZoneActionPolicyEx(@as(*const IInternetZoneManagerEx, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetZoneManager.MethodMixin(@This());
+    pub fn GetZoneActionPolicyEx(self: *const IInternetZoneManagerEx, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx.VTable, @ptrCast(self.vtable)).GetZoneActionPolicyEx(@as(*const IInternetZoneManagerEx, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
+    }
+    pub fn SetZoneActionPolicyEx(self: *const IInternetZoneManagerEx, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx.VTable, @ptrCast(self.vtable)).SetZoneActionPolicyEx(@as(*const IInternetZoneManagerEx, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
+    }
 };
 
 const IID_IInternetZoneManagerEx2_Value = Guid.initString("edc17559-dd5d-4846-8eef-8becba5a4abf");
@@ -2784,7 +3090,19 @@ pub const IInternetZoneManagerEx2 = extern union {
             return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).FixUnsecureSettings(@as(*const IInternetZoneManagerEx2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInternetZoneManagerEx.MethodMixin(@This());
+    pub fn GetZoneAttributesEx(self: *const IInternetZoneManagerEx2, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetZoneAttributesEx(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), dwZone, pZoneAttributes, dwFlags);
+    }
+    pub fn GetZoneSecurityState(self: *const IInternetZoneManagerEx2, dwZoneIndex: u32, fRespectPolicy: BOOL, pdwState: ?*u32, pfPolicyEncountered: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetZoneSecurityState(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), dwZoneIndex, fRespectPolicy, pdwState, pfPolicyEncountered);
+    }
+    pub fn GetIESecurityState(self: *const IInternetZoneManagerEx2, fRespectPolicy: BOOL, pdwState: ?*u32, pfPolicyEncountered: ?*BOOL, fNoCache: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetIESecurityState(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), fRespectPolicy, pdwState, pfPolicyEncountered, fNoCache);
+    }
+    pub fn FixUnsecureSettings(self: *const IInternetZoneManagerEx2) callconv(.Inline) HRESULT {
+        return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).FixUnsecureSettings(@as(*const IInternetZoneManagerEx2, @ptrCast(self)));
+    }
 };
 
 pub const CODEBASEHOLD = extern struct {
@@ -2862,7 +3180,19 @@ pub const ISoftDistExt = extern union {
             return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).AsyncInstallDistributionUnit(@as(*const ISoftDistExt, @ptrCast(self)), pbc, pvReserved, flags, lpcbh);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ProcessSoftDist(self: *const ISoftDistExt, szCDFURL: ?[*:0]const u16, pSoftDistElement: ?*IXMLElement, lpsdi: ?*SOFTDISTINFO) callconv(.Inline) HRESULT {
+        return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).ProcessSoftDist(@as(*const ISoftDistExt, @ptrCast(self)), szCDFURL, pSoftDistElement, lpsdi);
+    }
+    pub fn GetFirstCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).GetFirstCodeBase(@as(*const ISoftDistExt, @ptrCast(self)), szCodeBase, dwMaxSize);
+    }
+    pub fn GetNextCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).GetNextCodeBase(@as(*const ISoftDistExt, @ptrCast(self)), szCodeBase, dwMaxSize);
+    }
+    pub fn AsyncInstallDistributionUnit(self: *const ISoftDistExt, pbc: ?*IBindCtx, pvReserved: ?*anyopaque, flags: u32, lpcbh: ?*CODEBASEHOLD) callconv(.Inline) HRESULT {
+        return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).AsyncInstallDistributionUnit(@as(*const ISoftDistExt, @ptrCast(self)), pbc, pvReserved, flags, lpcbh);
+    }
 };
 
 const IID_ICatalogFileInfo_Value = Guid.initString("711c7600-6b48-11d1-b403-00aa00b92af1");
@@ -2892,7 +3222,13 @@ pub const ICatalogFileInfo = extern union {
             return @as(*const ICatalogFileInfo.VTable, @ptrCast(self.vtable)).GetJavaTrust(@as(*const ICatalogFileInfo, @ptrCast(self)), ppJavaTrust);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCatalogFile(self: *const ICatalogFileInfo, ppszCatalogFile: ?*?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICatalogFileInfo.VTable, @ptrCast(self.vtable)).GetCatalogFile(@as(*const ICatalogFileInfo, @ptrCast(self)), ppszCatalogFile);
+    }
+    pub fn GetJavaTrust(self: *const ICatalogFileInfo, ppJavaTrust: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ICatalogFileInfo.VTable, @ptrCast(self.vtable)).GetJavaTrust(@as(*const ICatalogFileInfo, @ptrCast(self)), ppJavaTrust);
+    }
 };
 
 const IID_IDataFilter_Value = Guid.initString("69d14c80-c18e-11d0-a9ce-006097942311");
@@ -2946,7 +3282,16 @@ pub const IDataFilter = extern union {
             return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).SetEncodingLevel(@as(*const IDataFilter, @ptrCast(self)), dwEncLevel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DoEncode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).DoEncode(@as(*const IDataFilter, @ptrCast(self)), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+    }
+    pub fn DoDecode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).DoDecode(@as(*const IDataFilter, @ptrCast(self)), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+    }
+    pub fn SetEncodingLevel(self: *const IDataFilter, dwEncLevel: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).SetEncodingLevel(@as(*const IDataFilter, @ptrCast(self)), dwEncLevel);
+    }
 };
 
 pub const PROTOCOLFILTERDATA = extern struct {
@@ -2996,7 +3341,13 @@ pub const IEncodingFilterFactory = extern union {
             return @as(*const IEncodingFilterFactory.VTable, @ptrCast(self.vtable)).GetDefaultFilter(@as(*const IEncodingFilterFactory, @ptrCast(self)), pwzCodeIn, pwzCodeOut, ppDF);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindBestFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, info: DATAINFO, ppDF: ?*?*IDataFilter) callconv(.Inline) HRESULT {
+        return @as(*const IEncodingFilterFactory.VTable, @ptrCast(self.vtable)).FindBestFilter(@as(*const IEncodingFilterFactory, @ptrCast(self)), pwzCodeIn, pwzCodeOut, info, ppDF);
+    }
+    pub fn GetDefaultFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, ppDF: ?*?*IDataFilter) callconv(.Inline) HRESULT {
+        return @as(*const IEncodingFilterFactory.VTable, @ptrCast(self.vtable)).GetDefaultFilter(@as(*const IEncodingFilterFactory, @ptrCast(self)), pwzCodeIn, pwzCodeOut, ppDF);
+    }
 };
 
 pub const HIT_LOGGING_INFO = extern struct {
@@ -3033,7 +3384,10 @@ pub const IWrappedProtocol = extern union {
             return @as(*const IWrappedProtocol.VTable, @ptrCast(self.vtable)).GetWrapperCode(@as(*const IWrappedProtocol, @ptrCast(self)), pnCode, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWrapperCode(self: *const IWrappedProtocol, pnCode: ?*i32, dwReserved: usize) callconv(.Inline) HRESULT {
+        return @as(*const IWrappedProtocol.VTable, @ptrCast(self.vtable)).GetWrapperCode(@as(*const IWrappedProtocol, @ptrCast(self)), pnCode, dwReserved);
+    }
 };
 
 pub const BINDHANDLETYPES = enum(i32) {
@@ -3065,7 +3419,10 @@ pub const IGetBindHandle = extern union {
             return @as(*const IGetBindHandle.VTable, @ptrCast(self.vtable)).GetBindHandle(@as(*const IGetBindHandle, @ptrCast(self)), enumRequestedHandle, pRetHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBindHandle(self: *const IGetBindHandle, enumRequestedHandle: BINDHANDLETYPES, pRetHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IGetBindHandle.VTable, @ptrCast(self.vtable)).GetBindHandle(@as(*const IGetBindHandle, @ptrCast(self)), enumRequestedHandle, pRetHandle);
+    }
 };
 
 pub const PROTOCOL_ARGUMENT = extern struct {
@@ -3093,7 +3450,10 @@ pub const IBindCallbackRedirect = extern union {
             return @as(*const IBindCallbackRedirect.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IBindCallbackRedirect, @ptrCast(self)), lpcUrl, vbCancel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Redirect(self: *const IBindCallbackRedirect, lpcUrl: ?[*:0]const u16, vbCancel: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IBindCallbackRedirect.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IBindCallbackRedirect, @ptrCast(self)), lpcUrl, vbCancel);
+    }
 };
 
 const IID_IBindHttpSecurity_Value = Guid.initString("a9eda967-f50e-4a33-b358-206f6ef3086d");
@@ -3115,7 +3475,10 @@ pub const IBindHttpSecurity = extern union {
             return @as(*const IBindHttpSecurity.VTable, @ptrCast(self.vtable)).GetIgnoreCertMask(@as(*const IBindHttpSecurity, @ptrCast(self)), pdwIgnoreCertMask);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIgnoreCertMask(self: *const IBindHttpSecurity, pdwIgnoreCertMask: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IBindHttpSecurity.VTable, @ptrCast(self.vtable)).GetIgnoreCertMask(@as(*const IBindHttpSecurity, @ptrCast(self)), pdwIgnoreCertMask);
+    }
 };
 
 

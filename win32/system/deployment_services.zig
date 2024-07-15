@@ -697,7 +697,19 @@ pub const IWdsTransportCacheable = extern union {
             return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Commit(@as(*const IWdsTransportCacheable, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Dirty(self: *const IWdsTransportCacheable, pbDirty: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).get_Dirty(@as(*const IWdsTransportCacheable, @ptrCast(self)), pbDirty);
+    }
+    pub fn Discard(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Discard(@as(*const IWdsTransportCacheable, @ptrCast(self)));
+    }
+    pub fn Refresh(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWdsTransportCacheable, @ptrCast(self)));
+    }
+    pub fn Commit(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Commit(@as(*const IWdsTransportCacheable, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -739,7 +751,16 @@ pub const IWdsTransportCollection = extern union {
             return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IWdsTransportCollection, @ptrCast(self)), ppVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IWdsTransportCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWdsTransportCollection, @ptrCast(self)), pulCount);
+    }
+    pub fn get_Item(self: *const IWdsTransportCollection, ulIndex: u32, ppVal: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWdsTransportCollection, @ptrCast(self)), ulIndex, ppVal);
+    }
+    pub fn get__NewEnum(self: *const IWdsTransportCollection, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IWdsTransportCollection, @ptrCast(self)), ppVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -763,7 +784,10 @@ pub const IWdsTransportManager = extern union {
             return @as(*const IWdsTransportManager.VTable, @ptrCast(self.vtable)).GetWdsTransportServer(@as(*const IWdsTransportManager, @ptrCast(self)), bszServerName, ppWdsTransportServer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetWdsTransportServer(self: *const IWdsTransportManager, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportManager.VTable, @ptrCast(self.vtable)).GetWdsTransportServer(@as(*const IWdsTransportManager, @ptrCast(self)), bszServerName, ppWdsTransportServer);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -823,7 +847,22 @@ pub const IWdsTransportServer = extern union {
             return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).DisconnectClient(@as(*const IWdsTransportServer, @ptrCast(self)), ulClientId, DisconnectionType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IWdsTransportServer, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportServer, @ptrCast(self)), pbszName);
+    }
+    pub fn get_SetupManager(self: *const IWdsTransportServer, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_SetupManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportSetupManager);
+    }
+    pub fn get_ConfigurationManager(self: *const IWdsTransportServer, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_ConfigurationManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportConfigurationManager);
+    }
+    pub fn get_NamespaceManager(self: *const IWdsTransportServer, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_NamespaceManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportNamespaceManager);
+    }
+    pub fn DisconnectClient(self: *const IWdsTransportServer, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).DisconnectClient(@as(*const IWdsTransportServer, @ptrCast(self)), ulClientId, DisconnectionType);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -847,7 +886,10 @@ pub const IWdsTransportServer2 = extern union {
             return @as(*const IWdsTransportServer2.VTable, @ptrCast(self.vtable)).get_TftpManager(@as(*const IWdsTransportServer2, @ptrCast(self)), ppWdsTransportTftpManager);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportServer.MethodMixin(@This());
+    pub fn get_TftpManager(self: *const IWdsTransportServer2, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServer2.VTable, @ptrCast(self.vtable)).get_TftpManager(@as(*const IWdsTransportServer2, @ptrCast(self)), ppWdsTransportTftpManager);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -908,7 +950,22 @@ pub const IWdsTransportSetupManager = extern union {
             return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).DeregisterContentProvider(@as(*const IWdsTransportSetupManager, @ptrCast(self)), bszName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Version(self: *const IWdsTransportSetupManager, pullVersion: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pullVersion);
+    }
+    pub fn get_InstalledFeatures(self: *const IWdsTransportSetupManager, pulInstalledFeatures: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_InstalledFeatures(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pulInstalledFeatures);
+    }
+    pub fn get_Protocols(self: *const IWdsTransportSetupManager, pulProtocols: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_Protocols(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pulProtocols);
+    }
+    pub fn RegisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).RegisterContentProvider(@as(*const IWdsTransportSetupManager, @ptrCast(self)), bszName, bszDescription, bszFilePath, bszInitializationRoutine);
+    }
+    pub fn DeregisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).DeregisterContentProvider(@as(*const IWdsTransportSetupManager, @ptrCast(self)), bszName);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -941,7 +998,13 @@ pub const IWdsTransportSetupManager2 = extern union {
             return @as(*const IWdsTransportSetupManager2.VTable, @ptrCast(self.vtable)).get_ContentProviders(@as(*const IWdsTransportSetupManager2, @ptrCast(self)), ppProviderCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportSetupManager.MethodMixin(@This());
+    pub fn get_TftpCapabilities(self: *const IWdsTransportSetupManager2, pulTftpCapabilities: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager2.VTable, @ptrCast(self.vtable)).get_TftpCapabilities(@as(*const IWdsTransportSetupManager2, @ptrCast(self)), pulTftpCapabilities);
+    }
+    pub fn get_ContentProviders(self: *const IWdsTransportSetupManager2, ppProviderCollection: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSetupManager2.VTable, @ptrCast(self.vtable)).get_ContentProviders(@as(*const IWdsTransportSetupManager2, @ptrCast(self)), ppProviderCollection);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1026,7 +1089,34 @@ pub const IWdsTransportConfigurationManager = extern union {
             return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).NotifyWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ServiceNotification);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ServicePolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportServicePolicy: ?*?*IWdsTransportServicePolicy) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_ServicePolicy(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ppWdsTransportServicePolicy);
+    }
+    pub fn get_DiagnosticsPolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_DiagnosticsPolicy(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ppWdsTransportDiagnosticsPolicy);
+    }
+    pub fn get_WdsTransportServicesRunning(self: *const IWdsTransportConfigurationManager, bRealtimeStatus: i16, pbServicesRunning: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_WdsTransportServicesRunning(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), bRealtimeStatus, pbServicesRunning);
+    }
+    pub fn EnableWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).EnableWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
+    }
+    pub fn DisableWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).DisableWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
+    }
+    pub fn StartWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).StartWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
+    }
+    pub fn StopWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).StopWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
+    }
+    pub fn RestartWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).RestartWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
+    }
+    pub fn NotifyWdsTransportServices(self: *const IWdsTransportConfigurationManager, ServiceNotification: WDSTRANSPORT_SERVICE_NOTIFICATION) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).NotifyWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ServiceNotification);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1050,7 +1140,10 @@ pub const IWdsTransportConfigurationManager2 = extern union {
             return @as(*const IWdsTransportConfigurationManager2.VTable, @ptrCast(self.vtable)).get_MulticastSessionPolicy(@as(*const IWdsTransportConfigurationManager2, @ptrCast(self)), ppWdsTransportMulticastSessionPolicy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportConfigurationManager.MethodMixin(@This());
+    pub fn get_MulticastSessionPolicy(self: *const IWdsTransportConfigurationManager2, ppWdsTransportMulticastSessionPolicy: ?*?*IWdsTransportMulticastSessionPolicy) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportConfigurationManager2.VTable, @ptrCast(self.vtable)).get_MulticastSessionPolicy(@as(*const IWdsTransportConfigurationManager2, @ptrCast(self)), ppWdsTransportMulticastSessionPolicy);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1097,7 +1190,16 @@ pub const IWdsTransportNamespaceManager = extern union {
             return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).RetrieveNamespaces(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn CreateNamespace(self: *const IWdsTransportNamespaceManager, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).CreateNamespace(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
+    }
+    pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).RetrieveNamespace(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), bszNamespaceName, ppWdsTransportNamespace);
+    }
+    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).RetrieveNamespaces(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -1120,7 +1222,10 @@ pub const IWdsTransportTftpManager = extern union {
             return @as(*const IWdsTransportTftpManager.VTable, @ptrCast(self.vtable)).RetrieveTftpClients(@as(*const IWdsTransportTftpManager, @ptrCast(self)), ppWdsTransportTftpClients);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn RetrieveTftpClients(self: *const IWdsTransportTftpManager, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpManager.VTable, @ptrCast(self.vtable)).RetrieveTftpClients(@as(*const IWdsTransportTftpManager, @ptrCast(self)), ppWdsTransportTftpClients);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1243,7 +1348,43 @@ pub const IWdsTransportServicePolicy = extern union {
             return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_NetworkProfile(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ProfileType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportCacheable.MethodMixin(@This());
+    pub fn get_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_IpAddressSource(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pSourceType);
+    }
+    pub fn put_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_IpAddressSource(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, SourceType);
+    }
+    pub fn get_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_StartIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pbszStartIpAddress);
+    }
+    pub fn put_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_StartIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, bszStartIpAddress);
+    }
+    pub fn get_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_EndIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pbszEndIpAddress);
+    }
+    pub fn put_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_EndIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, bszEndIpAddress);
+    }
+    pub fn get_StartPort(self: *const IWdsTransportServicePolicy, pulStartPort: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_StartPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pulStartPort);
+    }
+    pub fn put_StartPort(self: *const IWdsTransportServicePolicy, ulStartPort: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_StartPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ulStartPort);
+    }
+    pub fn get_EndPort(self: *const IWdsTransportServicePolicy, pulEndPort: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_EndPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pulEndPort);
+    }
+    pub fn put_EndPort(self: *const IWdsTransportServicePolicy, ulEndPort: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_EndPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ulEndPort);
+    }
+    pub fn get_NetworkProfile(self: *const IWdsTransportServicePolicy, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_NetworkProfile(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pProfileType);
+    }
+    pub fn put_NetworkProfile(self: *const IWdsTransportServicePolicy, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_NetworkProfile(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ProfileType);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -1312,7 +1453,25 @@ pub const IWdsTransportServicePolicy2 = extern union {
             return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_EnableTftpVariableWindowExtension(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), bEnableTftpVariableWindowExtension);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportServicePolicy.MethodMixin(@This());
+    pub fn get_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_UdpPortPolicy(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pUdpPortPolicy);
+    }
+    pub fn put_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_UdpPortPolicy(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), UdpPortPolicy);
+    }
+    pub fn get_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, pulTftpMaximumBlockSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_TftpMaximumBlockSize(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pulTftpMaximumBlockSize);
+    }
+    pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_TftpMaximumBlockSize(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), ulTftpMaximumBlockSize);
+    }
+    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_EnableTftpVariableWindowExtension(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pbEnableTftpVariableWindowExtension);
+    }
+    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_EnableTftpVariableWindowExtension(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), bEnableTftpVariableWindowExtension);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1363,7 +1522,19 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
             return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).put_Components(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), ulComponents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportCacheable.MethodMixin(@This());
+    pub fn get_Enabled(self: *const IWdsTransportDiagnosticsPolicy, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), pbEnabled);
+    }
+    pub fn put_Enabled(self: *const IWdsTransportDiagnosticsPolicy, bEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), bEnabled);
+    }
+    pub fn get_Components(self: *const IWdsTransportDiagnosticsPolicy, pulComponents: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).get_Components(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), pulComponents);
+    }
+    pub fn put_Components(self: *const IWdsTransportDiagnosticsPolicy, ulComponents: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).put_Components(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), ulComponents);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1450,7 +1621,31 @@ pub const IWdsTransportMulticastSessionPolicy = extern union {
             return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_SlowClientFallback(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), bClientFallback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportCacheable.MethodMixin(@This());
+    pub fn get_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, pSlowClientHandling: ?*WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_SlowClientHandling(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pSlowClientHandling);
+    }
+    pub fn put_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_SlowClientHandling(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), SlowClientHandling);
+    }
+    pub fn get_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, pulThreshold: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_AutoDisconnectThreshold(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pulThreshold);
+    }
+    pub fn put_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, ulThreshold: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_AutoDisconnectThreshold(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), ulThreshold);
+    }
+    pub fn get_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, pulStreamCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_MultistreamStreamCount(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pulStreamCount);
+    }
+    pub fn put_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, ulStreamCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_MultistreamStreamCount(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), ulStreamCount);
+    }
+    pub fn get_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, pbClientFallback: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_SlowClientFallback(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pbClientFallback);
+    }
+    pub fn put_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, bClientFallback: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_SlowClientFallback(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), bClientFallback);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1647,7 +1842,70 @@ pub const IWdsTransportNamespace = extern union {
             return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).RetrieveContents(@as(*const IWdsTransportNamespace, @ptrCast(self)), ppWdsTransportContents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Type(self: *const IWdsTransportNamespace, pType: ?*WDSTRANSPORT_NAMESPACE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IWdsTransportNamespace, @ptrCast(self)), pType);
+    }
+    pub fn get_Id(self: *const IWdsTransportNamespace, pulId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportNamespace, @ptrCast(self)), pulId);
+    }
+    pub fn get_Name(self: *const IWdsTransportNamespace, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszName);
+    }
+    pub fn put_Name(self: *const IWdsTransportNamespace, bszName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszName);
+    }
+    pub fn get_FriendlyName(self: *const IWdsTransportNamespace, pbszFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszFriendlyName);
+    }
+    pub fn put_FriendlyName(self: *const IWdsTransportNamespace, bszFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszFriendlyName);
+    }
+    pub fn get_Description(self: *const IWdsTransportNamespace, pbszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszDescription);
+    }
+    pub fn put_Description(self: *const IWdsTransportNamespace, bszDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszDescription);
+    }
+    pub fn get_ContentProvider(self: *const IWdsTransportNamespace, pbszContentProvider: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_ContentProvider(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszContentProvider);
+    }
+    pub fn put_ContentProvider(self: *const IWdsTransportNamespace, bszContentProvider: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_ContentProvider(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszContentProvider);
+    }
+    pub fn get_Configuration(self: *const IWdsTransportNamespace, pbszConfiguration: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Configuration(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszConfiguration);
+    }
+    pub fn put_Configuration(self: *const IWdsTransportNamespace, bszConfiguration: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Configuration(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszConfiguration);
+    }
+    pub fn get_Registered(self: *const IWdsTransportNamespace, pbRegistered: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Registered(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbRegistered);
+    }
+    pub fn get_Tombstoned(self: *const IWdsTransportNamespace, pbTombstoned: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Tombstoned(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbTombstoned);
+    }
+    pub fn get_TombstoneTime(self: *const IWdsTransportNamespace, pTombstoneTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_TombstoneTime(@as(*const IWdsTransportNamespace, @ptrCast(self)), pTombstoneTime);
+    }
+    pub fn get_TransmissionStarted(self: *const IWdsTransportNamespace, pbTransmissionStarted: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_TransmissionStarted(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbTransmissionStarted);
+    }
+    pub fn Register(self: *const IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Register(@as(*const IWdsTransportNamespace, @ptrCast(self)));
+    }
+    pub fn Deregister(self: *const IWdsTransportNamespace, bTerminateSessions: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Deregister(@as(*const IWdsTransportNamespace, @ptrCast(self)), bTerminateSessions);
+    }
+    pub fn Clone(self: *const IWdsTransportNamespace, ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWdsTransportNamespace, @ptrCast(self)), ppWdsTransportNamespaceClone);
+    }
+    pub fn Refresh(self: *const IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWdsTransportNamespace, @ptrCast(self)));
+    }
+    pub fn RetrieveContents(self: *const IWdsTransportNamespace, ppWdsTransportContents: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).RetrieveContents(@as(*const IWdsTransportNamespace, @ptrCast(self)), ppWdsTransportContents);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1662,7 +1920,7 @@ pub const IWdsTransportNamespaceAutoCast = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWdsTransportNamespace.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportNamespace.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1684,7 +1942,10 @@ pub const IWdsTransportNamespaceScheduledCast = extern union {
             return @as(*const IWdsTransportNamespaceScheduledCast.VTable, @ptrCast(self.vtable)).StartTransmission(@as(*const IWdsTransportNamespaceScheduledCast, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportNamespace.MethodMixin(@This());
+    pub fn StartTransmission(self: *const IWdsTransportNamespaceScheduledCast) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceScheduledCast.VTable, @ptrCast(self.vtable)).StartTransmission(@as(*const IWdsTransportNamespaceScheduledCast, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1699,7 +1960,7 @@ pub const IWdsTransportNamespaceScheduledCastManualStart = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWdsTransportNamespaceScheduledCast.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportNamespaceScheduledCast.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1750,7 +2011,19 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern union {
             return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), StartTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWdsTransportNamespaceScheduledCast.MethodMixin(@This());
+    pub fn get_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pulMinimumClients: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).get_MinimumClients(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), pulMinimumClients);
+    }
+    pub fn put_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, ulMinimumClients: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).put_MinimumClients(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), ulMinimumClients);
+    }
+    pub fn get_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pStartTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), pStartTime);
+    }
+    pub fn put_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, StartTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), StartTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1807,7 +2080,22 @@ pub const IWdsTransportContent = extern union {
             return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportContent, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Namespace(self: *const IWdsTransportContent, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const IWdsTransportContent, @ptrCast(self)), ppWdsTransportNamespace);
+    }
+    pub fn get_Id(self: *const IWdsTransportContent, pulId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportContent, @ptrCast(self)), pulId);
+    }
+    pub fn get_Name(self: *const IWdsTransportContent, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportContent, @ptrCast(self)), pbszName);
+    }
+    pub fn RetrieveSessions(self: *const IWdsTransportContent, ppWdsTransportSessions: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).RetrieveSessions(@as(*const IWdsTransportContent, @ptrCast(self)), ppWdsTransportSessions);
+    }
+    pub fn Terminate(self: *const IWdsTransportContent) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportContent, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1891,7 +2179,31 @@ pub const IWdsTransportSession = extern union {
             return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportSession, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Content(self: *const IWdsTransportSession, ppWdsTransportContent: ?*?*IWdsTransportContent) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_Content(@as(*const IWdsTransportSession, @ptrCast(self)), ppWdsTransportContent);
+    }
+    pub fn get_Id(self: *const IWdsTransportSession, pulId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportSession, @ptrCast(self)), pulId);
+    }
+    pub fn get_NetworkInterfaceName(self: *const IWdsTransportSession, pbszNetworkInterfaceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_NetworkInterfaceName(@as(*const IWdsTransportSession, @ptrCast(self)), pbszNetworkInterfaceName);
+    }
+    pub fn get_NetworkInterfaceAddress(self: *const IWdsTransportSession, pbszNetworkInterfaceAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_NetworkInterfaceAddress(@as(*const IWdsTransportSession, @ptrCast(self)), pbszNetworkInterfaceAddress);
+    }
+    pub fn get_TransferRate(self: *const IWdsTransportSession, pulTransferRate: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_TransferRate(@as(*const IWdsTransportSession, @ptrCast(self)), pulTransferRate);
+    }
+    pub fn get_MasterClientId(self: *const IWdsTransportSession, pulMasterClientId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_MasterClientId(@as(*const IWdsTransportSession, @ptrCast(self)), pulMasterClientId);
+    }
+    pub fn RetrieveClients(self: *const IWdsTransportSession, ppWdsTransportClients: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).RetrieveClients(@as(*const IWdsTransportSession, @ptrCast(self)), ppWdsTransportClients);
+    }
+    pub fn Terminate(self: *const IWdsTransportSession) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportSession, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2013,7 +2325,43 @@ pub const IWdsTransportClient = extern union {
             return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IWdsTransportClient, @ptrCast(self)), DisconnectionType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Session(self: *const IWdsTransportClient, ppWdsTransportSession: ?*?*IWdsTransportSession) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IWdsTransportClient, @ptrCast(self)), ppWdsTransportSession);
+    }
+    pub fn get_Id(self: *const IWdsTransportClient, pulId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportClient, @ptrCast(self)), pulId);
+    }
+    pub fn get_Name(self: *const IWdsTransportClient, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportClient, @ptrCast(self)), pbszName);
+    }
+    pub fn get_MacAddress(self: *const IWdsTransportClient, pbszMacAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_MacAddress(@as(*const IWdsTransportClient, @ptrCast(self)), pbszMacAddress);
+    }
+    pub fn get_IpAddress(self: *const IWdsTransportClient, pbszIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_IpAddress(@as(*const IWdsTransportClient, @ptrCast(self)), pbszIpAddress);
+    }
+    pub fn get_PercentCompletion(self: *const IWdsTransportClient, pulPercentCompletion: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_PercentCompletion(@as(*const IWdsTransportClient, @ptrCast(self)), pulPercentCompletion);
+    }
+    pub fn get_JoinDuration(self: *const IWdsTransportClient, pulJoinDuration: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_JoinDuration(@as(*const IWdsTransportClient, @ptrCast(self)), pulJoinDuration);
+    }
+    pub fn get_CpuUtilization(self: *const IWdsTransportClient, pulCpuUtilization: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_CpuUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulCpuUtilization);
+    }
+    pub fn get_MemoryUtilization(self: *const IWdsTransportClient, pulMemoryUtilization: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_MemoryUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulMemoryUtilization);
+    }
+    pub fn get_NetworkUtilization(self: *const IWdsTransportClient, pulNetworkUtilization: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_NetworkUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulNetworkUtilization);
+    }
+    pub fn get_UserIdentity(self: *const IWdsTransportClient, pbszUserIdentity: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_UserIdentity(@as(*const IWdsTransportClient, @ptrCast(self)), pbszUserIdentity);
+    }
+    pub fn Disconnect(self: *const IWdsTransportClient, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IWdsTransportClient, @ptrCast(self)), DisconnectionType);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -2091,7 +2439,28 @@ pub const IWdsTransportTftpClient = extern union {
             return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_WindowSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulWindowSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_FileName(self: *const IWdsTransportTftpClient, pbszFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_FileName(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pbszFileName);
+    }
+    pub fn get_IpAddress(self: *const IWdsTransportTftpClient, pbszIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_IpAddress(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pbszIpAddress);
+    }
+    pub fn get_Timeout(self: *const IWdsTransportTftpClient, pulTimeout: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_Timeout(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulTimeout);
+    }
+    pub fn get_CurrentFileOffset(self: *const IWdsTransportTftpClient, pul64CurrentOffset: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_CurrentFileOffset(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pul64CurrentOffset);
+    }
+    pub fn get_FileSize(self: *const IWdsTransportTftpClient, pul64FileSize: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_FileSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pul64FileSize);
+    }
+    pub fn get_BlockSize(self: *const IWdsTransportTftpClient, pulBlockSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_BlockSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulBlockSize);
+    }
+    pub fn get_WindowSize(self: *const IWdsTransportTftpClient, pulWindowSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_WindowSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulWindowSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -2142,7 +2511,19 @@ pub const IWdsTransportContentProvider = extern union {
             return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_InitializationRoutine(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszInitializationRoutine);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IWdsTransportContentProvider, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszName);
+    }
+    pub fn get_Description(self: *const IWdsTransportContentProvider, pbszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszDescription);
+    }
+    pub fn get_FilePath(self: *const IWdsTransportContentProvider, pbszFilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_FilePath(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszFilePath);
+    }
+    pub fn get_InitializationRoutine(self: *const IWdsTransportContentProvider, pbszInitializationRoutine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_InitializationRoutine(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszInitializationRoutine);
+    }
 };
 
 

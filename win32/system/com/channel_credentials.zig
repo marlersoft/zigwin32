@@ -120,7 +120,37 @@ pub const IChannelCredentials = extern union {
             return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetIssuedToken(@as(*const IChannelCredentials, @ptrCast(self)), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn SetWindowsCredential(self: *const IChannelCredentials, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetWindowsCredential(@as(*const IChannelCredentials, @ptrCast(self)), domain, username, password, impersonationLevel, allowNtlm);
+    }
+    pub fn SetUserNameCredential(self: *const IChannelCredentials, username: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetUserNameCredential(@as(*const IChannelCredentials, @ptrCast(self)), username, password);
+    }
+    pub fn SetClientCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findYype, findValue);
+    }
+    pub fn SetClientCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
+    }
+    pub fn SetClientCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
+    }
+    pub fn SetDefaultServiceCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findType, findValue);
+    }
+    pub fn SetDefaultServiceCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
+    }
+    pub fn SetDefaultServiceCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
+    }
+    pub fn SetServiceCertificateAuthentication(self: *const IChannelCredentials, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetServiceCertificateAuthentication(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, revocationMode, certificateValidationMode);
+    }
+    pub fn SetIssuedToken(self: *const IChannelCredentials, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetIssuedToken(@as(*const IChannelCredentials, @ptrCast(self)), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
+    }
 };
 
 

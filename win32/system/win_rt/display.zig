@@ -39,7 +39,13 @@ pub const IDisplayDeviceInterop = extern union {
             return @as(*const IDisplayDeviceInterop.VTable, @ptrCast(self.vtable)).OpenSharedHandle(@as(*const IDisplayDeviceInterop, @ptrCast(self)), NTHandle, riid, ppvObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateSharedHandle(self: *const IDisplayDeviceInterop, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDisplayDeviceInterop.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const IDisplayDeviceInterop, @ptrCast(self)), pObject, pSecurityAttributes, Access, Name, pHandle);
+    }
+    pub fn OpenSharedHandle(self: *const IDisplayDeviceInterop, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDisplayDeviceInterop.VTable, @ptrCast(self.vtable)).OpenSharedHandle(@as(*const IDisplayDeviceInterop, @ptrCast(self)), NTHandle, riid, ppvObj);
+    }
 };
 
 const IID_IDisplayPathInterop_Value = Guid.initString("a6ba4205-e59e-4e71-b25b-4e436d21ee3d");
@@ -69,7 +75,13 @@ pub const IDisplayPathInterop = extern union {
             return @as(*const IDisplayPathInterop.VTable, @ptrCast(self.vtable)).GetSourceId(@as(*const IDisplayPathInterop, @ptrCast(self)), pSourceId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateSourcePresentationHandle(self: *const IDisplayPathInterop, pValue: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDisplayPathInterop.VTable, @ptrCast(self.vtable)).CreateSourcePresentationHandle(@as(*const IDisplayPathInterop, @ptrCast(self)), pValue);
+    }
+    pub fn GetSourceId(self: *const IDisplayPathInterop, pSourceId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDisplayPathInterop.VTable, @ptrCast(self.vtable)).GetSourceId(@as(*const IDisplayPathInterop, @ptrCast(self)), pSourceId);
+    }
 };
 
 

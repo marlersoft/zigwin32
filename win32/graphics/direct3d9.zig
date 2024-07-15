@@ -2492,7 +2492,49 @@ pub const IDirect3D9 = extern union {
             return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterSoftwareDevice(self: *const IDirect3D9, pInitializeFunction: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).RegisterSoftwareDevice(@as(*const IDirect3D9, @ptrCast(self)), pInitializeFunction);
+    }
+    pub fn GetAdapterCount(self: *const IDirect3D9) callconv(.Inline) u32 {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterCount(@as(*const IDirect3D9, @ptrCast(self)));
+    }
+    pub fn GetAdapterIdentifier(self: *const IDirect3D9, Adapter: u32, Flags: u32, pIdentifier: ?*D3DADAPTER_IDENTIFIER9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterIdentifier(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Flags, pIdentifier);
+    }
+    pub fn GetAdapterModeCount(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT) callconv(.Inline) u32 {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterModeCount(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Format);
+    }
+    pub fn EnumAdapterModes(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT, Mode: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).EnumAdapterModes(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Format, Mode, pMode);
+    }
+    pub fn GetAdapterDisplayMode(self: *const IDirect3D9, Adapter: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterDisplayMode(@as(*const IDirect3D9, @ptrCast(self)), Adapter, pMode);
+    }
+    pub fn CheckDeviceType(self: *const IDirect3D9, Adapter: u32, DevType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, BackBufferFormat: D3DFORMAT, bWindowed: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceType(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DevType, AdapterFormat, BackBufferFormat, bWindowed);
+    }
+    pub fn CheckDeviceFormat(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, Usage: u32, RType: D3DRESOURCETYPE, CheckFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceFormat(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, AdapterFormat, Usage, RType, CheckFormat);
+    }
+    pub fn CheckDeviceMultiSampleType(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SurfaceFormat: D3DFORMAT, Windowed: BOOL, MultiSampleType: D3DMULTISAMPLE_TYPE, pQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceMultiSampleType(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, SurfaceFormat, Windowed, MultiSampleType, pQualityLevels);
+    }
+    pub fn CheckDepthStencilMatch(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, RenderTargetFormat: D3DFORMAT, DepthStencilFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDepthStencilMatch(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, AdapterFormat, RenderTargetFormat, DepthStencilFormat);
+    }
+    pub fn CheckDeviceFormatConversion(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SourceFormat: D3DFORMAT, TargetFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceFormatConversion(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, SourceFormat, TargetFormat);
+    }
+    pub fn GetDeviceCaps(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, pCaps: ?*D3DCAPS9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetDeviceCaps(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, pCaps);
+    }
+    pub fn GetAdapterMonitor(self: *const IDirect3D9, Adapter: u32) callconv(.Inline) ?HMONITOR {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterMonitor(@as(*const IDirect3D9, @ptrCast(self)), Adapter);
+    }
+    pub fn CreateDevice(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+    }
 };
 
 const IID_IDirect3DDevice9_Value = Guid.initString("d0223b96-bf7a-43fd-92bd-a43b0d82b9eb");
@@ -3597,7 +3639,355 @@ pub const IDirect3DDevice9 = extern union {
             return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const IDirect3DDevice9, @ptrCast(self)), Type, ppQuery);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn TestCooperativeLevel(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn GetAvailableTextureMem(self: *const IDirect3DDevice9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetAvailableTextureMem(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn EvictManagedResources(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EvictManagedResources(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn GetDirect3D(self: *const IDirect3DDevice9, ppD3D9: ?*?*IDirect3D9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDirect3D(@as(*const IDirect3DDevice9, @ptrCast(self)), ppD3D9);
+    }
+    pub fn GetDeviceCaps(self: *const IDirect3DDevice9, pCaps: ?*D3DCAPS9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDeviceCaps(@as(*const IDirect3DDevice9, @ptrCast(self)), pCaps);
+    }
+    pub fn GetDisplayMode(self: *const IDirect3DDevice9, iSwapChain: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pMode);
+    }
+    pub fn GetCreationParameters(self: *const IDirect3DDevice9, pParameters: ?*D3DDEVICE_CREATION_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirect3DDevice9, @ptrCast(self)), pParameters);
+    }
+    pub fn SetCursorProperties(self: *const IDirect3DDevice9, XHotSpot: u32, YHotSpot: u32, pCursorBitmap: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCursorProperties(@as(*const IDirect3DDevice9, @ptrCast(self)), XHotSpot, YHotSpot, pCursorBitmap);
+    }
+    pub fn SetCursorPosition(self: *const IDirect3DDevice9, X: i32, Y: i32, Flags: u32) callconv(.Inline) void {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCursorPosition(@as(*const IDirect3DDevice9, @ptrCast(self)), X, Y, Flags);
+    }
+    pub fn ShowCursor(self: *const IDirect3DDevice9, bShow: BOOL) callconv(.Inline) BOOL {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ShowCursor(@as(*const IDirect3DDevice9, @ptrCast(self)), bShow);
+    }
+    pub fn CreateAdditionalSwapChain(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateAdditionalSwapChain(@as(*const IDirect3DDevice9, @ptrCast(self)), pPresentationParameters, pSwapChain);
+    }
+    pub fn GetSwapChain(self: *const IDirect3DDevice9, iSwapChain: u32, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSwapChain(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pSwapChain);
+    }
+    pub fn GetNumberOfSwapChains(self: *const IDirect3DDevice9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetNumberOfSwapChains(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn Reset(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirect3DDevice9, @ptrCast(self)), pPresentationParameters);
+    }
+    pub fn Present(self: *const IDirect3DDevice9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Present(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
+    }
+    pub fn GetBackBuffer(self: *const IDirect3DDevice9, iSwapChain: u32, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetBackBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, iBackBuffer, Type, ppBackBuffer);
+    }
+    pub fn GetRasterStatus(self: *const IDirect3DDevice9, iSwapChain: u32, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRasterStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pRasterStatus);
+    }
+    pub fn SetDialogBoxMode(self: *const IDirect3DDevice9, bEnableDialogs: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetDialogBoxMode(@as(*const IDirect3DDevice9, @ptrCast(self)), bEnableDialogs);
+    }
+    pub fn SetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, Flags: u32, pRamp: ?*const D3DGAMMARAMP) callconv(.Inline) void {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetGammaRamp(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, Flags, pRamp);
+    }
+    pub fn GetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, pRamp: ?*D3DGAMMARAMP) callconv(.Inline) void {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetGammaRamp(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pRamp);
+    }
+    pub fn CreateTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppTexture: ?*?*IDirect3DTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Levels, Usage, Format, Pool, ppTexture, pSharedHandle);
+    }
+    pub fn CreateVolumeTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Depth: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppVolumeTexture: ?*?*IDirect3DVolumeTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVolumeTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Depth, Levels, Usage, Format, Pool, ppVolumeTexture, pSharedHandle);
+    }
+    pub fn CreateCubeTexture(self: *const IDirect3DDevice9, EdgeLength: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppCubeTexture: ?*?*IDirect3DCubeTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateCubeTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), EdgeLength, Levels, Usage, Format, Pool, ppCubeTexture, pSharedHandle);
+    }
+    pub fn CreateVertexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, FVF: u32, Pool: D3DPOOL, ppVertexBuffer: ?*?*IDirect3DVertexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), Length, Usage, FVF, Pool, ppVertexBuffer, pSharedHandle);
+    }
+    pub fn CreateIndexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppIndexBuffer: ?*?*IDirect3DIndexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateIndexBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), Length, Usage, Format, Pool, ppIndexBuffer, pSharedHandle);
+    }
+    pub fn CreateRenderTarget(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle);
+    }
+    pub fn CreateDepthStencilSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle);
+    }
+    pub fn UpdateSurface(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestinationSurface: ?*IDirect3DSurface9, pDestPoint: ?*const POINT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).UpdateSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceSurface, pSourceRect, pDestinationSurface, pDestPoint);
+    }
+    pub fn UpdateTexture(self: *const IDirect3DDevice9, pSourceTexture: ?*IDirect3DBaseTexture9, pDestinationTexture: ?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).UpdateTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceTexture, pDestinationTexture);
+    }
+    pub fn GetRenderTargetData(self: *const IDirect3DDevice9, pRenderTarget: ?*IDirect3DSurface9, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderTargetData(@as(*const IDirect3DDevice9, @ptrCast(self)), pRenderTarget, pDestSurface);
+    }
+    pub fn GetFrontBufferData(self: *const IDirect3DDevice9, iSwapChain: u32, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetFrontBufferData(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pDestSurface);
+    }
+    pub fn StretchRect(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestSurface: ?*IDirect3DSurface9, pDestRect: ?*const RECT, Filter: D3DTEXTUREFILTERTYPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).StretchRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceSurface, pSourceRect, pDestSurface, pDestRect, Filter);
+    }
+    pub fn ColorFill(self: *const IDirect3DDevice9, pSurface: ?*IDirect3DSurface9, pRect: ?*const RECT, color: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ColorFill(@as(*const IDirect3DDevice9, @ptrCast(self)), pSurface, pRect, color);
+    }
+    pub fn CreateOffscreenPlainSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateOffscreenPlainSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, Pool, ppSurface, pSharedHandle);
+    }
+    pub fn SetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, pRenderTarget: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), RenderTargetIndex, pRenderTarget);
+    }
+    pub fn GetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, ppRenderTarget: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), RenderTargetIndex, ppRenderTarget);
+    }
+    pub fn SetDepthStencilSurface(self: *const IDirect3DDevice9, pNewZStencil: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), pNewZStencil);
+    }
+    pub fn GetDepthStencilSurface(self: *const IDirect3DDevice9, ppZStencilSurface: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), ppZStencilSurface);
+    }
+    pub fn BeginScene(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).BeginScene(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn EndScene(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EndScene(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn Clear(self: *const IDirect3DDevice9, Count: u32, pRects: ?*const D3DRECT, Flags: u32, Color: u32, Z: f32, Stencil: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDirect3DDevice9, @ptrCast(self)), Count, pRects, Flags, Color, Z, Stencil);
+    }
+    pub fn SetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pMatrix);
+    }
+    pub fn GetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*D3DMATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pMatrix);
+    }
+    pub fn MultiplyTransform(self: *const IDirect3DDevice9, param0: D3DTRANSFORMSTATETYPE, param1: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).MultiplyTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetViewport(self: *const IDirect3DDevice9, pViewport: ?*const D3DVIEWPORT9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetViewport(@as(*const IDirect3DDevice9, @ptrCast(self)), pViewport);
+    }
+    pub fn GetViewport(self: *const IDirect3DDevice9, pViewport: ?*D3DVIEWPORT9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IDirect3DDevice9, @ptrCast(self)), pViewport);
+    }
+    pub fn SetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*const D3DMATERIAL9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetMaterial(@as(*const IDirect3DDevice9, @ptrCast(self)), pMaterial);
+    }
+    pub fn GetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*D3DMATERIAL9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetMaterial(@as(*const IDirect3DDevice9, @ptrCast(self)), pMaterial);
+    }
+    pub fn SetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*const D3DLIGHT9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetLight(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, param1);
+    }
+    pub fn GetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*D3DLIGHT9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetLight(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, param1);
+    }
+    pub fn LightEnable(self: *const IDirect3DDevice9, Index: u32, Enable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).LightEnable(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, Enable);
+    }
+    pub fn GetLightEnable(self: *const IDirect3DDevice9, Index: u32, pEnable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetLightEnable(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pEnable);
+    }
+    pub fn SetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*const f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetClipPlane(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pPlane);
+    }
+    pub fn GetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetClipPlane(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pPlane);
+    }
+    pub fn SetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetRenderState(@as(*const IDirect3DDevice9, @ptrCast(self)), State, Value);
+    }
+    pub fn GetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderState(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pValue);
+    }
+    pub fn CreateStateBlock(self: *const IDirect3DDevice9, Type: D3DSTATEBLOCKTYPE, ppSB: ?*?*IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)), Type, ppSB);
+    }
+    pub fn BeginStateBlock(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).BeginStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn EndStateBlock(self: *const IDirect3DDevice9, ppSB: ?*?*IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EndStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)), ppSB);
+    }
+    pub fn SetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*const D3DCLIPSTATUS9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetClipStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), pClipStatus);
+    }
+    pub fn GetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*D3DCLIPSTATUS9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetClipStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), pClipStatus);
+    }
+    pub fn GetTexture(self: *const IDirect3DDevice9, Stage: u32, ppTexture: ?*?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, ppTexture);
+    }
+    pub fn SetTexture(self: *const IDirect3DDevice9, Stage: u32, pTexture: ?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, pTexture);
+    }
+    pub fn GetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTextureStageState(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, Type, pValue);
+    }
+    pub fn SetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTextureStageState(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, Type, Value);
+    }
+    pub fn GetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSamplerState(@as(*const IDirect3DDevice9, @ptrCast(self)), Sampler, Type, pValue);
+    }
+    pub fn SetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetSamplerState(@as(*const IDirect3DDevice9, @ptrCast(self)), Sampler, Type, Value);
+    }
+    pub fn ValidateDevice(self: *const IDirect3DDevice9, pNumPasses: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ValidateDevice(@as(*const IDirect3DDevice9, @ptrCast(self)), pNumPasses);
+    }
+    pub fn SetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*const PALETTEENTRY) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPaletteEntries(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber, pEntries);
+    }
+    pub fn GetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPaletteEntries(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber, pEntries);
+    }
+    pub fn SetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCurrentTexturePalette(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber);
+    }
+    pub fn GetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetCurrentTexturePalette(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber);
+    }
+    pub fn SetScissorRect(self: *const IDirect3DDevice9, pRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetScissorRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pRect);
+    }
+    pub fn GetScissorRect(self: *const IDirect3DDevice9, pRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetScissorRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pRect);
+    }
+    pub fn SetSoftwareVertexProcessing(self: *const IDirect3DDevice9, bSoftware: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetSoftwareVertexProcessing(@as(*const IDirect3DDevice9, @ptrCast(self)), bSoftware);
+    }
+    pub fn GetSoftwareVertexProcessing(self: *const IDirect3DDevice9) callconv(.Inline) BOOL {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSoftwareVertexProcessing(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn SetNPatchMode(self: *const IDirect3DDevice9, nSegments: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetNPatchMode(@as(*const IDirect3DDevice9, @ptrCast(self)), nSegments);
+    }
+    pub fn GetNPatchMode(self: *const IDirect3DDevice9) callconv(.Inline) f32 {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetNPatchMode(@as(*const IDirect3DDevice9, @ptrCast(self)));
+    }
+    pub fn DrawPrimitive(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, StartVertex: u32, PrimitiveCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawPrimitive(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, StartVertex, PrimitiveCount);
+    }
+    pub fn DrawIndexedPrimitive(self: *const IDirect3DDevice9, param0: D3DPRIMITIVETYPE, BaseVertexIndex: i32, MinVertexIndex: u32, NumVertices: u32, startIndex: u32, primCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawIndexedPrimitive(@as(*const IDirect3DDevice9, @ptrCast(self)), param0, BaseVertexIndex, MinVertexIndex, NumVertices, startIndex, primCount);
+    }
+    pub fn DrawPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, PrimitiveCount: u32, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawPrimitiveUP(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, PrimitiveCount, pVertexStreamZeroData, VertexStreamZeroStride);
+    }
+    pub fn DrawIndexedPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, MinVertexIndex: u32, NumVertices: u32, PrimitiveCount: u32, pIndexData: ?*const anyopaque, IndexDataFormat: D3DFORMAT, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawIndexedPrimitiveUP(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, MinVertexIndex, NumVertices, PrimitiveCount, pIndexData, IndexDataFormat, pVertexStreamZeroData, VertexStreamZeroStride);
+    }
+    pub fn ProcessVertices(self: *const IDirect3DDevice9, SrcStartIndex: u32, DestIndex: u32, VertexCount: u32, pDestBuffer: ?*IDirect3DVertexBuffer9, pVertexDecl: ?*IDirect3DVertexDeclaration9, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ProcessVertices(@as(*const IDirect3DDevice9, @ptrCast(self)), SrcStartIndex, DestIndex, VertexCount, pDestBuffer, pVertexDecl, Flags);
+    }
+    pub fn CreateVertexDeclaration(self: *const IDirect3DDevice9, pVertexElements: ?*const D3DVERTEXELEMENT9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), pVertexElements, ppDecl);
+    }
+    pub fn SetVertexDeclaration(self: *const IDirect3DDevice9, pDecl: ?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), pDecl);
+    }
+    pub fn GetVertexDeclaration(self: *const IDirect3DDevice9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), ppDecl);
+    }
+    pub fn SetFVF(self: *const IDirect3DDevice9, FVF: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetFVF(@as(*const IDirect3DDevice9, @ptrCast(self)), FVF);
+    }
+    pub fn GetFVF(self: *const IDirect3DDevice9, pFVF: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetFVF(@as(*const IDirect3DDevice9, @ptrCast(self)), pFVF);
+    }
+    pub fn CreateVertexShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pFunction, ppShader);
+    }
+    pub fn SetVertexShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pShader);
+    }
+    pub fn GetVertexShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), ppShader);
+    }
+    pub fn SetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
+    }
+    pub fn GetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
+    }
+    pub fn SetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
+    }
+    pub fn GetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
+    }
+    pub fn SetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
+    }
+    pub fn GetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
+    }
+    pub fn SetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, pStreamData: ?*IDirect3DVertexBuffer9, OffsetInBytes: u32, Stride: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetStreamSource(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, pStreamData, OffsetInBytes, Stride);
+    }
+    pub fn GetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, ppStreamData: ?*?*IDirect3DVertexBuffer9, pOffsetInBytes: ?*u32, pStride: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetStreamSource(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, ppStreamData, pOffsetInBytes, pStride);
+    }
+    pub fn SetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, Setting: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetStreamSourceFreq(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, Setting);
+    }
+    pub fn GetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, pSetting: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetStreamSourceFreq(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, pSetting);
+    }
+    pub fn SetIndices(self: *const IDirect3DDevice9, pIndexData: ?*IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetIndices(@as(*const IDirect3DDevice9, @ptrCast(self)), pIndexData);
+    }
+    pub fn GetIndices(self: *const IDirect3DDevice9, ppIndexData: ?*?*IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetIndices(@as(*const IDirect3DDevice9, @ptrCast(self)), ppIndexData);
+    }
+    pub fn CreatePixelShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreatePixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pFunction, ppShader);
+    }
+    pub fn SetPixelShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pShader);
+    }
+    pub fn GetPixelShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), ppShader);
+    }
+    pub fn SetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
+    }
+    pub fn GetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
+    }
+    pub fn SetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
+    }
+    pub fn GetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
+    }
+    pub fn SetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
+    }
+    pub fn GetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
+    }
+    pub fn DrawRectPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pRectPatchInfo: ?*const D3DRECTPATCH_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawRectPatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle, pNumSegs, pRectPatchInfo);
+    }
+    pub fn DrawTriPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pTriPatchInfo: ?*const D3DTRIPATCH_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawTriPatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle, pNumSegs, pTriPatchInfo);
+    }
+    pub fn DeletePatch(self: *const IDirect3DDevice9, Handle: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DeletePatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle);
+    }
+    pub fn CreateQuery(self: *const IDirect3DDevice9, Type: D3DQUERYTYPE, ppQuery: ?*?*IDirect3DQuery9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const IDirect3DDevice9, @ptrCast(self)), Type, ppQuery);
+    }
 };
 
 const IID_IDirect3DStateBlock9_Value = Guid.initString("b07c4fe5-310d-4ba8-a23c-4f0f206f218b");
@@ -3633,7 +4023,16 @@ pub const IDirect3DStateBlock9 = extern union {
             return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).Apply(@as(*const IDirect3DStateBlock9, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DStateBlock9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DStateBlock9, @ptrCast(self)), ppDevice);
+    }
+    pub fn Capture(self: *const IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).Capture(@as(*const IDirect3DStateBlock9, @ptrCast(self)));
+    }
+    pub fn Apply(self: *const IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).Apply(@as(*const IDirect3DStateBlock9, @ptrCast(self)));
+    }
 };
 
 const IID_IDirect3DSwapChain9_Value = Guid.initString("794950f2-adfc-458a-905e-10a10b0b503b");
@@ -3709,7 +4108,28 @@ pub const IDirect3DSwapChain9 = extern union {
             return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetPresentParameters(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pPresentationParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Present(self: *const IDirect3DSwapChain9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).Present(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+    }
+    pub fn GetFrontBufferData(self: *const IDirect3DSwapChain9, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetFrontBufferData(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pDestSurface);
+    }
+    pub fn GetBackBuffer(self: *const IDirect3DSwapChain9, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetBackBuffer(@as(*const IDirect3DSwapChain9, @ptrCast(self)), iBackBuffer, Type, ppBackBuffer);
+    }
+    pub fn GetRasterStatus(self: *const IDirect3DSwapChain9, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetRasterStatus(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pRasterStatus);
+    }
+    pub fn GetDisplayMode(self: *const IDirect3DSwapChain9, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pMode);
+    }
+    pub fn GetDevice(self: *const IDirect3DSwapChain9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DSwapChain9, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetPresentParameters(self: *const IDirect3DSwapChain9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetPresentParameters(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pPresentationParameters);
+    }
 };
 
 const IID_IDirect3DResource9_Value = Guid.initString("05eec05d-8f7d-4362-b999-d1baf357c704");
@@ -3789,7 +4209,31 @@ pub const IDirect3DResource9 = extern union {
             return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDirect3DResource9, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DResource9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DResource9, @ptrCast(self)), ppDevice);
+    }
+    pub fn SetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid, pData, SizeOfData, Flags);
+    }
+    pub fn GetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid, pData, pSizeOfData);
+    }
+    pub fn FreePrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid);
+    }
+    pub fn SetPriority(self: *const IDirect3DResource9, PriorityNew: u32) callconv(.Inline) u32 {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IDirect3DResource9, @ptrCast(self)), PriorityNew);
+    }
+    pub fn GetPriority(self: *const IDirect3DResource9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IDirect3DResource9, @ptrCast(self)));
+    }
+    pub fn PreLoad(self: *const IDirect3DResource9) callconv(.Inline) void {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).PreLoad(@as(*const IDirect3DResource9, @ptrCast(self)));
+    }
+    pub fn GetType(self: *const IDirect3DResource9) callconv(.Inline) D3DRESOURCETYPE {
+        return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDirect3DResource9, @ptrCast(self)));
+    }
 };
 
 const IID_IDirect3DVertexDeclaration9_Value = Guid.initString("dd13c59c-36fa-4098-a8fb-c7ed39dc8546");
@@ -3820,7 +4264,13 @@ pub const IDirect3DVertexDeclaration9 = extern union {
             return @as(*const IDirect3DVertexDeclaration9.VTable, @ptrCast(self.vtable)).GetDeclaration(@as(*const IDirect3DVertexDeclaration9, @ptrCast(self)), pElement, pNumElements);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DVertexDeclaration9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexDeclaration9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVertexDeclaration9, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetDeclaration(self: *const IDirect3DVertexDeclaration9, pElement: ?*D3DVERTEXELEMENT9, pNumElements: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexDeclaration9.VTable, @ptrCast(self.vtable)).GetDeclaration(@as(*const IDirect3DVertexDeclaration9, @ptrCast(self)), pElement, pNumElements);
+    }
 };
 
 const IID_IDirect3DVertexShader9_Value = Guid.initString("efc5557e-6265-4613-8a94-43857889eb36");
@@ -3851,7 +4301,13 @@ pub const IDirect3DVertexShader9 = extern union {
             return @as(*const IDirect3DVertexShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DVertexShader9, @ptrCast(self)), param0, pSizeOfData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DVertexShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexShader9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVertexShader9, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetFunction(self: *const IDirect3DVertexShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DVertexShader9, @ptrCast(self)), param0, pSizeOfData);
+    }
 };
 
 const IID_IDirect3DPixelShader9_Value = Guid.initString("6d3bdbdc-5b02-4415-b852-ce5e8bccb289");
@@ -3882,7 +4338,13 @@ pub const IDirect3DPixelShader9 = extern union {
             return @as(*const IDirect3DPixelShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DPixelShader9, @ptrCast(self)), param0, pSizeOfData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DPixelShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DPixelShader9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DPixelShader9, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetFunction(self: *const IDirect3DPixelShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DPixelShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DPixelShader9, @ptrCast(self)), param0, pSizeOfData);
+    }
 };
 
 const IID_IDirect3DBaseTexture9_Value = Guid.initString("580ca87e-1d3c-4d54-991d-b7d3e3c298ce");
@@ -3940,7 +4402,25 @@ pub const IDirect3DBaseTexture9 = extern union {
             return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GenerateMipSubLevels(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DResource9.MethodMixin(@This());
+    pub fn SetLOD(self: *const IDirect3DBaseTexture9, LODNew: u32) callconv(.Inline) u32 {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).SetLOD(@as(*const IDirect3DBaseTexture9, @ptrCast(self)), LODNew);
+    }
+    pub fn GetLOD(self: *const IDirect3DBaseTexture9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetLOD(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
+    }
+    pub fn GetLevelCount(self: *const IDirect3DBaseTexture9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetLevelCount(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
+    }
+    pub fn SetAutoGenFilterType(self: *const IDirect3DBaseTexture9, FilterType: D3DTEXTUREFILTERTYPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).SetAutoGenFilterType(@as(*const IDirect3DBaseTexture9, @ptrCast(self)), FilterType);
+    }
+    pub fn GetAutoGenFilterType(self: *const IDirect3DBaseTexture9) callconv(.Inline) D3DTEXTUREFILTERTYPE {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetAutoGenFilterType(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
+    }
+    pub fn GenerateMipSubLevels(self: *const IDirect3DBaseTexture9) callconv(.Inline) void {
+        return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GenerateMipSubLevels(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
+    }
 };
 
 const IID_IDirect3DTexture9_Value = Guid.initString("85c31227-3de5-4f00-9b3a-f11ac38c18b5");
@@ -3999,7 +4479,22 @@ pub const IDirect3DTexture9 = extern union {
             return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DTexture9, @ptrCast(self)), pDirtyRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DBaseTexture9.MethodMixin(@This());
+    pub fn GetLevelDesc(self: *const IDirect3DTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, pDesc);
+    }
+    pub fn GetSurfaceLevel(self: *const IDirect3DTexture9, Level: u32, ppSurfaceLevel: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).GetSurfaceLevel(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, ppSurfaceLevel);
+    }
+    pub fn LockRect(self: *const IDirect3DTexture9, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, pLockedRect, pRect, Flags);
+    }
+    pub fn UnlockRect(self: *const IDirect3DTexture9, Level: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DTexture9, @ptrCast(self)), Level);
+    }
+    pub fn AddDirtyRect(self: *const IDirect3DTexture9, pDirtyRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DTexture9, @ptrCast(self)), pDirtyRect);
+    }
 };
 
 const IID_IDirect3DVolumeTexture9_Value = Guid.initString("2518526c-e789-4111-a7b9-47ef328d13e6");
@@ -4058,7 +4553,22 @@ pub const IDirect3DVolumeTexture9 = extern union {
             return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), pDirtyBox);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DBaseTexture9.MethodMixin(@This());
+    pub fn GetLevelDesc(self: *const IDirect3DVolumeTexture9, Level: u32, pDesc: ?*D3DVOLUME_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, pDesc);
+    }
+    pub fn GetVolumeLevel(self: *const IDirect3DVolumeTexture9, Level: u32, ppVolumeLevel: ?*?*IDirect3DVolume9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).GetVolumeLevel(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, ppVolumeLevel);
+    }
+    pub fn LockBox(self: *const IDirect3DVolumeTexture9, Level: u32, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).LockBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, pLockedVolume, pBox, Flags);
+    }
+    pub fn UnlockBox(self: *const IDirect3DVolumeTexture9, Level: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).UnlockBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level);
+    }
+    pub fn AddDirtyBox(self: *const IDirect3DVolumeTexture9, pDirtyBox: ?*const D3DBOX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), pDirtyBox);
+    }
 };
 
 const IID_IDirect3DCubeTexture9_Value = Guid.initString("fff32f81-d953-473a-9223-93d652aba93f");
@@ -4121,7 +4631,22 @@ pub const IDirect3DCubeTexture9 = extern union {
             return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, pDirtyRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DBaseTexture9.MethodMixin(@This());
+    pub fn GetLevelDesc(self: *const IDirect3DCubeTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), Level, pDesc);
+    }
+    pub fn GetCubeMapSurface(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, ppCubeMapSurface: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).GetCubeMapSurface(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level, ppCubeMapSurface);
+    }
+    pub fn LockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level, pLockedRect, pRect, Flags);
+    }
+    pub fn UnlockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level);
+    }
+    pub fn AddDirtyRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, pDirtyRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, pDirtyRect);
+    }
 };
 
 const IID_IDirect3DVertexBuffer9_Value = Guid.initString("b64bb1b5-fd70-4df6-bf91-19d0a12455e3");
@@ -4161,7 +4686,16 @@ pub const IDirect3DVertexBuffer9 = extern union {
             return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DResource9.MethodMixin(@This());
+    pub fn Lock(self: *const IDirect3DVertexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)), OffsetToLock, SizeToLock, ppbData, Flags);
+    }
+    pub fn Unlock(self: *const IDirect3DVertexBuffer9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const IDirect3DVertexBuffer9, pDesc: ?*D3DVERTEXBUFFER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)), pDesc);
+    }
 };
 
 const IID_IDirect3DIndexBuffer9_Value = Guid.initString("7c9dd65e-d3f7-4529-acee-785830acde35");
@@ -4201,7 +4735,16 @@ pub const IDirect3DIndexBuffer9 = extern union {
             return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DResource9.MethodMixin(@This());
+    pub fn Lock(self: *const IDirect3DIndexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)), OffsetToLock, SizeToLock, ppbData, Flags);
+    }
+    pub fn Unlock(self: *const IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const IDirect3DIndexBuffer9, pDesc: ?*D3DINDEXBUFFER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)), pDesc);
+    }
 };
 
 const IID_IDirect3DSurface9_Value = Guid.initString("0cfbaf3a-9ff6-429a-99b3-a2796af8b89b");
@@ -4265,7 +4808,25 @@ pub const IDirect3DSurface9 = extern union {
             return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirect3DSurface9, @ptrCast(self)), hdc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DResource9.MethodMixin(@This());
+    pub fn GetContainer(self: *const IDirect3DSurface9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IDirect3DSurface9, @ptrCast(self)), riid, ppContainer);
+    }
+    pub fn GetDesc(self: *const IDirect3DSurface9, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DSurface9, @ptrCast(self)), pDesc);
+    }
+    pub fn LockRect(self: *const IDirect3DSurface9, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DSurface9, @ptrCast(self)), pLockedRect, pRect, Flags);
+    }
+    pub fn UnlockRect(self: *const IDirect3DSurface9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DSurface9, @ptrCast(self)));
+    }
+    pub fn GetDC(self: *const IDirect3DSurface9, phdc: ?*?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirect3DSurface9, @ptrCast(self)), phdc);
+    }
+    pub fn ReleaseDC(self: *const IDirect3DSurface9, hdc: ?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirect3DSurface9, @ptrCast(self)), hdc);
+    }
 };
 
 const IID_IDirect3DVolume9_Value = Guid.initString("24f416e6-1f67-4aa7-b88e-d33f6f3128a1");
@@ -4350,7 +4911,31 @@ pub const IDirect3DVolume9 = extern union {
             return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).UnlockBox(@as(*const IDirect3DVolume9, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DVolume9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVolume9, @ptrCast(self)), ppDevice);
+    }
+    pub fn SetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid, pData, SizeOfData, Flags);
+    }
+    pub fn GetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid, pData, pSizeOfData);
+    }
+    pub fn FreePrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid);
+    }
+    pub fn GetContainer(self: *const IDirect3DVolume9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IDirect3DVolume9, @ptrCast(self)), riid, ppContainer);
+    }
+    pub fn GetDesc(self: *const IDirect3DVolume9, pDesc: ?*D3DVOLUME_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DVolume9, @ptrCast(self)), pDesc);
+    }
+    pub fn LockBox(self: *const IDirect3DVolume9, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).LockBox(@as(*const IDirect3DVolume9, @ptrCast(self)), pLockedVolume, pBox, Flags);
+    }
+    pub fn UnlockBox(self: *const IDirect3DVolume9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).UnlockBox(@as(*const IDirect3DVolume9, @ptrCast(self)));
+    }
 };
 
 const IID_IDirect3DQuery9_Value = Guid.initString("d9771460-a695-4f26-bbd3-27b840b541cc");
@@ -4404,7 +4989,22 @@ pub const IDirect3DQuery9 = extern union {
             return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetData(@as(*const IDirect3DQuery9, @ptrCast(self)), pData, dwSize, dwGetDataFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDirect3DQuery9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DQuery9, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetType(self: *const IDirect3DQuery9) callconv(.Inline) D3DQUERYTYPE {
+        return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDirect3DQuery9, @ptrCast(self)));
+    }
+    pub fn GetDataSize(self: *const IDirect3DQuery9) callconv(.Inline) u32 {
+        return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const IDirect3DQuery9, @ptrCast(self)));
+    }
+    pub fn Issue(self: *const IDirect3DQuery9, dwIssueFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).Issue(@as(*const IDirect3DQuery9, @ptrCast(self)), dwIssueFlags);
+    }
+    pub fn GetData(self: *const IDirect3DQuery9, pData: ?*anyopaque, dwSize: u32, dwGetDataFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetData(@as(*const IDirect3DQuery9, @ptrCast(self)), pData, dwSize, dwGetDataFlags);
+    }
 };
 
 const IID_IDirect3D9Ex_Value = Guid.initString("02177241-69fc-400c-8ff1-93a44df6861d");
@@ -4471,7 +5071,22 @@ pub const IDirect3D9Ex = extern union {
             return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterLUID(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pLUID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3D9.MethodMixin(@This());
+    pub fn GetAdapterModeCountEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER) callconv(.Inline) u32 {
+        return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterModeCountEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pFilter);
+    }
+    pub fn EnumAdapterModesEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER, Mode: u32, pMode: ?*D3DDISPLAYMODEEX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).EnumAdapterModesEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pFilter, Mode, pMode);
+    }
+    pub fn GetAdapterDisplayModeEx(self: *const IDirect3D9Ex, Adapter: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterDisplayModeEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pMode, pRotation);
+    }
+    pub fn CreateDeviceEx(self: *const IDirect3D9Ex, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9Ex) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
+    }
+    pub fn GetAdapterLUID(self: *const IDirect3D9Ex, Adapter: u32, pLUID: ?*LUID) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterLUID(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pLUID);
+    }
 };
 
 const IID_IDirect3DDevice9Ex_Value = Guid.initString("b18b10ce-2649-405a-870f-95f777d4313a");
@@ -4645,7 +5260,52 @@ pub const IDirect3DDevice9Ex = extern union {
             return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), iSwapChain, pMode, pRotation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DDevice9.MethodMixin(@This());
+    pub fn SetConvolutionMonoKernel(self: *const IDirect3DDevice9Ex, width: u32, height: u32, rows: ?*f32, columns: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetConvolutionMonoKernel(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), width, height, rows, columns);
+    }
+    pub fn ComposeRects(self: *const IDirect3DDevice9Ex, pSrc: ?*IDirect3DSurface9, pDst: ?*IDirect3DSurface9, pSrcRectDescs: ?*IDirect3DVertexBuffer9, NumRects: u32, pDstRectDescs: ?*IDirect3DVertexBuffer9, Operation: D3DCOMPOSERECTSOP, Xoffset: i32, Yoffset: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).ComposeRects(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pSrc, pDst, pSrcRectDescs, NumRects, pDstRectDescs, Operation, Xoffset, Yoffset);
+    }
+    pub fn PresentEx(self: *const IDirect3DDevice9Ex, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).PresentEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+    }
+    pub fn GetGPUThreadPriority(self: *const IDirect3DDevice9Ex, pPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetGPUThreadPriority(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pPriority);
+    }
+    pub fn SetGPUThreadPriority(self: *const IDirect3DDevice9Ex, Priority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetGPUThreadPriority(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Priority);
+    }
+    pub fn WaitForVBlank(self: *const IDirect3DDevice9Ex, iSwapChain: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).WaitForVBlank(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), iSwapChain);
+    }
+    pub fn CheckResourceResidency(self: *const IDirect3DDevice9Ex, pResourceArray: ?*?*IDirect3DResource9, NumResources: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CheckResourceResidency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pResourceArray, NumResources);
+    }
+    pub fn SetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, MaxLatency: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), MaxLatency);
+    }
+    pub fn GetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, pMaxLatency: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pMaxLatency);
+    }
+    pub fn CheckDeviceState(self: *const IDirect3DDevice9Ex, hDestinationWindow: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CheckDeviceState(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), hDestinationWindow);
+    }
+    pub fn CreateRenderTargetEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateRenderTargetEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle, Usage);
+    }
+    pub fn CreateOffscreenPlainSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateOffscreenPlainSurfaceEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, Pool, ppSurface, pSharedHandle, Usage);
+    }
+    pub fn CreateDepthStencilSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateDepthStencilSurfaceEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle, Usage);
+    }
+    pub fn ResetEx(self: *const IDirect3DDevice9Ex, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).ResetEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pPresentationParameters, pFullscreenDisplayMode);
+    }
+    pub fn GetDisplayModeEx(self: *const IDirect3DDevice9Ex, iSwapChain: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), iSwapChain, pMode, pRotation);
+    }
 };
 
 const IID_IDirect3DSwapChain9Ex_Value = Guid.initString("91886caf-1c3d-4d2e-a0ab-3e4c7d8d3303");
@@ -4684,7 +5344,16 @@ pub const IDirect3DSwapChain9Ex = extern union {
             return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pMode, pRotation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirect3DSwapChain9.MethodMixin(@This());
+    pub fn GetLastPresentCount(self: *const IDirect3DSwapChain9Ex, pLastPresentCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetLastPresentCount(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pLastPresentCount);
+    }
+    pub fn GetPresentStats(self: *const IDirect3DSwapChain9Ex, pPresentationStatistics: ?*D3DPRESENTSTATS) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetPresentStats(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pPresentationStatistics);
+    }
+    pub fn GetDisplayModeEx(self: *const IDirect3DSwapChain9Ex, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pMode, pRotation);
+    }
 };
 
 
