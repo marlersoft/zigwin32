@@ -16,7 +16,7 @@ pub const IsolatedAppLauncherTelemetryParameters = extern struct {
 
 const IID_IIsolatedAppLauncher_Value = Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
 pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
-pub const IIsolatedAppLauncher = extern struct {
+pub const IIsolatedAppLauncher = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Launch: *const fn(
@@ -27,6 +27,7 @@ pub const IIsolatedAppLauncher = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

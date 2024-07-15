@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_ILearningModelOperatorProviderNative_Value = Guid.initString("1adaa23a-eb67-41f3-aad8-5d984e9bacd4");
 pub const IID_ILearningModelOperatorProviderNative = &IID_ILearningModelOperatorProviderNative_Value;
-pub const ILearningModelOperatorProviderNative = extern struct {
+pub const ILearningModelOperatorProviderNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRegistry: *const fn(
@@ -17,6 +17,7 @@ pub const ILearningModelOperatorProviderNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -29,7 +30,7 @@ pub const ILearningModelOperatorProviderNative = extern struct {
 
 const IID_ITensorNative_Value = Guid.initString("52f547ef-5b03-49b5-82d6-565f1ee0dd49");
 pub const IID_ITensorNative = &IID_ITensorNative_Value;
-pub const ITensorNative = extern struct {
+pub const ITensorNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: *const fn(
@@ -43,6 +44,7 @@ pub const ITensorNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -59,7 +61,7 @@ pub const ITensorNative = extern struct {
 
 const IID_ITensorStaticsNative_Value = Guid.initString("39d055a4-66f6-4ebc-95d9-7a29ebe7690a");
 pub const IID_ITensorStaticsNative = &IID_ITensorStaticsNative_Value;
-pub const ITensorStaticsNative = extern struct {
+pub const ITensorStaticsNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFromD3D12Resource: *const fn(
@@ -71,6 +73,7 @@ pub const ITensorStaticsNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -83,7 +86,7 @@ pub const ITensorStaticsNative = extern struct {
 
 const IID_ILearningModelDeviceFactoryNative_Value = Guid.initString("1e9b31a1-662e-4ae0-af67-f63bb337e634");
 pub const IID_ILearningModelDeviceFactoryNative = &IID_ILearningModelDeviceFactoryNative_Value;
-pub const ILearningModelDeviceFactoryNative = extern struct {
+pub const ILearningModelDeviceFactoryNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFromD3D12CommandQueue: *const fn(
@@ -93,6 +96,7 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -105,7 +109,7 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
 
 const IID_ILearningModelSessionOptionsNative_Value = Guid.initString("c71e953f-37b4-4564-8658-d8396866db0d");
 pub const IID_ILearningModelSessionOptionsNative = &IID_ILearningModelSessionOptionsNative_Value;
-pub const ILearningModelSessionOptionsNative = extern struct {
+pub const ILearningModelSessionOptionsNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetIntraOpNumThreadsOverride: *const fn(
@@ -114,6 +118,7 @@ pub const ILearningModelSessionOptionsNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -498,7 +498,7 @@ pub const D3D10_BOX = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10DeviceChild_Value = Guid.initString("9b7e4c00-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10DeviceChild = &IID_ID3D10DeviceChild_Value;
-pub const ID3D10DeviceChild = extern struct {
+pub const ID3D10DeviceChild = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDevice: *const fn(
@@ -526,6 +526,7 @@ pub const ID3D10DeviceChild = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -614,7 +615,7 @@ pub const D3D10_DEPTH_STENCIL_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10DepthStencilState_Value = Guid.initString("2b4b1cc8-a4ad-41f8-8322-ca86fc3ec675");
 pub const IID_ID3D10DepthStencilState = &IID_ID3D10DepthStencilState_Value;
-pub const ID3D10DepthStencilState = extern struct {
+pub const ID3D10DepthStencilState = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetDesc: *const fn(
@@ -623,6 +624,7 @@ pub const ID3D10DepthStencilState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -711,7 +713,7 @@ pub const D3D10_BLEND_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10BlendState_Value = Guid.initString("edad8d19-8a35-4d6d-8566-2ea276cde161");
 pub const IID_ID3D10BlendState = &IID_ID3D10BlendState_Value;
-pub const ID3D10BlendState = extern struct {
+pub const ID3D10BlendState = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetDesc: *const fn(
@@ -720,6 +722,7 @@ pub const ID3D10BlendState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -746,7 +749,7 @@ pub const D3D10_RASTERIZER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10RasterizerState_Value = Guid.initString("a2a07292-89af-4345-be2e-c53d9fbb6e9f");
 pub const IID_ID3D10RasterizerState = &IID_ID3D10RasterizerState_Value;
-pub const ID3D10RasterizerState = extern struct {
+pub const ID3D10RasterizerState = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetDesc: *const fn(
@@ -755,6 +758,7 @@ pub const ID3D10RasterizerState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -774,7 +778,7 @@ pub const D3D10_SUBRESOURCE_DATA = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Resource_Value = Guid.initString("9b7e4c01-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Resource = &IID_ID3D10Resource_Value;
-pub const ID3D10Resource = extern struct {
+pub const ID3D10Resource = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetType: *const fn(
@@ -790,6 +794,7 @@ pub const ID3D10Resource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -819,7 +824,7 @@ pub const D3D10_BUFFER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Buffer_Value = Guid.initString("9b7e4c02-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Buffer = &IID_ID3D10Buffer_Value;
-pub const ID3D10Buffer = extern struct {
+pub const ID3D10Buffer = extern union {
     pub const VTable = extern struct {
         base: ID3D10Resource.VTable,
         Map: *const fn(
@@ -837,6 +842,7 @@ pub const ID3D10Buffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Resource: ID3D10Resource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -869,7 +875,7 @@ pub const D3D10_TEXTURE1D_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Texture1D_Value = Guid.initString("9b7e4c03-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture1D = &IID_ID3D10Texture1D_Value;
-pub const ID3D10Texture1D = extern struct {
+pub const ID3D10Texture1D = extern union {
     pub const VTable = extern struct {
         base: ID3D10Resource.VTable,
         Map: *const fn(
@@ -889,6 +895,7 @@ pub const ID3D10Texture1D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Resource: ID3D10Resource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -928,7 +935,7 @@ pub const D3D10_MAPPED_TEXTURE2D = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Texture2D_Value = Guid.initString("9b7e4c04-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture2D = &IID_ID3D10Texture2D_Value;
-pub const ID3D10Texture2D = extern struct {
+pub const ID3D10Texture2D = extern union {
     pub const VTable = extern struct {
         base: ID3D10Resource.VTable,
         Map: *const fn(
@@ -948,6 +955,7 @@ pub const ID3D10Texture2D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Resource: ID3D10Resource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -987,7 +995,7 @@ pub const D3D10_MAPPED_TEXTURE3D = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Texture3D_Value = Guid.initString("9b7e4c05-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture3D = &IID_ID3D10Texture3D_Value;
-pub const ID3D10Texture3D = extern struct {
+pub const ID3D10Texture3D = extern union {
     pub const VTable = extern struct {
         base: ID3D10Resource.VTable,
         Map: *const fn(
@@ -1007,6 +1015,7 @@ pub const ID3D10Texture3D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Resource: ID3D10Resource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1043,7 +1052,7 @@ pub const D3D10_TEXTURECUBE_FACE_NEGATIVE_Z = D3D10_TEXTURECUBE_FACE.NEGATIVE_Z;
 // This COM type is Agile, not sure what that means
 const IID_ID3D10View_Value = Guid.initString("c902b03f-60a7-49ba-9936-2a3ab37a7e33");
 pub const IID_ID3D10View = &IID_ID3D10View_Value;
-pub const ID3D10View = extern struct {
+pub const ID3D10View = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetResource: *const fn(
@@ -1052,6 +1061,7 @@ pub const ID3D10View = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1135,7 +1145,7 @@ pub const D3D10_SHADER_RESOURCE_VIEW_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderResourceView_Value = Guid.initString("9b7e4c07-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10ShaderResourceView = &IID_ID3D10ShaderResourceView_Value;
-pub const ID3D10ShaderResourceView = extern struct {
+pub const ID3D10ShaderResourceView = extern union {
     pub const VTable = extern struct {
         base: ID3D10View.VTable,
         GetDesc: *const fn(
@@ -1144,6 +1154,7 @@ pub const ID3D10ShaderResourceView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10View: ID3D10View,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10View.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1218,7 +1229,7 @@ pub const D3D10_RENDER_TARGET_VIEW_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10RenderTargetView_Value = Guid.initString("9b7e4c08-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10RenderTargetView = &IID_ID3D10RenderTargetView_Value;
-pub const ID3D10RenderTargetView = extern struct {
+pub const ID3D10RenderTargetView = extern union {
     pub const VTable = extern struct {
         base: ID3D10View.VTable,
         GetDesc: *const fn(
@@ -1227,6 +1238,7 @@ pub const ID3D10RenderTargetView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10View: ID3D10View,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10View.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1282,7 +1294,7 @@ pub const D3D10_DEPTH_STENCIL_VIEW_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10DepthStencilView_Value = Guid.initString("9b7e4c09-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10DepthStencilView = &IID_ID3D10DepthStencilView_Value;
-pub const ID3D10DepthStencilView = extern struct {
+pub const ID3D10DepthStencilView = extern union {
     pub const VTable = extern struct {
         base: ID3D10View.VTable,
         GetDesc: *const fn(
@@ -1291,6 +1303,7 @@ pub const ID3D10DepthStencilView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10View: ID3D10View,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10View.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1304,11 +1317,12 @@ pub const ID3D10DepthStencilView = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10VertexShader_Value = Guid.initString("9b7e4c0a-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10VertexShader = &IID_ID3D10VertexShader_Value;
-pub const ID3D10VertexShader = extern struct {
+pub const ID3D10VertexShader = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
@@ -1318,11 +1332,12 @@ pub const ID3D10VertexShader = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10GeometryShader_Value = Guid.initString("6316be88-54cd-4040-ab44-20461bc81f68");
 pub const IID_ID3D10GeometryShader = &IID_ID3D10GeometryShader_Value;
-pub const ID3D10GeometryShader = extern struct {
+pub const ID3D10GeometryShader = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
@@ -1332,11 +1347,12 @@ pub const ID3D10GeometryShader = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10PixelShader_Value = Guid.initString("4968b601-9d00-4cde-8346-8e7f675819b6");
 pub const IID_ID3D10PixelShader = &IID_ID3D10PixelShader_Value;
-pub const ID3D10PixelShader = extern struct {
+pub const ID3D10PixelShader = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
@@ -1346,11 +1362,12 @@ pub const ID3D10PixelShader = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10InputLayout_Value = Guid.initString("9b7e4c0b-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10InputLayout = &IID_ID3D10InputLayout_Value;
-pub const ID3D10InputLayout = extern struct {
+pub const ID3D10InputLayout = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
@@ -1434,7 +1451,7 @@ pub const D3D10_SAMPLER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10SamplerState_Value = Guid.initString("9b7e4c0c-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10SamplerState = &IID_ID3D10SamplerState_Value;
-pub const ID3D10SamplerState = extern struct {
+pub const ID3D10SamplerState = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         GetDesc: *const fn(
@@ -1443,6 +1460,7 @@ pub const ID3D10SamplerState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1509,7 +1527,7 @@ pub const D3D10_FORMAT_SUPPORT_BACK_BUFFER_CAST = D3D10_FORMAT_SUPPORT.BACK_BUFF
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Asynchronous_Value = Guid.initString("9b7e4c0d-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Asynchronous = &IID_ID3D10Asynchronous_Value;
-pub const ID3D10Asynchronous = extern struct {
+pub const ID3D10Asynchronous = extern union {
     pub const VTable = extern struct {
         base: ID3D10DeviceChild.VTable,
         Begin: *const fn(
@@ -1530,6 +1548,7 @@ pub const ID3D10Asynchronous = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    ID3D10DeviceChild: ID3D10DeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1589,7 +1608,7 @@ pub const D3D10_QUERY_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Query_Value = Guid.initString("9b7e4c0e-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Query = &IID_ID3D10Query_Value;
-pub const ID3D10Query = extern struct {
+pub const ID3D10Query = extern union {
     pub const VTable = extern struct {
         base: ID3D10Asynchronous.VTable,
         GetDesc: *const fn(
@@ -1598,6 +1617,7 @@ pub const ID3D10Query = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Asynchronous: ID3D10Asynchronous,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Asynchronous.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1611,11 +1631,12 @@ pub const ID3D10Query = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Predicate_Value = Guid.initString("9b7e4c10-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Predicate = &IID_ID3D10Predicate_Value;
-pub const ID3D10Predicate = extern struct {
+pub const ID3D10Predicate = extern union {
     pub const VTable = extern struct {
         base: ID3D10Query.VTable,
     };
     vtable: *const VTable,
+    ID3D10Query: ID3D10Query,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Query.MethodMixin(T);
     };}
@@ -1709,7 +1730,7 @@ pub const D3D10_COUNTER_INFO = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Counter_Value = Guid.initString("9b7e4c11-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Counter = &IID_ID3D10Counter_Value;
-pub const ID3D10Counter = extern struct {
+pub const ID3D10Counter = extern union {
     pub const VTable = extern struct {
         base: ID3D10Asynchronous.VTable,
         GetDesc: *const fn(
@@ -1718,6 +1739,7 @@ pub const ID3D10Counter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10Asynchronous: ID3D10Asynchronous,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Asynchronous.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1731,7 +1753,7 @@ pub const ID3D10Counter = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Device_Value = Guid.initString("9b7e4c0f-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Device = &IID_ID3D10Device_Value;
-pub const ID3D10Device = extern struct {
+pub const ID3D10Device = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         VSSetConstantBuffers: *const fn(
@@ -2267,6 +2289,7 @@ pub const ID3D10Device = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2656,7 +2679,7 @@ pub const ID3D10Device = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Multithread_Value = Guid.initString("9b7e4e00-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Multithread = &IID_ID3D10Multithread_Value;
-pub const ID3D10Multithread = extern struct {
+pub const ID3D10Multithread = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Enter: *const fn(
@@ -2674,6 +2697,7 @@ pub const ID3D10Multithread = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2720,7 +2744,7 @@ pub const D3D10_CREATE_DEVICE_DEBUGGABLE = D3D10_CREATE_DEVICE_FLAG.DEBUGGABLE;
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Debug_Value = Guid.initString("9b7e4e01-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Debug = &IID_ID3D10Debug_Value;
-pub const ID3D10Debug = extern struct {
+pub const ID3D10Debug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetFeatureMask: *const fn(
@@ -2750,6 +2774,7 @@ pub const ID3D10Debug = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2787,7 +2812,7 @@ pub const ID3D10Debug = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10SwitchToRef_Value = Guid.initString("9b7e4e02-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10SwitchToRef = &IID_ID3D10SwitchToRef_Value;
-pub const ID3D10SwitchToRef = extern struct {
+pub const ID3D10SwitchToRef = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetUseRef: *const fn(
@@ -2799,6 +2824,7 @@ pub const ID3D10SwitchToRef = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3893,7 +3919,7 @@ pub const D3D10_INFO_QUEUE_FILTER = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10InfoQueue_Value = Guid.initString("1b940b17-2642-4d1f-ab1f-b99bad0c395f");
 pub const IID_ID3D10InfoQueue = &IID_ID3D10InfoQueue_Value;
-pub const ID3D10InfoQueue = extern struct {
+pub const ID3D10InfoQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMessageCountLimit: *const fn(
@@ -4034,6 +4060,7 @@ pub const ID3D10InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4274,7 +4301,7 @@ pub const D3D10_SIGNATURE_PARAMETER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderReflectionType_Value = Guid.initString("c530ad7d-9b16-4395-a979-ba2ecff83add");
 pub const IID_ID3D10ShaderReflectionType = &IID_ID3D10ShaderReflectionType_Value;
-pub const ID3D10ShaderReflectionType = extern struct {
+pub const ID3D10ShaderReflectionType = extern union {
     pub const VTable = extern struct {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionType,
@@ -4318,7 +4345,7 @@ pub const ID3D10ShaderReflectionType = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderReflectionVariable_Value = Guid.initString("1bf63c95-2650-405d-99c1-3636bd1da0a1");
 pub const IID_ID3D10ShaderReflectionVariable = &IID_ID3D10ShaderReflectionVariable_Value;
-pub const ID3D10ShaderReflectionVariable = extern struct {
+pub const ID3D10ShaderReflectionVariable = extern union {
     pub const VTable = extern struct {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionVariable,
@@ -4345,7 +4372,7 @@ pub const ID3D10ShaderReflectionVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderReflectionConstantBuffer_Value = Guid.initString("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
 pub const IID_ID3D10ShaderReflectionConstantBuffer = &IID_ID3D10ShaderReflectionConstantBuffer_Value;
-pub const ID3D10ShaderReflectionConstantBuffer = extern struct {
+pub const ID3D10ShaderReflectionConstantBuffer = extern union {
     pub const VTable = extern struct {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionConstantBuffer,
@@ -4381,7 +4408,7 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderReflection_Value = Guid.initString("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
 pub const IID_ID3D10ShaderReflection = &IID_ID3D10ShaderReflection_Value;
-pub const ID3D10ShaderReflection = extern struct {
+pub const ID3D10ShaderReflection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDesc: *const fn(
@@ -4413,6 +4440,7 @@ pub const ID3D10ShaderReflection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4524,7 +4552,7 @@ pub const D3D10_STATE_BLOCK_MASK = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10StateBlock_Value = Guid.initString("0803425a-57f5-4dd6-9465-a87570834a08");
 pub const IID_ID3D10StateBlock = &IID_ID3D10StateBlock_Value;
-pub const ID3D10StateBlock = extern struct {
+pub const ID3D10StateBlock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Capture: *const fn(
@@ -4542,6 +4570,7 @@ pub const ID3D10StateBlock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4580,7 +4609,7 @@ pub const D3D10_EFFECT_TYPE_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectType_Value = Guid.initString("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
 pub const IID_ID3D10EffectType = &IID_ID3D10EffectType_Value;
-pub const ID3D10EffectType = extern struct {
+pub const ID3D10EffectType = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectType,
@@ -4656,7 +4685,7 @@ pub const D3D10_EFFECT_VARIABLE_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectVariable_Value = Guid.initString("ae897105-00e6-45bf-bb8e-281dd6db8e1b");
 pub const IID_ID3D10EffectVariable = &IID_ID3D10EffectVariable_Value;
-pub const ID3D10EffectVariable = extern struct {
+pub const ID3D10EffectVariable = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectVariable,
@@ -4858,7 +4887,7 @@ pub const ID3D10EffectVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectScalarVariable_Value = Guid.initString("00e48f7b-d2c8-49e8-a86c-022dee53431f");
 pub const IID_ID3D10EffectScalarVariable = &IID_ID3D10EffectScalarVariable_Value;
-pub const ID3D10EffectScalarVariable = extern struct {
+pub const ID3D10EffectScalarVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetFloat: *const fn(
@@ -4923,6 +4952,7 @@ pub const ID3D10EffectScalarVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4980,7 +5010,7 @@ pub const ID3D10EffectScalarVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectVectorVariable_Value = Guid.initString("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
 pub const IID_ID3D10EffectVectorVariable = &IID_ID3D10EffectVectorVariable_Value;
-pub const ID3D10EffectVectorVariable = extern struct {
+pub const ID3D10EffectVectorVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetBoolVector: *const fn(
@@ -5045,6 +5075,7 @@ pub const ID3D10EffectVectorVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5102,7 +5133,7 @@ pub const ID3D10EffectVectorVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectMatrixVariable_Value = Guid.initString("50666c24-b82f-4eed-a172-5b6e7e8522e0");
 pub const IID_ID3D10EffectMatrixVariable = &IID_ID3D10EffectMatrixVariable_Value;
-pub const ID3D10EffectMatrixVariable = extern struct {
+pub const ID3D10EffectMatrixVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetMatrix: *const fn(
@@ -5147,6 +5178,7 @@ pub const ID3D10EffectMatrixVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5188,7 +5220,7 @@ pub const ID3D10EffectMatrixVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectStringVariable_Value = Guid.initString("71417501-8df9-4e0a-a78a-255f9756baff");
 pub const IID_ID3D10EffectStringVariable = &IID_ID3D10EffectStringVariable_Value;
-pub const ID3D10EffectStringVariable = extern struct {
+pub const ID3D10EffectStringVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetString: *const fn(
@@ -5203,6 +5235,7 @@ pub const ID3D10EffectStringVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5220,7 +5253,7 @@ pub const ID3D10EffectStringVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectShaderResourceVariable_Value = Guid.initString("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
 pub const IID_ID3D10EffectShaderResourceVariable = &IID_ID3D10EffectShaderResourceVariable_Value;
-pub const ID3D10EffectShaderResourceVariable = extern struct {
+pub const ID3D10EffectShaderResourceVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetResource: *const fn(
@@ -5245,6 +5278,7 @@ pub const ID3D10EffectShaderResourceVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5270,7 +5304,7 @@ pub const ID3D10EffectShaderResourceVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectRenderTargetViewVariable_Value = Guid.initString("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
 pub const IID_ID3D10EffectRenderTargetViewVariable = &IID_ID3D10EffectRenderTargetViewVariable_Value;
-pub const ID3D10EffectRenderTargetViewVariable = extern struct {
+pub const ID3D10EffectRenderTargetViewVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetRenderTarget: *const fn(
@@ -5295,6 +5329,7 @@ pub const ID3D10EffectRenderTargetViewVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5320,7 +5355,7 @@ pub const ID3D10EffectRenderTargetViewVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectDepthStencilViewVariable_Value = Guid.initString("3e02c918-cc79-4985-b622-2d92ad701623");
 pub const IID_ID3D10EffectDepthStencilViewVariable = &IID_ID3D10EffectDepthStencilViewVariable_Value;
-pub const ID3D10EffectDepthStencilViewVariable = extern struct {
+pub const ID3D10EffectDepthStencilViewVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetDepthStencil: *const fn(
@@ -5345,6 +5380,7 @@ pub const ID3D10EffectDepthStencilViewVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5370,7 +5406,7 @@ pub const ID3D10EffectDepthStencilViewVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectConstantBuffer_Value = Guid.initString("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
 pub const IID_ID3D10EffectConstantBuffer = &IID_ID3D10EffectConstantBuffer_Value;
-pub const ID3D10EffectConstantBuffer = extern struct {
+pub const ID3D10EffectConstantBuffer = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         SetConstantBuffer: *const fn(
@@ -5391,6 +5427,7 @@ pub const ID3D10EffectConstantBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5426,7 +5463,7 @@ pub const D3D10_EFFECT_SHADER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectShaderVariable_Value = Guid.initString("80849279-c799-4797-8c33-0407a07d9e06");
 pub const IID_ID3D10EffectShaderVariable = &IID_ID3D10EffectShaderVariable_Value;
-pub const ID3D10EffectShaderVariable = extern struct {
+pub const ID3D10EffectShaderVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetShaderDesc: *const fn(
@@ -5463,6 +5500,7 @@ pub const ID3D10EffectShaderVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5496,7 +5534,7 @@ pub const ID3D10EffectShaderVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectBlendVariable_Value = Guid.initString("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
 pub const IID_ID3D10EffectBlendVariable = &IID_ID3D10EffectBlendVariable_Value;
-pub const ID3D10EffectBlendVariable = extern struct {
+pub const ID3D10EffectBlendVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetBlendState: *const fn(
@@ -5511,6 +5549,7 @@ pub const ID3D10EffectBlendVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5528,7 +5567,7 @@ pub const ID3D10EffectBlendVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectDepthStencilVariable_Value = Guid.initString("af482368-330a-46a5-9a5c-01c71af24c8d");
 pub const IID_ID3D10EffectDepthStencilVariable = &IID_ID3D10EffectDepthStencilVariable_Value;
-pub const ID3D10EffectDepthStencilVariable = extern struct {
+pub const ID3D10EffectDepthStencilVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetDepthStencilState: *const fn(
@@ -5543,6 +5582,7 @@ pub const ID3D10EffectDepthStencilVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5560,7 +5600,7 @@ pub const ID3D10EffectDepthStencilVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectRasterizerVariable_Value = Guid.initString("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
 pub const IID_ID3D10EffectRasterizerVariable = &IID_ID3D10EffectRasterizerVariable_Value;
-pub const ID3D10EffectRasterizerVariable = extern struct {
+pub const ID3D10EffectRasterizerVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetRasterizerState: *const fn(
@@ -5575,6 +5615,7 @@ pub const ID3D10EffectRasterizerVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5592,7 +5633,7 @@ pub const ID3D10EffectRasterizerVariable = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectSamplerVariable_Value = Guid.initString("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
 pub const IID_ID3D10EffectSamplerVariable = &IID_ID3D10EffectSamplerVariable_Value;
-pub const ID3D10EffectSamplerVariable = extern struct {
+pub const ID3D10EffectSamplerVariable = extern union {
     pub const VTable = extern struct {
         base: ID3D10EffectVariable.VTable,
         GetSampler: *const fn(
@@ -5607,6 +5648,7 @@ pub const ID3D10EffectSamplerVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D10EffectVariable: ID3D10EffectVariable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5639,7 +5681,7 @@ pub const D3D10_PASS_SHADER_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectPass_Value = Guid.initString("5cfbeb89-1a06-46e0-b282-e3f9bfa36a54");
 pub const IID_ID3D10EffectPass = &IID_ID3D10EffectPass_Value;
-pub const ID3D10EffectPass = extern struct {
+pub const ID3D10EffectPass = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectPass,
@@ -5728,7 +5770,7 @@ pub const D3D10_TECHNIQUE_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectTechnique_Value = Guid.initString("db122ce8-d1c9-4292-b237-24ed3de8b175");
 pub const IID_ID3D10EffectTechnique = &IID_ID3D10EffectTechnique_Value;
-pub const ID3D10EffectTechnique = extern struct {
+pub const ID3D10EffectTechnique = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectTechnique,
@@ -5804,7 +5846,7 @@ pub const D3D10_EFFECT_DESC = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Effect_Value = Guid.initString("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
 pub const IID_ID3D10Effect = &IID_ID3D10Effect_Value;
-pub const ID3D10Effect = extern struct {
+pub const ID3D10Effect = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsValid: *const fn(
@@ -5857,6 +5899,7 @@ pub const ID3D10Effect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5918,7 +5961,7 @@ pub const ID3D10Effect = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10EffectPool_Value = Guid.initString("9537ab04-3250-412e-8213-fcd2f8677933");
 pub const IID_ID3D10EffectPool = &IID_ID3D10EffectPool_Value;
-pub const ID3D10EffectPool = extern struct {
+pub const ID3D10EffectPool = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AsEffect: *const fn(
@@ -5926,6 +5969,7 @@ pub const ID3D10EffectPool = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10Effect,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5969,7 +6013,7 @@ pub const D3D10_BLEND_DESC1 = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10BlendState1_Value = Guid.initString("edad8d99-8a35-4d6d-8566-2ea276cde161");
 pub const IID_ID3D10BlendState1 = &IID_ID3D10BlendState1_Value;
-pub const ID3D10BlendState1 = extern struct {
+pub const ID3D10BlendState1 = extern union {
     pub const VTable = extern struct {
         base: ID3D10BlendState.VTable,
         GetDesc1: *const fn(
@@ -5978,6 +6022,7 @@ pub const ID3D10BlendState1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10BlendState: ID3D10BlendState,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10BlendState.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6015,7 +6060,7 @@ pub const D3D10_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderResourceView1_Value = Guid.initString("9b7e4c87-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10ShaderResourceView1 = &IID_ID3D10ShaderResourceView1_Value;
-pub const ID3D10ShaderResourceView1 = extern struct {
+pub const ID3D10ShaderResourceView1 = extern union {
     pub const VTable = extern struct {
         base: ID3D10ShaderResourceView.VTable,
         GetDesc1: *const fn(
@@ -6024,6 +6069,7 @@ pub const ID3D10ShaderResourceView1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    ID3D10ShaderResourceView: ID3D10ShaderResourceView,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10ShaderResourceView.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6044,7 +6090,7 @@ pub const D3D10_CENTER_MULTISAMPLE_PATTERN = D3D10_STANDARD_MULTISAMPLE_QUALITY_
 // This COM type is Agile, not sure what that means
 const IID_ID3D10Device1_Value = Guid.initString("9b7e4c8f-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Device1 = &IID_ID3D10Device1_Value;
-pub const ID3D10Device1 = extern struct {
+pub const ID3D10Device1 = extern union {
     pub const VTable = extern struct {
         base: ID3D10Device.VTable,
         CreateShaderResourceView1: *const fn(
@@ -6063,6 +6109,7 @@ pub const ID3D10Device1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D3D10_FEATURE_LEVEL1,
     };
     vtable: *const VTable,
+    ID3D10Device: ID3D10Device,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Device.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6259,7 +6306,7 @@ pub const D3D10_SHADER_DEBUG_INFO = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D10ShaderReflection1_Value = Guid.initString("c3457783-a846-47ce-9520-cea6f66e7447");
 pub const IID_ID3D10ShaderReflection1 = &IID_ID3D10ShaderReflection1_Value;
-pub const ID3D10ShaderReflection1 = extern struct {
+pub const ID3D10ShaderReflection1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDesc: *const fn(
@@ -6328,6 +6375,7 @@ pub const ID3D10ShaderReflection1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

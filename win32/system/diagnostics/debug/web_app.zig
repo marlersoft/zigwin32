@@ -9,7 +9,7 @@
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationScriptEvents_Value = Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
 pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
-pub const IWebApplicationScriptEvents = extern struct {
+pub const IWebApplicationScriptEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BeforeScriptExecute: *const fn(
@@ -25,6 +25,7 @@ pub const IWebApplicationScriptEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -42,7 +43,7 @@ pub const IWebApplicationScriptEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationNavigationEvents_Value = Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
 pub const IID_IWebApplicationNavigationEvents = &IID_IWebApplicationNavigationEvents_Value;
-pub const IWebApplicationNavigationEvents = extern struct {
+pub const IWebApplicationNavigationEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BeforeNavigate: *const fn(
@@ -77,6 +78,7 @@ pub const IWebApplicationNavigationEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -110,7 +112,7 @@ pub const IWebApplicationNavigationEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationUIEvents_Value = Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
 pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
-pub const IWebApplicationUIEvents = extern struct {
+pub const IWebApplicationUIEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SecurityProblem: *const fn(
@@ -120,6 +122,7 @@ pub const IWebApplicationUIEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -133,7 +136,7 @@ pub const IWebApplicationUIEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationUpdateEvents_Value = Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
 pub const IID_IWebApplicationUpdateEvents = &IID_IWebApplicationUpdateEvents_Value;
-pub const IWebApplicationUpdateEvents = extern struct {
+pub const IWebApplicationUpdateEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnPaint: *const fn(
@@ -144,6 +147,7 @@ pub const IWebApplicationUpdateEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -161,7 +165,7 @@ pub const IWebApplicationUpdateEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationHost_Value = Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
 pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
-pub const IWebApplicationHost = extern struct {
+pub const IWebApplicationHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -189,6 +193,7 @@ pub const IWebApplicationHost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -218,7 +223,7 @@ pub const IWebApplicationHost = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationActivation_Value = Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
 pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
-pub const IWebApplicationActivation = extern struct {
+pub const IWebApplicationActivation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CancelPendingActivation: *const fn(
@@ -226,6 +231,7 @@ pub const IWebApplicationActivation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -239,7 +245,7 @@ pub const IWebApplicationActivation = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationAuthoringMode_Value = Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
 pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
-pub const IWebApplicationAuthoringMode = extern struct {
+pub const IWebApplicationAuthoringMode = extern union {
     pub const VTable = extern struct {
         base: IServiceProvider.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -249,6 +255,7 @@ pub const IWebApplicationAuthoringMode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IServiceProvider: IServiceProvider,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IServiceProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

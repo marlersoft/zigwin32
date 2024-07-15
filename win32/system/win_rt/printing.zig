@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IPrinting3DManagerInterop_Value = Guid.initString("9ca31010-1484-4587-b26b-dddf9f9caecd");
 pub const IID_IPrinting3DManagerInterop = &IID_IPrinting3DManagerInterop_Value;
-pub const IPrinting3DManagerInterop = extern struct {
+pub const IPrinting3DManagerInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetForWindow: *const fn(
@@ -25,6 +25,7 @@ pub const IPrinting3DManagerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -42,7 +43,7 @@ pub const IPrinting3DManagerInterop = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintManagerInterop_Value = Guid.initString("c5435a42-8d43-4e7b-a68a-ef311e392087");
 pub const IID_IPrintManagerInterop = &IID_IPrintManagerInterop_Value;
-pub const IPrintManagerInterop = extern struct {
+pub const IPrintManagerInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetForWindow: *const fn(
@@ -59,6 +60,7 @@ pub const IPrintManagerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -75,7 +77,7 @@ pub const IPrintManagerInterop = extern struct {
 
 const IID_IPrintWorkflowXpsReceiver_Value = Guid.initString("04097374-77b8-47f6-8167-aae29d4cf84b");
 pub const IID_IPrintWorkflowXpsReceiver = &IID_IPrintWorkflowXpsReceiver_Value;
-pub const IPrintWorkflowXpsReceiver = extern struct {
+pub const IPrintWorkflowXpsReceiver = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDocumentSequencePrintTicket: *const fn(
@@ -104,6 +106,7 @@ pub const IPrintWorkflowXpsReceiver = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -132,7 +135,7 @@ pub const IPrintWorkflowXpsReceiver = extern struct {
 
 const IID_IPrintWorkflowXpsReceiver2_Value = Guid.initString("023bcc0c-dfab-4a61-b074-490c6995580d");
 pub const IID_IPrintWorkflowXpsReceiver2 = &IID_IPrintWorkflowXpsReceiver2_Value;
-pub const IPrintWorkflowXpsReceiver2 = extern struct {
+pub const IPrintWorkflowXpsReceiver2 = extern union {
     pub const VTable = extern struct {
         base: IPrintWorkflowXpsReceiver.VTable,
         Failed: *const fn(
@@ -141,6 +144,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IPrintWorkflowXpsReceiver: IPrintWorkflowXpsReceiver,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPrintWorkflowXpsReceiver.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -153,7 +157,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern struct {
 
 const IID_IPrintWorkflowObjectModelSourceFileContentNative_Value = Guid.initString("68c9e477-993e-4052-8ac6-454eff58db9d");
 pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWorkflowObjectModelSourceFileContentNative_Value;
-pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
+pub const IPrintWorkflowObjectModelSourceFileContentNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         StartXpsOMGeneration: *const fn(
@@ -167,6 +171,7 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -183,7 +188,7 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
 
 const IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value = Guid.initString("7d96bc74-9b54-4ca1-ad3a-979c3d44ddac");
 pub const IID_IPrintWorkflowXpsObjectModelTargetPackageNative = &IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value;
-pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
+pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -193,6 +198,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -205,7 +211,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
 
 const IID_IPrintWorkflowConfigurationNative_Value = Guid.initString("c056be0a-9ee2-450a-9823-964f0006f2bb");
 pub const IID_IPrintWorkflowConfigurationNative = &IID_IPrintWorkflowConfigurationNative_Value;
-pub const IPrintWorkflowConfigurationNative = extern struct {
+pub const IPrintWorkflowConfigurationNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -225,6 +231,7 @@ pub const IPrintWorkflowConfigurationNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -6940,7 +6940,7 @@ pub const SL_SYSTEM_POLICY_INFORMATION = extern struct {
 
 const IID_ICcgDomainAuthCredentials_Value = Guid.initString("6ecda518-2010-4437-8bc3-46e752b7b172");
 pub const IID_ICcgDomainAuthCredentials = &IID_ICcgDomainAuthCredentials_Value;
-pub const ICcgDomainAuthCredentials = extern struct {
+pub const ICcgDomainAuthCredentials = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPasswordCredentials: *const fn(
@@ -6952,6 +6952,7 @@ pub const ICcgDomainAuthCredentials = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

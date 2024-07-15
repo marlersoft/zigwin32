@@ -1949,7 +1949,7 @@ pub const CLSID_CTraceRelogger = &CLSID_CTraceRelogger_Value;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ITraceEvent_Value = Guid.initString("8cc97f40-9028-4ff3-9b62-7d1f79ca7bcb");
 pub const IID_ITraceEvent = &IID_ITraceEvent_Value;
-pub const ITraceEvent = extern struct {
+pub const ITraceEvent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Clone: *const fn(
@@ -2004,6 +2004,7 @@ pub const ITraceEvent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2061,7 +2062,7 @@ pub const ITraceEvent = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ITraceEventCallback_Value = Guid.initString("3ed25501-593f-43e9-8f38-3ab46f5a4a52");
 pub const IID_ITraceEventCallback = &IID_ITraceEventCallback_Value;
-pub const ITraceEventCallback = extern struct {
+pub const ITraceEventCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnBeginProcessTrace: *const fn(
@@ -2080,6 +2081,7 @@ pub const ITraceEventCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2101,7 +2103,7 @@ pub const ITraceEventCallback = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ITraceRelogger_Value = Guid.initString("f754ad43-3bcc-4286-8009-9c5da214e84e");
 pub const IID_ITraceRelogger = &IID_ITraceRelogger_Value;
-pub const ITraceRelogger = extern struct {
+pub const ITraceRelogger = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddLogfileTraceStream: *const fn(
@@ -2146,6 +2148,7 @@ pub const ITraceRelogger = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

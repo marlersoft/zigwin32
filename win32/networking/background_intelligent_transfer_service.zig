@@ -234,7 +234,7 @@ pub const BG_FILE_PROGRESS = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyFile_Value = Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
 pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
-pub const IBackgroundCopyFile = extern struct {
+pub const IBackgroundCopyFile = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRemoteName: *const fn(
@@ -251,6 +251,7 @@ pub const IBackgroundCopyFile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -272,7 +273,7 @@ pub const IBackgroundCopyFile = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyFiles_Value = Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
 pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
-pub const IEnumBackgroundCopyFiles = extern struct {
+pub const IEnumBackgroundCopyFiles = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -298,6 +299,7 @@ pub const IEnumBackgroundCopyFiles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -348,7 +350,7 @@ pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyError_Value = Guid.initString("19c613a0-fcb8-4f28-81ae-897c3d078f81");
 pub const IID_IBackgroundCopyError = &IID_IBackgroundCopyError_Value;
-pub const IBackgroundCopyError = extern struct {
+pub const IBackgroundCopyError = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetError: *const fn(
@@ -376,6 +378,7 @@ pub const IBackgroundCopyError = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -475,7 +478,7 @@ pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob_Value = Guid.initString("37668d37-507e-4160-9316-26306d150b12");
 pub const IID_IBackgroundCopyJob = &IID_IBackgroundCopyJob_Value;
-pub const IBackgroundCopyJob = extern struct {
+pub const IBackgroundCopyJob = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddFileSet: *const fn(
@@ -609,6 +612,7 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -746,7 +750,7 @@ pub const IBackgroundCopyJob = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs_Value = Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
 pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
-pub const IEnumBackgroundCopyJobs = extern struct {
+pub const IEnumBackgroundCopyJobs = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -772,6 +776,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -801,7 +806,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback_Value = Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
 pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
-pub const IBackgroundCopyCallback = extern struct {
+pub const IBackgroundCopyCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         JobTransferred: *const fn(
@@ -820,6 +825,7 @@ pub const IBackgroundCopyCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -840,7 +846,7 @@ pub const IBackgroundCopyCallback = extern struct {
 
 const IID_AsyncIBackgroundCopyCallback_Value = Guid.initString("ca29d251-b4bb-4679-a3d9-ae8006119d54");
 pub const IID_AsyncIBackgroundCopyCallback = &IID_AsyncIBackgroundCopyCallback_Value;
-pub const AsyncIBackgroundCopyCallback = extern struct {
+pub const AsyncIBackgroundCopyCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Begin_JobTransferred: *const fn(
@@ -868,6 +874,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -901,7 +908,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyManager_Value = Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
 pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
-pub const IBackgroundCopyManager = extern struct {
+pub const IBackgroundCopyManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateJob: *const fn(
@@ -929,6 +936,7 @@ pub const IBackgroundCopyManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -997,7 +1005,7 @@ pub const BG_AUTH_CREDENTIALS = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob2_Value = Guid.initString("54b50739-686f-45eb-9dff-d6a9a0faa9af");
 pub const IID_IBackgroundCopyJob2 = &IID_IBackgroundCopyJob2_Value;
-pub const IBackgroundCopyJob2 = extern struct {
+pub const IBackgroundCopyJob2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob.VTable,
         SetNotifyCmdLine: *const fn(
@@ -1038,6 +1046,7 @@ pub const IBackgroundCopyJob2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJob: IBackgroundCopyJob,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1087,7 +1096,7 @@ pub const BG_FILE_RANGE = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob3_Value = Guid.initString("443c8934-90ff-48ed-bcde-26f5c7450042");
 pub const IID_IBackgroundCopyJob3 = &IID_IBackgroundCopyJob3_Value;
-pub const IBackgroundCopyJob3 = extern struct {
+pub const IBackgroundCopyJob3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob2.VTable,
         ReplaceRemotePrefix: *const fn(
@@ -1112,6 +1121,7 @@ pub const IBackgroundCopyJob3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1137,7 +1147,7 @@ pub const IBackgroundCopyJob3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile2_Value = Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
 pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
-pub const IBackgroundCopyFile2 = extern struct {
+pub const IBackgroundCopyFile2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile.VTable,
         GetFileRanges: *const fn(
@@ -1151,6 +1161,7 @@ pub const IBackgroundCopyFile2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyFile: IBackgroundCopyFile,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1190,7 +1201,7 @@ pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATI
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJobHttpOptions_Value = Guid.initString("f1bd1079-9f01-4bdc-8036-f09b70095066");
 pub const IID_IBackgroundCopyJobHttpOptions = &IID_IBackgroundCopyJobHttpOptions_Value;
-pub const IBackgroundCopyJobHttpOptions = extern struct {
+pub const IBackgroundCopyJobHttpOptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetClientCertificateByID: *const fn(
@@ -1233,6 +1244,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1277,7 +1289,7 @@ pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheRecord_Value = Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
-pub const IBitsPeerCacheRecord = extern struct {
+pub const IBitsPeerCacheRecord = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetId: *const fn(
@@ -1310,6 +1322,7 @@ pub const IBitsPeerCacheRecord = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1347,7 +1360,7 @@ pub const IBitsPeerCacheRecord = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeerCacheRecords_Value = Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
-pub const IEnumBitsPeerCacheRecords = extern struct {
+pub const IEnumBitsPeerCacheRecords = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -1373,6 +1386,7 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1402,7 +1416,7 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeer_Value = Guid.initString("659cdea2-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeer = &IID_IBitsPeer_Value;
-pub const IBitsPeer = extern struct {
+pub const IBitsPeer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPeerName: *const fn(
@@ -1419,6 +1433,7 @@ pub const IBitsPeer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1440,7 +1455,7 @@ pub const IBitsPeer = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeers_Value = Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
-pub const IEnumBitsPeers = extern struct {
+pub const IEnumBitsPeers = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -1466,6 +1481,7 @@ pub const IEnumBitsPeers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1495,7 +1511,7 @@ pub const IEnumBitsPeers = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheAdministration_Value = Guid.initString("659cdead-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheAdministration = &IID_IBitsPeerCacheAdministration_Value;
-pub const IBitsPeerCacheAdministration = extern struct {
+pub const IBitsPeerCacheAdministration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMaximumCacheSize: *const fn(
@@ -1554,6 +1570,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1619,7 +1636,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob4_Value = Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
-pub const IBackgroundCopyJob4 = extern struct {
+pub const IBackgroundCopyJob4 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob3.VTable,
         SetPeerCachingFlags: *const fn(
@@ -1648,6 +1665,7 @@ pub const IBackgroundCopyJob4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJob3: IBackgroundCopyJob3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1681,7 +1699,7 @@ pub const IBackgroundCopyJob4 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile3_Value = Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
-pub const IBackgroundCopyFile3 = extern struct {
+pub const IBackgroundCopyFile3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile2.VTable,
         GetTemporaryName: *const fn(
@@ -1702,6 +1720,7 @@ pub const IBackgroundCopyFile3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1727,7 +1746,7 @@ pub const IBackgroundCopyFile3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyCallback2_Value = Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
-pub const IBackgroundCopyCallback2 = extern struct {
+pub const IBackgroundCopyCallback2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyCallback.VTable,
         FileTransferred: *const fn(
@@ -1737,6 +1756,7 @@ pub const IBackgroundCopyCallback2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyCallback: IBackgroundCopyCallback,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1753,7 +1773,7 @@ pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IBitsTokenOptions_Value = Guid.initString("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2");
 pub const IID_IBitsTokenOptions = &IID_IBitsTokenOptions_Value;
-pub const IBitsTokenOptions = extern struct {
+pub const IBitsTokenOptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetHelperTokenFlags: *const fn(
@@ -1776,6 +1796,7 @@ pub const IBitsTokenOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1805,7 +1826,7 @@ pub const IBitsTokenOptions = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IBackgroundCopyFile4_Value = Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
 pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
-pub const IBackgroundCopyFile4 = extern struct {
+pub const IBackgroundCopyFile4 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile3.VTable,
         GetPeerDownloadStats: *const fn(
@@ -1815,6 +1836,7 @@ pub const IBackgroundCopyFile4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1880,7 +1902,7 @@ pub const BITS_FILE_PROPERTY_VALUE = extern union {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyJob5_Value = Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
 pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
-pub const IBackgroundCopyJob5 = extern struct {
+pub const IBackgroundCopyJob5 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob4.VTable,
         SetProperty: *const fn(
@@ -1895,6 +1917,7 @@ pub const IBackgroundCopyJob5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJob4: IBackgroundCopyJob4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1912,7 +1935,7 @@ pub const IBackgroundCopyJob5 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyFile5_Value = Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
 pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
-pub const IBackgroundCopyFile5 = extern struct {
+pub const IBackgroundCopyFile5 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile4.VTable,
         SetProperty: *const fn(
@@ -1927,6 +1950,7 @@ pub const IBackgroundCopyFile5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyFile4: IBackgroundCopyFile4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1947,7 +1971,7 @@ pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Val
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyCallback3_Value = Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
 pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
-pub const IBackgroundCopyCallback3 = extern struct {
+pub const IBackgroundCopyCallback3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyCallback2.VTable,
         FileRangesTransferred: *const fn(
@@ -1959,6 +1983,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyCallback2: IBackgroundCopyCallback2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyCallback2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1972,7 +1997,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyFile6_Value = Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
 pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
-pub const IBackgroundCopyFile6 = extern struct {
+pub const IBackgroundCopyFile6 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile5.VTable,
         UpdateDownloadPosition: *const fn(
@@ -1991,6 +2016,7 @@ pub const IBackgroundCopyFile6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyFile5: IBackgroundCopyFile5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2015,7 +2041,7 @@ pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Val
 // TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IBackgroundCopyJobHttpOptions2_Value = Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
 pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
-pub const IBackgroundCopyJobHttpOptions2 = extern struct {
+pub const IBackgroundCopyJobHttpOptions2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJobHttpOptions.VTable,
         SetHttpMethod: *const fn(
@@ -2028,6 +2054,7 @@ pub const IBackgroundCopyJobHttpOptions2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJobHttpOptions.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2047,7 +2074,7 @@ pub const CLSID_BackgroundCopyManager10_3 = &CLSID_BackgroundCopyManager10_3_Val
 
 const IID_IBackgroundCopyServerCertificateValidationCallback_Value = Guid.initString("4cec0d02-def7-4158-813a-c32a46945ff7");
 pub const IID_IBackgroundCopyServerCertificateValidationCallback = &IID_IBackgroundCopyServerCertificateValidationCallback_Value;
-pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
+pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ValidateServerCertificate: *const fn(
@@ -2062,6 +2089,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2074,7 +2102,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
 
 const IID_IBackgroundCopyJobHttpOptions3_Value = Guid.initString("8a9263d3-fd4c-4eda-9b28-30132a4d4e3c");
 pub const IID_IBackgroundCopyJobHttpOptions3 = &IID_IBackgroundCopyJobHttpOptions3_Value;
-pub const IBackgroundCopyJobHttpOptions3 = extern struct {
+pub const IBackgroundCopyJobHttpOptions3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJobHttpOptions2.VTable,
         SetServerCertificateValidationInterface: *const fn(
@@ -2086,6 +2114,7 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJobHttpOptions2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2106,7 +2135,7 @@ pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Val
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetup_Value = Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
 pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
-pub const IBITSExtensionSetup = extern struct {
+pub const IBITSExtensionSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         EnableBITSUploads: *const fn(
@@ -2126,6 +2155,7 @@ pub const IBITSExtensionSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2151,7 +2181,7 @@ pub const IBITSExtensionSetup = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetupFactory_Value = Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
 pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
-pub const IBITSExtensionSetupFactory = extern struct {
+pub const IBITSExtensionSetupFactory = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetObject: *const fn(
@@ -2161,6 +2191,7 @@ pub const IBITSExtensionSetupFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2183,7 +2214,7 @@ pub const FILESETINFO = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob1_Value = Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
 pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
-pub const IBackgroundCopyJob1 = extern struct {
+pub const IBackgroundCopyJob1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CancelJob: *const fn(
@@ -2225,6 +2256,7 @@ pub const IBackgroundCopyJob1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2266,7 +2298,7 @@ pub const IBackgroundCopyJob1 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs1_Value = Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
 pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
-pub const IEnumBackgroundCopyJobs1 = extern struct {
+pub const IEnumBackgroundCopyJobs1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -2292,6 +2324,7 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2350,7 +2383,7 @@ pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyGroup_Value = Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
 pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
-pub const IBackgroundCopyGroup = extern struct {
+pub const IBackgroundCopyGroup = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProp: *const fn(
@@ -2422,6 +2455,7 @@ pub const IBackgroundCopyGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2491,7 +2525,7 @@ pub const IBackgroundCopyGroup = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyGroups_Value = Guid.initString("d993e603-4aa4-47c5-8665-c20d39c2ba4f");
 pub const IID_IEnumBackgroundCopyGroups = &IID_IEnumBackgroundCopyGroups_Value;
-pub const IEnumBackgroundCopyGroups = extern struct {
+pub const IEnumBackgroundCopyGroups = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -2517,6 +2551,7 @@ pub const IEnumBackgroundCopyGroups = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2546,7 +2581,7 @@ pub const IEnumBackgroundCopyGroups = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback1_Value = Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
 pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
-pub const IBackgroundCopyCallback1 = extern struct {
+pub const IBackgroundCopyCallback1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStatus: *const fn(
@@ -2579,6 +2614,7 @@ pub const IBackgroundCopyCallback1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2600,7 +2636,7 @@ pub const IBackgroundCopyCallback1 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyQMgr_Value = Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
 pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
-pub const IBackgroundCopyQMgr = extern struct {
+pub const IBackgroundCopyQMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateGroup: *const fn(
@@ -2620,6 +2656,7 @@ pub const IBackgroundCopyQMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

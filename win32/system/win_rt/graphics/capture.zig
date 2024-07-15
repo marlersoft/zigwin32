@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IGraphicsCaptureItemInterop_Value = Guid.initString("3628e81b-3cac-4c60-b7f4-23ce0e0c3356");
 pub const IID_IGraphicsCaptureItemInterop = &IID_IGraphicsCaptureItemInterop_Value;
-pub const IGraphicsCaptureItemInterop = extern struct {
+pub const IGraphicsCaptureItemInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateForWindow: *const fn(
@@ -25,6 +25,7 @@ pub const IGraphicsCaptureItemInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

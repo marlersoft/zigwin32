@@ -64,7 +64,7 @@ pub const CLSID_PhotoAcquireDeviceSelectionDialog = &CLSID_PhotoAcquireDeviceSel
 
 const IID_IPhotoAcquireItem_Value = Guid.initString("00f21c97-28bf-4c02-b842-5e4e90139a30");
 pub const IID_IPhotoAcquireItem = &IID_IPhotoAcquireItem_Value;
-pub const IPhotoAcquireItem = extern struct {
+pub const IPhotoAcquireItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetItemName: *const fn(
@@ -108,6 +108,7 @@ pub const IPhotoAcquireItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -159,7 +160,7 @@ pub const USER_INPUT_PATH_ELEMENT = USER_INPUT_STRING_TYPE.PATH_ELEMENT;
 
 const IID_IUserInputString_Value = Guid.initString("00f243a1-205b-45ba-ae26-abbc53aa7a6f");
 pub const IID_IUserInputString = &IID_IUserInputString_Value;
-pub const IUserInputString = extern struct {
+pub const IUserInputString = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSubmitButtonText: *const fn(
@@ -207,6 +208,7 @@ pub const IUserInputString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -283,7 +285,7 @@ pub const PHOTOACQUIRE_RESULT_ABORT = ERROR_ADVISE_RESULT.ABORT;
 
 const IID_IPhotoAcquireProgressCB_Value = Guid.initString("00f2ce1e-935e-4248-892c-130f32c45cb4");
 pub const IID_IPhotoAcquireProgressCB = &IID_IPhotoAcquireProgressCB_Value;
-pub const IPhotoAcquireProgressCB = extern struct {
+pub const IPhotoAcquireProgressCB = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Cancelled: *const fn(
@@ -377,6 +379,7 @@ pub const IPhotoAcquireProgressCB = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -461,7 +464,7 @@ pub const IPhotoAcquireProgressCB = extern struct {
 
 const IID_IPhotoProgressActionCB_Value = Guid.initString("00f242d0-b206-4e7d-b4c1-4755bcbb9c9f");
 pub const IID_IPhotoProgressActionCB = &IID_IPhotoProgressActionCB_Value;
-pub const IPhotoProgressActionCB = extern struct {
+pub const IPhotoProgressActionCB = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DoAction: *const fn(
@@ -470,6 +473,7 @@ pub const IPhotoProgressActionCB = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -498,7 +502,7 @@ pub const PROGRESS_DIALOG_CHECKBOX_ID_DEFAULT = PROGRESS_DIALOG_CHECKBOX_ID.T;
 
 const IID_IPhotoProgressDialog_Value = Guid.initString("00f246f9-0750-4f08-9381-2cd8e906a4ae");
 pub const IID_IPhotoProgressDialog = &IID_IPhotoProgressDialog_Value;
-pub const IPhotoProgressDialog = extern struct {
+pub const IPhotoProgressDialog = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Create: *const fn(
@@ -584,6 +588,7 @@ pub const IPhotoProgressDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -664,7 +669,7 @@ pub const IPhotoProgressDialog = extern struct {
 
 const IID_IPhotoAcquireSource_Value = Guid.initString("00f2c703-8613-4282-a53b-6ec59c5883ac");
 pub const IID_IPhotoAcquireSource = &IID_IPhotoAcquireSource_Value;
-pub const IPhotoAcquireSource = extern struct {
+pub const IPhotoAcquireSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFriendlyName: *const fn(
@@ -707,6 +712,7 @@ pub const IPhotoAcquireSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -747,7 +753,7 @@ pub const IPhotoAcquireSource = extern struct {
 
 const IID_IPhotoAcquire_Value = Guid.initString("00f23353-e31b-4955-a8ad-ca5ebf31e2ce");
 pub const IID_IPhotoAcquire = &IID_IPhotoAcquire_Value;
-pub const IPhotoAcquire = extern struct {
+pub const IPhotoAcquire = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreatePhotoSource: *const fn(
@@ -769,6 +775,7 @@ pub const IPhotoAcquire = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -789,7 +796,7 @@ pub const IPhotoAcquire = extern struct {
 
 const IID_IPhotoAcquireSettings_Value = Guid.initString("00f2b868-dd67-487c-9553-049240767e91");
 pub const IID_IPhotoAcquireSettings = &IID_IPhotoAcquireSettings_Value;
-pub const IPhotoAcquireSettings = extern struct {
+pub const IPhotoAcquireSettings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeFromRegistry: *const fn(
@@ -846,6 +853,7 @@ pub const IPhotoAcquireSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -906,7 +914,7 @@ pub const IPhotoAcquireSettings = extern struct {
 
 const IID_IPhotoAcquireOptionsDialog_Value = Guid.initString("00f2b3ee-bf64-47ee-89f4-4dedd79643f2");
 pub const IID_IPhotoAcquireOptionsDialog = &IID_IPhotoAcquireOptionsDialog_Value;
-pub const IPhotoAcquireOptionsDialog = extern struct {
+pub const IPhotoAcquireOptionsDialog = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -931,6 +939,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -976,7 +985,7 @@ pub const DST_DV_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_DV_DEVICE;
 
 const IID_IPhotoAcquireDeviceSelectionDialog_Value = Guid.initString("00f28837-55dd-4f37-aaf5-6855a9640467");
 pub const IID_IPhotoAcquireDeviceSelectionDialog = &IID_IPhotoAcquireDeviceSelectionDialog_Value;
-pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
+pub const IPhotoAcquireDeviceSelectionDialog = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetTitle: *const fn(
@@ -996,6 +1005,7 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1016,7 +1026,7 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
 
 const IID_IPhotoAcquirePlugin_Value = Guid.initString("00f2dceb-ecb8-4f77-8e47-e7a987c83dd0");
 pub const IID_IPhotoAcquirePlugin = &IID_IPhotoAcquirePlugin_Value;
-pub const IPhotoAcquirePlugin = extern struct {
+pub const IPhotoAcquirePlugin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1042,6 +1052,7 @@ pub const IPhotoAcquirePlugin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

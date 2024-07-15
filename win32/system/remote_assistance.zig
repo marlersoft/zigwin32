@@ -50,7 +50,7 @@ pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousSession_Value = Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
 pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
-pub const IRendezvousSession = extern struct {
+pub const IRendezvousSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -79,6 +79,7 @@ pub const IRendezvousSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -108,11 +109,12 @@ pub const IRendezvousSession = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DRendezvousSessionEvents_Value = Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
 pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
-pub const DRendezvousSessionEvents = extern struct {
+pub const DRendezvousSessionEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
@@ -122,7 +124,7 @@ pub const DRendezvousSessionEvents = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousApplication_Value = Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
 pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
-pub const IRendezvousApplication = extern struct {
+pub const IRendezvousApplication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetRendezvousSession: *const fn(
@@ -131,6 +133,7 @@ pub const IRendezvousApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

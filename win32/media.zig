@@ -218,7 +218,7 @@ pub const LPTIMECALLBACK = *const fn(
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IReferenceClock_Value = Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IReferenceClock = &IID_IReferenceClock_Value;
-pub const IReferenceClock = extern struct {
+pub const IReferenceClock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTime: *const fn(
@@ -245,6 +245,7 @@ pub const IReferenceClock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -270,7 +271,7 @@ pub const IReferenceClock = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IReferenceClockTimerControl_Value = Guid.initString("ebec459c-2eca-4d42-a8af-30df557614b8");
 pub const IID_IReferenceClockTimerControl = &IID_IReferenceClockTimerControl_Value;
-pub const IReferenceClockTimerControl = extern struct {
+pub const IReferenceClockTimerControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDefaultTimerResolution: *const fn(
@@ -283,6 +284,7 @@ pub const IReferenceClockTimerControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -299,11 +301,12 @@ pub const IReferenceClockTimerControl = extern struct {
 
 const IID_IReferenceClock2_Value = Guid.initString("36b73885-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IReferenceClock2 = &IID_IReferenceClock2_Value;
-pub const IReferenceClock2 = extern struct {
+pub const IReferenceClock2 = extern union {
     pub const VTable = extern struct {
         base: IReferenceClock.VTable,
     };
     vtable: *const VTable,
+    IReferenceClock: IReferenceClock,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IReferenceClock.MethodMixin(T);
     };}

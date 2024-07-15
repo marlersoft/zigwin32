@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IIsolatedEnvironmentInterop_Value = Guid.initString("85713c2e-8e62-46c5-8de2-c647e1d54636");
 pub const IID_IIsolatedEnvironmentInterop = &IID_IIsolatedEnvironmentInterop_Value;
-pub const IIsolatedEnvironmentInterop = extern struct {
+pub const IIsolatedEnvironmentInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetHostHwndInterop: *const fn(
@@ -18,6 +18,7 @@ pub const IIsolatedEnvironmentInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

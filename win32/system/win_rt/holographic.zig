@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IHolographicCameraInterop_Value = Guid.initString("7cc1f9c5-6d02-41fa-9500-e1809eb48eec");
 pub const IID_IHolographicCameraInterop = &IID_IHolographicCameraInterop_Value;
-pub const IHolographicCameraInterop = extern struct {
+pub const IHolographicCameraInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateDirect3D12BackBufferResource: *const fn(
@@ -41,6 +41,7 @@ pub const IHolographicCameraInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -69,7 +70,7 @@ pub const IHolographicCameraInterop = extern struct {
 
 const IID_IHolographicCameraRenderingParametersInterop_Value = Guid.initString("f75b68d6-d1fd-4707-aafd-fa6f4c0e3bf4");
 pub const IID_IHolographicCameraRenderingParametersInterop = &IID_IHolographicCameraRenderingParametersInterop_Value;
-pub const IHolographicCameraRenderingParametersInterop = extern struct {
+pub const IHolographicCameraRenderingParametersInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CommitDirect3D12Resource: *const fn(
@@ -89,6 +90,7 @@ pub const IHolographicCameraRenderingParametersInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -105,7 +107,7 @@ pub const IHolographicCameraRenderingParametersInterop = extern struct {
 
 const IID_IHolographicQuadLayerInterop_Value = Guid.initString("cfa688f0-639e-4a47-83d7-6b7f5ebf7fed");
 pub const IID_IHolographicQuadLayerInterop = &IID_IHolographicQuadLayerInterop_Value;
-pub const IHolographicQuadLayerInterop = extern struct {
+pub const IHolographicQuadLayerInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateDirect3D12ContentBufferResource: *const fn(
@@ -138,6 +140,7 @@ pub const IHolographicQuadLayerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -166,7 +169,7 @@ pub const IHolographicQuadLayerInterop = extern struct {
 
 const IID_IHolographicQuadLayerUpdateParametersInterop_Value = Guid.initString("e5f549cd-c909-444f-8809-7cc18a9c8920");
 pub const IID_IHolographicQuadLayerUpdateParametersInterop = &IID_IHolographicQuadLayerUpdateParametersInterop_Value;
-pub const IHolographicQuadLayerUpdateParametersInterop = extern struct {
+pub const IHolographicQuadLayerUpdateParametersInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CommitDirect3D12Resource: *const fn(
@@ -177,6 +180,7 @@ pub const IHolographicQuadLayerUpdateParametersInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

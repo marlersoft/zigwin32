@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IDisplayDeviceInterop_Value = Guid.initString("64338358-366a-471b-bd56-dd8ef48e439b");
 pub const IID_IDisplayDeviceInterop = &IID_IDisplayDeviceInterop_Value;
-pub const IDisplayDeviceInterop = extern struct {
+pub const IDisplayDeviceInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateSharedHandle: *const fn(
@@ -27,6 +27,7 @@ pub const IDisplayDeviceInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -43,7 +44,7 @@ pub const IDisplayDeviceInterop = extern struct {
 
 const IID_IDisplayPathInterop_Value = Guid.initString("a6ba4205-e59e-4e71-b25b-4e436d21ee3d");
 pub const IID_IDisplayPathInterop = &IID_IDisplayPathInterop_Value;
-pub const IDisplayPathInterop = extern struct {
+pub const IDisplayPathInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateSourcePresentationHandle: *const fn(
@@ -56,6 +57,7 @@ pub const IDisplayPathInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

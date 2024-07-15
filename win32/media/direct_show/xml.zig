@@ -10,7 +10,7 @@ pub const CLSID_XMLGraphBuilder = Guid.initString("1bb05961-5fbf-11d2-a521-44df0
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IXMLGraphBuilder_Value = Guid.initString("1bb05960-5fbf-11d2-a521-44df07c10000");
 pub const IID_IXMLGraphBuilder = &IID_IXMLGraphBuilder_Value;
-pub const IXMLGraphBuilder = extern struct {
+pub const IXMLGraphBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BuildFromXML: *const fn(
@@ -31,6 +31,7 @@ pub const IXMLGraphBuilder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

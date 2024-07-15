@@ -3233,7 +3233,7 @@ pub const DISKQUOTA_USER_INFORMATION = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiskQuotaUser_Value = Guid.initString("7988b574-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUser = &IID_IDiskQuotaUser_Value;
-pub const IDiskQuotaUser = extern struct {
+pub const IDiskQuotaUser = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetID: *const fn(
@@ -3309,6 +3309,7 @@ pub const IDiskQuotaUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3378,7 +3379,7 @@ pub const IDiskQuotaUser = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumDiskQuotaUsers_Value = Guid.initString("7988b577-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IEnumDiskQuotaUsers = &IID_IEnumDiskQuotaUsers_Value;
-pub const IEnumDiskQuotaUsers = extern struct {
+pub const IEnumDiskQuotaUsers = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -3400,6 +3401,7 @@ pub const IEnumDiskQuotaUsers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3425,7 +3427,7 @@ pub const IEnumDiskQuotaUsers = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiskQuotaUserBatch_Value = Guid.initString("7988b576-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUserBatch = &IID_IDiskQuotaUserBatch_Value;
-pub const IDiskQuotaUserBatch = extern struct {
+pub const IDiskQuotaUserBatch = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: *const fn(
@@ -3444,6 +3446,7 @@ pub const IDiskQuotaUserBatch = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3469,7 +3472,7 @@ pub const IDiskQuotaUserBatch = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiskQuotaControl_Value = Guid.initString("7988b572-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaControl = &IID_IDiskQuotaControl_Value;
-pub const IDiskQuotaControl = extern struct {
+pub const IDiskQuotaControl = extern union {
     pub const VTable = extern struct {
         base: IConnectionPointContainer.VTable,
         Initialize: *const fn(
@@ -3569,6 +3572,7 @@ pub const IDiskQuotaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IConnectionPointContainer: IConnectionPointContainer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConnectionPointContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3662,7 +3666,7 @@ pub const IDiskQuotaControl = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiskQuotaEvents_Value = Guid.initString("7988b579-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaEvents = &IID_IDiskQuotaEvents_Value;
-pub const IDiskQuotaEvents = extern struct {
+pub const IDiskQuotaEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnUserNameChanged: *const fn(
@@ -3671,6 +3675,7 @@ pub const IDiskQuotaEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -25,7 +25,7 @@ pub const GIS_ALL_USERS = GAME_INSTALL_SCOPE.ALL_USERS;
 
 const IID_IGameExplorer_Value = Guid.initString("e7b2fb72-d728-49b3-a5f2-18ebf5f1349e");
 pub const IID_IGameExplorer = &IID_IGameExplorer_Value;
-pub const IGameExplorer = extern struct {
+pub const IGameExplorer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddGame: *const fn(
@@ -50,6 +50,7 @@ pub const IGameExplorer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -88,7 +89,7 @@ pub const GAMESTATS_OPEN_OPENED = GAMESTATS_OPEN_RESULT.OPENED;
 
 const IID_IGameStatistics_Value = Guid.initString("3887c9ca-04a0-42ae-bc4c-5fa6c7721145");
 pub const IID_IGameStatistics = &IID_IGameStatistics_Value;
-pub const IGameStatistics = extern struct {
+pub const IGameStatistics = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMaxCategoryLength: *const fn(
@@ -149,6 +150,7 @@ pub const IGameStatistics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -205,7 +207,7 @@ pub const IGameStatistics = extern struct {
 
 const IID_IGameStatisticsMgr_Value = Guid.initString("aff3ea11-e70e-407d-95dd-35e612c41ce2");
 pub const IID_IGameStatisticsMgr = &IID_IGameStatisticsMgr_Value;
-pub const IGameStatisticsMgr = extern struct {
+pub const IGameStatisticsMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGameStatistics: *const fn(
@@ -221,6 +223,7 @@ pub const IGameStatisticsMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -237,7 +240,7 @@ pub const IGameStatisticsMgr = extern struct {
 
 const IID_IGameExplorer2_Value = Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
 pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
-pub const IGameExplorer2 = extern struct {
+pub const IGameExplorer2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InstallGame: *const fn(
@@ -257,6 +260,7 @@ pub const IGameExplorer2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -388,7 +392,7 @@ pub const XBL_IDP_AUTH_TOKEN_STATUS_UNKNOWN = XBL_IDP_AUTH_TOKEN_STATUS.UNKNOWN;
 
 const IID_IXblIdpAuthManager_Value = Guid.initString("eb5ddb08-8bbf-449b-ac21-b02ddeb3b136");
 pub const IID_IXblIdpAuthManager = &IID_IXblIdpAuthManager_Value;
-pub const IXblIdpAuthManager = extern struct {
+pub const IXblIdpAuthManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetGamerAccount: *const fn(
@@ -430,6 +434,7 @@ pub const IXblIdpAuthManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -462,7 +467,7 @@ pub const IXblIdpAuthManager = extern struct {
 
 const IID_IXblIdpAuthTokenResult_Value = Guid.initString("46ce0225-f267-4d68-b299-b2762552dec1");
 pub const IID_IXblIdpAuthTokenResult = &IID_IXblIdpAuthTokenResult_Value;
-pub const IXblIdpAuthTokenResult = extern struct {
+pub const IXblIdpAuthTokenResult = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: *const fn(
@@ -547,6 +552,7 @@ pub const IXblIdpAuthTokenResult = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -635,7 +641,7 @@ pub const IXblIdpAuthTokenResult = extern struct {
 
 const IID_IXblIdpAuthTokenResult2_Value = Guid.initString("75d760b0-60b9-412d-994f-26b2cd5f7812");
 pub const IID_IXblIdpAuthTokenResult2 = &IID_IXblIdpAuthTokenResult2_Value;
-pub const IXblIdpAuthTokenResult2 = extern struct {
+pub const IXblIdpAuthTokenResult2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetModernGamertag: *const fn(
@@ -652,6 +658,7 @@ pub const IXblIdpAuthTokenResult2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

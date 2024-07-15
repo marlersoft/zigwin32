@@ -1089,7 +1089,7 @@ pub const WSManFlagProxyAuthenticationUseDigest = WSManProxyAuthenticationFlags.
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSMan_Value = Guid.initString("190d8637-5cd3-496d-ad24-69636bb5a3b5");
 pub const IID_IWSMan = &IID_IWSMan_Value;
-pub const IWSMan = extern struct {
+pub const IWSMan = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         CreateSession: *const fn(
@@ -1115,6 +1115,7 @@ pub const IWSMan = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1140,7 +1141,7 @@ pub const IWSMan = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEx_Value = Guid.initString("2d53bdaa-798e-49e6-a1aa-74d01256f411");
 pub const IID_IWSManEx = &IID_IWSManEx_Value;
-pub const IWSManEx = extern struct {
+pub const IWSManEx = extern union {
     pub const VTable = extern struct {
         base: IWSMan.VTable,
         CreateResourceLocator: *const fn(
@@ -1227,6 +1228,7 @@ pub const IWSManEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWSMan: IWSMan,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSMan.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1316,7 +1318,7 @@ pub const IWSManEx = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEx2_Value = Guid.initString("1d1b5ae0-42d9-4021-8261-3987619512e9");
 pub const IID_IWSManEx2 = &IID_IWSManEx2_Value;
-pub const IWSManEx2 = extern struct {
+pub const IWSManEx2 = extern union {
     pub const VTable = extern struct {
         base: IWSManEx.VTable,
         SessionFlagUseClientCertificate: *const fn(
@@ -1325,6 +1327,7 @@ pub const IWSManEx2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWSManEx: IWSManEx,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManEx.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1338,7 +1341,7 @@ pub const IWSManEx2 = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWSManEx3_Value = Guid.initString("6400e966-011d-4eac-8474-049e0848afad");
 pub const IID_IWSManEx3 = &IID_IWSManEx3_Value;
-pub const IWSManEx3 = extern struct {
+pub const IWSManEx3 = extern union {
     pub const VTable = extern struct {
         base: IWSManEx2.VTable,
         SessionFlagUTF16: *const fn(
@@ -1371,6 +1374,7 @@ pub const IWSManEx3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWSManEx2: IWSManEx2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManEx2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1408,7 +1412,7 @@ pub const IWSManEx3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManConnectionOptions_Value = Guid.initString("f704e861-9e52-464f-b786-da5eb2320fdd");
 pub const IID_IWSManConnectionOptions = &IID_IWSManConnectionOptions_Value;
-pub const IWSManConnectionOptions = extern struct {
+pub const IWSManConnectionOptions = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1428,6 +1432,7 @@ pub const IWSManConnectionOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1449,7 +1454,7 @@ pub const IWSManConnectionOptions = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManConnectionOptionsEx_Value = Guid.initString("ef43edf7-2a48-4d93-9526-8bd6ab6d4a6b");
 pub const IID_IWSManConnectionOptionsEx = &IID_IWSManConnectionOptionsEx_Value;
-pub const IWSManConnectionOptionsEx = extern struct {
+pub const IWSManConnectionOptionsEx = extern union {
     pub const VTable = extern struct {
         base: IWSManConnectionOptions.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1464,6 +1469,7 @@ pub const IWSManConnectionOptionsEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWSManConnectionOptions: IWSManConnectionOptions,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManConnectionOptions.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1481,7 +1487,7 @@ pub const IWSManConnectionOptionsEx = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWSManConnectionOptionsEx2_Value = Guid.initString("f500c9ec-24ee-48ab-b38d-fc9a164c658e");
 pub const IID_IWSManConnectionOptionsEx2 = &IID_IWSManConnectionOptionsEx2_Value;
-pub const IWSManConnectionOptionsEx2 = extern struct {
+pub const IWSManConnectionOptionsEx2 = extern union {
     pub const VTable = extern struct {
         base: IWSManConnectionOptionsEx.VTable,
         SetProxy: *const fn(
@@ -1521,6 +1527,7 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWSManConnectionOptionsEx: IWSManConnectionOptionsEx,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1562,7 +1569,7 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManSession_Value = Guid.initString("fc84fc58-1286-40c4-9da0-c8ef6ec241e0");
 pub const IID_IWSManSession = &IID_IWSManSession_Value;
-pub const IWSManSession = extern struct {
+pub const IWSManSession = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Get: *const fn(
@@ -1638,6 +1645,7 @@ pub const IWSManSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1695,7 +1703,7 @@ pub const IWSManSession = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEnumerator_Value = Guid.initString("f3457ca9-abb9-4fa5-b850-90e8ca300e7f");
 pub const IID_IWSManEnumerator = &IID_IWSManEnumerator_Value;
-pub const IWSManEnumerator = extern struct {
+pub const IWSManEnumerator = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ReadItem: *const fn(
@@ -1714,6 +1722,7 @@ pub const IWSManEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1735,7 +1744,7 @@ pub const IWSManEnumerator = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManResourceLocator_Value = Guid.initString("a7a1ba28-de41-466a-ad0a-c4059ead7428");
 pub const IID_IWSManResourceLocator = &IID_IWSManResourceLocator_Value;
-pub const IWSManResourceLocator = extern struct {
+pub const IWSManResourceLocator = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1802,6 +1811,7 @@ pub const IWSManResourceLocator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1862,11 +1872,12 @@ pub const IWSManResourceLocator = extern struct {
 
 const IID_IWSManResourceLocatorInternal_Value = Guid.initString("effaead7-7ec8-4716-b9be-f2e7e9fb4adb");
 pub const IID_IWSManResourceLocatorInternal = &IID_IWSManResourceLocatorInternal_Value;
-pub const IWSManResourceLocatorInternal = extern struct {
+pub const IWSManResourceLocatorInternal = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -1875,7 +1886,7 @@ pub const IWSManResourceLocatorInternal = extern struct {
 
 const IID_IWSManInternal_Value = Guid.initString("04ae2b1d-9954-4d99-94a9-a961e72c3a13");
 pub const IID_IWSManInternal = &IID_IWSManInternal_Value;
-pub const IWSManInternal = extern struct {
+pub const IWSManInternal = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ConfigSDDL: *const fn(
@@ -1887,6 +1898,7 @@ pub const IWSManInternal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -8192,7 +8192,7 @@ pub const CLSID_CCertificateEnrollmentPolicyServerSetup = &CLSID_CCertificateEnr
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ICertSrvSetupKeyInformation_Value = Guid.initString("6ba73778-36da-4c39-8a85-bcfa7d000793");
 pub const IID_ICertSrvSetupKeyInformation = &IID_ICertSrvSetupKeyInformation_Value;
-pub const ICertSrvSetupKeyInformation = extern struct {
+pub const ICertSrvSetupKeyInformation = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8257,6 +8257,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8314,7 +8315,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ICertSrvSetupKeyInformationCollection_Value = Guid.initString("e65c8b00-e58f-41f9-a9ec-a28d7427c844");
 pub const IID_ICertSrvSetupKeyInformationCollection = &IID_ICertSrvSetupKeyInformationCollection_Value;
-pub const ICertSrvSetupKeyInformationCollection = extern struct {
+pub const ICertSrvSetupKeyInformationCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8338,6 +8339,7 @@ pub const ICertSrvSetupKeyInformationCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8402,7 +8404,7 @@ pub const ENUM_SETUPPROP_WEBCANAME = CASetupProperty.WEBCANAME;
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ICertSrvSetup_Value = Guid.initString("b760a1bb-4784-44c0-8f12-555f0780ff25");
 pub const IID_ICertSrvSetup = &IID_ICertSrvSetup_Value;
-pub const ICertSrvSetup = extern struct {
+pub const ICertSrvSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8503,6 +8505,7 @@ pub const ICertSrvSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8623,7 +8626,7 @@ pub const ENUM_CEPSETUPPROP_CHALLENGEURL = MSCEPSetupProperty.CHALLENGEURL;
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IMSCEPSetup_Value = Guid.initString("4f7761bb-9f3b-4592-9ee0-9a73259c313e");
 pub const IID_IMSCEPSetup = &IID_IMSCEPSetup_Value;
-pub const IMSCEPSetup = extern struct {
+pub const IMSCEPSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8680,6 +8683,7 @@ pub const IMSCEPSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8754,7 +8758,7 @@ pub const ENUM_CESSETUPPROP_ALLOW_KEYBASED_RENEWAL = CESSetupProperty.ALLOW_KEYB
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICertificateEnrollmentServerSetup_Value = Guid.initString("70027fdb-9dd9-4921-8944-b35cb31bd2ec");
 pub const IID_ICertificateEnrollmentServerSetup = &IID_ICertificateEnrollmentServerSetup_Value;
-pub const ICertificateEnrollmentServerSetup = extern struct {
+pub const ICertificateEnrollmentServerSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8790,6 +8794,7 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8838,7 +8843,7 @@ pub const ENUM_CEPSETUPPROP_KEYBASED_RENEWAL = CEPSetupProperty.KEYBASED_RENEWAL
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICertificateEnrollmentPolicyServerSetup_Value = Guid.initString("859252cc-238c-4a88-b8fd-a37e7d04e68b");
 pub const IID_ICertificateEnrollmentPolicyServerSetup = &IID_ICertificateEnrollmentPolicyServerSetup_Value;
-pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
+pub const ICertificateEnrollmentPolicyServerSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -8868,6 +8873,7 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

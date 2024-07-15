@@ -4149,7 +4149,7 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE = extern 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IContentPrefetcherTaskTrigger_Value = Guid.initString("1b35a14a-6094-4799-a60e-e474e15d4dc9");
 pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger_Value;
-pub const IContentPrefetcherTaskTrigger = extern struct {
+pub const IContentPrefetcherTaskTrigger = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         TriggerContentPrefetcherTask: *const fn(
@@ -4163,6 +4163,7 @@ pub const IContentPrefetcherTaskTrigger = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

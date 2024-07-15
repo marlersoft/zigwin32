@@ -21,7 +21,7 @@ pub const PDF_RENDER_PARAMS = extern struct {
 
 const IID_IPdfRendererNative_Value = Guid.initString("7d9dcd91-d277-4947-8527-07a0daeda94a");
 pub const IID_IPdfRendererNative = &IID_IPdfRendererNative_Value;
-pub const IPdfRendererNative = extern struct {
+pub const IPdfRendererNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RenderPageToSurface: *const fn(
@@ -39,6 +39,7 @@ pub const IPdfRendererNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

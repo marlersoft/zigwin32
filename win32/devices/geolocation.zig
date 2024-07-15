@@ -114,7 +114,7 @@ pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILocationReport_Value = Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
 pub const IID_ILocationReport = &IID_ILocationReport_Value;
-pub const ILocationReport = extern struct {
+pub const ILocationReport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSensorID: *const fn(
@@ -132,6 +132,7 @@ pub const ILocationReport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -153,7 +154,7 @@ pub const ILocationReport = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILatLongReport_Value = Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
 pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
-pub const ILatLongReport = extern struct {
+pub const ILatLongReport = extern union {
     pub const VTable = extern struct {
         base: ILocationReport.VTable,
         GetLatitude: *const fn(
@@ -178,6 +179,7 @@ pub const ILatLongReport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ILocationReport: ILocationReport,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -207,7 +209,7 @@ pub const ILatLongReport = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICivicAddressReport_Value = Guid.initString("c0b19f70-4adf-445d-87f2-cad8fd711792");
 pub const IID_ICivicAddressReport = &IID_ICivicAddressReport_Value;
-pub const ICivicAddressReport = extern struct {
+pub const ICivicAddressReport = extern union {
     pub const VTable = extern struct {
         base: ILocationReport.VTable,
         GetAddressLine1: *const fn(
@@ -240,6 +242,7 @@ pub const ICivicAddressReport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ILocationReport: ILocationReport,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -277,7 +280,7 @@ pub const ICivicAddressReport = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILocation_Value = Guid.initString("ab2ece69-56d9-4f28-b525-de1b0ee44237");
 pub const IID_ILocation = &IID_ILocation_Value;
-pub const ILocation = extern struct {
+pub const ILocation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterForReport: *const fn(
@@ -329,6 +332,7 @@ pub const ILocation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -374,7 +378,7 @@ pub const ILocation = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ILocationPower_Value = Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
 pub const IID_ILocationPower = &IID_ILocationPower_Value;
-pub const ILocationPower = extern struct {
+pub const ILocationPower = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Connect: *const fn(
@@ -385,6 +389,7 @@ pub const ILocationPower = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -402,7 +407,7 @@ pub const ILocationPower = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDefaultLocation_Value = Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
 pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
-pub const IDefaultLocation = extern struct {
+pub const IDefaultLocation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetReport: *const fn(
@@ -417,6 +422,7 @@ pub const IDefaultLocation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -434,7 +440,7 @@ pub const IDefaultLocation = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILocationEvents_Value = Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
 pub const IID_ILocationEvents = &IID_ILocationEvents_Value;
-pub const ILocationEvents = extern struct {
+pub const ILocationEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnLocationChanged: *const fn(
@@ -449,6 +455,7 @@ pub const ILocationEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -465,7 +472,7 @@ pub const ILocationEvents = extern struct {
 
 const IID_IDispLatLongReport_Value = Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
 pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
-pub const IDispLatLongReport = extern struct {
+pub const IDispLatLongReport = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -500,6 +507,7 @@ pub const IDispLatLongReport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -532,7 +540,7 @@ pub const IDispLatLongReport = extern struct {
 
 const IID_IDispCivicAddressReport_Value = Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
 pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
-pub const IDispCivicAddressReport = extern struct {
+pub const IDispCivicAddressReport = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -577,6 +585,7 @@ pub const IDispCivicAddressReport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -617,7 +626,7 @@ pub const IDispCivicAddressReport = extern struct {
 
 const IID_ILocationReportFactory_Value = Guid.initString("2daec322-90b2-47e4-bb08-0da841935a6b");
 pub const IID_ILocationReportFactory = &IID_ILocationReportFactory_Value;
-pub const ILocationReportFactory = extern struct {
+pub const ILocationReportFactory = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ListenForReports: *const fn(
@@ -658,6 +667,7 @@ pub const ILocationReportFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -698,7 +708,7 @@ pub const ILocationReportFactory = extern struct {
 
 const IID_ILatLongReportFactory_Value = Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
 pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
-pub const ILatLongReportFactory = extern struct {
+pub const ILatLongReportFactory = extern union {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -708,6 +718,7 @@ pub const ILatLongReportFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ILocationReportFactory: ILocationReportFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -720,7 +731,7 @@ pub const ILatLongReportFactory = extern struct {
 
 const IID_ICivicAddressReportFactory_Value = Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
 pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value;
-pub const ICivicAddressReportFactory = extern struct {
+pub const ICivicAddressReportFactory = extern union {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -730,6 +741,7 @@ pub const ICivicAddressReportFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ILocationReportFactory: ILocationReportFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -742,11 +754,12 @@ pub const ICivicAddressReportFactory = extern struct {
 
 const IID__ILatLongReportFactoryEvents_Value = Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
 pub const IID__ILatLongReportFactoryEvents = &IID__ILatLongReportFactoryEvents_Value;
-pub const _ILatLongReportFactoryEvents = extern struct {
+pub const _ILatLongReportFactoryEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
@@ -755,11 +768,12 @@ pub const _ILatLongReportFactoryEvents = extern struct {
 
 const IID__ICivicAddressReportFactoryEvents_Value = Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
 pub const IID__ICivicAddressReportFactoryEvents = &IID__ICivicAddressReportFactoryEvents_Value;
-pub const _ICivicAddressReportFactoryEvents = extern struct {
+pub const _ICivicAddressReportFactoryEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}

@@ -1428,7 +1428,7 @@ pub const ACT_AUTHORIZED = ACT_AUTHORIZATION_STATE_VALUE.AUTHORIZED;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumEnhancedStorageACT_Value = Guid.initString("09b224bd-1335-4631-a7ff-cfd3a92646d7");
 pub const IID_IEnumEnhancedStorageACT = &IID_IEnumEnhancedStorageACT_Value;
-pub const IEnumEnhancedStorageACT = extern struct {
+pub const IEnumEnhancedStorageACT = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetACTs: *const fn(
@@ -1443,6 +1443,7 @@ pub const IEnumEnhancedStorageACT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1460,7 +1461,7 @@ pub const IEnumEnhancedStorageACT = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageACT_Value = Guid.initString("6e7781f4-e0f2-4239-b976-a01abab52930");
 pub const IID_IEnhancedStorageACT = &IID_IEnhancedStorageACT_Value;
-pub const IEnhancedStorageACT = extern struct {
+pub const IEnhancedStorageACT = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Authorize: *const fn(
@@ -1490,6 +1491,7 @@ pub const IEnhancedStorageACT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1523,7 +1525,7 @@ pub const IEnhancedStorageACT = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnhancedStorageACT2_Value = Guid.initString("4da57d2e-8eb3-41f6-a07e-98b52b88242b");
 pub const IID_IEnhancedStorageACT2 = &IID_IEnhancedStorageACT2_Value;
-pub const IEnhancedStorageACT2 = extern struct {
+pub const IEnhancedStorageACT2 = extern union {
     pub const VTable = extern struct {
         base: IEnhancedStorageACT.VTable,
         GetDeviceName: *const fn(
@@ -1536,6 +1538,7 @@ pub const IEnhancedStorageACT2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IEnhancedStorageACT: IEnhancedStorageACT,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IEnhancedStorageACT.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1552,7 +1555,7 @@ pub const IEnhancedStorageACT2 = extern struct {
 
 const IID_IEnhancedStorageACT3_Value = Guid.initString("022150a1-113d-11df-bb61-001aa01bbc58");
 pub const IID_IEnhancedStorageACT3 = &IID_IEnhancedStorageACT3_Value;
-pub const IEnhancedStorageACT3 = extern struct {
+pub const IEnhancedStorageACT3 = extern union {
     pub const VTable = extern struct {
         base: IEnhancedStorageACT2.VTable,
         UnauthorizeEx: *const fn(
@@ -1569,6 +1572,7 @@ pub const IEnhancedStorageACT3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IEnhancedStorageACT2: IEnhancedStorageACT2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IEnhancedStorageACT2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1590,7 +1594,7 @@ pub const IEnhancedStorageACT3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageSilo_Value = Guid.initString("5aef78c6-2242-4703-bf49-44b29357a359");
 pub const IID_IEnhancedStorageSilo = &IID_IEnhancedStorageSilo_Value;
-pub const IEnhancedStorageSilo = extern struct {
+pub const IEnhancedStorageSilo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInfo: *const fn(
@@ -1620,6 +1624,7 @@ pub const IEnhancedStorageSilo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1649,7 +1654,7 @@ pub const IEnhancedStorageSilo = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageSiloAction_Value = Guid.initString("b6f7f311-206f-4ff8-9c4b-27efee77a86f");
 pub const IID_IEnhancedStorageSiloAction = &IID_IEnhancedStorageSiloAction_Value;
-pub const IEnhancedStorageSiloAction = extern struct {
+pub const IEnhancedStorageSiloAction = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetName: *const fn(
@@ -1665,6 +1670,7 @@ pub const IEnhancedStorageSiloAction = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

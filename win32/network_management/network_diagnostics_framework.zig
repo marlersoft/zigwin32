@@ -248,7 +248,7 @@ pub const DiagnosticsInfo = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetDiagHelper_Value = Guid.initString("c0b35746-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagHelper = &IID_INetDiagHelper_Value;
-pub const INetDiagHelper = extern struct {
+pub const INetDiagHelper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -342,6 +342,7 @@ pub const INetDiagHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -428,7 +429,7 @@ pub const HypothesisResult = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_INetDiagHelperUtilFactory_Value = Guid.initString("104613fb-bc57-4178-95ba-88809698354a");
 pub const IID_INetDiagHelperUtilFactory = &IID_INetDiagHelperUtilFactory_Value;
-pub const INetDiagHelperUtilFactory = extern struct {
+pub const INetDiagHelperUtilFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateUtilityInstance: *const fn(
@@ -438,6 +439,7 @@ pub const INetDiagHelperUtilFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -451,7 +453,7 @@ pub const INetDiagHelperUtilFactory = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_INetDiagHelperEx_Value = Guid.initString("972dab4d-e4e3-4fc6-ae54-5f65ccde4a15");
 pub const IID_INetDiagHelperEx = &IID_INetDiagHelperEx_Value;
-pub const INetDiagHelperEx = extern struct {
+pub const INetDiagHelperEx = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReconfirmLowHealth: *const fn(
@@ -470,6 +472,7 @@ pub const INetDiagHelperEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -491,7 +494,7 @@ pub const INetDiagHelperEx = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetDiagHelperInfo_Value = Guid.initString("c0b35747-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagHelperInfo = &IID_INetDiagHelperInfo_Value;
-pub const INetDiagHelperInfo = extern struct {
+pub const INetDiagHelperInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAttributeInfo: *const fn(
@@ -501,6 +504,7 @@ pub const INetDiagHelperInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -513,7 +517,7 @@ pub const INetDiagHelperInfo = extern struct {
 
 const IID_INetDiagExtensibleHelper_Value = Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagExtensibleHelper = &IID_INetDiagExtensibleHelper_Value;
-pub const INetDiagExtensibleHelper = extern struct {
+pub const INetDiagExtensibleHelper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ResolveAttributes: *const fn(
@@ -525,6 +529,7 @@ pub const INetDiagExtensibleHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

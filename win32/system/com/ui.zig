@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IThumbnailExtractor_Value = Guid.initString("969dc708-5c76-11d1-8d86-0000f804b057");
 pub const IID_IThumbnailExtractor = &IID_IThumbnailExtractor_Value;
-pub const IThumbnailExtractor = extern struct {
+pub const IThumbnailExtractor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ExtractThumbnail: *const fn(
@@ -26,6 +26,7 @@ pub const IThumbnailExtractor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -42,7 +43,7 @@ pub const IThumbnailExtractor = extern struct {
 
 const IID_IDummyHICONIncluder_Value = Guid.initString("947990de-cc28-11d2-a0f7-00805f858fb1");
 pub const IID_IDummyHICONIncluder = &IID_IDummyHICONIncluder_Value;
-pub const IDummyHICONIncluder = extern struct {
+pub const IDummyHICONIncluder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Dummy: *const fn(
@@ -52,6 +53,7 @@ pub const IDummyHICONIncluder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

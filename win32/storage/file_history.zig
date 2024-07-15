@@ -79,7 +79,7 @@ pub const FH_DRIVE_REMOTE = FH_TARGET_DRIVE_TYPES.REMOTE;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFhTarget_Value = Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
 pub const IID_IFhTarget = &IID_IFhTarget_Value;
-pub const IFhTarget = extern struct {
+pub const IFhTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStringProperty: *const fn(
@@ -94,6 +94,7 @@ pub const IFhTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -111,7 +112,7 @@ pub const IFhTarget = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFhScopeIterator_Value = Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
 pub const IID_IFhScopeIterator = &IID_IFhScopeIterator_Value;
-pub const IFhScopeIterator = extern struct {
+pub const IFhScopeIterator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MoveToNextItem: *const fn(
@@ -123,6 +124,7 @@ pub const IFhScopeIterator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -203,7 +205,7 @@ pub const MAX_VALIDATION_RESULT = FH_DEVICE_VALIDATION_RESULT.MAX_VALIDATION_RES
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFhConfigMgr_Value = Guid.initString("6a5fea5b-bf8f-4ee5-b8c3-44d8a0d7331c");
 pub const IID_IFhConfigMgr = &IID_IFhConfigMgr_Value;
-pub const IFhConfigMgr = extern struct {
+pub const IFhConfigMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LoadConfiguration: *const fn(
@@ -271,6 +273,7 @@ pub const IFhConfigMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -336,7 +339,7 @@ pub const IFhConfigMgr = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFhReassociation_Value = Guid.initString("6544a28a-f68d-47ac-91ef-16b2b36aa3ee");
 pub const IID_IFhReassociation = &IID_IFhReassociation_Value;
-pub const IFhReassociation = extern struct {
+pub const IFhReassociation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ValidateTarget: *const fn(
@@ -365,6 +368,7 @@ pub const IFhReassociation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

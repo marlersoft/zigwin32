@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_ICoreFrameworkInputViewInterop_Value = Guid.initString("0e3da342-b11c-484b-9c1c-be0d61c2f6c5");
 pub const IID_ICoreFrameworkInputViewInterop = &IID_ICoreFrameworkInputViewInterop_Value;
-pub const ICoreFrameworkInputViewInterop = extern struct {
+pub const ICoreFrameworkInputViewInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetForWindow: *const fn(
@@ -19,6 +19,7 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

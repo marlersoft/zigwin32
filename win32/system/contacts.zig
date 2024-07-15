@@ -120,7 +120,7 @@ pub const CLSID_ContactManager = &CLSID_ContactManager_Value;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContactManager_Value = Guid.initString("ad553d98-deb1-474a-8e17-fc0c2075b738");
 pub const IID_IContactManager = &IID_IContactManager_Value;
-pub const IContactManager = extern struct {
+pub const IContactManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -152,6 +152,7 @@ pub const IContactManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -185,7 +186,7 @@ pub const IContactManager = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContactCollection_Value = Guid.initString("b6afa338-d779-11d9-8bde-f66bad1e3f3a");
 pub const IID_IContactCollection = &IID_IContactCollection_Value;
-pub const IContactCollection = extern struct {
+pub const IContactCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: *const fn(
@@ -200,6 +201,7 @@ pub const IContactCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -221,7 +223,7 @@ pub const IContactCollection = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContactProperties_Value = Guid.initString("70dd27dd-5cbd-46e8-bef0-23b6b346288f");
 pub const IID_IContactProperties = &IID_IContactProperties_Value;
-pub const IContactProperties = extern struct {
+pub const IContactProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetString: *const fn(
@@ -316,6 +318,7 @@ pub const IContactProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -377,7 +380,7 @@ pub const IContactProperties = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContact_Value = Guid.initString("f941b671-bda7-4f77-884a-f46462f226a7");
 pub const IID_IContact = &IID_IContact_Value;
-pub const IContact = extern struct {
+pub const IContact = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContactID: *const fn(
@@ -398,6 +401,7 @@ pub const IContact = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -419,7 +423,7 @@ pub const IContact = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContactPropertyCollection_Value = Guid.initString("ffd3adf8-fa64-4328-b1b6-2e0db509cb3c");
 pub const IID_IContactPropertyCollection = &IID_IContactPropertyCollection_Value;
-pub const IContactPropertyCollection = extern struct {
+pub const IContactPropertyCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: *const fn(
@@ -454,6 +458,7 @@ pub const IContactPropertyCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -511,7 +516,7 @@ pub const CONTACT_AGGREGATION_BLOB = extern struct {
 
 const IID_IContactAggregationManager_Value = Guid.initString("1d865989-4b1f-4b60-8f34-c2ad468b2b50");
 pub const IID_IContactAggregationManager = &IID_IContactAggregationManager_Value;
-pub const IContactAggregationManager = extern struct {
+pub const IContactAggregationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVersionInfo: *const fn(
@@ -588,6 +593,7 @@ pub const IContactAggregationManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -656,7 +662,7 @@ pub const IContactAggregationManager = extern struct {
 
 const IID_IContactAggregationContact_Value = Guid.initString("1eb22e86-4c86-41f0-9f9f-c251e9fda6c3");
 pub const IID_IContactAggregationContact = &IID_IContactAggregationContact_Value;
-pub const IContactAggregationContact = extern struct {
+pub const IContactAggregationContact = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: *const fn(
@@ -744,6 +750,7 @@ pub const IContactAggregationContact = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -824,7 +831,7 @@ pub const IContactAggregationContact = extern struct {
 
 const IID_IContactAggregationContactCollection_Value = Guid.initString("826e66fa-81de-43ca-a6fb-8c785cd996c6");
 pub const IID_IContactAggregationContactCollection = &IID_IContactAggregationContactCollection_Value;
-pub const IContactAggregationContactCollection = extern struct {
+pub const IContactAggregationContactCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: *const fn(
@@ -856,6 +863,7 @@ pub const IContactAggregationContactCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -884,7 +892,7 @@ pub const IContactAggregationContactCollection = extern struct {
 
 const IID_IContactAggregationAggregate_Value = Guid.initString("7ed1c814-cd30-43c8-9b8d-2e489e53d54b");
 pub const IID_IContactAggregationAggregate = &IID_IContactAggregationAggregate_Value;
-pub const IContactAggregationAggregate = extern struct {
+pub const IContactAggregationAggregate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Save: *const fn(
@@ -930,6 +938,7 @@ pub const IContactAggregationAggregate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -974,7 +983,7 @@ pub const IContactAggregationAggregate = extern struct {
 
 const IID_IContactAggregationAggregateCollection_Value = Guid.initString("2359f3a6-3a68-40af-98db-0f9eb143c3bb");
 pub const IID_IContactAggregationAggregateCollection = &IID_IContactAggregationAggregateCollection_Value;
-pub const IContactAggregationAggregateCollection = extern struct {
+pub const IContactAggregationAggregateCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: *const fn(
@@ -997,6 +1006,7 @@ pub const IContactAggregationAggregateCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1021,7 +1031,7 @@ pub const IContactAggregationAggregateCollection = extern struct {
 
 const IID_IContactAggregationGroup_Value = Guid.initString("c93c545f-1284-499b-96af-07372af473e0");
 pub const IID_IContactAggregationGroup = &IID_IContactAggregationGroup_Value;
-pub const IContactAggregationGroup = extern struct {
+pub const IContactAggregationGroup = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: *const fn(
@@ -1070,6 +1080,7 @@ pub const IContactAggregationGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1118,7 +1129,7 @@ pub const IContactAggregationGroup = extern struct {
 
 const IID_IContactAggregationGroupCollection_Value = Guid.initString("20a19a9c-d2f3-4b83-9143-beffd2cc226d");
 pub const IID_IContactAggregationGroupCollection = &IID_IContactAggregationGroupCollection_Value;
-pub const IContactAggregationGroupCollection = extern struct {
+pub const IContactAggregationGroupCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: *const fn(
@@ -1141,6 +1152,7 @@ pub const IContactAggregationGroupCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1165,7 +1177,7 @@ pub const IContactAggregationGroupCollection = extern struct {
 
 const IID_IContactAggregationLink_Value = Guid.initString("b6813323-a183-4654-8627-79b30de3a0ec");
 pub const IID_IContactAggregationLink = &IID_IContactAggregationLink_Value;
-pub const IContactAggregationLink = extern struct {
+pub const IContactAggregationLink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: *const fn(
@@ -1251,6 +1263,7 @@ pub const IContactAggregationLink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1327,7 +1340,7 @@ pub const IContactAggregationLink = extern struct {
 
 const IID_IContactAggregationLinkCollection_Value = Guid.initString("f8bc0e93-fb55-4f28-b9fa-b1c274153292");
 pub const IID_IContactAggregationLinkCollection = &IID_IContactAggregationLinkCollection_Value;
-pub const IContactAggregationLinkCollection = extern struct {
+pub const IContactAggregationLinkCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: *const fn(
@@ -1352,6 +1365,7 @@ pub const IContactAggregationLinkCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1376,7 +1390,7 @@ pub const IContactAggregationLinkCollection = extern struct {
 
 const IID_IContactAggregationServerPerson_Value = Guid.initString("7fdc3d4b-1b82-4334-85c5-25184ee5a5f2");
 pub const IID_IContactAggregationServerPerson = &IID_IContactAggregationServerPerson_Value;
-pub const IContactAggregationServerPerson = extern struct {
+pub const IContactAggregationServerPerson = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: *const fn(
@@ -1492,6 +1506,7 @@ pub const IContactAggregationServerPerson = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1592,7 +1607,7 @@ pub const IContactAggregationServerPerson = extern struct {
 
 const IID_IContactAggregationServerPersonCollection_Value = Guid.initString("4f730a4a-6604-47b6-a987-669ecf1e5751");
 pub const IID_IContactAggregationServerPersonCollection = &IID_IContactAggregationServerPersonCollection_Value;
-pub const IContactAggregationServerPersonCollection = extern struct {
+pub const IContactAggregationServerPersonCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: *const fn(
@@ -1625,6 +1640,7 @@ pub const IContactAggregationServerPersonCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

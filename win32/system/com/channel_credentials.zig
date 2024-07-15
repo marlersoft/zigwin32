@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IChannelCredentials_Value = Guid.initString("181b448c-c17c-4b17-ac6d-06699b93198f");
 pub const IID_IChannelCredentials = &IID_IChannelCredentials_Value;
-pub const IChannelCredentials = extern struct {
+pub const IChannelCredentials = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         SetWindowsCredential: *const fn(
@@ -76,6 +76,7 @@ pub const IChannelCredentials = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

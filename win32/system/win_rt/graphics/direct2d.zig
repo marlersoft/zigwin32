@@ -33,7 +33,7 @@ pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLOR_TO_VECTOR4 = GRAPHICS_EFFECT_PR
 
 const IID_IGraphicsEffectD2D1Interop_Value = Guid.initString("2fc57384-a068-44d7-a331-30982fcf7177");
 pub const IID_IGraphicsEffectD2D1Interop = &IID_IGraphicsEffectD2D1Interop_Value;
-pub const IGraphicsEffectD2D1Interop = extern struct {
+pub const IGraphicsEffectD2D1Interop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetEffectId: *const fn(
@@ -66,6 +66,7 @@ pub const IGraphicsEffectD2D1Interop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -98,7 +99,7 @@ pub const IGraphicsEffectD2D1Interop = extern struct {
 
 const IID_IGeometrySource2DInterop_Value = Guid.initString("0657af73-53fd-47cf-84ff-c8492d2a80a3");
 pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
-pub const IGeometrySource2DInterop = extern struct {
+pub const IGeometrySource2DInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGeometry: *const fn(
@@ -112,6 +113,7 @@ pub const IGeometrySource2DInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

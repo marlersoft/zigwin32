@@ -484,7 +484,7 @@ pub const NOTIFICATION = extern struct {
     },
 };
 
-pub const IMAPIAdviseSink = extern struct {
+pub const IMAPIAdviseSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNotify: *const fn(
@@ -494,6 +494,7 @@ pub const IMAPIAdviseSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -510,7 +511,7 @@ pub const LPNOTIFCALLBACK = *const fn(
     lpNotifications: ?*NOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const IMAPIProgress = extern struct {
+pub const IMAPIProgress = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Progress: *const fn(
@@ -539,6 +540,7 @@ pub const IMAPIProgress = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -574,7 +576,7 @@ pub const MAPINAMEID = extern struct {
     },
 };
 
-pub const IMAPIProp = extern struct {
+pub const IMAPIProp = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLastError: *const fn(
@@ -657,6 +659,7 @@ pub const IMAPIProp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -799,7 +802,7 @@ pub const SRestriction = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IMAPITable = extern struct {
+pub const IMAPITable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLastError: *const fn(
@@ -931,6 +934,7 @@ pub const IMAPITable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1029,18 +1033,19 @@ pub const IMAPITable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IProfSect = extern struct {
+pub const IProfSect = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMAPIStatus = extern struct {
+pub const IMAPIStatus = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         ValidateState: *const fn(
@@ -1068,6 +1073,7 @@ pub const IMAPIStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1090,7 +1096,7 @@ pub const IMAPIStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMAPIContainer = extern struct {
+pub const IMAPIContainer = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         GetContentsTable: *const fn(
@@ -1128,6 +1134,7 @@ pub const IMAPIContainer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1160,7 +1167,7 @@ pub const _flaglist = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IABContainer = extern struct {
+pub const IABContainer = extern union {
     pub const VTable = extern struct {
         base: IMAPIContainer.VTable,
         CreateEntry: *const fn(
@@ -1192,6 +1199,7 @@ pub const IABContainer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1215,11 +1223,12 @@ pub const IABContainer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IMailUser = extern struct {
+pub const IMailUser = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
@@ -1227,7 +1236,7 @@ pub const IMailUser = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IDistList = extern struct {
+pub const IDistList = extern union {
     pub const VTable = extern struct {
         base: IMAPIContainer.VTable,
         CreateEntry: *const fn(
@@ -1259,6 +1268,7 @@ pub const IDistList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1281,7 +1291,7 @@ pub const IDistList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMAPIFolder = extern struct {
+pub const IMAPIFolder = extern union {
     pub const VTable = extern struct {
         base: IMAPIContainer.VTable,
         CreateMessage: *const fn(
@@ -1373,6 +1383,7 @@ pub const IMAPIFolder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1423,7 +1434,7 @@ pub const IMAPIFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMsgStore = extern struct {
+pub const IMsgStore = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         Advise: *const fn(
@@ -1515,6 +1526,7 @@ pub const IMsgStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1573,7 +1585,7 @@ pub const IMsgStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMessage = extern struct {
+pub const IMessage = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         GetAttachmentTable: *const fn(
@@ -1622,6 +1634,7 @@ pub const IMessage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1660,11 +1673,12 @@ pub const IMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IAttach = extern struct {
+pub const IAttach = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
     };}
@@ -1710,7 +1724,7 @@ pub const ADRPARM = extern struct {
     lpHierRestriction: ?*SRestriction,
 };
 
-pub const IMAPIControl = extern struct {
+pub const IMAPIControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLastError: *const fn(
@@ -1731,6 +1745,7 @@ pub const IMAPIControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1824,7 +1839,7 @@ pub const DTBLMVDDLBX = extern struct {
     ulMVPropTag: u32,
 };
 
-pub const IProviderAdmin = extern struct {
+pub const IProviderAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLastError: *const fn(
@@ -1860,6 +1875,7 @@ pub const IProviderAdmin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1898,7 +1914,7 @@ pub const genderMale = Gender.Male;
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
 pub const CALLERRELEASE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
-pub const ITableData = extern struct {
+pub const ITableData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HrGetView: *const fn(
@@ -1951,6 +1967,7 @@ pub const ITableData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1993,7 +2010,7 @@ pub const ITableData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IPropData = extern struct {
+pub const IPropData = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         HrSetObjAccess: *const fn(
@@ -2017,6 +2034,7 @@ pub const IPropData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2098,7 +2116,7 @@ pub const LPCREATECONVERSATIONINDEX = *const fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IAddrBook = extern struct {
+pub const IAddrBook = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
         OpenEntry: *const fn(
@@ -2227,6 +2245,7 @@ pub const IAddrBook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2310,7 +2329,7 @@ pub const _WABACTIONITEM = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-pub const IWABObject = extern struct {
+pub const IWABObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLastError: *const fn(
@@ -2392,6 +2411,7 @@ pub const IWABObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2538,7 +2558,7 @@ pub const IWABOBJECT_SetMe_METHOD = *const fn(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const IWABOBJECT_ = extern struct {
+pub const IWABOBJECT_ = extern union {
     pub const VTable = extern struct {
         QueryInterface: *const fn(
             self: *const IWABOBJECT_,
@@ -2747,7 +2767,7 @@ pub const WABEXTDISPLAY = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWABExtInit_Value = Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
 pub const IID_IWABExtInit = &IID_IWABExtInit_Value;
-pub const IWABExtInit = extern struct {
+pub const IWABExtInit = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -2756,6 +2776,7 @@ pub const IWABExtInit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

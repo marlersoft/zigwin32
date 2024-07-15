@@ -602,7 +602,7 @@ pub const LPSETUPHOOKPROC = *const fn(
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPrintDialogCallback_Value = Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
 pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
-pub const IPrintDialogCallback = extern struct {
+pub const IPrintDialogCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitDone: *const fn(
@@ -621,6 +621,7 @@ pub const IPrintDialogCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -642,7 +643,7 @@ pub const IPrintDialogCallback = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPrintDialogServices_Value = Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
 pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
-pub const IPrintDialogServices = extern struct {
+pub const IPrintDialogServices = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCurrentDevMode: *const fn(
@@ -662,6 +663,7 @@ pub const IPrintDialogServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

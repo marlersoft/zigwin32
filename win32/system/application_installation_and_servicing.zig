@@ -729,7 +729,7 @@ pub const LPEVALCOMCALLBACK = *const fn(
 
 const IID_IValidate_Value = Guid.initString("e482e5c6-e31e-4143-a2e6-dbc3d8e4b8d3");
 pub const IID_IValidate = &IID_IValidate_Value;
-pub const IValidate = extern struct {
+pub const IValidate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OpenDatabase: *const fn(
@@ -762,6 +762,7 @@ pub const IValidate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -820,7 +821,7 @@ pub const msmErrorFeatureRequired = msmErrorType.FeatureRequired;
 
 const IID_IEnumMsmString_Value = Guid.initString("0adda826-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IEnumMsmString = &IID_IEnumMsmString_Value;
-pub const IEnumMsmString = extern struct {
+pub const IEnumMsmString = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -842,6 +843,7 @@ pub const IEnumMsmString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -866,7 +868,7 @@ pub const IEnumMsmString = extern struct {
 
 const IID_IMsmStrings_Value = Guid.initString("0adda827-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmStrings = &IID_IMsmStrings_Value;
-pub const IMsmStrings = extern struct {
+pub const IMsmStrings = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
@@ -886,6 +888,7 @@ pub const IMsmStrings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -906,7 +909,7 @@ pub const IMsmStrings = extern struct {
 
 const IID_IMsmError_Value = Guid.initString("0adda828-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmError = &IID_IMsmError_Value;
-pub const IMsmError = extern struct {
+pub const IMsmError = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -946,6 +949,7 @@ pub const IMsmError = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -982,7 +986,7 @@ pub const IMsmError = extern struct {
 
 const IID_IEnumMsmError_Value = Guid.initString("0adda829-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IEnumMsmError = &IID_IEnumMsmError_Value;
-pub const IEnumMsmError = extern struct {
+pub const IEnumMsmError = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -1004,6 +1008,7 @@ pub const IEnumMsmError = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1028,7 +1033,7 @@ pub const IEnumMsmError = extern struct {
 
 const IID_IMsmErrors_Value = Guid.initString("0adda82a-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmErrors = &IID_IMsmErrors_Value;
-pub const IMsmErrors = extern struct {
+pub const IMsmErrors = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
@@ -1048,6 +1053,7 @@ pub const IMsmErrors = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1068,7 +1074,7 @@ pub const IMsmErrors = extern struct {
 
 const IID_IMsmDependency_Value = Guid.initString("0adda82b-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmDependency = &IID_IMsmDependency_Value;
-pub const IMsmDependency = extern struct {
+pub const IMsmDependency = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1088,6 +1094,7 @@ pub const IMsmDependency = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1108,7 +1115,7 @@ pub const IMsmDependency = extern struct {
 
 const IID_IEnumMsmDependency_Value = Guid.initString("0adda82c-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IEnumMsmDependency = &IID_IEnumMsmDependency_Value;
-pub const IEnumMsmDependency = extern struct {
+pub const IEnumMsmDependency = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -1130,6 +1137,7 @@ pub const IEnumMsmDependency = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1154,7 +1162,7 @@ pub const IEnumMsmDependency = extern struct {
 
 const IID_IMsmDependencies_Value = Guid.initString("0adda82d-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmDependencies = &IID_IMsmDependencies_Value;
-pub const IMsmDependencies = extern struct {
+pub const IMsmDependencies = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
@@ -1174,6 +1182,7 @@ pub const IMsmDependencies = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1194,7 +1203,7 @@ pub const IMsmDependencies = extern struct {
 
 const IID_IMsmMerge_Value = Guid.initString("0adda82e-2c26-11d2-ad65-00a0c9af11a6");
 pub const IID_IMsmMerge = &IID_IMsmMerge_Value;
-pub const IMsmMerge = extern struct {
+pub const IMsmMerge = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         OpenDatabase: *const fn(
@@ -1253,6 +1262,7 @@ pub const IMsmMerge = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1313,7 +1323,7 @@ pub const IMsmMerge = extern struct {
 
 const IID_IMsmGetFiles_Value = Guid.initString("7041ae26-2d78-11d2-888a-00a0c981b015");
 pub const IID_IMsmGetFiles = &IID_IMsmGetFiles_Value;
-pub const IMsmGetFiles = extern struct {
+pub const IMsmGetFiles = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1323,6 +1333,7 @@ pub const IMsmGetFiles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2101,7 +2112,7 @@ pub const ASM_CMPF_DEFAULT = ASM_CMP_FLAGS.DEFAULT;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyName_Value = Guid.initString("cd193bc0-b4bc-11d2-9833-00c04fc31d2e");
 pub const IID_IAssemblyName = &IID_IAssemblyName_Value;
-pub const IAssemblyName = extern struct {
+pub const IAssemblyName = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetProperty: *const fn(
@@ -2157,6 +2168,7 @@ pub const IAssemblyName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2202,7 +2214,7 @@ pub const IAssemblyName = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyCacheItem_Value = Guid.initString("9e3aaeb4-d1cd-11d2-bab9-00c04f8eceae");
 pub const IID_IAssemblyCacheItem = &IID_IAssemblyCacheItem_Value;
-pub const IAssemblyCacheItem = extern struct {
+pub const IAssemblyCacheItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateStream: *const fn(
@@ -2224,6 +2236,7 @@ pub const IAssemblyCacheItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2245,7 +2258,7 @@ pub const IAssemblyCacheItem = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyCache_Value = Guid.initString("e707dcde-d1cd-11d2-bab9-00c04f8eceae");
 pub const IID_IAssemblyCache = &IID_IAssemblyCache_Value;
-pub const IAssemblyCache = extern struct {
+pub const IAssemblyCache = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         UninstallAssembly: *const fn(
@@ -2280,6 +2293,7 @@ pub const IAssemblyCache = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3253,7 +3267,7 @@ pub const PM_UPDATEINFO = extern struct {
 
 const IID_IPMApplicationInfo_Value = Guid.initString("50afb58a-438c-4088-9789-f8c4899829c7");
 pub const IID_IPMApplicationInfo = &IID_IPMApplicationInfo_Value;
-pub const IPMApplicationInfo = extern struct {
+pub const IPMApplicationInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -3525,6 +3539,7 @@ pub const IPMApplicationInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3753,7 +3768,7 @@ pub const IPMApplicationInfo = extern struct {
 
 const IID_IPMTilePropertyInfo_Value = Guid.initString("6c2b8017-1efa-42a7-86c0-6d4b640bf528");
 pub const IID_IPMTilePropertyInfo = &IID_IPMTilePropertyInfo_Value;
-pub const IPMTilePropertyInfo = extern struct {
+pub const IPMTilePropertyInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -3772,6 +3787,7 @@ pub const IPMTilePropertyInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3792,7 +3808,7 @@ pub const IPMTilePropertyInfo = extern struct {
 
 const IID_IPMTilePropertyEnumerator_Value = Guid.initString("cc4cd629-9047-4250-aac8-930e47812421");
 pub const IID_IPMTilePropertyEnumerator = &IID_IPMTilePropertyEnumerator_Value;
-pub const IPMTilePropertyEnumerator = extern struct {
+pub const IPMTilePropertyEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -3802,6 +3818,7 @@ pub const IPMTilePropertyEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3814,7 +3831,7 @@ pub const IPMTilePropertyEnumerator = extern struct {
 
 const IID_IPMTileInfo_Value = Guid.initString("d1604833-2b08-4001-82cd-183ad734f752");
 pub const IID_IPMTileInfo = &IID_IPMTileInfo_Value;
-pub const IPMTileInfo = extern struct {
+pub const IPMTileInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -3936,6 +3953,7 @@ pub const IPMTileInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4040,7 +4058,7 @@ pub const IPMTileInfo = extern struct {
 
 const IID_IPMTileInfoEnumerator_Value = Guid.initString("ded83065-e462-4b2c-acb5-e39cea61c874");
 pub const IID_IPMTileInfoEnumerator = &IID_IPMTileInfoEnumerator_Value;
-pub const IPMTileInfoEnumerator = extern struct {
+pub const IPMTileInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4050,6 +4068,7 @@ pub const IPMTileInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4062,7 +4081,7 @@ pub const IPMTileInfoEnumerator = extern struct {
 
 const IID_IPMApplicationInfoEnumerator_Value = Guid.initString("0ec42a96-4d46-4dc6-a3d9-a7acaac0f5fa");
 pub const IID_IPMApplicationInfoEnumerator = &IID_IPMApplicationInfoEnumerator_Value;
-pub const IPMApplicationInfoEnumerator = extern struct {
+pub const IPMApplicationInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4072,6 +4091,7 @@ pub const IPMApplicationInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4084,7 +4104,7 @@ pub const IPMApplicationInfoEnumerator = extern struct {
 
 const IID_IPMLiveTileJobInfo_Value = Guid.initString("6009a81f-4710-4697-b5f6-2208f6057b8e");
 pub const IID_IPMLiveTileJobInfo = &IID_IPMLiveTileJobInfo_Value;
-pub const IPMLiveTileJobInfo = extern struct {
+pub const IPMLiveTileJobInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4200,6 +4220,7 @@ pub const IPMLiveTileJobInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4304,7 +4325,7 @@ pub const IPMLiveTileJobInfo = extern struct {
 
 const IID_IPMLiveTileJobInfoEnumerator_Value = Guid.initString("bc042582-9415-4f36-9f99-06f104c07c03");
 pub const IID_IPMLiveTileJobInfoEnumerator = &IID_IPMLiveTileJobInfoEnumerator_Value;
-pub const IPMLiveTileJobInfoEnumerator = extern struct {
+pub const IPMLiveTileJobInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4314,6 +4335,7 @@ pub const IPMLiveTileJobInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4326,7 +4348,7 @@ pub const IPMLiveTileJobInfoEnumerator = extern struct {
 
 const IID_IPMDeploymentManager_Value = Guid.initString("35f785fa-1979-4a8b-bc8f-fd70eb0d1544");
 pub const IID_IPMDeploymentManager = &IID_IPMDeploymentManager_Value;
-pub const IPMDeploymentManager = extern struct {
+pub const IPMDeploymentManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReportDownloadBegin: *const fn(
@@ -4508,6 +4530,7 @@ pub const IPMDeploymentManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4656,7 +4679,7 @@ pub const IPMDeploymentManager = extern struct {
 
 const IID_IPMEnumerationManager_Value = Guid.initString("698d57c2-292d-4cf3-b73c-d95a6922ed9a");
 pub const IID_IPMEnumerationManager = &IID_IPMEnumerationManager_Value;
-pub const IPMEnumerationManager = extern struct {
+pub const IPMEnumerationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_AllApplications: *const fn(
@@ -4760,6 +4783,7 @@ pub const IPMEnumerationManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4840,7 +4864,7 @@ pub const IPMEnumerationManager = extern struct {
 
 const IID_IPMTaskInfo_Value = Guid.initString("bf1d8c33-1bf5-4ee0-b549-6b9dd3834942");
 pub const IID_IPMTaskInfo = &IID_IPMTaskInfo_Value;
-pub const IPMTaskInfo = extern struct {
+pub const IPMTaskInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4950,6 +4974,7 @@ pub const IPMTaskInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5042,7 +5067,7 @@ pub const IPMTaskInfo = extern struct {
 
 const IID_IPMTaskInfoEnumerator_Value = Guid.initString("0630b0f8-0bbc-4821-be74-c7995166ed2a");
 pub const IID_IPMTaskInfoEnumerator = &IID_IPMTaskInfoEnumerator_Value;
-pub const IPMTaskInfoEnumerator = extern struct {
+pub const IPMTaskInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5052,6 +5077,7 @@ pub const IPMTaskInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5064,7 +5090,7 @@ pub const IPMTaskInfoEnumerator = extern struct {
 
 const IID_IPMExtensionInfo_Value = Guid.initString("49acde79-9788-4d0a-8aa0-1746afdb9e9d");
 pub const IID_IPMExtensionInfo = &IID_IPMExtensionInfo_Value;
-pub const IPMExtensionInfo = extern struct {
+pub const IPMExtensionInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5099,6 +5125,7 @@ pub const IPMExtensionInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5131,7 +5158,7 @@ pub const IPMExtensionInfo = extern struct {
 
 const IID_IPMExtensionFileExtensionInfo_Value = Guid.initString("6b87cb6c-0b88-4989-a4ec-033714f710d4");
 pub const IID_IPMExtensionFileExtensionInfo = &IID_IPMExtensionFileExtensionInfo_Value;
-pub const IPMExtensionFileExtensionInfo = extern struct {
+pub const IPMExtensionFileExtensionInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5171,6 +5198,7 @@ pub const IPMExtensionFileExtensionInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5207,7 +5235,7 @@ pub const IPMExtensionFileExtensionInfo = extern struct {
 
 const IID_IPMExtensionProtocolInfo_Value = Guid.initString("1e3fa036-51eb-4453-baff-b8d8e4b46c8e");
 pub const IID_IPMExtensionProtocolInfo = &IID_IPMExtensionProtocolInfo_Value;
-pub const IPMExtensionProtocolInfo = extern struct {
+pub const IPMExtensionProtocolInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5222,6 +5250,7 @@ pub const IPMExtensionProtocolInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5238,7 +5267,7 @@ pub const IPMExtensionProtocolInfo = extern struct {
 
 const IID_IPMExtensionShareTargetInfo_Value = Guid.initString("5471f48b-c65c-4656-8c70-242e31195fea");
 pub const IID_IPMExtensionShareTargetInfo = &IID_IPMExtensionShareTargetInfo_Value;
-pub const IPMExtensionShareTargetInfo = extern struct {
+pub const IPMExtensionShareTargetInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_AllFileTypes: *const fn(
@@ -5258,6 +5287,7 @@ pub const IPMExtensionShareTargetInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5278,7 +5308,7 @@ pub const IPMExtensionShareTargetInfo = extern struct {
 
 const IID_IPMExtensionContractInfo_Value = Guid.initString("e5666373-7ba1-467c-b819-b175db1c295b");
 pub const IID_IPMExtensionContractInfo = &IID_IPMExtensionContractInfo_Value;
-pub const IPMExtensionContractInfo = extern struct {
+pub const IPMExtensionContractInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_InvocationInfo: *const fn(
@@ -5288,6 +5318,7 @@ pub const IPMExtensionContractInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5300,7 +5331,7 @@ pub const IPMExtensionContractInfo = extern struct {
 
 const IID_IPMExtensionFileOpenPickerInfo_Value = Guid.initString("6dc91d25-9606-420c-9a78-e034a3418345");
 pub const IID_IPMExtensionFileOpenPickerInfo = &IID_IPMExtensionFileOpenPickerInfo_Value;
-pub const IPMExtensionFileOpenPickerInfo = extern struct {
+pub const IPMExtensionFileOpenPickerInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_AllFileTypes: *const fn(
@@ -5315,6 +5346,7 @@ pub const IPMExtensionFileOpenPickerInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5331,7 +5363,7 @@ pub const IPMExtensionFileOpenPickerInfo = extern struct {
 
 const IID_IPMExtensionFileSavePickerInfo_Value = Guid.initString("38005cba-f81a-493e-a0f8-922c8680da43");
 pub const IID_IPMExtensionFileSavePickerInfo = &IID_IPMExtensionFileSavePickerInfo_Value;
-pub const IPMExtensionFileSavePickerInfo = extern struct {
+pub const IPMExtensionFileSavePickerInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_AllFileTypes: *const fn(
@@ -5346,6 +5378,7 @@ pub const IPMExtensionFileSavePickerInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5362,7 +5395,7 @@ pub const IPMExtensionFileSavePickerInfo = extern struct {
 
 const IID_IPMExtensionCachedFileUpdaterInfo_Value = Guid.initString("e2d77509-4e58-4ba9-af7e-b642e370e1b0");
 pub const IID_IPMExtensionCachedFileUpdaterInfo = &IID_IPMExtensionCachedFileUpdaterInfo_Value;
-pub const IPMExtensionCachedFileUpdaterInfo = extern struct {
+pub const IPMExtensionCachedFileUpdaterInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5372,6 +5405,7 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5384,7 +5418,7 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern struct {
 
 const IID_IPMExtensionInfoEnumerator_Value = Guid.initString("403b9e82-1171-4573-8e6f-6f33f39b83dd");
 pub const IID_IPMExtensionInfoEnumerator = &IID_IPMExtensionInfoEnumerator_Value;
-pub const IPMExtensionInfoEnumerator = extern struct {
+pub const IPMExtensionInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5394,6 +5428,7 @@ pub const IPMExtensionInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5406,7 +5441,7 @@ pub const IPMExtensionInfoEnumerator = extern struct {
 
 const IID_IPMBackgroundServiceAgentInfo_Value = Guid.initString("3a8b46da-928c-4879-998c-09dc96f3d490");
 pub const IID_IPMBackgroundServiceAgentInfo = &IID_IPMBackgroundServiceAgentInfo_Value;
-pub const IPMBackgroundServiceAgentInfo = extern struct {
+pub const IPMBackgroundServiceAgentInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5479,6 +5514,7 @@ pub const IPMBackgroundServiceAgentInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5543,7 +5579,7 @@ pub const IPMBackgroundServiceAgentInfo = extern struct {
 
 const IID_IPMBackgroundWorkerInfo_Value = Guid.initString("7dd4531b-d3bf-4b6b-94f3-69c098b1497d");
 pub const IID_IPMBackgroundWorkerInfo = &IID_IPMBackgroundWorkerInfo_Value;
-pub const IPMBackgroundWorkerInfo = extern struct {
+pub const IPMBackgroundWorkerInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5578,6 +5614,7 @@ pub const IPMBackgroundWorkerInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5610,7 +5647,7 @@ pub const IPMBackgroundWorkerInfo = extern struct {
 
 const IID_IPMBackgroundServiceAgentInfoEnumerator_Value = Guid.initString("18eb2072-ab56-43b3-872c-beafb7a6b391");
 pub const IID_IPMBackgroundServiceAgentInfoEnumerator = &IID_IPMBackgroundServiceAgentInfoEnumerator_Value;
-pub const IPMBackgroundServiceAgentInfoEnumerator = extern struct {
+pub const IPMBackgroundServiceAgentInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5620,6 +5657,7 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5632,7 +5670,7 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern struct {
 
 const IID_IPMBackgroundWorkerInfoEnumerator_Value = Guid.initString("87f479f8-90d8-4ec7-92b9-72787e2f636b");
 pub const IID_IPMBackgroundWorkerInfoEnumerator = &IID_IPMBackgroundWorkerInfoEnumerator_Value;
-pub const IPMBackgroundWorkerInfoEnumerator = extern struct {
+pub const IPMBackgroundWorkerInfoEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -5642,6 +5680,7 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -70,7 +70,7 @@ pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
 
 const IID_IAudioMediaType_Value = Guid.initString("4e997f73-b71f-4798-873b-ed7dfcf15b4d");
 pub const IID_IAudioMediaType = &IID_IAudioMediaType_Value;
-pub const IAudioMediaType = extern struct {
+pub const IAudioMediaType = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsCompressedFormat: *const fn(
@@ -91,6 +91,7 @@ pub const IAudioMediaType = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -211,7 +212,7 @@ pub const eAudioConstrictionMute = EAudioConstriction.Mute;
 
 const IID_IAudioProcessingObjectRT_Value = Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
 pub const IID_IAudioProcessingObjectRT = &IID_IAudioProcessingObjectRT_Value;
-pub const IAudioProcessingObjectRT = extern struct {
+pub const IAudioProcessingObjectRT = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         APOProcess: *const fn(
@@ -231,6 +232,7 @@ pub const IAudioProcessingObjectRT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -251,7 +253,7 @@ pub const IAudioProcessingObjectRT = extern struct {
 
 const IID_IAudioProcessingObjectVBR_Value = Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
 pub const IID_IAudioProcessingObjectVBR = &IID_IAudioProcessingObjectVBR_Value;
-pub const IAudioProcessingObjectVBR = extern struct {
+pub const IAudioProcessingObjectVBR = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CalcMaxInputFrames: *const fn(
@@ -266,6 +268,7 @@ pub const IAudioProcessingObjectVBR = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -282,7 +285,7 @@ pub const IAudioProcessingObjectVBR = extern struct {
 
 const IID_IAudioProcessingObjectConfiguration_Value = Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
 pub const IID_IAudioProcessingObjectConfiguration = &IID_IAudioProcessingObjectConfiguration_Value;
-pub const IAudioProcessingObjectConfiguration = extern struct {
+pub const IAudioProcessingObjectConfiguration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LockForProcess: *const fn(
@@ -297,6 +300,7 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -313,7 +317,7 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
 
 const IID_IAudioProcessingObject_Value = Guid.initString("fd7f2b29-24d0-4b5c-b177-592c39f9ca10");
 pub const IID_IAudioProcessingObject = &IID_IAudioProcessingObject_Value;
-pub const IAudioProcessingObject = extern struct {
+pub const IAudioProcessingObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: *const fn(
@@ -350,6 +354,7 @@ pub const IAudioProcessingObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -386,7 +391,7 @@ pub const IAudioProcessingObject = extern struct {
 
 const IID_IAudioDeviceModulesClient_Value = Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
 pub const IID_IAudioDeviceModulesClient = &IID_IAudioDeviceModulesClient_Value;
-pub const IAudioDeviceModulesClient = extern struct {
+pub const IAudioDeviceModulesClient = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetAudioDeviceModulesManager: *const fn(
@@ -395,6 +400,7 @@ pub const IAudioDeviceModulesClient = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -412,11 +418,12 @@ pub const FNAPONOTIFICATIONCALLBACK = *const fn(
 
 const IID_IAudioSystemEffects_Value = Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
 pub const IID_IAudioSystemEffects = &IID_IAudioSystemEffects_Value;
-pub const IAudioSystemEffects = extern struct {
+pub const IAudioSystemEffects = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -425,7 +432,7 @@ pub const IAudioSystemEffects = extern struct {
 
 const IID_IAudioSystemEffects2_Value = Guid.initString("bafe99d2-7436-44ce-9e0e-4d89afbfff56");
 pub const IID_IAudioSystemEffects2 = &IID_IAudioSystemEffects2_Value;
-pub const IAudioSystemEffects2 = extern struct {
+pub const IAudioSystemEffects2 = extern union {
     pub const VTable = extern struct {
         base: IAudioSystemEffects.VTable,
         GetEffectsList: *const fn(
@@ -436,6 +443,7 @@ pub const IAudioSystemEffects2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IAudioSystemEffects: IAudioSystemEffects,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAudioSystemEffects.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -448,7 +456,7 @@ pub const IAudioSystemEffects2 = extern struct {
 
 const IID_IAudioSystemEffectsCustomFormats_Value = Guid.initString("b1176e34-bb7f-4f05-bebd-1b18a534e097");
 pub const IID_IAudioSystemEffectsCustomFormats = &IID_IAudioSystemEffectsCustomFormats_Value;
-pub const IAudioSystemEffectsCustomFormats = extern struct {
+pub const IAudioSystemEffectsCustomFormats = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFormatCount: *const fn(
@@ -467,6 +475,7 @@ pub const IAudioSystemEffectsCustomFormats = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -487,7 +496,7 @@ pub const IAudioSystemEffectsCustomFormats = extern struct {
 
 const IID_IApoAuxiliaryInputConfiguration_Value = Guid.initString("4ceb0aab-fa19-48ed-a857-87771ae1b768");
 pub const IID_IApoAuxiliaryInputConfiguration = &IID_IApoAuxiliaryInputConfiguration_Value;
-pub const IApoAuxiliaryInputConfiguration = extern struct {
+pub const IApoAuxiliaryInputConfiguration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAuxiliaryInput: *const fn(
@@ -508,6 +517,7 @@ pub const IApoAuxiliaryInputConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -528,7 +538,7 @@ pub const IApoAuxiliaryInputConfiguration = extern struct {
 
 const IID_IApoAuxiliaryInputRT_Value = Guid.initString("f851809c-c177-49a0-b1b2-b66f017943ab");
 pub const IID_IApoAuxiliaryInputRT = &IID_IApoAuxiliaryInputRT_Value;
-pub const IApoAuxiliaryInputRT = extern struct {
+pub const IApoAuxiliaryInputRT = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcceptInput: *const fn(
@@ -538,6 +548,7 @@ pub const IApoAuxiliaryInputRT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -550,11 +561,12 @@ pub const IApoAuxiliaryInputRT = extern struct {
 
 const IID_IApoAcousticEchoCancellation_Value = Guid.initString("25385759-3236-4101-a943-25693dfb5d2d");
 pub const IID_IApoAcousticEchoCancellation = &IID_IApoAcousticEchoCancellation_Value;
-pub const IApoAcousticEchoCancellation = extern struct {
+pub const IApoAcousticEchoCancellation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -602,7 +614,7 @@ pub const AUDIO_SYSTEMEFFECT = extern struct {
 
 const IID_IAudioSystemEffects3_Value = Guid.initString("c58b31cd-fc6a-4255-bc1f-ad29bb0a4a17");
 pub const IID_IAudioSystemEffects3 = &IID_IAudioSystemEffects3_Value;
-pub const IAudioSystemEffects3 = extern struct {
+pub const IAudioSystemEffects3 = extern union {
     pub const VTable = extern struct {
         base: IAudioSystemEffects2.VTable,
         GetControllableSystemEffectsList: *const fn(
@@ -618,6 +630,7 @@ pub const IAudioSystemEffects3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IAudioSystemEffects2: IAudioSystemEffects2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAudioSystemEffects2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -645,7 +658,7 @@ pub const APOInitSystemEffects3 = extern struct {
 
 const IID_IAudioProcessingObjectRTQueueService_Value = Guid.initString("acd65e2f-955b-4b57-b9bf-ac297bb752c9");
 pub const IID_IAudioProcessingObjectRTQueueService = &IID_IAudioProcessingObjectRTQueueService_Value;
-pub const IAudioProcessingObjectRTQueueService = extern struct {
+pub const IAudioProcessingObjectRTQueueService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRealTimeWorkQueue: *const fn(
@@ -654,6 +667,7 @@ pub const IAudioProcessingObjectRTQueueService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -681,7 +695,7 @@ pub const APO_LOG_LEVEL_VERBOSE = APO_LOG_LEVEL.VERBOSE;
 
 const IID_IAudioProcessingObjectLoggingService_Value = Guid.initString("698f0107-1745-4708-95a5-d84478a62a65");
 pub const IID_IAudioProcessingObjectLoggingService = &IID_IAudioProcessingObjectLoggingService_Value;
-pub const IAudioProcessingObjectLoggingService = extern struct {
+pub const IAudioProcessingObjectLoggingService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ApoLog: *const fn(
@@ -691,6 +705,7 @@ pub const IAudioProcessingObjectLoggingService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -764,7 +779,7 @@ pub const APO_NOTIFICATION_DESCRIPTOR = extern struct {
 
 const IID_IAudioProcessingObjectNotifications_Value = Guid.initString("56b0c76f-02fd-4b21-a52e-9f8219fc86e4");
 pub const IID_IAudioProcessingObjectNotifications = &IID_IAudioProcessingObjectNotifications_Value;
-pub const IAudioProcessingObjectNotifications = extern struct {
+pub const IAudioProcessingObjectNotifications = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetApoNotificationRegistrationInfo: *const fn(
@@ -778,6 +793,7 @@ pub const IAudioProcessingObjectNotifications = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -9,7 +9,7 @@
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWICImageEncoder_Value = Guid.initString("04c75bf8-3ce1-473b-acc5-3cc4f5e94999");
 pub const IID_IWICImageEncoder = &IID_IWICImageEncoder_Value;
-pub const IWICImageEncoder = extern struct {
+pub const IWICImageEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         WriteFrame: *const fn(
@@ -32,6 +32,7 @@ pub const IWICImageEncoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -53,7 +54,7 @@ pub const IWICImageEncoder = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWICImagingFactory2_Value = Guid.initString("7b816b45-1996-4476-b132-de9e247c8af0");
 pub const IID_IWICImagingFactory2 = &IID_IWICImagingFactory2_Value;
-pub const IWICImagingFactory2 = extern struct {
+pub const IWICImagingFactory2 = extern union {
     pub const VTable = extern struct {
         base: IWICImagingFactory.VTable,
         CreateImageEncoder: *const fn(
@@ -63,6 +64,7 @@ pub const IWICImagingFactory2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICImagingFactory: IWICImagingFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICImagingFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -30,7 +30,7 @@ pub const PFN_Direct3DCreate9On12 = *const fn(
 
 const IID_IDirect3DDevice9On12_Value = Guid.initString("e7fda234-b589-4049-940d-8878977531c8");
 pub const IID_IDirect3DDevice9On12 = &IID_IDirect3DDevice9On12_Value;
-pub const IDirect3DDevice9On12 = extern struct {
+pub const IDirect3DDevice9On12 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetD3D12Device: *const fn(
@@ -54,6 +54,7 @@ pub const IDirect3DDevice9On12 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

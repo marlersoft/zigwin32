@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IProtectionPolicyManagerInterop_Value = Guid.initString("4652651d-c1fe-4ba1-9f0a-c0f56596f721");
 pub const IID_IProtectionPolicyManagerInterop = &IID_IProtectionPolicyManagerInterop_Value;
-pub const IProtectionPolicyManagerInterop = extern struct {
+pub const IProtectionPolicyManagerInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         RequestAccessForWindowAsync: *const fn(
@@ -27,6 +27,7 @@ pub const IProtectionPolicyManagerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -43,7 +44,7 @@ pub const IProtectionPolicyManagerInterop = extern struct {
 
 const IID_IProtectionPolicyManagerInterop2_Value = Guid.initString("157cfbe4-a78d-4156-b384-61fdac41e686");
 pub const IID_IProtectionPolicyManagerInterop2 = &IID_IProtectionPolicyManagerInterop2_Value;
-pub const IProtectionPolicyManagerInterop2 = extern struct {
+pub const IProtectionPolicyManagerInterop2 = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         RequestAccessForAppWithWindowAsync: *const fn(
@@ -94,6 +95,7 @@ pub const IProtectionPolicyManagerInterop2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -122,7 +124,7 @@ pub const IProtectionPolicyManagerInterop2 = extern struct {
 
 const IID_IProtectionPolicyManagerInterop3_Value = Guid.initString("c1c03933-b398-4d93-b0fd-2972adf802c2");
 pub const IID_IProtectionPolicyManagerInterop3 = &IID_IProtectionPolicyManagerInterop3_Value;
-pub const IProtectionPolicyManagerInterop3 = extern struct {
+pub const IProtectionPolicyManagerInterop3 = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         RequestAccessWithBehaviorForWindowAsync: *const fn(
@@ -189,6 +191,7 @@ pub const IProtectionPolicyManagerInterop3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

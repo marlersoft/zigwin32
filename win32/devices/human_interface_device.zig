@@ -2541,7 +2541,7 @@ pub const DIEFFESCAPE = extern struct {
 
 const IID_IDirectInputEffect_Value = Guid.initString("e7e1f7c0-88d2-11d0-9ad0-00a0c9a06e35");
 pub const IID_IDirectInputEffect = &IID_IDirectInputEffect_Value;
-pub const IDirectInputEffect = extern struct {
+pub const IDirectInputEffect = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -2588,6 +2588,7 @@ pub const IDirectInputEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2996,7 +2997,7 @@ pub const DIDEVICEINSTANCEW = extern struct {
 
 const IID_IDirectInputDeviceW_Value = Guid.initString("5944e681-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDeviceW = &IID_IDirectInputDeviceW_Value;
-pub const IDirectInputDeviceW = extern struct {
+pub const IDirectInputDeviceW = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCapabilities: *const fn(
@@ -3073,6 +3074,7 @@ pub const IDirectInputDeviceW = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3141,7 +3143,7 @@ pub const IDirectInputDeviceW = extern struct {
 
 const IID_IDirectInputDeviceA_Value = Guid.initString("5944e680-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDeviceA = &IID_IDirectInputDeviceA_Value;
-pub const IDirectInputDeviceA = extern struct {
+pub const IDirectInputDeviceA = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCapabilities: *const fn(
@@ -3218,6 +3220,7 @@ pub const IDirectInputDeviceA = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3319,7 +3322,7 @@ pub const LPDIENUMCREATEDEFFECTOBJECTSCALLBACK = *const fn(
 
 const IID_IDirectInputDevice2W_Value = Guid.initString("5944e683-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDevice2W = &IID_IDirectInputDevice2W_Value;
-pub const IDirectInputDevice2W = extern struct {
+pub const IDirectInputDevice2W = extern union {
     pub const VTable = extern struct {
         base: IDirectInputDeviceW.VTable,
         CreateEffect: *const fn(
@@ -3370,6 +3373,7 @@ pub const IDirectInputDevice2W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputDeviceW: IDirectInputDeviceW,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDeviceW.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3414,7 +3418,7 @@ pub const IDirectInputDevice2W = extern struct {
 
 const IID_IDirectInputDevice2A_Value = Guid.initString("5944e682-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDevice2A = &IID_IDirectInputDevice2A_Value;
-pub const IDirectInputDevice2A = extern struct {
+pub const IDirectInputDevice2A = extern union {
     pub const VTable = extern struct {
         base: IDirectInputDeviceA.VTable,
         CreateEffect: *const fn(
@@ -3465,6 +3469,7 @@ pub const IDirectInputDevice2A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputDeviceA: IDirectInputDeviceA,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDeviceA.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3509,7 +3514,7 @@ pub const IDirectInputDevice2A = extern struct {
 
 const IID_IDirectInputDevice7W_Value = Guid.initString("57d7c6bd-2356-11d3-8e9d-00c04f6844ae");
 pub const IID_IDirectInputDevice7W = &IID_IDirectInputDevice7W_Value;
-pub const IDirectInputDevice7W = extern struct {
+pub const IDirectInputDevice7W = extern union {
     pub const VTable = extern struct {
         base: IDirectInputDevice2W.VTable,
         EnumEffectsInFile: *const fn(
@@ -3528,6 +3533,7 @@ pub const IDirectInputDevice7W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputDevice2W: IDirectInputDevice2W,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDevice2W.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3544,7 +3550,7 @@ pub const IDirectInputDevice7W = extern struct {
 
 const IID_IDirectInputDevice7A_Value = Guid.initString("57d7c6bc-2356-11d3-8e9d-00c04f6844ae");
 pub const IID_IDirectInputDevice7A = &IID_IDirectInputDevice7A_Value;
-pub const IDirectInputDevice7A = extern struct {
+pub const IDirectInputDevice7A = extern union {
     pub const VTable = extern struct {
         base: IDirectInputDevice2A.VTable,
         EnumEffectsInFile: *const fn(
@@ -3563,6 +3569,7 @@ pub const IDirectInputDevice7A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputDevice2A: IDirectInputDevice2A,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDevice2A.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3579,7 +3586,7 @@ pub const IDirectInputDevice7A = extern struct {
 
 const IID_IDirectInputDevice8W_Value = Guid.initString("54d41081-dc15-4833-a41b-748f73a38179");
 pub const IID_IDirectInputDevice8W = &IID_IDirectInputDevice8W_Value;
-pub const IDirectInputDevice8W = extern struct {
+pub const IDirectInputDevice8W = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCapabilities: *const fn(
@@ -3732,6 +3739,7 @@ pub const IDirectInputDevice8W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3856,7 +3864,7 @@ pub const IDirectInputDevice8W = extern struct {
 
 const IID_IDirectInputDevice8A_Value = Guid.initString("54d41080-dc15-4833-a41b-748f73a38179");
 pub const IID_IDirectInputDevice8A = &IID_IDirectInputDevice8A_Value;
-pub const IDirectInputDevice8A = extern struct {
+pub const IDirectInputDevice8A = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCapabilities: *const fn(
@@ -4009,6 +4017,7 @@ pub const IDirectInputDevice8A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4223,7 +4232,7 @@ pub const LPDIENUMDEVICESBYSEMANTICSCBW = *const fn(
 
 const IID_IDirectInputW_Value = Guid.initString("89521361-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInputW = &IID_IDirectInputW_Value;
-pub const IDirectInputW = extern struct {
+pub const IDirectInputW = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDevice: *const fn(
@@ -4255,6 +4264,7 @@ pub const IDirectInputW = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4283,7 +4293,7 @@ pub const IDirectInputW = extern struct {
 
 const IID_IDirectInputA_Value = Guid.initString("89521360-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInputA = &IID_IDirectInputA_Value;
-pub const IDirectInputA = extern struct {
+pub const IDirectInputA = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDevice: *const fn(
@@ -4315,6 +4325,7 @@ pub const IDirectInputA = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4343,7 +4354,7 @@ pub const IDirectInputA = extern struct {
 
 const IID_IDirectInput2W_Value = Guid.initString("5944e663-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInput2W = &IID_IDirectInput2W_Value;
-pub const IDirectInput2W = extern struct {
+pub const IDirectInput2W = extern union {
     pub const VTable = extern struct {
         base: IDirectInputW.VTable,
         FindDevice: *const fn(
@@ -4354,6 +4365,7 @@ pub const IDirectInput2W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputW: IDirectInputW,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputW.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4366,7 +4378,7 @@ pub const IDirectInput2W = extern struct {
 
 const IID_IDirectInput2A_Value = Guid.initString("5944e662-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInput2A = &IID_IDirectInput2A_Value;
-pub const IDirectInput2A = extern struct {
+pub const IDirectInput2A = extern union {
     pub const VTable = extern struct {
         base: IDirectInputA.VTable,
         FindDevice: *const fn(
@@ -4377,6 +4389,7 @@ pub const IDirectInput2A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInputA: IDirectInputA,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputA.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4389,7 +4402,7 @@ pub const IDirectInput2A = extern struct {
 
 const IID_IDirectInput7W_Value = Guid.initString("9a4cb685-236d-11d3-8e9d-00c04f6844ae");
 pub const IID_IDirectInput7W = &IID_IDirectInput7W_Value;
-pub const IDirectInput7W = extern struct {
+pub const IDirectInput7W = extern union {
     pub const VTable = extern struct {
         base: IDirectInput2W.VTable,
         CreateDeviceEx: *const fn(
@@ -4401,6 +4414,7 @@ pub const IDirectInput7W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInput2W: IDirectInput2W,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInput2W.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4413,7 +4427,7 @@ pub const IDirectInput7W = extern struct {
 
 const IID_IDirectInput7A_Value = Guid.initString("9a4cb684-236d-11d3-8e9d-00c04f6844ae");
 pub const IID_IDirectInput7A = &IID_IDirectInput7A_Value;
-pub const IDirectInput7A = extern struct {
+pub const IDirectInput7A = extern union {
     pub const VTable = extern struct {
         base: IDirectInput2A.VTable,
         CreateDeviceEx: *const fn(
@@ -4425,6 +4439,7 @@ pub const IDirectInput7A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectInput2A: IDirectInput2A,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInput2A.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4437,7 +4452,7 @@ pub const IDirectInput7A = extern struct {
 
 const IID_IDirectInput8W_Value = Guid.initString("bf798031-483a-4da2-aa99-5d64ed369700");
 pub const IID_IDirectInput8W = &IID_IDirectInput8W_Value;
-pub const IDirectInput8W = extern struct {
+pub const IDirectInput8W = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDevice: *const fn(
@@ -4490,6 +4505,7 @@ pub const IDirectInput8W = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4530,7 +4546,7 @@ pub const IDirectInput8W = extern struct {
 
 const IID_IDirectInput8A_Value = Guid.initString("bf798030-483a-4da2-aa99-5d64ed369700");
 pub const IID_IDirectInput8A = &IID_IDirectInput8A_Value;
-pub const IDirectInput8A = extern struct {
+pub const IDirectInput8A = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDevice: *const fn(
@@ -4583,6 +4599,7 @@ pub const IDirectInput8A = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4682,7 +4699,7 @@ pub const DIHIDFFINITINFO = extern struct {
 
 const IID_IDirectInputEffectDriver_Value = Guid.initString("02538130-898f-11d0-9ad0-00a0c9a06e35");
 pub const IID_IDirectInputEffectDriver = &IID_IDirectInputEffectDriver_Value;
-pub const IDirectInputEffectDriver = extern struct {
+pub const IDirectInputEffectDriver = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeviceID: *const fn(
@@ -4751,6 +4768,7 @@ pub const IDirectInputEffectDriver = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4913,7 +4931,7 @@ pub const DIJOYUSERVALUES = extern struct {
 
 const IID_IDirectInputJoyConfig_Value = Guid.initString("1de12ab1-c9f5-11cf-bfc7-444553540000");
 pub const IID_IDirectInputJoyConfig = &IID_IDirectInputJoyConfig_Value;
-pub const IDirectInputJoyConfig = extern struct {
+pub const IDirectInputJoyConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Acquire: *const fn(
@@ -4996,6 +5014,7 @@ pub const IDirectInputJoyConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5068,7 +5087,7 @@ pub const IDirectInputJoyConfig = extern struct {
 
 const IID_IDirectInputJoyConfig8_Value = Guid.initString("eb0d7dfa-1990-4f27-b4d6-edf2eec4a44c");
 pub const IID_IDirectInputJoyConfig8 = &IID_IDirectInputJoyConfig8_Value;
-pub const IDirectInputJoyConfig8 = extern struct {
+pub const IDirectInputJoyConfig8 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Acquire: *const fn(
@@ -5150,6 +5169,7 @@ pub const IDirectInputJoyConfig8 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

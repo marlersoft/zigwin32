@@ -244,7 +244,7 @@ pub const STAT_CHUNK = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IFilter_Value = Guid.initString("89bcb740-6119-101a-bcb7-00dd010655af");
 pub const IID_IFilter = &IID_IFilter_Value;
-pub const IFilter = extern struct {
+pub const IFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: *const fn(
@@ -275,6 +275,7 @@ pub const IFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) i32,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -304,7 +305,7 @@ pub const IFilter = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPhraseSink_Value = Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
-pub const IPhraseSink = extern struct {
+pub const IPhraseSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PutSmallPhrase: *const fn(
@@ -322,6 +323,7 @@ pub const IPhraseSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

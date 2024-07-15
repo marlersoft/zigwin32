@@ -29,7 +29,7 @@ pub const CLSID_RoleAssociationUtil = &CLSID_RoleAssociationUtil_Value;
 
 const IID_ICatalog_Value = Guid.initString("6eb22870-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_ICatalog = &IID_ICatalog_Value;
-pub const ICatalog = extern struct {
+pub const ICatalog = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetCollection: *const fn(
@@ -54,6 +54,7 @@ pub const ICatalog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -78,7 +79,7 @@ pub const ICatalog = extern struct {
 
 const IID_IComponentUtil_Value = Guid.initString("6eb22873-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IComponentUtil = &IID_IComponentUtil_Value;
-pub const IComponentUtil = extern struct {
+pub const IComponentUtil = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallComponent: *const fn(
@@ -103,6 +104,7 @@ pub const IComponentUtil = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -127,7 +129,7 @@ pub const IComponentUtil = extern struct {
 
 const IID_IPackageUtil_Value = Guid.initString("6eb22874-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IPackageUtil = &IID_IPackageUtil_Value;
-pub const IPackageUtil = extern struct {
+pub const IPackageUtil = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallPackage: *const fn(
@@ -148,6 +150,7 @@ pub const IPackageUtil = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -168,7 +171,7 @@ pub const IPackageUtil = extern struct {
 
 const IID_IRemoteComponentUtil_Value = Guid.initString("6eb22875-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IRemoteComponentUtil = &IID_IRemoteComponentUtil_Value;
-pub const IRemoteComponentUtil = extern struct {
+pub const IRemoteComponentUtil = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallRemoteComponent: *const fn(
@@ -185,6 +188,7 @@ pub const IRemoteComponentUtil = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -201,7 +205,7 @@ pub const IRemoteComponentUtil = extern struct {
 
 const IID_IRoleAssociationUtil_Value = Guid.initString("6eb22876-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IRoleAssociationUtil = &IID_IRoleAssociationUtil_Value;
-pub const IRoleAssociationUtil = extern struct {
+pub const IRoleAssociationUtil = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         AssociateRole: *const fn(
@@ -214,6 +218,7 @@ pub const IRoleAssociationUtil = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

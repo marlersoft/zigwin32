@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IWindowsDevicesAllJoynBusAttachmentInterop_Value = Guid.initString("fd89c65b-b50e-4a19-9d0c-b42b783281cd");
 pub const IID_IWindowsDevicesAllJoynBusAttachmentInterop = &IID_IWindowsDevicesAllJoynBusAttachmentInterop_Value;
-pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern struct {
+pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -18,6 +18,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30,7 +31,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern struct {
 
 const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value = Guid.initString("4b8f7505-b239-4e7b-88af-f6682575d861");
 pub const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop = &IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value;
-pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
+pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromWin32Handle: *const fn(
@@ -42,6 +43,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -54,7 +56,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
 
 const IID_IWindowsDevicesAllJoynBusObjectInterop_Value = Guid.initString("d78aa3d5-5054-428f-99f2-ec3a5de3c3bc");
 pub const IID_IWindowsDevicesAllJoynBusObjectInterop = &IID_IWindowsDevicesAllJoynBusObjectInterop_Value;
-pub const IWindowsDevicesAllJoynBusObjectInterop = extern struct {
+pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         AddPropertyGetHandler: *const fn(
@@ -76,6 +78,7 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -96,7 +99,7 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern struct {
 
 const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value = Guid.initString("6174e506-8b95-4e36-95c0-b88fed34938c");
 pub const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop = &IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value;
-pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
+pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromWin32Handle: *const fn(
@@ -107,6 +110,7 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

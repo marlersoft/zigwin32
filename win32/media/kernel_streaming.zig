@@ -670,7 +670,7 @@ pub const IKsAllocatorEx = extern struct {
 
 const IID_IKsControl_Value = Guid.initString("28f54685-06fd-11d2-b27a-00a0c9223196");
 pub const IID_IKsControl = &IID_IKsControl_Value;
-pub const IKsControl = extern struct {
+pub const IKsControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         KsProperty: *const fn(
@@ -699,6 +699,7 @@ pub const IKsControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -720,7 +721,7 @@ pub const IKsControl = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKsFormatSupport_Value = Guid.initString("3cb4a69d-bb6f-4d2b-95b7-452d2c155db5");
 pub const IID_IKsFormatSupport = &IID_IKsFormatSupport_Value;
-pub const IKsFormatSupport = extern struct {
+pub const IKsFormatSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsFormatSupported: *const fn(
@@ -735,6 +736,7 @@ pub const IKsFormatSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -752,7 +754,7 @@ pub const IKsFormatSupport = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKsJackDescription_Value = Guid.initString("4509f757-2d46-4637-8e62-ce7db944f57b");
 pub const IID_IKsJackDescription = &IID_IKsJackDescription_Value;
-pub const IKsJackDescription = extern struct {
+pub const IKsJackDescription = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackCount: *const fn(
@@ -766,6 +768,7 @@ pub const IKsJackDescription = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -783,7 +786,7 @@ pub const IKsJackDescription = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IKsJackDescription2_Value = Guid.initString("478f3a9b-e0c9-4827-9228-6f5505ffe76a");
 pub const IID_IKsJackDescription2 = &IID_IKsJackDescription2_Value;
-pub const IKsJackDescription2 = extern struct {
+pub const IKsJackDescription2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackCount: *const fn(
@@ -797,6 +800,7 @@ pub const IKsJackDescription2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -814,7 +818,7 @@ pub const IKsJackDescription2 = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IKsJackSinkInformation_Value = Guid.initString("d9bd72ed-290f-4581-9ff3-61027a8fe532");
 pub const IID_IKsJackSinkInformation = &IID_IKsJackSinkInformation_Value;
-pub const IKsJackSinkInformation = extern struct {
+pub const IKsJackSinkInformation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackSinkInformation: *const fn(
@@ -823,6 +827,7 @@ pub const IKsJackSinkInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -835,7 +840,7 @@ pub const IKsJackSinkInformation = extern struct {
 
 const IID_IKsJackContainerId_Value = Guid.initString("c99af463-d629-4ec4-8c00-e54d68154248");
 pub const IID_IKsJackContainerId = &IID_IKsJackContainerId_Value;
-pub const IKsJackContainerId = extern struct {
+pub const IKsJackContainerId = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackContainerId: *const fn(
@@ -844,6 +849,7 @@ pub const IKsJackContainerId = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7124,7 +7130,7 @@ pub const CLSID_CLSID_Proxy = &CLSID_CLSID_Proxy_Value;
 
 const IID_IKsPropertySet_Value = Guid.initString("31efac30-515c-11d0-a9aa-00aa0061be93");
 pub const IID_IKsPropertySet = &IID_IKsPropertySet_Value;
-pub const IKsPropertySet = extern struct {
+pub const IKsPropertySet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Set: *const fn(
@@ -7158,6 +7164,7 @@ pub const IKsPropertySet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7178,7 +7185,7 @@ pub const IKsPropertySet = extern struct {
 
 const IID_IKsAggregateControl_Value = Guid.initString("7f40eac0-3947-11d2-874e-00a0c9223196");
 pub const IID_IKsAggregateControl = &IID_IKsAggregateControl_Value;
-pub const IKsAggregateControl = extern struct {
+pub const IKsAggregateControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         KsAddAggregate: *const fn(
@@ -7191,6 +7198,7 @@ pub const IKsAggregateControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7207,7 +7215,7 @@ pub const IKsAggregateControl = extern struct {
 
 const IID_IKsTopology_Value = Guid.initString("28f54683-06fd-11d2-b27a-00a0c9223196");
 pub const IID_IKsTopology = &IID_IKsTopology_Value;
-pub const IKsTopology = extern struct {
+pub const IKsTopology = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateNodeInstance: *const fn(
@@ -7221,6 +7229,7 @@ pub const IKsTopology = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -9,7 +9,7 @@ pub const E_SURFACE_CONTENTS_LOST = @as(u32, 2150301728);
 //--------------------------------------------------------------------------------
 const IID_ISurfaceImageSourceNative_Value = Guid.initString("f2e9edc1-d307-4525-9886-0fafaa44163c");
 pub const IID_ISurfaceImageSourceNative = &IID_ISurfaceImageSourceNative_Value;
-pub const ISurfaceImageSourceNative = extern struct {
+pub const ISurfaceImageSourceNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDevice: *const fn(
@@ -27,6 +27,7 @@ pub const ISurfaceImageSourceNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -47,7 +48,7 @@ pub const ISurfaceImageSourceNative = extern struct {
 
 const IID_IVirtualSurfaceUpdatesCallbackNative_Value = Guid.initString("dbf2e947-8e6c-4254-9eee-7738f71386c9");
 pub const IID_IVirtualSurfaceUpdatesCallbackNative = &IID_IVirtualSurfaceUpdatesCallbackNative_Value;
-pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
+pub const IVirtualSurfaceUpdatesCallbackNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         UpdatesNeeded: *const fn(
@@ -55,6 +56,7 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -67,7 +69,7 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
 
 const IID_IVirtualSurfaceImageSourceNative_Value = Guid.initString("e9550983-360b-4f53-b391-afd695078691");
 pub const IID_IVirtualSurfaceImageSourceNative = &IID_IVirtualSurfaceImageSourceNative_Value;
-pub const IVirtualSurfaceImageSourceNative = extern struct {
+pub const IVirtualSurfaceImageSourceNative = extern union {
     pub const VTable = extern struct {
         base: ISurfaceImageSourceNative.VTable,
         Invalidate: *const fn(
@@ -98,6 +100,7 @@ pub const IVirtualSurfaceImageSourceNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISurfaceImageSourceNative: ISurfaceImageSourceNative,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISurfaceImageSourceNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -130,7 +133,7 @@ pub const IVirtualSurfaceImageSourceNative = extern struct {
 
 const IID_ISwapChainBackgroundPanelNative_Value = Guid.initString("43bebd4e-add5-4035-8f85-5608d08e9dc9");
 pub const IID_ISwapChainBackgroundPanelNative = &IID_ISwapChainBackgroundPanelNative_Value;
-pub const ISwapChainBackgroundPanelNative = extern struct {
+pub const ISwapChainBackgroundPanelNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetSwapChain: *const fn(
@@ -139,6 +142,7 @@ pub const ISwapChainBackgroundPanelNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -151,7 +155,7 @@ pub const ISwapChainBackgroundPanelNative = extern struct {
 
 const IID_ISurfaceImageSourceManagerNative_Value = Guid.initString("4c8798b7-1d88-4a0f-b59b-b93f600de8c8");
 pub const IID_ISurfaceImageSourceManagerNative = &IID_ISurfaceImageSourceManagerNative_Value;
-pub const ISurfaceImageSourceManagerNative = extern struct {
+pub const ISurfaceImageSourceManagerNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FlushAllSurfacesWithDevice: *const fn(
@@ -160,6 +164,7 @@ pub const ISurfaceImageSourceManagerNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -172,7 +177,7 @@ pub const ISurfaceImageSourceManagerNative = extern struct {
 
 const IID_ISurfaceImageSourceNativeWithD2D_Value = Guid.initString("54298223-41e1-4a41-9c08-02e8256864a1");
 pub const IID_ISurfaceImageSourceNativeWithD2D = &IID_ISurfaceImageSourceNativeWithD2D_Value;
-pub const ISurfaceImageSourceNativeWithD2D = extern struct {
+pub const ISurfaceImageSourceNativeWithD2D = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDevice: *const fn(
@@ -197,6 +202,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -225,7 +231,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
 
 const IID_ISwapChainPanelNative_Value = Guid.initString("f92f19d2-3ade-45a6-a20c-f6f1ea90554b");
 pub const IID_ISwapChainPanelNative = &IID_ISwapChainPanelNative_Value;
-pub const ISwapChainPanelNative = extern struct {
+pub const ISwapChainPanelNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetSwapChain: *const fn(
@@ -234,6 +240,7 @@ pub const ISwapChainPanelNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -246,7 +253,7 @@ pub const ISwapChainPanelNative = extern struct {
 
 const IID_ISwapChainPanelNative2_Value = Guid.initString("d5a2f60c-37b2-44a2-937b-8d8eb9726821");
 pub const IID_ISwapChainPanelNative2 = &IID_ISwapChainPanelNative2_Value;
-pub const ISwapChainPanelNative2 = extern struct {
+pub const ISwapChainPanelNative2 = extern union {
     pub const VTable = extern struct {
         base: ISwapChainPanelNative.VTable,
         SetSwapChainHandle: *const fn(
@@ -255,6 +262,7 @@ pub const ISwapChainPanelNative2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISwapChainPanelNative: ISwapChainPanelNative,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISwapChainPanelNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -267,7 +275,7 @@ pub const ISwapChainPanelNative2 = extern struct {
 
 const IID_IDesktopWindowXamlSourceNative_Value = Guid.initString("3cbcf1bf-2f76-4e9c-96ab-e84b37972554");
 pub const IID_IDesktopWindowXamlSourceNative = &IID_IDesktopWindowXamlSourceNative_Value;
-pub const IDesktopWindowXamlSourceNative = extern struct {
+pub const IDesktopWindowXamlSourceNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AttachToWindow: *const fn(
@@ -281,6 +289,7 @@ pub const IDesktopWindowXamlSourceNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -297,7 +306,7 @@ pub const IDesktopWindowXamlSourceNative = extern struct {
 
 const IID_IDesktopWindowXamlSourceNative2_Value = Guid.initString("e3dcd8c7-3057-4692-99c3-7b7720afda31");
 pub const IID_IDesktopWindowXamlSourceNative2 = &IID_IDesktopWindowXamlSourceNative2_Value;
-pub const IDesktopWindowXamlSourceNative2 = extern struct {
+pub const IDesktopWindowXamlSourceNative2 = extern union {
     pub const VTable = extern struct {
         base: IDesktopWindowXamlSourceNative.VTable,
         PreTranslateMessage: *const fn(
@@ -307,6 +316,7 @@ pub const IDesktopWindowXamlSourceNative2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDesktopWindowXamlSourceNative: IDesktopWindowXamlSourceNative,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDesktopWindowXamlSourceNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -319,7 +329,7 @@ pub const IDesktopWindowXamlSourceNative2 = extern struct {
 
 const IID_IReferenceTrackerTarget_Value = Guid.initString("64bd43f8-bfee-4ec4-b7eb-2935158dae21");
 pub const IID_IReferenceTrackerTarget = &IID_IReferenceTrackerTarget_Value;
-pub const IReferenceTrackerTarget = extern struct {
+pub const IReferenceTrackerTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddRefFromReferenceTracker: *const fn(
@@ -336,6 +346,7 @@ pub const IReferenceTrackerTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -360,7 +371,7 @@ pub const IReferenceTrackerTarget = extern struct {
 
 const IID_IReferenceTracker_Value = Guid.initString("11d3b13a-180e-4789-a8be-7712882893e6");
 pub const IID_IReferenceTracker = &IID_IReferenceTracker_Value;
-pub const IReferenceTracker = extern struct {
+pub const IReferenceTracker = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ConnectFromTrackerSource: *const fn(
@@ -388,6 +399,7 @@ pub const IReferenceTracker = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -424,7 +436,7 @@ pub const IReferenceTracker = extern struct {
 
 const IID_IReferenceTrackerManager_Value = Guid.initString("3cf184b4-7ccb-4dda-8455-7e6ce99a3298");
 pub const IID_IReferenceTrackerManager = &IID_IReferenceTrackerManager_Value;
-pub const IReferenceTrackerManager = extern struct {
+pub const IReferenceTrackerManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReferenceTrackingStarted: *const fn(
@@ -443,6 +455,7 @@ pub const IReferenceTrackerManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -467,7 +480,7 @@ pub const IReferenceTrackerManager = extern struct {
 
 const IID_IFindReferenceTargetsCallback_Value = Guid.initString("04b3486c-4687-4229-8d14-505ab584dd88");
 pub const IID_IFindReferenceTargetsCallback = &IID_IFindReferenceTargetsCallback_Value;
-pub const IFindReferenceTargetsCallback = extern struct {
+pub const IFindReferenceTargetsCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FoundTrackerTarget: *const fn(
@@ -476,6 +489,7 @@ pub const IFindReferenceTargetsCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -495,7 +509,7 @@ pub const XAML_REFERENCETRACKER_DISCONNECT_SUSPEND = XAML_REFERENCETRACKER_DISCO
 
 const IID_IReferenceTrackerHost_Value = Guid.initString("29a71c6a-3c42-4416-a39d-e2825a07a773");
 pub const IID_IReferenceTrackerHost = &IID_IReferenceTrackerHost_Value;
-pub const IReferenceTrackerHost = extern struct {
+pub const IReferenceTrackerHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DisconnectUnusedReferenceSources: *const fn(
@@ -523,6 +537,7 @@ pub const IReferenceTrackerHost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -555,11 +570,12 @@ pub const IReferenceTrackerHost = extern struct {
 
 const IID_IReferenceTrackerExtension_Value = Guid.initString("4e897caa-59d5-4613-8f8c-f7ebd1f399b0");
 pub const IID_IReferenceTrackerExtension = &IID_IReferenceTrackerExtension_Value;
-pub const IReferenceTrackerExtension = extern struct {
+pub const IReferenceTrackerExtension = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -572,7 +588,7 @@ pub const TrackerHandle__ = extern struct {
 
 const IID_ITrackerOwner_Value = Guid.initString("eb24c20b-9816-4ac7-8cff-36f67a118f4e");
 pub const IID_ITrackerOwner = &IID_ITrackerOwner_Value;
-pub const ITrackerOwner = extern struct {
+pub const ITrackerOwner = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTrackerHandle: *const fn(
@@ -595,6 +611,7 @@ pub const ITrackerOwner = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u8,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

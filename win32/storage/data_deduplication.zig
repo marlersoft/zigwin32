@@ -31,7 +31,7 @@ pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.OPTIMIZE
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
-pub const IDedupReadFileCallback = extern struct {
+pub const IDedupReadFileCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadBackupFile: *const fn(
@@ -58,6 +58,7 @@ pub const IDedupReadFileCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -79,7 +80,7 @@ pub const IDedupReadFileCallback = extern struct {
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupBackupSupport_Value = Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
-pub const IDedupBackupSupport = extern struct {
+pub const IDedupBackupSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RestoreFiles: *const fn(
@@ -92,6 +93,7 @@ pub const IDedupBackupSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -124,7 +126,7 @@ pub const DEDUP_CHUNK_INFO_HASH32 = extern struct {
 
 const IID_IDedupChunkLibrary_Value = Guid.initString("bb5144d7-2720-4dcc-8777-78597416ec23");
 pub const IID_IDedupChunkLibrary = &IID_IDedupChunkLibrary_Value;
-pub const IDedupChunkLibrary = extern struct {
+pub const IDedupChunkLibrary = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeForPushBuffers: *const fn(
@@ -145,6 +147,7 @@ pub const IDedupChunkLibrary = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -169,7 +172,7 @@ pub const IDedupChunkLibrary = extern struct {
 
 const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
 pub const IID_IDedupIterateChunksHash32 = &IID_IDedupIterateChunksHash32_Value;
-pub const IDedupIterateChunksHash32 = extern struct {
+pub const IDedupIterateChunksHash32 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PushBuffer: *const fn(
@@ -191,6 +194,7 @@ pub const IDedupIterateChunksHash32 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -311,7 +315,7 @@ pub const CLSID_DedupDataPort = &CLSID_DedupDataPort_Value;
 
 const IID_IDedupDataPort_Value = Guid.initString("7963d734-40a9-4ea3-bbf6-5a89d26f7ae8");
 pub const IID_IDedupDataPort = &IID_IDedupDataPort_Value;
-pub const IDedupDataPort = extern struct {
+pub const IDedupDataPort = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: *const fn(
@@ -409,6 +413,7 @@ pub const IDedupDataPort = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -465,7 +470,7 @@ pub const IDedupDataPort = extern struct {
 
 const IID_IDedupDataPortManager_Value = Guid.initString("44677452-b90a-445e-8192-cdcfe81511fb");
 pub const IID_IDedupDataPortManager = &IID_IDedupDataPortManager_Value;
-pub const IDedupDataPortManager = extern struct {
+pub const IDedupDataPortManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetConfiguration: *const fn(
@@ -490,6 +495,7 @@ pub const IDedupDataPortManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -17,7 +17,7 @@ pub const CpAicLaunchAdminProcess = CreateProcessMethod.AicLaunchAdminProcess;
 
 const IID_IDDEInitializer_Value = Guid.initString("30dc931f-33fc-4ffd-a168-942258cf3ca4");
 pub const IID_IDDEInitializer = &IID_IDDEInitializer_Value;
-pub const IDDEInitializer = extern struct {
+pub const IDDEInitializer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -34,6 +34,7 @@ pub const IDDEInitializer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
