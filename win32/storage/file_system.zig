@@ -3373,7 +3373,52 @@ pub const IDiskQuotaUser = extern union {
             return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetAccountStatus(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetID(self: *const IDiskQuotaUser, pulID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetID(@as(*const IDiskQuotaUser, @ptrCast(self)), pulID);
+    }
+    pub fn GetName(self: *const IDiskQuotaUser, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetName(@as(*const IDiskQuotaUser, @ptrCast(self)), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
+    }
+    pub fn GetSidLength(self: *const IDiskQuotaUser, pdwLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSidLength(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwLength);
+    }
+    pub fn GetSid(self: *const IDiskQuotaUser, pbSidBuffer: ?*u8, cbSidBuffer: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSid(@as(*const IDiskQuotaUser, @ptrCast(self)), pbSidBuffer, cbSidBuffer);
+    }
+    pub fn GetQuotaThreshold(self: *const IDiskQuotaUser, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), pllThreshold);
+    }
+    pub fn GetQuotaThresholdText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThresholdText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
+    }
+    pub fn GetQuotaLimit(self: *const IDiskQuotaUser, pllLimit: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), pllLimit);
+    }
+    pub fn GetQuotaLimitText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimitText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
+    }
+    pub fn GetQuotaUsed(self: *const IDiskQuotaUser, pllUsed: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsed(@as(*const IDiskQuotaUser, @ptrCast(self)), pllUsed);
+    }
+    pub fn GetQuotaUsedText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsedText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
+    }
+    pub fn GetQuotaInformation(self: *const IDiskQuotaUser, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaInformation(@as(*const IDiskQuotaUser, @ptrCast(self)), pbQuotaInfo, cbQuotaInfo);
+    }
+    pub fn SetQuotaThreshold(self: *const IDiskQuotaUser, llThreshold: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), llThreshold, fWriteThrough);
+    }
+    pub fn SetQuotaLimit(self: *const IDiskQuotaUser, llLimit: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), llLimit, fWriteThrough);
+    }
+    pub fn Invalidate(self: *const IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IDiskQuotaUser, @ptrCast(self)));
+    }
+    pub fn GetAccountStatus(self: *const IDiskQuotaUser, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetAccountStatus(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3421,7 +3466,19 @@ pub const IEnumDiskQuotaUsers = extern union {
             return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumDiskQuotaUsers, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers, rgUsers, pcUsersFetched);
+    }
+    pub fn Skip(self: *const IEnumDiskQuotaUsers, cUsers: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers);
+    }
+    pub fn Reset(self: *const IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumDiskQuotaUsers, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
+        return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3466,7 +3523,19 @@ pub const IDiskQuotaUserBatch = extern union {
             return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).FlushToDisk(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Add(self: *const IDiskQuotaUserBatch, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Add(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
+    }
+    pub fn Remove(self: *const IDiskQuotaUserBatch, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
+    }
+    pub fn RemoveAll(self: *const IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
+    }
+    pub fn FlushToDisk(self: *const IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).FlushToDisk(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3660,7 +3729,70 @@ pub const IDiskQuotaControl = extern union {
             return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).ShutdownNameResolution(@as(*const IDiskQuotaControl, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IConnectionPointContainer.MethodMixin(@This());
+    pub fn Initialize(self: *const IDiskQuotaControl, pszPath: ?[*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDiskQuotaControl, @ptrCast(self)), pszPath, bReadWrite);
+    }
+    pub fn SetQuotaState(self: *const IDiskQuotaControl, dwState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), dwState);
+    }
+    pub fn GetQuotaState(self: *const IDiskQuotaControl, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwState);
+    }
+    pub fn SetQuotaLogFlags(self: *const IDiskQuotaControl, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), dwFlags);
+    }
+    pub fn GetQuotaLogFlags(self: *const IDiskQuotaControl, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwFlags);
+    }
+    pub fn SetDefaultQuotaThreshold(self: *const IDiskQuotaControl, llThreshold: i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), llThreshold);
+    }
+    pub fn GetDefaultQuotaThreshold(self: *const IDiskQuotaControl, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), pllThreshold);
+    }
+    pub fn GetDefaultQuotaThresholdText(self: *const IDiskQuotaControl, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThresholdText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
+    }
+    pub fn SetDefaultQuotaLimit(self: *const IDiskQuotaControl, llLimit: i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), llLimit);
+    }
+    pub fn GetDefaultQuotaLimit(self: *const IDiskQuotaControl, pllLimit: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), pllLimit);
+    }
+    pub fn GetDefaultQuotaLimitText(self: *const IDiskQuotaControl, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimitText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
+    }
+    pub fn AddUserSid(self: *const IDiskQuotaControl, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
+    }
+    pub fn AddUserName(self: *const IDiskQuotaControl, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, fNameResolution, ppUser);
+    }
+    pub fn DeleteUser(self: *const IDiskQuotaControl, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).DeleteUser(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
+    }
+    pub fn FindUserSid(self: *const IDiskQuotaControl, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
+    }
+    pub fn FindUserName(self: *const IDiskQuotaControl, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, ppUser);
+    }
+    pub fn CreateEnumUsers(self: *const IDiskQuotaControl, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateEnumUsers(@as(*const IDiskQuotaControl, @ptrCast(self)), rgpUserSids, cpSids, fNameResolution, ppEnum);
+    }
+    pub fn CreateUserBatch(self: *const IDiskQuotaControl, ppBatch: ?*?*IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateUserBatch(@as(*const IDiskQuotaControl, @ptrCast(self)), ppBatch);
+    }
+    pub fn InvalidateSidNameCache(self: *const IDiskQuotaControl) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).InvalidateSidNameCache(@as(*const IDiskQuotaControl, @ptrCast(self)));
+    }
+    pub fn GiveUserNameResolutionPriority(self: *const IDiskQuotaControl, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GiveUserNameResolutionPriority(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
+    }
+    pub fn ShutdownNameResolution(self: *const IDiskQuotaControl) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).ShutdownNameResolution(@as(*const IDiskQuotaControl, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3683,7 +3815,10 @@ pub const IDiskQuotaEvents = extern union {
             return @as(*const IDiskQuotaEvents.VTable, @ptrCast(self.vtable)).OnUserNameChanged(@as(*const IDiskQuotaEvents, @ptrCast(self)), pUser);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnUserNameChanged(self: *const IDiskQuotaEvents, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
+        return @as(*const IDiskQuotaEvents.VTable, @ptrCast(self.vtable)).OnUserNameChanged(@as(*const IDiskQuotaEvents, @ptrCast(self)), pUser);
+    }
 };
 
 pub const EFS_CERTIFICATE_BLOB = extern struct {

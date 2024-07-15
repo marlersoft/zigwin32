@@ -48,7 +48,10 @@ pub const IXpsPrintJobStream = extern union {
             return @as(*const IXpsPrintJobStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsPrintJobStream, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISequentialStream.MethodMixin(@This());
+    pub fn Close(self: *const IXpsPrintJobStream) callconv(.Inline) HRESULT {
+        return @as(*const IXpsPrintJobStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsPrintJobStream, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -78,7 +81,13 @@ pub const IXpsPrintJob = extern union {
             return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).GetJobStatus(@as(*const IXpsPrintJob, @ptrCast(self)), jobStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Cancel(self: *const IXpsPrintJob) callconv(.Inline) HRESULT {
+        return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IXpsPrintJob, @ptrCast(self)));
+    }
+    pub fn GetJobStatus(self: *const IXpsPrintJob, jobStatus: ?*XPS_JOB_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).GetJobStatus(@as(*const IXpsPrintJob, @ptrCast(self)), jobStatus);
+    }
 };
 
 const CLSID_PrintDocumentPackageTarget_Value = Guid.initString("4842669e-9947-46ea-8ba2-d8cce432c2ca");
@@ -125,7 +134,16 @@ pub const IPrintDocumentPackageTarget = extern union {
             return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPackageTargetTypes(self: *const IPrintDocumentPackageTarget, targetCount: ?*u32, targetTypes: [*]?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTargetTypes(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), targetCount, targetTypes);
+    }
+    pub fn GetPackageTarget(self: *const IPrintDocumentPackageTarget, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTarget(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), guidTargetType, riid, ppvTarget);
+    }
+    pub fn Cancel(self: *const IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
+        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)));
+    }
 };
 
 pub const PrintDocumentPackageCompletion = enum(i32) {
@@ -168,7 +186,10 @@ pub const IPrintDocumentPackageStatusEvent = extern union {
             return @as(*const IPrintDocumentPackageStatusEvent.VTable, @ptrCast(self.vtable)).PackageStatusUpdated(@as(*const IPrintDocumentPackageStatusEvent, @ptrCast(self)), packageStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn PackageStatusUpdated(self: *const IPrintDocumentPackageStatusEvent, packageStatus: ?*PrintDocumentPackageStatus) callconv(.Inline) HRESULT {
+        return @as(*const IPrintDocumentPackageStatusEvent.VTable, @ptrCast(self.vtable)).PackageStatusUpdated(@as(*const IPrintDocumentPackageStatusEvent, @ptrCast(self)), packageStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -195,7 +216,10 @@ pub const IPrintDocumentPackageTargetFactory = extern union {
             return @as(*const IPrintDocumentPackageTargetFactory.VTable, @ptrCast(self.vtable)).CreateDocumentPackageTargetForPrintJob(@as(*const IPrintDocumentPackageTargetFactory, @ptrCast(self)), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateDocumentPackageTargetForPrintJob(self: *const IPrintDocumentPackageTargetFactory, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
+        return @as(*const IPrintDocumentPackageTargetFactory.VTable, @ptrCast(self.vtable)).CreateDocumentPackageTargetForPrintJob(@as(*const IPrintDocumentPackageTargetFactory, @ptrCast(self)), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
+    }
 };
 
 

@@ -1212,7 +1212,10 @@ pub const IRicheditWindowlessAccessibility = extern union {
             return @as(*const IRicheditWindowlessAccessibility.VTable, @ptrCast(self.vtable)).CreateProvider(@as(*const IRicheditWindowlessAccessibility, @ptrCast(self)), pSite, ppProvider);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateProvider(self: *const IRicheditWindowlessAccessibility, pSite: ?*IRawElementProviderWindowlessSite, ppProvider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IRicheditWindowlessAccessibility.VTable, @ptrCast(self.vtable)).CreateProvider(@as(*const IRicheditWindowlessAccessibility, @ptrCast(self)), pSite, ppProvider);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1240,7 +1243,13 @@ pub const IRichEditUiaInformation = extern union {
             return @as(*const IRichEditUiaInformation.VTable, @ptrCast(self.vtable)).IsVisible(@as(*const IRichEditUiaInformation, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBoundaryRectangle(self: *const IRichEditUiaInformation, pUiaRect: ?*UiaRect) callconv(.Inline) HRESULT {
+        return @as(*const IRichEditUiaInformation.VTable, @ptrCast(self.vtable)).GetBoundaryRectangle(@as(*const IRichEditUiaInformation, @ptrCast(self)), pUiaRect);
+    }
+    pub fn IsVisible(self: *const IRichEditUiaInformation) callconv(.Inline) HRESULT {
+        return @as(*const IRichEditUiaInformation.VTable, @ptrCast(self.vtable)).IsVisible(@as(*const IRichEditUiaInformation, @ptrCast(self)));
+    }
 };
 
 const CLSID_CAccPropServices_Value = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
@@ -1499,7 +1508,70 @@ pub const IAccessible = extern union {
             return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).put_accValue(@as(*const IAccessible, @ptrCast(self)), varChild, szValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_accParent(self: *const IAccessible, ppdispParent: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accParent(@as(*const IAccessible, @ptrCast(self)), ppdispParent);
+    }
+    pub fn get_accChildCount(self: *const IAccessible, pcountChildren: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accChildCount(@as(*const IAccessible, @ptrCast(self)), pcountChildren);
+    }
+    pub fn get_accChild(self: *const IAccessible, varChild: VARIANT, ppdispChild: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accChild(@as(*const IAccessible, @ptrCast(self)), varChild, ppdispChild);
+    }
+    pub fn get_accName(self: *const IAccessible, varChild: VARIANT, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accName(@as(*const IAccessible, @ptrCast(self)), varChild, pszName);
+    }
+    pub fn get_accValue(self: *const IAccessible, varChild: VARIANT, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accValue(@as(*const IAccessible, @ptrCast(self)), varChild, pszValue);
+    }
+    pub fn get_accDescription(self: *const IAccessible, varChild: VARIANT, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accDescription(@as(*const IAccessible, @ptrCast(self)), varChild, pszDescription);
+    }
+    pub fn get_accRole(self: *const IAccessible, varChild: VARIANT, pvarRole: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accRole(@as(*const IAccessible, @ptrCast(self)), varChild, pvarRole);
+    }
+    pub fn get_accState(self: *const IAccessible, varChild: VARIANT, pvarState: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accState(@as(*const IAccessible, @ptrCast(self)), varChild, pvarState);
+    }
+    pub fn get_accHelp(self: *const IAccessible, varChild: VARIANT, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accHelp(@as(*const IAccessible, @ptrCast(self)), varChild, pszHelp);
+    }
+    pub fn get_accHelpTopic(self: *const IAccessible, pszHelpFile: ?*?BSTR, varChild: VARIANT, pidTopic: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accHelpTopic(@as(*const IAccessible, @ptrCast(self)), pszHelpFile, varChild, pidTopic);
+    }
+    pub fn get_accKeyboardShortcut(self: *const IAccessible, varChild: VARIANT, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accKeyboardShortcut(@as(*const IAccessible, @ptrCast(self)), varChild, pszKeyboardShortcut);
+    }
+    pub fn get_accFocus(self: *const IAccessible, pvarChild: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accFocus(@as(*const IAccessible, @ptrCast(self)), pvarChild);
+    }
+    pub fn get_accSelection(self: *const IAccessible, pvarChildren: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accSelection(@as(*const IAccessible, @ptrCast(self)), pvarChildren);
+    }
+    pub fn get_accDefaultAction(self: *const IAccessible, varChild: VARIANT, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).get_accDefaultAction(@as(*const IAccessible, @ptrCast(self)), varChild, pszDefaultAction);
+    }
+    pub fn accSelect(self: *const IAccessible, flagsSelect: i32, varChild: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).accSelect(@as(*const IAccessible, @ptrCast(self)), flagsSelect, varChild);
+    }
+    pub fn accLocation(self: *const IAccessible, pxLeft: ?*i32, pyTop: ?*i32, pcxWidth: ?*i32, pcyHeight: ?*i32, varChild: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).accLocation(@as(*const IAccessible, @ptrCast(self)), pxLeft, pyTop, pcxWidth, pcyHeight, varChild);
+    }
+    pub fn accNavigate(self: *const IAccessible, navDir: i32, varStart: VARIANT, pvarEndUpAt: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).accNavigate(@as(*const IAccessible, @ptrCast(self)), navDir, varStart, pvarEndUpAt);
+    }
+    pub fn accHitTest(self: *const IAccessible, xLeft: i32, yTop: i32, pvarChild: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).accHitTest(@as(*const IAccessible, @ptrCast(self)), xLeft, yTop, pvarChild);
+    }
+    pub fn accDoDefaultAction(self: *const IAccessible, varChild: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).accDoDefaultAction(@as(*const IAccessible, @ptrCast(self)), varChild);
+    }
+    pub fn put_accName(self: *const IAccessible, varChild: VARIANT, szName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).put_accName(@as(*const IAccessible, @ptrCast(self)), varChild, szName);
+    }
+    pub fn put_accValue(self: *const IAccessible, varChild: VARIANT, szValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAccessible.VTable, @ptrCast(self.vtable)).put_accValue(@as(*const IAccessible, @ptrCast(self)), varChild, szValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1524,7 +1596,10 @@ pub const IAccessibleHandler = extern union {
             return @as(*const IAccessibleHandler.VTable, @ptrCast(self.vtable)).AccessibleObjectFromID(@as(*const IAccessibleHandler, @ptrCast(self)), hwnd, lObjectID, pIAccessible);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AccessibleObjectFromID(self: *const IAccessibleHandler, hwnd: i32, lObjectID: i32, pIAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleHandler.VTable, @ptrCast(self.vtable)).AccessibleObjectFromID(@as(*const IAccessibleHandler, @ptrCast(self)), hwnd, lObjectID, pIAccessible);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1575,7 +1650,19 @@ pub const IAccessibleWindowlessSite = extern union {
             return @as(*const IAccessibleWindowlessSite.VTable, @ptrCast(self.vtable)).GetParentAccessible(@as(*const IAccessibleWindowlessSite, @ptrCast(self)), ppParent);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AcquireObjectIdRange(self: *const IAccessibleWindowlessSite, rangeSize: i32, pRangeOwner: ?*IAccessibleHandler, pRangeBase: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleWindowlessSite.VTable, @ptrCast(self.vtable)).AcquireObjectIdRange(@as(*const IAccessibleWindowlessSite, @ptrCast(self)), rangeSize, pRangeOwner, pRangeBase);
+    }
+    pub fn ReleaseObjectIdRange(self: *const IAccessibleWindowlessSite, rangeBase: i32, pRangeOwner: ?*IAccessibleHandler) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleWindowlessSite.VTable, @ptrCast(self.vtable)).ReleaseObjectIdRange(@as(*const IAccessibleWindowlessSite, @ptrCast(self)), rangeBase, pRangeOwner);
+    }
+    pub fn QueryObjectIdRanges(self: *const IAccessibleWindowlessSite, pRangesOwner: ?*IAccessibleHandler, psaRanges: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleWindowlessSite.VTable, @ptrCast(self.vtable)).QueryObjectIdRanges(@as(*const IAccessibleWindowlessSite, @ptrCast(self)), pRangesOwner, psaRanges);
+    }
+    pub fn GetParentAccessible(self: *const IAccessibleWindowlessSite, ppParent: ?*?*IAccessible) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleWindowlessSite.VTable, @ptrCast(self.vtable)).GetParentAccessible(@as(*const IAccessibleWindowlessSite, @ptrCast(self)), ppParent);
+    }
 };
 
 pub const AnnoScope = enum(i32) {
@@ -1607,7 +1694,10 @@ pub const IAccIdentity = extern union {
             return @as(*const IAccIdentity.VTable, @ptrCast(self.vtable)).GetIdentityString(@as(*const IAccIdentity, @ptrCast(self)), dwIDChild, ppIDString, pdwIDStringLen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIdentityString(self: *const IAccIdentity, dwIDChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAccIdentity.VTable, @ptrCast(self.vtable)).GetIdentityString(@as(*const IAccIdentity, @ptrCast(self)), dwIDChild, ppIDString, pdwIDStringLen);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1634,7 +1724,10 @@ pub const IAccPropServer = extern union {
             return @as(*const IAccPropServer.VTable, @ptrCast(self.vtable)).GetPropValue(@as(*const IAccPropServer, @ptrCast(self)), pIDString, dwIDStringLen, idProp, pvarValue, pfHasProp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPropValue(self: *const IAccPropServer, pIDString: [*:0]const u8, dwIDStringLen: u32, idProp: Guid, pvarValue: ?*VARIANT, pfHasProp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServer.VTable, @ptrCast(self.vtable)).GetPropValue(@as(*const IAccPropServer, @ptrCast(self)), pIDString, dwIDStringLen, idProp, pvarValue, pfHasProp);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1826,7 +1919,52 @@ pub const IAccPropServices = extern union {
             return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).DecomposeHmenuIdentityString(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, phmenu, pidChild);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetPropValue(self: *const IAccPropServices, pIDString: [*:0]const u8, dwIDStringLen: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetPropValue(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, idProp, @"var");
+    }
+    pub fn SetPropServer(self: *const IAccPropServices, pIDString: [*:0]const u8, dwIDStringLen: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetPropServer(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, paProps, cProps, pServer, annoScope);
+    }
+    pub fn ClearProps(self: *const IAccPropServices, pIDString: [*:0]const u8, dwIDStringLen: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).ClearProps(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, paProps, cProps);
+    }
+    pub fn SetHwndProp(self: *const IAccPropServices, hwnd: ?HWND, idObject: u32, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHwndProp(@as(*const IAccPropServices, @ptrCast(self)), hwnd, idObject, idChild, idProp, @"var");
+    }
+    pub fn SetHwndPropStr(self: *const IAccPropServices, hwnd: ?HWND, idObject: u32, idChild: u32, idProp: Guid, str: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHwndPropStr(@as(*const IAccPropServices, @ptrCast(self)), hwnd, idObject, idChild, idProp, str);
+    }
+    pub fn SetHwndPropServer(self: *const IAccPropServices, hwnd: ?HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHwndPropServer(@as(*const IAccPropServices, @ptrCast(self)), hwnd, idObject, idChild, paProps, cProps, pServer, annoScope);
+    }
+    pub fn ClearHwndProps(self: *const IAccPropServices, hwnd: ?HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).ClearHwndProps(@as(*const IAccPropServices, @ptrCast(self)), hwnd, idObject, idChild, paProps, cProps);
+    }
+    pub fn ComposeHwndIdentityString(self: *const IAccPropServices, hwnd: ?HWND, idObject: u32, idChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).ComposeHwndIdentityString(@as(*const IAccPropServices, @ptrCast(self)), hwnd, idObject, idChild, ppIDString, pdwIDStringLen);
+    }
+    pub fn DecomposeHwndIdentityString(self: *const IAccPropServices, pIDString: [*:0]const u8, dwIDStringLen: u32, phwnd: ?*?HWND, pidObject: ?*u32, pidChild: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).DecomposeHwndIdentityString(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, phwnd, pidObject, pidChild);
+    }
+    pub fn SetHmenuProp(self: *const IAccPropServices, hmenu: ?HMENU, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHmenuProp(@as(*const IAccPropServices, @ptrCast(self)), hmenu, idChild, idProp, @"var");
+    }
+    pub fn SetHmenuPropStr(self: *const IAccPropServices, hmenu: ?HMENU, idChild: u32, idProp: Guid, str: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHmenuPropStr(@as(*const IAccPropServices, @ptrCast(self)), hmenu, idChild, idProp, str);
+    }
+    pub fn SetHmenuPropServer(self: *const IAccPropServices, hmenu: ?HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).SetHmenuPropServer(@as(*const IAccPropServices, @ptrCast(self)), hmenu, idChild, paProps, cProps, pServer, annoScope);
+    }
+    pub fn ClearHmenuProps(self: *const IAccPropServices, hmenu: ?HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).ClearHmenuProps(@as(*const IAccPropServices, @ptrCast(self)), hmenu, idChild, paProps, cProps);
+    }
+    pub fn ComposeHmenuIdentityString(self: *const IAccPropServices, hmenu: ?HMENU, idChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).ComposeHmenuIdentityString(@as(*const IAccPropServices, @ptrCast(self)), hmenu, idChild, ppIDString, pdwIDStringLen);
+    }
+    pub fn DecomposeHmenuIdentityString(self: *const IAccPropServices, pIDString: [*:0]const u8, dwIDStringLen: u32, phmenu: ?*?HMENU, pidChild: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAccPropServices.VTable, @ptrCast(self.vtable)).DecomposeHmenuIdentityString(@as(*const IAccPropServices, @ptrCast(self)), pIDString, dwIDStringLen, phmenu, pidChild);
+    }
 };
 
 const CLSID_CUIAutomation_Value = Guid.initString("ff48dba4-60ef-4201-aa87-54103eef594e");
@@ -2493,7 +2631,19 @@ pub const IRawElementProviderSimple = extern union {
             return @as(*const IRawElementProviderSimple.VTable, @ptrCast(self.vtable)).get_HostRawElementProvider(@as(*const IRawElementProviderSimple, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProviderOptions(self: *const IRawElementProviderSimple, pRetVal: ?*ProviderOptions) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple.VTable, @ptrCast(self.vtable)).get_ProviderOptions(@as(*const IRawElementProviderSimple, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetPatternProvider(self: *const IRawElementProviderSimple, patternId: i32, pRetVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple.VTable, @ptrCast(self.vtable)).GetPatternProvider(@as(*const IRawElementProviderSimple, @ptrCast(self)), patternId, pRetVal);
+    }
+    pub fn GetPropertyValue(self: *const IRawElementProviderSimple, propertyId: i32, pRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IRawElementProviderSimple, @ptrCast(self)), propertyId, pRetVal);
+    }
+    pub fn get_HostRawElementProvider(self: *const IRawElementProviderSimple, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple.VTable, @ptrCast(self.vtable)).get_HostRawElementProvider(@as(*const IRawElementProviderSimple, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2543,7 +2693,19 @@ pub const IAccessibleEx = extern union {
             return @as(*const IAccessibleEx.VTable, @ptrCast(self.vtable)).ConvertReturnedElement(@as(*const IAccessibleEx, @ptrCast(self)), pIn, ppRetValOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObjectForChild(self: *const IAccessibleEx, idChild: i32, pRetVal: ?*?*IAccessibleEx) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleEx.VTable, @ptrCast(self.vtable)).GetObjectForChild(@as(*const IAccessibleEx, @ptrCast(self)), idChild, pRetVal);
+    }
+    pub fn GetIAccessiblePair(self: *const IAccessibleEx, ppAcc: ?*?*IAccessible, pidChild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleEx.VTable, @ptrCast(self.vtable)).GetIAccessiblePair(@as(*const IAccessibleEx, @ptrCast(self)), ppAcc, pidChild);
+    }
+    pub fn GetRuntimeId(self: *const IAccessibleEx, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleEx.VTable, @ptrCast(self.vtable)).GetRuntimeId(@as(*const IAccessibleEx, @ptrCast(self)), pRetVal);
+    }
+    pub fn ConvertReturnedElement(self: *const IAccessibleEx, pIn: ?*IRawElementProviderSimple, ppRetValOut: ?*?*IAccessibleEx) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleEx.VTable, @ptrCast(self.vtable)).ConvertReturnedElement(@as(*const IAccessibleEx, @ptrCast(self)), pIn, ppRetValOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -2565,7 +2727,10 @@ pub const IRawElementProviderSimple2 = extern union {
             return @as(*const IRawElementProviderSimple2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const IRawElementProviderSimple2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IRawElementProviderSimple.MethodMixin(@This());
+    pub fn ShowContextMenu(self: *const IRawElementProviderSimple2) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const IRawElementProviderSimple2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2590,7 +2755,10 @@ pub const IRawElementProviderSimple3 = extern union {
             return @as(*const IRawElementProviderSimple3.VTable, @ptrCast(self.vtable)).GetMetadataValue(@as(*const IRawElementProviderSimple3, @ptrCast(self)), targetId, metadataId, returnVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IRawElementProviderSimple2.MethodMixin(@This());
+    pub fn GetMetadataValue(self: *const IRawElementProviderSimple3, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderSimple3.VTable, @ptrCast(self.vtable)).GetMetadataValue(@as(*const IRawElementProviderSimple3, @ptrCast(self)), targetId, metadataId, returnVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2623,7 +2791,13 @@ pub const IRawElementProviderFragmentRoot = extern union {
             return @as(*const IRawElementProviderFragmentRoot.VTable, @ptrCast(self.vtable)).GetFocus(@as(*const IRawElementProviderFragmentRoot, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ElementProviderFromPoint(self: *const IRawElementProviderFragmentRoot, x: f64, y: f64, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragmentRoot.VTable, @ptrCast(self.vtable)).ElementProviderFromPoint(@as(*const IRawElementProviderFragmentRoot, @ptrCast(self)), x, y, pRetVal);
+    }
+    pub fn GetFocus(self: *const IRawElementProviderFragmentRoot, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragmentRoot.VTable, @ptrCast(self.vtable)).GetFocus(@as(*const IRawElementProviderFragmentRoot, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2688,7 +2862,25 @@ pub const IRawElementProviderFragment = extern union {
             return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).get_FragmentRoot(@as(*const IRawElementProviderFragment, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Navigate(self: *const IRawElementProviderFragment, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IRawElementProviderFragment, @ptrCast(self)), direction, pRetVal);
+    }
+    pub fn GetRuntimeId(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).GetRuntimeId(@as(*const IRawElementProviderFragment, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_BoundingRectangle(self: *const IRawElementProviderFragment, pRetVal: ?*UiaRect) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).get_BoundingRectangle(@as(*const IRawElementProviderFragment, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetEmbeddedFragmentRoots(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).GetEmbeddedFragmentRoots(@as(*const IRawElementProviderFragment, @ptrCast(self)), pRetVal);
+    }
+    pub fn SetFocus(self: *const IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IRawElementProviderFragment, @ptrCast(self)));
+    }
+    pub fn get_FragmentRoot(self: *const IRawElementProviderFragment, pRetVal: ?*?*IRawElementProviderFragmentRoot) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderFragment.VTable, @ptrCast(self.vtable)).get_FragmentRoot(@as(*const IRawElementProviderFragment, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2721,7 +2913,13 @@ pub const IRawElementProviderAdviseEvents = extern union {
             return @as(*const IRawElementProviderAdviseEvents.VTable, @ptrCast(self.vtable)).AdviseEventRemoved(@as(*const IRawElementProviderAdviseEvents, @ptrCast(self)), eventId, propertyIDs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AdviseEventAdded(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderAdviseEvents.VTable, @ptrCast(self.vtable)).AdviseEventAdded(@as(*const IRawElementProviderAdviseEvents, @ptrCast(self)), eventId, propertyIDs);
+    }
+    pub fn AdviseEventRemoved(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderAdviseEvents.VTable, @ptrCast(self.vtable)).AdviseEventRemoved(@as(*const IRawElementProviderAdviseEvents, @ptrCast(self)), eventId, propertyIDs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2745,7 +2943,10 @@ pub const IRawElementProviderHwndOverride = extern union {
             return @as(*const IRawElementProviderHwndOverride.VTable, @ptrCast(self.vtable)).GetOverrideProviderForHwnd(@as(*const IRawElementProviderHwndOverride, @ptrCast(self)), hwnd, pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOverrideProviderForHwnd(self: *const IRawElementProviderHwndOverride, hwnd: ?HWND, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderHwndOverride.VTable, @ptrCast(self.vtable)).GetOverrideProviderForHwnd(@as(*const IRawElementProviderHwndOverride, @ptrCast(self)), hwnd, pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2789,7 +2990,16 @@ pub const IProxyProviderWinEventSink = extern union {
             return @as(*const IProxyProviderWinEventSink.VTable, @ptrCast(self.vtable)).AddStructureChangedEvent(@as(*const IProxyProviderWinEventSink, @ptrCast(self)), pProvider, structureChangeType, runtimeId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddAutomationPropertyChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IProxyProviderWinEventSink.VTable, @ptrCast(self.vtable)).AddAutomationPropertyChangedEvent(@as(*const IProxyProviderWinEventSink, @ptrCast(self)), pProvider, id, newValue);
+    }
+    pub fn AddAutomationEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32) callconv(.Inline) HRESULT {
+        return @as(*const IProxyProviderWinEventSink.VTable, @ptrCast(self.vtable)).AddAutomationEvent(@as(*const IProxyProviderWinEventSink, @ptrCast(self)), pProvider, id);
+    }
+    pub fn AddStructureChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IProxyProviderWinEventSink.VTable, @ptrCast(self.vtable)).AddStructureChangedEvent(@as(*const IProxyProviderWinEventSink, @ptrCast(self)), pProvider, structureChangeType, runtimeId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2816,7 +3026,10 @@ pub const IProxyProviderWinEventHandler = extern union {
             return @as(*const IProxyProviderWinEventHandler.VTable, @ptrCast(self.vtable)).RespondToWinEvent(@as(*const IProxyProviderWinEventHandler, @ptrCast(self)), idWinEvent, hwnd, idObject, idChild, pSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RespondToWinEvent(self: *const IProxyProviderWinEventHandler, idWinEvent: u32, hwnd: ?HWND, idObject: i32, idChild: i32, pSink: ?*IProxyProviderWinEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IProxyProviderWinEventHandler.VTable, @ptrCast(self.vtable)).RespondToWinEvent(@as(*const IProxyProviderWinEventHandler, @ptrCast(self)), idWinEvent, hwnd, idObject, idChild, pSink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2848,7 +3061,13 @@ pub const IRawElementProviderWindowlessSite = extern union {
             return @as(*const IRawElementProviderWindowlessSite.VTable, @ptrCast(self.vtable)).GetRuntimeIdPrefix(@as(*const IRawElementProviderWindowlessSite, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAdjacentFragment(self: *const IRawElementProviderWindowlessSite, direction: NavigateDirection, ppParent: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderWindowlessSite.VTable, @ptrCast(self.vtable)).GetAdjacentFragment(@as(*const IRawElementProviderWindowlessSite, @ptrCast(self)), direction, ppParent);
+    }
+    pub fn GetRuntimeIdPrefix(self: *const IRawElementProviderWindowlessSite, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderWindowlessSite.VTable, @ptrCast(self.vtable)).GetRuntimeIdPrefix(@as(*const IRawElementProviderWindowlessSite, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2880,7 +3099,13 @@ pub const IAccessibleHostingElementProviders = extern union {
             return @as(*const IAccessibleHostingElementProviders.VTable, @ptrCast(self.vtable)).GetObjectIdForProvider(@as(*const IAccessibleHostingElementProviders, @ptrCast(self)), pProvider, pidObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEmbeddedFragmentRoots(self: *const IAccessibleHostingElementProviders, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleHostingElementProviders.VTable, @ptrCast(self.vtable)).GetEmbeddedFragmentRoots(@as(*const IAccessibleHostingElementProviders, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetObjectIdForProvider(self: *const IAccessibleHostingElementProviders, pProvider: ?*IRawElementProviderSimple, pidObject: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleHostingElementProviders.VTable, @ptrCast(self.vtable)).GetObjectIdForProvider(@as(*const IAccessibleHostingElementProviders, @ptrCast(self)), pProvider, pidObject);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2903,7 +3128,10 @@ pub const IRawElementProviderHostingAccessibles = extern union {
             return @as(*const IRawElementProviderHostingAccessibles.VTable, @ptrCast(self.vtable)).GetEmbeddedAccessibles(@as(*const IRawElementProviderHostingAccessibles, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEmbeddedAccessibles(self: *const IRawElementProviderHostingAccessibles, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IRawElementProviderHostingAccessibles.VTable, @ptrCast(self.vtable)).GetEmbeddedAccessibles(@as(*const IRawElementProviderHostingAccessibles, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2935,7 +3163,13 @@ pub const IDockProvider = extern union {
             return @as(*const IDockProvider.VTable, @ptrCast(self.vtable)).get_DockPosition(@as(*const IDockProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDockPosition(self: *const IDockProvider, dockPosition: DockPosition) callconv(.Inline) HRESULT {
+        return @as(*const IDockProvider.VTable, @ptrCast(self.vtable)).SetDockPosition(@as(*const IDockProvider, @ptrCast(self)), dockPosition);
+    }
+    pub fn get_DockPosition(self: *const IDockProvider, pRetVal: ?*DockPosition) callconv(.Inline) HRESULT {
+        return @as(*const IDockProvider.VTable, @ptrCast(self.vtable)).get_DockPosition(@as(*const IDockProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2973,7 +3207,16 @@ pub const IExpandCollapseProvider = extern union {
             return @as(*const IExpandCollapseProvider.VTable, @ptrCast(self.vtable)).get_ExpandCollapseState(@as(*const IExpandCollapseProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Expand(self: *const IExpandCollapseProvider) callconv(.Inline) HRESULT {
+        return @as(*const IExpandCollapseProvider.VTable, @ptrCast(self.vtable)).Expand(@as(*const IExpandCollapseProvider, @ptrCast(self)));
+    }
+    pub fn Collapse(self: *const IExpandCollapseProvider) callconv(.Inline) HRESULT {
+        return @as(*const IExpandCollapseProvider.VTable, @ptrCast(self.vtable)).Collapse(@as(*const IExpandCollapseProvider, @ptrCast(self)));
+    }
+    pub fn get_ExpandCollapseState(self: *const IExpandCollapseProvider, pRetVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
+        return @as(*const IExpandCollapseProvider.VTable, @ptrCast(self.vtable)).get_ExpandCollapseState(@as(*const IExpandCollapseProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3016,7 +3259,16 @@ pub const IGridProvider = extern union {
             return @as(*const IGridProvider.VTable, @ptrCast(self.vtable)).get_ColumnCount(@as(*const IGridProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItem(self: *const IGridProvider, row: i32, column: i32, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IGridProvider.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IGridProvider, @ptrCast(self)), row, column, pRetVal);
+    }
+    pub fn get_RowCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridProvider.VTable, @ptrCast(self.vtable)).get_RowCount(@as(*const IGridProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ColumnCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridProvider.VTable, @ptrCast(self.vtable)).get_ColumnCount(@as(*const IGridProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3076,7 +3328,22 @@ pub const IGridItemProvider = extern union {
             return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_ContainingGrid(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Row(self: *const IGridItemProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_Row(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_Column(self: *const IGridItemProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_Column(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_RowSpan(self: *const IGridItemProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_RowSpan(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ColumnSpan(self: *const IGridItemProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_ColumnSpan(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ContainingGrid(self: *const IGridItemProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IGridItemProvider.VTable, @ptrCast(self.vtable)).get_ContainingGrid(@as(*const IGridItemProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3098,7 +3365,10 @@ pub const IInvokeProvider = extern union {
             return @as(*const IInvokeProvider.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInvokeProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IInvokeProvider) callconv(.Inline) HRESULT {
+        return @as(*const IInvokeProvider.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInvokeProvider, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3147,7 +3417,19 @@ pub const IMultipleViewProvider = extern union {
             return @as(*const IMultipleViewProvider.VTable, @ptrCast(self.vtable)).GetSupportedViews(@as(*const IMultipleViewProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetViewName(self: *const IMultipleViewProvider, viewId: i32, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMultipleViewProvider.VTable, @ptrCast(self.vtable)).GetViewName(@as(*const IMultipleViewProvider, @ptrCast(self)), viewId, pRetVal);
+    }
+    pub fn SetCurrentView(self: *const IMultipleViewProvider, viewId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultipleViewProvider.VTable, @ptrCast(self.vtable)).SetCurrentView(@as(*const IMultipleViewProvider, @ptrCast(self)), viewId);
+    }
+    pub fn get_CurrentView(self: *const IMultipleViewProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultipleViewProvider.VTable, @ptrCast(self.vtable)).get_CurrentView(@as(*const IMultipleViewProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetSupportedViews(self: *const IMultipleViewProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IMultipleViewProvider.VTable, @ptrCast(self.vtable)).GetSupportedViews(@as(*const IMultipleViewProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3224,7 +3506,28 @@ pub const IRangeValueProvider = extern union {
             return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_SmallChange(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetValue(self: *const IRangeValueProvider, val: f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IRangeValueProvider, @ptrCast(self)), val);
+    }
+    pub fn get_Value(self: *const IRangeValueProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_IsReadOnly(self: *const IRangeValueProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_IsReadOnly(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_Maximum(self: *const IRangeValueProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_Maximum(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_Minimum(self: *const IRangeValueProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_Minimum(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_LargeChange(self: *const IRangeValueProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_LargeChange(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_SmallChange(self: *const IRangeValueProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IRangeValueProvider.VTable, @ptrCast(self.vtable)).get_SmallChange(@as(*const IRangeValueProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3246,7 +3549,10 @@ pub const IScrollItemProvider = extern union {
             return @as(*const IScrollItemProvider.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const IScrollItemProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ScrollIntoView(self: *const IScrollItemProvider) callconv(.Inline) HRESULT {
+        return @as(*const IScrollItemProvider.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const IScrollItemProvider, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3287,7 +3593,16 @@ pub const ISelectionProvider = extern union {
             return @as(*const ISelectionProvider.VTable, @ptrCast(self.vtable)).get_IsSelectionRequired(@as(*const ISelectionProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSelection(self: *const ISelectionProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const ISelectionProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CanSelectMultiple(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider.VTable, @ptrCast(self.vtable)).get_CanSelectMultiple(@as(*const ISelectionProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_IsSelectionRequired(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider.VTable, @ptrCast(self.vtable)).get_IsSelectionRequired(@as(*const ISelectionProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -3338,7 +3653,19 @@ pub const ISelectionProvider2 = extern union {
             return @as(*const ISelectionProvider2.VTable, @ptrCast(self.vtable)).get_ItemCount(@as(*const ISelectionProvider2, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISelectionProvider.MethodMixin(@This());
+    pub fn get_FirstSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider2.VTable, @ptrCast(self.vtable)).get_FirstSelectedItem(@as(*const ISelectionProvider2, @ptrCast(self)), retVal);
+    }
+    pub fn get_LastSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider2.VTable, @ptrCast(self.vtable)).get_LastSelectedItem(@as(*const ISelectionProvider2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider2.VTable, @ptrCast(self.vtable)).get_CurrentSelectedItem(@as(*const ISelectionProvider2, @ptrCast(self)), retVal);
+    }
+    pub fn get_ItemCount(self: *const ISelectionProvider2, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionProvider2.VTable, @ptrCast(self.vtable)).get_ItemCount(@as(*const ISelectionProvider2, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3425,7 +3752,31 @@ pub const IScrollProvider = extern union {
             return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_VerticallyScrollable(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Scroll(self: *const IScrollProvider, horizontalAmount: ScrollAmount, verticalAmount: ScrollAmount) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IScrollProvider, @ptrCast(self)), horizontalAmount, verticalAmount);
+    }
+    pub fn SetScrollPercent(self: *const IScrollProvider, horizontalPercent: f64, verticalPercent: f64) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).SetScrollPercent(@as(*const IScrollProvider, @ptrCast(self)), horizontalPercent, verticalPercent);
+    }
+    pub fn get_HorizontalScrollPercent(self: *const IScrollProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_HorizontalScrollPercent(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_VerticalScrollPercent(self: *const IScrollProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_VerticalScrollPercent(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_HorizontalViewSize(self: *const IScrollProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_HorizontalViewSize(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_VerticalViewSize(self: *const IScrollProvider, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_VerticalViewSize(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_HorizontallyScrollable(self: *const IScrollProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_HorizontallyScrollable(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_VerticallyScrollable(self: *const IScrollProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IScrollProvider.VTable, @ptrCast(self.vtable)).get_VerticallyScrollable(@as(*const IScrollProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3479,7 +3830,22 @@ pub const ISelectionItemProvider = extern union {
             return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).get_SelectionContainer(@as(*const ISelectionItemProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Select(self: *const ISelectionItemProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).Select(@as(*const ISelectionItemProvider, @ptrCast(self)));
+    }
+    pub fn AddToSelection(self: *const ISelectionItemProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).AddToSelection(@as(*const ISelectionItemProvider, @ptrCast(self)));
+    }
+    pub fn RemoveFromSelection(self: *const ISelectionItemProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).RemoveFromSelection(@as(*const ISelectionItemProvider, @ptrCast(self)));
+    }
+    pub fn get_IsSelected(self: *const ISelectionItemProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).get_IsSelected(@as(*const ISelectionItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_SelectionContainer(self: *const ISelectionItemProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ISelectionItemProvider.VTable, @ptrCast(self.vtable)).get_SelectionContainer(@as(*const ISelectionItemProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3509,7 +3875,13 @@ pub const ISynchronizedInputProvider = extern union {
             return @as(*const ISynchronizedInputProvider.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ISynchronizedInputProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn StartListening(self: *const ISynchronizedInputProvider, inputType: SynchronizedInputType) callconv(.Inline) HRESULT {
+        return @as(*const ISynchronizedInputProvider.VTable, @ptrCast(self.vtable)).StartListening(@as(*const ISynchronizedInputProvider, @ptrCast(self)), inputType);
+    }
+    pub fn Cancel(self: *const ISynchronizedInputProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISynchronizedInputProvider.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ISynchronizedInputProvider, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3549,7 +3921,16 @@ pub const ITableProvider = extern union {
             return @as(*const ITableProvider.VTable, @ptrCast(self.vtable)).get_RowOrColumnMajor(@as(*const ITableProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRowHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITableProvider.VTable, @ptrCast(self.vtable)).GetRowHeaders(@as(*const ITableProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetColumnHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITableProvider.VTable, @ptrCast(self.vtable)).GetColumnHeaders(@as(*const ITableProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_RowOrColumnMajor(self: *const ITableProvider, pRetVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
+        return @as(*const ITableProvider.VTable, @ptrCast(self.vtable)).get_RowOrColumnMajor(@as(*const ITableProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3580,7 +3961,13 @@ pub const ITableItemProvider = extern union {
             return @as(*const ITableItemProvider.VTable, @ptrCast(self.vtable)).GetColumnHeaderItems(@as(*const ITableItemProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetRowHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITableItemProvider.VTable, @ptrCast(self.vtable)).GetRowHeaderItems(@as(*const ITableItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetColumnHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITableItemProvider.VTable, @ptrCast(self.vtable)).GetColumnHeaderItems(@as(*const ITableItemProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3611,7 +3998,13 @@ pub const IToggleProvider = extern union {
             return @as(*const IToggleProvider.VTable, @ptrCast(self.vtable)).get_ToggleState(@as(*const IToggleProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Toggle(self: *const IToggleProvider) callconv(.Inline) HRESULT {
+        return @as(*const IToggleProvider.VTable, @ptrCast(self.vtable)).Toggle(@as(*const IToggleProvider, @ptrCast(self)));
+    }
+    pub fn get_ToggleState(self: *const IToggleProvider, pRetVal: ?*ToggleState) callconv(.Inline) HRESULT {
+        return @as(*const IToggleProvider.VTable, @ptrCast(self.vtable)).get_ToggleState(@as(*const IToggleProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3679,7 +4072,25 @@ pub const ITransformProvider = extern union {
             return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).get_CanRotate(@as(*const ITransformProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Move(self: *const ITransformProvider, x: f64, y: f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).Move(@as(*const ITransformProvider, @ptrCast(self)), x, y);
+    }
+    pub fn Resize(self: *const ITransformProvider, width: f64, height: f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).Resize(@as(*const ITransformProvider, @ptrCast(self)), width, height);
+    }
+    pub fn Rotate(self: *const ITransformProvider, degrees: f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).Rotate(@as(*const ITransformProvider, @ptrCast(self)), degrees);
+    }
+    pub fn get_CanMove(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).get_CanMove(@as(*const ITransformProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CanResize(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).get_CanResize(@as(*const ITransformProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CanRotate(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider.VTable, @ptrCast(self.vtable)).get_CanRotate(@as(*const ITransformProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3720,7 +4131,16 @@ pub const IValueProvider = extern union {
             return @as(*const IValueProvider.VTable, @ptrCast(self.vtable)).get_IsReadOnly(@as(*const IValueProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetValue(self: *const IValueProvider, val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IValueProvider.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IValueProvider, @ptrCast(self)), val);
+    }
+    pub fn get_Value(self: *const IValueProvider, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IValueProvider.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IValueProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_IsReadOnly(self: *const IValueProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IValueProvider.VTable, @ptrCast(self.vtable)).get_IsReadOnly(@as(*const IValueProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3813,7 +4233,34 @@ pub const IWindowProvider = extern union {
             return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_IsTopmost(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetVisualState(self: *const IWindowProvider, state: WindowVisualState) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).SetVisualState(@as(*const IWindowProvider, @ptrCast(self)), state);
+    }
+    pub fn Close(self: *const IWindowProvider) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).Close(@as(*const IWindowProvider, @ptrCast(self)));
+    }
+    pub fn WaitForInputIdle(self: *const IWindowProvider, milliseconds: i32, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).WaitForInputIdle(@as(*const IWindowProvider, @ptrCast(self)), milliseconds, pRetVal);
+    }
+    pub fn get_CanMaximize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_CanMaximize(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CanMinimize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_CanMinimize(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_IsModal(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_IsModal(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_WindowVisualState(self: *const IWindowProvider, pRetVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_WindowVisualState(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_WindowInteractionState(self: *const IWindowProvider, pRetVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_WindowInteractionState(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_IsTopmost(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWindowProvider.VTable, @ptrCast(self.vtable)).get_IsTopmost(@as(*const IWindowProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3948,7 +4395,49 @@ pub const ILegacyIAccessibleProvider = extern union {
             return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_DefaultAction(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszDefaultAction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Select(self: *const ILegacyIAccessibleProvider, flagsSelect: i32) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).Select(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), flagsSelect);
+    }
+    pub fn DoDefaultAction(self: *const ILegacyIAccessibleProvider) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).DoDefaultAction(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)));
+    }
+    pub fn SetValue(self: *const ILegacyIAccessibleProvider, szValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), szValue);
+    }
+    pub fn GetIAccessible(self: *const ILegacyIAccessibleProvider, ppAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).GetIAccessible(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), ppAccessible);
+    }
+    pub fn get_ChildId(self: *const ILegacyIAccessibleProvider, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_ChildId(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_Name(self: *const ILegacyIAccessibleProvider, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszName);
+    }
+    pub fn get_Value(self: *const ILegacyIAccessibleProvider, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszValue);
+    }
+    pub fn get_Description(self: *const ILegacyIAccessibleProvider, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszDescription);
+    }
+    pub fn get_Role(self: *const ILegacyIAccessibleProvider, pdwRole: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_Role(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pdwRole);
+    }
+    pub fn get_State(self: *const ILegacyIAccessibleProvider, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_State(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pdwState);
+    }
+    pub fn get_Help(self: *const ILegacyIAccessibleProvider, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_Help(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszHelp);
+    }
+    pub fn get_KeyboardShortcut(self: *const ILegacyIAccessibleProvider, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_KeyboardShortcut(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszKeyboardShortcut);
+    }
+    pub fn GetSelection(self: *const ILegacyIAccessibleProvider, pvarSelectedChildren: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pvarSelectedChildren);
+    }
+    pub fn get_DefaultAction(self: *const ILegacyIAccessibleProvider, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ILegacyIAccessibleProvider.VTable, @ptrCast(self.vtable)).get_DefaultAction(@as(*const ILegacyIAccessibleProvider, @ptrCast(self)), pszDefaultAction);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3974,7 +4463,10 @@ pub const IItemContainerProvider = extern union {
             return @as(*const IItemContainerProvider.VTable, @ptrCast(self.vtable)).FindItemByProperty(@as(*const IItemContainerProvider, @ptrCast(self)), pStartAfter, propertyId, value, pFound);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindItemByProperty(self: *const IItemContainerProvider, pStartAfter: ?*IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IItemContainerProvider.VTable, @ptrCast(self.vtable)).FindItemByProperty(@as(*const IItemContainerProvider, @ptrCast(self)), pStartAfter, propertyId, value, pFound);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3996,7 +4488,10 @@ pub const IVirtualizedItemProvider = extern union {
             return @as(*const IVirtualizedItemProvider.VTable, @ptrCast(self.vtable)).Realize(@as(*const IVirtualizedItemProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Realize(self: *const IVirtualizedItemProvider) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualizedItemProvider.VTable, @ptrCast(self.vtable)).Realize(@as(*const IVirtualizedItemProvider, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4019,7 +4514,10 @@ pub const IObjectModelProvider = extern union {
             return @as(*const IObjectModelProvider.VTable, @ptrCast(self.vtable)).GetUnderlyingObjectModel(@as(*const IObjectModelProvider, @ptrCast(self)), ppUnknown);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUnderlyingObjectModel(self: *const IObjectModelProvider, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IObjectModelProvider.VTable, @ptrCast(self.vtable)).GetUnderlyingObjectModel(@as(*const IObjectModelProvider, @ptrCast(self)), ppUnknown);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4079,7 +4577,22 @@ pub const IAnnotationProvider = extern union {
             return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_Target(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AnnotationTypeId(self: *const IAnnotationProvider, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_AnnotationTypeId(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_AnnotationTypeName(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_AnnotationTypeName(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_Author(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_Author(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_DateTime(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_DateTime(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_Target(self: *const IAnnotationProvider, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IAnnotationProvider.VTable, @ptrCast(self.vtable)).get_Target(@as(*const IAnnotationProvider, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4157,7 +4670,28 @@ pub const IStylesProvider = extern union {
             return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_ExtendedProperties(@as(*const IStylesProvider, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_StyleId(self: *const IStylesProvider, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_StyleId(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_StyleName(self: *const IStylesProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_StyleName(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_FillColor(self: *const IStylesProvider, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_FillColor(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_FillPatternStyle(self: *const IStylesProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_FillPatternStyle(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_Shape(self: *const IStylesProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_Shape(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_FillPatternColor(self: *const IStylesProvider, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_FillPatternColor(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
+    pub fn get_ExtendedProperties(self: *const IStylesProvider, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStylesProvider.VTable, @ptrCast(self.vtable)).get_ExtendedProperties(@as(*const IStylesProvider, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4181,7 +4715,10 @@ pub const ISpreadsheetProvider = extern union {
             return @as(*const ISpreadsheetProvider.VTable, @ptrCast(self.vtable)).GetItemByName(@as(*const ISpreadsheetProvider, @ptrCast(self)), name, pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemByName(self: *const ISpreadsheetProvider, name: ?[*:0]const u16, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ISpreadsheetProvider.VTable, @ptrCast(self.vtable)).GetItemByName(@as(*const ISpreadsheetProvider, @ptrCast(self)), name, pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4221,7 +4758,16 @@ pub const ISpreadsheetItemProvider = extern union {
             return @as(*const ISpreadsheetItemProvider.VTable, @ptrCast(self.vtable)).GetAnnotationTypes(@as(*const ISpreadsheetItemProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Formula(self: *const ISpreadsheetItemProvider, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISpreadsheetItemProvider.VTable, @ptrCast(self.vtable)).get_Formula(@as(*const ISpreadsheetItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetAnnotationObjects(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ISpreadsheetItemProvider.VTable, @ptrCast(self.vtable)).GetAnnotationObjects(@as(*const ISpreadsheetItemProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetAnnotationTypes(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ISpreadsheetItemProvider.VTable, @ptrCast(self.vtable)).GetAnnotationTypes(@as(*const ISpreadsheetItemProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4288,7 +4834,25 @@ pub const ITransformProvider2 = extern union {
             return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).ZoomByUnit(@as(*const ITransformProvider2, @ptrCast(self)), zoomUnit);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ITransformProvider.MethodMixin(@This());
+    pub fn Zoom(self: *const ITransformProvider2, zoom: f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).Zoom(@as(*const ITransformProvider2, @ptrCast(self)), zoom);
+    }
+    pub fn get_CanZoom(self: *const ITransformProvider2, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).get_CanZoom(@as(*const ITransformProvider2, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ZoomLevel(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).get_ZoomLevel(@as(*const ITransformProvider2, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ZoomMinimum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).get_ZoomMinimum(@as(*const ITransformProvider2, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_ZoomMaximum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).get_ZoomMaximum(@as(*const ITransformProvider2, @ptrCast(self)), pRetVal);
+    }
+    pub fn ZoomByUnit(self: *const ITransformProvider2, zoomUnit: ZoomUnit) callconv(.Inline) HRESULT {
+        return @as(*const ITransformProvider2.VTable, @ptrCast(self.vtable)).ZoomByUnit(@as(*const ITransformProvider2, @ptrCast(self)), zoomUnit);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4338,7 +4902,19 @@ pub const IDragProvider = extern union {
             return @as(*const IDragProvider.VTable, @ptrCast(self.vtable)).GetGrabbedItems(@as(*const IDragProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_IsGrabbed(self: *const IDragProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDragProvider.VTable, @ptrCast(self.vtable)).get_IsGrabbed(@as(*const IDragProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_DropEffect(self: *const IDragProvider, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDragProvider.VTable, @ptrCast(self.vtable)).get_DropEffect(@as(*const IDragProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_DropEffects(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IDragProvider.VTable, @ptrCast(self.vtable)).get_DropEffects(@as(*const IDragProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetGrabbedItems(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IDragProvider.VTable, @ptrCast(self.vtable)).GetGrabbedItems(@as(*const IDragProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4371,7 +4947,13 @@ pub const IDropTargetProvider = extern union {
             return @as(*const IDropTargetProvider.VTable, @ptrCast(self.vtable)).get_DropTargetEffects(@as(*const IDropTargetProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_DropTargetEffect(self: *const IDropTargetProvider, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDropTargetProvider.VTable, @ptrCast(self.vtable)).get_DropTargetEffect(@as(*const IDropTargetProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_DropTargetEffects(self: *const IDropTargetProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IDropTargetProvider.VTable, @ptrCast(self.vtable)).get_DropTargetEffects(@as(*const IDropTargetProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4546,7 +5128,61 @@ pub const ITextRangeProvider = extern union {
             return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const ITextRangeProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const ITextRangeProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).Clone(@as(*const ITextRangeProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn Compare(self: *const ITextRangeProvider, range: ?*ITextRangeProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).Compare(@as(*const ITextRangeProvider, @ptrCast(self)), range, pRetVal);
+    }
+    pub fn CompareEndpoints(self: *const ITextRangeProvider, endpoint: TextPatternRangeEndpoint, targetRange: ?*ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).CompareEndpoints(@as(*const ITextRangeProvider, @ptrCast(self)), endpoint, targetRange, targetEndpoint, pRetVal);
+    }
+    pub fn ExpandToEnclosingUnit(self: *const ITextRangeProvider, unit: TextUnit) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).ExpandToEnclosingUnit(@as(*const ITextRangeProvider, @ptrCast(self)), unit);
+    }
+    pub fn FindAttribute(self: *const ITextRangeProvider, attributeId: i32, val: VARIANT, backward: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).FindAttribute(@as(*const ITextRangeProvider, @ptrCast(self)), attributeId, val, backward, pRetVal);
+    }
+    pub fn FindText(self: *const ITextRangeProvider, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).FindText(@as(*const ITextRangeProvider, @ptrCast(self)), text, backward, ignoreCase, pRetVal);
+    }
+    pub fn GetAttributeValue(self: *const ITextRangeProvider, attributeId: i32, pRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ITextRangeProvider, @ptrCast(self)), attributeId, pRetVal);
+    }
+    pub fn GetBoundingRectangles(self: *const ITextRangeProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetBoundingRectangles(@as(*const ITextRangeProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetEnclosingElement(self: *const ITextRangeProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetEnclosingElement(@as(*const ITextRangeProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetText(self: *const ITextRangeProvider, maxLength: i32, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetText(@as(*const ITextRangeProvider, @ptrCast(self)), maxLength, pRetVal);
+    }
+    pub fn Move(self: *const ITextRangeProvider, unit: TextUnit, count: i32, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).Move(@as(*const ITextRangeProvider, @ptrCast(self)), unit, count, pRetVal);
+    }
+    pub fn MoveEndpointByUnit(self: *const ITextRangeProvider, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).MoveEndpointByUnit(@as(*const ITextRangeProvider, @ptrCast(self)), endpoint, unit, count, pRetVal);
+    }
+    pub fn MoveEndpointByRange(self: *const ITextRangeProvider, endpoint: TextPatternRangeEndpoint, targetRange: ?*ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).MoveEndpointByRange(@as(*const ITextRangeProvider, @ptrCast(self)), endpoint, targetRange, targetEndpoint);
+    }
+    pub fn Select(self: *const ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).Select(@as(*const ITextRangeProvider, @ptrCast(self)));
+    }
+    pub fn AddToSelection(self: *const ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).AddToSelection(@as(*const ITextRangeProvider, @ptrCast(self)));
+    }
+    pub fn RemoveFromSelection(self: *const ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).RemoveFromSelection(@as(*const ITextRangeProvider, @ptrCast(self)));
+    }
+    pub fn ScrollIntoView(self: *const ITextRangeProvider, alignToTop: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const ITextRangeProvider, @ptrCast(self)), alignToTop);
+    }
+    pub fn GetChildren(self: *const ITextRangeProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const ITextRangeProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4613,7 +5249,25 @@ pub const ITextProvider = extern union {
             return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).get_SupportedTextSelection(@as(*const ITextProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSelection(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const ITextProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetVisibleRanges(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).GetVisibleRanges(@as(*const ITextProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn RangeFromChild(self: *const ITextProvider, childElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).RangeFromChild(@as(*const ITextProvider, @ptrCast(self)), childElement, pRetVal);
+    }
+    pub fn RangeFromPoint(self: *const ITextProvider, point: UiaPoint, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).RangeFromPoint(@as(*const ITextProvider, @ptrCast(self)), point, pRetVal);
+    }
+    pub fn get_DocumentRange(self: *const ITextProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).get_DocumentRange(@as(*const ITextProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_SupportedTextSelection(self: *const ITextProvider, pRetVal: ?*SupportedTextSelection) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider.VTable, @ptrCast(self.vtable)).get_SupportedTextSelection(@as(*const ITextProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4646,7 +5300,13 @@ pub const ITextProvider2 = extern union {
             return @as(*const ITextProvider2.VTable, @ptrCast(self.vtable)).GetCaretRange(@as(*const ITextProvider2, @ptrCast(self)), isActive, pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ITextProvider.MethodMixin(@This());
+    pub fn RangeFromAnnotation(self: *const ITextProvider2, annotationElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider2.VTable, @ptrCast(self.vtable)).RangeFromAnnotation(@as(*const ITextProvider2, @ptrCast(self)), annotationElement, pRetVal);
+    }
+    pub fn GetCaretRange(self: *const ITextProvider2, isActive: ?*BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextProvider2.VTable, @ptrCast(self.vtable)).GetCaretRange(@as(*const ITextProvider2, @ptrCast(self)), isActive, pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4677,7 +5337,13 @@ pub const ITextEditProvider = extern union {
             return @as(*const ITextEditProvider.VTable, @ptrCast(self.vtable)).GetConversionTarget(@as(*const ITextEditProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ITextProvider.MethodMixin(@This());
+    pub fn GetActiveComposition(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextEditProvider.VTable, @ptrCast(self.vtable)).GetActiveComposition(@as(*const ITextEditProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetConversionTarget(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextEditProvider.VTable, @ptrCast(self.vtable)).GetConversionTarget(@as(*const ITextEditProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4699,7 +5365,10 @@ pub const ITextRangeProvider2 = extern union {
             return @as(*const ITextRangeProvider2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const ITextRangeProvider2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ITextRangeProvider.MethodMixin(@This());
+    pub fn ShowContextMenu(self: *const ITextRangeProvider2) callconv(.Inline) HRESULT {
+        return @as(*const ITextRangeProvider2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const ITextRangeProvider2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4732,7 +5401,13 @@ pub const ITextChildProvider = extern union {
             return @as(*const ITextChildProvider.VTable, @ptrCast(self.vtable)).get_TextRange(@as(*const ITextChildProvider, @ptrCast(self)), pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_TextContainer(self: *const ITextChildProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ITextChildProvider.VTable, @ptrCast(self.vtable)).get_TextContainer(@as(*const ITextChildProvider, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_TextRange(self: *const ITextChildProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITextChildProvider.VTable, @ptrCast(self.vtable)).get_TextRange(@as(*const ITextChildProvider, @ptrCast(self)), pRetVal);
+    }
 };
 
 const IID_ICustomNavigationProvider_Value = Guid.initString("2062a28a-8c07-4b94-8e12-7037c622aeb8");
@@ -4755,7 +5430,10 @@ pub const ICustomNavigationProvider = extern union {
             return @as(*const ICustomNavigationProvider.VTable, @ptrCast(self.vtable)).Navigate(@as(*const ICustomNavigationProvider, @ptrCast(self)), direction, pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Navigate(self: *const ICustomNavigationProvider, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const ICustomNavigationProvider.VTable, @ptrCast(self.vtable)).Navigate(@as(*const ICustomNavigationProvider, @ptrCast(self)), direction, pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4791,7 +5469,13 @@ pub const IUIAutomationPatternInstance = extern union {
             return @as(*const IUIAutomationPatternInstance.VTable, @ptrCast(self.vtable)).CallMethod(@as(*const IUIAutomationPatternInstance, @ptrCast(self)), index, pParams, cParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetProperty(self: *const IUIAutomationPatternInstance, index: u32, cached: BOOL, @"type": UIAutomationType, pPtr: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPatternInstance.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IUIAutomationPatternInstance, @ptrCast(self)), index, cached, @"type", pPtr);
+    }
+    pub fn CallMethod(self: *const IUIAutomationPatternInstance, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPatternInstance.VTable, @ptrCast(self.vtable)).CallMethod(@as(*const IUIAutomationPatternInstance, @ptrCast(self)), index, pParams, cParams);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4826,7 +5510,13 @@ pub const IUIAutomationPatternHandler = extern union {
             return @as(*const IUIAutomationPatternHandler.VTable, @ptrCast(self.vtable)).Dispatch(@as(*const IUIAutomationPatternHandler, @ptrCast(self)), pTarget, index, pParams, cParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateClientWrapper(self: *const IUIAutomationPatternHandler, pPatternInstance: ?*IUIAutomationPatternInstance, pClientWrapper: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPatternHandler.VTable, @ptrCast(self.vtable)).CreateClientWrapper(@as(*const IUIAutomationPatternHandler, @ptrCast(self)), pPatternInstance, pClientWrapper);
+    }
+    pub fn Dispatch(self: *const IUIAutomationPatternHandler, pTarget: ?*IUnknown, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPatternHandler.VTable, @ptrCast(self.vtable)).Dispatch(@as(*const IUIAutomationPatternHandler, @ptrCast(self)), pTarget, index, pParams, cParams);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4873,7 +5563,16 @@ pub const IUIAutomationRegistrar = extern union {
             return @as(*const IUIAutomationRegistrar.VTable, @ptrCast(self.vtable)).RegisterPattern(@as(*const IUIAutomationRegistrar, @ptrCast(self)), pattern, pPatternId, pPatternAvailablePropertyId, propertyIdCount, pPropertyIds, eventIdCount, pEventIds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterProperty(self: *const IUIAutomationRegistrar, property: ?*const UIAutomationPropertyInfo, propertyId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRegistrar.VTable, @ptrCast(self.vtable)).RegisterProperty(@as(*const IUIAutomationRegistrar, @ptrCast(self)), property, propertyId);
+    }
+    pub fn RegisterEvent(self: *const IUIAutomationRegistrar, event: ?*const UIAutomationEventInfo, eventId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRegistrar.VTable, @ptrCast(self.vtable)).RegisterEvent(@as(*const IUIAutomationRegistrar, @ptrCast(self)), event, eventId);
+    }
+    pub fn RegisterPattern(self: *const IUIAutomationRegistrar, pattern: ?*const UIAutomationPatternInfo, pPatternId: ?*i32, pPatternAvailablePropertyId: ?*i32, propertyIdCount: u32, pPropertyIds: [*]i32, eventIdCount: u32, pEventIds: [*]i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRegistrar.VTable, @ptrCast(self.vtable)).RegisterPattern(@as(*const IUIAutomationRegistrar, @ptrCast(self)), pattern, pPatternId, pPatternAvailablePropertyId, propertyIdCount, pPropertyIds, eventIdCount, pEventIds);
+    }
 };
 
 pub const TreeScope = enum(i32) {
@@ -5692,7 +6391,253 @@ pub const IUIAutomationElement = extern union {
             return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetClickablePoint(@as(*const IUIAutomationElement, @ptrCast(self)), clickable, gotClickable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetFocus(self: *const IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IUIAutomationElement, @ptrCast(self)));
+    }
+    pub fn GetRuntimeId(self: *const IUIAutomationElement, runtimeId: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetRuntimeId(@as(*const IUIAutomationElement, @ptrCast(self)), runtimeId);
+    }
+    pub fn FindFirst(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IUIAutomationElement, @ptrCast(self)), scope, condition, found);
+    }
+    pub fn FindAll(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).FindAll(@as(*const IUIAutomationElement, @ptrCast(self)), scope, condition, found);
+    }
+    pub fn FindFirstBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).FindFirstBuildCache(@as(*const IUIAutomationElement, @ptrCast(self)), scope, condition, cacheRequest, found);
+    }
+    pub fn FindAllBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).FindAllBuildCache(@as(*const IUIAutomationElement, @ptrCast(self)), scope, condition, cacheRequest, found);
+    }
+    pub fn BuildUpdatedCache(self: *const IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, updatedElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).BuildUpdatedCache(@as(*const IUIAutomationElement, @ptrCast(self)), cacheRequest, updatedElement);
+    }
+    pub fn GetCurrentPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCurrentPropertyValue(@as(*const IUIAutomationElement, @ptrCast(self)), propertyId, retVal);
+    }
+    pub fn GetCurrentPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCurrentPropertyValueEx(@as(*const IUIAutomationElement, @ptrCast(self)), propertyId, ignoreDefaultValue, retVal);
+    }
+    pub fn GetCachedPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedPropertyValue(@as(*const IUIAutomationElement, @ptrCast(self)), propertyId, retVal);
+    }
+    pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedPropertyValueEx(@as(*const IUIAutomationElement, @ptrCast(self)), propertyId, ignoreDefaultValue, retVal);
+    }
+    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCurrentPatternAs(@as(*const IUIAutomationElement, @ptrCast(self)), patternId, riid, patternObject);
+    }
+    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedPatternAs(@as(*const IUIAutomationElement, @ptrCast(self)), patternId, riid, patternObject);
+    }
+    pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCurrentPattern(@as(*const IUIAutomationElement, @ptrCast(self)), patternId, patternObject);
+    }
+    pub fn GetCachedPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedPattern(@as(*const IUIAutomationElement, @ptrCast(self)), patternId, patternObject);
+    }
+    pub fn GetCachedParent(self: *const IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedParent(@as(*const IUIAutomationElement, @ptrCast(self)), parent);
+    }
+    pub fn GetCachedChildren(self: *const IUIAutomationElement, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetCachedChildren(@as(*const IUIAutomationElement, @ptrCast(self)), children);
+    }
+    pub fn get_CurrentProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentProcessId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentControlType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentLocalizedControlType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentName(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentAcceleratorKey(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentAccessKey(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentHasKeyboardFocus(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsKeyboardFocusable(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsEnabled(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentAutomationId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentClassName(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentHelpText(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentCulture(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsControlElement(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsContentElement(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsPassword(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentNativeWindowHandle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentItemType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsOffscreen(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentOrientation(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentFrameworkId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsRequiredForForm(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentItemStatus(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentBoundingRectangle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentLabeledBy(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentAriaRole(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentAriaProperties(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsDataValidForForm(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentControllerFor(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentDescribedBy(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentFlowsTo(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentProviderDescription(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedProcessId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedControlType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedLocalizedControlType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedName(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedAcceleratorKey(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedAccessKey(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedHasKeyboardFocus(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsKeyboardFocusable(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsEnabled(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedAutomationId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedClassName(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedHelpText(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedCulture(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsControlElement(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsContentElement(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsPassword(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedNativeWindowHandle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedItemType(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsOffscreen(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedOrientation(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedFrameworkId(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsRequiredForForm(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedItemStatus(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedBoundingRectangle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedLabeledBy(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedAriaRole(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedAriaProperties(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsDataValidForForm(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedControllerFor(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedDescribedBy(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedFlowsTo(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedProviderDescription(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
+    }
+    pub fn GetClickablePoint(self: *const IUIAutomationElement, clickable: ?*POINT, gotClickable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).GetClickablePoint(@as(*const IUIAutomationElement, @ptrCast(self)), clickable, gotClickable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5725,7 +6670,13 @@ pub const IUIAutomationElementArray = extern union {
             return @as(*const IUIAutomationElementArray.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IUIAutomationElementArray, @ptrCast(self)), index, element);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Length(self: *const IUIAutomationElementArray, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElementArray.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IUIAutomationElementArray, @ptrCast(self)), length);
+    }
+    pub fn GetElement(self: *const IUIAutomationElementArray, index: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElementArray.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IUIAutomationElementArray, @ptrCast(self)), index, element);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5740,7 +6691,7 @@ pub const IUIAutomationCondition = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5764,7 +6715,10 @@ pub const IUIAutomationBoolCondition = extern union {
             return @as(*const IUIAutomationBoolCondition.VTable, @ptrCast(self.vtable)).get_BooleanValue(@as(*const IUIAutomationBoolCondition, @ptrCast(self)), boolVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationCondition.MethodMixin(@This());
+    pub fn get_BooleanValue(self: *const IUIAutomationBoolCondition, boolVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationBoolCondition.VTable, @ptrCast(self.vtable)).get_BooleanValue(@as(*const IUIAutomationBoolCondition, @ptrCast(self)), boolVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5806,7 +6760,16 @@ pub const IUIAutomationPropertyCondition = extern union {
             return @as(*const IUIAutomationPropertyCondition.VTable, @ptrCast(self.vtable)).get_PropertyConditionFlags(@as(*const IUIAutomationPropertyCondition, @ptrCast(self)), flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationCondition.MethodMixin(@This());
+    pub fn get_PropertyId(self: *const IUIAutomationPropertyCondition, propertyId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPropertyCondition.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const IUIAutomationPropertyCondition, @ptrCast(self)), propertyId);
+    }
+    pub fn get_PropertyValue(self: *const IUIAutomationPropertyCondition, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPropertyCondition.VTable, @ptrCast(self.vtable)).get_PropertyValue(@as(*const IUIAutomationPropertyCondition, @ptrCast(self)), propertyValue);
+    }
+    pub fn get_PropertyConditionFlags(self: *const IUIAutomationPropertyCondition, flags: ?*PropertyConditionFlags) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPropertyCondition.VTable, @ptrCast(self.vtable)).get_PropertyConditionFlags(@as(*const IUIAutomationPropertyCondition, @ptrCast(self)), flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5847,7 +6810,16 @@ pub const IUIAutomationAndCondition = extern union {
             return @as(*const IUIAutomationAndCondition.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationAndCondition, @ptrCast(self)), childArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationCondition.MethodMixin(@This());
+    pub fn get_ChildCount(self: *const IUIAutomationAndCondition, childCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAndCondition.VTable, @ptrCast(self.vtable)).get_ChildCount(@as(*const IUIAutomationAndCondition, @ptrCast(self)), childCount);
+    }
+    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationAndCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAndCondition.VTable, @ptrCast(self.vtable)).GetChildrenAsNativeArray(@as(*const IUIAutomationAndCondition, @ptrCast(self)), childArray, childArrayCount);
+    }
+    pub fn GetChildren(self: *const IUIAutomationAndCondition, childArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAndCondition.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationAndCondition, @ptrCast(self)), childArray);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5888,7 +6860,16 @@ pub const IUIAutomationOrCondition = extern union {
             return @as(*const IUIAutomationOrCondition.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationOrCondition, @ptrCast(self)), childArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationCondition.MethodMixin(@This());
+    pub fn get_ChildCount(self: *const IUIAutomationOrCondition, childCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationOrCondition.VTable, @ptrCast(self.vtable)).get_ChildCount(@as(*const IUIAutomationOrCondition, @ptrCast(self)), childCount);
+    }
+    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationOrCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationOrCondition.VTable, @ptrCast(self.vtable)).GetChildrenAsNativeArray(@as(*const IUIAutomationOrCondition, @ptrCast(self)), childArray, childArrayCount);
+    }
+    pub fn GetChildren(self: *const IUIAutomationOrCondition, childArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationOrCondition.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationOrCondition, @ptrCast(self)), childArray);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5911,7 +6892,10 @@ pub const IUIAutomationNotCondition = extern union {
             return @as(*const IUIAutomationNotCondition.VTable, @ptrCast(self.vtable)).GetChild(@as(*const IUIAutomationNotCondition, @ptrCast(self)), condition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationCondition.MethodMixin(@This());
+    pub fn GetChild(self: *const IUIAutomationNotCondition, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationNotCondition.VTable, @ptrCast(self.vtable)).GetChild(@as(*const IUIAutomationNotCondition, @ptrCast(self)), condition);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6004,7 +6988,34 @@ pub const IUIAutomationCacheRequest = extern union {
             return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).put_AutomationElementMode(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), mode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddProperty(self: *const IUIAutomationCacheRequest, propertyId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).AddProperty(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), propertyId);
+    }
+    pub fn AddPattern(self: *const IUIAutomationCacheRequest, patternId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).AddPattern(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), patternId);
+    }
+    pub fn Clone(self: *const IUIAutomationCacheRequest, clonedRequest: ?*?*IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).Clone(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), clonedRequest);
+    }
+    pub fn get_TreeScope(self: *const IUIAutomationCacheRequest, scope: ?*TreeScope) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).get_TreeScope(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), scope);
+    }
+    pub fn put_TreeScope(self: *const IUIAutomationCacheRequest, scope: TreeScope) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).put_TreeScope(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), scope);
+    }
+    pub fn get_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).get_TreeFilter(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), filter);
+    }
+    pub fn put_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).put_TreeFilter(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), filter);
+    }
+    pub fn get_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: ?*AutomationElementMode) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).get_AutomationElementMode(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), mode);
+    }
+    pub fn put_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: AutomationElementMode) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCacheRequest.VTable, @ptrCast(self.vtable)).put_AutomationElementMode(@as(*const IUIAutomationCacheRequest, @ptrCast(self)), mode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6142,7 +7153,46 @@ pub const IUIAutomationTreeWalker = extern union {
             return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).get_Condition(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), condition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetParentElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetParentElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, parent);
+    }
+    pub fn GetFirstChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, first: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetFirstChildElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, first);
+    }
+    pub fn GetLastChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, last: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetLastChildElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, last);
+    }
+    pub fn GetNextSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, next: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetNextSiblingElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, next);
+    }
+    pub fn GetPreviousSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, previous: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetPreviousSiblingElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, previous);
+    }
+    pub fn NormalizeElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, normalized: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).NormalizeElement(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, normalized);
+    }
+    pub fn GetParentElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetParentElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, parent);
+    }
+    pub fn GetFirstChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, first: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetFirstChildElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, first);
+    }
+    pub fn GetLastChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, last: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetLastChildElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, last);
+    }
+    pub fn GetNextSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, next: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetNextSiblingElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, next);
+    }
+    pub fn GetPreviousSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, previous: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).GetPreviousSiblingElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, previous);
+    }
+    pub fn NormalizeElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, normalized: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).NormalizeElementBuildCache(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), element, cacheRequest, normalized);
+    }
+    pub fn get_Condition(self: *const IUIAutomationTreeWalker, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTreeWalker.VTable, @ptrCast(self.vtable)).get_Condition(@as(*const IUIAutomationTreeWalker, @ptrCast(self)), condition);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6166,7 +7216,10 @@ pub const IUIAutomationEventHandler = extern union {
             return @as(*const IUIAutomationEventHandler.VTable, @ptrCast(self.vtable)).HandleAutomationEvent(@as(*const IUIAutomationEventHandler, @ptrCast(self)), sender, eventId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleAutomationEvent(self: *const IUIAutomationEventHandler, sender: ?*IUIAutomationElement, eventId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandler.VTable, @ptrCast(self.vtable)).HandleAutomationEvent(@as(*const IUIAutomationEventHandler, @ptrCast(self)), sender, eventId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6191,7 +7244,10 @@ pub const IUIAutomationPropertyChangedEventHandler = extern union {
             return @as(*const IUIAutomationPropertyChangedEventHandler.VTable, @ptrCast(self.vtable)).HandlePropertyChangedEvent(@as(*const IUIAutomationPropertyChangedEventHandler, @ptrCast(self)), sender, propertyId, newValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandlePropertyChangedEvent(self: *const IUIAutomationPropertyChangedEventHandler, sender: ?*IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationPropertyChangedEventHandler.VTable, @ptrCast(self.vtable)).HandlePropertyChangedEvent(@as(*const IUIAutomationPropertyChangedEventHandler, @ptrCast(self)), sender, propertyId, newValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6216,7 +7272,10 @@ pub const IUIAutomationStructureChangedEventHandler = extern union {
             return @as(*const IUIAutomationStructureChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleStructureChangedEvent(@as(*const IUIAutomationStructureChangedEventHandler, @ptrCast(self)), sender, changeType, runtimeId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleStructureChangedEvent(self: *const IUIAutomationStructureChangedEventHandler, sender: ?*IUIAutomationElement, changeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStructureChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleStructureChangedEvent(@as(*const IUIAutomationStructureChangedEventHandler, @ptrCast(self)), sender, changeType, runtimeId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6239,7 +7298,10 @@ pub const IUIAutomationFocusChangedEventHandler = extern union {
             return @as(*const IUIAutomationFocusChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleFocusChangedEvent(@as(*const IUIAutomationFocusChangedEventHandler, @ptrCast(self)), sender);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleFocusChangedEvent(self: *const IUIAutomationFocusChangedEventHandler, sender: ?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationFocusChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleFocusChangedEvent(@as(*const IUIAutomationFocusChangedEventHandler, @ptrCast(self)), sender);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -6264,7 +7326,10 @@ pub const IUIAutomationTextEditTextChangedEventHandler = extern union {
             return @as(*const IUIAutomationTextEditTextChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleTextEditTextChangedEvent(@as(*const IUIAutomationTextEditTextChangedEventHandler, @ptrCast(self)), sender, textEditChangeType, eventStrings);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleTextEditTextChangedEvent(self: *const IUIAutomationTextEditTextChangedEventHandler, sender: ?*IUIAutomationElement, textEditChangeType: TextEditChangeType, eventStrings: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextEditTextChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleTextEditTextChangedEvent(@as(*const IUIAutomationTextEditTextChangedEventHandler, @ptrCast(self)), sender, textEditChangeType, eventStrings);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -6289,7 +7354,10 @@ pub const IUIAutomationChangesEventHandler = extern union {
             return @as(*const IUIAutomationChangesEventHandler.VTable, @ptrCast(self.vtable)).HandleChangesEvent(@as(*const IUIAutomationChangesEventHandler, @ptrCast(self)), sender, uiaChanges, changesCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleChangesEvent(self: *const IUIAutomationChangesEventHandler, sender: ?*IUIAutomationElement, uiaChanges: [*]UiaChangeInfo, changesCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationChangesEventHandler.VTable, @ptrCast(self.vtable)).HandleChangesEvent(@as(*const IUIAutomationChangesEventHandler, @ptrCast(self)), sender, uiaChanges, changesCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -6316,7 +7384,10 @@ pub const IUIAutomationNotificationEventHandler = extern union {
             return @as(*const IUIAutomationNotificationEventHandler.VTable, @ptrCast(self.vtable)).HandleNotificationEvent(@as(*const IUIAutomationNotificationEventHandler, @ptrCast(self)), sender, notificationKind, notificationProcessing, displayString, activityId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleNotificationEvent(self: *const IUIAutomationNotificationEventHandler, sender: ?*IUIAutomationElement, notificationKind: NotificationKind, notificationProcessing: NotificationProcessing, displayString: ?BSTR, activityId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationNotificationEventHandler.VTable, @ptrCast(self.vtable)).HandleNotificationEvent(@as(*const IUIAutomationNotificationEventHandler, @ptrCast(self)), sender, notificationKind, notificationProcessing, displayString, activityId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6338,7 +7409,10 @@ pub const IUIAutomationInvokePattern = extern union {
             return @as(*const IUIAutomationInvokePattern.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IUIAutomationInvokePattern, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Invoke(self: *const IUIAutomationInvokePattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationInvokePattern.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IUIAutomationInvokePattern, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6379,7 +7453,16 @@ pub const IUIAutomationDockPattern = extern union {
             return @as(*const IUIAutomationDockPattern.VTable, @ptrCast(self.vtable)).get_CachedDockPosition(@as(*const IUIAutomationDockPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDockPosition(self: *const IUIAutomationDockPattern, dockPos: DockPosition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDockPattern.VTable, @ptrCast(self.vtable)).SetDockPosition(@as(*const IUIAutomationDockPattern, @ptrCast(self)), dockPos);
+    }
+    pub fn get_CurrentDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDockPattern.VTable, @ptrCast(self.vtable)).get_CurrentDockPosition(@as(*const IUIAutomationDockPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDockPattern.VTable, @ptrCast(self.vtable)).get_CachedDockPosition(@as(*const IUIAutomationDockPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6426,7 +7509,19 @@ pub const IUIAutomationExpandCollapsePattern = extern union {
             return @as(*const IUIAutomationExpandCollapsePattern.VTable, @ptrCast(self.vtable)).get_CachedExpandCollapseState(@as(*const IUIAutomationExpandCollapsePattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Expand(self: *const IUIAutomationExpandCollapsePattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationExpandCollapsePattern.VTable, @ptrCast(self.vtable)).Expand(@as(*const IUIAutomationExpandCollapsePattern, @ptrCast(self)));
+    }
+    pub fn Collapse(self: *const IUIAutomationExpandCollapsePattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationExpandCollapsePattern.VTable, @ptrCast(self.vtable)).Collapse(@as(*const IUIAutomationExpandCollapsePattern, @ptrCast(self)));
+    }
+    pub fn get_CurrentExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationExpandCollapsePattern.VTable, @ptrCast(self.vtable)).get_CurrentExpandCollapseState(@as(*const IUIAutomationExpandCollapsePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationExpandCollapsePattern.VTable, @ptrCast(self.vtable)).get_CachedExpandCollapseState(@as(*const IUIAutomationExpandCollapsePattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6487,7 +7582,22 @@ pub const IUIAutomationGridPattern = extern union {
             return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).get_CachedColumnCount(@as(*const IUIAutomationGridPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItem(self: *const IUIAutomationGridPattern, row: i32, column: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IUIAutomationGridPattern, @ptrCast(self)), row, column, element);
+    }
+    pub fn get_CurrentRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).get_CurrentRowCount(@as(*const IUIAutomationGridPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).get_CurrentColumnCount(@as(*const IUIAutomationGridPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).get_CachedRowCount(@as(*const IUIAutomationGridPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridPattern.VTable, @ptrCast(self.vtable)).get_CachedColumnCount(@as(*const IUIAutomationGridPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6592,7 +7702,37 @@ pub const IUIAutomationGridItemPattern = extern union {
             return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedColumnSpan(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentContainingGrid(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentRow(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentColumn(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentRowSpan(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentColumnSpan(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedContainingGrid(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedRow(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedColumn(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedRowSpan(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationGridItemPattern.VTable, @ptrCast(self.vtable)).get_CachedColumnSpan(@as(*const IUIAutomationGridItemPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6658,7 +7798,25 @@ pub const IUIAutomationMultipleViewPattern = extern union {
             return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).GetCachedSupportedViews(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetViewName(self: *const IUIAutomationMultipleViewPattern, view: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).GetViewName(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), view, name);
+    }
+    pub fn SetCurrentView(self: *const IUIAutomationMultipleViewPattern, view: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).SetCurrentView(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), view);
+    }
+    pub fn get_CurrentCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).get_CurrentCurrentView(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).GetCurrentSupportedViews(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).get_CachedCurrentView(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationMultipleViewPattern.VTable, @ptrCast(self.vtable)).GetCachedSupportedViews(@as(*const IUIAutomationMultipleViewPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6681,7 +7839,10 @@ pub const IUIAutomationObjectModelPattern = extern union {
             return @as(*const IUIAutomationObjectModelPattern.VTable, @ptrCast(self.vtable)).GetUnderlyingObjectModel(@as(*const IUIAutomationObjectModelPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUnderlyingObjectModel(self: *const IUIAutomationObjectModelPattern, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationObjectModelPattern.VTable, @ptrCast(self.vtable)).GetUnderlyingObjectModel(@as(*const IUIAutomationObjectModelPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6812,7 +7973,46 @@ pub const IUIAutomationRangeValuePattern = extern union {
             return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedSmallChange(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetValue(self: *const IUIAutomationRangeValuePattern, val: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), val);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentValue(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentIsReadOnly(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentMaximum(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentMinimum(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentLargeChange(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentSmallChange(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedValue(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedIsReadOnly(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedMaximum(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedMinimum(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedLargeChange(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationRangeValuePattern.VTable, @ptrCast(self.vtable)).get_CachedSmallChange(@as(*const IUIAutomationRangeValuePattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6953,7 +8153,49 @@ pub const IUIAutomationScrollPattern = extern union {
             return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedVerticallyScrollable(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Scroll(self: *const IUIAutomationScrollPattern, horizontalAmount: ScrollAmount, verticalAmount: ScrollAmount) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), horizontalAmount, verticalAmount);
+    }
+    pub fn SetScrollPercent(self: *const IUIAutomationScrollPattern, horizontalPercent: f64, verticalPercent: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).SetScrollPercent(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), horizontalPercent, verticalPercent);
+    }
+    pub fn get_CurrentHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentHorizontalScrollPercent(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentVerticalScrollPercent(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentHorizontalViewSize(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentVerticalViewSize(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentHorizontallyScrollable(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CurrentVerticallyScrollable(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedHorizontalScrollPercent(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedVerticalScrollPercent(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedHorizontalViewSize(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedVerticalViewSize(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedHorizontallyScrollable(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollPattern.VTable, @ptrCast(self.vtable)).get_CachedVerticallyScrollable(@as(*const IUIAutomationScrollPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6975,7 +8217,10 @@ pub const IUIAutomationScrollItemPattern = extern union {
             return @as(*const IUIAutomationScrollItemPattern.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const IUIAutomationScrollItemPattern, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ScrollIntoView(self: *const IUIAutomationScrollItemPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationScrollItemPattern.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const IUIAutomationScrollItemPattern, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7042,7 +8287,25 @@ pub const IUIAutomationSelectionPattern = extern union {
             return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).get_CachedIsSelectionRequired(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCurrentSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).GetCurrentSelection(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanSelectMultiple(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).get_CurrentIsSelectionRequired(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).GetCachedSelection(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).get_CachedCanSelectMultiple(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern.VTable, @ptrCast(self.vtable)).get_CachedIsSelectionRequired(@as(*const IUIAutomationSelectionPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -7129,7 +8392,31 @@ pub const IUIAutomationSelectionPattern2 = extern union {
             return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CachedItemCount(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationSelectionPattern.MethodMixin(@This());
+    pub fn get_CurrentFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CurrentFirstSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CurrentLastSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CurrentCurrentSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CurrentItemCount(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CachedFirstSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CachedLastSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CachedCurrentSelectedItem(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionPattern2.VTable, @ptrCast(self.vtable)).get_CachedItemCount(@as(*const IUIAutomationSelectionPattern2, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7201,7 +8488,28 @@ pub const IUIAutomationSelectionItemPattern = extern union {
             return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).get_CachedSelectionContainer(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Select(self: *const IUIAutomationSelectionItemPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).Select(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)));
+    }
+    pub fn AddToSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).AddToSelection(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)));
+    }
+    pub fn RemoveFromSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).RemoveFromSelection(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)));
+    }
+    pub fn get_CurrentIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentIsSelected(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentSelectionContainer(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).get_CachedIsSelected(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSelectionItemPattern.VTable, @ptrCast(self.vtable)).get_CachedSelectionContainer(@as(*const IUIAutomationSelectionItemPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7231,7 +8539,13 @@ pub const IUIAutomationSynchronizedInputPattern = extern union {
             return @as(*const IUIAutomationSynchronizedInputPattern.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IUIAutomationSynchronizedInputPattern, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn StartListening(self: *const IUIAutomationSynchronizedInputPattern, inputType: SynchronizedInputType) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSynchronizedInputPattern.VTable, @ptrCast(self.vtable)).StartListening(@as(*const IUIAutomationSynchronizedInputPattern, @ptrCast(self)), inputType);
+    }
+    pub fn Cancel(self: *const IUIAutomationSynchronizedInputPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSynchronizedInputPattern.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IUIAutomationSynchronizedInputPattern, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7296,7 +8610,25 @@ pub const IUIAutomationTablePattern = extern union {
             return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).get_CachedRowOrColumnMajor(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCurrentRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).GetCurrentRowHeaders(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).GetCurrentColumnHeaders(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).get_CurrentRowOrColumnMajor(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).GetCachedRowHeaders(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).GetCachedColumnHeaders(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTablePattern.VTable, @ptrCast(self.vtable)).get_CachedRowOrColumnMajor(@as(*const IUIAutomationTablePattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7343,7 +8675,19 @@ pub const IUIAutomationTableItemPattern = extern union {
             return @as(*const IUIAutomationTableItemPattern.VTable, @ptrCast(self.vtable)).GetCachedColumnHeaderItems(@as(*const IUIAutomationTableItemPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCurrentRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTableItemPattern.VTable, @ptrCast(self.vtable)).GetCurrentRowHeaderItems(@as(*const IUIAutomationTableItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTableItemPattern.VTable, @ptrCast(self.vtable)).GetCurrentColumnHeaderItems(@as(*const IUIAutomationTableItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTableItemPattern.VTable, @ptrCast(self.vtable)).GetCachedRowHeaderItems(@as(*const IUIAutomationTableItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTableItemPattern.VTable, @ptrCast(self.vtable)).GetCachedColumnHeaderItems(@as(*const IUIAutomationTableItemPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7383,7 +8727,16 @@ pub const IUIAutomationTogglePattern = extern union {
             return @as(*const IUIAutomationTogglePattern.VTable, @ptrCast(self.vtable)).get_CachedToggleState(@as(*const IUIAutomationTogglePattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Toggle(self: *const IUIAutomationTogglePattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTogglePattern.VTable, @ptrCast(self.vtable)).Toggle(@as(*const IUIAutomationTogglePattern, @ptrCast(self)));
+    }
+    pub fn get_CurrentToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTogglePattern.VTable, @ptrCast(self.vtable)).get_CurrentToggleState(@as(*const IUIAutomationTogglePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTogglePattern.VTable, @ptrCast(self.vtable)).get_CachedToggleState(@as(*const IUIAutomationTogglePattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7478,7 +8831,34 @@ pub const IUIAutomationTransformPattern = extern union {
             return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CachedCanRotate(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Move(self: *const IUIAutomationTransformPattern, x: f64, y: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).Move(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), x, y);
+    }
+    pub fn Resize(self: *const IUIAutomationTransformPattern, width: f64, height: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).Resize(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), width, height);
+    }
+    pub fn Rotate(self: *const IUIAutomationTransformPattern, degrees: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), degrees);
+    }
+    pub fn get_CurrentCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanMove(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanResize(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanRotate(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CachedCanMove(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CachedCanResize(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern.VTable, @ptrCast(self.vtable)).get_CachedCanRotate(@as(*const IUIAutomationTransformPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7537,7 +8917,22 @@ pub const IUIAutomationValuePattern = extern union {
             return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).get_CachedIsReadOnly(@as(*const IUIAutomationValuePattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetValue(self: *const IUIAutomationValuePattern, val: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IUIAutomationValuePattern, @ptrCast(self)), val);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentValue(@as(*const IUIAutomationValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).get_CurrentIsReadOnly(@as(*const IUIAutomationValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).get_CachedValue(@as(*const IUIAutomationValuePattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationValuePattern.VTable, @ptrCast(self.vtable)).get_CachedIsReadOnly(@as(*const IUIAutomationValuePattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7684,7 +9079,52 @@ pub const IUIAutomationWindowPattern = extern union {
             return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedWindowInteractionState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Close(self: *const IUIAutomationWindowPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).Close(@as(*const IUIAutomationWindowPattern, @ptrCast(self)));
+    }
+    pub fn WaitForInputIdle(self: *const IUIAutomationWindowPattern, milliseconds: i32, success: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).WaitForInputIdle(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), milliseconds, success);
+    }
+    pub fn SetWindowVisualState(self: *const IUIAutomationWindowPattern, state: WindowVisualState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).SetWindowVisualState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), state);
+    }
+    pub fn get_CurrentCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanMaximize(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentCanMinimize(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentIsModal(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentIsTopmost(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentWindowVisualState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CurrentWindowInteractionState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedCanMaximize(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedCanMinimize(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedIsModal(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedIsTopmost(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedWindowVisualState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationWindowPattern.VTable, @ptrCast(self.vtable)).get_CachedWindowInteractionState(@as(*const IUIAutomationWindowPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7859,7 +9299,61 @@ pub const IUIAutomationTextRange = extern union {
             return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationTextRange, @ptrCast(self)), children);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IUIAutomationTextRange, clonedRange: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).Clone(@as(*const IUIAutomationTextRange, @ptrCast(self)), clonedRange);
+    }
+    pub fn Compare(self: *const IUIAutomationTextRange, range: ?*IUIAutomationTextRange, areSame: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).Compare(@as(*const IUIAutomationTextRange, @ptrCast(self)), range, areSame);
+    }
+    pub fn CompareEndpoints(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint, compValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).CompareEndpoints(@as(*const IUIAutomationTextRange, @ptrCast(self)), srcEndPoint, range, targetEndPoint, compValue);
+    }
+    pub fn ExpandToEnclosingUnit(self: *const IUIAutomationTextRange, textUnit: TextUnit) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).ExpandToEnclosingUnit(@as(*const IUIAutomationTextRange, @ptrCast(self)), textUnit);
+    }
+    pub fn FindAttribute(self: *const IUIAutomationTextRange, attr: i32, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).FindAttribute(@as(*const IUIAutomationTextRange, @ptrCast(self)), attr, val, backward, found);
+    }
+    pub fn FindText(self: *const IUIAutomationTextRange, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).FindText(@as(*const IUIAutomationTextRange, @ptrCast(self)), text, backward, ignoreCase, found);
+    }
+    pub fn GetAttributeValue(self: *const IUIAutomationTextRange, attr: i32, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const IUIAutomationTextRange, @ptrCast(self)), attr, value);
+    }
+    pub fn GetBoundingRectangles(self: *const IUIAutomationTextRange, boundingRects: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetBoundingRectangles(@as(*const IUIAutomationTextRange, @ptrCast(self)), boundingRects);
+    }
+    pub fn GetEnclosingElement(self: *const IUIAutomationTextRange, enclosingElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetEnclosingElement(@as(*const IUIAutomationTextRange, @ptrCast(self)), enclosingElement);
+    }
+    pub fn GetText(self: *const IUIAutomationTextRange, maxLength: i32, text: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetText(@as(*const IUIAutomationTextRange, @ptrCast(self)), maxLength, text);
+    }
+    pub fn Move(self: *const IUIAutomationTextRange, unit: TextUnit, count: i32, moved: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).Move(@as(*const IUIAutomationTextRange, @ptrCast(self)), unit, count, moved);
+    }
+    pub fn MoveEndpointByUnit(self: *const IUIAutomationTextRange, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, moved: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).MoveEndpointByUnit(@as(*const IUIAutomationTextRange, @ptrCast(self)), endpoint, unit, count, moved);
+    }
+    pub fn MoveEndpointByRange(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).MoveEndpointByRange(@as(*const IUIAutomationTextRange, @ptrCast(self)), srcEndPoint, range, targetEndPoint);
+    }
+    pub fn Select(self: *const IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).Select(@as(*const IUIAutomationTextRange, @ptrCast(self)));
+    }
+    pub fn AddToSelection(self: *const IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).AddToSelection(@as(*const IUIAutomationTextRange, @ptrCast(self)));
+    }
+    pub fn RemoveFromSelection(self: *const IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).RemoveFromSelection(@as(*const IUIAutomationTextRange, @ptrCast(self)));
+    }
+    pub fn ScrollIntoView(self: *const IUIAutomationTextRange, alignToTop: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const IUIAutomationTextRange, @ptrCast(self)), alignToTop);
+    }
+    pub fn GetChildren(self: *const IUIAutomationTextRange, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IUIAutomationTextRange, @ptrCast(self)), children);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7881,7 +9375,10 @@ pub const IUIAutomationTextRange2 = extern union {
             return @as(*const IUIAutomationTextRange2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const IUIAutomationTextRange2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationTextRange.MethodMixin(@This());
+    pub fn ShowContextMenu(self: *const IUIAutomationTextRange2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange2.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const IUIAutomationTextRange2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -7924,7 +9421,16 @@ pub const IUIAutomationTextRange3 = extern union {
             return @as(*const IUIAutomationTextRange3.VTable, @ptrCast(self.vtable)).GetAttributeValues(@as(*const IUIAutomationTextRange3, @ptrCast(self)), attributeIds, attributeIdCount, attributeValues);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationTextRange2.MethodMixin(@This());
+    pub fn GetEnclosingElementBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, enclosingElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange3.VTable, @ptrCast(self.vtable)).GetEnclosingElementBuildCache(@as(*const IUIAutomationTextRange3, @ptrCast(self)), cacheRequest, enclosingElement);
+    }
+    pub fn GetChildrenBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange3.VTable, @ptrCast(self.vtable)).GetChildrenBuildCache(@as(*const IUIAutomationTextRange3, @ptrCast(self)), cacheRequest, children);
+    }
+    pub fn GetAttributeValues(self: *const IUIAutomationTextRange3, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRange3.VTable, @ptrCast(self.vtable)).GetAttributeValues(@as(*const IUIAutomationTextRange3, @ptrCast(self)), attributeIds, attributeIdCount, attributeValues);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7957,7 +9463,13 @@ pub const IUIAutomationTextRangeArray = extern union {
             return @as(*const IUIAutomationTextRangeArray.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IUIAutomationTextRangeArray, @ptrCast(self)), index, element);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Length(self: *const IUIAutomationTextRangeArray, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRangeArray.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IUIAutomationTextRangeArray, @ptrCast(self)), length);
+    }
+    pub fn GetElement(self: *const IUIAutomationTextRangeArray, index: i32, element: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextRangeArray.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IUIAutomationTextRangeArray, @ptrCast(self)), index, element);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8024,7 +9536,25 @@ pub const IUIAutomationTextPattern = extern union {
             return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).get_SupportedTextSelection(@as(*const IUIAutomationTextPattern, @ptrCast(self)), supportedTextSelection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RangeFromPoint(self: *const IUIAutomationTextPattern, pt: POINT, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).RangeFromPoint(@as(*const IUIAutomationTextPattern, @ptrCast(self)), pt, range);
+    }
+    pub fn RangeFromChild(self: *const IUIAutomationTextPattern, child: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).RangeFromChild(@as(*const IUIAutomationTextPattern, @ptrCast(self)), child, range);
+    }
+    pub fn GetSelection(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const IUIAutomationTextPattern, @ptrCast(self)), ranges);
+    }
+    pub fn GetVisibleRanges(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).GetVisibleRanges(@as(*const IUIAutomationTextPattern, @ptrCast(self)), ranges);
+    }
+    pub fn get_DocumentRange(self: *const IUIAutomationTextPattern, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).get_DocumentRange(@as(*const IUIAutomationTextPattern, @ptrCast(self)), range);
+    }
+    pub fn get_SupportedTextSelection(self: *const IUIAutomationTextPattern, supportedTextSelection: ?*SupportedTextSelection) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern.VTable, @ptrCast(self.vtable)).get_SupportedTextSelection(@as(*const IUIAutomationTextPattern, @ptrCast(self)), supportedTextSelection);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8057,7 +9587,13 @@ pub const IUIAutomationTextPattern2 = extern union {
             return @as(*const IUIAutomationTextPattern2.VTable, @ptrCast(self.vtable)).GetCaretRange(@as(*const IUIAutomationTextPattern2, @ptrCast(self)), isActive, range);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationTextPattern.MethodMixin(@This());
+    pub fn RangeFromAnnotation(self: *const IUIAutomationTextPattern2, annotation: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern2.VTable, @ptrCast(self.vtable)).RangeFromAnnotation(@as(*const IUIAutomationTextPattern2, @ptrCast(self)), annotation, range);
+    }
+    pub fn GetCaretRange(self: *const IUIAutomationTextPattern2, isActive: ?*BOOL, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextPattern2.VTable, @ptrCast(self.vtable)).GetCaretRange(@as(*const IUIAutomationTextPattern2, @ptrCast(self)), isActive, range);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -8088,7 +9624,13 @@ pub const IUIAutomationTextEditPattern = extern union {
             return @as(*const IUIAutomationTextEditPattern.VTable, @ptrCast(self.vtable)).GetConversionTarget(@as(*const IUIAutomationTextEditPattern, @ptrCast(self)), range);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationTextPattern.MethodMixin(@This());
+    pub fn GetActiveComposition(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextEditPattern.VTable, @ptrCast(self.vtable)).GetActiveComposition(@as(*const IUIAutomationTextEditPattern, @ptrCast(self)), range);
+    }
+    pub fn GetConversionTarget(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextEditPattern.VTable, @ptrCast(self.vtable)).GetConversionTarget(@as(*const IUIAutomationTextEditPattern, @ptrCast(self)), range);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -8112,7 +9654,10 @@ pub const IUIAutomationCustomNavigationPattern = extern union {
             return @as(*const IUIAutomationCustomNavigationPattern.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IUIAutomationCustomNavigationPattern, @ptrCast(self)), direction, pRetVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Navigate(self: *const IUIAutomationCustomNavigationPattern, direction: NavigateDirection, pRetVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationCustomNavigationPattern.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IUIAutomationCustomNavigationPattern, @ptrCast(self)), direction, pRetVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -8136,7 +9681,10 @@ pub const IUIAutomationActiveTextPositionChangedEventHandler = extern union {
             return @as(*const IUIAutomationActiveTextPositionChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleActiveTextPositionChangedEvent(@as(*const IUIAutomationActiveTextPositionChangedEventHandler, @ptrCast(self)), sender, range);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleActiveTextPositionChangedEvent(self: *const IUIAutomationActiveTextPositionChangedEventHandler, sender: ?*IUIAutomationElement, range: ?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationActiveTextPositionChangedEventHandler.VTable, @ptrCast(self.vtable)).HandleActiveTextPositionChangedEvent(@as(*const IUIAutomationActiveTextPositionChangedEventHandler, @ptrCast(self)), sender, range);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8360,7 +9908,79 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern union {
             return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).GetIAccessible(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), ppAccessible);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Select(self: *const IUIAutomationLegacyIAccessiblePattern, flagsSelect: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).Select(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), flagsSelect);
+    }
+    pub fn DoDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).DoDefaultAction(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)));
+    }
+    pub fn SetValue(self: *const IUIAutomationLegacyIAccessiblePattern, szValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), szValue);
+    }
+    pub fn get_CurrentChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentChildId(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CurrentName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentName(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszName);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentValue(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszValue);
+    }
+    pub fn get_CurrentDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentDescription(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszDescription);
+    }
+    pub fn get_CurrentRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentRole(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pdwRole);
+    }
+    pub fn get_CurrentState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentState(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pdwState);
+    }
+    pub fn get_CurrentHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentHelp(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszHelp);
+    }
+    pub fn get_CurrentKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentKeyboardShortcut(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszKeyboardShortcut);
+    }
+    pub fn GetCurrentSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).GetCurrentSelection(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pvarSelectedChildren);
+    }
+    pub fn get_CurrentDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CurrentDefaultAction(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszDefaultAction);
+    }
+    pub fn get_CachedChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedChildId(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pRetVal);
+    }
+    pub fn get_CachedName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedName(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszName);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedValue(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszValue);
+    }
+    pub fn get_CachedDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedDescription(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszDescription);
+    }
+    pub fn get_CachedRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedRole(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pdwRole);
+    }
+    pub fn get_CachedState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedState(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pdwState);
+    }
+    pub fn get_CachedHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedHelp(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszHelp);
+    }
+    pub fn get_CachedKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedKeyboardShortcut(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszKeyboardShortcut);
+    }
+    pub fn GetCachedSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).GetCachedSelection(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pvarSelectedChildren);
+    }
+    pub fn get_CachedDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).get_CachedDefaultAction(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), pszDefaultAction);
+    }
+    pub fn GetIAccessible(self: *const IUIAutomationLegacyIAccessiblePattern, ppAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationLegacyIAccessiblePattern.VTable, @ptrCast(self.vtable)).GetIAccessible(@as(*const IUIAutomationLegacyIAccessiblePattern, @ptrCast(self)), ppAccessible);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8386,7 +10006,10 @@ pub const IUIAutomationItemContainerPattern = extern union {
             return @as(*const IUIAutomationItemContainerPattern.VTable, @ptrCast(self.vtable)).FindItemByProperty(@as(*const IUIAutomationItemContainerPattern, @ptrCast(self)), pStartAfter, propertyId, value, pFound);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindItemByProperty(self: *const IUIAutomationItemContainerPattern, pStartAfter: ?*IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationItemContainerPattern.VTable, @ptrCast(self.vtable)).FindItemByProperty(@as(*const IUIAutomationItemContainerPattern, @ptrCast(self)), pStartAfter, propertyId, value, pFound);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8408,7 +10031,10 @@ pub const IUIAutomationVirtualizedItemPattern = extern union {
             return @as(*const IUIAutomationVirtualizedItemPattern.VTable, @ptrCast(self.vtable)).Realize(@as(*const IUIAutomationVirtualizedItemPattern, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Realize(self: *const IUIAutomationVirtualizedItemPattern) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationVirtualizedItemPattern.VTable, @ptrCast(self.vtable)).Realize(@as(*const IUIAutomationVirtualizedItemPattern, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8513,7 +10139,37 @@ pub const IUIAutomationAnnotationPattern = extern union {
             return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedTarget(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CurrentAnnotationTypeId(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CurrentAnnotationTypeName(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CurrentAuthor(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CurrentDateTime(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CurrentTarget(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedAnnotationTypeId(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedAnnotationTypeName(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedAuthor(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedDateTime(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationAnnotationPattern.VTable, @ptrCast(self.vtable)).get_CachedTarget(@as(*const IUIAutomationAnnotationPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8672,7 +10328,55 @@ pub const IUIAutomationStylesPattern = extern union {
             return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).GetCachedExtendedPropertiesAsArray(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), propertyArray, propertyCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentStyleId(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentStyleName(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentFillColor(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentFillPatternStyle(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentShape(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentFillPatternColor(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CurrentExtendedProperties(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).GetCurrentExtendedPropertiesAsArray(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), propertyArray, propertyCount);
+    }
+    pub fn get_CachedStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedStyleId(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedStyleName(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedFillColor(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedFillPatternStyle(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedShape(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedFillPatternColor(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).get_CachedExtendedProperties(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationStylesPattern.VTable, @ptrCast(self.vtable)).GetCachedExtendedPropertiesAsArray(@as(*const IUIAutomationStylesPattern, @ptrCast(self)), propertyArray, propertyCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8696,7 +10400,10 @@ pub const IUIAutomationSpreadsheetPattern = extern union {
             return @as(*const IUIAutomationSpreadsheetPattern.VTable, @ptrCast(self.vtable)).GetItemByName(@as(*const IUIAutomationSpreadsheetPattern, @ptrCast(self)), name, element);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemByName(self: *const IUIAutomationSpreadsheetPattern, name: ?BSTR, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetPattern.VTable, @ptrCast(self.vtable)).GetItemByName(@as(*const IUIAutomationSpreadsheetPattern, @ptrCast(self)), name, element);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8761,7 +10468,25 @@ pub const IUIAutomationSpreadsheetItemPattern = extern union {
             return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).GetCachedAnnotationTypes(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).get_CurrentFormula(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).GetCurrentAnnotationObjects(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).GetCurrentAnnotationTypes(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).get_CachedFormula(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).GetCachedAnnotationObjects(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationSpreadsheetItemPattern.VTable, @ptrCast(self.vtable)).GetCachedAnnotationTypes(@as(*const IUIAutomationSpreadsheetItemPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8864,7 +10589,37 @@ pub const IUIAutomationTransformPattern2 = extern union {
             return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CachedZoomMaximum(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationTransformPattern.MethodMixin(@This());
+    pub fn Zoom(self: *const IUIAutomationTransformPattern2, zoomValue: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).Zoom(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), zoomValue);
+    }
+    pub fn ZoomByUnit(self: *const IUIAutomationTransformPattern2, zoomUnit: ZoomUnit) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).ZoomByUnit(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), zoomUnit);
+    }
+    pub fn get_CurrentCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CurrentCanZoom(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CachedCanZoom(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CurrentZoomLevel(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CachedZoomLevel(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CurrentZoomMinimum(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CachedZoomMinimum(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CurrentZoomMaximum(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTransformPattern2.VTable, @ptrCast(self.vtable)).get_CachedZoomMaximum(@as(*const IUIAutomationTransformPattern2, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8897,7 +10652,13 @@ pub const IUIAutomationTextChildPattern = extern union {
             return @as(*const IUIAutomationTextChildPattern.VTable, @ptrCast(self.vtable)).get_TextRange(@as(*const IUIAutomationTextChildPattern, @ptrCast(self)), range);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_TextContainer(self: *const IUIAutomationTextChildPattern, container: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextChildPattern.VTable, @ptrCast(self.vtable)).get_TextContainer(@as(*const IUIAutomationTextChildPattern, @ptrCast(self)), container);
+    }
+    pub fn get_TextRange(self: *const IUIAutomationTextChildPattern, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationTextChildPattern.VTable, @ptrCast(self.vtable)).get_TextRange(@as(*const IUIAutomationTextChildPattern, @ptrCast(self)), range);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8982,7 +10743,31 @@ pub const IUIAutomationDragPattern = extern union {
             return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).GetCachedGrabbedItems(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CurrentIsGrabbed(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CachedIsGrabbed(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CurrentDropEffect(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CachedDropEffect(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CurrentDropEffects(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).get_CachedDropEffects(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCurrentGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).GetCurrentGrabbedItems(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
+    pub fn GetCachedGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDragPattern.VTable, @ptrCast(self.vtable)).GetCachedGrabbedItems(@as(*const IUIAutomationDragPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -9033,7 +10818,19 @@ pub const IUIAutomationDropTargetPattern = extern union {
             return @as(*const IUIAutomationDropTargetPattern.VTable, @ptrCast(self.vtable)).get_CachedDropTargetEffects(@as(*const IUIAutomationDropTargetPattern, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_CurrentDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDropTargetPattern.VTable, @ptrCast(self.vtable)).get_CurrentDropTargetEffect(@as(*const IUIAutomationDropTargetPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDropTargetPattern.VTable, @ptrCast(self.vtable)).get_CachedDropTargetEffect(@as(*const IUIAutomationDropTargetPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDropTargetPattern.VTable, @ptrCast(self.vtable)).get_CurrentDropTargetEffects(@as(*const IUIAutomationDropTargetPattern, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationDropTargetPattern.VTable, @ptrCast(self.vtable)).get_CachedDropTargetEffects(@as(*const IUIAutomationDropTargetPattern, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -9102,7 +10899,25 @@ pub const IUIAutomationElement2 = extern union {
             return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CachedFlowsFrom(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement.MethodMixin(@This());
+    pub fn get_CurrentOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CurrentOptimizeForVisualContent(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CachedOptimizeForVisualContent(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CurrentLiveSetting(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CachedLiveSetting(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CurrentFlowsFrom(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement2.VTable, @ptrCast(self.vtable)).get_CachedFlowsFrom(@as(*const IUIAutomationElement2, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -9142,7 +10957,16 @@ pub const IUIAutomationElement3 = extern union {
             return @as(*const IUIAutomationElement3.VTable, @ptrCast(self.vtable)).get_CachedIsPeripheral(@as(*const IUIAutomationElement3, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement2.MethodMixin(@This());
+    pub fn ShowContextMenu(self: *const IUIAutomationElement3) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement3.VTable, @ptrCast(self.vtable)).ShowContextMenu(@as(*const IUIAutomationElement3, @ptrCast(self)));
+    }
+    pub fn get_CurrentIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement3.VTable, @ptrCast(self.vtable)).get_CurrentIsPeripheral(@as(*const IUIAutomationElement3, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement3.VTable, @ptrCast(self.vtable)).get_CachedIsPeripheral(@as(*const IUIAutomationElement3, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9247,7 +11071,37 @@ pub const IUIAutomationElement4 = extern union {
             return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedAnnotationObjects(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement3.MethodMixin(@This());
+    pub fn get_CurrentPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CurrentPositionInSet(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CurrentSizeOfSet(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CurrentLevel(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CurrentAnnotationTypes(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CurrentAnnotationObjects(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedPositionInSet(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedSizeOfSet(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedLevel(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedAnnotationTypes(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement4.VTable, @ptrCast(self.vtable)).get_CachedAnnotationObjects(@as(*const IUIAutomationElement4, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -9298,7 +11152,19 @@ pub const IUIAutomationElement5 = extern union {
             return @as(*const IUIAutomationElement5.VTable, @ptrCast(self.vtable)).get_CachedLocalizedLandmarkType(@as(*const IUIAutomationElement5, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement4.MethodMixin(@This());
+    pub fn get_CurrentLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement5.VTable, @ptrCast(self.vtable)).get_CurrentLandmarkType(@as(*const IUIAutomationElement5, @ptrCast(self)), retVal);
+    }
+    pub fn get_CurrentLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement5.VTable, @ptrCast(self.vtable)).get_CurrentLocalizedLandmarkType(@as(*const IUIAutomationElement5, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement5.VTable, @ptrCast(self.vtable)).get_CachedLandmarkType(@as(*const IUIAutomationElement5, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement5.VTable, @ptrCast(self.vtable)).get_CachedLocalizedLandmarkType(@as(*const IUIAutomationElement5, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -9331,7 +11197,13 @@ pub const IUIAutomationElement6 = extern union {
             return @as(*const IUIAutomationElement6.VTable, @ptrCast(self.vtable)).get_CachedFullDescription(@as(*const IUIAutomationElement6, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement5.MethodMixin(@This());
+    pub fn get_CurrentFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement6.VTable, @ptrCast(self.vtable)).get_CurrentFullDescription(@as(*const IUIAutomationElement6, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement6.VTable, @ptrCast(self.vtable)).get_CachedFullDescription(@as(*const IUIAutomationElement6, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -9406,7 +11278,22 @@ pub const IUIAutomationElement7 = extern union {
             return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).GetCurrentMetadataValue(@as(*const IUIAutomationElement7, @ptrCast(self)), targetId, metadataId, returnVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement6.MethodMixin(@This());
+    pub fn FindFirstWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).FindFirstWithOptions(@as(*const IUIAutomationElement7, @ptrCast(self)), scope, condition, traversalOptions, root, found);
+    }
+    pub fn FindAllWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).FindAllWithOptions(@as(*const IUIAutomationElement7, @ptrCast(self)), scope, condition, traversalOptions, root, found);
+    }
+    pub fn FindFirstWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).FindFirstWithOptionsBuildCache(@as(*const IUIAutomationElement7, @ptrCast(self)), scope, condition, cacheRequest, traversalOptions, root, found);
+    }
+    pub fn FindAllWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).FindAllWithOptionsBuildCache(@as(*const IUIAutomationElement7, @ptrCast(self)), scope, condition, cacheRequest, traversalOptions, root, found);
+    }
+    pub fn GetCurrentMetadataValue(self: *const IUIAutomationElement7, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement7.VTable, @ptrCast(self.vtable)).GetCurrentMetadataValue(@as(*const IUIAutomationElement7, @ptrCast(self)), targetId, metadataId, returnVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
@@ -9439,7 +11326,13 @@ pub const IUIAutomationElement8 = extern union {
             return @as(*const IUIAutomationElement8.VTable, @ptrCast(self.vtable)).get_CachedHeadingLevel(@as(*const IUIAutomationElement8, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement7.MethodMixin(@This());
+    pub fn get_CurrentHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement8.VTable, @ptrCast(self.vtable)).get_CurrentHeadingLevel(@as(*const IUIAutomationElement8, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement8.VTable, @ptrCast(self.vtable)).get_CachedHeadingLevel(@as(*const IUIAutomationElement8, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -9472,7 +11365,13 @@ pub const IUIAutomationElement9 = extern union {
             return @as(*const IUIAutomationElement9.VTable, @ptrCast(self.vtable)).get_CachedIsDialog(@as(*const IUIAutomationElement9, @ptrCast(self)), retVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomationElement8.MethodMixin(@This());
+    pub fn get_CurrentIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement9.VTable, @ptrCast(self.vtable)).get_CurrentIsDialog(@as(*const IUIAutomationElement9, @ptrCast(self)), retVal);
+    }
+    pub fn get_CachedIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationElement9.VTable, @ptrCast(self.vtable)).get_CachedIsDialog(@as(*const IUIAutomationElement9, @ptrCast(self)), retVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9507,7 +11406,13 @@ pub const IUIAutomationProxyFactory = extern union {
             return @as(*const IUIAutomationProxyFactory.VTable, @ptrCast(self.vtable)).get_ProxyFactoryId(@as(*const IUIAutomationProxyFactory, @ptrCast(self)), factoryId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateProvider(self: *const IUIAutomationProxyFactory, hwnd: ?HWND, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactory.VTable, @ptrCast(self.vtable)).CreateProvider(@as(*const IUIAutomationProxyFactory, @ptrCast(self)), hwnd, idObject, idChild, provider);
+    }
+    pub fn get_ProxyFactoryId(self: *const IUIAutomationProxyFactory, factoryId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactory.VTable, @ptrCast(self.vtable)).get_ProxyFactoryId(@as(*const IUIAutomationProxyFactory, @ptrCast(self)), factoryId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9641,7 +11546,46 @@ pub const IUIAutomationProxyFactoryEntry = extern union {
             return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).GetWinEventsForAutomationEvent(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), eventId, propertyId, winEvents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProxyFactory(self: *const IUIAutomationProxyFactoryEntry, factory: ?*?*IUIAutomationProxyFactory) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_ProxyFactory(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), factory);
+    }
+    pub fn get_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_ClassName(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), className);
+    }
+    pub fn get_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_ImageName(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), imageName);
+    }
+    pub fn get_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_AllowSubstringMatch(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), allowSubstringMatch);
+    }
+    pub fn get_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_CanCheckBaseClass(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), canCheckBaseClass);
+    }
+    pub fn get_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).get_NeedsAdviseEvents(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), adviseEvents);
+    }
+    pub fn put_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).put_ClassName(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), className);
+    }
+    pub fn put_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).put_ImageName(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), imageName);
+    }
+    pub fn put_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).put_AllowSubstringMatch(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), allowSubstringMatch);
+    }
+    pub fn put_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).put_CanCheckBaseClass(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), canCheckBaseClass);
+    }
+    pub fn put_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).put_NeedsAdviseEvents(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), adviseEvents);
+    }
+    pub fn SetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).SetWinEventsForAutomationEvent(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), eventId, propertyId, winEvents);
+    }
+    pub fn GetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryEntry.VTable, @ptrCast(self.vtable)).GetWinEventsForAutomationEvent(@as(*const IUIAutomationProxyFactoryEntry, @ptrCast(self)), eventId, propertyId, winEvents);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9730,7 +11674,34 @@ pub const IUIAutomationProxyFactoryMapping = extern union {
             return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).RestoreDefaultTable(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Count(self: *const IUIAutomationProxyFactoryMapping, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), count);
+    }
+    pub fn GetTable(self: *const IUIAutomationProxyFactoryMapping, table: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).GetTable(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), table);
+    }
+    pub fn GetEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32, entry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).GetEntry(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), index, entry);
+    }
+    pub fn SetTable(self: *const IUIAutomationProxyFactoryMapping, factoryList: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).SetTable(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), factoryList);
+    }
+    pub fn InsertEntries(self: *const IUIAutomationProxyFactoryMapping, before: u32, factoryList: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).InsertEntries(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), before, factoryList);
+    }
+    pub fn InsertEntry(self: *const IUIAutomationProxyFactoryMapping, before: u32, factory: ?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).InsertEntry(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), before, factory);
+    }
+    pub fn RemoveEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).RemoveEntry(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)), index);
+    }
+    pub fn ClearTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).ClearTable(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)));
+    }
+    pub fn RestoreDefaultTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationProxyFactoryMapping.VTable, @ptrCast(self.vtable)).RestoreDefaultTable(@as(*const IUIAutomationProxyFactoryMapping, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -9821,7 +11792,28 @@ pub const IUIAutomationEventHandlerGroup = extern union {
             return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddTextEditTextChangedEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, textEditChangeType, cacheRequest, handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddActiveTextPositionChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddActiveTextPositionChangedEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, cacheRequest, handler);
+    }
+    pub fn AddAutomationEventHandler(self: *const IUIAutomationEventHandlerGroup, eventId: i32, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddAutomationEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), eventId, scope, cacheRequest, handler);
+    }
+    pub fn AddChangesEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddChangesEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, changeTypes, changesCount, cacheRequest, handler);
+    }
+    pub fn AddNotificationEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddNotificationEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, cacheRequest, handler);
+    }
+    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddPropertyChangedEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, cacheRequest, handler, propertyArray, propertyCount);
+    }
+    pub fn AddStructureChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddStructureChangedEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, cacheRequest, handler);
+    }
+    pub fn AddTextEditTextChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomationEventHandlerGroup.VTable, @ptrCast(self.vtable)).AddTextEditTextChangedEventHandler(@as(*const IUIAutomationEventHandlerGroup, @ptrCast(self)), scope, textEditChangeType, cacheRequest, handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10355,7 +12347,172 @@ pub const IUIAutomation = extern union {
             return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromIAccessibleBuildCache(@as(*const IUIAutomation, @ptrCast(self)), accessible, childId, cacheRequest, element);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CompareElements(self: *const IUIAutomation, el1: ?*IUIAutomationElement, el2: ?*IUIAutomationElement, areSame: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CompareElements(@as(*const IUIAutomation, @ptrCast(self)), el1, el2, areSame);
+    }
+    pub fn CompareRuntimeIds(self: *const IUIAutomation, runtimeId1: ?*SAFEARRAY, runtimeId2: ?*SAFEARRAY, areSame: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CompareRuntimeIds(@as(*const IUIAutomation, @ptrCast(self)), runtimeId1, runtimeId2, areSame);
+    }
+    pub fn GetRootElement(self: *const IUIAutomation, root: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetRootElement(@as(*const IUIAutomation, @ptrCast(self)), root);
+    }
+    pub fn ElementFromHandle(self: *const IUIAutomation, hwnd: ?HWND, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromHandle(@as(*const IUIAutomation, @ptrCast(self)), hwnd, element);
+    }
+    pub fn ElementFromPoint(self: *const IUIAutomation, pt: POINT, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromPoint(@as(*const IUIAutomation, @ptrCast(self)), pt, element);
+    }
+    pub fn GetFocusedElement(self: *const IUIAutomation, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetFocusedElement(@as(*const IUIAutomation, @ptrCast(self)), element);
+    }
+    pub fn GetRootElementBuildCache(self: *const IUIAutomation, cacheRequest: ?*IUIAutomationCacheRequest, root: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetRootElementBuildCache(@as(*const IUIAutomation, @ptrCast(self)), cacheRequest, root);
+    }
+    pub fn ElementFromHandleBuildCache(self: *const IUIAutomation, hwnd: ?HWND, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromHandleBuildCache(@as(*const IUIAutomation, @ptrCast(self)), hwnd, cacheRequest, element);
+    }
+    pub fn ElementFromPointBuildCache(self: *const IUIAutomation, pt: POINT, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromPointBuildCache(@as(*const IUIAutomation, @ptrCast(self)), pt, cacheRequest, element);
+    }
+    pub fn GetFocusedElementBuildCache(self: *const IUIAutomation, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetFocusedElementBuildCache(@as(*const IUIAutomation, @ptrCast(self)), cacheRequest, element);
+    }
+    pub fn CreateTreeWalker(self: *const IUIAutomation, pCondition: ?*IUIAutomationCondition, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateTreeWalker(@as(*const IUIAutomation, @ptrCast(self)), pCondition, walker);
+    }
+    pub fn get_ControlViewWalker(self: *const IUIAutomation, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ControlViewWalker(@as(*const IUIAutomation, @ptrCast(self)), walker);
+    }
+    pub fn get_ContentViewWalker(self: *const IUIAutomation, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ContentViewWalker(@as(*const IUIAutomation, @ptrCast(self)), walker);
+    }
+    pub fn get_RawViewWalker(self: *const IUIAutomation, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_RawViewWalker(@as(*const IUIAutomation, @ptrCast(self)), walker);
+    }
+    pub fn get_RawViewCondition(self: *const IUIAutomation, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_RawViewCondition(@as(*const IUIAutomation, @ptrCast(self)), condition);
+    }
+    pub fn get_ControlViewCondition(self: *const IUIAutomation, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ControlViewCondition(@as(*const IUIAutomation, @ptrCast(self)), condition);
+    }
+    pub fn get_ContentViewCondition(self: *const IUIAutomation, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ContentViewCondition(@as(*const IUIAutomation, @ptrCast(self)), condition);
+    }
+    pub fn CreateCacheRequest(self: *const IUIAutomation, cacheRequest: ?*?*IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateCacheRequest(@as(*const IUIAutomation, @ptrCast(self)), cacheRequest);
+    }
+    pub fn CreateTrueCondition(self: *const IUIAutomation, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateTrueCondition(@as(*const IUIAutomation, @ptrCast(self)), newCondition);
+    }
+    pub fn CreateFalseCondition(self: *const IUIAutomation, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateFalseCondition(@as(*const IUIAutomation, @ptrCast(self)), newCondition);
+    }
+    pub fn CreatePropertyCondition(self: *const IUIAutomation, propertyId: i32, value: VARIANT, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreatePropertyCondition(@as(*const IUIAutomation, @ptrCast(self)), propertyId, value, newCondition);
+    }
+    pub fn CreatePropertyConditionEx(self: *const IUIAutomation, propertyId: i32, value: VARIANT, flags: PropertyConditionFlags, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreatePropertyConditionEx(@as(*const IUIAutomation, @ptrCast(self)), propertyId, value, flags, newCondition);
+    }
+    pub fn CreateAndCondition(self: *const IUIAutomation, condition1: ?*IUIAutomationCondition, condition2: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateAndCondition(@as(*const IUIAutomation, @ptrCast(self)), condition1, condition2, newCondition);
+    }
+    pub fn CreateAndConditionFromArray(self: *const IUIAutomation, conditions: ?*SAFEARRAY, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateAndConditionFromArray(@as(*const IUIAutomation, @ptrCast(self)), conditions, newCondition);
+    }
+    pub fn CreateAndConditionFromNativeArray(self: *const IUIAutomation, conditions: [*]?*IUIAutomationCondition, conditionCount: i32, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateAndConditionFromNativeArray(@as(*const IUIAutomation, @ptrCast(self)), conditions, conditionCount, newCondition);
+    }
+    pub fn CreateOrCondition(self: *const IUIAutomation, condition1: ?*IUIAutomationCondition, condition2: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateOrCondition(@as(*const IUIAutomation, @ptrCast(self)), condition1, condition2, newCondition);
+    }
+    pub fn CreateOrConditionFromArray(self: *const IUIAutomation, conditions: ?*SAFEARRAY, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateOrConditionFromArray(@as(*const IUIAutomation, @ptrCast(self)), conditions, newCondition);
+    }
+    pub fn CreateOrConditionFromNativeArray(self: *const IUIAutomation, conditions: [*]?*IUIAutomationCondition, conditionCount: i32, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateOrConditionFromNativeArray(@as(*const IUIAutomation, @ptrCast(self)), conditions, conditionCount, newCondition);
+    }
+    pub fn CreateNotCondition(self: *const IUIAutomation, condition: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateNotCondition(@as(*const IUIAutomation, @ptrCast(self)), condition, newCondition);
+    }
+    pub fn AddAutomationEventHandler(self: *const IUIAutomation, eventId: i32, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).AddAutomationEventHandler(@as(*const IUIAutomation, @ptrCast(self)), eventId, element, scope, cacheRequest, handler);
+    }
+    pub fn RemoveAutomationEventHandler(self: *const IUIAutomation, eventId: i32, element: ?*IUIAutomationElement, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RemoveAutomationEventHandler(@as(*const IUIAutomation, @ptrCast(self)), eventId, element, handler);
+    }
+    pub fn AddPropertyChangedEventHandlerNativeArray(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).AddPropertyChangedEventHandlerNativeArray(@as(*const IUIAutomation, @ptrCast(self)), element, scope, cacheRequest, handler, propertyArray, propertyCount);
+    }
+    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).AddPropertyChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), element, scope, cacheRequest, handler, propertyArray);
+    }
+    pub fn RemovePropertyChangedEventHandler(self: *const IUIAutomation, element: ?*IUIAutomationElement, handler: ?*IUIAutomationPropertyChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RemovePropertyChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), element, handler);
+    }
+    pub fn AddStructureChangedEventHandler(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).AddStructureChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), element, scope, cacheRequest, handler);
+    }
+    pub fn RemoveStructureChangedEventHandler(self: *const IUIAutomation, element: ?*IUIAutomationElement, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RemoveStructureChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), element, handler);
+    }
+    pub fn AddFocusChangedEventHandler(self: *const IUIAutomation, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).AddFocusChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), cacheRequest, handler);
+    }
+    pub fn RemoveFocusChangedEventHandler(self: *const IUIAutomation, handler: ?*IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RemoveFocusChangedEventHandler(@as(*const IUIAutomation, @ptrCast(self)), handler);
+    }
+    pub fn RemoveAllEventHandlers(self: *const IUIAutomation) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RemoveAllEventHandlers(@as(*const IUIAutomation, @ptrCast(self)));
+    }
+    pub fn IntNativeArrayToSafeArray(self: *const IUIAutomation, array: [*]i32, arrayCount: i32, safeArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).IntNativeArrayToSafeArray(@as(*const IUIAutomation, @ptrCast(self)), array, arrayCount, safeArray);
+    }
+    pub fn IntSafeArrayToNativeArray(self: *const IUIAutomation, intArray: ?*SAFEARRAY, array: [*]?*i32, arrayCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).IntSafeArrayToNativeArray(@as(*const IUIAutomation, @ptrCast(self)), intArray, array, arrayCount);
+    }
+    pub fn RectToVariant(self: *const IUIAutomation, rc: RECT, @"var": ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).RectToVariant(@as(*const IUIAutomation, @ptrCast(self)), rc, @"var");
+    }
+    pub fn VariantToRect(self: *const IUIAutomation, @"var": VARIANT, rc: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).VariantToRect(@as(*const IUIAutomation, @ptrCast(self)), @"var", rc);
+    }
+    pub fn SafeArrayToRectNativeArray(self: *const IUIAutomation, rects: ?*SAFEARRAY, rectArray: [*]?*RECT, rectArrayCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).SafeArrayToRectNativeArray(@as(*const IUIAutomation, @ptrCast(self)), rects, rectArray, rectArrayCount);
+    }
+    pub fn CreateProxyFactoryEntry(self: *const IUIAutomation, factory: ?*IUIAutomationProxyFactory, factoryEntry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CreateProxyFactoryEntry(@as(*const IUIAutomation, @ptrCast(self)), factory, factoryEntry);
+    }
+    pub fn get_ProxyFactoryMapping(self: *const IUIAutomation, factoryMapping: ?*?*IUIAutomationProxyFactoryMapping) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ProxyFactoryMapping(@as(*const IUIAutomation, @ptrCast(self)), factoryMapping);
+    }
+    pub fn GetPropertyProgrammaticName(self: *const IUIAutomation, property: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetPropertyProgrammaticName(@as(*const IUIAutomation, @ptrCast(self)), property, name);
+    }
+    pub fn GetPatternProgrammaticName(self: *const IUIAutomation, pattern: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).GetPatternProgrammaticName(@as(*const IUIAutomation, @ptrCast(self)), pattern, name);
+    }
+    pub fn PollForPotentialSupportedPatterns(self: *const IUIAutomation, pElement: ?*IUIAutomationElement, patternIds: ?*?*SAFEARRAY, patternNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).PollForPotentialSupportedPatterns(@as(*const IUIAutomation, @ptrCast(self)), pElement, patternIds, patternNames);
+    }
+    pub fn PollForPotentialSupportedProperties(self: *const IUIAutomation, pElement: ?*IUIAutomationElement, propertyIds: ?*?*SAFEARRAY, propertyNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).PollForPotentialSupportedProperties(@as(*const IUIAutomation, @ptrCast(self)), pElement, propertyIds, propertyNames);
+    }
+    pub fn CheckNotSupported(self: *const IUIAutomation, value: VARIANT, isNotSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).CheckNotSupported(@as(*const IUIAutomation, @ptrCast(self)), value, isNotSupported);
+    }
+    pub fn get_ReservedNotSupportedValue(self: *const IUIAutomation, notSupportedValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ReservedNotSupportedValue(@as(*const IUIAutomation, @ptrCast(self)), notSupportedValue);
+    }
+    pub fn get_ReservedMixedAttributeValue(self: *const IUIAutomation, mixedAttributeValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).get_ReservedMixedAttributeValue(@as(*const IUIAutomation, @ptrCast(self)), mixedAttributeValue);
+    }
+    pub fn ElementFromIAccessible(self: *const IUIAutomation, accessible: ?*IAccessible, childId: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromIAccessible(@as(*const IUIAutomation, @ptrCast(self)), accessible, childId, element);
+    }
+    pub fn ElementFromIAccessibleBuildCache(self: *const IUIAutomation, accessible: ?*IAccessible, childId: i32, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation.VTable, @ptrCast(self.vtable)).ElementFromIAccessibleBuildCache(@as(*const IUIAutomation, @ptrCast(self)), accessible, childId, cacheRequest, element);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10424,7 +12581,25 @@ pub const IUIAutomation2 = extern union {
             return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).put_TransactionTimeout(@as(*const IUIAutomation2, @ptrCast(self)), timeout);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomation.MethodMixin(@This());
+    pub fn get_AutoSetFocus(self: *const IUIAutomation2, autoSetFocus: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).get_AutoSetFocus(@as(*const IUIAutomation2, @ptrCast(self)), autoSetFocus);
+    }
+    pub fn put_AutoSetFocus(self: *const IUIAutomation2, autoSetFocus: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).put_AutoSetFocus(@as(*const IUIAutomation2, @ptrCast(self)), autoSetFocus);
+    }
+    pub fn get_ConnectionTimeout(self: *const IUIAutomation2, timeout: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).get_ConnectionTimeout(@as(*const IUIAutomation2, @ptrCast(self)), timeout);
+    }
+    pub fn put_ConnectionTimeout(self: *const IUIAutomation2, timeout: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).put_ConnectionTimeout(@as(*const IUIAutomation2, @ptrCast(self)), timeout);
+    }
+    pub fn get_TransactionTimeout(self: *const IUIAutomation2, timeout: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).get_TransactionTimeout(@as(*const IUIAutomation2, @ptrCast(self)), timeout);
+    }
+    pub fn put_TransactionTimeout(self: *const IUIAutomation2, timeout: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation2.VTable, @ptrCast(self.vtable)).put_TransactionTimeout(@as(*const IUIAutomation2, @ptrCast(self)), timeout);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -10460,7 +12635,13 @@ pub const IUIAutomation3 = extern union {
             return @as(*const IUIAutomation3.VTable, @ptrCast(self.vtable)).RemoveTextEditTextChangedEventHandler(@as(*const IUIAutomation3, @ptrCast(self)), element, handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomation2.MethodMixin(@This());
+    pub fn AddTextEditTextChangedEventHandler(self: *const IUIAutomation3, element: ?*IUIAutomationElement, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation3.VTable, @ptrCast(self.vtable)).AddTextEditTextChangedEventHandler(@as(*const IUIAutomation3, @ptrCast(self)), element, scope, textEditChangeType, cacheRequest, handler);
+    }
+    pub fn RemoveTextEditTextChangedEventHandler(self: *const IUIAutomation3, element: ?*IUIAutomationElement, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation3.VTable, @ptrCast(self.vtable)).RemoveTextEditTextChangedEventHandler(@as(*const IUIAutomation3, @ptrCast(self)), element, handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -10497,7 +12678,13 @@ pub const IUIAutomation4 = extern union {
             return @as(*const IUIAutomation4.VTable, @ptrCast(self.vtable)).RemoveChangesEventHandler(@as(*const IUIAutomation4, @ptrCast(self)), element, handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomation3.MethodMixin(@This());
+    pub fn AddChangesEventHandler(self: *const IUIAutomation4, element: ?*IUIAutomationElement, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, pCacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation4.VTable, @ptrCast(self.vtable)).AddChangesEventHandler(@as(*const IUIAutomation4, @ptrCast(self)), element, scope, changeTypes, changesCount, pCacheRequest, handler);
+    }
+    pub fn RemoveChangesEventHandler(self: *const IUIAutomation4, element: ?*IUIAutomationElement, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation4.VTable, @ptrCast(self.vtable)).RemoveChangesEventHandler(@as(*const IUIAutomation4, @ptrCast(self)), element, handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -10532,7 +12719,13 @@ pub const IUIAutomation5 = extern union {
             return @as(*const IUIAutomation5.VTable, @ptrCast(self.vtable)).RemoveNotificationEventHandler(@as(*const IUIAutomation5, @ptrCast(self)), element, handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomation4.MethodMixin(@This());
+    pub fn AddNotificationEventHandler(self: *const IUIAutomation5, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation5.VTable, @ptrCast(self.vtable)).AddNotificationEventHandler(@as(*const IUIAutomation5, @ptrCast(self)), element, scope, cacheRequest, handler);
+    }
+    pub fn RemoveNotificationEventHandler(self: *const IUIAutomation5, element: ?*IUIAutomationElement, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation5.VTable, @ptrCast(self.vtable)).RemoveNotificationEventHandler(@as(*const IUIAutomation5, @ptrCast(self)), element, handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -10629,7 +12822,34 @@ pub const IUIAutomation6 = extern union {
             return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).RemoveActiveTextPositionChangedEventHandler(@as(*const IUIAutomation6, @ptrCast(self)), element, handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUIAutomation5.MethodMixin(@This());
+    pub fn CreateEventHandlerGroup(self: *const IUIAutomation6, handlerGroup: ?*?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).CreateEventHandlerGroup(@as(*const IUIAutomation6, @ptrCast(self)), handlerGroup);
+    }
+    pub fn AddEventHandlerGroup(self: *const IUIAutomation6, element: ?*IUIAutomationElement, handlerGroup: ?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).AddEventHandlerGroup(@as(*const IUIAutomation6, @ptrCast(self)), element, handlerGroup);
+    }
+    pub fn RemoveEventHandlerGroup(self: *const IUIAutomation6, element: ?*IUIAutomationElement, handlerGroup: ?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).RemoveEventHandlerGroup(@as(*const IUIAutomation6, @ptrCast(self)), element, handlerGroup);
+    }
+    pub fn get_ConnectionRecoveryBehavior(self: *const IUIAutomation6, connectionRecoveryBehaviorOptions: ?*ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).get_ConnectionRecoveryBehavior(@as(*const IUIAutomation6, @ptrCast(self)), connectionRecoveryBehaviorOptions);
+    }
+    pub fn put_ConnectionRecoveryBehavior(self: *const IUIAutomation6, connectionRecoveryBehaviorOptions: ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).put_ConnectionRecoveryBehavior(@as(*const IUIAutomation6, @ptrCast(self)), connectionRecoveryBehaviorOptions);
+    }
+    pub fn get_CoalesceEvents(self: *const IUIAutomation6, coalesceEventsOptions: ?*CoalesceEventsOptions) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).get_CoalesceEvents(@as(*const IUIAutomation6, @ptrCast(self)), coalesceEventsOptions);
+    }
+    pub fn put_CoalesceEvents(self: *const IUIAutomation6, coalesceEventsOptions: CoalesceEventsOptions) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).put_CoalesceEvents(@as(*const IUIAutomation6, @ptrCast(self)), coalesceEventsOptions);
+    }
+    pub fn AddActiveTextPositionChangedEventHandler(self: *const IUIAutomation6, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).AddActiveTextPositionChangedEventHandler(@as(*const IUIAutomation6, @ptrCast(self)), element, scope, cacheRequest, handler);
+    }
+    pub fn RemoveActiveTextPositionChangedEventHandler(self: *const IUIAutomation6, element: ?*IUIAutomationElement, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAutomation6.VTable, @ptrCast(self.vtable)).RemoveActiveTextPositionChangedEventHandler(@as(*const IUIAutomation6, @ptrCast(self)), element, handler);
+    }
 };
 
 pub const ConditionType = enum(i32) {

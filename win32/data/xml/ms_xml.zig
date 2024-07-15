@@ -647,11 +647,14 @@ pub const IXMLDOMImplementation = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLDOMImplementation_hasFeature(self: *const T, feature: ?BSTR, version: ?BSTR, hasFeature: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IXMLDOMImplementation.VTable, @ptrCast(self.vtable)).hasFeature(@as(*const IXMLDOMImplementation, @ptrCast(self)), feature, version, hasFeature);
+        pub fn IXMLDOMImplementation_hasFeature(self: *const T, feature: ?BSTR, version: ?BSTR, _param_hasFeature: ?*i16) callconv(.Inline) HRESULT {
+            return @as(*const IXMLDOMImplementation.VTable, @ptrCast(self.vtable)).hasFeature(@as(*const IXMLDOMImplementation, @ptrCast(self)), feature, version, _param_hasFeature);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn hasFeature(self: *const IXMLDOMImplementation, feature: ?BSTR, version: ?BSTR, _param_hasFeature: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMImplementation.VTable, @ptrCast(self.vtable)).hasFeature(@as(*const IXMLDOMImplementation, @ptrCast(self)), feature, version, _param_hasFeature);
+    }
 };
 
 const IID_IXMLDOMNode_Value = Guid.initString("2933bf80-7b36-11d2-b20e-00c04f983e60");
@@ -990,7 +993,115 @@ pub const IXMLDOMNode = extern union {
             return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).transformNodeToObject(@as(*const IXMLDOMNode, @ptrCast(self)), stylesheet, outputObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_nodeName(self: *const IXMLDOMNode, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeName(@as(*const IXMLDOMNode, @ptrCast(self)), name);
+    }
+    pub fn get_nodeValue(self: *const IXMLDOMNode, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeValue(@as(*const IXMLDOMNode, @ptrCast(self)), value);
+    }
+    pub fn put_nodeValue(self: *const IXMLDOMNode, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_nodeValue(@as(*const IXMLDOMNode, @ptrCast(self)), value);
+    }
+    pub fn get_nodeType(self: *const IXMLDOMNode, @"type": ?*DOMNodeType) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeType(@as(*const IXMLDOMNode, @ptrCast(self)), @"type");
+    }
+    pub fn get_parentNode(self: *const IXMLDOMNode, parent: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_parentNode(@as(*const IXMLDOMNode, @ptrCast(self)), parent);
+    }
+    pub fn get_childNodes(self: *const IXMLDOMNode, childList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_childNodes(@as(*const IXMLDOMNode, @ptrCast(self)), childList);
+    }
+    pub fn get_firstChild(self: *const IXMLDOMNode, firstChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_firstChild(@as(*const IXMLDOMNode, @ptrCast(self)), firstChild);
+    }
+    pub fn get_lastChild(self: *const IXMLDOMNode, lastChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_lastChild(@as(*const IXMLDOMNode, @ptrCast(self)), lastChild);
+    }
+    pub fn get_previousSibling(self: *const IXMLDOMNode, previousSibling: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_previousSibling(@as(*const IXMLDOMNode, @ptrCast(self)), previousSibling);
+    }
+    pub fn get_nextSibling(self: *const IXMLDOMNode, nextSibling: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nextSibling(@as(*const IXMLDOMNode, @ptrCast(self)), nextSibling);
+    }
+    pub fn get_attributes(self: *const IXMLDOMNode, attributeMap: ?*?*IXMLDOMNamedNodeMap) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const IXMLDOMNode, @ptrCast(self)), attributeMap);
+    }
+    pub fn insertBefore(self: *const IXMLDOMNode, newChild: ?*IXMLDOMNode, refChild: VARIANT, outNewChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).insertBefore(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, refChild, outNewChild);
+    }
+    pub fn replaceChild(self: *const IXMLDOMNode, newChild: ?*IXMLDOMNode, oldChild: ?*IXMLDOMNode, outOldChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).replaceChild(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, oldChild, outOldChild);
+    }
+    pub fn removeChild(self: *const IXMLDOMNode, childNode: ?*IXMLDOMNode, oldChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLDOMNode, @ptrCast(self)), childNode, oldChild);
+    }
+    pub fn appendChild(self: *const IXMLDOMNode, newChild: ?*IXMLDOMNode, outNewChild: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).appendChild(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, outNewChild);
+    }
+    pub fn hasChildNodes(self: *const IXMLDOMNode, hasChild: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).hasChildNodes(@as(*const IXMLDOMNode, @ptrCast(self)), hasChild);
+    }
+    pub fn get_ownerDocument(self: *const IXMLDOMNode, XMLDOMDocument: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_ownerDocument(@as(*const IXMLDOMNode, @ptrCast(self)), XMLDOMDocument);
+    }
+    pub fn cloneNode(self: *const IXMLDOMNode, deep: i16, cloneRoot: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).cloneNode(@as(*const IXMLDOMNode, @ptrCast(self)), deep, cloneRoot);
+    }
+    pub fn get_nodeTypeString(self: *const IXMLDOMNode, nodeType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeTypeString(@as(*const IXMLDOMNode, @ptrCast(self)), nodeType);
+    }
+    pub fn get_text(self: *const IXMLDOMNode, text: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLDOMNode, @ptrCast(self)), text);
+    }
+    pub fn put_text(self: *const IXMLDOMNode, text: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLDOMNode, @ptrCast(self)), text);
+    }
+    pub fn get_specified(self: *const IXMLDOMNode, isSpecified: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_specified(@as(*const IXMLDOMNode, @ptrCast(self)), isSpecified);
+    }
+    pub fn get_definition(self: *const IXMLDOMNode, definitionNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_definition(@as(*const IXMLDOMNode, @ptrCast(self)), definitionNode);
+    }
+    pub fn get_nodeTypedValue(self: *const IXMLDOMNode, typedValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeTypedValue(@as(*const IXMLDOMNode, @ptrCast(self)), typedValue);
+    }
+    pub fn put_nodeTypedValue(self: *const IXMLDOMNode, typedValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_nodeTypedValue(@as(*const IXMLDOMNode, @ptrCast(self)), typedValue);
+    }
+    pub fn get_dataType(self: *const IXMLDOMNode, dataTypeName: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_dataType(@as(*const IXMLDOMNode, @ptrCast(self)), dataTypeName);
+    }
+    pub fn put_dataType(self: *const IXMLDOMNode, dataTypeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_dataType(@as(*const IXMLDOMNode, @ptrCast(self)), dataTypeName);
+    }
+    pub fn get_xml(self: *const IXMLDOMNode, xmlString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_xml(@as(*const IXMLDOMNode, @ptrCast(self)), xmlString);
+    }
+    pub fn transformNode(self: *const IXMLDOMNode, stylesheet: ?*IXMLDOMNode, xmlString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).transformNode(@as(*const IXMLDOMNode, @ptrCast(self)), stylesheet, xmlString);
+    }
+    pub fn selectNodes(self: *const IXMLDOMNode, queryString: ?BSTR, resultList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).selectNodes(@as(*const IXMLDOMNode, @ptrCast(self)), queryString, resultList);
+    }
+    pub fn selectSingleNode(self: *const IXMLDOMNode, queryString: ?BSTR, resultNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).selectSingleNode(@as(*const IXMLDOMNode, @ptrCast(self)), queryString, resultNode);
+    }
+    pub fn get_parsed(self: *const IXMLDOMNode, isParsed: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_parsed(@as(*const IXMLDOMNode, @ptrCast(self)), isParsed);
+    }
+    pub fn get_namespaceURI(self: *const IXMLDOMNode, namespaceURI: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const IXMLDOMNode, @ptrCast(self)), namespaceURI);
+    }
+    pub fn get_prefix(self: *const IXMLDOMNode, prefixString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_prefix(@as(*const IXMLDOMNode, @ptrCast(self)), prefixString);
+    }
+    pub fn get_baseName(self: *const IXMLDOMNode, nameString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_baseName(@as(*const IXMLDOMNode, @ptrCast(self)), nameString);
+    }
+    pub fn transformNodeToObject(self: *const IXMLDOMNode, stylesheet: ?*IXMLDOMNode, outputObject: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).transformNodeToObject(@as(*const IXMLDOMNode, @ptrCast(self)), stylesheet, outputObject);
+    }
 };
 
 const IID_IXMLDOMDocumentFragment_Value = Guid.initString("3efaa413-272f-11d2-836f-0000f87a7782");
@@ -1004,7 +1115,7 @@ pub const IXMLDOMDocumentFragment = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXMLDOMNode.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
 };
 
 const IID_IXMLDOMDocument_Value = Guid.initString("2933bf81-7b36-11d2-b20e-00c04f983e60");
@@ -1313,7 +1424,106 @@ pub const IXMLDOMDocument = extern union {
             return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_ontransformnode(@as(*const IXMLDOMDocument, @ptrCast(self)), ontransformnodeSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_doctype(self: *const IXMLDOMDocument, documentType: ?*?*IXMLDOMDocumentType) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDOMDocument, @ptrCast(self)), documentType);
+    }
+    pub fn get_implementation(self: *const IXMLDOMDocument, impl: ?*?*IXMLDOMImplementation) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_implementation(@as(*const IXMLDOMDocument, @ptrCast(self)), impl);
+    }
+    pub fn get_documentElement(self: *const IXMLDOMDocument, DOMElement: ?*?*IXMLDOMElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_documentElement(@as(*const IXMLDOMDocument, @ptrCast(self)), DOMElement);
+    }
+    pub fn putref_documentElement(self: *const IXMLDOMDocument, DOMElement: ?*IXMLDOMElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).putref_documentElement(@as(*const IXMLDOMDocument, @ptrCast(self)), DOMElement);
+    }
+    pub fn createElement(self: *const IXMLDOMDocument, tagName: ?BSTR, element: ?*?*IXMLDOMElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDOMDocument, @ptrCast(self)), tagName, element);
+    }
+    pub fn createDocumentFragment(self: *const IXMLDOMDocument, docFrag: ?*?*IXMLDOMDocumentFragment) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createDocumentFragment(@as(*const IXMLDOMDocument, @ptrCast(self)), docFrag);
+    }
+    pub fn createTextNode(self: *const IXMLDOMDocument, data: ?BSTR, text: ?*?*IXMLDOMText) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createTextNode(@as(*const IXMLDOMDocument, @ptrCast(self)), data, text);
+    }
+    pub fn createComment(self: *const IXMLDOMDocument, data: ?BSTR, comment: ?*?*IXMLDOMComment) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createComment(@as(*const IXMLDOMDocument, @ptrCast(self)), data, comment);
+    }
+    pub fn createCDATASection(self: *const IXMLDOMDocument, data: ?BSTR, cdata: ?*?*IXMLDOMCDATASection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createCDATASection(@as(*const IXMLDOMDocument, @ptrCast(self)), data, cdata);
+    }
+    pub fn createProcessingInstruction(self: *const IXMLDOMDocument, target: ?BSTR, data: ?BSTR, pi: ?*?*IXMLDOMProcessingInstruction) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createProcessingInstruction(@as(*const IXMLDOMDocument, @ptrCast(self)), target, data, pi);
+    }
+    pub fn createAttribute(self: *const IXMLDOMDocument, name: ?BSTR, attribute: ?*?*IXMLDOMAttribute) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createAttribute(@as(*const IXMLDOMDocument, @ptrCast(self)), name, attribute);
+    }
+    pub fn createEntityReference(self: *const IXMLDOMDocument, name: ?BSTR, entityRef: ?*?*IXMLDOMEntityReference) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createEntityReference(@as(*const IXMLDOMDocument, @ptrCast(self)), name, entityRef);
+    }
+    pub fn getElementsByTagName(self: *const IXMLDOMDocument, tagName: ?BSTR, resultList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).getElementsByTagName(@as(*const IXMLDOMDocument, @ptrCast(self)), tagName, resultList);
+    }
+    pub fn createNode(self: *const IXMLDOMDocument, Type: VARIANT, name: ?BSTR, namespaceURI: ?BSTR, node: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createNode(@as(*const IXMLDOMDocument, @ptrCast(self)), Type, name, namespaceURI, node);
+    }
+    pub fn nodeFromID(self: *const IXMLDOMDocument, idString: ?BSTR, node: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).nodeFromID(@as(*const IXMLDOMDocument, @ptrCast(self)), idString, node);
+    }
+    pub fn load(self: *const IXMLDOMDocument, xmlSource: VARIANT, isSuccessful: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).load(@as(*const IXMLDOMDocument, @ptrCast(self)), xmlSource, isSuccessful);
+    }
+    pub fn get_readyState(self: *const IXMLDOMDocument, value: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDOMDocument, @ptrCast(self)), value);
+    }
+    pub fn get_parseError(self: *const IXMLDOMDocument, errorObj: ?*?*IXMLDOMParseError) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_parseError(@as(*const IXMLDOMDocument, @ptrCast(self)), errorObj);
+    }
+    pub fn get_url(self: *const IXMLDOMDocument, urlString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_url(@as(*const IXMLDOMDocument, @ptrCast(self)), urlString);
+    }
+    pub fn get_async(self: *const IXMLDOMDocument, isAsync: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_async(@as(*const IXMLDOMDocument, @ptrCast(self)), isAsync);
+    }
+    pub fn put_async(self: *const IXMLDOMDocument, isAsync: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_async(@as(*const IXMLDOMDocument, @ptrCast(self)), isAsync);
+    }
+    pub fn abort(self: *const IXMLDOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLDOMDocument, @ptrCast(self)));
+    }
+    pub fn loadXML(self: *const IXMLDOMDocument, bstrXML: ?BSTR, isSuccessful: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).loadXML(@as(*const IXMLDOMDocument, @ptrCast(self)), bstrXML, isSuccessful);
+    }
+    pub fn save(self: *const IXMLDOMDocument, destination: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).save(@as(*const IXMLDOMDocument, @ptrCast(self)), destination);
+    }
+    pub fn get_validateOnParse(self: *const IXMLDOMDocument, isValidating: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_validateOnParse(@as(*const IXMLDOMDocument, @ptrCast(self)), isValidating);
+    }
+    pub fn put_validateOnParse(self: *const IXMLDOMDocument, isValidating: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_validateOnParse(@as(*const IXMLDOMDocument, @ptrCast(self)), isValidating);
+    }
+    pub fn get_resolveExternals(self: *const IXMLDOMDocument, isResolving: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_resolveExternals(@as(*const IXMLDOMDocument, @ptrCast(self)), isResolving);
+    }
+    pub fn put_resolveExternals(self: *const IXMLDOMDocument, isResolving: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_resolveExternals(@as(*const IXMLDOMDocument, @ptrCast(self)), isResolving);
+    }
+    pub fn get_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_preserveWhiteSpace(@as(*const IXMLDOMDocument, @ptrCast(self)), isPreserving);
+    }
+    pub fn put_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_preserveWhiteSpace(@as(*const IXMLDOMDocument, @ptrCast(self)), isPreserving);
+    }
+    pub fn put_onreadystatechange(self: *const IXMLDOMDocument, readystatechangeSink: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLDOMDocument, @ptrCast(self)), readystatechangeSink);
+    }
+    pub fn put_ondataavailable(self: *const IXMLDOMDocument, ondataavailableSink: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_ondataavailable(@as(*const IXMLDOMDocument, @ptrCast(self)), ondataavailableSink);
+    }
+    pub fn put_ontransformnode(self: *const IXMLDOMDocument, ontransformnodeSink: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_ontransformnode(@as(*const IXMLDOMDocument, @ptrCast(self)), ontransformnodeSink);
+    }
 };
 
 const IID_IXMLDOMNodeList_Value = Guid.initString("2933bf82-7b36-11d2-b20e-00c04f983e60");
@@ -1369,7 +1579,22 @@ pub const IXMLDOMNodeList = extern union {
             return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNodeList, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_item(self: *const IXMLDOMNodeList, index: i32, listItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMNodeList, @ptrCast(self)), index, listItem);
+    }
+    pub fn get_length(self: *const IXMLDOMNodeList, listLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMNodeList, @ptrCast(self)), listLength);
+    }
+    pub fn nextNode(self: *const IXMLDOMNodeList, nextItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).nextNode(@as(*const IXMLDOMNodeList, @ptrCast(self)), nextItem);
+    }
+    pub fn reset(self: *const IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMNodeList, @ptrCast(self)));
+    }
+    pub fn get__newEnum(self: *const IXMLDOMNodeList, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNodeList, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IXMLDOMNamedNodeMap_Value = Guid.initString("2933bf83-7b36-11d2-b20e-00c04f983e60");
@@ -1472,7 +1697,37 @@ pub const IXMLDOMNamedNodeMap = extern union {
             return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn getNamedItem(self: *const IXMLDOMNamedNodeMap, name: ?BSTR, namedItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).getNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), name, namedItem);
+    }
+    pub fn setNamedItem(self: *const IXMLDOMNamedNodeMap, newItem: ?*IXMLDOMNode, nameItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).setNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), newItem, nameItem);
+    }
+    pub fn removeNamedItem(self: *const IXMLDOMNamedNodeMap, name: ?BSTR, namedItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).removeNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), name, namedItem);
+    }
+    pub fn get_item(self: *const IXMLDOMNamedNodeMap, index: i32, listItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), index, listItem);
+    }
+    pub fn get_length(self: *const IXMLDOMNamedNodeMap, listLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), listLength);
+    }
+    pub fn getQualifiedItem(self: *const IXMLDOMNamedNodeMap, baseName: ?BSTR, namespaceURI: ?BSTR, qualifiedItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).getQualifiedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), baseName, namespaceURI, qualifiedItem);
+    }
+    pub fn removeQualifiedItem(self: *const IXMLDOMNamedNodeMap, baseName: ?BSTR, namespaceURI: ?BSTR, qualifiedItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).removeQualifiedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), baseName, namespaceURI, qualifiedItem);
+    }
+    pub fn nextNode(self: *const IXMLDOMNamedNodeMap, nextItem: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).nextNode(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), nextItem);
+    }
+    pub fn reset(self: *const IXMLDOMNamedNodeMap) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)));
+    }
+    pub fn get__newEnum(self: *const IXMLDOMNamedNodeMap, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IXMLDOMCharacterData_Value = Guid.initString("2933bf84-7b36-11d2-b20e-00c04f983e60");
@@ -1559,7 +1814,31 @@ pub const IXMLDOMCharacterData = extern union {
             return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).replaceData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count, data);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_data(self: *const IXMLDOMCharacterData, data: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).get_data(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
+    }
+    pub fn put_data(self: *const IXMLDOMCharacterData, data: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).put_data(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
+    }
+    pub fn get_length(self: *const IXMLDOMCharacterData, dataLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMCharacterData, @ptrCast(self)), dataLength);
+    }
+    pub fn substringData(self: *const IXMLDOMCharacterData, offset: i32, count: i32, data: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).substringData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count, data);
+    }
+    pub fn appendData(self: *const IXMLDOMCharacterData, data: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).appendData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
+    }
+    pub fn insertData(self: *const IXMLDOMCharacterData, offset: i32, data: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).insertData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, data);
+    }
+    pub fn deleteData(self: *const IXMLDOMCharacterData, offset: i32, count: i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).deleteData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count);
+    }
+    pub fn replaceData(self: *const IXMLDOMCharacterData, offset: i32, count: i32, data: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).replaceData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count, data);
+    }
 };
 
 const IID_IXMLDOMAttribute_Value = Guid.initString("2933bf85-7b36-11d2-b20e-00c04f983e60");
@@ -1600,7 +1879,16 @@ pub const IXMLDOMAttribute = extern union {
             return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).put_value(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_name(self: *const IXMLDOMAttribute, attributeName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeName);
+    }
+    pub fn get_value(self: *const IXMLDOMAttribute, attributeValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).get_value(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeValue);
+    }
+    pub fn put_value(self: *const IXMLDOMAttribute, attributeValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).put_value(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeValue);
+    }
 };
 
 const IID_IXMLDOMElement_Value = Guid.initString("2933bf86-7b36-11d2-b20e-00c04f983e60");
@@ -1692,7 +1980,34 @@ pub const IXMLDOMElement = extern union {
             return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).normalize(@as(*const IXMLDOMElement, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_tagName(self: *const IXMLDOMElement, tagName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLDOMElement, @ptrCast(self)), tagName);
+    }
+    pub fn getAttribute(self: *const IXMLDOMElement, name: ?BSTR, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name, value);
+    }
+    pub fn setAttribute(self: *const IXMLDOMElement, name: ?BSTR, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name, value);
+    }
+    pub fn removeAttribute(self: *const IXMLDOMElement, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name);
+    }
+    pub fn getAttributeNode(self: *const IXMLDOMElement, name: ?BSTR, attributeNode: ?*?*IXMLDOMAttribute) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), name, attributeNode);
+    }
+    pub fn setAttributeNode(self: *const IXMLDOMElement, DOMAttribute: ?*IXMLDOMAttribute, attributeNode: ?*?*IXMLDOMAttribute) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).setAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), DOMAttribute, attributeNode);
+    }
+    pub fn removeAttributeNode(self: *const IXMLDOMElement, DOMAttribute: ?*IXMLDOMAttribute, attributeNode: ?*?*IXMLDOMAttribute) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).removeAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), DOMAttribute, attributeNode);
+    }
+    pub fn getElementsByTagName(self: *const IXMLDOMElement, tagName: ?BSTR, resultList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getElementsByTagName(@as(*const IXMLDOMElement, @ptrCast(self)), tagName, resultList);
+    }
+    pub fn normalize(self: *const IXMLDOMElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).normalize(@as(*const IXMLDOMElement, @ptrCast(self)));
+    }
 };
 
 const IID_IXMLDOMText_Value = Guid.initString("2933bf87-7b36-11d2-b20e-00c04f983e60");
@@ -1715,7 +2030,10 @@ pub const IXMLDOMText = extern union {
             return @as(*const IXMLDOMText.VTable, @ptrCast(self.vtable)).splitText(@as(*const IXMLDOMText, @ptrCast(self)), offset, rightHandTextNode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMCharacterData.MethodMixin(@This());
+    pub fn splitText(self: *const IXMLDOMText, offset: i32, rightHandTextNode: ?*?*IXMLDOMText) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMText.VTable, @ptrCast(self.vtable)).splitText(@as(*const IXMLDOMText, @ptrCast(self)), offset, rightHandTextNode);
+    }
 };
 
 const IID_IXMLDOMComment_Value = Guid.initString("2933bf88-7b36-11d2-b20e-00c04f983e60");
@@ -1729,7 +2047,7 @@ pub const IXMLDOMComment = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXMLDOMCharacterData.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMCharacterData.MethodMixin(@This());
 };
 
 const IID_IXMLDOMProcessingInstruction_Value = Guid.initString("2933bf89-7b36-11d2-b20e-00c04f983e60");
@@ -1770,7 +2088,16 @@ pub const IXMLDOMProcessingInstruction = extern union {
             return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).put_data(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_target(self: *const IXMLDOMProcessingInstruction, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).get_target(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), name);
+    }
+    pub fn get_data(self: *const IXMLDOMProcessingInstruction, value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).get_data(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), value);
+    }
+    pub fn put_data(self: *const IXMLDOMProcessingInstruction, value: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).put_data(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), value);
+    }
 };
 
 const IID_IXMLDOMCDATASection_Value = Guid.initString("2933bf8a-7b36-11d2-b20e-00c04f983e60");
@@ -1784,7 +2111,7 @@ pub const IXMLDOMCDATASection = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXMLDOMText.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMText.MethodMixin(@This());
 };
 
 const IID_IXMLDOMDocumentType_Value = Guid.initString("2933bf8b-7b36-11d2-b20e-00c04f983e60");
@@ -1825,7 +2152,16 @@ pub const IXMLDOMDocumentType = extern union {
             return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_notations(@as(*const IXMLDOMDocumentType, @ptrCast(self)), notationMap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_name(self: *const IXMLDOMDocumentType, rootName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLDOMDocumentType, @ptrCast(self)), rootName);
+    }
+    pub fn get_entities(self: *const IXMLDOMDocumentType, entityMap: ?*?*IXMLDOMNamedNodeMap) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_entities(@as(*const IXMLDOMDocumentType, @ptrCast(self)), entityMap);
+    }
+    pub fn get_notations(self: *const IXMLDOMDocumentType, notationMap: ?*?*IXMLDOMNamedNodeMap) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_notations(@as(*const IXMLDOMDocumentType, @ptrCast(self)), notationMap);
+    }
 };
 
 const IID_IXMLDOMNotation_Value = Guid.initString("2933bf8c-7b36-11d2-b20e-00c04f983e60");
@@ -1857,7 +2193,13 @@ pub const IXMLDOMNotation = extern union {
             return @as(*const IXMLDOMNotation.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IXMLDOMNotation, @ptrCast(self)), systemID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_publicId(self: *const IXMLDOMNotation, publicID: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNotation.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IXMLDOMNotation, @ptrCast(self)), publicID);
+    }
+    pub fn get_systemId(self: *const IXMLDOMNotation, systemID: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMNotation.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IXMLDOMNotation, @ptrCast(self)), systemID);
+    }
 };
 
 const IID_IXMLDOMEntity_Value = Guid.initString("2933bf8d-7b36-11d2-b20e-00c04f983e60");
@@ -1898,7 +2240,16 @@ pub const IXMLDOMEntity = extern union {
             return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_notationName(@as(*const IXMLDOMEntity, @ptrCast(self)), name);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn get_publicId(self: *const IXMLDOMEntity, publicID: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IXMLDOMEntity, @ptrCast(self)), publicID);
+    }
+    pub fn get_systemId(self: *const IXMLDOMEntity, systemID: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IXMLDOMEntity, @ptrCast(self)), systemID);
+    }
+    pub fn get_notationName(self: *const IXMLDOMEntity, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_notationName(@as(*const IXMLDOMEntity, @ptrCast(self)), name);
+    }
 };
 
 const IID_IXMLDOMEntityReference_Value = Guid.initString("2933bf8e-7b36-11d2-b20e-00c04f983e60");
@@ -1912,7 +2263,7 @@ pub const IXMLDOMEntityReference = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXMLDOMNode.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
 };
 
 const IID_IXMLDOMParseError_Value = Guid.initString("3efaa426-272f-11d2-836f-0000f87a7782");
@@ -1989,7 +2340,28 @@ pub const IXMLDOMParseError = extern union {
             return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_filepos(@as(*const IXMLDOMParseError, @ptrCast(self)), filePosition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_errorCode(self: *const IXMLDOMParseError, errorCode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_errorCode(@as(*const IXMLDOMParseError, @ptrCast(self)), errorCode);
+    }
+    pub fn get_url(self: *const IXMLDOMParseError, urlString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_url(@as(*const IXMLDOMParseError, @ptrCast(self)), urlString);
+    }
+    pub fn get_reason(self: *const IXMLDOMParseError, reasonString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_reason(@as(*const IXMLDOMParseError, @ptrCast(self)), reasonString);
+    }
+    pub fn get_srcText(self: *const IXMLDOMParseError, sourceString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_srcText(@as(*const IXMLDOMParseError, @ptrCast(self)), sourceString);
+    }
+    pub fn get_line(self: *const IXMLDOMParseError, lineNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_line(@as(*const IXMLDOMParseError, @ptrCast(self)), lineNumber);
+    }
+    pub fn get_linepos(self: *const IXMLDOMParseError, linePosition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_linepos(@as(*const IXMLDOMParseError, @ptrCast(self)), linePosition);
+    }
+    pub fn get_filepos(self: *const IXMLDOMParseError, filePosition: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_filepos(@as(*const IXMLDOMParseError, @ptrCast(self)), filePosition);
+    }
 };
 
 const IID_IXTLRuntime_Value = Guid.initString("3efaa425-272f-11d2-836f-0000f87a7782");
@@ -2091,7 +2463,34 @@ pub const IXTLRuntime = extern union {
             return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatTime(@as(*const IXTLRuntime, @ptrCast(self)), varTime, bstrFormat, varDestLocale, pbstrFormattedString);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNode.MethodMixin(@This());
+    pub fn uniqueID(self: *const IXTLRuntime, pNode: ?*IXMLDOMNode, pID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).uniqueID(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pID);
+    }
+    pub fn depth(self: *const IXTLRuntime, pNode: ?*IXMLDOMNode, pDepth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).depth(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pDepth);
+    }
+    pub fn childNumber(self: *const IXTLRuntime, pNode: ?*IXMLDOMNode, pNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).childNumber(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pNumber);
+    }
+    pub fn ancestorChildNumber(self: *const IXTLRuntime, bstrNodeName: ?BSTR, pNode: ?*IXMLDOMNode, pNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).ancestorChildNumber(@as(*const IXTLRuntime, @ptrCast(self)), bstrNodeName, pNode, pNumber);
+    }
+    pub fn absoluteChildNumber(self: *const IXTLRuntime, pNode: ?*IXMLDOMNode, pNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).absoluteChildNumber(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pNumber);
+    }
+    pub fn formatIndex(self: *const IXTLRuntime, lIndex: i32, bstrFormat: ?BSTR, pbstrFormattedString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatIndex(@as(*const IXTLRuntime, @ptrCast(self)), lIndex, bstrFormat, pbstrFormattedString);
+    }
+    pub fn formatNumber(self: *const IXTLRuntime, dblNumber: f64, bstrFormat: ?BSTR, pbstrFormattedString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatNumber(@as(*const IXTLRuntime, @ptrCast(self)), dblNumber, bstrFormat, pbstrFormattedString);
+    }
+    pub fn formatDate(self: *const IXTLRuntime, varDate: VARIANT, bstrFormat: ?BSTR, varDestLocale: VARIANT, pbstrFormattedString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatDate(@as(*const IXTLRuntime, @ptrCast(self)), varDate, bstrFormat, varDestLocale, pbstrFormattedString);
+    }
+    pub fn formatTime(self: *const IXTLRuntime, varTime: VARIANT, bstrFormat: ?BSTR, varDestLocale: VARIANT, pbstrFormattedString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatTime(@as(*const IXTLRuntime, @ptrCast(self)), varTime, bstrFormat, varDestLocale, pbstrFormattedString);
+    }
 };
 
 const IID_XMLDOMDocumentEvents_Value = Guid.initString("3efaa427-272f-11d2-836f-0000f87a7782");
@@ -2105,7 +2504,7 @@ pub const XMLDOMDocumentEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IXMLHttpRequest_Value = Guid.initString("ed8c108d-4349-11d2-91a4-00c04f7969e8");
@@ -2244,7 +2643,49 @@ pub const IXMLHttpRequest = extern union {
             return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHttpRequest, @ptrCast(self)), pReadyStateSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn open(self: *const IXMLHttpRequest, bstrMethod: ?BSTR, bstrUrl: ?BSTR, varAsync: VARIANT, bstrUser: VARIANT, bstrPassword: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).open(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
+    }
+    pub fn setRequestHeader(self: *const IXMLHttpRequest, bstrHeader: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).setRequestHeader(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrHeader, bstrValue);
+    }
+    pub fn getResponseHeader(self: *const IXMLHttpRequest, bstrHeader: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).getResponseHeader(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrHeader, pbstrValue);
+    }
+    pub fn getAllResponseHeaders(self: *const IXMLHttpRequest, pbstrHeaders: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).getAllResponseHeaders(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrHeaders);
+    }
+    pub fn send(self: *const IXMLHttpRequest, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).send(@as(*const IXMLHttpRequest, @ptrCast(self)), varBody);
+    }
+    pub fn abort(self: *const IXMLHttpRequest) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLHttpRequest, @ptrCast(self)));
+    }
+    pub fn get_status(self: *const IXMLHttpRequest, plStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_status(@as(*const IXMLHttpRequest, @ptrCast(self)), plStatus);
+    }
+    pub fn get_statusText(self: *const IXMLHttpRequest, pbstrStatus: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_statusText(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrStatus);
+    }
+    pub fn get_responseXML(self: *const IXMLHttpRequest, ppBody: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseXML(@as(*const IXMLHttpRequest, @ptrCast(self)), ppBody);
+    }
+    pub fn get_responseText(self: *const IXMLHttpRequest, pbstrBody: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseText(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrBody);
+    }
+    pub fn get_responseBody(self: *const IXMLHttpRequest, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseBody(@as(*const IXMLHttpRequest, @ptrCast(self)), pvarBody);
+    }
+    pub fn get_responseStream(self: *const IXMLHttpRequest, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseStream(@as(*const IXMLHttpRequest, @ptrCast(self)), pvarBody);
+    }
+    pub fn get_readyState(self: *const IXMLHttpRequest, plState: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLHttpRequest, @ptrCast(self)), plState);
+    }
+    pub fn put_onreadystatechange(self: *const IXMLHttpRequest, pReadyStateSink: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHttpRequest, @ptrCast(self)), pReadyStateSink);
+    }
 };
 
 const IID_IXMLDSOControl_Value = Guid.initString("310afa62-0575-11d2-9ca9-0060b0ec3d39");
@@ -2303,7 +2744,22 @@ pub const IXMLDSOControl = extern union {
             return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDSOControl, @ptrCast(self)), state);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_XMLDocument(self: *const IXMLDSOControl, ppDoc: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_XMLDocument(@as(*const IXMLDSOControl, @ptrCast(self)), ppDoc);
+    }
+    pub fn put_XMLDocument(self: *const IXMLDSOControl, ppDoc: ?*IXMLDOMDocument) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).put_XMLDocument(@as(*const IXMLDSOControl, @ptrCast(self)), ppDoc);
+    }
+    pub fn get_JavaDSOCompatible(self: *const IXMLDSOControl, fJavaDSOCompatible: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_JavaDSOCompatible(@as(*const IXMLDSOControl, @ptrCast(self)), fJavaDSOCompatible);
+    }
+    pub fn put_JavaDSOCompatible(self: *const IXMLDSOControl, fJavaDSOCompatible: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).put_JavaDSOCompatible(@as(*const IXMLDSOControl, @ptrCast(self)), fJavaDSOCompatible);
+    }
+    pub fn get_readyState(self: *const IXMLDSOControl, state: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDSOControl, @ptrCast(self)), state);
+    }
 };
 
 const IID_IXMLElementCollection_Value = Guid.initString("65725580-9b5d-11d0-9bfe-00c04fc99c8e");
@@ -2354,7 +2810,19 @@ pub const IXMLElementCollection = extern union {
             return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).item(@as(*const IXMLElementCollection, @ptrCast(self)), var1, var2, ppDisp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_length(self: *const IXMLElementCollection, v: i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).put_length(@as(*const IXMLElementCollection, @ptrCast(self)), v);
+    }
+    pub fn get_length(self: *const IXMLElementCollection, p: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLElementCollection, @ptrCast(self)), p);
+    }
+    pub fn get__newEnum(self: *const IXMLElementCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLElementCollection, @ptrCast(self)), ppUnk);
+    }
+    pub fn item(self: *const IXMLElementCollection, var1: VARIANT, var2: VARIANT, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).item(@as(*const IXMLElementCollection, @ptrCast(self)), var1, var2, ppDisp);
+    }
 };
 
 const IID_IXMLDocument_Value = Guid.initString("f52e2b61-18a1-11d1-b105-00805f49916b");
@@ -2495,7 +2963,49 @@ pub const IXMLDocument = extern union {
             return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDocument, @ptrCast(self)), vType, var1, ppElem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_root(self: *const IXMLDocument, p: ?*?*IXMLElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_root(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_fileSize(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileSize(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_fileModifiedDate(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileModifiedDate(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_fileUpdatedDate(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileUpdatedDate(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_URL(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_URL(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn put_URL(self: *const IXMLDocument, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).put_URL(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_mimeType(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_mimeType(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_readyState(self: *const IXMLDocument, pl: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDocument, @ptrCast(self)), pl);
+    }
+    pub fn get_charset(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_charset(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn put_charset(self: *const IXMLDocument, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).put_charset(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_version(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_version(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_doctype(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn get_dtdURL(self: *const IXMLDocument, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_dtdURL(@as(*const IXMLDocument, @ptrCast(self)), p);
+    }
+    pub fn createElement(self: *const IXMLDocument, vType: VARIANT, var1: VARIANT, ppElem: ?*?*IXMLElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDocument, @ptrCast(self)), vType, var1, ppElem);
+    }
 };
 
 const IID_IXMLDocument2_Value = Guid.initString("2b8de2fe-8d2d-11d1-b2fc-00c04fd915a9");
@@ -2654,7 +3164,55 @@ pub const IXMLDocument2 = extern union {
             return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_async(@as(*const IXMLDocument2, @ptrCast(self)), f);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_root(self: *const IXMLDocument2, p: ?*?*IXMLElement2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_root(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_fileSize(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileSize(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_fileModifiedDate(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileModifiedDate(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_fileUpdatedDate(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileUpdatedDate(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_URL(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_URL(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn put_URL(self: *const IXMLDocument2, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_URL(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_mimeType(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_mimeType(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_readyState(self: *const IXMLDocument2, pl: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDocument2, @ptrCast(self)), pl);
+    }
+    pub fn get_charset(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_charset(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn put_charset(self: *const IXMLDocument2, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_charset(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_version(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_version(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_doctype(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn get_dtdURL(self: *const IXMLDocument2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_dtdURL(@as(*const IXMLDocument2, @ptrCast(self)), p);
+    }
+    pub fn createElement(self: *const IXMLDocument2, vType: VARIANT, var1: VARIANT, ppElem: ?*?*IXMLElement2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDocument2, @ptrCast(self)), vType, var1, ppElem);
+    }
+    pub fn get_async(self: *const IXMLDocument2, pf: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_async(@as(*const IXMLDocument2, @ptrCast(self)), pf);
+    }
+    pub fn put_async(self: *const IXMLDocument2, f: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_async(@as(*const IXMLDocument2, @ptrCast(self)), f);
+    }
 };
 
 const IID_IXMLElement_Value = Guid.initString("3f7f31ac-e15f-11d0-9c25-00c04fc99c8e");
@@ -2775,7 +3333,43 @@ pub const IXMLElement = extern union {
             return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLElement, @ptrCast(self)), pChildElem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_tagName(self: *const IXMLElement, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLElement, @ptrCast(self)), p);
+    }
+    pub fn put_tagName(self: *const IXMLElement, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).put_tagName(@as(*const IXMLElement, @ptrCast(self)), p);
+    }
+    pub fn get_parent(self: *const IXMLElement, ppParent: ?*?*IXMLElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IXMLElement, @ptrCast(self)), ppParent);
+    }
+    pub fn setAttribute(self: *const IXMLElement, strPropertyName: ?BSTR, PropertyValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName, PropertyValue);
+    }
+    pub fn getAttribute(self: *const IXMLElement, strPropertyName: ?BSTR, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName, PropertyValue);
+    }
+    pub fn removeAttribute(self: *const IXMLElement, strPropertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName);
+    }
+    pub fn get_children(self: *const IXMLElement, pp: ?*?*IXMLElementCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_children(@as(*const IXMLElement, @ptrCast(self)), pp);
+    }
+    pub fn get_type(self: *const IXMLElement, plType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const IXMLElement, @ptrCast(self)), plType);
+    }
+    pub fn get_text(self: *const IXMLElement, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLElement, @ptrCast(self)), p);
+    }
+    pub fn put_text(self: *const IXMLElement, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLElement, @ptrCast(self)), p);
+    }
+    pub fn addChild(self: *const IXMLElement, pChildElem: ?*IXMLElement, lIndex: i32, lReserved: i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).addChild(@as(*const IXMLElement, @ptrCast(self)), pChildElem, lIndex, lReserved);
+    }
+    pub fn removeChild(self: *const IXMLElement, pChildElem: ?*IXMLElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLElement, @ptrCast(self)), pChildElem);
+    }
 };
 
 const IID_IXMLElement2_Value = Guid.initString("2b8de2ff-8d2d-11d1-b2fc-00c04fd915a9");
@@ -2905,7 +3499,46 @@ pub const IXMLElement2 = extern union {
             return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const IXMLElement2, @ptrCast(self)), pp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_tagName(self: *const IXMLElement2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLElement2, @ptrCast(self)), p);
+    }
+    pub fn put_tagName(self: *const IXMLElement2, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).put_tagName(@as(*const IXMLElement2, @ptrCast(self)), p);
+    }
+    pub fn get_parent(self: *const IXMLElement2, ppParent: ?*?*IXMLElement2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IXMLElement2, @ptrCast(self)), ppParent);
+    }
+    pub fn setAttribute(self: *const IXMLElement2, strPropertyName: ?BSTR, PropertyValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName, PropertyValue);
+    }
+    pub fn getAttribute(self: *const IXMLElement2, strPropertyName: ?BSTR, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName, PropertyValue);
+    }
+    pub fn removeAttribute(self: *const IXMLElement2, strPropertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName);
+    }
+    pub fn get_children(self: *const IXMLElement2, pp: ?*?*IXMLElementCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_children(@as(*const IXMLElement2, @ptrCast(self)), pp);
+    }
+    pub fn get_type(self: *const IXMLElement2, plType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_type(@as(*const IXMLElement2, @ptrCast(self)), plType);
+    }
+    pub fn get_text(self: *const IXMLElement2, p: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLElement2, @ptrCast(self)), p);
+    }
+    pub fn put_text(self: *const IXMLElement2, p: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLElement2, @ptrCast(self)), p);
+    }
+    pub fn addChild(self: *const IXMLElement2, pChildElem: ?*IXMLElement2, lIndex: i32, lReserved: i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).addChild(@as(*const IXMLElement2, @ptrCast(self)), pChildElem, lIndex, lReserved);
+    }
+    pub fn removeChild(self: *const IXMLElement2, pChildElem: ?*IXMLElement2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLElement2, @ptrCast(self)), pChildElem);
+    }
+    pub fn get_attributes(self: *const IXMLElement2, pp: ?*?*IXMLElementCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const IXMLElement2, @ptrCast(self)), pp);
+    }
 };
 
 const IID_IXMLAttribute_Value = Guid.initString("d4d4a0fc-3b73-11d1-b2b4-00c04fb92596");
@@ -2937,7 +3570,13 @@ pub const IXMLAttribute = extern union {
             return @as(*const IXMLAttribute.VTable, @ptrCast(self.vtable)).get_value(@as(*const IXMLAttribute, @ptrCast(self)), v);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_name(self: *const IXMLAttribute, n: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLAttribute.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLAttribute, @ptrCast(self)), n);
+    }
+    pub fn get_value(self: *const IXMLAttribute, v: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLAttribute.VTable, @ptrCast(self.vtable)).get_value(@as(*const IXMLAttribute, @ptrCast(self)), v);
+    }
 };
 
 const IID_IXMLError_Value = Guid.initString("948c5ad3-c58d-11d0-9c0b-00c04fc99c8e");
@@ -2959,7 +3598,10 @@ pub const IXMLError = extern union {
             return @as(*const IXMLError.VTable, @ptrCast(self.vtable)).GetErrorInfo(@as(*const IXMLError, @ptrCast(self)), pErrorReturn);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetErrorInfo(self: *const IXMLError, pErrorReturn: ?*XML_ERROR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLError.VTable, @ptrCast(self.vtable)).GetErrorInfo(@as(*const IXMLError, @ptrCast(self)), pErrorReturn);
+    }
 };
 
 const CLSID_DOMDocument60_Value = Guid.initString("88d96a05-f192-11d4-a65f-0040963251e5");
@@ -3061,7 +3703,25 @@ pub const IXMLDOMDocument2 = extern union {
             return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IXMLDOMDocument2, @ptrCast(self)), name, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMDocument.MethodMixin(@This());
+    pub fn get_namespaces(self: *const IXMLDOMDocument2, namespaceCollection: ?*?*IXMLDOMSchemaCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).get_namespaces(@as(*const IXMLDOMDocument2, @ptrCast(self)), namespaceCollection);
+    }
+    pub fn get_schemas(self: *const IXMLDOMDocument2, otherCollection: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).get_schemas(@as(*const IXMLDOMDocument2, @ptrCast(self)), otherCollection);
+    }
+    pub fn putref_schemas(self: *const IXMLDOMDocument2, otherCollection: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).putref_schemas(@as(*const IXMLDOMDocument2, @ptrCast(self)), otherCollection);
+    }
+    pub fn validate(self: *const IXMLDOMDocument2, errorObj: ?*?*IXMLDOMParseError) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).validate(@as(*const IXMLDOMDocument2, @ptrCast(self)), errorObj);
+    }
+    pub fn setProperty(self: *const IXMLDOMDocument2, name: ?BSTR, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).setProperty(@as(*const IXMLDOMDocument2, @ptrCast(self)), name, value);
+    }
+    pub fn getProperty(self: *const IXMLDOMDocument2, name: ?BSTR, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IXMLDOMDocument2, @ptrCast(self)), name, value);
+    }
 };
 
 const IID_IXMLDOMDocument3_Value = Guid.initString("2933bf96-7b36-11d2-b20e-00c04f983e60");
@@ -3094,7 +3754,13 @@ pub const IXMLDOMDocument3 = extern union {
             return @as(*const IXMLDOMDocument3.VTable, @ptrCast(self.vtable)).importNode(@as(*const IXMLDOMDocument3, @ptrCast(self)), node, deep, clone);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMDocument2.MethodMixin(@This());
+    pub fn validateNode(self: *const IXMLDOMDocument3, node: ?*IXMLDOMNode, errorObj: ?*?*IXMLDOMParseError) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument3.VTable, @ptrCast(self.vtable)).validateNode(@as(*const IXMLDOMDocument3, @ptrCast(self)), node, errorObj);
+    }
+    pub fn importNode(self: *const IXMLDOMDocument3, node: ?*IXMLDOMNode, deep: i16, clone: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMDocument3.VTable, @ptrCast(self.vtable)).importNode(@as(*const IXMLDOMDocument3, @ptrCast(self)), node, deep, clone);
+    }
 };
 
 const IID_IXMLDOMSchemaCollection_Value = Guid.initString("373984c8-b845-449b-91e7-45ac83036ade");
@@ -3169,7 +3835,28 @@ pub const IXMLDOMSchemaCollection = extern union {
             return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn add(self: *const IXMLDOMSchemaCollection, namespaceURI: ?BSTR, @"var": VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).add(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI, @"var");
+    }
+    pub fn get(self: *const IXMLDOMSchemaCollection, namespaceURI: ?BSTR, schemaNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI, schemaNode);
+    }
+    pub fn remove(self: *const IXMLDOMSchemaCollection, namespaceURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).remove(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI);
+    }
+    pub fn get_length(self: *const IXMLDOMSchemaCollection, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), length);
+    }
+    pub fn get_namespaceURI(self: *const IXMLDOMSchemaCollection, index: i32, length: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), index, length);
+    }
+    pub fn addCollection(self: *const IXMLDOMSchemaCollection, otherCollection: ?*IXMLDOMSchemaCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).addCollection(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), otherCollection);
+    }
+    pub fn get__newEnum(self: *const IXMLDOMSchemaCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IXMLDOMSelection_Value = Guid.initString("aa634fc7-5888-44a7-a257-3a47150d3a0e");
@@ -3276,7 +3963,40 @@ pub const IXMLDOMSelection = extern union {
             return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).setProperty(@as(*const IXMLDOMSelection, @ptrCast(self)), name, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMNodeList.MethodMixin(@This());
+    pub fn get_expr(self: *const IXMLDOMSelection, expression: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).get_expr(@as(*const IXMLDOMSelection, @ptrCast(self)), expression);
+    }
+    pub fn put_expr(self: *const IXMLDOMSelection, expression: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).put_expr(@as(*const IXMLDOMSelection, @ptrCast(self)), expression);
+    }
+    pub fn get_context(self: *const IXMLDOMSelection, ppNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).get_context(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
+    }
+    pub fn putref_context(self: *const IXMLDOMSelection, pNode: ?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).putref_context(@as(*const IXMLDOMSelection, @ptrCast(self)), pNode);
+    }
+    pub fn peekNode(self: *const IXMLDOMSelection, ppNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).peekNode(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
+    }
+    pub fn matches(self: *const IXMLDOMSelection, pNode: ?*IXMLDOMNode, ppNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).matches(@as(*const IXMLDOMSelection, @ptrCast(self)), pNode, ppNode);
+    }
+    pub fn removeNext(self: *const IXMLDOMSelection, ppNode: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).removeNext(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
+    }
+    pub fn removeAll(self: *const IXMLDOMSelection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).removeAll(@as(*const IXMLDOMSelection, @ptrCast(self)));
+    }
+    pub fn clone(self: *const IXMLDOMSelection, ppNode: ?*?*IXMLDOMSelection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).clone(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
+    }
+    pub fn getProperty(self: *const IXMLDOMSelection, name: ?BSTR, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IXMLDOMSelection, @ptrCast(self)), name, value);
+    }
+    pub fn setProperty(self: *const IXMLDOMSelection, name: ?BSTR, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).setProperty(@as(*const IXMLDOMSelection, @ptrCast(self)), name, value);
+    }
 };
 
 const IID_IXMLDOMParseError2_Value = Guid.initString("3efaa428-272f-11d2-836f-0000f87a7782");
@@ -3326,7 +4046,19 @@ pub const IXMLDOMParseError2 = extern union {
             return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_errorParametersCount(@as(*const IXMLDOMParseError2, @ptrCast(self)), count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMParseError.MethodMixin(@This());
+    pub fn get_errorXPath(self: *const IXMLDOMParseError2, xpathexpr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_errorXPath(@as(*const IXMLDOMParseError2, @ptrCast(self)), xpathexpr);
+    }
+    pub fn get_allErrors(self: *const IXMLDOMParseError2, allErrors: ?*?*IXMLDOMParseErrorCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_allErrors(@as(*const IXMLDOMParseError2, @ptrCast(self)), allErrors);
+    }
+    pub fn errorParameters(self: *const IXMLDOMParseError2, index: i32, param1: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).errorParameters(@as(*const IXMLDOMParseError2, @ptrCast(self)), index, param1);
+    }
+    pub fn get_errorParametersCount(self: *const IXMLDOMParseError2, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_errorParametersCount(@as(*const IXMLDOMParseError2, @ptrCast(self)), count);
+    }
 };
 
 const IID_IXMLDOMParseErrorCollection_Value = Guid.initString("3efaa429-272f-11d2-836f-0000f87a7782");
@@ -3383,7 +4115,22 @@ pub const IXMLDOMParseErrorCollection = extern union {
             return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), ppunk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_item(self: *const IXMLDOMParseErrorCollection, index: i32, @"error": ?*?*IXMLDOMParseError2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), index, @"error");
+    }
+    pub fn get_length(self: *const IXMLDOMParseErrorCollection, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), length);
+    }
+    pub fn get_next(self: *const IXMLDOMParseErrorCollection, @"error": ?*?*IXMLDOMParseError2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_next(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), @"error");
+    }
+    pub fn reset(self: *const IXMLDOMParseErrorCollection) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)));
+    }
+    pub fn get__newEnum(self: *const IXMLDOMParseErrorCollection, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), ppunk);
+    }
 };
 
 const IID_IXSLProcessor_Value = Guid.initString("2933bf92-7b36-11d2-b20e-00c04f983e60");
@@ -3521,7 +4268,49 @@ pub const IXSLProcessor = extern union {
             return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_stylesheet(@as(*const IXSLProcessor, @ptrCast(self)), stylesheet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_input(self: *const IXSLProcessor, @"var": VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).put_input(@as(*const IXSLProcessor, @ptrCast(self)), @"var");
+    }
+    pub fn get_input(self: *const IXSLProcessor, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_input(@as(*const IXSLProcessor, @ptrCast(self)), pVar);
+    }
+    pub fn get_ownerTemplate(self: *const IXSLProcessor, ppTemplate: ?*?*IXSLTemplate) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_ownerTemplate(@as(*const IXSLProcessor, @ptrCast(self)), ppTemplate);
+    }
+    pub fn setStartMode(self: *const IXSLProcessor, mode: ?BSTR, namespaceURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).setStartMode(@as(*const IXSLProcessor, @ptrCast(self)), mode, namespaceURI);
+    }
+    pub fn get_startMode(self: *const IXSLProcessor, mode: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_startMode(@as(*const IXSLProcessor, @ptrCast(self)), mode);
+    }
+    pub fn get_startModeURI(self: *const IXSLProcessor, namespaceURI: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_startModeURI(@as(*const IXSLProcessor, @ptrCast(self)), namespaceURI);
+    }
+    pub fn put_output(self: *const IXSLProcessor, output: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).put_output(@as(*const IXSLProcessor, @ptrCast(self)), output);
+    }
+    pub fn get_output(self: *const IXSLProcessor, pOutput: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_output(@as(*const IXSLProcessor, @ptrCast(self)), pOutput);
+    }
+    pub fn transform(self: *const IXSLProcessor, pDone: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).transform(@as(*const IXSLProcessor, @ptrCast(self)), pDone);
+    }
+    pub fn reset(self: *const IXSLProcessor) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).reset(@as(*const IXSLProcessor, @ptrCast(self)));
+    }
+    pub fn get_readyState(self: *const IXSLProcessor, pReadyState: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXSLProcessor, @ptrCast(self)), pReadyState);
+    }
+    pub fn addParameter(self: *const IXSLProcessor, baseName: ?BSTR, parameter: VARIANT, namespaceURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).addParameter(@as(*const IXSLProcessor, @ptrCast(self)), baseName, parameter, namespaceURI);
+    }
+    pub fn addObject(self: *const IXSLProcessor, obj: ?*IDispatch, namespaceURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).addObject(@as(*const IXSLProcessor, @ptrCast(self)), obj, namespaceURI);
+    }
+    pub fn get_stylesheet(self: *const IXSLProcessor, stylesheet: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_stylesheet(@as(*const IXSLProcessor, @ptrCast(self)), stylesheet);
+    }
 };
 
 const IID_IXSLTemplate_Value = Guid.initString("2933bf93-7b36-11d2-b20e-00c04f983e60");
@@ -3560,7 +4349,16 @@ pub const IXSLTemplate = extern union {
             return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).createProcessor(@as(*const IXSLTemplate, @ptrCast(self)), ppProcessor);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn putref_stylesheet(self: *const IXSLTemplate, stylesheet: ?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).putref_stylesheet(@as(*const IXSLTemplate, @ptrCast(self)), stylesheet);
+    }
+    pub fn get_stylesheet(self: *const IXSLTemplate, stylesheet: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
+        return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).get_stylesheet(@as(*const IXSLTemplate, @ptrCast(self)), stylesheet);
+    }
+    pub fn createProcessor(self: *const IXSLTemplate, ppProcessor: ?*?*IXSLProcessor) callconv(.Inline) HRESULT {
+        return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).createProcessor(@as(*const IXSLTemplate, @ptrCast(self)), ppProcessor);
+    }
 };
 
 const IID_IXMLHTTPRequest_Value = Guid.initString("ed8c108d-4349-11d2-91a4-00c04f7969e8");
@@ -3699,7 +4497,49 @@ pub const IXMLHTTPRequest = extern union {
             return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHTTPRequest, @ptrCast(self)), pReadyStateSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn open(self: *const IXMLHTTPRequest, bstrMethod: ?BSTR, bstrUrl: ?BSTR, varAsync: VARIANT, bstrUser: VARIANT, bstrPassword: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).open(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
+    }
+    pub fn setRequestHeader(self: *const IXMLHTTPRequest, bstrHeader: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setRequestHeader(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrHeader, bstrValue);
+    }
+    pub fn getResponseHeader(self: *const IXMLHTTPRequest, bstrHeader: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getResponseHeader(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrHeader, pbstrValue);
+    }
+    pub fn getAllResponseHeaders(self: *const IXMLHTTPRequest, pbstrHeaders: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getAllResponseHeaders(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrHeaders);
+    }
+    pub fn send(self: *const IXMLHTTPRequest, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).send(@as(*const IXMLHTTPRequest, @ptrCast(self)), varBody);
+    }
+    pub fn abort(self: *const IXMLHTTPRequest) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLHTTPRequest, @ptrCast(self)));
+    }
+    pub fn get_status(self: *const IXMLHTTPRequest, plStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_status(@as(*const IXMLHTTPRequest, @ptrCast(self)), plStatus);
+    }
+    pub fn get_statusText(self: *const IXMLHTTPRequest, pbstrStatus: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_statusText(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrStatus);
+    }
+    pub fn get_responseXML(self: *const IXMLHTTPRequest, ppBody: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseXML(@as(*const IXMLHTTPRequest, @ptrCast(self)), ppBody);
+    }
+    pub fn get_responseText(self: *const IXMLHTTPRequest, pbstrBody: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseText(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrBody);
+    }
+    pub fn get_responseBody(self: *const IXMLHTTPRequest, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseBody(@as(*const IXMLHTTPRequest, @ptrCast(self)), pvarBody);
+    }
+    pub fn get_responseStream(self: *const IXMLHTTPRequest, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseStream(@as(*const IXMLHTTPRequest, @ptrCast(self)), pvarBody);
+    }
+    pub fn get_readyState(self: *const IXMLHTTPRequest, plState: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLHTTPRequest, @ptrCast(self)), plState);
+    }
+    pub fn put_onreadystatechange(self: *const IXMLHTTPRequest, pReadyStateSink: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHTTPRequest, @ptrCast(self)), pReadyStateSink);
+    }
 };
 
 pub const SERVERXMLHTTP_OPTION = enum(i32) {
@@ -3788,7 +4628,19 @@ pub const IServerXMLHTTPRequest = extern union {
             return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setOption(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), option, value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLHTTPRequest.MethodMixin(@This());
+    pub fn setTimeouts(self: *const IServerXMLHTTPRequest, resolveTimeout: i32, connectTimeout: i32, sendTimeout: i32, receiveTimeout: i32) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setTimeouts(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
+    }
+    pub fn waitForResponse(self: *const IServerXMLHTTPRequest, timeoutInSeconds: VARIANT, isSuccessful: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).waitForResponse(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), timeoutInSeconds, isSuccessful);
+    }
+    pub fn getOption(self: *const IServerXMLHTTPRequest, option: SERVERXMLHTTP_OPTION, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getOption(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), option, value);
+    }
+    pub fn setOption(self: *const IServerXMLHTTPRequest, option: SERVERXMLHTTP_OPTION, value: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setOption(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), option, value);
+    }
 };
 
 const IID_IServerXMLHTTPRequest2_Value = Guid.initString("2e01311b-c322-4b0a-bd77-b90cfdc8dce7");
@@ -3821,7 +4673,13 @@ pub const IServerXMLHTTPRequest2 = extern union {
             return @as(*const IServerXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).setProxyCredentials(@as(*const IServerXMLHTTPRequest2, @ptrCast(self)), bstrUserName, bstrPassword);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IServerXMLHTTPRequest.MethodMixin(@This());
+    pub fn setProxy(self: *const IServerXMLHTTPRequest2, proxySetting: SXH_PROXY_SETTING, varProxyServer: VARIANT, varBypassList: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).setProxy(@as(*const IServerXMLHTTPRequest2, @ptrCast(self)), proxySetting, varProxyServer, varBypassList);
+    }
+    pub fn setProxyCredentials(self: *const IServerXMLHTTPRequest2, bstrUserName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IServerXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).setProxyCredentials(@as(*const IServerXMLHTTPRequest2, @ptrCast(self)), bstrUserName, bstrPassword);
+    }
 };
 
 const IID_ISAXXMLReader_Value = Guid.initString("a4f96ed0-f829-476e-81c0-cdc7bd2a0802");
@@ -3983,7 +4841,61 @@ pub const ISAXXMLReader = extern union {
             return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchUrl);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn getFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, pvfValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getFeature(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, pvfValue);
+    }
+    pub fn putFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, vfValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putFeature(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, vfValue);
+    }
+    pub fn getProperty(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getProperty(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, pvarValue);
+    }
+    pub fn putProperty(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, varValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putProperty(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, varValue);
+    }
+    pub fn getEntityResolver(self: *const ISAXXMLReader, ppResolver: ?*?*ISAXEntityResolver) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getEntityResolver(@as(*const ISAXXMLReader, @ptrCast(self)), ppResolver);
+    }
+    pub fn putEntityResolver(self: *const ISAXXMLReader, pResolver: ?*ISAXEntityResolver) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putEntityResolver(@as(*const ISAXXMLReader, @ptrCast(self)), pResolver);
+    }
+    pub fn getContentHandler(self: *const ISAXXMLReader, ppHandler: ?*?*ISAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getContentHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
+    }
+    pub fn putContentHandler(self: *const ISAXXMLReader, pHandler: ?*ISAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putContentHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
+    }
+    pub fn getDTDHandler(self: *const ISAXXMLReader, ppHandler: ?*?*ISAXDTDHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getDTDHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
+    }
+    pub fn putDTDHandler(self: *const ISAXXMLReader, pHandler: ?*ISAXDTDHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putDTDHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
+    }
+    pub fn getErrorHandler(self: *const ISAXXMLReader, ppHandler: ?*?*ISAXErrorHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getErrorHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
+    }
+    pub fn putErrorHandler(self: *const ISAXXMLReader, pHandler: ?*ISAXErrorHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putErrorHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
+    }
+    pub fn getBaseURL(self: *const ISAXXMLReader, ppwchBaseUrl: ?*const ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), ppwchBaseUrl);
+    }
+    pub fn putBaseURL(self: *const ISAXXMLReader, pwchBaseUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchBaseUrl);
+    }
+    pub fn getSecureBaseURL(self: *const ISAXXMLReader, ppwchSecureBaseUrl: ?*const ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getSecureBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), ppwchSecureBaseUrl);
+    }
+    pub fn putSecureBaseURL(self: *const ISAXXMLReader, pwchSecureBaseUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putSecureBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchSecureBaseUrl);
+    }
+    pub fn parse(self: *const ISAXXMLReader, varInput: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).parse(@as(*const ISAXXMLReader, @ptrCast(self)), varInput);
+    }
+    pub fn parseURL(self: *const ISAXXMLReader, pwchUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchUrl);
+    }
 };
 
 const IID_ISAXXMLFilter_Value = Guid.initString("70409222-ca09-4475-acb8-40312fe8d145");
@@ -4013,7 +4925,13 @@ pub const ISAXXMLFilter = extern union {
             return @as(*const ISAXXMLFilter.VTable, @ptrCast(self.vtable)).putParent(@as(*const ISAXXMLFilter, @ptrCast(self)), pReader);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISAXXMLReader.MethodMixin(@This());
+    pub fn getParent(self: *const ISAXXMLFilter, ppReader: ?*?*ISAXXMLReader) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLFilter.VTable, @ptrCast(self.vtable)).getParent(@as(*const ISAXXMLFilter, @ptrCast(self)), ppReader);
+    }
+    pub fn putParent(self: *const ISAXXMLFilter, pReader: ?*ISAXXMLReader) callconv(.Inline) HRESULT {
+        return @as(*const ISAXXMLFilter.VTable, @ptrCast(self.vtable)).putParent(@as(*const ISAXXMLFilter, @ptrCast(self)), pReader);
+    }
 };
 
 const IID_ISAXLocator_Value = Guid.initString("9b7e472a-0de4-4640-bff3-84d38a051c31");
@@ -4059,7 +4977,19 @@ pub const ISAXLocator = extern union {
             return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getSystemId(@as(*const ISAXLocator, @ptrCast(self)), ppwchSystemId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn getColumnNumber(self: *const ISAXLocator, pnColumn: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getColumnNumber(@as(*const ISAXLocator, @ptrCast(self)), pnColumn);
+    }
+    pub fn getLineNumber(self: *const ISAXLocator, pnLine: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getLineNumber(@as(*const ISAXLocator, @ptrCast(self)), pnLine);
+    }
+    pub fn getPublicId(self: *const ISAXLocator, ppwchPublicId: ?*const ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getPublicId(@as(*const ISAXLocator, @ptrCast(self)), ppwchPublicId);
+    }
+    pub fn getSystemId(self: *const ISAXLocator, ppwchSystemId: ?*const ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getSystemId(@as(*const ISAXLocator, @ptrCast(self)), ppwchSystemId);
+    }
 };
 
 const IID_ISAXEntityResolver_Value = Guid.initString("99bca7bd-e8c4-4d5f-a0cf-6d907901ff07");
@@ -4083,7 +5013,10 @@ pub const ISAXEntityResolver = extern union {
             return @as(*const ISAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const ISAXEntityResolver, @ptrCast(self)), pwchPublicId, pwchSystemId, pvarInput);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn resolveEntity(self: *const ISAXEntityResolver, pwchPublicId: ?[*:0]const u16, pwchSystemId: ?[*:0]const u16, pvarInput: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const ISAXEntityResolver, @ptrCast(self)), pwchPublicId, pwchSystemId, pvarInput);
+    }
 };
 
 const IID_ISAXContentHandler_Value = Guid.initString("1545cdfa-9e4e-4497-a8a4-2bf7d0112c44");
@@ -4204,7 +5137,40 @@ pub const ISAXContentHandler = extern union {
             return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const ISAXContentHandler, @ptrCast(self)), pwchName, cchName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn putDocumentLocator(self: *const ISAXContentHandler, pLocator: ?*ISAXLocator) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).putDocumentLocator(@as(*const ISAXContentHandler, @ptrCast(self)), pLocator);
+    }
+    pub fn startDocument(self: *const ISAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startDocument(@as(*const ISAXContentHandler, @ptrCast(self)));
+    }
+    pub fn endDocument(self: *const ISAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endDocument(@as(*const ISAXContentHandler, @ptrCast(self)));
+    }
+    pub fn startPrefixMapping(self: *const ISAXContentHandler, pwchPrefix: ?[*:0]const u16, cchPrefix: i32, pwchUri: ?[*:0]const u16, cchUri: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startPrefixMapping(@as(*const ISAXContentHandler, @ptrCast(self)), pwchPrefix, cchPrefix, pwchUri, cchUri);
+    }
+    pub fn endPrefixMapping(self: *const ISAXContentHandler, pwchPrefix: ?[*:0]const u16, cchPrefix: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endPrefixMapping(@as(*const ISAXContentHandler, @ptrCast(self)), pwchPrefix, cchPrefix);
+    }
+    pub fn startElement(self: *const ISAXContentHandler, pwchNamespaceUri: ?[*:0]const u16, cchNamespaceUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pwchQName: ?[*:0]const u16, cchQName: i32, pAttributes: ?*ISAXAttributes) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startElement(@as(*const ISAXContentHandler, @ptrCast(self)), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName, pAttributes);
+    }
+    pub fn endElement(self: *const ISAXContentHandler, pwchNamespaceUri: ?[*:0]const u16, cchNamespaceUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pwchQName: ?[*:0]const u16, cchQName: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endElement(@as(*const ISAXContentHandler, @ptrCast(self)), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName);
+    }
+    pub fn characters(self: *const ISAXContentHandler, pwchChars: ?[*:0]const u16, cchChars: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).characters(@as(*const ISAXContentHandler, @ptrCast(self)), pwchChars, cchChars);
+    }
+    pub fn ignorableWhitespace(self: *const ISAXContentHandler, pwchChars: ?[*:0]const u16, cchChars: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).ignorableWhitespace(@as(*const ISAXContentHandler, @ptrCast(self)), pwchChars, cchChars);
+    }
+    pub fn processingInstruction(self: *const ISAXContentHandler, pwchTarget: ?[*:0]const u16, cchTarget: i32, pwchData: ?[*:0]const u16, cchData: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).processingInstruction(@as(*const ISAXContentHandler, @ptrCast(self)), pwchTarget, cchTarget, pwchData, cchData);
+    }
+    pub fn skippedEntity(self: *const ISAXContentHandler, pwchName: ?[*:0]const u16, cchName: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const ISAXContentHandler, @ptrCast(self)), pwchName, cchName);
+    }
 };
 
 const IID_ISAXDTDHandler_Value = Guid.initString("e15c1baf-afb3-4d60-8c36-19a8c45defed");
@@ -4246,7 +5212,13 @@ pub const ISAXDTDHandler = extern union {
             return @as(*const ISAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const ISAXDTDHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId, pwchNotationName, cchNotationName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn notationDecl(self: *const ISAXDTDHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDTDHandler.VTable, @ptrCast(self.vtable)).notationDecl(@as(*const ISAXDTDHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+    }
+    pub fn unparsedEntityDecl(self: *const ISAXDTDHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32, pwchNotationName: ?[*:0]const u16, cchNotationName: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const ISAXDTDHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId, pwchNotationName, cchNotationName);
+    }
 };
 
 const IID_ISAXErrorHandler_Value = Guid.initString("a60511c4-ccf5-479e-98a3-dc8dc545b7d0");
@@ -4290,7 +5262,16 @@ pub const ISAXErrorHandler = extern union {
             return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn @"error"(self: *const ISAXErrorHandler, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).@"error"(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
+    }
+    pub fn fatalError(self: *const ISAXErrorHandler, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).fatalError(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
+    }
+    pub fn ignorableWarning(self: *const ISAXErrorHandler, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
+    }
 };
 
 const IID_ISAXLexicalHandler_Value = Guid.initString("7f85d5f5-47a8-4497-bda5-84ba04819ea6");
@@ -4365,7 +5346,28 @@ pub const ISAXLexicalHandler = extern union {
             return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchChars, cchChars);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn startDTD(self: *const ISAXLexicalHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startDTD(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+    }
+    pub fn endDTD(self: *const ISAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endDTD(@as(*const ISAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn startEntity(self: *const ISAXLexicalHandler, pwchName: ?[*:0]const u16, cchName: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startEntity(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName);
+    }
+    pub fn endEntity(self: *const ISAXLexicalHandler, pwchName: ?[*:0]const u16, cchName: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endEntity(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName);
+    }
+    pub fn startCDATA(self: *const ISAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startCDATA(@as(*const ISAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn endCDATA(self: *const ISAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endCDATA(@as(*const ISAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn comment(self: *const ISAXLexicalHandler, pwchChars: ?[*:0]const u16, cchChars: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchChars, cchChars);
+    }
 };
 
 const IID_ISAXDeclHandler_Value = Guid.initString("862629ac-771a-47b2-8337-4e6843c1be90");
@@ -4431,7 +5433,19 @@ pub const ISAXDeclHandler = extern union {
             return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn elementDecl(self: *const ISAXDeclHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchModel: ?[*:0]const u16, cchModel: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).elementDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchModel, cchModel);
+    }
+    pub fn attributeDecl(self: *const ISAXDeclHandler, pwchElementName: ?[*:0]const u16, cchElementName: i32, pwchAttributeName: ?[*:0]const u16, cchAttributeName: i32, pwchType: ?[*:0]const u16, cchType: i32, pwchValueDefault: ?[*:0]const u16, cchValueDefault: i32, pwchValue: ?[*:0]const u16, cchValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).attributeDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchElementName, cchElementName, pwchAttributeName, cchAttributeName, pwchType, cchType, pwchValueDefault, cchValueDefault, pwchValue, cchValue);
+    }
+    pub fn internalEntityDecl(self: *const ISAXDeclHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchValue: ?[*:0]const u16, cchValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).internalEntityDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchValue, cchValue);
+    }
+    pub fn externalEntityDecl(self: *const ISAXDeclHandler, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+    }
 };
 
 const IID_ISAXAttributes_Value = Guid.initString("f078abe1-45d2-4832-91ea-4466ce2f25c9");
@@ -4587,7 +5601,46 @@ pub const ISAXAttributes = extern union {
             return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, ppwchValue, pcchValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn getLength(self: *const ISAXAttributes, pnLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getLength(@as(*const ISAXAttributes, @ptrCast(self)), pnLength);
+    }
+    pub fn getURI(self: *const ISAXAttributes, nIndex: i32, ppwchUri: ?*const ?*u16, pcchUri: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getURI(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchUri, pcchUri);
+    }
+    pub fn getLocalName(self: *const ISAXAttributes, nIndex: i32, ppwchLocalName: ?*const ?*u16, pcchLocalName: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getLocalName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchLocalName, pcchLocalName);
+    }
+    pub fn getQName(self: *const ISAXAttributes, nIndex: i32, ppwchQName: ?*const ?*u16, pcchQName: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getQName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchQName, pcchQName);
+    }
+    pub fn getName(self: *const ISAXAttributes, nIndex: i32, ppwchUri: ?*const ?*u16, pcchUri: ?*i32, ppwchLocalName: ?*const ?*u16, pcchLocalName: ?*i32, ppwchQName: ?*const ?*u16, pcchQName: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchUri, pcchUri, ppwchLocalName, pcchLocalName, ppwchQName, pcchQName);
+    }
+    pub fn getIndexFromName(self: *const ISAXAttributes, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pnIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, pnIndex);
+    }
+    pub fn getIndexFromQName(self: *const ISAXAttributes, pwchQName: ?[*:0]const u16, cchQName: i32, pnIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, pnIndex);
+    }
+    pub fn getType(self: *const ISAXAttributes, nIndex: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getType(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchType, pcchType);
+    }
+    pub fn getTypeFromName(self: *const ISAXAttributes, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchType, pcchType);
+    }
+    pub fn getTypeFromQName(self: *const ISAXAttributes, pwchQName: ?[*:0]const u16, cchQName: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, ppwchType, pcchType);
+    }
+    pub fn getValue(self: *const ISAXAttributes, nIndex: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValue(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchValue, pcchValue);
+    }
+    pub fn getValueFromName(self: *const ISAXAttributes, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchValue, pcchValue);
+    }
+    pub fn getValueFromQName(self: *const ISAXAttributes, pwchQName: ?[*:0]const u16, cchQName: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, ppwchValue, pcchValue);
+    }
 };
 
 const IID_IVBSAXXMLReader_Value = Guid.initString("8c033caa-6cd6-4f73-b728-4531af74945f");
@@ -4757,7 +5810,61 @@ pub const IVBSAXXMLReader = extern union {
             return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strURL);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn getFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).getFeature(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, fValue);
+    }
+    pub fn putFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putFeature(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, fValue);
+    }
+    pub fn getProperty(self: *const IVBSAXXMLReader, strName: ?BSTR, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, varValue);
+    }
+    pub fn putProperty(self: *const IVBSAXXMLReader, strName: ?BSTR, varValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putProperty(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, varValue);
+    }
+    pub fn get_entityResolver(self: *const IVBSAXXMLReader, oResolver: ?*?*IVBSAXEntityResolver) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_entityResolver(@as(*const IVBSAXXMLReader, @ptrCast(self)), oResolver);
+    }
+    pub fn putref_entityResolver(self: *const IVBSAXXMLReader, oResolver: ?*IVBSAXEntityResolver) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_entityResolver(@as(*const IVBSAXXMLReader, @ptrCast(self)), oResolver);
+    }
+    pub fn get_contentHandler(self: *const IVBSAXXMLReader, oHandler: ?*?*IVBSAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_contentHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_contentHandler(self: *const IVBSAXXMLReader, oHandler: ?*IVBSAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_contentHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn get_dtdHandler(self: *const IVBSAXXMLReader, oHandler: ?*?*IVBSAXDTDHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_dtdHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_dtdHandler(self: *const IVBSAXXMLReader, oHandler: ?*IVBSAXDTDHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_dtdHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn get_errorHandler(self: *const IVBSAXXMLReader, oHandler: ?*?*IVBSAXErrorHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_errorHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_errorHandler(self: *const IVBSAXXMLReader, oHandler: ?*IVBSAXErrorHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_errorHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
+    }
+    pub fn get_baseURL(self: *const IVBSAXXMLReader, strBaseURL: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_baseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strBaseURL);
+    }
+    pub fn put_baseURL(self: *const IVBSAXXMLReader, strBaseURL: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).put_baseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strBaseURL);
+    }
+    pub fn get_secureBaseURL(self: *const IVBSAXXMLReader, strSecureBaseURL: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_secureBaseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strSecureBaseURL);
+    }
+    pub fn put_secureBaseURL(self: *const IVBSAXXMLReader, strSecureBaseURL: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).put_secureBaseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strSecureBaseURL);
+    }
+    pub fn parse(self: *const IVBSAXXMLReader, varInput: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).parse(@as(*const IVBSAXXMLReader, @ptrCast(self)), varInput);
+    }
+    pub fn parseURL(self: *const IVBSAXXMLReader, strURL: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strURL);
+    }
 };
 
 const IID_IVBSAXXMLFilter_Value = Guid.initString("1299eb1b-5b88-433e-82de-82ca75ad4e04");
@@ -4788,7 +5895,13 @@ pub const IVBSAXXMLFilter = extern union {
             return @as(*const IVBSAXXMLFilter.VTable, @ptrCast(self.vtable)).putref_parent(@as(*const IVBSAXXMLFilter, @ptrCast(self)), oReader);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_parent(self: *const IVBSAXXMLFilter, oReader: ?*?*IVBSAXXMLReader) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLFilter.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IVBSAXXMLFilter, @ptrCast(self)), oReader);
+    }
+    pub fn putref_parent(self: *const IVBSAXXMLFilter, oReader: ?*IVBSAXXMLReader) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXXMLFilter.VTable, @ptrCast(self.vtable)).putref_parent(@as(*const IVBSAXXMLFilter, @ptrCast(self)), oReader);
+    }
 };
 
 const IID_IVBSAXLocator_Value = Guid.initString("796e7ac5-5aa2-4eff-acad-3faaf01a3288");
@@ -4838,7 +5951,19 @@ pub const IVBSAXLocator = extern union {
             return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IVBSAXLocator, @ptrCast(self)), strSystemId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_columnNumber(self: *const IVBSAXLocator, nColumn: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_columnNumber(@as(*const IVBSAXLocator, @ptrCast(self)), nColumn);
+    }
+    pub fn get_lineNumber(self: *const IVBSAXLocator, nLine: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_lineNumber(@as(*const IVBSAXLocator, @ptrCast(self)), nLine);
+    }
+    pub fn get_publicId(self: *const IVBSAXLocator, strPublicId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IVBSAXLocator, @ptrCast(self)), strPublicId);
+    }
+    pub fn get_systemId(self: *const IVBSAXLocator, strSystemId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IVBSAXLocator, @ptrCast(self)), strSystemId);
+    }
 };
 
 const IID_IVBSAXEntityResolver_Value = Guid.initString("0c05d096-f45b-4aca-ad1a-aa0bc25518dc");
@@ -4862,7 +5987,10 @@ pub const IVBSAXEntityResolver = extern union {
             return @as(*const IVBSAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const IVBSAXEntityResolver, @ptrCast(self)), strPublicId, strSystemId, varInput);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn resolveEntity(self: *const IVBSAXEntityResolver, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR, varInput: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const IVBSAXEntityResolver, @ptrCast(self)), strPublicId, strSystemId, varInput);
+    }
 };
 
 const IID_IVBSAXContentHandler_Value = Guid.initString("2ed7290a-4dd5-4b46-bb26-4e4155e77faa");
@@ -4969,7 +6097,40 @@ pub const IVBSAXContentHandler = extern union {
             return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const IVBSAXContentHandler, @ptrCast(self)), strName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn putref_documentLocator(self: *const IVBSAXContentHandler, oLocator: ?*IVBSAXLocator) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).putref_documentLocator(@as(*const IVBSAXContentHandler, @ptrCast(self)), oLocator);
+    }
+    pub fn startDocument(self: *const IVBSAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startDocument(@as(*const IVBSAXContentHandler, @ptrCast(self)));
+    }
+    pub fn endDocument(self: *const IVBSAXContentHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endDocument(@as(*const IVBSAXContentHandler, @ptrCast(self)));
+    }
+    pub fn startPrefixMapping(self: *const IVBSAXContentHandler, strPrefix: ?*?BSTR, strURI: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startPrefixMapping(@as(*const IVBSAXContentHandler, @ptrCast(self)), strPrefix, strURI);
+    }
+    pub fn endPrefixMapping(self: *const IVBSAXContentHandler, strPrefix: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endPrefixMapping(@as(*const IVBSAXContentHandler, @ptrCast(self)), strPrefix);
+    }
+    pub fn startElement(self: *const IVBSAXContentHandler, strNamespaceURI: ?*?BSTR, strLocalName: ?*?BSTR, strQName: ?*?BSTR, oAttributes: ?*IVBSAXAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startElement(@as(*const IVBSAXContentHandler, @ptrCast(self)), strNamespaceURI, strLocalName, strQName, oAttributes);
+    }
+    pub fn endElement(self: *const IVBSAXContentHandler, strNamespaceURI: ?*?BSTR, strLocalName: ?*?BSTR, strQName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endElement(@as(*const IVBSAXContentHandler, @ptrCast(self)), strNamespaceURI, strLocalName, strQName);
+    }
+    pub fn characters(self: *const IVBSAXContentHandler, strChars: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).characters(@as(*const IVBSAXContentHandler, @ptrCast(self)), strChars);
+    }
+    pub fn ignorableWhitespace(self: *const IVBSAXContentHandler, strChars: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).ignorableWhitespace(@as(*const IVBSAXContentHandler, @ptrCast(self)), strChars);
+    }
+    pub fn processingInstruction(self: *const IVBSAXContentHandler, strTarget: ?*?BSTR, strData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).processingInstruction(@as(*const IVBSAXContentHandler, @ptrCast(self)), strTarget, strData);
+    }
+    pub fn skippedEntity(self: *const IVBSAXContentHandler, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const IVBSAXContentHandler, @ptrCast(self)), strName);
+    }
 };
 
 const IID_IVBSAXDTDHandler_Value = Guid.initString("24fb3297-302d-4620-ba39-3a732d850558");
@@ -5004,7 +6165,13 @@ pub const IVBSAXDTDHandler = extern union {
             return @as(*const IVBSAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const IVBSAXDTDHandler, @ptrCast(self)), strName, strPublicId, strSystemId, strNotationName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn notationDecl(self: *const IVBSAXDTDHandler, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDTDHandler.VTable, @ptrCast(self.vtable)).notationDecl(@as(*const IVBSAXDTDHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
+    }
+    pub fn unparsedEntityDecl(self: *const IVBSAXDTDHandler, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR, strNotationName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const IVBSAXDTDHandler, @ptrCast(self)), strName, strPublicId, strSystemId, strNotationName);
+    }
 };
 
 const IID_IVBSAXErrorHandler_Value = Guid.initString("d963d3fe-173c-4862-9095-b92f66995f52");
@@ -5048,7 +6215,16 @@ pub const IVBSAXErrorHandler = extern union {
             return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn @"error"(self: *const IVBSAXErrorHandler, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).@"error"(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
+    }
+    pub fn fatalError(self: *const IVBSAXErrorHandler, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).fatalError(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
+    }
+    pub fn ignorableWarning(self: *const IVBSAXErrorHandler, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
+    }
 };
 
 const IID_IVBSAXLexicalHandler_Value = Guid.initString("032aac35-8c0e-4d9d-979f-e3b702935576");
@@ -5117,7 +6293,28 @@ pub const IVBSAXLexicalHandler = extern union {
             return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strChars);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn startDTD(self: *const IVBSAXLexicalHandler, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startDTD(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
+    }
+    pub fn endDTD(self: *const IVBSAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endDTD(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn startEntity(self: *const IVBSAXLexicalHandler, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startEntity(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName);
+    }
+    pub fn endEntity(self: *const IVBSAXLexicalHandler, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endEntity(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName);
+    }
+    pub fn startCDATA(self: *const IVBSAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startCDATA(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn endCDATA(self: *const IVBSAXLexicalHandler) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endCDATA(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
+    }
+    pub fn comment(self: *const IVBSAXLexicalHandler, strChars: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strChars);
+    }
 };
 
 const IID_IVBSAXDeclHandler_Value = Guid.initString("e8917260-7579-4be1-b5dd-7afbfa6f077b");
@@ -5171,7 +6368,19 @@ pub const IVBSAXDeclHandler = extern union {
             return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn elementDecl(self: *const IVBSAXDeclHandler, strName: ?*?BSTR, strModel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).elementDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strModel);
+    }
+    pub fn attributeDecl(self: *const IVBSAXDeclHandler, strElementName: ?*?BSTR, strAttributeName: ?*?BSTR, strType: ?*?BSTR, strValueDefault: ?*?BSTR, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).attributeDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strElementName, strAttributeName, strType, strValueDefault, strValue);
+    }
+    pub fn internalEntityDecl(self: *const IVBSAXDeclHandler, strName: ?*?BSTR, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).internalEntityDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strValue);
+    }
+    pub fn externalEntityDecl(self: *const IVBSAXDeclHandler, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
+    }
 };
 
 const IID_IVBSAXAttributes_Value = Guid.initString("10dc0586-132b-4cac-8bb3-db00ac8b7ee0");
@@ -5296,7 +6505,43 @@ pub const IVBSAXAttributes = extern union {
             return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, strValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_length(self: *const IVBSAXAttributes, nLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).get_length(@as(*const IVBSAXAttributes, @ptrCast(self)), nLength);
+    }
+    pub fn getURI(self: *const IVBSAXAttributes, nIndex: i32, strURI: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getURI(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strURI);
+    }
+    pub fn getLocalName(self: *const IVBSAXAttributes, nIndex: i32, strLocalName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getLocalName(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strLocalName);
+    }
+    pub fn getQName(self: *const IVBSAXAttributes, nIndex: i32, strQName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getQName(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strQName);
+    }
+    pub fn getIndexFromName(self: *const IVBSAXAttributes, strURI: ?BSTR, strLocalName: ?BSTR, nIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, nIndex);
+    }
+    pub fn getIndexFromQName(self: *const IVBSAXAttributes, strQName: ?BSTR, nIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, nIndex);
+    }
+    pub fn getType(self: *const IVBSAXAttributes, nIndex: i32, strType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getType(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strType);
+    }
+    pub fn getTypeFromName(self: *const IVBSAXAttributes, strURI: ?BSTR, strLocalName: ?BSTR, strType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, strType);
+    }
+    pub fn getTypeFromQName(self: *const IVBSAXAttributes, strQName: ?BSTR, strType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, strType);
+    }
+    pub fn getValue(self: *const IVBSAXAttributes, nIndex: i32, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValue(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strValue);
+    }
+    pub fn getValueFromName(self: *const IVBSAXAttributes, strURI: ?BSTR, strLocalName: ?BSTR, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, strValue);
+    }
+    pub fn getValueFromQName(self: *const IVBSAXAttributes, strQName: ?BSTR, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, strValue);
+    }
 };
 
 const IID_IMXWriter_Value = Guid.initString("4d7ff4ba-1565-4ea8-94e1-6e724a46f98d");
@@ -5461,7 +6706,58 @@ pub const IMXWriter = extern union {
             return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).flush(@as(*const IMXWriter, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_output(self: *const IMXWriter, varDestination: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_output(@as(*const IMXWriter, @ptrCast(self)), varDestination);
+    }
+    pub fn get_output(self: *const IMXWriter, varDestination: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_output(@as(*const IMXWriter, @ptrCast(self)), varDestination);
+    }
+    pub fn put_encoding(self: *const IMXWriter, strEncoding: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_encoding(@as(*const IMXWriter, @ptrCast(self)), strEncoding);
+    }
+    pub fn get_encoding(self: *const IMXWriter, strEncoding: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_encoding(@as(*const IMXWriter, @ptrCast(self)), strEncoding);
+    }
+    pub fn put_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_byteOrderMark(@as(*const IMXWriter, @ptrCast(self)), fWriteByteOrderMark);
+    }
+    pub fn get_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_byteOrderMark(@as(*const IMXWriter, @ptrCast(self)), fWriteByteOrderMark);
+    }
+    pub fn put_indent(self: *const IMXWriter, fIndentMode: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_indent(@as(*const IMXWriter, @ptrCast(self)), fIndentMode);
+    }
+    pub fn get_indent(self: *const IMXWriter, fIndentMode: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_indent(@as(*const IMXWriter, @ptrCast(self)), fIndentMode);
+    }
+    pub fn put_standalone(self: *const IMXWriter, fValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_standalone(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn get_standalone(self: *const IMXWriter, fValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_standalone(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn put_omitXMLDeclaration(self: *const IMXWriter, fValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_omitXMLDeclaration(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn get_omitXMLDeclaration(self: *const IMXWriter, fValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_omitXMLDeclaration(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn put_version(self: *const IMXWriter, strVersion: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_version(@as(*const IMXWriter, @ptrCast(self)), strVersion);
+    }
+    pub fn get_version(self: *const IMXWriter, strVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_version(@as(*const IMXWriter, @ptrCast(self)), strVersion);
+    }
+    pub fn put_disableOutputEscaping(self: *const IMXWriter, fValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_disableOutputEscaping(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn get_disableOutputEscaping(self: *const IMXWriter, fValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_disableOutputEscaping(@as(*const IMXWriter, @ptrCast(self)), fValue);
+    }
+    pub fn flush(self: *const IMXWriter) callconv(.Inline) HRESULT {
+        return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).flush(@as(*const IMXWriter, @ptrCast(self)));
+    }
 };
 
 const IID_IMXAttributes_Value = Guid.initString("f10d27cc-3ec0-415c-8ed8-77ab1c5e7262");
@@ -5577,7 +6873,40 @@ pub const IMXAttributes = extern union {
             return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setValue(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn addAttribute(self: *const IMXAttributes, strURI: ?BSTR, strLocalName: ?BSTR, strQName: ?BSTR, strType: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).addAttribute(@as(*const IMXAttributes, @ptrCast(self)), strURI, strLocalName, strQName, strType, strValue);
+    }
+    pub fn addAttributeFromIndex(self: *const IMXAttributes, varAtts: VARIANT, nIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).addAttributeFromIndex(@as(*const IMXAttributes, @ptrCast(self)), varAtts, nIndex);
+    }
+    pub fn clear(self: *const IMXAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).clear(@as(*const IMXAttributes, @ptrCast(self)));
+    }
+    pub fn removeAttribute(self: *const IMXAttributes, nIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IMXAttributes, @ptrCast(self)), nIndex);
+    }
+    pub fn setAttribute(self: *const IMXAttributes, nIndex: i32, strURI: ?BSTR, strLocalName: ?BSTR, strQName: ?BSTR, strType: ?BSTR, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strURI, strLocalName, strQName, strType, strValue);
+    }
+    pub fn setAttributes(self: *const IMXAttributes, varAtts: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setAttributes(@as(*const IMXAttributes, @ptrCast(self)), varAtts);
+    }
+    pub fn setLocalName(self: *const IMXAttributes, nIndex: i32, strLocalName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setLocalName(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strLocalName);
+    }
+    pub fn setQName(self: *const IMXAttributes, nIndex: i32, strQName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setQName(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strQName);
+    }
+    pub fn setType(self: *const IMXAttributes, nIndex: i32, strType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setType(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strType);
+    }
+    pub fn setURI(self: *const IMXAttributes, nIndex: i32, strURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setURI(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strURI);
+    }
+    pub fn setValue(self: *const IMXAttributes, nIndex: i32, strValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setValue(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strValue);
+    }
 };
 
 const IID_IMXReaderControl_Value = Guid.initString("808f4e35-8d5a-4fbe-8466-33a41279ed30");
@@ -5612,7 +6941,16 @@ pub const IMXReaderControl = extern union {
             return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).@"suspend"(@as(*const IMXReaderControl, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn abort(self: *const IMXReaderControl) callconv(.Inline) HRESULT {
+        return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).abort(@as(*const IMXReaderControl, @ptrCast(self)));
+    }
+    pub fn @"resume"(self: *const IMXReaderControl) callconv(.Inline) HRESULT {
+        return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).@"resume"(@as(*const IMXReaderControl, @ptrCast(self)));
+    }
+    pub fn @"suspend"(self: *const IMXReaderControl) callconv(.Inline) HRESULT {
+        return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).@"suspend"(@as(*const IMXReaderControl, @ptrCast(self)));
+    }
 };
 
 const IID_IMXSchemaDeclHandler_Value = Guid.initString("fa4bb38c-faf9-4cca-9302-d1dd0fe520db");
@@ -5634,7 +6972,10 @@ pub const IMXSchemaDeclHandler = extern union {
             return @as(*const IMXSchemaDeclHandler.VTable, @ptrCast(self.vtable)).schemaElementDecl(@as(*const IMXSchemaDeclHandler, @ptrCast(self)), oSchemaElement);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn schemaElementDecl(self: *const IMXSchemaDeclHandler, oSchemaElement: ?*ISchemaElement) callconv(.Inline) HRESULT {
+        return @as(*const IMXSchemaDeclHandler.VTable, @ptrCast(self.vtable)).schemaElementDecl(@as(*const IMXSchemaDeclHandler, @ptrCast(self)), oSchemaElement);
+    }
 };
 
 const IID_IMXNamespacePrefixes_Value = Guid.initString("c90352f4-643c-4fbc-bb23-e996eb2d51fd");
@@ -5675,7 +7016,16 @@ pub const IMXNamespacePrefixes = extern union {
             return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IMXNamespacePrefixes, @ptrCast(self)), ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_item(self: *const IMXNamespacePrefixes, index: i32, prefix: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get_item(@as(*const IMXNamespacePrefixes, @ptrCast(self)), index, prefix);
+    }
+    pub fn get_length(self: *const IMXNamespacePrefixes, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get_length(@as(*const IMXNamespacePrefixes, @ptrCast(self)), length);
+    }
+    pub fn get__newEnum(self: *const IMXNamespacePrefixes, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IMXNamespacePrefixes, @ptrCast(self)), ppUnk);
+    }
 };
 
 const IID_IVBMXNamespaceManager_Value = Guid.initString("c90352f5-643c-4fbc-bb23-e996eb2d51fd");
@@ -5782,7 +7132,40 @@ pub const IVBMXNamespaceManager = extern union {
             return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURIFromNode(@as(*const IVBMXNamespaceManager, @ptrCast(self)), strPrefix, contextNode, uri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_allowOverride(self: *const IVBMXNamespaceManager, fOverride: i16) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).put_allowOverride(@as(*const IVBMXNamespaceManager, @ptrCast(self)), fOverride);
+    }
+    pub fn get_allowOverride(self: *const IVBMXNamespaceManager, fOverride: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).get_allowOverride(@as(*const IVBMXNamespaceManager, @ptrCast(self)), fOverride);
+    }
+    pub fn reset(self: *const IVBMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).reset(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn pushContext(self: *const IVBMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn pushNodeContext(self: *const IVBMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: i16) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushNodeContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)), contextNode, fDeep);
+    }
+    pub fn popContext(self: *const IVBMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).popContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn declarePrefix(self: *const IVBMXNamespaceManager, prefix: ?BSTR, namespaceURI: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).declarePrefix(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefix, namespaceURI);
+    }
+    pub fn getDeclaredPrefixes(self: *const IVBMXNamespaceManager, prefixes: ?*?*IMXNamespacePrefixes) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getDeclaredPrefixes(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefixes);
+    }
+    pub fn getPrefixes(self: *const IVBMXNamespaceManager, namespaceURI: ?BSTR, prefixes: ?*?*IMXNamespacePrefixes) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getPrefixes(@as(*const IVBMXNamespaceManager, @ptrCast(self)), namespaceURI, prefixes);
+    }
+    pub fn getURI(self: *const IVBMXNamespaceManager, prefix: ?BSTR, uri: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURI(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefix, uri);
+    }
+    pub fn getURIFromNode(self: *const IVBMXNamespaceManager, strPrefix: ?BSTR, contextNode: ?*IXMLDOMNode, uri: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURIFromNode(@as(*const IVBMXNamespaceManager, @ptrCast(self)), strPrefix, contextNode, uri);
+    }
 };
 
 const IID_IMXNamespaceManager_Value = Guid.initString("c90352f6-643c-4fbc-bb23-e996eb2d51fd");
@@ -5883,7 +7266,37 @@ pub const IMXNamespaceManager = extern union {
             return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURI(@as(*const IMXNamespaceManager, @ptrCast(self)), pwchPrefix, pContextNode, pwchUri, pcchUri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn putAllowOverride(self: *const IMXNamespaceManager, fOverride: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).putAllowOverride(@as(*const IMXNamespaceManager, @ptrCast(self)), fOverride);
+    }
+    pub fn getAllowOverride(self: *const IMXNamespaceManager, fOverride: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getAllowOverride(@as(*const IMXNamespaceManager, @ptrCast(self)), fOverride);
+    }
+    pub fn reset(self: *const IMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).reset(@as(*const IMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn pushContext(self: *const IMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushContext(@as(*const IMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn pushNodeContext(self: *const IMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushNodeContext(@as(*const IMXNamespaceManager, @ptrCast(self)), contextNode, fDeep);
+    }
+    pub fn popContext(self: *const IMXNamespaceManager) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).popContext(@as(*const IMXNamespaceManager, @ptrCast(self)));
+    }
+    pub fn declarePrefix(self: *const IMXNamespaceManager, prefix: ?[*:0]const u16, namespaceURI: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).declarePrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), prefix, namespaceURI);
+    }
+    pub fn getDeclaredPrefix(self: *const IMXNamespaceManager, nIndex: i32, pwchPrefix: [*:0]u16, pcchPrefix: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getDeclaredPrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), nIndex, pwchPrefix, pcchPrefix);
+    }
+    pub fn getPrefix(self: *const IMXNamespaceManager, pwszNamespaceURI: ?[*:0]const u16, nIndex: i32, pwchPrefix: [*:0]u16, pcchPrefix: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getPrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), pwszNamespaceURI, nIndex, pwchPrefix, pcchPrefix);
+    }
+    pub fn getURI(self: *const IMXNamespaceManager, pwchPrefix: ?[*:0]const u16, pContextNode: ?*IXMLDOMNode, pwchUri: [*:0]u16, pcchUri: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURI(@as(*const IMXNamespaceManager, @ptrCast(self)), pwchPrefix, pContextNode, pwchUri, pcchUri);
+    }
 };
 
 const IID_IMXXMLFilter_Value = Guid.initString("c90352f7-643c-4fbc-bb23-e996eb2d51fd");
@@ -6001,7 +7414,43 @@ pub const IMXXMLFilter = extern union {
             return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_errorHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn getFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).getFeature(@as(*const IMXXMLFilter, @ptrCast(self)), strName, fValue);
+    }
+    pub fn putFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putFeature(@as(*const IMXXMLFilter, @ptrCast(self)), strName, fValue);
+    }
+    pub fn getProperty(self: *const IMXXMLFilter, strName: ?BSTR, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IMXXMLFilter, @ptrCast(self)), strName, varValue);
+    }
+    pub fn putProperty(self: *const IMXXMLFilter, strName: ?BSTR, varValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putProperty(@as(*const IMXXMLFilter, @ptrCast(self)), strName, varValue);
+    }
+    pub fn get_entityResolver(self: *const IMXXMLFilter, oResolver: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_entityResolver(@as(*const IMXXMLFilter, @ptrCast(self)), oResolver);
+    }
+    pub fn putref_entityResolver(self: *const IMXXMLFilter, oResolver: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_entityResolver(@as(*const IMXXMLFilter, @ptrCast(self)), oResolver);
+    }
+    pub fn get_contentHandler(self: *const IMXXMLFilter, oHandler: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_contentHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_contentHandler(self: *const IMXXMLFilter, oHandler: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_contentHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
+    pub fn get_dtdHandler(self: *const IMXXMLFilter, oHandler: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_dtdHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_dtdHandler(self: *const IMXXMLFilter, oHandler: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_dtdHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
+    pub fn get_errorHandler(self: *const IMXXMLFilter, oHandler: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_errorHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
+    pub fn putref_errorHandler(self: *const IMXXMLFilter, oHandler: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_errorHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
+    }
 };
 
 pub const SOMITEMTYPE = enum(i32) {
@@ -6279,7 +7728,22 @@ pub const IXMLDOMSchemaCollection2 = extern union {
             return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).getDeclaration(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), node, item);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLDOMSchemaCollection.MethodMixin(@This());
+    pub fn validate(self: *const IXMLDOMSchemaCollection2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).validate(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)));
+    }
+    pub fn put_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).put_validateOnLoad(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), validateOnLoad);
+    }
+    pub fn get_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).get_validateOnLoad(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), validateOnLoad);
+    }
+    pub fn getSchema(self: *const IXMLDOMSchemaCollection2, namespaceURI: ?BSTR, schema: ?*?*ISchema) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).getSchema(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), namespaceURI, schema);
+    }
+    pub fn getDeclaration(self: *const IXMLDOMSchemaCollection2, node: ?*IXMLDOMNode, item: ?*?*ISchemaItem) callconv(.Inline) HRESULT {
+        return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).getDeclaration(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), node, item);
+    }
 };
 
 const IID_ISchemaStringCollection_Value = Guid.initString("50ea08b1-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6320,7 +7784,16 @@ pub const ISchemaStringCollection = extern union {
             return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaStringCollection, @ptrCast(self)), ppunk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_item(self: *const ISchemaStringCollection, index: i32, bstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const ISchemaStringCollection, @ptrCast(self)), index, bstr);
+    }
+    pub fn get_length(self: *const ISchemaStringCollection, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaStringCollection, @ptrCast(self)), length);
+    }
+    pub fn get__newEnum(self: *const ISchemaStringCollection, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaStringCollection, @ptrCast(self)), ppunk);
+    }
 };
 
 const IID_ISchemaItemCollection_Value = Guid.initString("50ea08b2-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6380,7 +7853,22 @@ pub const ISchemaItemCollection = extern union {
             return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaItemCollection, @ptrCast(self)), ppunk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_item(self: *const ISchemaItemCollection, index: i32, item: ?*?*ISchemaItem) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const ISchemaItemCollection, @ptrCast(self)), index, item);
+    }
+    pub fn itemByName(self: *const ISchemaItemCollection, name: ?BSTR, item: ?*?*ISchemaItem) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).itemByName(@as(*const ISchemaItemCollection, @ptrCast(self)), name, item);
+    }
+    pub fn itemByQName(self: *const ISchemaItemCollection, name: ?BSTR, namespaceURI: ?BSTR, item: ?*?*ISchemaItem) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).itemByQName(@as(*const ISchemaItemCollection, @ptrCast(self)), name, namespaceURI, item);
+    }
+    pub fn get_length(self: *const ISchemaItemCollection, length: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaItemCollection, @ptrCast(self)), length);
+    }
+    pub fn get__newEnum(self: *const ISchemaItemCollection, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaItemCollection, @ptrCast(self)), ppunk);
+    }
 };
 
 const IID_ISchemaItem_Value = Guid.initString("50ea08b3-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6457,7 +7945,28 @@ pub const ISchemaItem = extern union {
             return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).writeAnnotation(@as(*const ISchemaItem, @ptrCast(self)), annotationSink, isWritten);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_name(self: *const ISchemaItem, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_name(@as(*const ISchemaItem, @ptrCast(self)), name);
+    }
+    pub fn get_namespaceURI(self: *const ISchemaItem, namespaceURI: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const ISchemaItem, @ptrCast(self)), namespaceURI);
+    }
+    pub fn get_schema(self: *const ISchemaItem, schema: ?*?*ISchema) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_schema(@as(*const ISchemaItem, @ptrCast(self)), schema);
+    }
+    pub fn get_id(self: *const ISchemaItem, id: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_id(@as(*const ISchemaItem, @ptrCast(self)), id);
+    }
+    pub fn get_itemType(self: *const ISchemaItem, itemType: ?*SOMITEMTYPE) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_itemType(@as(*const ISchemaItem, @ptrCast(self)), itemType);
+    }
+    pub fn get_unhandledAttributes(self: *const ISchemaItem, attributes: ?*?*IVBSAXAttributes) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_unhandledAttributes(@as(*const ISchemaItem, @ptrCast(self)), attributes);
+    }
+    pub fn writeAnnotation(self: *const ISchemaItem, annotationSink: ?*IUnknown, isWritten: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).writeAnnotation(@as(*const ISchemaItem, @ptrCast(self)), annotationSink, isWritten);
+    }
 };
 
 const IID_ISchema_Value = Guid.initString("50ea08b4-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6552,7 +8061,34 @@ pub const ISchema = extern union {
             return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_schemaLocations(@as(*const ISchema, @ptrCast(self)), schemaLocations);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_targetNamespace(self: *const ISchema, targetNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_targetNamespace(@as(*const ISchema, @ptrCast(self)), targetNamespace);
+    }
+    pub fn get_version(self: *const ISchema, version: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_version(@as(*const ISchema, @ptrCast(self)), version);
+    }
+    pub fn get_types(self: *const ISchema, types: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_types(@as(*const ISchema, @ptrCast(self)), types);
+    }
+    pub fn get_elements(self: *const ISchema, elements: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_elements(@as(*const ISchema, @ptrCast(self)), elements);
+    }
+    pub fn get_attributes(self: *const ISchema, attributes: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchema, @ptrCast(self)), attributes);
+    }
+    pub fn get_attributeGroups(self: *const ISchema, attributeGroups: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_attributeGroups(@as(*const ISchema, @ptrCast(self)), attributeGroups);
+    }
+    pub fn get_modelGroups(self: *const ISchema, modelGroups: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_modelGroups(@as(*const ISchema, @ptrCast(self)), modelGroups);
+    }
+    pub fn get_notations(self: *const ISchema, notations: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_notations(@as(*const ISchema, @ptrCast(self)), notations);
+    }
+    pub fn get_schemaLocations(self: *const ISchema, schemaLocations: ?*?*ISchemaStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_schemaLocations(@as(*const ISchema, @ptrCast(self)), schemaLocations);
+    }
 };
 
 const IID_ISchemaParticle_Value = Guid.initString("50ea08b5-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6584,7 +8120,13 @@ pub const ISchemaParticle = extern union {
             return @as(*const ISchemaParticle.VTable, @ptrCast(self.vtable)).get_maxOccurs(@as(*const ISchemaParticle, @ptrCast(self)), maxOccurs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_minOccurs(self: *const ISchemaParticle, minOccurs: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaParticle.VTable, @ptrCast(self.vtable)).get_minOccurs(@as(*const ISchemaParticle, @ptrCast(self)), minOccurs);
+    }
+    pub fn get_maxOccurs(self: *const ISchemaParticle, maxOccurs: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaParticle.VTable, @ptrCast(self.vtable)).get_maxOccurs(@as(*const ISchemaParticle, @ptrCast(self)), maxOccurs);
+    }
 };
 
 const IID_ISchemaAttribute_Value = Guid.initString("50ea08b6-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6652,7 +8194,25 @@ pub const ISchemaAttribute = extern union {
             return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaAttribute, @ptrCast(self)), reference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_type(self: *const ISchemaAttribute, @"type": ?*?*ISchemaType) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaAttribute, @ptrCast(self)), @"type");
+    }
+    pub fn get_scope(self: *const ISchemaAttribute, scope: ?*?*ISchemaComplexType) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_scope(@as(*const ISchemaAttribute, @ptrCast(self)), scope);
+    }
+    pub fn get_defaultValue(self: *const ISchemaAttribute, defaultValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_defaultValue(@as(*const ISchemaAttribute, @ptrCast(self)), defaultValue);
+    }
+    pub fn get_fixedValue(self: *const ISchemaAttribute, fixedValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_fixedValue(@as(*const ISchemaAttribute, @ptrCast(self)), fixedValue);
+    }
+    pub fn get_use(self: *const ISchemaAttribute, use: ?*SCHEMAUSE) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_use(@as(*const ISchemaAttribute, @ptrCast(self)), use);
+    }
+    pub fn get_isReference(self: *const ISchemaAttribute, reference: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaAttribute, @ptrCast(self)), reference);
+    }
 };
 
 const IID_ISchemaElement_Value = Guid.initString("50ea08b7-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6765,7 +8325,40 @@ pub const ISchemaElement = extern union {
             return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaElement, @ptrCast(self)), reference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaParticle.MethodMixin(@This());
+    pub fn get_type(self: *const ISchemaElement, @"type": ?*?*ISchemaType) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaElement, @ptrCast(self)), @"type");
+    }
+    pub fn get_scope(self: *const ISchemaElement, scope: ?*?*ISchemaComplexType) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_scope(@as(*const ISchemaElement, @ptrCast(self)), scope);
+    }
+    pub fn get_defaultValue(self: *const ISchemaElement, defaultValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_defaultValue(@as(*const ISchemaElement, @ptrCast(self)), defaultValue);
+    }
+    pub fn get_fixedValue(self: *const ISchemaElement, fixedValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_fixedValue(@as(*const ISchemaElement, @ptrCast(self)), fixedValue);
+    }
+    pub fn get_isNillable(self: *const ISchemaElement, nillable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isNillable(@as(*const ISchemaElement, @ptrCast(self)), nillable);
+    }
+    pub fn get_identityConstraints(self: *const ISchemaElement, constraints: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_identityConstraints(@as(*const ISchemaElement, @ptrCast(self)), constraints);
+    }
+    pub fn get_substitutionGroup(self: *const ISchemaElement, element: ?*?*ISchemaElement) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_substitutionGroup(@as(*const ISchemaElement, @ptrCast(self)), element);
+    }
+    pub fn get_substitutionGroupExclusions(self: *const ISchemaElement, exclusions: ?*SCHEMADERIVATIONMETHOD) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_substitutionGroupExclusions(@as(*const ISchemaElement, @ptrCast(self)), exclusions);
+    }
+    pub fn get_disallowedSubstitutions(self: *const ISchemaElement, disallowed: ?*SCHEMADERIVATIONMETHOD) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_disallowedSubstitutions(@as(*const ISchemaElement, @ptrCast(self)), disallowed);
+    }
+    pub fn get_isAbstract(self: *const ISchemaElement, abstract: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isAbstract(@as(*const ISchemaElement, @ptrCast(self)), abstract);
+    }
+    pub fn get_isReference(self: *const ISchemaElement, reference: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaElement, @ptrCast(self)), reference);
+    }
 };
 
 const IID_ISchemaType_Value = Guid.initString("50ea08b8-dd1b-4664-9a50-c2f40f4bd79a");
@@ -6932,7 +8525,58 @@ pub const ISchemaType = extern union {
             return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_patterns(@as(*const ISchemaType, @ptrCast(self)), patterns);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_baseTypes(self: *const ISchemaType, baseTypes: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_baseTypes(@as(*const ISchemaType, @ptrCast(self)), baseTypes);
+    }
+    pub fn get_final(self: *const ISchemaType, final: ?*SCHEMADERIVATIONMETHOD) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_final(@as(*const ISchemaType, @ptrCast(self)), final);
+    }
+    pub fn get_variety(self: *const ISchemaType, variety: ?*SCHEMATYPEVARIETY) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_variety(@as(*const ISchemaType, @ptrCast(self)), variety);
+    }
+    pub fn get_derivedBy(self: *const ISchemaType, derivedBy: ?*SCHEMADERIVATIONMETHOD) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_derivedBy(@as(*const ISchemaType, @ptrCast(self)), derivedBy);
+    }
+    pub fn isValid(self: *const ISchemaType, data: ?BSTR, valid: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).isValid(@as(*const ISchemaType, @ptrCast(self)), data, valid);
+    }
+    pub fn get_minExclusive(self: *const ISchemaType, minExclusive: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minExclusive(@as(*const ISchemaType, @ptrCast(self)), minExclusive);
+    }
+    pub fn get_minInclusive(self: *const ISchemaType, minInclusive: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minInclusive(@as(*const ISchemaType, @ptrCast(self)), minInclusive);
+    }
+    pub fn get_maxExclusive(self: *const ISchemaType, maxExclusive: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxExclusive(@as(*const ISchemaType, @ptrCast(self)), maxExclusive);
+    }
+    pub fn get_maxInclusive(self: *const ISchemaType, maxInclusive: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxInclusive(@as(*const ISchemaType, @ptrCast(self)), maxInclusive);
+    }
+    pub fn get_totalDigits(self: *const ISchemaType, totalDigits: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_totalDigits(@as(*const ISchemaType, @ptrCast(self)), totalDigits);
+    }
+    pub fn get_fractionDigits(self: *const ISchemaType, fractionDigits: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_fractionDigits(@as(*const ISchemaType, @ptrCast(self)), fractionDigits);
+    }
+    pub fn get_length(self: *const ISchemaType, length: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaType, @ptrCast(self)), length);
+    }
+    pub fn get_minLength(self: *const ISchemaType, minLength: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minLength(@as(*const ISchemaType, @ptrCast(self)), minLength);
+    }
+    pub fn get_maxLength(self: *const ISchemaType, maxLength: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxLength(@as(*const ISchemaType, @ptrCast(self)), maxLength);
+    }
+    pub fn get_enumeration(self: *const ISchemaType, enumeration: ?*?*ISchemaStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_enumeration(@as(*const ISchemaType, @ptrCast(self)), enumeration);
+    }
+    pub fn get_whitespace(self: *const ISchemaType, whitespace: ?*SCHEMAWHITESPACE) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_whitespace(@as(*const ISchemaType, @ptrCast(self)), whitespace);
+    }
+    pub fn get_patterns(self: *const ISchemaType, patterns: ?*?*ISchemaStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_patterns(@as(*const ISchemaType, @ptrCast(self)), patterns);
+    }
 };
 
 const IID_ISchemaComplexType_Value = Guid.initString("50ea08b9-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7000,7 +8644,25 @@ pub const ISchemaComplexType = extern union {
             return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_prohibitedSubstitutions(@as(*const ISchemaComplexType, @ptrCast(self)), prohibited);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaType.MethodMixin(@This());
+    pub fn get_isAbstract(self: *const ISchemaComplexType, abstract: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_isAbstract(@as(*const ISchemaComplexType, @ptrCast(self)), abstract);
+    }
+    pub fn get_anyAttribute(self: *const ISchemaComplexType, anyAttribute: ?*?*ISchemaAny) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_anyAttribute(@as(*const ISchemaComplexType, @ptrCast(self)), anyAttribute);
+    }
+    pub fn get_attributes(self: *const ISchemaComplexType, attributes: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchemaComplexType, @ptrCast(self)), attributes);
+    }
+    pub fn get_contentType(self: *const ISchemaComplexType, contentType: ?*SCHEMACONTENTTYPE) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_contentType(@as(*const ISchemaComplexType, @ptrCast(self)), contentType);
+    }
+    pub fn get_contentModel(self: *const ISchemaComplexType, contentModel: ?*?*ISchemaModelGroup) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_contentModel(@as(*const ISchemaComplexType, @ptrCast(self)), contentModel);
+    }
+    pub fn get_prohibitedSubstitutions(self: *const ISchemaComplexType, prohibited: ?*SCHEMADERIVATIONMETHOD) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_prohibitedSubstitutions(@as(*const ISchemaComplexType, @ptrCast(self)), prohibited);
+    }
 };
 
 const IID_ISchemaAttributeGroup_Value = Guid.initString("50ea08ba-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7032,7 +8694,13 @@ pub const ISchemaAttributeGroup = extern union {
             return @as(*const ISchemaAttributeGroup.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchemaAttributeGroup, @ptrCast(self)), attributes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_anyAttribute(self: *const ISchemaAttributeGroup, anyAttribute: ?*?*ISchemaAny) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttributeGroup.VTable, @ptrCast(self.vtable)).get_anyAttribute(@as(*const ISchemaAttributeGroup, @ptrCast(self)), anyAttribute);
+    }
+    pub fn get_attributes(self: *const ISchemaAttributeGroup, attributes: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAttributeGroup.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchemaAttributeGroup, @ptrCast(self)), attributes);
+    }
 };
 
 const IID_ISchemaModelGroup_Value = Guid.initString("50ea08bb-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7055,7 +8723,10 @@ pub const ISchemaModelGroup = extern union {
             return @as(*const ISchemaModelGroup.VTable, @ptrCast(self.vtable)).get_particles(@as(*const ISchemaModelGroup, @ptrCast(self)), particles);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaParticle.MethodMixin(@This());
+    pub fn get_particles(self: *const ISchemaModelGroup, particles: ?*?*ISchemaItemCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaModelGroup.VTable, @ptrCast(self.vtable)).get_particles(@as(*const ISchemaModelGroup, @ptrCast(self)), particles);
+    }
 };
 
 const IID_ISchemaAny_Value = Guid.initString("50ea08bc-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7087,7 +8758,13 @@ pub const ISchemaAny = extern union {
             return @as(*const ISchemaAny.VTable, @ptrCast(self.vtable)).get_processContents(@as(*const ISchemaAny, @ptrCast(self)), processContents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaParticle.MethodMixin(@This());
+    pub fn get_namespaces(self: *const ISchemaAny, namespaces: ?*?*ISchemaStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAny.VTable, @ptrCast(self.vtable)).get_namespaces(@as(*const ISchemaAny, @ptrCast(self)), namespaces);
+    }
+    pub fn get_processContents(self: *const ISchemaAny, processContents: ?*SCHEMAPROCESSCONTENTS) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaAny.VTable, @ptrCast(self.vtable)).get_processContents(@as(*const ISchemaAny, @ptrCast(self)), processContents);
+    }
 };
 
 const IID_ISchemaIdentityConstraint_Value = Guid.initString("50ea08bd-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7128,7 +8805,16 @@ pub const ISchemaIdentityConstraint = extern union {
             return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_referencedKey(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), key);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_selector(self: *const ISchemaIdentityConstraint, selector: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_selector(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), selector);
+    }
+    pub fn get_fields(self: *const ISchemaIdentityConstraint, fields: ?*?*ISchemaStringCollection) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_fields(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), fields);
+    }
+    pub fn get_referencedKey(self: *const ISchemaIdentityConstraint, key: ?*?*ISchemaIdentityConstraint) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_referencedKey(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), key);
+    }
 };
 
 const IID_ISchemaNotation_Value = Guid.initString("50ea08be-dd1b-4664-9a50-c2f40f4bd79a");
@@ -7160,7 +8846,13 @@ pub const ISchemaNotation = extern union {
             return @as(*const ISchemaNotation.VTable, @ptrCast(self.vtable)).get_publicIdentifier(@as(*const ISchemaNotation, @ptrCast(self)), uri);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISchemaItem.MethodMixin(@This());
+    pub fn get_systemIdentifier(self: *const ISchemaNotation, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaNotation.VTable, @ptrCast(self.vtable)).get_systemIdentifier(@as(*const ISchemaNotation, @ptrCast(self)), uri);
+    }
+    pub fn get_publicIdentifier(self: *const ISchemaNotation, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ISchemaNotation.VTable, @ptrCast(self.vtable)).get_publicIdentifier(@as(*const ISchemaNotation, @ptrCast(self)), uri);
+    }
 };
 
 pub const __msxml6_ReferenceRemainingTypes__ = extern struct {
@@ -7368,7 +9060,22 @@ pub const IXMLHTTPRequest2Callback = extern union {
             return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnError(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, hrError);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnRedirect(self: *const IXMLHTTPRequest2Callback, pXHR: ?*IXMLHTTPRequest2, pwszRedirectUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnRedirect(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pwszRedirectUrl);
+    }
+    pub fn OnHeadersAvailable(self: *const IXMLHTTPRequest2Callback, pXHR: ?*IXMLHTTPRequest2, dwStatus: u32, pwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnHeadersAvailable(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, dwStatus, pwszStatus);
+    }
+    pub fn OnDataAvailable(self: *const IXMLHTTPRequest2Callback, pXHR: ?*IXMLHTTPRequest2, pResponseStream: ?*ISequentialStream) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnDataAvailable(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pResponseStream);
+    }
+    pub fn OnResponseReceived(self: *const IXMLHTTPRequest2Callback, pXHR: ?*IXMLHTTPRequest2, pResponseStream: ?*ISequentialStream) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnResponseReceived(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pResponseStream);
+    }
+    pub fn OnError(self: *const IXMLHTTPRequest2Callback, pXHR: ?*IXMLHTTPRequest2, hrError: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnError(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, hrError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -7477,7 +9184,37 @@ pub const IXMLHTTPRequest2 = extern union {
             return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetResponseHeader(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszHeader, ppwszValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const IXMLHTTPRequest2, pwszMethod: ?[*:0]const u16, pwszUrl: ?[*:0]const u16, pStatusCallback: ?*IXMLHTTPRequest2Callback, pwszUserName: ?[*:0]const u16, pwszPassword: ?[*:0]const u16, pwszProxyUserName: ?[*:0]const u16, pwszProxyPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Open(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszMethod, pwszUrl, pStatusCallback, pwszUserName, pwszPassword, pwszProxyUserName, pwszProxyPassword);
+    }
+    pub fn Send(self: *const IXMLHTTPRequest2, pBody: ?*ISequentialStream, cbBody: u64) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Send(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pBody, cbBody);
+    }
+    pub fn Abort(self: *const IXMLHTTPRequest2) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Abort(@as(*const IXMLHTTPRequest2, @ptrCast(self)));
+    }
+    pub fn SetCookie(self: *const IXMLHTTPRequest2, pCookie: ?*const XHR_COOKIE, pdwCookieState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetCookie(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pCookie, pdwCookieState);
+    }
+    pub fn SetCustomResponseStream(self: *const IXMLHTTPRequest2, pSequentialStream: ?*ISequentialStream) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetCustomResponseStream(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pSequentialStream);
+    }
+    pub fn SetProperty(self: *const IXMLHTTPRequest2, eProperty: XHR_PROPERTY, ullValue: u64) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXMLHTTPRequest2, @ptrCast(self)), eProperty, ullValue);
+    }
+    pub fn SetRequestHeader(self: *const IXMLHTTPRequest2, pwszHeader: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetRequestHeader(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszHeader, pwszValue);
+    }
+    pub fn GetAllResponseHeaders(self: *const IXMLHTTPRequest2, ppwszHeaders: ?*?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetAllResponseHeaders(@as(*const IXMLHTTPRequest2, @ptrCast(self)), ppwszHeaders);
+    }
+    pub fn GetCookie(self: *const IXMLHTTPRequest2, pwszUrl: ?[*:0]const u16, pwszName: ?[*:0]const u16, dwFlags: u32, pcCookies: ?*u32, ppCookies: [*]?*XHR_COOKIE) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetCookie(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszUrl, pwszName, dwFlags, pcCookies, ppCookies);
+    }
+    pub fn GetResponseHeader(self: *const IXMLHTTPRequest2, pwszHeader: ?[*:0]const u16, ppwszValue: ?*?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetResponseHeader(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszHeader, ppwszValue);
+    }
 };
 
 pub const XHR_CERT = extern struct {
@@ -7518,7 +9255,13 @@ pub const IXMLHTTPRequest3Callback = extern union {
             return @as(*const IXMLHTTPRequest3Callback.VTable, @ptrCast(self.vtable)).OnClientCertificateRequested(@as(*const IXMLHTTPRequest3Callback, @ptrCast(self)), pXHR, cIssuerList, rgpwszIssuerList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLHTTPRequest2Callback.MethodMixin(@This());
+    pub fn OnServerCertificateReceived(self: *const IXMLHTTPRequest3Callback, pXHR: ?*IXMLHTTPRequest3, dwCertificateErrors: u32, cServerCertificateChain: u32, rgServerCertificateChain: [*]const XHR_CERT) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest3Callback.VTable, @ptrCast(self.vtable)).OnServerCertificateReceived(@as(*const IXMLHTTPRequest3Callback, @ptrCast(self)), pXHR, dwCertificateErrors, cServerCertificateChain, rgServerCertificateChain);
+    }
+    pub fn OnClientCertificateRequested(self: *const IXMLHTTPRequest3Callback, pXHR: ?*IXMLHTTPRequest3, cIssuerList: u32, rgpwszIssuerList: [*]const ?*const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest3Callback.VTable, @ptrCast(self.vtable)).OnClientCertificateRequested(@as(*const IXMLHTTPRequest3Callback, @ptrCast(self)), pXHR, cIssuerList, rgpwszIssuerList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7543,7 +9286,10 @@ pub const IXMLHTTPRequest3 = extern union {
             return @as(*const IXMLHTTPRequest3.VTable, @ptrCast(self.vtable)).SetClientCertificate(@as(*const IXMLHTTPRequest3, @ptrCast(self)), cbClientCertificateHash, pbClientCertificateHash, pwszPin);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IXMLHTTPRequest2.MethodMixin(@This());
+    pub fn SetClientCertificate(self: *const IXMLHTTPRequest3, cbClientCertificateHash: u32, pbClientCertificateHash: [*:0]const u8, pwszPin: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLHTTPRequest3.VTable, @ptrCast(self.vtable)).SetClientCertificate(@as(*const IXMLHTTPRequest3, @ptrCast(self)), cbClientCertificateHash, pbClientCertificateHash, pwszPin);
+    }
 };
 
 

@@ -2632,7 +2632,37 @@ pub const IDirectInputEffect = extern union {
             return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDirectInputEffect, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetEffectGuid(self: *const IDirectInputEffect, param0: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetEffectGuid(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
+    }
+    pub fn GetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetParameters(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).SetParameters(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
+    }
+    pub fn Start(self: *const IDirectInputEffect, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Start(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
+    }
+    pub fn Stop(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectInputEffect, @ptrCast(self)));
+    }
+    pub fn GetEffectStatus(self: *const IDirectInputEffect, param0: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetEffectStatus(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
+    }
+    pub fn Download(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Download(@as(*const IDirectInputEffect, @ptrCast(self)));
+    }
+    pub fn Unload(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Unload(@as(*const IDirectInputEffect, @ptrCast(self)));
+    }
+    pub fn Escape(self: *const IDirectInputEffect, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
+    }
 };
 
 pub const DIDEVCAPS_DX3 = extern struct {
@@ -3138,7 +3168,52 @@ pub const IDirectInputDeviceW = extern union {
             return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCapabilities(self: *const IDirectInputDeviceW, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
+    }
+    pub fn EnumObjects(self: *const IDirectInputDeviceW, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
+    }
+    pub fn Acquire(self: *const IDirectInputDeviceW) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDeviceW, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputDeviceW) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDeviceW, @ptrCast(self)));
+    }
+    pub fn GetDeviceState(self: *const IDirectInputDeviceW, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetDeviceData(self: *const IDirectInputDeviceW, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn SetDataFormat(self: *const IDirectInputDeviceW, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
+    }
+    pub fn SetEventNotification(self: *const IDirectInputDeviceW, param0: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetObjectInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetDeviceInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputDeviceW, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 const IID_IDirectInputDeviceA_Value = Guid.initString("5944e680-c92e-11cf-bfc7-444553540000");
@@ -3284,7 +3359,52 @@ pub const IDirectInputDeviceA = extern union {
             return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCapabilities(self: *const IDirectInputDeviceA, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
+    }
+    pub fn EnumObjects(self: *const IDirectInputDeviceA, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
+    }
+    pub fn Acquire(self: *const IDirectInputDeviceA) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDeviceA, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputDeviceA) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDeviceA, @ptrCast(self)));
+    }
+    pub fn GetDeviceState(self: *const IDirectInputDeviceA, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetDeviceData(self: *const IDirectInputDeviceA, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn SetDataFormat(self: *const IDirectInputDeviceA, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
+    }
+    pub fn SetEventNotification(self: *const IDirectInputDeviceA, param0: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetObjectInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetDeviceInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputDeviceA, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 pub const DIEFFECTINFOA = extern struct {
@@ -3413,7 +3533,34 @@ pub const IDirectInputDevice2W = extern union {
             return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputDeviceW.MethodMixin(@This());
+    pub fn CreateEffect(self: *const IDirectInputDevice2W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetEffectInfo(self: *const IDirectInputDevice2W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2W, param0: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
+    }
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2W, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
+    }
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn Escape(self: *const IDirectInputDevice2W, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
+    }
+    pub fn Poll(self: *const IDirectInputDevice2W) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice2W, @ptrCast(self)));
+    }
+    pub fn SendDeviceData(self: *const IDirectInputDevice2W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInputDevice2A_Value = Guid.initString("5944e682-c92e-11cf-bfc7-444553540000");
@@ -3509,7 +3656,34 @@ pub const IDirectInputDevice2A = extern union {
             return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputDeviceA.MethodMixin(@This());
+    pub fn CreateEffect(self: *const IDirectInputDevice2A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetEffectInfo(self: *const IDirectInputDevice2A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2A, param0: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
+    }
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2A, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
+    }
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn Escape(self: *const IDirectInputDevice2A, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
+    }
+    pub fn Poll(self: *const IDirectInputDevice2A) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice2A, @ptrCast(self)));
+    }
+    pub fn SendDeviceData(self: *const IDirectInputDevice2A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInputDevice7W_Value = Guid.initString("57d7c6bd-2356-11d3-8e9d-00c04f6844ae");
@@ -3545,7 +3719,13 @@ pub const IDirectInputDevice7W = extern union {
             return @as(*const IDirectInputDevice7W.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7W, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputDevice2W.MethodMixin(@This());
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice7W.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice7W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice7W.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7W, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInputDevice7A_Value = Guid.initString("57d7c6bc-2356-11d3-8e9d-00c04f6844ae");
@@ -3581,7 +3761,13 @@ pub const IDirectInputDevice7A = extern union {
             return @as(*const IDirectInputDevice7A.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7A, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputDevice2A.MethodMixin(@This());
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice7A.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice7A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice7A.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7A, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInputDevice8W_Value = Guid.initString("54d41081-dc15-4833-a41b-748f73a38179");
@@ -3859,7 +4045,94 @@ pub const IDirectInputDevice8W = extern union {
             return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCapabilities(self: *const IDirectInputDevice8W, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn EnumObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn Acquire(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDevice8W, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDevice8W, @ptrCast(self)));
+    }
+    pub fn GetDeviceState(self: *const IDirectInputDevice8W, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn SetDataFormat(self: *const IDirectInputDevice8W, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn SetEventNotification(self: *const IDirectInputDevice8W, param0: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetObjectInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetDeviceInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputDevice8W, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn CreateEffect(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetEffectInfo(self: *const IDirectInputDevice8W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8W, param0: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8W, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn Escape(self: *const IDirectInputDevice8W, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
+    pub fn Poll(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice8W, @ptrCast(self)));
+    }
+    pub fn SendDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn BuildActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).BuildActionMap(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetActionMap(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetImageInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEIMAGEINFOHEADERW) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
+    }
 };
 
 const IID_IDirectInputDevice8A_Value = Guid.initString("54d41080-dc15-4833-a41b-748f73a38179");
@@ -4137,7 +4410,94 @@ pub const IDirectInputDevice8A = extern union {
             return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCapabilities(self: *const IDirectInputDevice8A, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn EnumObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn Acquire(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDevice8A, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDevice8A, @ptrCast(self)));
+    }
+    pub fn GetDeviceState(self: *const IDirectInputDevice8A, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn SetDataFormat(self: *const IDirectInputDevice8A, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn SetEventNotification(self: *const IDirectInputDevice8A, param0: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetObjectInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetDeviceInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputDevice8A, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn CreateEffect(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetEffectInfo(self: *const IDirectInputDevice8A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8A, param0: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8A, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn Escape(self: *const IDirectInputDevice8A, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
+    pub fn Poll(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice8A, @ptrCast(self)));
+    }
+    pub fn SendDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn BuildActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).BuildActionMap(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetActionMap(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn GetImageInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEIMAGEINFOHEADERA) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
+    }
 };
 
 pub const DIMOUSESTATE = extern struct {
@@ -4288,7 +4648,22 @@ pub const IDirectInputW = extern union {
             return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputW, @ptrCast(self)), param0, param1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateDevice(self: *const IDirectInputW, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceW, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInputW, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevices(self: *const IDirectInputW, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInputW, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn GetDeviceStatus(self: *const IDirectInputW, param0: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInputW, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputW, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputW, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputW, @ptrCast(self)), param0, param1);
+    }
 };
 
 const IID_IDirectInputA_Value = Guid.initString("89521360-aa8a-11cf-bfc7-444553540000");
@@ -4349,7 +4724,22 @@ pub const IDirectInputA = extern union {
             return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputA, @ptrCast(self)), param0, param1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateDevice(self: *const IDirectInputA, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceA, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInputA, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevices(self: *const IDirectInputA, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInputA, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn GetDeviceStatus(self: *const IDirectInputA, param0: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInputA, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInputA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputA, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInputA, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputA, @ptrCast(self)), param0, param1);
+    }
 };
 
 const IID_IDirectInput2W_Value = Guid.initString("5944e663-aa8a-11cf-bfc7-444553540000");
@@ -4373,7 +4763,10 @@ pub const IDirectInput2W = extern union {
             return @as(*const IDirectInput2W.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2W, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputW.MethodMixin(@This());
+    pub fn FindDevice(self: *const IDirectInput2W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput2W.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2W, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 const IID_IDirectInput2A_Value = Guid.initString("5944e662-aa8a-11cf-bfc7-444553540000");
@@ -4397,7 +4790,10 @@ pub const IDirectInput2A = extern union {
             return @as(*const IDirectInput2A.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2A, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInputA.MethodMixin(@This());
+    pub fn FindDevice(self: *const IDirectInput2A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput2A.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2A, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 const IID_IDirectInput7W_Value = Guid.initString("9a4cb685-236d-11d3-8e9d-00c04f6844ae");
@@ -4422,7 +4818,10 @@ pub const IDirectInput7W = extern union {
             return @as(*const IDirectInput7W.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7W, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInput2W.MethodMixin(@This());
+    pub fn CreateDeviceEx(self: *const IDirectInput7W, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput7W.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7W, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInput7A_Value = Guid.initString("9a4cb684-236d-11d3-8e9d-00c04f6844ae");
@@ -4447,7 +4846,10 @@ pub const IDirectInput7A = extern union {
             return @as(*const IDirectInput7A.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7A, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDirectInput2A.MethodMixin(@This());
+    pub fn CreateDeviceEx(self: *const IDirectInput7A, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput7A.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7A, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInput8W_Value = Guid.initString("bf798031-483a-4da2-aa99-5d64ed369700");
@@ -4541,7 +4943,31 @@ pub const IDirectInput8W = extern union {
             return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8W, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevices(self: *const IDirectInput8W, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn GetDeviceStatus(self: *const IDirectInput8W, param0: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInput8W, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInput8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInput8W, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1);
+    }
+    pub fn FindDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevicesBySemantics(self: *const IDirectInput8W, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).EnumDevicesBySemantics(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3, param4);
+    }
+    pub fn ConfigureDevices(self: *const IDirectInput8W, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 const IID_IDirectInput8A_Value = Guid.initString("bf798030-483a-4da2-aa99-5d64ed369700");
@@ -4635,7 +5061,31 @@ pub const IDirectInput8A = extern union {
             return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8A, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevices(self: *const IDirectInput8A, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn GetDeviceStatus(self: *const IDirectInput8A, param0: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInput8A, @ptrCast(self)), param0);
+    }
+    pub fn RunControlPanel(self: *const IDirectInput8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn Initialize(self: *const IDirectInput8A, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1);
+    }
+    pub fn FindDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn EnumDevicesBySemantics(self: *const IDirectInput8A, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).EnumDevicesBySemantics(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3, param4);
+    }
+    pub fn ConfigureDevices(self: *const IDirectInput8A, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3);
+    }
 };
 
 pub const LPFNSHOWJOYCPL = *const fn(
@@ -4816,7 +5266,40 @@ pub const IDirectInputEffectDriver = extern union {
             return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetEffectStatus(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeviceID(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DeviceID(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3, param4);
+    }
+    pub fn GetVersions(self: *const IDirectInputEffectDriver, param0: ?*DIDRIVERVERSIONS) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetVersions(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0);
+    }
+    pub fn Escape(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetGain(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).SetGain(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
+    }
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetForceFeedbackState(self: *const IDirectInputEffectDriver, param0: u32, param1: ?*DIDEVICESTATE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
+    }
+    pub fn DownloadEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32, param3: ?*DIEFFECT, param4: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DownloadEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3, param4);
+    }
+    pub fn DestroyEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DestroyEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
+    }
+    pub fn StartEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).StartEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn StopEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).StopEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetEffectStatus(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetEffectStatus(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 pub const JOYPOS = extern struct {
@@ -5082,7 +5565,55 @@ pub const IDirectInputJoyConfig = extern union {
             return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).OpenConfigKey(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Acquire(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
+    }
+    pub fn SendNotify(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SendNotify(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
+    }
+    pub fn EnumTypes(self: *const IDirectInputJoyConfig, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).EnumTypes(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetTypeInfo(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn DeleteType(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).DeleteType(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0);
+    }
+    pub fn GetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn DeleteConfig(self: *const IDirectInputJoyConfig, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).DeleteConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0);
+    }
+    pub fn GetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetUserValues(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetUserValues(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
+    }
+    pub fn AddNewHardware(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).AddNewHardware(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
+    }
+    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).OpenTypeKey(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn OpenConfigKey(self: *const IDirectInputJoyConfig, param0: u32, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).OpenConfigKey(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
+    }
 };
 
 const IID_IDirectInputJoyConfig8_Value = Guid.initString("eb0d7dfa-1990-4f27-b4d6-edf2eec4a44c");
@@ -5237,7 +5768,55 @@ pub const IDirectInputJoyConfig8 = extern union {
             return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).OpenAppStatusKey(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Acquire(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
+    }
+    pub fn Unacquire(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
+    }
+    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
+    }
+    pub fn SendNotify(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SendNotify(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
+    }
+    pub fn EnumTypes(self: *const IDirectInputJoyConfig8, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).EnumTypes(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
+    }
+    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetTypeInfo(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2, param3);
+    }
+    pub fn DeleteType(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).DeleteType(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
+    }
+    pub fn GetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn SetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn DeleteConfig(self: *const IDirectInputJoyConfig8, param0: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).DeleteConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
+    }
+    pub fn GetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetUserValues(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
+    }
+    pub fn SetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetUserValues(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
+    }
+    pub fn AddNewHardware(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).AddNewHardware(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
+    }
+    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).OpenTypeKey(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
+    }
+    pub fn OpenAppStatusKey(self: *const IDirectInputJoyConfig8, param0: ?*?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).OpenAppStatusKey(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
+    }
 };
 
 pub const KEYBOARD_INPUT_DATA = extern struct {

@@ -52,7 +52,16 @@ pub const IUPnPNAT = extern union {
             return @as(*const IUPnPNAT.VTable, @ptrCast(self.vtable)).get_NATEventManager(@as(*const IUPnPNAT, @ptrCast(self)), ppNEM);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_StaticPortMappingCollection(self: *const IUPnPNAT, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPNAT.VTable, @ptrCast(self.vtable)).get_StaticPortMappingCollection(@as(*const IUPnPNAT, @ptrCast(self)), ppSPMs);
+    }
+    pub fn get_DynamicPortMappingCollection(self: *const IUPnPNAT, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPNAT.VTable, @ptrCast(self.vtable)).get_DynamicPortMappingCollection(@as(*const IUPnPNAT, @ptrCast(self)), ppDPMs);
+    }
+    pub fn get_NATEventManager(self: *const IUPnPNAT, ppNEM: ?*?*INATEventManager) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPNAT.VTable, @ptrCast(self.vtable)).get_NATEventManager(@as(*const IUPnPNAT, @ptrCast(self)), ppNEM);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -85,7 +94,13 @@ pub const INATEventManager = extern union {
             return @as(*const INATEventManager.VTable, @ptrCast(self.vtable)).put_NumberOfEntriesCallback(@as(*const INATEventManager, @ptrCast(self)), pUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_ExternalIPAddressCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INATEventManager.VTable, @ptrCast(self.vtable)).put_ExternalIPAddressCallback(@as(*const INATEventManager, @ptrCast(self)), pUnk);
+    }
+    pub fn put_NumberOfEntriesCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INATEventManager.VTable, @ptrCast(self.vtable)).put_NumberOfEntriesCallback(@as(*const INATEventManager, @ptrCast(self)), pUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -108,7 +123,10 @@ pub const INATExternalIPAddressCallback = extern union {
             return @as(*const INATExternalIPAddressCallback.VTable, @ptrCast(self.vtable)).NewExternalIPAddress(@as(*const INATExternalIPAddressCallback, @ptrCast(self)), bstrNewExternalIPAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn NewExternalIPAddress(self: *const INATExternalIPAddressCallback, bstrNewExternalIPAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INATExternalIPAddressCallback.VTable, @ptrCast(self.vtable)).NewExternalIPAddress(@as(*const INATExternalIPAddressCallback, @ptrCast(self)), bstrNewExternalIPAddress);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -131,7 +149,10 @@ pub const INATNumberOfEntriesCallback = extern union {
             return @as(*const INATNumberOfEntriesCallback.VTable, @ptrCast(self.vtable)).NewNumberOfEntries(@as(*const INATNumberOfEntriesCallback, @ptrCast(self)), lNewNumberOfEntries);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn NewNumberOfEntries(self: *const INATNumberOfEntriesCallback, lNewNumberOfEntries: i32) callconv(.Inline) HRESULT {
+        return @as(*const INATNumberOfEntriesCallback.VTable, @ptrCast(self.vtable)).NewNumberOfEntries(@as(*const INATNumberOfEntriesCallback, @ptrCast(self)), lNewNumberOfEntries);
+    }
 };
 
 const IID_IDynamicPortMappingCollection_Value = Guid.initString("b60de00f-156e-4e8d-9ec1-3a2342c10899");
@@ -200,7 +221,22 @@ pub const IDynamicPortMappingCollection = extern union {
             return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IDynamicPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Item(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
+    }
+    pub fn get_Count(self: *const IDynamicPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), bstrRemoteHost, lExternalPort, bstrProtocol);
+    }
+    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMappingCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDynamicPortMappingCollection, @ptrCast(self)), bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
+    }
 };
 
 const IID_IDynamicPortMapping_Value = Guid.initString("4fc80282-23b6-4378-9a27-cd8f17c9400c");
@@ -336,7 +372,49 @@ pub const IDynamicPortMapping = extern union {
             return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).EditInternalPort(@as(*const IDynamicPortMapping, @ptrCast(self)), lInternalPort);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ExternalIPAddress(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_ExternalIPAddress(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_RemoteHost(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_RemoteHost(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_ExternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_ExternalPort(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Protocol(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_InternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_InternalPort(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_InternalClient(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_InternalClient(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Enabled(self: *const IDynamicPortMapping, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Description(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_LeaseDuration(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).get_LeaseDuration(@as(*const IDynamicPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn RenewLease(self: *const IDynamicPortMapping, lLeaseDurationDesired: i32, pLeaseDurationReturned: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).RenewLease(@as(*const IDynamicPortMapping, @ptrCast(self)), lLeaseDurationDesired, pLeaseDurationReturned);
+    }
+    pub fn EditInternalClient(self: *const IDynamicPortMapping, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).EditInternalClient(@as(*const IDynamicPortMapping, @ptrCast(self)), bstrInternalClient);
+    }
+    pub fn Enable(self: *const IDynamicPortMapping, vb: i16) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).Enable(@as(*const IDynamicPortMapping, @ptrCast(self)), vb);
+    }
+    pub fn EditDescription(self: *const IDynamicPortMapping, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).EditDescription(@as(*const IDynamicPortMapping, @ptrCast(self)), bstrDescription);
+    }
+    pub fn EditInternalPort(self: *const IDynamicPortMapping, lInternalPort: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicPortMapping.VTable, @ptrCast(self.vtable)).EditInternalPort(@as(*const IDynamicPortMapping, @ptrCast(self)), lInternalPort);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -402,7 +480,22 @@ pub const IStaticPortMappingCollection = extern union {
             return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IStaticPortMappingCollection, @ptrCast(self)), lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IStaticPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IStaticPortMappingCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Item(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IStaticPortMappingCollection, @ptrCast(self)), lExternalPort, bstrProtocol, ppSPM);
+    }
+    pub fn get_Count(self: *const IStaticPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IStaticPortMappingCollection, @ptrCast(self)), pVal);
+    }
+    pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IStaticPortMappingCollection, @ptrCast(self)), lExternalPort, bstrProtocol);
+    }
+    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMappingCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IStaticPortMappingCollection, @ptrCast(self)), lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -512,7 +605,40 @@ pub const IStaticPortMapping = extern union {
             return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).EditInternalPort(@as(*const IStaticPortMapping, @ptrCast(self)), lInternalPort);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ExternalIPAddress(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_ExternalIPAddress(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_ExternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_ExternalPort(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_InternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_InternalPort(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Protocol(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_InternalClient(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IStaticPortMapping, @ptrCast(self)), pVal);
+    }
+    pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).EditInternalClient(@as(*const IStaticPortMapping, @ptrCast(self)), bstrInternalClient);
+    }
+    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).Enable(@as(*const IStaticPortMapping, @ptrCast(self)), vb);
+    }
+    pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).EditDescription(@as(*const IStaticPortMapping, @ptrCast(self)), bstrDescription);
+    }
+    pub fn EditInternalPort(self: *const IStaticPortMapping, lInternalPort: i32) callconv(.Inline) HRESULT {
+        return @as(*const IStaticPortMapping.VTable, @ptrCast(self.vtable)).EditInternalPort(@as(*const IStaticPortMapping, @ptrCast(self)), lInternalPort);
+    }
 };
 
 const CLSID_NetSharingManager_Value = Guid.initString("5c63c1ad-3956-4ff8-8486-40034758315b");
@@ -562,7 +688,19 @@ pub const IEnumNetConnection = extern union {
             return @as(*const IEnumNetConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetConnection, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumNetConnection, celt: u32, rgelt: [*]?*INetConnection, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetConnection.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetConnection, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetConnection, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetConnection.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetConnection, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumNetConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetConnection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetConnection, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumNetConnection, ppenum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetConnection, @ptrCast(self)), ppenum);
+    }
 };
 
 pub const NETCON_CHARACTERISTIC_FLAGS = enum(i32) {
@@ -762,7 +900,28 @@ pub const INetConnection = extern union {
             return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Rename(@as(*const INetConnection, @ptrCast(self)), pszwNewName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Connect(self: *const INetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Connect(@as(*const INetConnection, @ptrCast(self)));
+    }
+    pub fn Disconnect(self: *const INetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const INetConnection, @ptrCast(self)));
+    }
+    pub fn Delete(self: *const INetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Delete(@as(*const INetConnection, @ptrCast(self)));
+    }
+    pub fn Duplicate(self: *const INetConnection, pszwDuplicateName: ?[*:0]const u16, ppCon: ?*?*INetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Duplicate(@as(*const INetConnection, @ptrCast(self)), pszwDuplicateName, ppCon);
+    }
+    pub fn GetProperties(self: *const INetConnection, ppProps: ?*?*NETCON_PROPERTIES) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const INetConnection, @ptrCast(self)), ppProps);
+    }
+    pub fn GetUiObjectClassId(self: *const INetConnection, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).GetUiObjectClassId(@as(*const INetConnection, @ptrCast(self)), pclsid);
+    }
+    pub fn Rename(self: *const INetConnection, pszwNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const INetConnection.VTable, @ptrCast(self.vtable)).Rename(@as(*const INetConnection, @ptrCast(self)), pszwNewName);
+    }
 };
 
 pub const NETCONMGR_ENUM_FLAGS = enum(i32) {
@@ -792,7 +951,10 @@ pub const INetConnectionManager = extern union {
             return @as(*const INetConnectionManager.VTable, @ptrCast(self.vtable)).EnumConnections(@as(*const INetConnectionManager, @ptrCast(self)), Flags, ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumConnections(self: *const INetConnectionManager, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionManager.VTable, @ptrCast(self.vtable)).EnumConnections(@as(*const INetConnectionManager, @ptrCast(self)), Flags, ppEnum);
+    }
 };
 
 pub const NETCONUI_CONNECT_FLAGS = enum(i32) {
@@ -841,7 +1003,16 @@ pub const INetConnectionConnectUi = extern union {
             return @as(*const INetConnectionConnectUi.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const INetConnectionConnectUi, @ptrCast(self)), hwndParent, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetConnection(self: *const INetConnectionConnectUi, pCon: ?*INetConnection) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionConnectUi.VTable, @ptrCast(self.vtable)).SetConnection(@as(*const INetConnectionConnectUi, @ptrCast(self)), pCon);
+    }
+    pub fn Connect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionConnectUi.VTable, @ptrCast(self.vtable)).Connect(@as(*const INetConnectionConnectUi, @ptrCast(self)), hwndParent, dwFlags);
+    }
+    pub fn Disconnect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionConnectUi.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const INetConnectionConnectUi, @ptrCast(self)), hwndParent, dwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -889,7 +1060,19 @@ pub const IEnumNetSharingPortMapping = extern union {
             return @as(*const IEnumNetSharingPortMapping.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPortMapping, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumNetSharingPortMapping, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPortMapping.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetSharingPortMapping, @ptrCast(self)), celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPortMapping, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPortMapping.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetSharingPortMapping, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPortMapping.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetSharingPortMapping, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumNetSharingPortMapping, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPortMapping.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPortMapping, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -976,7 +1159,31 @@ pub const INetSharingPortMappingProps = extern union {
             return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pbool);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const INetSharingPortMappingProps, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_IPProtocol(self: *const INetSharingPortMappingProps, pucIPProt: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_IPProtocol(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pucIPProt);
+    }
+    pub fn get_ExternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_ExternalPort(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pusPort);
+    }
+    pub fn get_InternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_InternalPort(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pusPort);
+    }
+    pub fn get_Options(self: *const INetSharingPortMappingProps, pdwOptions: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_Options(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pdwOptions);
+    }
+    pub fn get_TargetName(self: *const INetSharingPortMappingProps, pbstrTargetName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_TargetName(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pbstrTargetName);
+    }
+    pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_TargetIPAddress(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pbstrTargetIPAddress);
+    }
+    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingProps.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetSharingPortMappingProps, @ptrCast(self)), pbool);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1021,7 +1228,19 @@ pub const INetSharingPortMapping = extern union {
             return @as(*const INetSharingPortMapping.VTable, @ptrCast(self.vtable)).Delete(@as(*const INetSharingPortMapping, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Disable(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMapping.VTable, @ptrCast(self.vtable)).Disable(@as(*const INetSharingPortMapping, @ptrCast(self)));
+    }
+    pub fn Enable(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMapping.VTable, @ptrCast(self.vtable)).Enable(@as(*const INetSharingPortMapping, @ptrCast(self)));
+    }
+    pub fn get_Properties(self: *const INetSharingPortMapping, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMapping.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const INetSharingPortMapping, @ptrCast(self)), ppNSPMP);
+    }
+    pub fn Delete(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMapping.VTable, @ptrCast(self.vtable)).Delete(@as(*const INetSharingPortMapping, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1069,7 +1288,19 @@ pub const IEnumNetSharingEveryConnection = extern union {
             return @as(*const IEnumNetSharingEveryConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingEveryConnection, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumNetSharingEveryConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingEveryConnection.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetSharingEveryConnection, @ptrCast(self)), celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingEveryConnection, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingEveryConnection.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetSharingEveryConnection, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingEveryConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingEveryConnection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetSharingEveryConnection, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumNetSharingEveryConnection, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingEveryConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingEveryConnection, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1117,7 +1348,19 @@ pub const IEnumNetSharingPublicConnection = extern union {
             return @as(*const IEnumNetSharingPublicConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPublicConnection, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumNetSharingPublicConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPublicConnection.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetSharingPublicConnection, @ptrCast(self)), celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPublicConnection, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPublicConnection.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetSharingPublicConnection, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPublicConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPublicConnection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetSharingPublicConnection, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumNetSharingPublicConnection, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPublicConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPublicConnection, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1165,7 +1408,19 @@ pub const IEnumNetSharingPrivateConnection = extern union {
             return @as(*const IEnumNetSharingPrivateConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPrivateConnection, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumNetSharingPrivateConnection, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPrivateConnection.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetSharingPrivateConnection, @ptrCast(self)), celt, rgVar, pCeltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPrivateConnection, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPrivateConnection.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetSharingPrivateConnection, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPrivateConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPrivateConnection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetSharingPrivateConnection, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumNetSharingPrivateConnection, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.Inline) HRESULT {
+        return @as(*const IEnumNetSharingPrivateConnection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetSharingPrivateConnection, @ptrCast(self)), ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1198,7 +1453,13 @@ pub const INetSharingPortMappingCollection = extern union {
             return @as(*const INetSharingPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPortMappingCollection, @ptrCast(self)), pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const INetSharingPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetSharingPortMappingCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPortMappingCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPortMappingCollection, @ptrCast(self)), pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1267,7 +1528,25 @@ pub const INetConnectionProps = extern union {
             return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_Characteristics(@as(*const INetConnectionProps, @ptrCast(self)), pdwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Guid(self: *const INetConnectionProps, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const INetConnectionProps, @ptrCast(self)), pbstrGuid);
+    }
+    pub fn get_Name(self: *const INetConnectionProps, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetConnectionProps, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_DeviceName(self: *const INetConnectionProps, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const INetConnectionProps, @ptrCast(self)), pbstrDeviceName);
+    }
+    pub fn get_Status(self: *const INetConnectionProps, pStatus: ?*NETCON_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_Status(@as(*const INetConnectionProps, @ptrCast(self)), pStatus);
+    }
+    pub fn get_MediaType(self: *const INetConnectionProps, pMediaType: ?*NETCON_MEDIATYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const INetConnectionProps, @ptrCast(self)), pMediaType);
+    }
+    pub fn get_Characteristics(self: *const INetConnectionProps, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const INetConnectionProps.VTable, @ptrCast(self.vtable)).get_Characteristics(@as(*const INetConnectionProps, @ptrCast(self)), pdwFlags);
+    }
 };
 
 pub const SHARINGCONNECTIONTYPE = enum(i32) {
@@ -1391,7 +1670,37 @@ pub const INetSharingConfiguration = extern union {
             return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).RemovePortMapping(@as(*const INetSharingConfiguration, @ptrCast(self)), pMapping);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).get_SharingEnabled(@as(*const INetSharingConfiguration, @ptrCast(self)), pbEnabled);
+    }
+    pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).get_SharingConnectionType(@as(*const INetSharingConfiguration, @ptrCast(self)), pType);
+    }
+    pub fn DisableSharing(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).DisableSharing(@as(*const INetSharingConfiguration, @ptrCast(self)));
+    }
+    pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).EnableSharing(@as(*const INetSharingConfiguration, @ptrCast(self)), Type);
+    }
+    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).get_InternetFirewallEnabled(@as(*const INetSharingConfiguration, @ptrCast(self)), pbEnabled);
+    }
+    pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).DisableInternetFirewall(@as(*const INetSharingConfiguration, @ptrCast(self)));
+    }
+    pub fn EnableInternetFirewall(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).EnableInternetFirewall(@as(*const INetSharingConfiguration, @ptrCast(self)));
+    }
+    pub fn get_EnumPortMappings(self: *const INetSharingConfiguration, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).get_EnumPortMappings(@as(*const INetSharingConfiguration, @ptrCast(self)), Flags, ppColl);
+    }
+    pub fn AddPortMapping(self: *const INetSharingConfiguration, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).AddPortMapping(@as(*const INetSharingConfiguration, @ptrCast(self)), bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
+    }
+    pub fn RemovePortMapping(self: *const INetSharingConfiguration, pMapping: ?*INetSharingPortMapping) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingConfiguration.VTable, @ptrCast(self.vtable)).RemovePortMapping(@as(*const INetSharingConfiguration, @ptrCast(self)), pMapping);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1424,7 +1733,13 @@ pub const INetSharingEveryConnectionCollection = extern union {
             return @as(*const INetSharingEveryConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingEveryConnectionCollection, @ptrCast(self)), pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const INetSharingEveryConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingEveryConnectionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetSharingEveryConnectionCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Count(self: *const INetSharingEveryConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingEveryConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingEveryConnectionCollection, @ptrCast(self)), pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1457,7 +1772,13 @@ pub const INetSharingPublicConnectionCollection = extern union {
             return @as(*const INetSharingPublicConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPublicConnectionCollection, @ptrCast(self)), pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const INetSharingPublicConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPublicConnectionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetSharingPublicConnectionCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPublicConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPublicConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPublicConnectionCollection, @ptrCast(self)), pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1490,7 +1811,13 @@ pub const INetSharingPrivateConnectionCollection = extern union {
             return @as(*const INetSharingPrivateConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPrivateConnectionCollection, @ptrCast(self)), pVal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const INetSharingPrivateConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPrivateConnectionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetSharingPrivateConnectionCollection, @ptrCast(self)), pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPrivateConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingPrivateConnectionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetSharingPrivateConnectionCollection, @ptrCast(self)), pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1559,7 +1886,25 @@ pub const INetSharingManager = extern union {
             return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_NetConnectionProps(@as(*const INetSharingManager, @ptrCast(self)), pNetConnection, ppProps);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_SharingInstalled(@as(*const INetSharingManager, @ptrCast(self)), pbInstalled);
+    }
+    pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_EnumPublicConnections(@as(*const INetSharingManager, @ptrCast(self)), Flags, ppColl);
+    }
+    pub fn get_EnumPrivateConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_EnumPrivateConnections(@as(*const INetSharingManager, @ptrCast(self)), Flags, ppColl);
+    }
+    pub fn get_INetSharingConfigurationForINetConnection(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_INetSharingConfigurationForINetConnection(@as(*const INetSharingManager, @ptrCast(self)), pNetConnection, ppNetSharingConfiguration);
+    }
+    pub fn get_EnumEveryConnection(self: *const INetSharingManager, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_EnumEveryConnection(@as(*const INetSharingManager, @ptrCast(self)), ppColl);
+    }
+    pub fn get_NetConnectionProps(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.Inline) HRESULT {
+        return @as(*const INetSharingManager.VTable, @ptrCast(self.vtable)).get_NetConnectionProps(@as(*const INetSharingManager, @ptrCast(self)), pNetConnection, ppProps);
+    }
 };
 
 const CLSID_NetFwRule_Value = Guid.initString("2c5bc43e-3369-4c33-ab0c-be9469677af4");
@@ -1960,7 +2305,31 @@ pub const INetFwRemoteAdminSettings = extern union {
             return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), enabled);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).get_IpVersion(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), ipVersion);
+    }
+    pub fn put_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).put_IpVersion(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), ipVersion);
+    }
+    pub fn get_Scope(self: *const INetFwRemoteAdminSettings, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), scope);
+    }
+    pub fn put_Scope(self: *const INetFwRemoteAdminSettings, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).put_Scope(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), scope);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).get_RemoteAddresses(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).put_RemoteAddresses(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRemoteAdminSettings.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwRemoteAdminSettings, @ptrCast(self)), enabled);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2155,7 +2524,67 @@ pub const INetFwIcmpSettings = extern union {
             return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundPacketTooBig(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowOutboundDestinationUnreachable(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundDestinationUnreachable(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowRedirect(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowRedirect(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowRedirect(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowRedirect(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowInboundEchoRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowInboundEchoRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowOutboundTimeExceeded(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundTimeExceeded(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowOutboundParameterProblem(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundParameterProblem(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowOutboundSourceQuench(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundSourceQuench(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowInboundRouterRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowInboundRouterRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowInboundTimestampRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowInboundTimestampRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowInboundMaskRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowInboundMaskRequest(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn get_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).get_AllowOutboundPacketTooBig(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
+    pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwIcmpSettings.VTable, @ptrCast(self.vtable)).put_AllowOutboundPacketTooBig(@as(*const INetFwIcmpSettings, @ptrCast(self)), allow);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2305,7 +2734,52 @@ pub const INetFwOpenPort = extern union {
             return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_BuiltIn(@as(*const INetFwOpenPort, @ptrCast(self)), builtIn);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const INetFwOpenPort, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetFwOpenPort, @ptrCast(self)), name);
+    }
+    pub fn put_Name(self: *const INetFwOpenPort, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_Name(@as(*const INetFwOpenPort, @ptrCast(self)), name);
+    }
+    pub fn get_IpVersion(self: *const INetFwOpenPort, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_IpVersion(@as(*const INetFwOpenPort, @ptrCast(self)), ipVersion);
+    }
+    pub fn put_IpVersion(self: *const INetFwOpenPort, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_IpVersion(@as(*const INetFwOpenPort, @ptrCast(self)), ipVersion);
+    }
+    pub fn get_Protocol(self: *const INetFwOpenPort, ipProtocol: ?*NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const INetFwOpenPort, @ptrCast(self)), ipProtocol);
+    }
+    pub fn put_Protocol(self: *const INetFwOpenPort, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_Protocol(@as(*const INetFwOpenPort, @ptrCast(self)), ipProtocol);
+    }
+    pub fn get_Port(self: *const INetFwOpenPort, portNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_Port(@as(*const INetFwOpenPort, @ptrCast(self)), portNumber);
+    }
+    pub fn put_Port(self: *const INetFwOpenPort, portNumber: i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_Port(@as(*const INetFwOpenPort, @ptrCast(self)), portNumber);
+    }
+    pub fn get_Scope(self: *const INetFwOpenPort, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const INetFwOpenPort, @ptrCast(self)), scope);
+    }
+    pub fn put_Scope(self: *const INetFwOpenPort, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_Scope(@as(*const INetFwOpenPort, @ptrCast(self)), scope);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_RemoteAddresses(@as(*const INetFwOpenPort, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_RemoteAddresses(@as(*const INetFwOpenPort, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn get_Enabled(self: *const INetFwOpenPort, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetFwOpenPort, @ptrCast(self)), enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwOpenPort, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwOpenPort, @ptrCast(self)), enabled);
+    }
+    pub fn get_BuiltIn(self: *const INetFwOpenPort, builtIn: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPort.VTable, @ptrCast(self.vtable)).get_BuiltIn(@as(*const INetFwOpenPort, @ptrCast(self)), builtIn);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2365,7 +2839,22 @@ pub const INetFwOpenPorts = extern union {
             return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwOpenPorts, @ptrCast(self)), newEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const INetFwOpenPorts, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetFwOpenPorts, @ptrCast(self)), count);
+    }
+    pub fn Add(self: *const INetFwOpenPorts, port: ?*INetFwOpenPort) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).Add(@as(*const INetFwOpenPorts, @ptrCast(self)), port);
+    }
+    pub fn Remove(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).Remove(@as(*const INetFwOpenPorts, @ptrCast(self)), portNumber, ipProtocol);
+    }
+    pub fn Item(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL, openPort: ?*?*INetFwOpenPort) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).Item(@as(*const INetFwOpenPorts, @ptrCast(self)), portNumber, ipProtocol, openPort);
+    }
+    pub fn get__NewEnum(self: *const INetFwOpenPorts, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwOpenPorts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwOpenPorts, @ptrCast(self)), newEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2488,7 +2977,43 @@ pub const INetFwService = extern union {
             return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_GloballyOpenPorts(@as(*const INetFwService, @ptrCast(self)), openPorts);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const INetFwService, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetFwService, @ptrCast(self)), name);
+    }
+    pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_Type(@as(*const INetFwService, @ptrCast(self)), @"type");
+    }
+    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_Customized(@as(*const INetFwService, @ptrCast(self)), customized);
+    }
+    pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_IpVersion(@as(*const INetFwService, @ptrCast(self)), ipVersion);
+    }
+    pub fn put_IpVersion(self: *const INetFwService, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).put_IpVersion(@as(*const INetFwService, @ptrCast(self)), ipVersion);
+    }
+    pub fn get_Scope(self: *const INetFwService, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const INetFwService, @ptrCast(self)), scope);
+    }
+    pub fn put_Scope(self: *const INetFwService, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).put_Scope(@as(*const INetFwService, @ptrCast(self)), scope);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_RemoteAddresses(@as(*const INetFwService, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).put_RemoteAddresses(@as(*const INetFwService, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetFwService, @ptrCast(self)), enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwService, @ptrCast(self)), enabled);
+    }
+    pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
+        return @as(*const INetFwService.VTable, @ptrCast(self.vtable)).get_GloballyOpenPorts(@as(*const INetFwService, @ptrCast(self)), openPorts);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2530,7 +3055,16 @@ pub const INetFwServices = extern union {
             return @as(*const INetFwServices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwServices, @ptrCast(self)), newEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const INetFwServices, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetFwServices, @ptrCast(self)), count);
+    }
+    pub fn Item(self: *const INetFwServices, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServices.VTable, @ptrCast(self.vtable)).Item(@as(*const INetFwServices, @ptrCast(self)), svcType, service);
+    }
+    pub fn get__NewEnum(self: *const INetFwServices, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwServices, @ptrCast(self)), newEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2653,7 +3187,43 @@ pub const INetFwAuthorizedApplication = extern union {
             return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), enabled);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const INetFwAuthorizedApplication, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), name);
+    }
+    pub fn put_Name(self: *const INetFwAuthorizedApplication, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_Name(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), name);
+    }
+    pub fn get_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_ProcessImageFileName(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), imageFileName);
+    }
+    pub fn put_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_ProcessImageFileName(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), imageFileName);
+    }
+    pub fn get_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_IpVersion(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), ipVersion);
+    }
+    pub fn put_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_IpVersion(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), ipVersion);
+    }
+    pub fn get_Scope(self: *const INetFwAuthorizedApplication, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), scope);
+    }
+    pub fn put_Scope(self: *const INetFwAuthorizedApplication, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_Scope(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), scope);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_RemoteAddresses(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_RemoteAddresses(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplication.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwAuthorizedApplication, @ptrCast(self)), enabled);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2711,7 +3281,22 @@ pub const INetFwAuthorizedApplications = extern union {
             return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), newEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const INetFwAuthorizedApplications, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), count);
+    }
+    pub fn Add(self: *const INetFwAuthorizedApplications, app: ?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).Add(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), app);
+    }
+    pub fn Remove(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).Remove(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), imageFileName);
+    }
+    pub fn Item(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).Item(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), imageFileName, app);
+    }
+    pub fn get__NewEnum(self: *const INetFwAuthorizedApplications, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwAuthorizedApplications.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwAuthorizedApplications, @ptrCast(self)), newEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3050,7 +3635,115 @@ pub const INetFwRule = extern union {
             return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Action(@as(*const INetFwRule, @ptrCast(self)), action);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const INetFwRule, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const INetFwRule, @ptrCast(self)), name);
+    }
+    pub fn put_Name(self: *const INetFwRule, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Name(@as(*const INetFwRule, @ptrCast(self)), name);
+    }
+    pub fn get_Description(self: *const INetFwRule, desc: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Description(@as(*const INetFwRule, @ptrCast(self)), desc);
+    }
+    pub fn put_Description(self: *const INetFwRule, desc: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Description(@as(*const INetFwRule, @ptrCast(self)), desc);
+    }
+    pub fn get_ApplicationName(self: *const INetFwRule, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_ApplicationName(@as(*const INetFwRule, @ptrCast(self)), imageFileName);
+    }
+    pub fn put_ApplicationName(self: *const INetFwRule, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_ApplicationName(@as(*const INetFwRule, @ptrCast(self)), imageFileName);
+    }
+    pub fn get_ServiceName(self: *const INetFwRule, serviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_ServiceName(@as(*const INetFwRule, @ptrCast(self)), serviceName);
+    }
+    pub fn put_ServiceName(self: *const INetFwRule, serviceName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_ServiceName(@as(*const INetFwRule, @ptrCast(self)), serviceName);
+    }
+    pub fn get_Protocol(self: *const INetFwRule, protocol: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const INetFwRule, @ptrCast(self)), protocol);
+    }
+    pub fn put_Protocol(self: *const INetFwRule, protocol: i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Protocol(@as(*const INetFwRule, @ptrCast(self)), protocol);
+    }
+    pub fn get_LocalPorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_LocalPorts(@as(*const INetFwRule, @ptrCast(self)), portNumbers);
+    }
+    pub fn put_LocalPorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_LocalPorts(@as(*const INetFwRule, @ptrCast(self)), portNumbers);
+    }
+    pub fn get_RemotePorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_RemotePorts(@as(*const INetFwRule, @ptrCast(self)), portNumbers);
+    }
+    pub fn put_RemotePorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_RemotePorts(@as(*const INetFwRule, @ptrCast(self)), portNumbers);
+    }
+    pub fn get_LocalAddresses(self: *const INetFwRule, localAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_LocalAddresses(@as(*const INetFwRule, @ptrCast(self)), localAddrs);
+    }
+    pub fn put_LocalAddresses(self: *const INetFwRule, localAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_LocalAddresses(@as(*const INetFwRule, @ptrCast(self)), localAddrs);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_RemoteAddresses(@as(*const INetFwRule, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_RemoteAddresses(@as(*const INetFwRule, @ptrCast(self)), remoteAddrs);
+    }
+    pub fn get_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_IcmpTypesAndCodes(@as(*const INetFwRule, @ptrCast(self)), icmpTypesAndCodes);
+    }
+    pub fn put_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_IcmpTypesAndCodes(@as(*const INetFwRule, @ptrCast(self)), icmpTypesAndCodes);
+    }
+    pub fn get_Direction(self: *const INetFwRule, dir: ?*NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const INetFwRule, @ptrCast(self)), dir);
+    }
+    pub fn put_Direction(self: *const INetFwRule, dir: NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Direction(@as(*const INetFwRule, @ptrCast(self)), dir);
+    }
+    pub fn get_Interfaces(self: *const INetFwRule, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Interfaces(@as(*const INetFwRule, @ptrCast(self)), interfaces);
+    }
+    pub fn put_Interfaces(self: *const INetFwRule, interfaces: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Interfaces(@as(*const INetFwRule, @ptrCast(self)), interfaces);
+    }
+    pub fn get_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_InterfaceTypes(@as(*const INetFwRule, @ptrCast(self)), interfaceTypes);
+    }
+    pub fn put_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_InterfaceTypes(@as(*const INetFwRule, @ptrCast(self)), interfaceTypes);
+    }
+    pub fn get_Enabled(self: *const INetFwRule, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const INetFwRule, @ptrCast(self)), enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwRule, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const INetFwRule, @ptrCast(self)), enabled);
+    }
+    pub fn get_Grouping(self: *const INetFwRule, context: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Grouping(@as(*const INetFwRule, @ptrCast(self)), context);
+    }
+    pub fn put_Grouping(self: *const INetFwRule, context: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Grouping(@as(*const INetFwRule, @ptrCast(self)), context);
+    }
+    pub fn get_Profiles(self: *const INetFwRule, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Profiles(@as(*const INetFwRule, @ptrCast(self)), profileTypesBitmask);
+    }
+    pub fn put_Profiles(self: *const INetFwRule, profileTypesBitmask: i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Profiles(@as(*const INetFwRule, @ptrCast(self)), profileTypesBitmask);
+    }
+    pub fn get_EdgeTraversal(self: *const INetFwRule, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_EdgeTraversal(@as(*const INetFwRule, @ptrCast(self)), enabled);
+    }
+    pub fn put_EdgeTraversal(self: *const INetFwRule, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_EdgeTraversal(@as(*const INetFwRule, @ptrCast(self)), enabled);
+    }
+    pub fn get_Action(self: *const INetFwRule, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).get_Action(@as(*const INetFwRule, @ptrCast(self)), action);
+    }
+    pub fn put_Action(self: *const INetFwRule, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule.VTable, @ptrCast(self.vtable)).put_Action(@as(*const INetFwRule, @ptrCast(self)), action);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3083,7 +3776,13 @@ pub const INetFwRule2 = extern union {
             return @as(*const INetFwRule2.VTable, @ptrCast(self.vtable)).put_EdgeTraversalOptions(@as(*const INetFwRule2, @ptrCast(self)), lOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace INetFwRule.MethodMixin(@This());
+    pub fn get_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule2.VTable, @ptrCast(self.vtable)).get_EdgeTraversalOptions(@as(*const INetFwRule2, @ptrCast(self)), lOptions);
+    }
+    pub fn put_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule2.VTable, @ptrCast(self.vtable)).put_EdgeTraversalOptions(@as(*const INetFwRule2, @ptrCast(self)), lOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3206,7 +3905,43 @@ pub const INetFwRule3 = extern union {
             return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_SecureFlags(@as(*const INetFwRule3, @ptrCast(self)), lOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace INetFwRule2.MethodMixin(@This());
+    pub fn get_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_LocalAppPackageId(@as(*const INetFwRule3, @ptrCast(self)), wszPackageId);
+    }
+    pub fn put_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_LocalAppPackageId(@as(*const INetFwRule3, @ptrCast(self)), wszPackageId);
+    }
+    pub fn get_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_LocalUserOwner(@as(*const INetFwRule3, @ptrCast(self)), wszUserOwner);
+    }
+    pub fn put_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_LocalUserOwner(@as(*const INetFwRule3, @ptrCast(self)), wszUserOwner);
+    }
+    pub fn get_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_LocalUserAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn put_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_LocalUserAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn get_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_RemoteUserAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn put_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_RemoteUserAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn get_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_RemoteMachineAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn put_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_RemoteMachineAuthorizedList(@as(*const INetFwRule3, @ptrCast(self)), wszUserAuthList);
+    }
+    pub fn get_SecureFlags(self: *const INetFwRule3, lOptions: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).get_SecureFlags(@as(*const INetFwRule3, @ptrCast(self)), lOptions);
+    }
+    pub fn put_SecureFlags(self: *const INetFwRule3, lOptions: i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRule3.VTable, @ptrCast(self.vtable)).put_SecureFlags(@as(*const INetFwRule3, @ptrCast(self)), lOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3264,7 +3999,22 @@ pub const INetFwRules = extern union {
             return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwRules, @ptrCast(self)), newEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const INetFwRules, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetFwRules, @ptrCast(self)), count);
+    }
+    pub fn Add(self: *const INetFwRules, rule: ?*INetFwRule) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).Add(@as(*const INetFwRules, @ptrCast(self)), rule);
+    }
+    pub fn Remove(self: *const INetFwRules, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).Remove(@as(*const INetFwRules, @ptrCast(self)), name);
+    }
+    pub fn Item(self: *const INetFwRules, name: ?BSTR, rule: ?*?*INetFwRule) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).Item(@as(*const INetFwRules, @ptrCast(self)), name, rule);
+    }
+    pub fn get__NewEnum(self: *const INetFwRules, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwRules, @ptrCast(self)), newEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3309,7 +4059,16 @@ pub const INetFwServiceRestriction = extern union {
             return @as(*const INetFwServiceRestriction.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const INetFwServiceRestriction, @ptrCast(self)), rules);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn RestrictService(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServiceRestriction.VTable, @ptrCast(self.vtable)).RestrictService(@as(*const INetFwServiceRestriction, @ptrCast(self)), serviceName, appName, restrictService, serviceSidRestricted);
+    }
+    pub fn ServiceRestricted(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServiceRestriction.VTable, @ptrCast(self.vtable)).ServiceRestricted(@as(*const INetFwServiceRestriction, @ptrCast(self)), serviceName, appName, serviceRestricted);
+    }
+    pub fn get_Rules(self: *const INetFwServiceRestriction, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
+        return @as(*const INetFwServiceRestriction.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const INetFwServiceRestriction, @ptrCast(self)), rules);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3450,7 +4209,49 @@ pub const INetFwProfile = extern union {
             return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_AuthorizedApplications(@as(*const INetFwProfile, @ptrCast(self)), apps);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_Type(@as(*const INetFwProfile, @ptrCast(self)), @"type");
+    }
+    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_FirewallEnabled(@as(*const INetFwProfile, @ptrCast(self)), enabled);
+    }
+    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).put_FirewallEnabled(@as(*const INetFwProfile, @ptrCast(self)), enabled);
+    }
+    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_ExceptionsNotAllowed(@as(*const INetFwProfile, @ptrCast(self)), notAllowed);
+    }
+    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).put_ExceptionsNotAllowed(@as(*const INetFwProfile, @ptrCast(self)), notAllowed);
+    }
+    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_NotificationsDisabled(@as(*const INetFwProfile, @ptrCast(self)), disabled);
+    }
+    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).put_NotificationsDisabled(@as(*const INetFwProfile, @ptrCast(self)), disabled);
+    }
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_UnicastResponsesToMulticastBroadcastDisabled(@as(*const INetFwProfile, @ptrCast(self)), disabled);
+    }
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).put_UnicastResponsesToMulticastBroadcastDisabled(@as(*const INetFwProfile, @ptrCast(self)), disabled);
+    }
+    pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_RemoteAdminSettings(@as(*const INetFwProfile, @ptrCast(self)), remoteAdminSettings);
+    }
+    pub fn get_IcmpSettings(self: *const INetFwProfile, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_IcmpSettings(@as(*const INetFwProfile, @ptrCast(self)), icmpSettings);
+    }
+    pub fn get_GloballyOpenPorts(self: *const INetFwProfile, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_GloballyOpenPorts(@as(*const INetFwProfile, @ptrCast(self)), openPorts);
+    }
+    pub fn get_Services(self: *const INetFwProfile, services: ?*?*INetFwServices) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_Services(@as(*const INetFwProfile, @ptrCast(self)), services);
+    }
+    pub fn get_AuthorizedApplications(self: *const INetFwProfile, apps: ?*?*INetFwAuthorizedApplications) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProfile.VTable, @ptrCast(self.vtable)).get_AuthorizedApplications(@as(*const INetFwProfile, @ptrCast(self)), apps);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3483,7 +4284,13 @@ pub const INetFwPolicy = extern union {
             return @as(*const INetFwPolicy.VTable, @ptrCast(self.vtable)).GetProfileByType(@as(*const INetFwPolicy, @ptrCast(self)), profileType, profile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CurrentProfile(self: *const INetFwPolicy, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy.VTable, @ptrCast(self.vtable)).get_CurrentProfile(@as(*const INetFwPolicy, @ptrCast(self)), profile);
+    }
+    pub fn GetProfileByType(self: *const INetFwPolicy, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy.VTable, @ptrCast(self.vtable)).GetProfileByType(@as(*const INetFwPolicy, @ptrCast(self)), profileType, profile);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3696,7 +4503,73 @@ pub const INetFwPolicy2 = extern union {
             return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_LocalPolicyModifyState(@as(*const INetFwPolicy2, @ptrCast(self)), modifyState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_CurrentProfileTypes(@as(*const INetFwPolicy2, @ptrCast(self)), profileTypesBitmask);
+    }
+    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_FirewallEnabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, enabled);
+    }
+    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_FirewallEnabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, enabled);
+    }
+    pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_ExcludedInterfaces(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, interfaces);
+    }
+    pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_ExcludedInterfaces(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, interfaces);
+    }
+    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_BlockAllInboundTraffic(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, Block);
+    }
+    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_BlockAllInboundTraffic(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, Block);
+    }
+    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_NotificationsDisabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, disabled);
+    }
+    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_NotificationsDisabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, disabled);
+    }
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_UnicastResponsesToMulticastBroadcastDisabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, disabled);
+    }
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_UnicastResponsesToMulticastBroadcastDisabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, disabled);
+    }
+    pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const INetFwPolicy2, @ptrCast(self)), rules);
+    }
+    pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_ServiceRestriction(@as(*const INetFwPolicy2, @ptrCast(self)), ServiceRestriction);
+    }
+    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).EnableRuleGroup(@as(*const INetFwPolicy2, @ptrCast(self)), profileTypesBitmask, group, enable);
+    }
+    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).IsRuleGroupEnabled(@as(*const INetFwPolicy2, @ptrCast(self)), profileTypesBitmask, group, enabled);
+    }
+    pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).RestoreLocalFirewallDefaults(@as(*const INetFwPolicy2, @ptrCast(self)));
+    }
+    pub fn get_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_DefaultInboundAction(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, action);
+    }
+    pub fn put_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_DefaultInboundAction(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, action);
+    }
+    pub fn get_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_DefaultOutboundAction(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, action);
+    }
+    pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).put_DefaultOutboundAction(@as(*const INetFwPolicy2, @ptrCast(self)), profileType, action);
+    }
+    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_IsRuleGroupCurrentlyEnabled(@as(*const INetFwPolicy2, @ptrCast(self)), group, enabled);
+    }
+    pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwPolicy2.VTable, @ptrCast(self.vtable)).get_LocalPolicyModifyState(@as(*const INetFwPolicy2, @ptrCast(self)), modifyState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3762,7 +4635,22 @@ pub const INetFwMgr = extern union {
             return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).IsIcmpTypeAllowed(@as(*const INetFwMgr, @ptrCast(self)), ipVersion, localAddress, @"type", allowed, restricted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_LocalPolicy(self: *const INetFwMgr, localPolicy: ?*?*INetFwPolicy) callconv(.Inline) HRESULT {
+        return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).get_LocalPolicy(@as(*const INetFwMgr, @ptrCast(self)), localPolicy);
+    }
+    pub fn get_CurrentProfileType(self: *const INetFwMgr, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).get_CurrentProfileType(@as(*const INetFwMgr, @ptrCast(self)), profileType);
+    }
+    pub fn RestoreDefaults(self: *const INetFwMgr) callconv(.Inline) HRESULT {
+        return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).RestoreDefaults(@as(*const INetFwMgr, @ptrCast(self)));
+    }
+    pub fn IsPortAllowed(self: *const INetFwMgr, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).IsPortAllowed(@as(*const INetFwMgr, @ptrCast(self)), imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
+    }
+    pub fn IsIcmpTypeAllowed(self: *const INetFwMgr, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, @"type": u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwMgr.VTable, @ptrCast(self.vtable)).IsIcmpTypeAllowed(@as(*const INetFwMgr, @ptrCast(self)), ipVersion, localAddress, @"type", allowed, restricted);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3822,7 +4710,22 @@ pub const INetFwProduct = extern union {
             return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).get_PathToSignedProductExe(@as(*const INetFwProduct, @ptrCast(self)), path);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_RuleCategories(self: *const INetFwProduct, ruleCategories: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).get_RuleCategories(@as(*const INetFwProduct, @ptrCast(self)), ruleCategories);
+    }
+    pub fn put_RuleCategories(self: *const INetFwProduct, ruleCategories: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).put_RuleCategories(@as(*const INetFwProduct, @ptrCast(self)), ruleCategories);
+    }
+    pub fn get_DisplayName(self: *const INetFwProduct, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const INetFwProduct, @ptrCast(self)), displayName);
+    }
+    pub fn put_DisplayName(self: *const INetFwProduct, displayName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const INetFwProduct, @ptrCast(self)), displayName);
+    }
+    pub fn get_PathToSignedProductExe(self: *const INetFwProduct, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProduct.VTable, @ptrCast(self.vtable)).get_PathToSignedProductExe(@as(*const INetFwProduct, @ptrCast(self)), path);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3873,7 +4776,19 @@ pub const INetFwProducts = extern union {
             return @as(*const INetFwProducts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwProducts, @ptrCast(self)), newEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const INetFwProducts, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProducts.VTable, @ptrCast(self.vtable)).get_Count(@as(*const INetFwProducts, @ptrCast(self)), count);
+    }
+    pub fn Register(self: *const INetFwProducts, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProducts.VTable, @ptrCast(self.vtable)).Register(@as(*const INetFwProducts, @ptrCast(self)), product, registration);
+    }
+    pub fn Item(self: *const INetFwProducts, index: i32, product: ?*?*INetFwProduct) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProducts.VTable, @ptrCast(self.vtable)).Item(@as(*const INetFwProducts, @ptrCast(self)), index, product);
+    }
+    pub fn get__NewEnum(self: *const INetFwProducts, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const INetFwProducts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const INetFwProducts, @ptrCast(self)), newEnum);
+    }
 };
 
 

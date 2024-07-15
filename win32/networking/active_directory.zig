@@ -784,7 +784,16 @@ pub const IQueryForm = extern union {
             return @as(*const IQueryForm.VTable, @ptrCast(self.vtable)).AddPages(@as(*const IQueryForm, @ptrCast(self)), pAddPagesProc, lParam);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IQueryForm, hkForm: ?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IQueryForm.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IQueryForm, @ptrCast(self)), hkForm);
+    }
+    pub fn AddForms(self: *const IQueryForm, pAddFormsProc: ?LPCQADDFORMSPROC, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IQueryForm.VTable, @ptrCast(self.vtable)).AddForms(@as(*const IQueryForm, @ptrCast(self)), pAddFormsProc, lParam);
+    }
+    pub fn AddPages(self: *const IQueryForm, pAddPagesProc: ?LPCQADDPAGESPROC, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IQueryForm.VTable, @ptrCast(self.vtable)).AddPages(@as(*const IQueryForm, @ptrCast(self)), pAddPagesProc, lParam);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -869,7 +878,28 @@ pub const IPersistQuery = extern union {
             return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPersistQuery, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPersist.MethodMixin(@This());
+    pub fn WriteString(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, pValue);
+    }
+    pub fn ReadString(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pBuffer: ?PWSTR, cchBuffer: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).ReadString(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, pBuffer, cchBuffer);
+    }
+    pub fn WriteInt(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, value: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).WriteInt(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, value);
+    }
+    pub fn ReadInt(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).ReadInt(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, pValue);
+    }
+    pub fn WriteStruct(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*anyopaque, cbStruct: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).WriteStruct(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, pStruct, cbStruct);
+    }
+    pub fn ReadStruct(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*anyopaque, cbStruct: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).ReadStruct(@as(*const IPersistQuery, @ptrCast(self)), pSection, pValueName, pStruct, cbStruct);
+    }
+    pub fn Clear(self: *const IPersistQuery) callconv(.Inline) HRESULT {
+        return @as(*const IPersistQuery.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPersistQuery, @ptrCast(self)));
+    }
 };
 
 pub const OPENQUERYWINDOW = extern struct {
@@ -907,7 +937,10 @@ pub const ICommonQuery = extern union {
             return @as(*const ICommonQuery.VTable, @ptrCast(self.vtable)).OpenQueryWindow(@as(*const ICommonQuery, @ptrCast(self)), hwndParent, pQueryWnd, ppDataObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OpenQueryWindow(self: *const ICommonQuery, hwndParent: ?HWND, pQueryWnd: ?*OPENQUERYWINDOW, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const ICommonQuery.VTable, @ptrCast(self.vtable)).OpenQueryWindow(@as(*const ICommonQuery, @ptrCast(self)), hwndParent, pQueryWnd, ppDataObject);
+    }
 };
 
 const CLSID_PropertyEntry_Value = Guid.initString("72d3edc2-a4c4-11d0-8533-00c04fd8d503");
@@ -1884,7 +1917,46 @@ pub const IADs = extern union {
             return @as(*const IADs.VTable, @ptrCast(self.vtable)).GetInfoEx(@as(*const IADs, @ptrCast(self)), vProperties, lnReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn get_Class(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn get_GUID(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_GUID(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn get_ADsPath(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn get_Parent(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn get_Schema(self: *const IADs, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).get_Schema(@as(*const IADs, @ptrCast(self)), retval);
+    }
+    pub fn GetInfo(self: *const IADs) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IADs, @ptrCast(self)));
+    }
+    pub fn SetInfo(self: *const IADs) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IADs, @ptrCast(self)));
+    }
+    pub fn Get(self: *const IADs, bstrName: ?BSTR, pvProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).Get(@as(*const IADs, @ptrCast(self)), bstrName, pvProp);
+    }
+    pub fn Put(self: *const IADs, bstrName: ?BSTR, vProp: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).Put(@as(*const IADs, @ptrCast(self)), bstrName, vProp);
+    }
+    pub fn GetEx(self: *const IADs, bstrName: ?BSTR, pvProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).GetEx(@as(*const IADs, @ptrCast(self)), bstrName, pvProp);
+    }
+    pub fn PutEx(self: *const IADs, lnControlCode: i32, bstrName: ?BSTR, vProp: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).PutEx(@as(*const IADs, @ptrCast(self)), lnControlCode, bstrName, vProp);
+    }
+    pub fn GetInfoEx(self: *const IADs, vProperties: VARIANT, lnReserved: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADs.VTable, @ptrCast(self.vtable)).GetInfoEx(@as(*const IADs, @ptrCast(self)), vProperties, lnReserved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2002,7 +2074,40 @@ pub const IADsContainer = extern union {
             return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).MoveHere(@as(*const IADsContainer, @ptrCast(self)), SourceName, NewName, ppObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IADsContainer, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IADsContainer, @ptrCast(self)), retval);
+    }
+    pub fn get__NewEnum(self: *const IADsContainer, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IADsContainer, @ptrCast(self)), retval);
+    }
+    pub fn get_Filter(self: *const IADsContainer, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).get_Filter(@as(*const IADsContainer, @ptrCast(self)), pVar);
+    }
+    pub fn put_Filter(self: *const IADsContainer, Var: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).put_Filter(@as(*const IADsContainer, @ptrCast(self)), Var);
+    }
+    pub fn get_Hints(self: *const IADsContainer, pvFilter: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).get_Hints(@as(*const IADsContainer, @ptrCast(self)), pvFilter);
+    }
+    pub fn put_Hints(self: *const IADsContainer, vHints: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).put_Hints(@as(*const IADsContainer, @ptrCast(self)), vHints);
+    }
+    pub fn GetObject(self: *const IADsContainer, ClassName: ?BSTR, RelativeName: ?BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IADsContainer, @ptrCast(self)), ClassName, RelativeName, ppObject);
+    }
+    pub fn Create(self: *const IADsContainer, ClassName: ?BSTR, RelativeName: ?BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).Create(@as(*const IADsContainer, @ptrCast(self)), ClassName, RelativeName, ppObject);
+    }
+    pub fn Delete(self: *const IADsContainer, bstrClassName: ?BSTR, bstrRelativeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).Delete(@as(*const IADsContainer, @ptrCast(self)), bstrClassName, bstrRelativeName);
+    }
+    pub fn CopyHere(self: *const IADsContainer, SourceName: ?BSTR, NewName: ?BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).CopyHere(@as(*const IADsContainer, @ptrCast(self)), SourceName, NewName, ppObject);
+    }
+    pub fn MoveHere(self: *const IADsContainer, SourceName: ?BSTR, NewName: ?BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsContainer.VTable, @ptrCast(self.vtable)).MoveHere(@as(*const IADsContainer, @ptrCast(self)), SourceName, NewName, ppObject);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2052,7 +2157,19 @@ pub const IADsCollection = extern union {
             return @as(*const IADsCollection.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IADsCollection, @ptrCast(self)), bstrName, pvItem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IADsCollection, ppEnumerator: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IADsCollection, @ptrCast(self)), ppEnumerator);
+    }
+    pub fn Add(self: *const IADsCollection, bstrName: ?BSTR, vItem: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IADsCollection, @ptrCast(self)), bstrName, vItem);
+    }
+    pub fn Remove(self: *const IADsCollection, bstrItemToBeRemoved: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IADsCollection, @ptrCast(self)), bstrItemToBeRemoved);
+    }
+    pub fn GetObject(self: *const IADsCollection, bstrName: ?BSTR, pvItem: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsCollection.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IADsCollection, @ptrCast(self)), bstrName, pvItem);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2103,7 +2220,19 @@ pub const IADsMembers = extern union {
             return @as(*const IADsMembers.VTable, @ptrCast(self.vtable)).put_Filter(@as(*const IADsMembers, @ptrCast(self)), pvFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IADsMembers, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsMembers.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IADsMembers, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IADsMembers, ppEnumerator: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsMembers.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IADsMembers, @ptrCast(self)), ppEnumerator);
+    }
+    pub fn get_Filter(self: *const IADsMembers, pvFilter: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsMembers.VTable, @ptrCast(self.vtable)).get_Filter(@as(*const IADsMembers, @ptrCast(self)), pvFilter);
+    }
+    pub fn put_Filter(self: *const IADsMembers, pvFilter: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsMembers.VTable, @ptrCast(self.vtable)).put_Filter(@as(*const IADsMembers, @ptrCast(self)), pvFilter);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2192,7 +2321,34 @@ pub const IADsPropertyList = extern union {
             return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).PurgePropertyList(@as(*const IADsPropertyList, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_PropertyCount(self: *const IADsPropertyList, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).get_PropertyCount(@as(*const IADsPropertyList, @ptrCast(self)), plCount);
+    }
+    pub fn Next(self: *const IADsPropertyList, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).Next(@as(*const IADsPropertyList, @ptrCast(self)), pVariant);
+    }
+    pub fn Skip(self: *const IADsPropertyList, cElements: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).Skip(@as(*const IADsPropertyList, @ptrCast(self)), cElements);
+    }
+    pub fn Reset(self: *const IADsPropertyList) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).Reset(@as(*const IADsPropertyList, @ptrCast(self)));
+    }
+    pub fn Item(self: *const IADsPropertyList, varIndex: VARIANT, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).Item(@as(*const IADsPropertyList, @ptrCast(self)), varIndex, pVariant);
+    }
+    pub fn GetPropertyItem(self: *const IADsPropertyList, bstrName: ?BSTR, lnADsType: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).GetPropertyItem(@as(*const IADsPropertyList, @ptrCast(self)), bstrName, lnADsType, pVariant);
+    }
+    pub fn PutPropertyItem(self: *const IADsPropertyList, varData: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).PutPropertyItem(@as(*const IADsPropertyList, @ptrCast(self)), varData);
+    }
+    pub fn ResetPropertyItem(self: *const IADsPropertyList, varEntry: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).ResetPropertyItem(@as(*const IADsPropertyList, @ptrCast(self)), varEntry);
+    }
+    pub fn PurgePropertyList(self: *const IADsPropertyList) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyList.VTable, @ptrCast(self.vtable)).PurgePropertyList(@as(*const IADsPropertyList, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2286,7 +2442,34 @@ pub const IADsPropertyEntry = extern union {
             return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).put_Values(@as(*const IADsPropertyEntry, @ptrCast(self)), vValues);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Clear(self: *const IADsPropertyEntry) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).Clear(@as(*const IADsPropertyEntry, @ptrCast(self)));
+    }
+    pub fn get_Name(self: *const IADsPropertyEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IADsPropertyEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_Name(self: *const IADsPropertyEntry, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IADsPropertyEntry, @ptrCast(self)), bstrName);
+    }
+    pub fn get_ADsType(self: *const IADsPropertyEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).get_ADsType(@as(*const IADsPropertyEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_ADsType(self: *const IADsPropertyEntry, lnADsType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).put_ADsType(@as(*const IADsPropertyEntry, @ptrCast(self)), lnADsType);
+    }
+    pub fn get_ControlCode(self: *const IADsPropertyEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).get_ControlCode(@as(*const IADsPropertyEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_ControlCode(self: *const IADsPropertyEntry, lnControlCode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).put_ControlCode(@as(*const IADsPropertyEntry, @ptrCast(self)), lnControlCode);
+    }
+    pub fn get_Values(self: *const IADsPropertyEntry, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).get_Values(@as(*const IADsPropertyEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_Values(self: *const IADsPropertyEntry, vValues: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyEntry.VTable, @ptrCast(self.vtable)).put_Values(@as(*const IADsPropertyEntry, @ptrCast(self)), vValues);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2524,7 +2707,82 @@ pub const IADsPropertyValue = extern union {
             return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_UTCTime(@as(*const IADsPropertyValue, @ptrCast(self)), daUTCTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Clear(self: *const IADsPropertyValue) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).Clear(@as(*const IADsPropertyValue, @ptrCast(self)));
+    }
+    pub fn get_ADsType(self: *const IADsPropertyValue, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_ADsType(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_ADsType(self: *const IADsPropertyValue, lnADsType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_ADsType(@as(*const IADsPropertyValue, @ptrCast(self)), lnADsType);
+    }
+    pub fn get_DNString(self: *const IADsPropertyValue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_DNString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_DNString(self: *const IADsPropertyValue, bstrDNString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_DNString(@as(*const IADsPropertyValue, @ptrCast(self)), bstrDNString);
+    }
+    pub fn get_CaseExactString(self: *const IADsPropertyValue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_CaseExactString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_CaseExactString(self: *const IADsPropertyValue, bstrCaseExactString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_CaseExactString(@as(*const IADsPropertyValue, @ptrCast(self)), bstrCaseExactString);
+    }
+    pub fn get_CaseIgnoreString(self: *const IADsPropertyValue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_CaseIgnoreString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_CaseIgnoreString(self: *const IADsPropertyValue, bstrCaseIgnoreString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_CaseIgnoreString(@as(*const IADsPropertyValue, @ptrCast(self)), bstrCaseIgnoreString);
+    }
+    pub fn get_PrintableString(self: *const IADsPropertyValue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_PrintableString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_PrintableString(self: *const IADsPropertyValue, bstrPrintableString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_PrintableString(@as(*const IADsPropertyValue, @ptrCast(self)), bstrPrintableString);
+    }
+    pub fn get_NumericString(self: *const IADsPropertyValue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_NumericString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_NumericString(self: *const IADsPropertyValue, bstrNumericString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_NumericString(@as(*const IADsPropertyValue, @ptrCast(self)), bstrNumericString);
+    }
+    pub fn get_Boolean(self: *const IADsPropertyValue, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_Boolean(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_Boolean(self: *const IADsPropertyValue, lnBoolean: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_Boolean(@as(*const IADsPropertyValue, @ptrCast(self)), lnBoolean);
+    }
+    pub fn get_Integer(self: *const IADsPropertyValue, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_Integer(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_Integer(self: *const IADsPropertyValue, lnInteger: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_Integer(@as(*const IADsPropertyValue, @ptrCast(self)), lnInteger);
+    }
+    pub fn get_OctetString(self: *const IADsPropertyValue, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_OctetString(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_OctetString(self: *const IADsPropertyValue, vOctetString: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_OctetString(@as(*const IADsPropertyValue, @ptrCast(self)), vOctetString);
+    }
+    pub fn get_SecurityDescriptor(self: *const IADsPropertyValue, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_SecurityDescriptor(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_SecurityDescriptor(self: *const IADsPropertyValue, pSecurityDescriptor: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_SecurityDescriptor(@as(*const IADsPropertyValue, @ptrCast(self)), pSecurityDescriptor);
+    }
+    pub fn get_LargeInteger(self: *const IADsPropertyValue, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_LargeInteger(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_LargeInteger(self: *const IADsPropertyValue, pLargeInteger: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_LargeInteger(@as(*const IADsPropertyValue, @ptrCast(self)), pLargeInteger);
+    }
+    pub fn get_UTCTime(self: *const IADsPropertyValue, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).get_UTCTime(@as(*const IADsPropertyValue, @ptrCast(self)), retval);
+    }
+    pub fn put_UTCTime(self: *const IADsPropertyValue, daUTCTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue.VTable, @ptrCast(self.vtable)).put_UTCTime(@as(*const IADsPropertyValue, @ptrCast(self)), daUTCTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2557,7 +2815,13 @@ pub const IADsPropertyValue2 = extern union {
             return @as(*const IADsPropertyValue2.VTable, @ptrCast(self.vtable)).PutObjectProperty(@as(*const IADsPropertyValue2, @ptrCast(self)), lnADsType, vProp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetObjectProperty(self: *const IADsPropertyValue2, lnADsType: ?*i32, pvProp: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue2.VTable, @ptrCast(self.vtable)).GetObjectProperty(@as(*const IADsPropertyValue2, @ptrCast(self)), lnADsType, pvProp);
+    }
+    pub fn PutObjectProperty(self: *const IADsPropertyValue2, lnADsType: i32, vProp: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPropertyValue2.VTable, @ptrCast(self.vtable)).PutObjectProperty(@as(*const IADsPropertyValue2, @ptrCast(self)), lnADsType, vProp);
+    }
 };
 
 const IID_IPrivateDispatch_Value = Guid.initString("86ab4bbe-65f6-11d1-8c13-00c04fd8d503");
@@ -2624,7 +2888,22 @@ pub const IPrivateDispatch = extern union {
             return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIInvoke(@as(*const IPrivateDispatch, @ptrCast(self)), dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ADSIInitializeDispatchManager(self: *const IPrivateDispatch, dwExtensionId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIInitializeDispatchManager(@as(*const IPrivateDispatch, @ptrCast(self)), dwExtensionId);
+    }
+    pub fn ADSIGetTypeInfoCount(self: *const IPrivateDispatch, pctinfo: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIGetTypeInfoCount(@as(*const IPrivateDispatch, @ptrCast(self)), pctinfo);
+    }
+    pub fn ADSIGetTypeInfo(self: *const IPrivateDispatch, itinfo: u32, lcid: u32, pptinfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIGetTypeInfo(@as(*const IPrivateDispatch, @ptrCast(self)), itinfo, lcid, pptinfo);
+    }
+    pub fn ADSIGetIDsOfNames(self: *const IPrivateDispatch, riid: ?*const Guid, rgszNames: ?*?*u16, cNames: u32, lcid: u32, rgdispid: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIGetIDsOfNames(@as(*const IPrivateDispatch, @ptrCast(self)), riid, rgszNames, cNames, lcid, rgdispid);
+    }
+    pub fn ADSIInvoke(self: *const IPrivateDispatch, dispidMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateDispatch.VTable, @ptrCast(self.vtable)).ADSIInvoke(@as(*const IPrivateDispatch, @ptrCast(self)), dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+    }
 };
 
 const IID_IPrivateUnknown_Value = Guid.initString("89126bab-6ead-11d1-8c18-00c04fd8d503");
@@ -2655,7 +2934,13 @@ pub const IPrivateUnknown = extern union {
             return @as(*const IPrivateUnknown.VTable, @ptrCast(self.vtable)).ADSIReleaseObject(@as(*const IPrivateUnknown, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ADSIInitializeObject(self: *const IPrivateUnknown, lpszUserName: ?BSTR, lpszPassword: ?BSTR, lnReserved: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateUnknown.VTable, @ptrCast(self.vtable)).ADSIInitializeObject(@as(*const IPrivateUnknown, @ptrCast(self)), lpszUserName, lpszPassword, lnReserved);
+    }
+    pub fn ADSIReleaseObject(self: *const IPrivateUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPrivateUnknown.VTable, @ptrCast(self.vtable)).ADSIReleaseObject(@as(*const IPrivateUnknown, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2708,7 +2993,16 @@ pub const IADsExtension = extern union {
             return @as(*const IADsExtension.VTable, @ptrCast(self.vtable)).PrivateInvoke(@as(*const IADsExtension, @ptrCast(self)), dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Operate(self: *const IADsExtension, dwCode: u32, varData1: VARIANT, varData2: VARIANT, varData3: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsExtension.VTable, @ptrCast(self.vtable)).Operate(@as(*const IADsExtension, @ptrCast(self)), dwCode, varData1, varData2, varData3);
+    }
+    pub fn PrivateGetIDsOfNames(self: *const IADsExtension, riid: ?*const Guid, rgszNames: ?*?*u16, cNames: u32, lcid: u32, rgDispid: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsExtension.VTable, @ptrCast(self.vtable)).PrivateGetIDsOfNames(@as(*const IADsExtension, @ptrCast(self)), riid, rgszNames, cNames, lcid, rgDispid);
+    }
+    pub fn PrivateInvoke(self: *const IADsExtension, dispidMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IADsExtension.VTable, @ptrCast(self.vtable)).PrivateInvoke(@as(*const IADsExtension, @ptrCast(self)), dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2731,7 +3025,10 @@ pub const IADsDeleteOps = extern union {
             return @as(*const IADsDeleteOps.VTable, @ptrCast(self.vtable)).DeleteObject(@as(*const IADsDeleteOps, @ptrCast(self)), lnFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn DeleteObject(self: *const IADsDeleteOps, lnFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDeleteOps.VTable, @ptrCast(self.vtable)).DeleteObject(@as(*const IADsDeleteOps, @ptrCast(self)), lnFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2764,7 +3061,13 @@ pub const IADsNamespaces = extern union {
             return @as(*const IADsNamespaces.VTable, @ptrCast(self.vtable)).put_DefaultContainer(@as(*const IADsNamespaces, @ptrCast(self)), bstrDefaultContainer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_DefaultContainer(self: *const IADsNamespaces, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNamespaces.VTable, @ptrCast(self.vtable)).get_DefaultContainer(@as(*const IADsNamespaces, @ptrCast(self)), retval);
+    }
+    pub fn put_DefaultContainer(self: *const IADsNamespaces, bstrDefaultContainer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNamespaces.VTable, @ptrCast(self.vtable)).put_DefaultContainer(@as(*const IADsNamespaces, @ptrCast(self)), bstrDefaultContainer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3048,7 +3351,97 @@ pub const IADsClass = extern union {
             return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).Qualifiers(@as(*const IADsClass, @ptrCast(self)), ppQualifiers);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_PrimaryInterface(self: *const IADsClass, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_PrimaryInterface(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn get_CLSID(self: *const IADsClass, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_CLSID(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_CLSID(self: *const IADsClass, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_CLSID(@as(*const IADsClass, @ptrCast(self)), bstrCLSID);
+    }
+    pub fn get_OID(self: *const IADsClass, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_OID(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_OID(self: *const IADsClass, bstrOID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_OID(@as(*const IADsClass, @ptrCast(self)), bstrOID);
+    }
+    pub fn get_Abstract(self: *const IADsClass, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_Abstract(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_Abstract(self: *const IADsClass, fAbstract: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_Abstract(@as(*const IADsClass, @ptrCast(self)), fAbstract);
+    }
+    pub fn get_Auxiliary(self: *const IADsClass, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_Auxiliary(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_Auxiliary(self: *const IADsClass, fAuxiliary: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_Auxiliary(@as(*const IADsClass, @ptrCast(self)), fAuxiliary);
+    }
+    pub fn get_MandatoryProperties(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_MandatoryProperties(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_MandatoryProperties(self: *const IADsClass, vMandatoryProperties: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_MandatoryProperties(@as(*const IADsClass, @ptrCast(self)), vMandatoryProperties);
+    }
+    pub fn get_OptionalProperties(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_OptionalProperties(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_OptionalProperties(self: *const IADsClass, vOptionalProperties: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_OptionalProperties(@as(*const IADsClass, @ptrCast(self)), vOptionalProperties);
+    }
+    pub fn get_NamingProperties(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_NamingProperties(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_NamingProperties(self: *const IADsClass, vNamingProperties: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_NamingProperties(@as(*const IADsClass, @ptrCast(self)), vNamingProperties);
+    }
+    pub fn get_DerivedFrom(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_DerivedFrom(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_DerivedFrom(self: *const IADsClass, vDerivedFrom: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_DerivedFrom(@as(*const IADsClass, @ptrCast(self)), vDerivedFrom);
+    }
+    pub fn get_AuxDerivedFrom(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_AuxDerivedFrom(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_AuxDerivedFrom(self: *const IADsClass, vAuxDerivedFrom: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_AuxDerivedFrom(@as(*const IADsClass, @ptrCast(self)), vAuxDerivedFrom);
+    }
+    pub fn get_PossibleSuperiors(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_PossibleSuperiors(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_PossibleSuperiors(self: *const IADsClass, vPossibleSuperiors: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_PossibleSuperiors(@as(*const IADsClass, @ptrCast(self)), vPossibleSuperiors);
+    }
+    pub fn get_Containment(self: *const IADsClass, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_Containment(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_Containment(self: *const IADsClass, vContainment: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_Containment(@as(*const IADsClass, @ptrCast(self)), vContainment);
+    }
+    pub fn get_Container(self: *const IADsClass, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_Container(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_Container(self: *const IADsClass, fContainer: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_Container(@as(*const IADsClass, @ptrCast(self)), fContainer);
+    }
+    pub fn get_HelpFileName(self: *const IADsClass, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_HelpFileName(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_HelpFileName(self: *const IADsClass, bstrHelpFileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_HelpFileName(@as(*const IADsClass, @ptrCast(self)), bstrHelpFileName);
+    }
+    pub fn get_HelpFileContext(self: *const IADsClass, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).get_HelpFileContext(@as(*const IADsClass, @ptrCast(self)), retval);
+    }
+    pub fn put_HelpFileContext(self: *const IADsClass, lnHelpFileContext: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).put_HelpFileContext(@as(*const IADsClass, @ptrCast(self)), lnHelpFileContext);
+    }
+    pub fn Qualifiers(self: *const IADsClass, ppQualifiers: ?*?*IADsCollection) callconv(.Inline) HRESULT {
+        return @as(*const IADsClass.VTable, @ptrCast(self.vtable)).Qualifiers(@as(*const IADsClass, @ptrCast(self)), ppQualifiers);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3161,7 +3554,40 @@ pub const IADsProperty = extern union {
             return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).Qualifiers(@as(*const IADsProperty, @ptrCast(self)), ppQualifiers);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_OID(self: *const IADsProperty, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).get_OID(@as(*const IADsProperty, @ptrCast(self)), retval);
+    }
+    pub fn put_OID(self: *const IADsProperty, bstrOID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).put_OID(@as(*const IADsProperty, @ptrCast(self)), bstrOID);
+    }
+    pub fn get_Syntax(self: *const IADsProperty, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).get_Syntax(@as(*const IADsProperty, @ptrCast(self)), retval);
+    }
+    pub fn put_Syntax(self: *const IADsProperty, bstrSyntax: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).put_Syntax(@as(*const IADsProperty, @ptrCast(self)), bstrSyntax);
+    }
+    pub fn get_MaxRange(self: *const IADsProperty, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).get_MaxRange(@as(*const IADsProperty, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxRange(self: *const IADsProperty, lnMaxRange: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).put_MaxRange(@as(*const IADsProperty, @ptrCast(self)), lnMaxRange);
+    }
+    pub fn get_MinRange(self: *const IADsProperty, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).get_MinRange(@as(*const IADsProperty, @ptrCast(self)), retval);
+    }
+    pub fn put_MinRange(self: *const IADsProperty, lnMinRange: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).put_MinRange(@as(*const IADsProperty, @ptrCast(self)), lnMinRange);
+    }
+    pub fn get_MultiValued(self: *const IADsProperty, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).get_MultiValued(@as(*const IADsProperty, @ptrCast(self)), retval);
+    }
+    pub fn put_MultiValued(self: *const IADsProperty, fMultiValued: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).put_MultiValued(@as(*const IADsProperty, @ptrCast(self)), fMultiValued);
+    }
+    pub fn Qualifiers(self: *const IADsProperty, ppQualifiers: ?*?*IADsCollection) callconv(.Inline) HRESULT {
+        return @as(*const IADsProperty.VTable, @ptrCast(self.vtable)).Qualifiers(@as(*const IADsProperty, @ptrCast(self)), ppQualifiers);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3194,7 +3620,13 @@ pub const IADsSyntax = extern union {
             return @as(*const IADsSyntax.VTable, @ptrCast(self.vtable)).put_OleAutoDataType(@as(*const IADsSyntax, @ptrCast(self)), lnOleAutoDataType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_OleAutoDataType(self: *const IADsSyntax, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSyntax.VTable, @ptrCast(self.vtable)).get_OleAutoDataType(@as(*const IADsSyntax, @ptrCast(self)), retval);
+    }
+    pub fn put_OleAutoDataType(self: *const IADsSyntax, lnOleAutoDataType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSyntax.VTable, @ptrCast(self.vtable)).put_OleAutoDataType(@as(*const IADsSyntax, @ptrCast(self)), lnOleAutoDataType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3281,7 +3713,31 @@ pub const IADsLocality = extern union {
             return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsLocality, @ptrCast(self)), vSeeAlso);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Description(self: *const IADsLocality, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsLocality, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsLocality, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsLocality, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_LocalityName(self: *const IADsLocality, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).get_LocalityName(@as(*const IADsLocality, @ptrCast(self)), retval);
+    }
+    pub fn put_LocalityName(self: *const IADsLocality, bstrLocalityName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).put_LocalityName(@as(*const IADsLocality, @ptrCast(self)), bstrLocalityName);
+    }
+    pub fn get_PostalAddress(self: *const IADsLocality, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).get_PostalAddress(@as(*const IADsLocality, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalAddress(self: *const IADsLocality, bstrPostalAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).put_PostalAddress(@as(*const IADsLocality, @ptrCast(self)), bstrPostalAddress);
+    }
+    pub fn get_SeeAlso(self: *const IADsLocality, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).get_SeeAlso(@as(*const IADsLocality, @ptrCast(self)), retval);
+    }
+    pub fn put_SeeAlso(self: *const IADsLocality, vSeeAlso: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsLocality.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsLocality, @ptrCast(self)), vSeeAlso);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3404,7 +3860,43 @@ pub const IADsO = extern union {
             return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsO, @ptrCast(self)), vSeeAlso);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Description(self: *const IADsO, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsO, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsO, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_LocalityName(self: *const IADsO, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_LocalityName(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_LocalityName(self: *const IADsO, bstrLocalityName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_LocalityName(@as(*const IADsO, @ptrCast(self)), bstrLocalityName);
+    }
+    pub fn get_PostalAddress(self: *const IADsO, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_PostalAddress(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalAddress(self: *const IADsO, bstrPostalAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_PostalAddress(@as(*const IADsO, @ptrCast(self)), bstrPostalAddress);
+    }
+    pub fn get_TelephoneNumber(self: *const IADsO, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_TelephoneNumber(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneNumber(self: *const IADsO, bstrTelephoneNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_TelephoneNumber(@as(*const IADsO, @ptrCast(self)), bstrTelephoneNumber);
+    }
+    pub fn get_FaxNumber(self: *const IADsO, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_FaxNumber(self: *const IADsO, bstrFaxNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IADsO, @ptrCast(self)), bstrFaxNumber);
+    }
+    pub fn get_SeeAlso(self: *const IADsO, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).get_SeeAlso(@as(*const IADsO, @ptrCast(self)), retval);
+    }
+    pub fn put_SeeAlso(self: *const IADsO, vSeeAlso: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsO.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsO, @ptrCast(self)), vSeeAlso);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3545,7 +4037,49 @@ pub const IADsOU = extern union {
             return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_BusinessCategory(@as(*const IADsOU, @ptrCast(self)), bstrBusinessCategory);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Description(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsOU, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsOU, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_LocalityName(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_LocalityName(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_LocalityName(self: *const IADsOU, bstrLocalityName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_LocalityName(@as(*const IADsOU, @ptrCast(self)), bstrLocalityName);
+    }
+    pub fn get_PostalAddress(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_PostalAddress(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalAddress(self: *const IADsOU, bstrPostalAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_PostalAddress(@as(*const IADsOU, @ptrCast(self)), bstrPostalAddress);
+    }
+    pub fn get_TelephoneNumber(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_TelephoneNumber(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneNumber(self: *const IADsOU, bstrTelephoneNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_TelephoneNumber(@as(*const IADsOU, @ptrCast(self)), bstrTelephoneNumber);
+    }
+    pub fn get_FaxNumber(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_FaxNumber(self: *const IADsOU, bstrFaxNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IADsOU, @ptrCast(self)), bstrFaxNumber);
+    }
+    pub fn get_SeeAlso(self: *const IADsOU, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_SeeAlso(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_SeeAlso(self: *const IADsOU, vSeeAlso: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsOU, @ptrCast(self)), vSeeAlso);
+    }
+    pub fn get_BusinessCategory(self: *const IADsOU, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).get_BusinessCategory(@as(*const IADsOU, @ptrCast(self)), retval);
+    }
+    pub fn put_BusinessCategory(self: *const IADsOU, bstrBusinessCategory: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsOU.VTable, @ptrCast(self.vtable)).put_BusinessCategory(@as(*const IADsOU, @ptrCast(self)), bstrBusinessCategory);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3713,7 +4247,58 @@ pub const IADsDomain = extern union {
             return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_LockoutObservationInterval(@as(*const IADsDomain, @ptrCast(self)), lnLockoutObservationInterval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_IsWorkgroup(self: *const IADsDomain, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_IsWorkgroup(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn get_MinPasswordLength(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_MinPasswordLength(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_MinPasswordLength(self: *const IADsDomain, lnMinPasswordLength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_MinPasswordLength(@as(*const IADsDomain, @ptrCast(self)), lnMinPasswordLength);
+    }
+    pub fn get_MinPasswordAge(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_MinPasswordAge(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_MinPasswordAge(self: *const IADsDomain, lnMinPasswordAge: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_MinPasswordAge(@as(*const IADsDomain, @ptrCast(self)), lnMinPasswordAge);
+    }
+    pub fn get_MaxPasswordAge(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_MaxPasswordAge(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxPasswordAge(self: *const IADsDomain, lnMaxPasswordAge: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_MaxPasswordAge(@as(*const IADsDomain, @ptrCast(self)), lnMaxPasswordAge);
+    }
+    pub fn get_MaxBadPasswordsAllowed(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_MaxBadPasswordsAllowed(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxBadPasswordsAllowed(self: *const IADsDomain, lnMaxBadPasswordsAllowed: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_MaxBadPasswordsAllowed(@as(*const IADsDomain, @ptrCast(self)), lnMaxBadPasswordsAllowed);
+    }
+    pub fn get_PasswordHistoryLength(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_PasswordHistoryLength(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_PasswordHistoryLength(self: *const IADsDomain, lnPasswordHistoryLength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_PasswordHistoryLength(@as(*const IADsDomain, @ptrCast(self)), lnPasswordHistoryLength);
+    }
+    pub fn get_PasswordAttributes(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_PasswordAttributes(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_PasswordAttributes(self: *const IADsDomain, lnPasswordAttributes: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_PasswordAttributes(@as(*const IADsDomain, @ptrCast(self)), lnPasswordAttributes);
+    }
+    pub fn get_AutoUnlockInterval(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_AutoUnlockInterval(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_AutoUnlockInterval(self: *const IADsDomain, lnAutoUnlockInterval: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_AutoUnlockInterval(@as(*const IADsDomain, @ptrCast(self)), lnAutoUnlockInterval);
+    }
+    pub fn get_LockoutObservationInterval(self: *const IADsDomain, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).get_LockoutObservationInterval(@as(*const IADsDomain, @ptrCast(self)), retval);
+    }
+    pub fn put_LockoutObservationInterval(self: *const IADsDomain, lnLockoutObservationInterval: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsDomain.VTable, @ptrCast(self.vtable)).put_LockoutObservationInterval(@as(*const IADsDomain, @ptrCast(self)), lnLockoutObservationInterval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4016,7 +4601,103 @@ pub const IADsComputer = extern union {
             return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_NetAddresses(@as(*const IADsComputer, @ptrCast(self)), vNetAddresses);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_ComputerID(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_ComputerID(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn get_Site(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Site(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsComputer, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsComputer, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_Location(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Location(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Location(self: *const IADsComputer, bstrLocation: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Location(@as(*const IADsComputer, @ptrCast(self)), bstrLocation);
+    }
+    pub fn get_PrimaryUser(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_PrimaryUser(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_PrimaryUser(self: *const IADsComputer, bstrPrimaryUser: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_PrimaryUser(@as(*const IADsComputer, @ptrCast(self)), bstrPrimaryUser);
+    }
+    pub fn get_Owner(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Owner(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Owner(self: *const IADsComputer, bstrOwner: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Owner(@as(*const IADsComputer, @ptrCast(self)), bstrOwner);
+    }
+    pub fn get_Division(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Division(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Division(self: *const IADsComputer, bstrDivision: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Division(@as(*const IADsComputer, @ptrCast(self)), bstrDivision);
+    }
+    pub fn get_Department(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Department(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Department(self: *const IADsComputer, bstrDepartment: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Department(@as(*const IADsComputer, @ptrCast(self)), bstrDepartment);
+    }
+    pub fn get_Role(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Role(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Role(self: *const IADsComputer, bstrRole: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Role(@as(*const IADsComputer, @ptrCast(self)), bstrRole);
+    }
+    pub fn get_OperatingSystem(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_OperatingSystem(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_OperatingSystem(self: *const IADsComputer, bstrOperatingSystem: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_OperatingSystem(@as(*const IADsComputer, @ptrCast(self)), bstrOperatingSystem);
+    }
+    pub fn get_OperatingSystemVersion(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_OperatingSystemVersion(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_OperatingSystemVersion(self: *const IADsComputer, bstrOperatingSystemVersion: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_OperatingSystemVersion(@as(*const IADsComputer, @ptrCast(self)), bstrOperatingSystemVersion);
+    }
+    pub fn get_Model(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Model(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Model(self: *const IADsComputer, bstrModel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Model(@as(*const IADsComputer, @ptrCast(self)), bstrModel);
+    }
+    pub fn get_Processor(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_Processor(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_Processor(self: *const IADsComputer, bstrProcessor: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_Processor(@as(*const IADsComputer, @ptrCast(self)), bstrProcessor);
+    }
+    pub fn get_ProcessorCount(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_ProcessorCount(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_ProcessorCount(self: *const IADsComputer, bstrProcessorCount: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_ProcessorCount(@as(*const IADsComputer, @ptrCast(self)), bstrProcessorCount);
+    }
+    pub fn get_MemorySize(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_MemorySize(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_MemorySize(self: *const IADsComputer, bstrMemorySize: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_MemorySize(@as(*const IADsComputer, @ptrCast(self)), bstrMemorySize);
+    }
+    pub fn get_StorageCapacity(self: *const IADsComputer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_StorageCapacity(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_StorageCapacity(self: *const IADsComputer, bstrStorageCapacity: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_StorageCapacity(@as(*const IADsComputer, @ptrCast(self)), bstrStorageCapacity);
+    }
+    pub fn get_NetAddresses(self: *const IADsComputer, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).get_NetAddresses(@as(*const IADsComputer, @ptrCast(self)), retval);
+    }
+    pub fn put_NetAddresses(self: *const IADsComputer, vNetAddresses: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputer.VTable, @ptrCast(self.vtable)).put_NetAddresses(@as(*const IADsComputer, @ptrCast(self)), vNetAddresses);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4047,7 +4728,13 @@ pub const IADsComputerOperations = extern union {
             return @as(*const IADsComputerOperations.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IADsComputerOperations, @ptrCast(self)), bReboot);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn Status(self: *const IADsComputerOperations, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputerOperations.VTable, @ptrCast(self.vtable)).Status(@as(*const IADsComputerOperations, @ptrCast(self)), ppObject);
+    }
+    pub fn Shutdown(self: *const IADsComputerOperations, bReboot: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsComputerOperations.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IADsComputerOperations, @ptrCast(self)), bReboot);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4113,7 +4800,25 @@ pub const IADsGroup = extern union {
             return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).Remove(@as(*const IADsGroup, @ptrCast(self)), bstrItemToBeRemoved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Description(self: *const IADsGroup, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsGroup, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsGroup, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsGroup, @ptrCast(self)), bstrDescription);
+    }
+    pub fn Members(self: *const IADsGroup, ppMembers: ?*?*IADsMembers) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).Members(@as(*const IADsGroup, @ptrCast(self)), ppMembers);
+    }
+    pub fn IsMember(self: *const IADsGroup, bstrMember: ?BSTR, bMember: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).IsMember(@as(*const IADsGroup, @ptrCast(self)), bstrMember, bMember);
+    }
+    pub fn Add(self: *const IADsGroup, bstrNewItem: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).Add(@as(*const IADsGroup, @ptrCast(self)), bstrNewItem);
+    }
+    pub fn Remove(self: *const IADsGroup, bstrItemToBeRemoved: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsGroup.VTable, @ptrCast(self.vtable)).Remove(@as(*const IADsGroup, @ptrCast(self)), bstrItemToBeRemoved);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4945,7 +5650,280 @@ pub const IADsUser = extern union {
             return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).ChangePassword(@as(*const IADsUser, @ptrCast(self)), bstrOldPassword, bstrNewPassword);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_BadLoginAddress(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_BadLoginAddress(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_BadLoginCount(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_BadLoginCount(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_LastLogin(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LastLogin(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_LastLogoff(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LastLogoff(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_LastFailedLogin(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LastFailedLogin(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_PasswordLastChanged(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PasswordLastChanged(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsUser, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsUser, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_Division(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Division(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Division(self: *const IADsUser, bstrDivision: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Division(@as(*const IADsUser, @ptrCast(self)), bstrDivision);
+    }
+    pub fn get_Department(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Department(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Department(self: *const IADsUser, bstrDepartment: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Department(@as(*const IADsUser, @ptrCast(self)), bstrDepartment);
+    }
+    pub fn get_EmployeeID(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_EmployeeID(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_EmployeeID(self: *const IADsUser, bstrEmployeeID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_EmployeeID(@as(*const IADsUser, @ptrCast(self)), bstrEmployeeID);
+    }
+    pub fn get_FullName(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_FullName(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_FullName(self: *const IADsUser, bstrFullName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_FullName(@as(*const IADsUser, @ptrCast(self)), bstrFullName);
+    }
+    pub fn get_FirstName(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_FirstName(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_FirstName(self: *const IADsUser, bstrFirstName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_FirstName(@as(*const IADsUser, @ptrCast(self)), bstrFirstName);
+    }
+    pub fn get_LastName(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LastName(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_LastName(self: *const IADsUser, bstrLastName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_LastName(@as(*const IADsUser, @ptrCast(self)), bstrLastName);
+    }
+    pub fn get_OtherName(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_OtherName(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_OtherName(self: *const IADsUser, bstrOtherName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_OtherName(@as(*const IADsUser, @ptrCast(self)), bstrOtherName);
+    }
+    pub fn get_NamePrefix(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_NamePrefix(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_NamePrefix(self: *const IADsUser, bstrNamePrefix: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_NamePrefix(@as(*const IADsUser, @ptrCast(self)), bstrNamePrefix);
+    }
+    pub fn get_NameSuffix(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_NameSuffix(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_NameSuffix(self: *const IADsUser, bstrNameSuffix: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_NameSuffix(@as(*const IADsUser, @ptrCast(self)), bstrNameSuffix);
+    }
+    pub fn get_Title(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Title(self: *const IADsUser, bstrTitle: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Title(@as(*const IADsUser, @ptrCast(self)), bstrTitle);
+    }
+    pub fn get_Manager(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Manager(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Manager(self: *const IADsUser, bstrManager: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Manager(@as(*const IADsUser, @ptrCast(self)), bstrManager);
+    }
+    pub fn get_TelephoneHome(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_TelephoneHome(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneHome(self: *const IADsUser, vTelephoneHome: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_TelephoneHome(@as(*const IADsUser, @ptrCast(self)), vTelephoneHome);
+    }
+    pub fn get_TelephoneMobile(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_TelephoneMobile(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneMobile(self: *const IADsUser, vTelephoneMobile: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_TelephoneMobile(@as(*const IADsUser, @ptrCast(self)), vTelephoneMobile);
+    }
+    pub fn get_TelephoneNumber(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_TelephoneNumber(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneNumber(self: *const IADsUser, vTelephoneNumber: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_TelephoneNumber(@as(*const IADsUser, @ptrCast(self)), vTelephoneNumber);
+    }
+    pub fn get_TelephonePager(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_TelephonePager(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephonePager(self: *const IADsUser, vTelephonePager: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_TelephonePager(@as(*const IADsUser, @ptrCast(self)), vTelephonePager);
+    }
+    pub fn get_FaxNumber(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_FaxNumber(self: *const IADsUser, vFaxNumber: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IADsUser, @ptrCast(self)), vFaxNumber);
+    }
+    pub fn get_OfficeLocations(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_OfficeLocations(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_OfficeLocations(self: *const IADsUser, vOfficeLocations: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_OfficeLocations(@as(*const IADsUser, @ptrCast(self)), vOfficeLocations);
+    }
+    pub fn get_PostalAddresses(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PostalAddresses(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalAddresses(self: *const IADsUser, vPostalAddresses: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_PostalAddresses(@as(*const IADsUser, @ptrCast(self)), vPostalAddresses);
+    }
+    pub fn get_PostalCodes(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PostalCodes(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalCodes(self: *const IADsUser, vPostalCodes: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_PostalCodes(@as(*const IADsUser, @ptrCast(self)), vPostalCodes);
+    }
+    pub fn get_SeeAlso(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_SeeAlso(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_SeeAlso(self: *const IADsUser, vSeeAlso: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_SeeAlso(@as(*const IADsUser, @ptrCast(self)), vSeeAlso);
+    }
+    pub fn get_AccountDisabled(self: *const IADsUser, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_AccountDisabled(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_AccountDisabled(self: *const IADsUser, fAccountDisabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_AccountDisabled(@as(*const IADsUser, @ptrCast(self)), fAccountDisabled);
+    }
+    pub fn get_AccountExpirationDate(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_AccountExpirationDate(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_AccountExpirationDate(self: *const IADsUser, daAccountExpirationDate: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_AccountExpirationDate(@as(*const IADsUser, @ptrCast(self)), daAccountExpirationDate);
+    }
+    pub fn get_GraceLoginsAllowed(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_GraceLoginsAllowed(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_GraceLoginsAllowed(self: *const IADsUser, lnGraceLoginsAllowed: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_GraceLoginsAllowed(@as(*const IADsUser, @ptrCast(self)), lnGraceLoginsAllowed);
+    }
+    pub fn get_GraceLoginsRemaining(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_GraceLoginsRemaining(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_GraceLoginsRemaining(self: *const IADsUser, lnGraceLoginsRemaining: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_GraceLoginsRemaining(@as(*const IADsUser, @ptrCast(self)), lnGraceLoginsRemaining);
+    }
+    pub fn get_IsAccountLocked(self: *const IADsUser, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_IsAccountLocked(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_IsAccountLocked(self: *const IADsUser, fIsAccountLocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_IsAccountLocked(@as(*const IADsUser, @ptrCast(self)), fIsAccountLocked);
+    }
+    pub fn get_LoginHours(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LoginHours(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_LoginHours(self: *const IADsUser, vLoginHours: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_LoginHours(@as(*const IADsUser, @ptrCast(self)), vLoginHours);
+    }
+    pub fn get_LoginWorkstations(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LoginWorkstations(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_LoginWorkstations(self: *const IADsUser, vLoginWorkstations: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_LoginWorkstations(@as(*const IADsUser, @ptrCast(self)), vLoginWorkstations);
+    }
+    pub fn get_MaxLogins(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_MaxLogins(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxLogins(self: *const IADsUser, lnMaxLogins: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_MaxLogins(@as(*const IADsUser, @ptrCast(self)), lnMaxLogins);
+    }
+    pub fn get_MaxStorage(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_MaxStorage(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxStorage(self: *const IADsUser, lnMaxStorage: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_MaxStorage(@as(*const IADsUser, @ptrCast(self)), lnMaxStorage);
+    }
+    pub fn get_PasswordExpirationDate(self: *const IADsUser, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PasswordExpirationDate(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_PasswordExpirationDate(self: *const IADsUser, daPasswordExpirationDate: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_PasswordExpirationDate(@as(*const IADsUser, @ptrCast(self)), daPasswordExpirationDate);
+    }
+    pub fn get_PasswordMinimumLength(self: *const IADsUser, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PasswordMinimumLength(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_PasswordMinimumLength(self: *const IADsUser, lnPasswordMinimumLength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_PasswordMinimumLength(@as(*const IADsUser, @ptrCast(self)), lnPasswordMinimumLength);
+    }
+    pub fn get_PasswordRequired(self: *const IADsUser, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_PasswordRequired(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_PasswordRequired(self: *const IADsUser, fPasswordRequired: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_PasswordRequired(@as(*const IADsUser, @ptrCast(self)), fPasswordRequired);
+    }
+    pub fn get_RequireUniquePassword(self: *const IADsUser, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_RequireUniquePassword(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_RequireUniquePassword(self: *const IADsUser, fRequireUniquePassword: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_RequireUniquePassword(@as(*const IADsUser, @ptrCast(self)), fRequireUniquePassword);
+    }
+    pub fn get_EmailAddress(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_EmailAddress(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_EmailAddress(self: *const IADsUser, bstrEmailAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_EmailAddress(@as(*const IADsUser, @ptrCast(self)), bstrEmailAddress);
+    }
+    pub fn get_HomeDirectory(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_HomeDirectory(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_HomeDirectory(self: *const IADsUser, bstrHomeDirectory: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_HomeDirectory(@as(*const IADsUser, @ptrCast(self)), bstrHomeDirectory);
+    }
+    pub fn get_Languages(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Languages(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Languages(self: *const IADsUser, vLanguages: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Languages(@as(*const IADsUser, @ptrCast(self)), vLanguages);
+    }
+    pub fn get_Profile(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Profile(self: *const IADsUser, bstrProfile: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Profile(@as(*const IADsUser, @ptrCast(self)), bstrProfile);
+    }
+    pub fn get_LoginScript(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_LoginScript(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_LoginScript(self: *const IADsUser, bstrLoginScript: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_LoginScript(@as(*const IADsUser, @ptrCast(self)), bstrLoginScript);
+    }
+    pub fn get_Picture(self: *const IADsUser, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_Picture(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_Picture(self: *const IADsUser, vPicture: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_Picture(@as(*const IADsUser, @ptrCast(self)), vPicture);
+    }
+    pub fn get_HomePage(self: *const IADsUser, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).get_HomePage(@as(*const IADsUser, @ptrCast(self)), retval);
+    }
+    pub fn put_HomePage(self: *const IADsUser, bstrHomePage: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).put_HomePage(@as(*const IADsUser, @ptrCast(self)), bstrHomePage);
+    }
+    pub fn Groups(self: *const IADsUser, ppGroups: ?*?*IADsMembers) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).Groups(@as(*const IADsUser, @ptrCast(self)), ppGroups);
+    }
+    pub fn SetPassword(self: *const IADsUser, NewPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IADsUser, @ptrCast(self)), NewPassword);
+    }
+    pub fn ChangePassword(self: *const IADsUser, bstrOldPassword: ?BSTR, bstrNewPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsUser.VTable, @ptrCast(self.vtable)).ChangePassword(@as(*const IADsUser, @ptrCast(self)), bstrOldPassword, bstrNewPassword);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5194,7 +6172,85 @@ pub const IADsPrintQueue = extern union {
             return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_NetAddresses(@as(*const IADsPrintQueue, @ptrCast(self)), vNetAddresses);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_PrinterPath(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_PrinterPath(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_PrinterPath(self: *const IADsPrintQueue, bstrPrinterPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_PrinterPath(@as(*const IADsPrintQueue, @ptrCast(self)), bstrPrinterPath);
+    }
+    pub fn get_Model(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_Model(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_Model(self: *const IADsPrintQueue, bstrModel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_Model(@as(*const IADsPrintQueue, @ptrCast(self)), bstrModel);
+    }
+    pub fn get_Datatype(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_Datatype(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_Datatype(self: *const IADsPrintQueue, bstrDatatype: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_Datatype(@as(*const IADsPrintQueue, @ptrCast(self)), bstrDatatype);
+    }
+    pub fn get_PrintProcessor(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_PrintProcessor(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_PrintProcessor(self: *const IADsPrintQueue, bstrPrintProcessor: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_PrintProcessor(@as(*const IADsPrintQueue, @ptrCast(self)), bstrPrintProcessor);
+    }
+    pub fn get_Description(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsPrintQueue, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsPrintQueue, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_Location(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_Location(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_Location(self: *const IADsPrintQueue, bstrLocation: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_Location(@as(*const IADsPrintQueue, @ptrCast(self)), bstrLocation);
+    }
+    pub fn get_StartTime(self: *const IADsPrintQueue, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_StartTime(self: *const IADsPrintQueue, daStartTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const IADsPrintQueue, @ptrCast(self)), daStartTime);
+    }
+    pub fn get_UntilTime(self: *const IADsPrintQueue, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_UntilTime(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_UntilTime(self: *const IADsPrintQueue, daUntilTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_UntilTime(@as(*const IADsPrintQueue, @ptrCast(self)), daUntilTime);
+    }
+    pub fn get_DefaultJobPriority(self: *const IADsPrintQueue, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_DefaultJobPriority(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_DefaultJobPriority(self: *const IADsPrintQueue, lnDefaultJobPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_DefaultJobPriority(@as(*const IADsPrintQueue, @ptrCast(self)), lnDefaultJobPriority);
+    }
+    pub fn get_Priority(self: *const IADsPrintQueue, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_Priority(self: *const IADsPrintQueue, lnPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IADsPrintQueue, @ptrCast(self)), lnPriority);
+    }
+    pub fn get_BannerPage(self: *const IADsPrintQueue, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_BannerPage(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_BannerPage(self: *const IADsPrintQueue, bstrBannerPage: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_BannerPage(@as(*const IADsPrintQueue, @ptrCast(self)), bstrBannerPage);
+    }
+    pub fn get_PrintDevices(self: *const IADsPrintQueue, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_PrintDevices(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_PrintDevices(self: *const IADsPrintQueue, vPrintDevices: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_PrintDevices(@as(*const IADsPrintQueue, @ptrCast(self)), vPrintDevices);
+    }
+    pub fn get_NetAddresses(self: *const IADsPrintQueue, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).get_NetAddresses(@as(*const IADsPrintQueue, @ptrCast(self)), retval);
+    }
+    pub fn put_NetAddresses(self: *const IADsPrintQueue, vNetAddresses: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueue.VTable, @ptrCast(self.vtable)).put_NetAddresses(@as(*const IADsPrintQueue, @ptrCast(self)), vNetAddresses);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5247,7 +6303,22 @@ pub const IADsPrintQueueOperations = extern union {
             return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).Purge(@as(*const IADsPrintQueueOperations, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Status(self: *const IADsPrintQueueOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IADsPrintQueueOperations, @ptrCast(self)), retval);
+    }
+    pub fn PrintJobs(self: *const IADsPrintQueueOperations, pObject: ?*?*IADsCollection) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).PrintJobs(@as(*const IADsPrintQueueOperations, @ptrCast(self)), pObject);
+    }
+    pub fn Pause(self: *const IADsPrintQueueOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).Pause(@as(*const IADsPrintQueueOperations, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IADsPrintQueueOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).Resume(@as(*const IADsPrintQueueOperations, @ptrCast(self)));
+    }
+    pub fn Purge(self: *const IADsPrintQueueOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintQueueOperations.VTable, @ptrCast(self.vtable)).Purge(@as(*const IADsPrintQueueOperations, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5424,7 +6495,61 @@ pub const IADsPrintJob = extern union {
             return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_NotifyPath(@as(*const IADsPrintJob, @ptrCast(self)), bstrNotifyPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_HostPrintQueue(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_HostPrintQueue(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_User(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_User(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_UserPath(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_UserPath(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_TimeSubmitted(self: *const IADsPrintJob, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_TimeSubmitted(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_TotalPages(self: *const IADsPrintJob, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_TotalPages(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_Size(self: *const IADsPrintJob, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsPrintJob, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsPrintJob, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_Priority(self: *const IADsPrintJob, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_Priority(self: *const IADsPrintJob, lnPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IADsPrintJob, @ptrCast(self)), lnPriority);
+    }
+    pub fn get_StartTime(self: *const IADsPrintJob, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_StartTime(self: *const IADsPrintJob, daStartTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const IADsPrintJob, @ptrCast(self)), daStartTime);
+    }
+    pub fn get_UntilTime(self: *const IADsPrintJob, retval: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_UntilTime(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_UntilTime(self: *const IADsPrintJob, daUntilTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_UntilTime(@as(*const IADsPrintJob, @ptrCast(self)), daUntilTime);
+    }
+    pub fn get_Notify(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_Notify(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_Notify(self: *const IADsPrintJob, bstrNotify: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_Notify(@as(*const IADsPrintJob, @ptrCast(self)), bstrNotify);
+    }
+    pub fn get_NotifyPath(self: *const IADsPrintJob, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).get_NotifyPath(@as(*const IADsPrintJob, @ptrCast(self)), retval);
+    }
+    pub fn put_NotifyPath(self: *const IADsPrintJob, bstrNotifyPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJob.VTable, @ptrCast(self.vtable)).put_NotifyPath(@as(*const IADsPrintJob, @ptrCast(self)), bstrNotifyPath);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5498,7 +6623,28 @@ pub const IADsPrintJobOperations = extern union {
             return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).Resume(@as(*const IADsPrintJobOperations, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Status(self: *const IADsPrintJobOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IADsPrintJobOperations, @ptrCast(self)), retval);
+    }
+    pub fn get_TimeElapsed(self: *const IADsPrintJobOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).get_TimeElapsed(@as(*const IADsPrintJobOperations, @ptrCast(self)), retval);
+    }
+    pub fn get_PagesPrinted(self: *const IADsPrintJobOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).get_PagesPrinted(@as(*const IADsPrintJobOperations, @ptrCast(self)), retval);
+    }
+    pub fn get_Position(self: *const IADsPrintJobOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).get_Position(@as(*const IADsPrintJobOperations, @ptrCast(self)), retval);
+    }
+    pub fn put_Position(self: *const IADsPrintJobOperations, lnPosition: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).put_Position(@as(*const IADsPrintJobOperations, @ptrCast(self)), lnPosition);
+    }
+    pub fn Pause(self: *const IADsPrintJobOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).Pause(@as(*const IADsPrintJobOperations, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IADsPrintJobOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsPrintJobOperations.VTable, @ptrCast(self.vtable)).Resume(@as(*const IADsPrintJobOperations, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5729,7 +6875,79 @@ pub const IADsService = extern union {
             return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_Dependencies(@as(*const IADsService, @ptrCast(self)), vDependencies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_HostComputer(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_HostComputer(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_HostComputer(self: *const IADsService, bstrHostComputer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_HostComputer(@as(*const IADsService, @ptrCast(self)), bstrHostComputer);
+    }
+    pub fn get_DisplayName(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_DisplayName(self: *const IADsService, bstrDisplayName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IADsService, @ptrCast(self)), bstrDisplayName);
+    }
+    pub fn get_Version(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_Version(self: *const IADsService, bstrVersion: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_Version(@as(*const IADsService, @ptrCast(self)), bstrVersion);
+    }
+    pub fn get_ServiceType(self: *const IADsService, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_ServiceType(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_ServiceType(self: *const IADsService, lnServiceType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_ServiceType(@as(*const IADsService, @ptrCast(self)), lnServiceType);
+    }
+    pub fn get_StartType(self: *const IADsService, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_StartType(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_StartType(self: *const IADsService, lnStartType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_StartType(@as(*const IADsService, @ptrCast(self)), lnStartType);
+    }
+    pub fn get_Path(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_Path(self: *const IADsService, bstrPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_Path(@as(*const IADsService, @ptrCast(self)), bstrPath);
+    }
+    pub fn get_StartupParameters(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_StartupParameters(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_StartupParameters(self: *const IADsService, bstrStartupParameters: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_StartupParameters(@as(*const IADsService, @ptrCast(self)), bstrStartupParameters);
+    }
+    pub fn get_ErrorControl(self: *const IADsService, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_ErrorControl(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_ErrorControl(self: *const IADsService, lnErrorControl: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_ErrorControl(@as(*const IADsService, @ptrCast(self)), lnErrorControl);
+    }
+    pub fn get_LoadOrderGroup(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_LoadOrderGroup(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_LoadOrderGroup(self: *const IADsService, bstrLoadOrderGroup: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_LoadOrderGroup(@as(*const IADsService, @ptrCast(self)), bstrLoadOrderGroup);
+    }
+    pub fn get_ServiceAccountName(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_ServiceAccountName(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_ServiceAccountName(self: *const IADsService, bstrServiceAccountName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_ServiceAccountName(@as(*const IADsService, @ptrCast(self)), bstrServiceAccountName);
+    }
+    pub fn get_ServiceAccountPath(self: *const IADsService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_ServiceAccountPath(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_ServiceAccountPath(self: *const IADsService, bstrServiceAccountPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_ServiceAccountPath(@as(*const IADsService, @ptrCast(self)), bstrServiceAccountPath);
+    }
+    pub fn get_Dependencies(self: *const IADsService, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).get_Dependencies(@as(*const IADsService, @ptrCast(self)), retval);
+    }
+    pub fn put_Dependencies(self: *const IADsService, vDependencies: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsService.VTable, @ptrCast(self.vtable)).put_Dependencies(@as(*const IADsService, @ptrCast(self)), vDependencies);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5789,7 +7007,25 @@ pub const IADsServiceOperations = extern union {
             return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IADsServiceOperations, @ptrCast(self)), bstrNewPassword);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_Status(self: *const IADsServiceOperations, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IADsServiceOperations, @ptrCast(self)), retval);
+    }
+    pub fn Start(self: *const IADsServiceOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).Start(@as(*const IADsServiceOperations, @ptrCast(self)));
+    }
+    pub fn Stop(self: *const IADsServiceOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).Stop(@as(*const IADsServiceOperations, @ptrCast(self)));
+    }
+    pub fn Pause(self: *const IADsServiceOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).Pause(@as(*const IADsServiceOperations, @ptrCast(self)));
+    }
+    pub fn Continue(self: *const IADsServiceOperations) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).Continue(@as(*const IADsServiceOperations, @ptrCast(self)));
+    }
+    pub fn SetPassword(self: *const IADsServiceOperations, bstrNewPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsServiceOperations.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IADsServiceOperations, @ptrCast(self)), bstrNewPassword);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5840,7 +7076,19 @@ pub const IADsFileService = extern union {
             return @as(*const IADsFileService.VTable, @ptrCast(self.vtable)).put_MaxUserCount(@as(*const IADsFileService, @ptrCast(self)), lnMaxUserCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADsService.MethodMixin(@This());
+    pub fn get_Description(self: *const IADsFileService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileService.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsFileService, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsFileService, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileService.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsFileService, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_MaxUserCount(self: *const IADsFileService, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileService.VTable, @ptrCast(self.vtable)).get_MaxUserCount(@as(*const IADsFileService, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxUserCount(self: *const IADsFileService, lnMaxUserCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileService.VTable, @ptrCast(self.vtable)).put_MaxUserCount(@as(*const IADsFileService, @ptrCast(self)), lnMaxUserCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5871,7 +7119,13 @@ pub const IADsFileServiceOperations = extern union {
             return @as(*const IADsFileServiceOperations.VTable, @ptrCast(self.vtable)).Resources(@as(*const IADsFileServiceOperations, @ptrCast(self)), ppResources);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADsServiceOperations.MethodMixin(@This());
+    pub fn Sessions(self: *const IADsFileServiceOperations, ppSessions: ?*?*IADsCollection) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileServiceOperations.VTable, @ptrCast(self.vtable)).Sessions(@as(*const IADsFileServiceOperations, @ptrCast(self)), ppSessions);
+    }
+    pub fn Resources(self: *const IADsFileServiceOperations, ppResources: ?*?*IADsCollection) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileServiceOperations.VTable, @ptrCast(self.vtable)).Resources(@as(*const IADsFileServiceOperations, @ptrCast(self)), ppResources);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5967,7 +7221,34 @@ pub const IADsFileShare = extern union {
             return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).put_MaxUserCount(@as(*const IADsFileShare, @ptrCast(self)), lnMaxUserCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_CurrentUserCount(self: *const IADsFileShare, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).get_CurrentUserCount(@as(*const IADsFileShare, @ptrCast(self)), retval);
+    }
+    pub fn get_Description(self: *const IADsFileShare, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IADsFileShare, @ptrCast(self)), retval);
+    }
+    pub fn put_Description(self: *const IADsFileShare, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IADsFileShare, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_HostComputer(self: *const IADsFileShare, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).get_HostComputer(@as(*const IADsFileShare, @ptrCast(self)), retval);
+    }
+    pub fn put_HostComputer(self: *const IADsFileShare, bstrHostComputer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).put_HostComputer(@as(*const IADsFileShare, @ptrCast(self)), bstrHostComputer);
+    }
+    pub fn get_Path(self: *const IADsFileShare, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IADsFileShare, @ptrCast(self)), retval);
+    }
+    pub fn put_Path(self: *const IADsFileShare, bstrPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).put_Path(@as(*const IADsFileShare, @ptrCast(self)), bstrPath);
+    }
+    pub fn get_MaxUserCount(self: *const IADsFileShare, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).get_MaxUserCount(@as(*const IADsFileShare, @ptrCast(self)), retval);
+    }
+    pub fn put_MaxUserCount(self: *const IADsFileShare, lnMaxUserCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsFileShare.VTable, @ptrCast(self.vtable)).put_MaxUserCount(@as(*const IADsFileShare, @ptrCast(self)), lnMaxUserCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6036,7 +7317,25 @@ pub const IADsSession = extern union {
             return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_IdleTime(@as(*const IADsSession, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_User(self: *const IADsSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_User(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
+    pub fn get_UserPath(self: *const IADsSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_UserPath(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
+    pub fn get_Computer(self: *const IADsSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_Computer(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
+    pub fn get_ComputerPath(self: *const IADsSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_ComputerPath(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
+    pub fn get_ConnectTime(self: *const IADsSession, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_ConnectTime(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
+    pub fn get_IdleTime(self: *const IADsSession, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSession.VTable, @ptrCast(self.vtable)).get_IdleTime(@as(*const IADsSession, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6087,7 +7386,19 @@ pub const IADsResource = extern union {
             return @as(*const IADsResource.VTable, @ptrCast(self.vtable)).get_LockCount(@as(*const IADsResource, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IADs.MethodMixin(@This());
+    pub fn get_User(self: *const IADsResource, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsResource.VTable, @ptrCast(self.vtable)).get_User(@as(*const IADsResource, @ptrCast(self)), retval);
+    }
+    pub fn get_UserPath(self: *const IADsResource, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsResource.VTable, @ptrCast(self.vtable)).get_UserPath(@as(*const IADsResource, @ptrCast(self)), retval);
+    }
+    pub fn get_Path(self: *const IADsResource, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsResource.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IADsResource, @ptrCast(self)), retval);
+    }
+    pub fn get_LockCount(self: *const IADsResource, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsResource.VTable, @ptrCast(self.vtable)).get_LockCount(@as(*const IADsResource, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6114,7 +7425,10 @@ pub const IADsOpenDSObject = extern union {
             return @as(*const IADsOpenDSObject.VTable, @ptrCast(self.vtable)).OpenDSObject(@as(*const IADsOpenDSObject, @ptrCast(self)), lpszDNName, lpszUserName, lpszPassword, lnReserved, ppOleDsObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OpenDSObject(self: *const IADsOpenDSObject, lpszDNName: ?BSTR, lpszUserName: ?BSTR, lpszPassword: ?BSTR, lnReserved: i32, ppOleDsObj: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsOpenDSObject.VTable, @ptrCast(self.vtable)).OpenDSObject(@as(*const IADsOpenDSObject, @ptrCast(self)), lpszDNName, lpszUserName, lpszPassword, lnReserved, ppOleDsObj);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6177,7 +7491,22 @@ pub const IDirectoryObject = extern union {
             return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).DeleteDSObject(@as(*const IDirectoryObject, @ptrCast(self)), pszRDNName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObjectInformation(self: *const IDirectoryObject, ppObjInfo: ?*?*ADS_OBJECT_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).GetObjectInformation(@as(*const IDirectoryObject, @ptrCast(self)), ppObjInfo);
+    }
+    pub fn GetObjectAttributes(self: *const IDirectoryObject, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, ppAttributeEntries: ?*?*ADS_ATTR_INFO, pdwNumAttributesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).GetObjectAttributes(@as(*const IDirectoryObject, @ptrCast(self)), pAttributeNames, dwNumberAttributes, ppAttributeEntries, pdwNumAttributesReturned);
+    }
+    pub fn SetObjectAttributes(self: *const IDirectoryObject, pAttributeEntries: ?*ADS_ATTR_INFO, dwNumAttributes: u32, pdwNumAttributesModified: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).SetObjectAttributes(@as(*const IDirectoryObject, @ptrCast(self)), pAttributeEntries, dwNumAttributes, pdwNumAttributesModified);
+    }
+    pub fn CreateDSObject(self: *const IDirectoryObject, pszRDNName: ?PWSTR, pAttributeEntries: ?*ADS_ATTR_INFO, dwNumAttributes: u32, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).CreateDSObject(@as(*const IDirectoryObject, @ptrCast(self)), pszRDNName, pAttributeEntries, dwNumAttributes, ppObject);
+    }
+    pub fn DeleteDSObject(self: *const IDirectoryObject, pszRDNName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectoryObject.VTable, @ptrCast(self.vtable)).DeleteDSObject(@as(*const IDirectoryObject, @ptrCast(self)), pszRDNName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6279,7 +7608,37 @@ pub const IDirectorySearch = extern union {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).CloseSearchHandle(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSearchPreference(self: *const IDirectorySearch, pSearchPrefs: ?*ads_searchpref_info, dwNumPrefs: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).SetSearchPreference(@as(*const IDirectorySearch, @ptrCast(self)), pSearchPrefs, dwNumPrefs);
+    }
+    pub fn ExecuteSearch(self: *const IDirectorySearch, pszSearchFilter: ?PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).ExecuteSearch(@as(*const IDirectorySearch, @ptrCast(self)), pszSearchFilter, pAttributeNames, dwNumberAttributes, phSearchResult);
+    }
+    pub fn AbandonSearch(self: *const IDirectorySearch, phSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).AbandonSearch(@as(*const IDirectorySearch, @ptrCast(self)), phSearchResult);
+    }
+    pub fn GetFirstRow(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetFirstRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
+    }
+    pub fn GetNextRow(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetNextRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
+    }
+    pub fn GetPreviousRow(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetPreviousRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
+    }
+    pub fn GetNextColumnName(self: *const IDirectorySearch, hSearchHandle: ADS_SEARCH_HANDLE, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetNextColumnName(@as(*const IDirectorySearch, @ptrCast(self)), hSearchHandle, ppszColumnName);
+    }
+    pub fn GetColumn(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?PWSTR, pSearchColumn: ?*ads_search_column) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult, szColumnName, pSearchColumn);
+    }
+    pub fn FreeColumn(self: *const IDirectorySearch, pSearchColumn: ?*ads_search_column) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).FreeColumn(@as(*const IDirectorySearch, @ptrCast(self)), pSearchColumn);
+    }
+    pub fn CloseSearchHandle(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).CloseSearchHandle(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6368,7 +7727,31 @@ pub const IDirectorySchemaMgmt = extern union {
             return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).DeleteClassDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszClassName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumAttributes(self: *const IDirectorySchemaMgmt, ppszAttrNames: ?*?PWSTR, dwNumAttributes: u32, ppAttrDefinition: ?*?*ADS_ATTR_DEF, pdwNumAttributes: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).EnumAttributes(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), ppszAttrNames, dwNumAttributes, ppAttrDefinition, pdwNumAttributes);
+    }
+    pub fn CreateAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).CreateAttributeDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszAttributeName, pAttributeDefinition);
+    }
+    pub fn WriteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).WriteAttributeDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszAttributeName, pAttributeDefinition);
+    }
+    pub fn DeleteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).DeleteAttributeDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszAttributeName);
+    }
+    pub fn EnumClasses(self: *const IDirectorySchemaMgmt, ppszClassNames: ?*?PWSTR, dwNumClasses: u32, ppClassDefinition: ?*?*ADS_CLASS_DEF, pdwNumClasses: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).EnumClasses(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), ppszClassNames, dwNumClasses, ppClassDefinition, pdwNumClasses);
+    }
+    pub fn WriteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).WriteClassDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszClassName, pClassDefinition);
+    }
+    pub fn CreateClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).CreateClassDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszClassName, pClassDefinition);
+    }
+    pub fn DeleteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDirectorySchemaMgmt.VTable, @ptrCast(self.vtable)).DeleteClassDefinition(@as(*const IDirectorySchemaMgmt, @ptrCast(self)), pszClassName);
+    }
 };
 
 const IID_IADsAggregatee_Value = Guid.initString("1346ce8c-9039-11d0-8528-00c04fd8d503");
@@ -6413,7 +7796,19 @@ pub const IADsAggregatee = extern union {
             return @as(*const IADsAggregatee.VTable, @ptrCast(self.vtable)).RestoreInterface(@as(*const IADsAggregatee, @ptrCast(self)), riid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectAsAggregatee(self: *const IADsAggregatee, pOuterUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregatee.VTable, @ptrCast(self.vtable)).ConnectAsAggregatee(@as(*const IADsAggregatee, @ptrCast(self)), pOuterUnknown);
+    }
+    pub fn DisconnectAsAggregatee(self: *const IADsAggregatee) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregatee.VTable, @ptrCast(self.vtable)).DisconnectAsAggregatee(@as(*const IADsAggregatee, @ptrCast(self)));
+    }
+    pub fn RelinquishInterface(self: *const IADsAggregatee, riid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregatee.VTable, @ptrCast(self.vtable)).RelinquishInterface(@as(*const IADsAggregatee, @ptrCast(self)), riid);
+    }
+    pub fn RestoreInterface(self: *const IADsAggregatee, riid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregatee.VTable, @ptrCast(self.vtable)).RestoreInterface(@as(*const IADsAggregatee, @ptrCast(self)), riid);
+    }
 };
 
 const IID_IADsAggregator_Value = Guid.initString("52db5fb0-941f-11d0-8529-00c04fd8d503");
@@ -6442,7 +7837,13 @@ pub const IADsAggregator = extern union {
             return @as(*const IADsAggregator.VTable, @ptrCast(self.vtable)).DisconnectAsAggregator(@as(*const IADsAggregator, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectAsAggregator(self: *const IADsAggregator, pAggregatee: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregator.VTable, @ptrCast(self.vtable)).ConnectAsAggregator(@as(*const IADsAggregator, @ptrCast(self)), pAggregatee);
+    }
+    pub fn DisconnectAsAggregator(self: *const IADsAggregator) callconv(.Inline) HRESULT {
+        return @as(*const IADsAggregator.VTable, @ptrCast(self.vtable)).DisconnectAsAggregator(@as(*const IADsAggregator, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6583,7 +7984,49 @@ pub const IADsAccessControlEntry = extern union {
             return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_Trustee(@as(*const IADsAccessControlEntry, @ptrCast(self)), bstrTrustee);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AccessMask(self: *const IADsAccessControlEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_AccessMask(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_AccessMask(self: *const IADsAccessControlEntry, lnAccessMask: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_AccessMask(@as(*const IADsAccessControlEntry, @ptrCast(self)), lnAccessMask);
+    }
+    pub fn get_AceType(self: *const IADsAccessControlEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_AceType(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_AceType(self: *const IADsAccessControlEntry, lnAceType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_AceType(@as(*const IADsAccessControlEntry, @ptrCast(self)), lnAceType);
+    }
+    pub fn get_AceFlags(self: *const IADsAccessControlEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_AceFlags(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_AceFlags(self: *const IADsAccessControlEntry, lnAceFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_AceFlags(@as(*const IADsAccessControlEntry, @ptrCast(self)), lnAceFlags);
+    }
+    pub fn get_Flags(self: *const IADsAccessControlEntry, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_Flags(self: *const IADsAccessControlEntry, lnFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IADsAccessControlEntry, @ptrCast(self)), lnFlags);
+    }
+    pub fn get_ObjectType(self: *const IADsAccessControlEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_ObjectType(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_ObjectType(self: *const IADsAccessControlEntry, bstrObjectType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_ObjectType(@as(*const IADsAccessControlEntry, @ptrCast(self)), bstrObjectType);
+    }
+    pub fn get_InheritedObjectType(self: *const IADsAccessControlEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_InheritedObjectType(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_InheritedObjectType(self: *const IADsAccessControlEntry, bstrInheritedObjectType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_InheritedObjectType(@as(*const IADsAccessControlEntry, @ptrCast(self)), bstrInheritedObjectType);
+    }
+    pub fn get_Trustee(self: *const IADsAccessControlEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).get_Trustee(@as(*const IADsAccessControlEntry, @ptrCast(self)), retval);
+    }
+    pub fn put_Trustee(self: *const IADsAccessControlEntry, bstrTrustee: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlEntry.VTable, @ptrCast(self.vtable)).put_Trustee(@as(*const IADsAccessControlEntry, @ptrCast(self)), bstrTrustee);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6667,7 +8110,31 @@ pub const IADsAccessControlList = extern union {
             return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IADsAccessControlList, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AclRevision(self: *const IADsAccessControlList, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).get_AclRevision(@as(*const IADsAccessControlList, @ptrCast(self)), retval);
+    }
+    pub fn put_AclRevision(self: *const IADsAccessControlList, lnAclRevision: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).put_AclRevision(@as(*const IADsAccessControlList, @ptrCast(self)), lnAclRevision);
+    }
+    pub fn get_AceCount(self: *const IADsAccessControlList, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).get_AceCount(@as(*const IADsAccessControlList, @ptrCast(self)), retval);
+    }
+    pub fn put_AceCount(self: *const IADsAccessControlList, lnAceCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).put_AceCount(@as(*const IADsAccessControlList, @ptrCast(self)), lnAceCount);
+    }
+    pub fn AddAce(self: *const IADsAccessControlList, pAccessControlEntry: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).AddAce(@as(*const IADsAccessControlList, @ptrCast(self)), pAccessControlEntry);
+    }
+    pub fn RemoveAce(self: *const IADsAccessControlList, pAccessControlEntry: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).RemoveAce(@as(*const IADsAccessControlList, @ptrCast(self)), pAccessControlEntry);
+    }
+    pub fn CopyAccessList(self: *const IADsAccessControlList, ppAccessControlList: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).CopyAccessList(@as(*const IADsAccessControlList, @ptrCast(self)), ppAccessControlList);
+    }
+    pub fn get__NewEnum(self: *const IADsAccessControlList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IADsAccessControlList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IADsAccessControlList, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6870,7 +8337,70 @@ pub const IADsSecurityDescriptor = extern union {
             return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).CopySecurityDescriptor(@as(*const IADsSecurityDescriptor, @ptrCast(self)), ppSecurityDescriptor);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Revision(self: *const IADsSecurityDescriptor, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_Revision(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_Revision(self: *const IADsSecurityDescriptor, lnRevision: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_Revision(@as(*const IADsSecurityDescriptor, @ptrCast(self)), lnRevision);
+    }
+    pub fn get_Control(self: *const IADsSecurityDescriptor, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_Control(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_Control(self: *const IADsSecurityDescriptor, lnControl: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_Control(@as(*const IADsSecurityDescriptor, @ptrCast(self)), lnControl);
+    }
+    pub fn get_Owner(self: *const IADsSecurityDescriptor, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_Owner(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_Owner(self: *const IADsSecurityDescriptor, bstrOwner: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_Owner(@as(*const IADsSecurityDescriptor, @ptrCast(self)), bstrOwner);
+    }
+    pub fn get_OwnerDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_OwnerDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_OwnerDefaulted(self: *const IADsSecurityDescriptor, fOwnerDefaulted: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_OwnerDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), fOwnerDefaulted);
+    }
+    pub fn get_Group(self: *const IADsSecurityDescriptor, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_Group(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_Group(self: *const IADsSecurityDescriptor, bstrGroup: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_Group(@as(*const IADsSecurityDescriptor, @ptrCast(self)), bstrGroup);
+    }
+    pub fn get_GroupDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_GroupDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_GroupDefaulted(self: *const IADsSecurityDescriptor, fGroupDefaulted: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_GroupDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), fGroupDefaulted);
+    }
+    pub fn get_DiscretionaryAcl(self: *const IADsSecurityDescriptor, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_DiscretionaryAcl(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_DiscretionaryAcl(self: *const IADsSecurityDescriptor, pDiscretionaryAcl: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_DiscretionaryAcl(@as(*const IADsSecurityDescriptor, @ptrCast(self)), pDiscretionaryAcl);
+    }
+    pub fn get_DaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_DaclDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_DaclDefaulted(self: *const IADsSecurityDescriptor, fDaclDefaulted: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_DaclDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), fDaclDefaulted);
+    }
+    pub fn get_SystemAcl(self: *const IADsSecurityDescriptor, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_SystemAcl(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_SystemAcl(self: *const IADsSecurityDescriptor, pSystemAcl: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_SystemAcl(@as(*const IADsSecurityDescriptor, @ptrCast(self)), pSystemAcl);
+    }
+    pub fn get_SaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).get_SaclDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), retval);
+    }
+    pub fn put_SaclDefaulted(self: *const IADsSecurityDescriptor, fSaclDefaulted: i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).put_SaclDefaulted(@as(*const IADsSecurityDescriptor, @ptrCast(self)), fSaclDefaulted);
+    }
+    pub fn CopySecurityDescriptor(self: *const IADsSecurityDescriptor, ppSecurityDescriptor: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityDescriptor.VTable, @ptrCast(self.vtable)).CopySecurityDescriptor(@as(*const IADsSecurityDescriptor, @ptrCast(self)), ppSecurityDescriptor);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6921,7 +8451,19 @@ pub const IADsLargeInteger = extern union {
             return @as(*const IADsLargeInteger.VTable, @ptrCast(self.vtable)).put_LowPart(@as(*const IADsLargeInteger, @ptrCast(self)), lnLowPart);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_HighPart(self: *const IADsLargeInteger, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsLargeInteger.VTable, @ptrCast(self.vtable)).get_HighPart(@as(*const IADsLargeInteger, @ptrCast(self)), retval);
+    }
+    pub fn put_HighPart(self: *const IADsLargeInteger, lnHighPart: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsLargeInteger.VTable, @ptrCast(self.vtable)).put_HighPart(@as(*const IADsLargeInteger, @ptrCast(self)), lnHighPart);
+    }
+    pub fn get_LowPart(self: *const IADsLargeInteger, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsLargeInteger.VTable, @ptrCast(self.vtable)).get_LowPart(@as(*const IADsLargeInteger, @ptrCast(self)), retval);
+    }
+    pub fn put_LowPart(self: *const IADsLargeInteger, lnLowPart: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsLargeInteger.VTable, @ptrCast(self.vtable)).put_LowPart(@as(*const IADsLargeInteger, @ptrCast(self)), lnLowPart);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7002,7 +8544,28 @@ pub const IADsNameTranslate = extern union {
             return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).GetEx(@as(*const IADsNameTranslate, @ptrCast(self)), lnFormatType, pvar);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn put_ChaseReferral(self: *const IADsNameTranslate, lnChaseReferral: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).put_ChaseReferral(@as(*const IADsNameTranslate, @ptrCast(self)), lnChaseReferral);
+    }
+    pub fn Init(self: *const IADsNameTranslate, lnSetType: i32, bstrADsPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).Init(@as(*const IADsNameTranslate, @ptrCast(self)), lnSetType, bstrADsPath);
+    }
+    pub fn InitEx(self: *const IADsNameTranslate, lnSetType: i32, bstrADsPath: ?BSTR, bstrUserID: ?BSTR, bstrDomain: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).InitEx(@as(*const IADsNameTranslate, @ptrCast(self)), lnSetType, bstrADsPath, bstrUserID, bstrDomain, bstrPassword);
+    }
+    pub fn Set(self: *const IADsNameTranslate, lnSetType: i32, bstrADsPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).Set(@as(*const IADsNameTranslate, @ptrCast(self)), lnSetType, bstrADsPath);
+    }
+    pub fn Get(self: *const IADsNameTranslate, lnFormatType: i32, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).Get(@as(*const IADsNameTranslate, @ptrCast(self)), lnFormatType, pbstrADsPath);
+    }
+    pub fn SetEx(self: *const IADsNameTranslate, lnFormatType: i32, pvar: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).SetEx(@as(*const IADsNameTranslate, @ptrCast(self)), lnFormatType, pvar);
+    }
+    pub fn GetEx(self: *const IADsNameTranslate, lnFormatType: i32, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsNameTranslate.VTable, @ptrCast(self.vtable)).GetEx(@as(*const IADsNameTranslate, @ptrCast(self)), lnFormatType, pvar);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7035,7 +8598,13 @@ pub const IADsCaseIgnoreList = extern union {
             return @as(*const IADsCaseIgnoreList.VTable, @ptrCast(self.vtable)).put_CaseIgnoreList(@as(*const IADsCaseIgnoreList, @ptrCast(self)), vCaseIgnoreList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CaseIgnoreList(self: *const IADsCaseIgnoreList, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsCaseIgnoreList.VTable, @ptrCast(self.vtable)).get_CaseIgnoreList(@as(*const IADsCaseIgnoreList, @ptrCast(self)), retval);
+    }
+    pub fn put_CaseIgnoreList(self: *const IADsCaseIgnoreList, vCaseIgnoreList: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsCaseIgnoreList.VTable, @ptrCast(self.vtable)).put_CaseIgnoreList(@as(*const IADsCaseIgnoreList, @ptrCast(self)), vCaseIgnoreList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7086,7 +8655,19 @@ pub const IADsFaxNumber = extern union {
             return @as(*const IADsFaxNumber.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IADsFaxNumber, @ptrCast(self)), vParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_TelephoneNumber(self: *const IADsFaxNumber, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFaxNumber.VTable, @ptrCast(self.vtable)).get_TelephoneNumber(@as(*const IADsFaxNumber, @ptrCast(self)), retval);
+    }
+    pub fn put_TelephoneNumber(self: *const IADsFaxNumber, bstrTelephoneNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsFaxNumber.VTable, @ptrCast(self.vtable)).put_TelephoneNumber(@as(*const IADsFaxNumber, @ptrCast(self)), bstrTelephoneNumber);
+    }
+    pub fn get_Parameters(self: *const IADsFaxNumber, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsFaxNumber.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IADsFaxNumber, @ptrCast(self)), retval);
+    }
+    pub fn put_Parameters(self: *const IADsFaxNumber, vParameters: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsFaxNumber.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IADsFaxNumber, @ptrCast(self)), vParameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7137,7 +8718,19 @@ pub const IADsNetAddress = extern union {
             return @as(*const IADsNetAddress.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IADsNetAddress, @ptrCast(self)), vAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AddressType(self: *const IADsNetAddress, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsNetAddress.VTable, @ptrCast(self.vtable)).get_AddressType(@as(*const IADsNetAddress, @ptrCast(self)), retval);
+    }
+    pub fn put_AddressType(self: *const IADsNetAddress, lnAddressType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsNetAddress.VTable, @ptrCast(self.vtable)).put_AddressType(@as(*const IADsNetAddress, @ptrCast(self)), lnAddressType);
+    }
+    pub fn get_Address(self: *const IADsNetAddress, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsNetAddress.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IADsNetAddress, @ptrCast(self)), retval);
+    }
+    pub fn put_Address(self: *const IADsNetAddress, vAddress: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsNetAddress.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IADsNetAddress, @ptrCast(self)), vAddress);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7170,7 +8763,13 @@ pub const IADsOctetList = extern union {
             return @as(*const IADsOctetList.VTable, @ptrCast(self.vtable)).put_OctetList(@as(*const IADsOctetList, @ptrCast(self)), vOctetList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_OctetList(self: *const IADsOctetList, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsOctetList.VTable, @ptrCast(self.vtable)).get_OctetList(@as(*const IADsOctetList, @ptrCast(self)), retval);
+    }
+    pub fn put_OctetList(self: *const IADsOctetList, vOctetList: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsOctetList.VTable, @ptrCast(self.vtable)).put_OctetList(@as(*const IADsOctetList, @ptrCast(self)), vOctetList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7221,7 +8820,19 @@ pub const IADsEmail = extern union {
             return @as(*const IADsEmail.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IADsEmail, @ptrCast(self)), bstrAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Type(self: *const IADsEmail, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsEmail.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IADsEmail, @ptrCast(self)), retval);
+    }
+    pub fn put_Type(self: *const IADsEmail, lnType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsEmail.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IADsEmail, @ptrCast(self)), lnType);
+    }
+    pub fn get_Address(self: *const IADsEmail, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsEmail.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IADsEmail, @ptrCast(self)), retval);
+    }
+    pub fn put_Address(self: *const IADsEmail, bstrAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsEmail.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IADsEmail, @ptrCast(self)), bstrAddress);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7290,7 +8901,25 @@ pub const IADsPath = extern union {
             return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).put_Path(@as(*const IADsPath, @ptrCast(self)), bstrPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Type(self: *const IADsPath, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IADsPath, @ptrCast(self)), retval);
+    }
+    pub fn put_Type(self: *const IADsPath, lnType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IADsPath, @ptrCast(self)), lnType);
+    }
+    pub fn get_VolumeName(self: *const IADsPath, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IADsPath, @ptrCast(self)), retval);
+    }
+    pub fn put_VolumeName(self: *const IADsPath, bstrVolumeName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).put_VolumeName(@as(*const IADsPath, @ptrCast(self)), bstrVolumeName);
+    }
+    pub fn get_Path(self: *const IADsPath, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IADsPath, @ptrCast(self)), retval);
+    }
+    pub fn put_Path(self: *const IADsPath, bstrPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPath.VTable, @ptrCast(self.vtable)).put_Path(@as(*const IADsPath, @ptrCast(self)), bstrPath);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7395,7 +9024,37 @@ pub const IADsReplicaPointer = extern union {
             return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_ReplicaAddressHints(@as(*const IADsReplicaPointer, @ptrCast(self)), vReplicaAddressHints);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ServerName(self: *const IADsReplicaPointer, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).get_ServerName(@as(*const IADsReplicaPointer, @ptrCast(self)), retval);
+    }
+    pub fn put_ServerName(self: *const IADsReplicaPointer, bstrServerName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_ServerName(@as(*const IADsReplicaPointer, @ptrCast(self)), bstrServerName);
+    }
+    pub fn get_ReplicaType(self: *const IADsReplicaPointer, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).get_ReplicaType(@as(*const IADsReplicaPointer, @ptrCast(self)), retval);
+    }
+    pub fn put_ReplicaType(self: *const IADsReplicaPointer, lnReplicaType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_ReplicaType(@as(*const IADsReplicaPointer, @ptrCast(self)), lnReplicaType);
+    }
+    pub fn get_ReplicaNumber(self: *const IADsReplicaPointer, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).get_ReplicaNumber(@as(*const IADsReplicaPointer, @ptrCast(self)), retval);
+    }
+    pub fn put_ReplicaNumber(self: *const IADsReplicaPointer, lnReplicaNumber: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_ReplicaNumber(@as(*const IADsReplicaPointer, @ptrCast(self)), lnReplicaNumber);
+    }
+    pub fn get_Count(self: *const IADsReplicaPointer, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IADsReplicaPointer, @ptrCast(self)), retval);
+    }
+    pub fn put_Count(self: *const IADsReplicaPointer, lnCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_Count(@as(*const IADsReplicaPointer, @ptrCast(self)), lnCount);
+    }
+    pub fn get_ReplicaAddressHints(self: *const IADsReplicaPointer, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).get_ReplicaAddressHints(@as(*const IADsReplicaPointer, @ptrCast(self)), retval);
+    }
+    pub fn put_ReplicaAddressHints(self: *const IADsReplicaPointer, vReplicaAddressHints: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsReplicaPointer.VTable, @ptrCast(self.vtable)).put_ReplicaAddressHints(@as(*const IADsReplicaPointer, @ptrCast(self)), vReplicaAddressHints);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7472,7 +9131,28 @@ pub const IADsAcl = extern union {
             return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).CopyAcl(@as(*const IADsAcl, @ptrCast(self)), ppAcl);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ProtectedAttrName(self: *const IADsAcl, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).get_ProtectedAttrName(@as(*const IADsAcl, @ptrCast(self)), retval);
+    }
+    pub fn put_ProtectedAttrName(self: *const IADsAcl, bstrProtectedAttrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).put_ProtectedAttrName(@as(*const IADsAcl, @ptrCast(self)), bstrProtectedAttrName);
+    }
+    pub fn get_SubjectName(self: *const IADsAcl, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).get_SubjectName(@as(*const IADsAcl, @ptrCast(self)), retval);
+    }
+    pub fn put_SubjectName(self: *const IADsAcl, bstrSubjectName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).put_SubjectName(@as(*const IADsAcl, @ptrCast(self)), bstrSubjectName);
+    }
+    pub fn get_Privileges(self: *const IADsAcl, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).get_Privileges(@as(*const IADsAcl, @ptrCast(self)), retval);
+    }
+    pub fn put_Privileges(self: *const IADsAcl, lnPrivileges: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).put_Privileges(@as(*const IADsAcl, @ptrCast(self)), lnPrivileges);
+    }
+    pub fn CopyAcl(self: *const IADsAcl, ppAcl: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsAcl.VTable, @ptrCast(self.vtable)).CopyAcl(@as(*const IADsAcl, @ptrCast(self)), ppAcl);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7523,7 +9203,19 @@ pub const IADsTimestamp = extern union {
             return @as(*const IADsTimestamp.VTable, @ptrCast(self.vtable)).put_EventID(@as(*const IADsTimestamp, @ptrCast(self)), lnEventID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_WholeSeconds(self: *const IADsTimestamp, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTimestamp.VTable, @ptrCast(self.vtable)).get_WholeSeconds(@as(*const IADsTimestamp, @ptrCast(self)), retval);
+    }
+    pub fn put_WholeSeconds(self: *const IADsTimestamp, lnWholeSeconds: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTimestamp.VTable, @ptrCast(self.vtable)).put_WholeSeconds(@as(*const IADsTimestamp, @ptrCast(self)), lnWholeSeconds);
+    }
+    pub fn get_EventID(self: *const IADsTimestamp, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTimestamp.VTable, @ptrCast(self.vtable)).get_EventID(@as(*const IADsTimestamp, @ptrCast(self)), retval);
+    }
+    pub fn put_EventID(self: *const IADsTimestamp, lnEventID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTimestamp.VTable, @ptrCast(self.vtable)).put_EventID(@as(*const IADsTimestamp, @ptrCast(self)), lnEventID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7556,7 +9248,13 @@ pub const IADsPostalAddress = extern union {
             return @as(*const IADsPostalAddress.VTable, @ptrCast(self.vtable)).put_PostalAddress(@as(*const IADsPostalAddress, @ptrCast(self)), vPostalAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_PostalAddress(self: *const IADsPostalAddress, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPostalAddress.VTable, @ptrCast(self.vtable)).get_PostalAddress(@as(*const IADsPostalAddress, @ptrCast(self)), retval);
+    }
+    pub fn put_PostalAddress(self: *const IADsPostalAddress, vPostalAddress: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsPostalAddress.VTable, @ptrCast(self.vtable)).put_PostalAddress(@as(*const IADsPostalAddress, @ptrCast(self)), vPostalAddress);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7607,7 +9305,19 @@ pub const IADsBackLink = extern union {
             return @as(*const IADsBackLink.VTable, @ptrCast(self.vtable)).put_ObjectName(@as(*const IADsBackLink, @ptrCast(self)), bstrObjectName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_RemoteID(self: *const IADsBackLink, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsBackLink.VTable, @ptrCast(self.vtable)).get_RemoteID(@as(*const IADsBackLink, @ptrCast(self)), retval);
+    }
+    pub fn put_RemoteID(self: *const IADsBackLink, lnRemoteID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsBackLink.VTable, @ptrCast(self.vtable)).put_RemoteID(@as(*const IADsBackLink, @ptrCast(self)), lnRemoteID);
+    }
+    pub fn get_ObjectName(self: *const IADsBackLink, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsBackLink.VTable, @ptrCast(self.vtable)).get_ObjectName(@as(*const IADsBackLink, @ptrCast(self)), retval);
+    }
+    pub fn put_ObjectName(self: *const IADsBackLink, bstrObjectName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsBackLink.VTable, @ptrCast(self.vtable)).put_ObjectName(@as(*const IADsBackLink, @ptrCast(self)), bstrObjectName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7676,7 +9386,25 @@ pub const IADsTypedName = extern union {
             return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).put_Interval(@as(*const IADsTypedName, @ptrCast(self)), lnInterval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ObjectName(self: *const IADsTypedName, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).get_ObjectName(@as(*const IADsTypedName, @ptrCast(self)), retval);
+    }
+    pub fn put_ObjectName(self: *const IADsTypedName, bstrObjectName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).put_ObjectName(@as(*const IADsTypedName, @ptrCast(self)), bstrObjectName);
+    }
+    pub fn get_Level(self: *const IADsTypedName, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).get_Level(@as(*const IADsTypedName, @ptrCast(self)), retval);
+    }
+    pub fn put_Level(self: *const IADsTypedName, lnLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).put_Level(@as(*const IADsTypedName, @ptrCast(self)), lnLevel);
+    }
+    pub fn get_Interval(self: *const IADsTypedName, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).get_Interval(@as(*const IADsTypedName, @ptrCast(self)), retval);
+    }
+    pub fn put_Interval(self: *const IADsTypedName, lnInterval: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsTypedName.VTable, @ptrCast(self.vtable)).put_Interval(@as(*const IADsTypedName, @ptrCast(self)), lnInterval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7727,7 +9455,19 @@ pub const IADsHold = extern union {
             return @as(*const IADsHold.VTable, @ptrCast(self.vtable)).put_Amount(@as(*const IADsHold, @ptrCast(self)), lnAmount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ObjectName(self: *const IADsHold, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsHold.VTable, @ptrCast(self.vtable)).get_ObjectName(@as(*const IADsHold, @ptrCast(self)), retval);
+    }
+    pub fn put_ObjectName(self: *const IADsHold, bstrObjectName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsHold.VTable, @ptrCast(self.vtable)).put_ObjectName(@as(*const IADsHold, @ptrCast(self)), bstrObjectName);
+    }
+    pub fn get_Amount(self: *const IADsHold, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsHold.VTable, @ptrCast(self.vtable)).get_Amount(@as(*const IADsHold, @ptrCast(self)), retval);
+    }
+    pub fn put_Amount(self: *const IADsHold, lnAmount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsHold.VTable, @ptrCast(self.vtable)).put_Amount(@as(*const IADsHold, @ptrCast(self)), lnAmount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7760,7 +9500,13 @@ pub const IADsObjectOptions = extern union {
             return @as(*const IADsObjectOptions.VTable, @ptrCast(self.vtable)).SetOption(@as(*const IADsObjectOptions, @ptrCast(self)), lnOption, vValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetOption(self: *const IADsObjectOptions, lnOption: i32, pvValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsObjectOptions.VTable, @ptrCast(self.vtable)).GetOption(@as(*const IADsObjectOptions, @ptrCast(self)), lnOption, pvValue);
+    }
+    pub fn SetOption(self: *const IADsObjectOptions, lnOption: i32, vValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsObjectOptions.VTable, @ptrCast(self.vtable)).SetOption(@as(*const IADsObjectOptions, @ptrCast(self)), lnOption, vValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7869,7 +9615,40 @@ pub const IADsPathname = extern union {
             return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).put_EscapedMode(@as(*const IADsPathname, @ptrCast(self)), lnEscapedMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Set(self: *const IADsPathname, bstrADsPath: ?BSTR, lnSetType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).Set(@as(*const IADsPathname, @ptrCast(self)), bstrADsPath, lnSetType);
+    }
+    pub fn SetDisplayType(self: *const IADsPathname, lnDisplayType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).SetDisplayType(@as(*const IADsPathname, @ptrCast(self)), lnDisplayType);
+    }
+    pub fn Retrieve(self: *const IADsPathname, lnFormatType: i32, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).Retrieve(@as(*const IADsPathname, @ptrCast(self)), lnFormatType, pbstrADsPath);
+    }
+    pub fn GetNumElements(self: *const IADsPathname, plnNumPathElements: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).GetNumElements(@as(*const IADsPathname, @ptrCast(self)), plnNumPathElements);
+    }
+    pub fn GetElement(self: *const IADsPathname, lnElementIndex: i32, pbstrElement: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IADsPathname, @ptrCast(self)), lnElementIndex, pbstrElement);
+    }
+    pub fn AddLeafElement(self: *const IADsPathname, bstrLeafElement: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).AddLeafElement(@as(*const IADsPathname, @ptrCast(self)), bstrLeafElement);
+    }
+    pub fn RemoveLeafElement(self: *const IADsPathname) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).RemoveLeafElement(@as(*const IADsPathname, @ptrCast(self)));
+    }
+    pub fn CopyPath(self: *const IADsPathname, ppAdsPath: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).CopyPath(@as(*const IADsPathname, @ptrCast(self)), ppAdsPath);
+    }
+    pub fn GetEscapedElement(self: *const IADsPathname, lnReserved: i32, bstrInStr: ?BSTR, pbstrOutStr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).GetEscapedElement(@as(*const IADsPathname, @ptrCast(self)), lnReserved, bstrInStr, pbstrOutStr);
+    }
+    pub fn get_EscapedMode(self: *const IADsPathname, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).get_EscapedMode(@as(*const IADsPathname, @ptrCast(self)), retval);
+    }
+    pub fn put_EscapedMode(self: *const IADsPathname, lnEscapedMode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsPathname.VTable, @ptrCast(self.vtable)).put_EscapedMode(@as(*const IADsPathname, @ptrCast(self)), lnEscapedMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7997,7 +9776,46 @@ pub const IADsADSystemInfo = extern union {
             return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).GetTrees(@as(*const IADsADSystemInfo, @ptrCast(self)), pvTrees);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_UserName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_ComputerName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_ComputerName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_SiteName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_SiteName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_DomainShortName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_DomainShortName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_DomainDNSName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_DomainDNSName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_ForestDNSName(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_ForestDNSName(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_PDCRoleOwner(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_PDCRoleOwner(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_SchemaRoleOwner(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_SchemaRoleOwner(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_IsNativeMode(self: *const IADsADSystemInfo, retval: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).get_IsNativeMode(@as(*const IADsADSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn GetAnyDCName(self: *const IADsADSystemInfo, pszDCName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).GetAnyDCName(@as(*const IADsADSystemInfo, @ptrCast(self)), pszDCName);
+    }
+    pub fn GetDCSiteName(self: *const IADsADSystemInfo, szServer: ?BSTR, pszSiteName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).GetDCSiteName(@as(*const IADsADSystemInfo, @ptrCast(self)), szServer, pszSiteName);
+    }
+    pub fn RefreshSchemaCache(self: *const IADsADSystemInfo) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).RefreshSchemaCache(@as(*const IADsADSystemInfo, @ptrCast(self)));
+    }
+    pub fn GetTrees(self: *const IADsADSystemInfo, pvTrees: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsADSystemInfo.VTable, @ptrCast(self.vtable)).GetTrees(@as(*const IADsADSystemInfo, @ptrCast(self)), pvTrees);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8048,7 +9866,19 @@ pub const IADsWinNTSystemInfo = extern union {
             return @as(*const IADsWinNTSystemInfo.VTable, @ptrCast(self.vtable)).get_PDC(@as(*const IADsWinNTSystemInfo, @ptrCast(self)), retval);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_UserName(self: *const IADsWinNTSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsWinNTSystemInfo.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IADsWinNTSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_ComputerName(self: *const IADsWinNTSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsWinNTSystemInfo.VTable, @ptrCast(self.vtable)).get_ComputerName(@as(*const IADsWinNTSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_DomainName(self: *const IADsWinNTSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsWinNTSystemInfo.VTable, @ptrCast(self.vtable)).get_DomainName(@as(*const IADsWinNTSystemInfo, @ptrCast(self)), retval);
+    }
+    pub fn get_PDC(self: *const IADsWinNTSystemInfo, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsWinNTSystemInfo.VTable, @ptrCast(self.vtable)).get_PDC(@as(*const IADsWinNTSystemInfo, @ptrCast(self)), retval);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8099,7 +9929,19 @@ pub const IADsDNWithBinary = extern union {
             return @as(*const IADsDNWithBinary.VTable, @ptrCast(self.vtable)).put_DNString(@as(*const IADsDNWithBinary, @ptrCast(self)), bstrDNString);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_BinaryValue(self: *const IADsDNWithBinary, retval: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithBinary.VTable, @ptrCast(self.vtable)).get_BinaryValue(@as(*const IADsDNWithBinary, @ptrCast(self)), retval);
+    }
+    pub fn put_BinaryValue(self: *const IADsDNWithBinary, vBinaryValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithBinary.VTable, @ptrCast(self.vtable)).put_BinaryValue(@as(*const IADsDNWithBinary, @ptrCast(self)), vBinaryValue);
+    }
+    pub fn get_DNString(self: *const IADsDNWithBinary, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithBinary.VTable, @ptrCast(self.vtable)).get_DNString(@as(*const IADsDNWithBinary, @ptrCast(self)), retval);
+    }
+    pub fn put_DNString(self: *const IADsDNWithBinary, bstrDNString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithBinary.VTable, @ptrCast(self.vtable)).put_DNString(@as(*const IADsDNWithBinary, @ptrCast(self)), bstrDNString);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8150,7 +9992,19 @@ pub const IADsDNWithString = extern union {
             return @as(*const IADsDNWithString.VTable, @ptrCast(self.vtable)).put_DNString(@as(*const IADsDNWithString, @ptrCast(self)), bstrDNString);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_StringValue(self: *const IADsDNWithString, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithString.VTable, @ptrCast(self.vtable)).get_StringValue(@as(*const IADsDNWithString, @ptrCast(self)), retval);
+    }
+    pub fn put_StringValue(self: *const IADsDNWithString, bstrStringValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithString.VTable, @ptrCast(self.vtable)).put_StringValue(@as(*const IADsDNWithString, @ptrCast(self)), bstrStringValue);
+    }
+    pub fn get_DNString(self: *const IADsDNWithString, retval: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithString.VTable, @ptrCast(self.vtable)).get_DNString(@as(*const IADsDNWithString, @ptrCast(self)), retval);
+    }
+    pub fn put_DNString(self: *const IADsDNWithString, bstrDNString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IADsDNWithString.VTable, @ptrCast(self.vtable)).put_DNString(@as(*const IADsDNWithString, @ptrCast(self)), bstrDNString);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8216,7 +10070,22 @@ pub const IADsSecurityUtility = extern union {
             return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).put_SecurityMask(@as(*const IADsSecurityUtility, @ptrCast(self)), lnSecurityMask);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetSecurityDescriptor(self: *const IADsSecurityUtility, varPath: VARIANT, lPathFormat: i32, lFormat: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).GetSecurityDescriptor(@as(*const IADsSecurityUtility, @ptrCast(self)), varPath, lPathFormat, lFormat, pVariant);
+    }
+    pub fn SetSecurityDescriptor(self: *const IADsSecurityUtility, varPath: VARIANT, lPathFormat: i32, varData: VARIANT, lDataFormat: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).SetSecurityDescriptor(@as(*const IADsSecurityUtility, @ptrCast(self)), varPath, lPathFormat, varData, lDataFormat);
+    }
+    pub fn ConvertSecurityDescriptor(self: *const IADsSecurityUtility, varSD: VARIANT, lDataFormat: i32, lOutFormat: i32, pResult: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).ConvertSecurityDescriptor(@as(*const IADsSecurityUtility, @ptrCast(self)), varSD, lDataFormat, lOutFormat, pResult);
+    }
+    pub fn get_SecurityMask(self: *const IADsSecurityUtility, retval: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).get_SecurityMask(@as(*const IADsSecurityUtility, @ptrCast(self)), retval);
+    }
+    pub fn put_SecurityMask(self: *const IADsSecurityUtility, lnSecurityMask: i32) callconv(.Inline) HRESULT {
+        return @as(*const IADsSecurityUtility.VTable, @ptrCast(self.vtable)).put_SecurityMask(@as(*const IADsSecurityUtility, @ptrCast(self)), lnSecurityMask);
+    }
 };
 
 pub const DSOBJECT = extern struct {
@@ -8320,7 +10189,22 @@ pub const IDsBrowseDomainTree = extern union {
             return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).SetComputer(@as(*const IDsBrowseDomainTree, @ptrCast(self)), pszComputerName, pszUserName, pszPassword);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BrowseTo(self: *const IDsBrowseDomainTree, hwndParent: ?HWND, ppszTargetPath: ?*?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).BrowseTo(@as(*const IDsBrowseDomainTree, @ptrCast(self)), hwndParent, ppszTargetPath, dwFlags);
+    }
+    pub fn GetDomains(self: *const IDsBrowseDomainTree, ppDomainTree: ?*?*DOMAIN_TREE, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).GetDomains(@as(*const IDsBrowseDomainTree, @ptrCast(self)), ppDomainTree, dwFlags);
+    }
+    pub fn FreeDomains(self: *const IDsBrowseDomainTree, ppDomainTree: ?*?*DOMAIN_TREE) callconv(.Inline) HRESULT {
+        return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).FreeDomains(@as(*const IDsBrowseDomainTree, @ptrCast(self)), ppDomainTree);
+    }
+    pub fn FlushCachedDomains(self: *const IDsBrowseDomainTree) callconv(.Inline) HRESULT {
+        return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).FlushCachedDomains(@as(*const IDsBrowseDomainTree, @ptrCast(self)));
+    }
+    pub fn SetComputer(self: *const IDsBrowseDomainTree, pszComputerName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDsBrowseDomainTree.VTable, @ptrCast(self.vtable)).SetComputer(@as(*const IDsBrowseDomainTree, @ptrCast(self)), pszComputerName, pszUserName, pszPassword);
+    }
 };
 
 pub const LPDSENUMATTRIBUTES = *const fn(
@@ -8460,7 +10344,40 @@ pub const IDsDisplaySpecifier = extern union {
             return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetAttributeADsType(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszAttributeName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetServer(self: *const IDsDisplaySpecifier, pszServer: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).SetServer(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszServer, pszUserName, pszPassword, dwFlags);
+    }
+    pub fn SetLanguageID(self: *const IDsDisplaySpecifier, langid: u16) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).SetLanguageID(@as(*const IDsDisplaySpecifier, @ptrCast(self)), langid);
+    }
+    pub fn GetDisplaySpecifier(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetDisplaySpecifier(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, riid, ppv);
+    }
+    pub fn GetIconLocation(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, dwFlags: u32, pszBuffer: [*:0]u16, cchBuffer: i32, presid: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, dwFlags, pszBuffer, cchBuffer, presid);
+    }
+    pub fn GetIcon(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, dwFlags: u32, cxIcon: i32, cyIcon: i32) callconv(.Inline) ?HICON {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, dwFlags, cxIcon, cyIcon);
+    }
+    pub fn GetFriendlyClassName(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pszBuffer: [*:0]u16, cchBuffer: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetFriendlyClassName(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, pszBuffer, cchBuffer);
+    }
+    pub fn GetFriendlyAttributeName(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pszAttributeName: ?[*:0]const u16, pszBuffer: [*:0]u16, cchBuffer: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetFriendlyAttributeName(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, pszAttributeName, pszBuffer, cchBuffer);
+    }
+    pub fn IsClassContainer(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pszADsPath: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) BOOL {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).IsClassContainer(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, pszADsPath, dwFlags);
+    }
+    pub fn GetClassCreationInfo(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, ppdscci: ?*?*DSCLASSCREATIONINFO) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetClassCreationInfo(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, ppdscci);
+    }
+    pub fn EnumClassAttributes(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pcbEnum: ?LPDSENUMATTRIBUTES, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).EnumClassAttributes(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszObjectClass, pcbEnum, lParam);
+    }
+    pub fn GetAttributeADsType(self: *const IDsDisplaySpecifier, pszAttributeName: ?[*:0]const u16) callconv(.Inline) ADSTYPEENUM {
+        return @as(*const IDsDisplaySpecifier.VTable, @ptrCast(self.vtable)).GetAttributeADsType(@as(*const IDsDisplaySpecifier, @ptrCast(self)), pszAttributeName);
+    }
 };
 
 pub const DSBROWSEINFOW = extern struct {
@@ -8598,7 +10515,13 @@ pub const IDsObjectPicker = extern union {
             return @as(*const IDsObjectPicker.VTable, @ptrCast(self.vtable)).InvokeDialog(@as(*const IDsObjectPicker, @ptrCast(self)), hwndParent, ppdoSelections);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDsObjectPicker, pInitInfo: ?*DSOP_INIT_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IDsObjectPicker.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDsObjectPicker, @ptrCast(self)), pInitInfo);
+    }
+    pub fn InvokeDialog(self: *const IDsObjectPicker, hwndParent: ?HWND, ppdoSelections: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IDsObjectPicker.VTable, @ptrCast(self.vtable)).InvokeDialog(@as(*const IDsObjectPicker, @ptrCast(self)), hwndParent, ppdoSelections);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -8622,7 +10545,10 @@ pub const IDsObjectPickerCredentials = extern union {
             return @as(*const IDsObjectPickerCredentials.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IDsObjectPickerCredentials, @ptrCast(self)), szUserName, szPassword);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDsObjectPicker.MethodMixin(@This());
+    pub fn SetCredentials(self: *const IDsObjectPickerCredentials, szUserName: ?[*:0]const u16, szPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDsObjectPickerCredentials.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IDsObjectPickerCredentials, @ptrCast(self)), szUserName, szPassword);
+    }
 };
 
 pub const DSQUERYINITPARAMS = extern struct {
@@ -8691,7 +10617,13 @@ pub const IDsAdminCreateObj = extern union {
             return @as(*const IDsAdminCreateObj.VTable, @ptrCast(self.vtable)).CreateModal(@as(*const IDsAdminCreateObj, @ptrCast(self)), hwndParent, ppADsObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDsAdminCreateObj, pADsContainerObj: ?*IADsContainer, pADsCopySource: ?*IADs, lpszClassName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminCreateObj.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDsAdminCreateObj, @ptrCast(self)), pADsContainerObj, pADsCopySource, lpszClassName);
+    }
+    pub fn CreateModal(self: *const IDsAdminCreateObj, hwndParent: ?HWND, ppADsObj: ?*?*IADs) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminCreateObj.VTable, @ptrCast(self.vtable)).CreateModal(@as(*const IDsAdminCreateObj, @ptrCast(self)), hwndParent, ppADsObj);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8724,7 +10656,13 @@ pub const IDsAdminNewObj = extern union {
             return @as(*const IDsAdminNewObj.VTable, @ptrCast(self.vtable)).GetPageCounts(@as(*const IDsAdminNewObj, @ptrCast(self)), pnTotal, pnStartIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetButtons(self: *const IDsAdminNewObj, nCurrIndex: u32, bValid: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObj.VTable, @ptrCast(self.vtable)).SetButtons(@as(*const IDsAdminNewObj, @ptrCast(self)), nCurrIndex, bValid);
+    }
+    pub fn GetPageCounts(self: *const IDsAdminNewObj, pnTotal: ?*i32, pnStartIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObj.VTable, @ptrCast(self.vtable)).GetPageCounts(@as(*const IDsAdminNewObj, @ptrCast(self)), pnTotal, pnStartIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8754,7 +10692,13 @@ pub const IDsAdminNewObjPrimarySite = extern union {
             return @as(*const IDsAdminNewObjPrimarySite.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDsAdminNewObjPrimarySite, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateNew(self: *const IDsAdminNewObjPrimarySite, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjPrimarySite.VTable, @ptrCast(self.vtable)).CreateNew(@as(*const IDsAdminNewObjPrimarySite, @ptrCast(self)), pszName);
+    }
+    pub fn Commit(self: *const IDsAdminNewObjPrimarySite) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjPrimarySite.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDsAdminNewObjPrimarySite, @ptrCast(self)));
+    }
 };
 
 pub const DSA_NEWOBJ_DISPINFO = extern struct {
@@ -8832,7 +10776,25 @@ pub const IDsAdminNewObjExt = extern union {
             return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).GetSummaryInfo(@as(*const IDsAdminNewObjExt, @ptrCast(self)), pBstrText);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDsAdminNewObjExt, pADsContainerObj: ?*IADsContainer, pADsCopySource: ?*IADs, lpszClassName: ?[*:0]const u16, pDsAdminNewObj: ?*IDsAdminNewObj, pDispInfo: ?*DSA_NEWOBJ_DISPINFO) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDsAdminNewObjExt, @ptrCast(self)), pADsContainerObj, pADsCopySource, lpszClassName, pDsAdminNewObj, pDispInfo);
+    }
+    pub fn AddPages(self: *const IDsAdminNewObjExt, lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).AddPages(@as(*const IDsAdminNewObjExt, @ptrCast(self)), lpfnAddPage, lParam);
+    }
+    pub fn SetObject(self: *const IDsAdminNewObjExt, pADsObj: ?*IADs) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).SetObject(@as(*const IDsAdminNewObjExt, @ptrCast(self)), pADsObj);
+    }
+    pub fn WriteData(self: *const IDsAdminNewObjExt, hWnd: ?HWND, uContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IDsAdminNewObjExt, @ptrCast(self)), hWnd, uContext);
+    }
+    pub fn OnError(self: *const IDsAdminNewObjExt, hWnd: ?HWND, hr: HRESULT, uContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).OnError(@as(*const IDsAdminNewObjExt, @ptrCast(self)), hWnd, hr, uContext);
+    }
+    pub fn GetSummaryInfo(self: *const IDsAdminNewObjExt, pBstrText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNewObjExt.VTable, @ptrCast(self.vtable)).GetSummaryInfo(@as(*const IDsAdminNewObjExt, @ptrCast(self)), pBstrText);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8884,7 +10846,19 @@ pub const IDsAdminNotifyHandler = extern union {
             return @as(*const IDsAdminNotifyHandler.VTable, @ptrCast(self.vtable)).End(@as(*const IDsAdminNotifyHandler, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IDsAdminNotifyHandler, pExtraInfo: ?*IDataObject, puEventFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNotifyHandler.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDsAdminNotifyHandler, @ptrCast(self)), pExtraInfo, puEventFlags);
+    }
+    pub fn Begin(self: *const IDsAdminNotifyHandler, uEvent: u32, pArg1: ?*IDataObject, pArg2: ?*IDataObject, puFlags: ?*u32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNotifyHandler.VTable, @ptrCast(self.vtable)).Begin(@as(*const IDsAdminNotifyHandler, @ptrCast(self)), uEvent, pArg1, pArg2, puFlags, pBstr);
+    }
+    pub fn Notify(self: *const IDsAdminNotifyHandler, nItem: u32, uFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNotifyHandler.VTable, @ptrCast(self.vtable)).Notify(@as(*const IDsAdminNotifyHandler, @ptrCast(self)), nItem, uFlags);
+    }
+    pub fn End(self: *const IDsAdminNotifyHandler) callconv(.Inline) HRESULT {
+        return @as(*const IDsAdminNotifyHandler.VTable, @ptrCast(self.vtable)).End(@as(*const IDsAdminNotifyHandler, @ptrCast(self)));
+    }
 };
 
 pub const ADSPROPINITPARAMS = extern struct {

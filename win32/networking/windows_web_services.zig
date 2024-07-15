@@ -4175,7 +4175,13 @@ pub const IContentPrefetcherTaskTrigger = extern union {
             return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).IsRegisteredForContentPrefetch(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName, isRegistered);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn TriggerContentPrefetcherTask(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).TriggerContentPrefetcherTask(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName);
+    }
+    pub fn IsRegisteredForContentPrefetch(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).IsRegisteredForContentPrefetch(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName, isRegistered);
+    }
 };
 
 pub const WEBAUTHN_RP_ENTITY_INFORMATION = extern struct {

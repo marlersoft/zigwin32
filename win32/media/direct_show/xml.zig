@@ -47,7 +47,16 @@ pub const IXMLGraphBuilder = extern union {
             return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXMLFile(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, wszFileName, wszBaseURL);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) callconv(.Inline) HRESULT {
+        return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pxml);
+    }
+    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).SaveToXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pbstrxml);
+    }
+    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXMLFile(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, wszFileName, wszBaseURL);
+    }
 };
 
 

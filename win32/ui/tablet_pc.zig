@@ -1962,7 +1962,43 @@ pub const IInkRectangle = extern union {
             return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).SetRectangle(@as(*const IInkRectangle, @ptrCast(self)), Top, Left, Bottom, Right);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Top(self: *const IInkRectangle, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).get_Top(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn put_Top(self: *const IInkRectangle, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).put_Top(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn get_Left(self: *const IInkRectangle, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).get_Left(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn put_Left(self: *const IInkRectangle, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).put_Left(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn get_Bottom(self: *const IInkRectangle, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).get_Bottom(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn put_Bottom(self: *const IInkRectangle, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).put_Bottom(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn get_Right(self: *const IInkRectangle, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).get_Right(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn put_Right(self: *const IInkRectangle, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).put_Right(@as(*const IInkRectangle, @ptrCast(self)), Units);
+    }
+    pub fn get_Data(self: *const IInkRectangle, Rect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IInkRectangle, @ptrCast(self)), Rect);
+    }
+    pub fn put_Data(self: *const IInkRectangle, Rect: RECT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IInkRectangle, @ptrCast(self)), Rect);
+    }
+    pub fn GetRectangle(self: *const IInkRectangle, Top: ?*i32, Left: ?*i32, Bottom: ?*i32, Right: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).GetRectangle(@as(*const IInkRectangle, @ptrCast(self)), Top, Left, Bottom, Right);
+    }
+    pub fn SetRectangle(self: *const IInkRectangle, Top: i32, Left: i32, Bottom: i32, Right: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRectangle.VTable, @ptrCast(self.vtable)).SetRectangle(@as(*const IInkRectangle, @ptrCast(self)), Top, Left, Bottom, Right);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2004,7 +2040,16 @@ pub const IInkExtendedProperty = extern union {
             return @as(*const IInkExtendedProperty.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IInkExtendedProperty, @ptrCast(self)), Data);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Guid(self: *const IInkExtendedProperty, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperty.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const IInkExtendedProperty, @ptrCast(self)), _param_Guid);
+    }
+    pub fn get_Data(self: *const IInkExtendedProperty, Data: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperty.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IInkExtendedProperty, @ptrCast(self)), Data);
+    }
+    pub fn put_Data(self: *const IInkExtendedProperty, Data: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperty.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IInkExtendedProperty, @ptrCast(self)), Data);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2060,8 +2105,8 @@ pub const IInkExtendedProperties = extern union {
             return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkExtendedProperties, @ptrCast(self)), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, Item: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
-            return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkExtendedProperties, @ptrCast(self)), Identifier, Item);
+        pub fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, _param_Item: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
+            return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkExtendedProperties, @ptrCast(self)), Identifier, _param_Item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkExtendedProperties_Add(self: *const T, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
@@ -2076,11 +2121,32 @@ pub const IInkExtendedProperties = extern union {
             return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Clear(@as(*const IInkExtendedProperties, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_DoesPropertyExist(self: *const T, _param_Guid: ?BSTR, DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).DoesPropertyExist(@as(*const IInkExtendedProperties, @ptrCast(self)), _param_Guid, DoesPropertyExist);
+        pub fn IInkExtendedProperties_DoesPropertyExist(self: *const T, _param_Guid: ?BSTR, _param_DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
+            return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).DoesPropertyExist(@as(*const IInkExtendedProperties, @ptrCast(self)), _param_Guid, _param_DoesPropertyExist);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkExtendedProperties, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkExtendedProperties, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkExtendedProperties, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkExtendedProperties, @ptrCast(self)), _NewEnum);
+    }
+    pub fn Item(self: *const IInkExtendedProperties, Identifier: VARIANT, _param_Item: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkExtendedProperties, @ptrCast(self)), Identifier, _param_Item);
+    }
+    pub fn Add(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Add(@as(*const IInkExtendedProperties, @ptrCast(self)), _param_Guid, Data, InkExtendedProperty);
+    }
+    pub fn Remove(self: *const IInkExtendedProperties, Identifier: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Remove(@as(*const IInkExtendedProperties, @ptrCast(self)), Identifier);
+    }
+    pub fn Clear(self: *const IInkExtendedProperties) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).Clear(@as(*const IInkExtendedProperties, @ptrCast(self)));
+    }
+    pub fn DoesPropertyExist(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, _param_DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkExtendedProperties.VTable, @ptrCast(self.vtable)).DoesPropertyExist(@as(*const IInkExtendedProperties, @ptrCast(self)), _param_Guid, _param_DoesPropertyExist);
+    }
 };
 
 const IID_IInkDrawingAttributes_Value = Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
@@ -2273,7 +2339,67 @@ pub const IInkDrawingAttributes = extern union {
             return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).Clone(@as(*const IInkDrawingAttributes, @ptrCast(self)), DrawingAttributes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Color(self: *const IInkDrawingAttributes, CurrentColor: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_Color(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentColor);
+    }
+    pub fn put_Color(self: *const IInkDrawingAttributes, NewColor: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_Color(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewColor);
+    }
+    pub fn get_Width(self: *const IInkDrawingAttributes, CurrentWidth: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentWidth);
+    }
+    pub fn put_Width(self: *const IInkDrawingAttributes, NewWidth: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_Width(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewWidth);
+    }
+    pub fn get_Height(self: *const IInkDrawingAttributes, CurrentHeight: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentHeight);
+    }
+    pub fn put_Height(self: *const IInkDrawingAttributes, NewHeight: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_Height(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewHeight);
+    }
+    pub fn get_FitToCurve(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_FitToCurve(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn put_FitToCurve(self: *const IInkDrawingAttributes, Flag: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_FitToCurve(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn get_IgnorePressure(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_IgnorePressure(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn put_IgnorePressure(self: *const IInkDrawingAttributes, Flag: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_IgnorePressure(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn get_AntiAliased(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_AntiAliased(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn put_AntiAliased(self: *const IInkDrawingAttributes, Flag: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_AntiAliased(@as(*const IInkDrawingAttributes, @ptrCast(self)), Flag);
+    }
+    pub fn get_Transparency(self: *const IInkDrawingAttributes, CurrentTransparency: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_Transparency(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentTransparency);
+    }
+    pub fn put_Transparency(self: *const IInkDrawingAttributes, NewTransparency: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_Transparency(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewTransparency);
+    }
+    pub fn get_RasterOperation(self: *const IInkDrawingAttributes, CurrentRasterOperation: ?*InkRasterOperation) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_RasterOperation(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentRasterOperation);
+    }
+    pub fn put_RasterOperation(self: *const IInkDrawingAttributes, NewRasterOperation: InkRasterOperation) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_RasterOperation(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewRasterOperation);
+    }
+    pub fn get_PenTip(self: *const IInkDrawingAttributes, CurrentPenTip: ?*InkPenTip) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_PenTip(@as(*const IInkDrawingAttributes, @ptrCast(self)), CurrentPenTip);
+    }
+    pub fn put_PenTip(self: *const IInkDrawingAttributes, NewPenTip: InkPenTip) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).put_PenTip(@as(*const IInkDrawingAttributes, @ptrCast(self)), NewPenTip);
+    }
+    pub fn get_ExtendedProperties(self: *const IInkDrawingAttributes, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).get_ExtendedProperties(@as(*const IInkDrawingAttributes, @ptrCast(self)), Properties);
+    }
+    pub fn Clone(self: *const IInkDrawingAttributes, DrawingAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDrawingAttributes.VTable, @ptrCast(self.vtable)).Clone(@as(*const IInkDrawingAttributes, @ptrCast(self)), DrawingAttributes);
+    }
 };
 
 const IID_IInkTransform_Value = Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
@@ -2492,7 +2618,73 @@ pub const IInkTransform = extern union {
             return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IInkTransform, @ptrCast(self)), XForm);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).Reset(@as(*const IInkTransform, @ptrCast(self)));
+    }
+    pub fn Translate(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).Translate(@as(*const IInkTransform, @ptrCast(self)), HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkTransform, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IInkTransform, @ptrCast(self)), Degrees, x, y);
+    }
+    pub fn Reflect(self: *const IInkTransform, Horizontally: i16, Vertically: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).Reflect(@as(*const IInkTransform, @ptrCast(self)), Horizontally, Vertically);
+    }
+    pub fn Shear(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).Shear(@as(*const IInkTransform, @ptrCast(self)), HorizontalComponent, VerticalComponent);
+    }
+    pub fn ScaleTransform(self: *const IInkTransform, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkTransform, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn GetTransform(self: *const IInkTransform, eM11: ?*f32, eM12: ?*f32, eM21: ?*f32, eM22: ?*f32, eDx: ?*f32, eDy: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IInkTransform, @ptrCast(self)), eM11, eM12, eM21, eM22, eDx, eDy);
+    }
+    pub fn SetTransform(self: *const IInkTransform, eM11: f32, eM12: f32, eM21: f32, eM22: f32, eDx: f32, eDy: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IInkTransform, @ptrCast(self)), eM11, eM12, eM21, eM22, eDx, eDy);
+    }
+    pub fn get_eM11(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eM11(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eM11(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eM11(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_eM12(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eM12(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eM12(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eM12(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_eM21(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eM21(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eM21(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eM21(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_eM22(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eM22(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eM22(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eM22(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_eDx(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eDx(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eDx(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eDx(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_eDy(self: *const IInkTransform, Value: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_eDy(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn put_eDy(self: *const IInkTransform, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_eDy(@as(*const IInkTransform, @ptrCast(self)), Value);
+    }
+    pub fn get_Data(self: *const IInkTransform, XForm: ?*XFORM) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IInkTransform, @ptrCast(self)), XForm);
+    }
+    pub fn put_Data(self: *const IInkTransform, XForm: XFORM) callconv(.Inline) HRESULT {
+        return @as(*const IInkTransform.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IInkTransform, @ptrCast(self)), XForm);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2534,7 +2726,16 @@ pub const IInkGesture = extern union {
             return @as(*const IInkGesture.VTable, @ptrCast(self.vtable)).GetHotPoint(@as(*const IInkGesture, @ptrCast(self)), X, Y);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Confidence(self: *const IInkGesture, Confidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
+        return @as(*const IInkGesture.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const IInkGesture, @ptrCast(self)), Confidence);
+    }
+    pub fn get_Id(self: *const IInkGesture, Id: ?*InkApplicationGesture) callconv(.Inline) HRESULT {
+        return @as(*const IInkGesture.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IInkGesture, @ptrCast(self)), Id);
+    }
+    pub fn GetHotPoint(self: *const IInkGesture, X: ?*i32, Y: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkGesture.VTable, @ptrCast(self.vtable)).GetHotPoint(@as(*const IInkGesture, @ptrCast(self)), X, Y);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2611,7 +2812,28 @@ pub const IInkCursor = extern union {
             return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Buttons(@as(*const IInkCursor, @ptrCast(self)), Buttons);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IInkCursor, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IInkCursor, @ptrCast(self)), Name);
+    }
+    pub fn get_Id(self: *const IInkCursor, Id: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IInkCursor, @ptrCast(self)), Id);
+    }
+    pub fn get_Inverted(self: *const IInkCursor, Status: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Inverted(@as(*const IInkCursor, @ptrCast(self)), Status);
+    }
+    pub fn get_DrawingAttributes(self: *const IInkCursor, Attributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_DrawingAttributes(@as(*const IInkCursor, @ptrCast(self)), Attributes);
+    }
+    pub fn putref_DrawingAttributes(self: *const IInkCursor, Attributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).putref_DrawingAttributes(@as(*const IInkCursor, @ptrCast(self)), Attributes);
+    }
+    pub fn get_Tablet(self: *const IInkCursor, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Tablet(@as(*const IInkCursor, @ptrCast(self)), Tablet);
+    }
+    pub fn get_Buttons(self: *const IInkCursor, Buttons: ?*?*IInkCursorButtons) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursor.VTable, @ptrCast(self.vtable)).get_Buttons(@as(*const IInkCursor, @ptrCast(self)), Buttons);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2653,7 +2875,16 @@ pub const IInkCursors = extern union {
             return @as(*const IInkCursors.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkCursors, @ptrCast(self)), Index, Cursor);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkCursors, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursors.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkCursors, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkCursors, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursors.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkCursors, @ptrCast(self)), _NewEnum);
+    }
+    pub fn Item(self: *const IInkCursors, Index: i32, Cursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursors.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkCursors, @ptrCast(self)), Index, Cursor);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2695,7 +2926,16 @@ pub const IInkCursorButton = extern union {
             return @as(*const IInkCursorButton.VTable, @ptrCast(self.vtable)).get_State(@as(*const IInkCursorButton, @ptrCast(self)), CurrentState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IInkCursorButton, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButton.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IInkCursorButton, @ptrCast(self)), Name);
+    }
+    pub fn get_Id(self: *const IInkCursorButton, Id: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButton.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IInkCursorButton, @ptrCast(self)), Id);
+    }
+    pub fn get_State(self: *const IInkCursorButton, CurrentState: ?*InkCursorButtonState) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButton.VTable, @ptrCast(self.vtable)).get_State(@as(*const IInkCursorButton, @ptrCast(self)), CurrentState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2737,7 +2977,16 @@ pub const IInkCursorButtons = extern union {
             return @as(*const IInkCursorButtons.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkCursorButtons, @ptrCast(self)), Identifier, Button);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkCursorButtons, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButtons.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkCursorButtons, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkCursorButtons, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButtons.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkCursorButtons, @ptrCast(self)), _NewEnum);
+    }
+    pub fn Item(self: *const IInkCursorButtons, Identifier: VARIANT, Button: ?*?*IInkCursorButton) callconv(.Inline) HRESULT {
+        return @as(*const IInkCursorButtons.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkCursorButtons, @ptrCast(self)), Identifier, Button);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2809,7 +3058,25 @@ pub const IInkTablet = extern union {
             return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).GetPropertyMetrics(@as(*const IInkTablet, @ptrCast(self)), propertyName, Minimum, Maximum, Units, Resolution);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IInkTablet, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IInkTablet, @ptrCast(self)), Name);
+    }
+    pub fn get_PlugAndPlayId(self: *const IInkTablet, Id: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).get_PlugAndPlayId(@as(*const IInkTablet, @ptrCast(self)), Id);
+    }
+    pub fn get_MaximumInputRectangle(self: *const IInkTablet, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).get_MaximumInputRectangle(@as(*const IInkTablet, @ptrCast(self)), Rectangle);
+    }
+    pub fn get_HardwareCapabilities(self: *const IInkTablet, Capabilities: ?*TabletHardwareCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).get_HardwareCapabilities(@as(*const IInkTablet, @ptrCast(self)), Capabilities);
+    }
+    pub fn IsPacketPropertySupported(self: *const IInkTablet, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).IsPacketPropertySupported(@as(*const IInkTablet, @ptrCast(self)), packetPropertyName, Supported);
+    }
+    pub fn GetPropertyMetrics(self: *const IInkTablet, propertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet.VTable, @ptrCast(self.vtable)).GetPropertyMetrics(@as(*const IInkTablet, @ptrCast(self)), propertyName, Minimum, Maximum, Units, Resolution);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2833,7 +3100,10 @@ pub const IInkTablet2 = extern union {
             return @as(*const IInkTablet2.VTable, @ptrCast(self.vtable)).get_DeviceKind(@as(*const IInkTablet2, @ptrCast(self)), Kind);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_DeviceKind(self: *const IInkTablet2, Kind: ?*TabletDeviceKind) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet2.VTable, @ptrCast(self.vtable)).get_DeviceKind(@as(*const IInkTablet2, @ptrCast(self)), Kind);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2866,7 +3136,13 @@ pub const IInkTablet3 = extern union {
             return @as(*const IInkTablet3.VTable, @ptrCast(self.vtable)).get_MaximumCursors(@as(*const IInkTablet3, @ptrCast(self)), pMaximumCursors);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_IsMultiTouch(self: *const IInkTablet3, pIsMultiTouch: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet3.VTable, @ptrCast(self.vtable)).get_IsMultiTouch(@as(*const IInkTablet3, @ptrCast(self)), pIsMultiTouch);
+    }
+    pub fn get_MaximumCursors(self: *const IInkTablet3, pMaximumCursors: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablet3.VTable, @ptrCast(self.vtable)).get_MaximumCursors(@as(*const IInkTablet3, @ptrCast(self)), pMaximumCursors);
+    }
 };
 
 const IID_IInkTablets_Value = Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
@@ -2925,7 +3201,22 @@ pub const IInkTablets = extern union {
             return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).IsPacketPropertySupported(@as(*const IInkTablets, @ptrCast(self)), packetPropertyName, Supported);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkTablets, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkTablets, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkTablets, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkTablets, @ptrCast(self)), _NewEnum);
+    }
+    pub fn get_DefaultTablet(self: *const IInkTablets, DefaultTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).get_DefaultTablet(@as(*const IInkTablets, @ptrCast(self)), DefaultTablet);
+    }
+    pub fn Item(self: *const IInkTablets, Index: i32, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkTablets, @ptrCast(self)), Index, Tablet);
+    }
+    pub fn IsPacketPropertySupported(self: *const IInkTablets, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkTablets.VTable, @ptrCast(self.vtable)).IsPacketPropertySupported(@as(*const IInkTablets, @ptrCast(self)), packetPropertyName, Supported);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3227,8 +3518,8 @@ pub const IInkStrokeDisp = extern union {
             return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetFlattenedBezierPoints(@as(*const IInkStrokeDisp, @ptrCast(self)), FittingError, FlattenedBezierPoints);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
-            return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokeDisp, @ptrCast(self)), Transform, ApplyOnPenWidth);
+        pub fn IInkStrokeDisp_Transform(self: *const T, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
+            return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokeDisp, @ptrCast(self)), _param_Transform, ApplyOnPenWidth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkStrokeDisp_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
@@ -3251,7 +3542,106 @@ pub const IInkStrokeDisp = extern union {
             return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkStrokeDisp, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ID(self: *const IInkStrokeDisp, ID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IInkStrokeDisp, @ptrCast(self)), ID);
+    }
+    pub fn get_BezierPoints(self: *const IInkStrokeDisp, Points: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_BezierPoints(@as(*const IInkStrokeDisp, @ptrCast(self)), Points);
+    }
+    pub fn get_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_DrawingAttributes(@as(*const IInkStrokeDisp, @ptrCast(self)), DrawAttrs);
+    }
+    pub fn putref_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).putref_DrawingAttributes(@as(*const IInkStrokeDisp, @ptrCast(self)), DrawAttrs);
+    }
+    pub fn get_Ink(self: *const IInkStrokeDisp, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IInkStrokeDisp, @ptrCast(self)), Ink);
+    }
+    pub fn get_ExtendedProperties(self: *const IInkStrokeDisp, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_ExtendedProperties(@as(*const IInkStrokeDisp, @ptrCast(self)), Properties);
+    }
+    pub fn get_PolylineCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_PolylineCusps(@as(*const IInkStrokeDisp, @ptrCast(self)), Cusps);
+    }
+    pub fn get_BezierCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_BezierCusps(@as(*const IInkStrokeDisp, @ptrCast(self)), Cusps);
+    }
+    pub fn get_SelfIntersections(self: *const IInkStrokeDisp, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_SelfIntersections(@as(*const IInkStrokeDisp, @ptrCast(self)), Intersections);
+    }
+    pub fn get_PacketCount(self: *const IInkStrokeDisp, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_PacketCount(@as(*const IInkStrokeDisp, @ptrCast(self)), plCount);
+    }
+    pub fn get_PacketSize(self: *const IInkStrokeDisp, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_PacketSize(@as(*const IInkStrokeDisp, @ptrCast(self)), plSize);
+    }
+    pub fn get_PacketDescription(self: *const IInkStrokeDisp, PacketDescription: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_PacketDescription(@as(*const IInkStrokeDisp, @ptrCast(self)), PacketDescription);
+    }
+    pub fn get_Deleted(self: *const IInkStrokeDisp, Deleted: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).get_Deleted(@as(*const IInkStrokeDisp, @ptrCast(self)), Deleted);
+    }
+    pub fn GetBoundingBox(self: *const IInkStrokeDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetBoundingBox(@as(*const IInkStrokeDisp, @ptrCast(self)), BoundingBoxMode, Rectangle);
+    }
+    pub fn FindIntersections(self: *const IInkStrokeDisp, Strokes: ?*IInkStrokes, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).FindIntersections(@as(*const IInkStrokeDisp, @ptrCast(self)), Strokes, Intersections);
+    }
+    pub fn GetRectangleIntersections(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetRectangleIntersections(@as(*const IInkStrokeDisp, @ptrCast(self)), Rectangle, Intersections);
+    }
+    pub fn Clip(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Clip(@as(*const IInkStrokeDisp, @ptrCast(self)), Rectangle);
+    }
+    pub fn HitTestCircle(self: *const IInkStrokeDisp, X: i32, Y: i32, Radius: f32, Intersects: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).HitTestCircle(@as(*const IInkStrokeDisp, @ptrCast(self)), X, Y, Radius, Intersects);
+    }
+    pub fn NearestPoint(self: *const IInkStrokeDisp, X: i32, Y: i32, Distance: ?*f32, Point: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).NearestPoint(@as(*const IInkStrokeDisp, @ptrCast(self)), X, Y, Distance, Point);
+    }
+    pub fn Split(self: *const IInkStrokeDisp, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Split(@as(*const IInkStrokeDisp, @ptrCast(self)), SplitAt, NewStroke);
+    }
+    pub fn GetPacketDescriptionPropertyMetrics(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetPacketDescriptionPropertyMetrics(@as(*const IInkStrokeDisp, @ptrCast(self)), PropertyName, Minimum, Maximum, Units, Resolution);
+    }
+    pub fn GetPoints(self: *const IInkStrokeDisp, Index: i32, Count: i32, Points: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetPoints(@as(*const IInkStrokeDisp, @ptrCast(self)), Index, Count, Points);
+    }
+    pub fn SetPoints(self: *const IInkStrokeDisp, Points: VARIANT, Index: i32, Count: i32, NumberOfPointsSet: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).SetPoints(@as(*const IInkStrokeDisp, @ptrCast(self)), Points, Index, Count, NumberOfPointsSet);
+    }
+    pub fn GetPacketData(self: *const IInkStrokeDisp, Index: i32, Count: i32, PacketData: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetPacketData(@as(*const IInkStrokeDisp, @ptrCast(self)), Index, Count, PacketData);
+    }
+    pub fn GetPacketValuesByProperty(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Index: i32, Count: i32, PacketValues: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetPacketValuesByProperty(@as(*const IInkStrokeDisp, @ptrCast(self)), PropertyName, Index, Count, PacketValues);
+    }
+    pub fn SetPacketValuesByProperty(self: *const IInkStrokeDisp, bstrPropertyName: ?BSTR, PacketValues: VARIANT, Index: i32, Count: i32, NumberOfPacketsSet: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).SetPacketValuesByProperty(@as(*const IInkStrokeDisp, @ptrCast(self)), bstrPropertyName, PacketValues, Index, Count, NumberOfPacketsSet);
+    }
+    pub fn GetFlattenedBezierPoints(self: *const IInkStrokeDisp, FittingError: i32, FlattenedBezierPoints: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).GetFlattenedBezierPoints(@as(*const IInkStrokeDisp, @ptrCast(self)), FittingError, FlattenedBezierPoints);
+    }
+    pub fn Transform(self: *const IInkStrokeDisp, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokeDisp, @ptrCast(self)), _param_Transform, ApplyOnPenWidth);
+    }
+    pub fn ScaleToRectangle(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).ScaleToRectangle(@as(*const IInkStrokeDisp, @ptrCast(self)), Rectangle);
+    }
+    pub fn Move(self: *const IInkStrokeDisp, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Move(@as(*const IInkStrokeDisp, @ptrCast(self)), HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkStrokeDisp, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IInkStrokeDisp, @ptrCast(self)), Degrees, x, y);
+    }
+    pub fn Shear(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).Shear(@as(*const IInkStrokeDisp, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn ScaleTransform(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokeDisp.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkStrokeDisp, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
+    }
 };
 
 const IID_IInkStrokes_Value = Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
@@ -3372,8 +3762,8 @@ pub const IInkStrokes = extern union {
             return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).get_RecognitionResult(@as(*const IInkStrokes, @ptrCast(self)), RecognitionResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ToString(self: *const T, ToString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ToString(@as(*const IInkStrokes, @ptrCast(self)), ToString);
+        pub fn IInkStrokes_ToString(self: *const T, _param_ToString: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ToString(@as(*const IInkStrokes, @ptrCast(self)), _param_ToString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkStrokes_Item(self: *const T, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
@@ -3404,8 +3794,8 @@ pub const IInkStrokes = extern union {
             return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).GetBoundingBox(@as(*const IInkStrokes, @ptrCast(self)), BoundingBoxMode, BoundingBox);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
-            return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokes, @ptrCast(self)), Transform, ApplyOnPenWidth);
+        pub fn IInkStrokes_Transform(self: *const T, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
+            return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokes, @ptrCast(self)), _param_Transform, ApplyOnPenWidth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkStrokes_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
@@ -3436,7 +3826,67 @@ pub const IInkStrokes = extern union {
             return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).RemoveRecognitionResult(@as(*const IInkStrokes, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkStrokes, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkStrokes, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkStrokes, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkStrokes, @ptrCast(self)), _NewEnum);
+    }
+    pub fn get_Ink(self: *const IInkStrokes, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IInkStrokes, @ptrCast(self)), Ink);
+    }
+    pub fn get_RecognitionResult(self: *const IInkStrokes, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).get_RecognitionResult(@as(*const IInkStrokes, @ptrCast(self)), RecognitionResult);
+    }
+    pub fn ToString(self: *const IInkStrokes, _param_ToString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ToString(@as(*const IInkStrokes, @ptrCast(self)), _param_ToString);
+    }
+    pub fn Item(self: *const IInkStrokes, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkStrokes, @ptrCast(self)), Index, Stroke);
+    }
+    pub fn Add(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Add(@as(*const IInkStrokes, @ptrCast(self)), InkStroke);
+    }
+    pub fn AddStrokes(self: *const IInkStrokes, InkStrokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).AddStrokes(@as(*const IInkStrokes, @ptrCast(self)), InkStrokes);
+    }
+    pub fn Remove(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Remove(@as(*const IInkStrokes, @ptrCast(self)), InkStroke);
+    }
+    pub fn RemoveStrokes(self: *const IInkStrokes, InkStrokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).RemoveStrokes(@as(*const IInkStrokes, @ptrCast(self)), InkStrokes);
+    }
+    pub fn ModifyDrawingAttributes(self: *const IInkStrokes, DrawAttrs: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ModifyDrawingAttributes(@as(*const IInkStrokes, @ptrCast(self)), DrawAttrs);
+    }
+    pub fn GetBoundingBox(self: *const IInkStrokes, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).GetBoundingBox(@as(*const IInkStrokes, @ptrCast(self)), BoundingBoxMode, BoundingBox);
+    }
+    pub fn Transform(self: *const IInkStrokes, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Transform(@as(*const IInkStrokes, @ptrCast(self)), _param_Transform, ApplyOnPenWidth);
+    }
+    pub fn ScaleToRectangle(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ScaleToRectangle(@as(*const IInkStrokes, @ptrCast(self)), Rectangle);
+    }
+    pub fn Move(self: *const IInkStrokes, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Move(@as(*const IInkStrokes, @ptrCast(self)), HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkStrokes, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IInkStrokes, @ptrCast(self)), Degrees, x, y);
+    }
+    pub fn Shear(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Shear(@as(*const IInkStrokes, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn ScaleTransform(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkStrokes, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn Clip(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).Clip(@as(*const IInkStrokes, @ptrCast(self)), Rectangle);
+    }
+    pub fn RemoveRecognitionResult(self: *const IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkStrokes.VTable, @ptrCast(self.vtable)).RemoveRecognitionResult(@as(*const IInkStrokes, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3502,7 +3952,25 @@ pub const IInkCustomStrokes = extern union {
             return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).Clear(@as(*const IInkCustomStrokes, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkCustomStrokes, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkCustomStrokes, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkCustomStrokes, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkCustomStrokes, @ptrCast(self)), _NewEnum);
+    }
+    pub fn Item(self: *const IInkCustomStrokes, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkCustomStrokes, @ptrCast(self)), Identifier, Strokes);
+    }
+    pub fn Add(self: *const IInkCustomStrokes, Name: ?BSTR, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).Add(@as(*const IInkCustomStrokes, @ptrCast(self)), Name, Strokes);
+    }
+    pub fn Remove(self: *const IInkCustomStrokes, Identifier: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).Remove(@as(*const IInkCustomStrokes, @ptrCast(self)), Identifier);
+    }
+    pub fn Clear(self: *const IInkCustomStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCustomStrokes.VTable, @ptrCast(self.vtable)).Clear(@as(*const IInkCustomStrokes, @ptrCast(self)));
+    }
 };
 
 const IID__IInkStrokesEvents_Value = Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
@@ -3516,7 +3984,7 @@ pub const _IInkStrokesEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IInkDisp_Value = Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
@@ -3760,15 +4228,90 @@ pub const IInkDisp = extern union {
             return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ClipboardCopy(@as(*const IInkDisp, @ptrCast(self)), strokes, ClipboardFormats, ClipboardModes, DataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CanPaste(self: *const T, DataObject: ?*IDataObject, CanPaste: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).CanPaste(@as(*const IInkDisp, @ptrCast(self)), DataObject, CanPaste);
+        pub fn IInkDisp_CanPaste(self: *const T, DataObject: ?*IDataObject, _param_CanPaste: ?*i16) callconv(.Inline) HRESULT {
+            return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).CanPaste(@as(*const IInkDisp, @ptrCast(self)), DataObject, _param_CanPaste);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkDisp_ClipboardPaste(self: *const T, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ClipboardPaste(@as(*const IInkDisp, @ptrCast(self)), x, y, DataObject, Strokes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Strokes(self: *const IInkDisp, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkDisp, @ptrCast(self)), Strokes);
+    }
+    pub fn get_ExtendedProperties(self: *const IInkDisp, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).get_ExtendedProperties(@as(*const IInkDisp, @ptrCast(self)), Properties);
+    }
+    pub fn get_Dirty(self: *const IInkDisp, Dirty: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).get_Dirty(@as(*const IInkDisp, @ptrCast(self)), Dirty);
+    }
+    pub fn put_Dirty(self: *const IInkDisp, Dirty: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).put_Dirty(@as(*const IInkDisp, @ptrCast(self)), Dirty);
+    }
+    pub fn get_CustomStrokes(self: *const IInkDisp, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).get_CustomStrokes(@as(*const IInkDisp, @ptrCast(self)), ppunkInkCustomStrokes);
+    }
+    pub fn GetBoundingBox(self: *const IInkDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).GetBoundingBox(@as(*const IInkDisp, @ptrCast(self)), BoundingBoxMode, Rectangle);
+    }
+    pub fn DeleteStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).DeleteStrokes(@as(*const IInkDisp, @ptrCast(self)), Strokes);
+    }
+    pub fn DeleteStroke(self: *const IInkDisp, Stroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).DeleteStroke(@as(*const IInkDisp, @ptrCast(self)), Stroke);
+    }
+    pub fn ExtractStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ExtractStrokes(@as(*const IInkDisp, @ptrCast(self)), Strokes, ExtractFlags, ExtractedInk);
+    }
+    pub fn ExtractWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ExtractWithRectangle(@as(*const IInkDisp, @ptrCast(self)), Rectangle, extractFlags, ExtractedInk);
+    }
+    pub fn Clip(self: *const IInkDisp, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).Clip(@as(*const IInkDisp, @ptrCast(self)), Rectangle);
+    }
+    pub fn Clone(self: *const IInkDisp, NewInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).Clone(@as(*const IInkDisp, @ptrCast(self)), NewInk);
+    }
+    pub fn HitTestCircle(self: *const IInkDisp, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).HitTestCircle(@as(*const IInkDisp, @ptrCast(self)), X, Y, radius, Strokes);
+    }
+    pub fn HitTestWithRectangle(self: *const IInkDisp, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).HitTestWithRectangle(@as(*const IInkDisp, @ptrCast(self)), SelectionRectangle, IntersectPercent, Strokes);
+    }
+    pub fn HitTestWithLasso(self: *const IInkDisp, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).HitTestWithLasso(@as(*const IInkDisp, @ptrCast(self)), Points, IntersectPercent, LassoPoints, Strokes);
+    }
+    pub fn NearestPoint(self: *const IInkDisp, X: i32, Y: i32, PointOnStroke: ?*f32, DistanceFromPacket: ?*f32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).NearestPoint(@as(*const IInkDisp, @ptrCast(self)), X, Y, PointOnStroke, DistanceFromPacket, Stroke);
+    }
+    pub fn CreateStrokes(self: *const IInkDisp, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).CreateStrokes(@as(*const IInkDisp, @ptrCast(self)), StrokeIds, Strokes);
+    }
+    pub fn AddStrokesAtRectangle(self: *const IInkDisp, SourceStrokes: ?*IInkStrokes, TargetRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).AddStrokesAtRectangle(@as(*const IInkDisp, @ptrCast(self)), SourceStrokes, TargetRectangle);
+    }
+    pub fn Save(self: *const IInkDisp, PersistenceFormat: InkPersistenceFormat, CompressionMode: InkPersistenceCompressionMode, Data: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).Save(@as(*const IInkDisp, @ptrCast(self)), PersistenceFormat, CompressionMode, Data);
+    }
+    pub fn Load(self: *const IInkDisp, Data: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).Load(@as(*const IInkDisp, @ptrCast(self)), Data);
+    }
+    pub fn CreateStroke(self: *const IInkDisp, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).CreateStroke(@as(*const IInkDisp, @ptrCast(self)), PacketData, PacketDescription, Stroke);
+    }
+    pub fn ClipboardCopyWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ClipboardCopyWithRectangle(@as(*const IInkDisp, @ptrCast(self)), Rectangle, ClipboardFormats, ClipboardModes, DataObject);
+    }
+    pub fn ClipboardCopy(self: *const IInkDisp, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ClipboardCopy(@as(*const IInkDisp, @ptrCast(self)), strokes, ClipboardFormats, ClipboardModes, DataObject);
+    }
+    pub fn CanPaste(self: *const IInkDisp, DataObject: ?*IDataObject, _param_CanPaste: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).CanPaste(@as(*const IInkDisp, @ptrCast(self)), DataObject, _param_CanPaste);
+    }
+    pub fn ClipboardPaste(self: *const IInkDisp, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDisp.VTable, @ptrCast(self.vtable)).ClipboardPaste(@as(*const IInkDisp, @ptrCast(self)), x, y, DataObject, Strokes);
+    }
 };
 
 const IID__IInkEvents_Value = Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
@@ -3782,7 +4325,7 @@ pub const _IInkEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IInkRenderer_Value = Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
@@ -3933,7 +4476,52 @@ pub const IInkRenderer = extern union {
             return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkRenderer, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).GetViewTransform(@as(*const IInkRenderer, @ptrCast(self)), ViewTransform);
+    }
+    pub fn SetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).SetViewTransform(@as(*const IInkRenderer, @ptrCast(self)), ViewTransform);
+    }
+    pub fn GetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).GetObjectTransform(@as(*const IInkRenderer, @ptrCast(self)), ObjectTransform);
+    }
+    pub fn SetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).SetObjectTransform(@as(*const IInkRenderer, @ptrCast(self)), ObjectTransform);
+    }
+    pub fn Draw(self: *const IInkRenderer, hDC: isize, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkRenderer, @ptrCast(self)), hDC, Strokes);
+    }
+    pub fn DrawStroke(self: *const IInkRenderer, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).DrawStroke(@as(*const IInkRenderer, @ptrCast(self)), hDC, Stroke, DrawingAttributes);
+    }
+    pub fn PixelToInkSpace(self: *const IInkRenderer, hDC: isize, x: ?*i32, y: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).PixelToInkSpace(@as(*const IInkRenderer, @ptrCast(self)), hDC, x, y);
+    }
+    pub fn InkSpaceToPixel(self: *const IInkRenderer, hdcDisplay: isize, x: ?*i32, y: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).InkSpaceToPixel(@as(*const IInkRenderer, @ptrCast(self)), hdcDisplay, x, y);
+    }
+    pub fn PixelToInkSpaceFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).PixelToInkSpaceFromPoints(@as(*const IInkRenderer, @ptrCast(self)), hDC, Points);
+    }
+    pub fn InkSpaceToPixelFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).InkSpaceToPixelFromPoints(@as(*const IInkRenderer, @ptrCast(self)), hDC, Points);
+    }
+    pub fn Measure(self: *const IInkRenderer, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).Measure(@as(*const IInkRenderer, @ptrCast(self)), Strokes, Rectangle);
+    }
+    pub fn MeasureStroke(self: *const IInkRenderer, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).MeasureStroke(@as(*const IInkRenderer, @ptrCast(self)), Stroke, DrawingAttributes, Rectangle);
+    }
+    pub fn Move(self: *const IInkRenderer, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).Move(@as(*const IInkRenderer, @ptrCast(self)), HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkRenderer, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IInkRenderer, @ptrCast(self)), Degrees, x, y);
+    }
+    pub fn ScaleTransform(self: *const IInkRenderer, HorizontalMultiplier: f32, VerticalMultiplier: f32, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkRenderer.VTable, @ptrCast(self.vtable)).ScaleTransform(@as(*const IInkRenderer, @ptrCast(self)), HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
+    }
 };
 
 const IID_IInkCollector_Value = Guid.initString("f0f060b5-8b1f-4a7c-89ec-880692588a4f");
@@ -4299,7 +4887,127 @@ pub const IInkCollector = extern union {
             return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const IInkCollector, @ptrCast(self)), EventId, Listen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_hWnd(self: *const IInkCollector, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_hWnd(@as(*const IInkCollector, @ptrCast(self)), CurrentWindow);
+    }
+    pub fn put_hWnd(self: *const IInkCollector, NewWindow: isize) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_hWnd(@as(*const IInkCollector, @ptrCast(self)), NewWindow);
+    }
+    pub fn get_Enabled(self: *const IInkCollector, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IInkCollector, @ptrCast(self)), Collecting);
+    }
+    pub fn put_Enabled(self: *const IInkCollector, Collecting: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IInkCollector, @ptrCast(self)), Collecting);
+    }
+    pub fn get_DefaultDrawingAttributes(self: *const IInkCollector, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_DefaultDrawingAttributes(@as(*const IInkCollector, @ptrCast(self)), CurrentAttributes);
+    }
+    pub fn putref_DefaultDrawingAttributes(self: *const IInkCollector, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).putref_DefaultDrawingAttributes(@as(*const IInkCollector, @ptrCast(self)), NewAttributes);
+    }
+    pub fn get_Renderer(self: *const IInkCollector, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_Renderer(@as(*const IInkCollector, @ptrCast(self)), CurrentInkRenderer);
+    }
+    pub fn putref_Renderer(self: *const IInkCollector, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).putref_Renderer(@as(*const IInkCollector, @ptrCast(self)), NewInkRenderer);
+    }
+    pub fn get_Ink(self: *const IInkCollector, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IInkCollector, @ptrCast(self)), Ink);
+    }
+    pub fn putref_Ink(self: *const IInkCollector, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).putref_Ink(@as(*const IInkCollector, @ptrCast(self)), NewInk);
+    }
+    pub fn get_AutoRedraw(self: *const IInkCollector, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_AutoRedraw(@as(*const IInkCollector, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn put_AutoRedraw(self: *const IInkCollector, AutoRedraw: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_AutoRedraw(@as(*const IInkCollector, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn get_CollectingInk(self: *const IInkCollector, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_CollectingInk(@as(*const IInkCollector, @ptrCast(self)), Collecting);
+    }
+    pub fn get_CollectionMode(self: *const IInkCollector, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_CollectionMode(@as(*const IInkCollector, @ptrCast(self)), Mode);
+    }
+    pub fn put_CollectionMode(self: *const IInkCollector, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_CollectionMode(@as(*const IInkCollector, @ptrCast(self)), Mode);
+    }
+    pub fn get_DynamicRendering(self: *const IInkCollector, Enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_DynamicRendering(@as(*const IInkCollector, @ptrCast(self)), Enabled);
+    }
+    pub fn put_DynamicRendering(self: *const IInkCollector, Enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_DynamicRendering(@as(*const IInkCollector, @ptrCast(self)), Enabled);
+    }
+    pub fn get_DesiredPacketDescription(self: *const IInkCollector, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_DesiredPacketDescription(@as(*const IInkCollector, @ptrCast(self)), PacketGuids);
+    }
+    pub fn put_DesiredPacketDescription(self: *const IInkCollector, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_DesiredPacketDescription(@as(*const IInkCollector, @ptrCast(self)), PacketGuids);
+    }
+    pub fn get_MouseIcon(self: *const IInkCollector, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_MouseIcon(@as(*const IInkCollector, @ptrCast(self)), MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkCollector, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_MouseIcon(@as(*const IInkCollector, @ptrCast(self)), MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkCollector, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).putref_MouseIcon(@as(*const IInkCollector, @ptrCast(self)), MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkCollector, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_MousePointer(@as(*const IInkCollector, @ptrCast(self)), MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkCollector, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_MousePointer(@as(*const IInkCollector, @ptrCast(self)), MousePointer);
+    }
+    pub fn get_Cursors(self: *const IInkCollector, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_Cursors(@as(*const IInkCollector, @ptrCast(self)), Cursors);
+    }
+    pub fn get_MarginX(self: *const IInkCollector, MarginX: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_MarginX(@as(*const IInkCollector, @ptrCast(self)), MarginX);
+    }
+    pub fn put_MarginX(self: *const IInkCollector, MarginX: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_MarginX(@as(*const IInkCollector, @ptrCast(self)), MarginX);
+    }
+    pub fn get_MarginY(self: *const IInkCollector, MarginY: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_MarginY(@as(*const IInkCollector, @ptrCast(self)), MarginY);
+    }
+    pub fn put_MarginY(self: *const IInkCollector, MarginY: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_MarginY(@as(*const IInkCollector, @ptrCast(self)), MarginY);
+    }
+    pub fn get_Tablet(self: *const IInkCollector, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_Tablet(@as(*const IInkCollector, @ptrCast(self)), SingleTablet);
+    }
+    pub fn get_SupportHighContrastInk(self: *const IInkCollector, Support: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).get_SupportHighContrastInk(@as(*const IInkCollector, @ptrCast(self)), Support);
+    }
+    pub fn put_SupportHighContrastInk(self: *const IInkCollector, Support: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).put_SupportHighContrastInk(@as(*const IInkCollector, @ptrCast(self)), Support);
+    }
+    pub fn SetGestureStatus(self: *const IInkCollector, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetGestureStatus(@as(*const IInkCollector, @ptrCast(self)), Gesture, Listen);
+    }
+    pub fn GetGestureStatus(self: *const IInkCollector, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).GetGestureStatus(@as(*const IInkCollector, @ptrCast(self)), Gesture, Listening);
+    }
+    pub fn GetWindowInputRectangle(self: *const IInkCollector, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).GetWindowInputRectangle(@as(*const IInkCollector, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetWindowInputRectangle(self: *const IInkCollector, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetWindowInputRectangle(@as(*const IInkCollector, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetAllTabletsMode(self: *const IInkCollector, UseMouseForInput: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetAllTabletsMode(@as(*const IInkCollector, @ptrCast(self)), UseMouseForInput);
+    }
+    pub fn SetSingleTabletIntegratedMode(self: *const IInkCollector, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetSingleTabletIntegratedMode(@as(*const IInkCollector, @ptrCast(self)), Tablet);
+    }
+    pub fn GetEventInterest(self: *const IInkCollector, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const IInkCollector, @ptrCast(self)), EventId, Listen);
+    }
+    pub fn SetEventInterest(self: *const IInkCollector, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkCollector.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const IInkCollector, @ptrCast(self)), EventId, Listen);
+    }
 };
 
 const IID__IInkCollectorEvents_Value = Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
@@ -4313,7 +5021,7 @@ pub const _IInkCollectorEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IInkOverlay_Value = Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
@@ -4805,7 +5513,169 @@ pub const IInkOverlay = extern union {
             return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const IInkOverlay, @ptrCast(self)), EventId, Listen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_hWnd(self: *const IInkOverlay, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_hWnd(@as(*const IInkOverlay, @ptrCast(self)), CurrentWindow);
+    }
+    pub fn put_hWnd(self: *const IInkOverlay, NewWindow: isize) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_hWnd(@as(*const IInkOverlay, @ptrCast(self)), NewWindow);
+    }
+    pub fn get_Enabled(self: *const IInkOverlay, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IInkOverlay, @ptrCast(self)), Collecting);
+    }
+    pub fn put_Enabled(self: *const IInkOverlay, Collecting: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IInkOverlay, @ptrCast(self)), Collecting);
+    }
+    pub fn get_DefaultDrawingAttributes(self: *const IInkOverlay, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_DefaultDrawingAttributes(@as(*const IInkOverlay, @ptrCast(self)), CurrentAttributes);
+    }
+    pub fn putref_DefaultDrawingAttributes(self: *const IInkOverlay, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).putref_DefaultDrawingAttributes(@as(*const IInkOverlay, @ptrCast(self)), NewAttributes);
+    }
+    pub fn get_Renderer(self: *const IInkOverlay, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Renderer(@as(*const IInkOverlay, @ptrCast(self)), CurrentInkRenderer);
+    }
+    pub fn putref_Renderer(self: *const IInkOverlay, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).putref_Renderer(@as(*const IInkOverlay, @ptrCast(self)), NewInkRenderer);
+    }
+    pub fn get_Ink(self: *const IInkOverlay, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IInkOverlay, @ptrCast(self)), Ink);
+    }
+    pub fn putref_Ink(self: *const IInkOverlay, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).putref_Ink(@as(*const IInkOverlay, @ptrCast(self)), NewInk);
+    }
+    pub fn get_AutoRedraw(self: *const IInkOverlay, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_AutoRedraw(@as(*const IInkOverlay, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn put_AutoRedraw(self: *const IInkOverlay, AutoRedraw: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_AutoRedraw(@as(*const IInkOverlay, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn get_CollectingInk(self: *const IInkOverlay, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_CollectingInk(@as(*const IInkOverlay, @ptrCast(self)), Collecting);
+    }
+    pub fn get_CollectionMode(self: *const IInkOverlay, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_CollectionMode(@as(*const IInkOverlay, @ptrCast(self)), Mode);
+    }
+    pub fn put_CollectionMode(self: *const IInkOverlay, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_CollectionMode(@as(*const IInkOverlay, @ptrCast(self)), Mode);
+    }
+    pub fn get_DynamicRendering(self: *const IInkOverlay, Enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_DynamicRendering(@as(*const IInkOverlay, @ptrCast(self)), Enabled);
+    }
+    pub fn put_DynamicRendering(self: *const IInkOverlay, Enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_DynamicRendering(@as(*const IInkOverlay, @ptrCast(self)), Enabled);
+    }
+    pub fn get_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_DesiredPacketDescription(@as(*const IInkOverlay, @ptrCast(self)), PacketGuids);
+    }
+    pub fn put_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_DesiredPacketDescription(@as(*const IInkOverlay, @ptrCast(self)), PacketGuids);
+    }
+    pub fn get_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_MouseIcon(@as(*const IInkOverlay, @ptrCast(self)), MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_MouseIcon(@as(*const IInkOverlay, @ptrCast(self)), MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).putref_MouseIcon(@as(*const IInkOverlay, @ptrCast(self)), MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkOverlay, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_MousePointer(@as(*const IInkOverlay, @ptrCast(self)), MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkOverlay, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_MousePointer(@as(*const IInkOverlay, @ptrCast(self)), MousePointer);
+    }
+    pub fn get_EditingMode(self: *const IInkOverlay, EditingMode: ?*InkOverlayEditingMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_EditingMode(@as(*const IInkOverlay, @ptrCast(self)), EditingMode);
+    }
+    pub fn put_EditingMode(self: *const IInkOverlay, EditingMode: InkOverlayEditingMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_EditingMode(@as(*const IInkOverlay, @ptrCast(self)), EditingMode);
+    }
+    pub fn get_Selection(self: *const IInkOverlay, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Selection(@as(*const IInkOverlay, @ptrCast(self)), Selection);
+    }
+    pub fn put_Selection(self: *const IInkOverlay, Selection: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_Selection(@as(*const IInkOverlay, @ptrCast(self)), Selection);
+    }
+    pub fn get_EraserMode(self: *const IInkOverlay, EraserMode: ?*InkOverlayEraserMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_EraserMode(@as(*const IInkOverlay, @ptrCast(self)), EraserMode);
+    }
+    pub fn put_EraserMode(self: *const IInkOverlay, EraserMode: InkOverlayEraserMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_EraserMode(@as(*const IInkOverlay, @ptrCast(self)), EraserMode);
+    }
+    pub fn get_EraserWidth(self: *const IInkOverlay, EraserWidth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_EraserWidth(@as(*const IInkOverlay, @ptrCast(self)), EraserWidth);
+    }
+    pub fn put_EraserWidth(self: *const IInkOverlay, newEraserWidth: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_EraserWidth(@as(*const IInkOverlay, @ptrCast(self)), newEraserWidth);
+    }
+    pub fn get_AttachMode(self: *const IInkOverlay, AttachMode: ?*InkOverlayAttachMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_AttachMode(@as(*const IInkOverlay, @ptrCast(self)), AttachMode);
+    }
+    pub fn put_AttachMode(self: *const IInkOverlay, AttachMode: InkOverlayAttachMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_AttachMode(@as(*const IInkOverlay, @ptrCast(self)), AttachMode);
+    }
+    pub fn get_Cursors(self: *const IInkOverlay, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Cursors(@as(*const IInkOverlay, @ptrCast(self)), Cursors);
+    }
+    pub fn get_MarginX(self: *const IInkOverlay, MarginX: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_MarginX(@as(*const IInkOverlay, @ptrCast(self)), MarginX);
+    }
+    pub fn put_MarginX(self: *const IInkOverlay, MarginX: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_MarginX(@as(*const IInkOverlay, @ptrCast(self)), MarginX);
+    }
+    pub fn get_MarginY(self: *const IInkOverlay, MarginY: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_MarginY(@as(*const IInkOverlay, @ptrCast(self)), MarginY);
+    }
+    pub fn put_MarginY(self: *const IInkOverlay, MarginY: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_MarginY(@as(*const IInkOverlay, @ptrCast(self)), MarginY);
+    }
+    pub fn get_Tablet(self: *const IInkOverlay, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_Tablet(@as(*const IInkOverlay, @ptrCast(self)), SingleTablet);
+    }
+    pub fn get_SupportHighContrastInk(self: *const IInkOverlay, Support: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_SupportHighContrastInk(@as(*const IInkOverlay, @ptrCast(self)), Support);
+    }
+    pub fn put_SupportHighContrastInk(self: *const IInkOverlay, Support: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_SupportHighContrastInk(@as(*const IInkOverlay, @ptrCast(self)), Support);
+    }
+    pub fn get_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).get_SupportHighContrastSelectionUI(@as(*const IInkOverlay, @ptrCast(self)), Support);
+    }
+    pub fn put_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).put_SupportHighContrastSelectionUI(@as(*const IInkOverlay, @ptrCast(self)), Support);
+    }
+    pub fn HitTestSelection(self: *const IInkOverlay, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).HitTestSelection(@as(*const IInkOverlay, @ptrCast(self)), x, y, SelArea);
+    }
+    pub fn Draw(self: *const IInkOverlay, Rect: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkOverlay, @ptrCast(self)), Rect);
+    }
+    pub fn SetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetGestureStatus(@as(*const IInkOverlay, @ptrCast(self)), Gesture, Listen);
+    }
+    pub fn GetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).GetGestureStatus(@as(*const IInkOverlay, @ptrCast(self)), Gesture, Listening);
+    }
+    pub fn GetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).GetWindowInputRectangle(@as(*const IInkOverlay, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetWindowInputRectangle(@as(*const IInkOverlay, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetAllTabletsMode(self: *const IInkOverlay, UseMouseForInput: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetAllTabletsMode(@as(*const IInkOverlay, @ptrCast(self)), UseMouseForInput);
+    }
+    pub fn SetSingleTabletIntegratedMode(self: *const IInkOverlay, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetSingleTabletIntegratedMode(@as(*const IInkOverlay, @ptrCast(self)), Tablet);
+    }
+    pub fn GetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const IInkOverlay, @ptrCast(self)), EventId, Listen);
+    }
+    pub fn SetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkOverlay.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const IInkOverlay, @ptrCast(self)), EventId, Listen);
+    }
 };
 
 const IID__IInkOverlayEvents_Value = Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
@@ -4819,7 +5689,7 @@ pub const _IInkOverlayEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IInkPicture_Value = Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
@@ -5356,7 +6226,184 @@ pub const IInkPicture = extern union {
             return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IInkPicture, @ptrCast(self)), vbool);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_hWnd(self: *const IInkPicture, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_hWnd(@as(*const IInkPicture, @ptrCast(self)), CurrentWindow);
+    }
+    pub fn get_DefaultDrawingAttributes(self: *const IInkPicture, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_DefaultDrawingAttributes(@as(*const IInkPicture, @ptrCast(self)), CurrentAttributes);
+    }
+    pub fn putref_DefaultDrawingAttributes(self: *const IInkPicture, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).putref_DefaultDrawingAttributes(@as(*const IInkPicture, @ptrCast(self)), NewAttributes);
+    }
+    pub fn get_Renderer(self: *const IInkPicture, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Renderer(@as(*const IInkPicture, @ptrCast(self)), CurrentInkRenderer);
+    }
+    pub fn putref_Renderer(self: *const IInkPicture, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).putref_Renderer(@as(*const IInkPicture, @ptrCast(self)), NewInkRenderer);
+    }
+    pub fn get_Ink(self: *const IInkPicture, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IInkPicture, @ptrCast(self)), Ink);
+    }
+    pub fn putref_Ink(self: *const IInkPicture, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).putref_Ink(@as(*const IInkPicture, @ptrCast(self)), NewInk);
+    }
+    pub fn get_AutoRedraw(self: *const IInkPicture, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_AutoRedraw(@as(*const IInkPicture, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn put_AutoRedraw(self: *const IInkPicture, AutoRedraw: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_AutoRedraw(@as(*const IInkPicture, @ptrCast(self)), AutoRedraw);
+    }
+    pub fn get_CollectingInk(self: *const IInkPicture, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_CollectingInk(@as(*const IInkPicture, @ptrCast(self)), Collecting);
+    }
+    pub fn get_CollectionMode(self: *const IInkPicture, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_CollectionMode(@as(*const IInkPicture, @ptrCast(self)), Mode);
+    }
+    pub fn put_CollectionMode(self: *const IInkPicture, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_CollectionMode(@as(*const IInkPicture, @ptrCast(self)), Mode);
+    }
+    pub fn get_DynamicRendering(self: *const IInkPicture, Enabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_DynamicRendering(@as(*const IInkPicture, @ptrCast(self)), Enabled);
+    }
+    pub fn put_DynamicRendering(self: *const IInkPicture, Enabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_DynamicRendering(@as(*const IInkPicture, @ptrCast(self)), Enabled);
+    }
+    pub fn get_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_DesiredPacketDescription(@as(*const IInkPicture, @ptrCast(self)), PacketGuids);
+    }
+    pub fn put_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_DesiredPacketDescription(@as(*const IInkPicture, @ptrCast(self)), PacketGuids);
+    }
+    pub fn get_MouseIcon(self: *const IInkPicture, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_MouseIcon(@as(*const IInkPicture, @ptrCast(self)), MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_MouseIcon(@as(*const IInkPicture, @ptrCast(self)), MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).putref_MouseIcon(@as(*const IInkPicture, @ptrCast(self)), MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkPicture, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_MousePointer(@as(*const IInkPicture, @ptrCast(self)), MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkPicture, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_MousePointer(@as(*const IInkPicture, @ptrCast(self)), MousePointer);
+    }
+    pub fn get_EditingMode(self: *const IInkPicture, EditingMode: ?*InkOverlayEditingMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_EditingMode(@as(*const IInkPicture, @ptrCast(self)), EditingMode);
+    }
+    pub fn put_EditingMode(self: *const IInkPicture, EditingMode: InkOverlayEditingMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_EditingMode(@as(*const IInkPicture, @ptrCast(self)), EditingMode);
+    }
+    pub fn get_Selection(self: *const IInkPicture, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Selection(@as(*const IInkPicture, @ptrCast(self)), Selection);
+    }
+    pub fn put_Selection(self: *const IInkPicture, Selection: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_Selection(@as(*const IInkPicture, @ptrCast(self)), Selection);
+    }
+    pub fn get_EraserMode(self: *const IInkPicture, EraserMode: ?*InkOverlayEraserMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_EraserMode(@as(*const IInkPicture, @ptrCast(self)), EraserMode);
+    }
+    pub fn put_EraserMode(self: *const IInkPicture, EraserMode: InkOverlayEraserMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_EraserMode(@as(*const IInkPicture, @ptrCast(self)), EraserMode);
+    }
+    pub fn get_EraserWidth(self: *const IInkPicture, EraserWidth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_EraserWidth(@as(*const IInkPicture, @ptrCast(self)), EraserWidth);
+    }
+    pub fn put_EraserWidth(self: *const IInkPicture, newEraserWidth: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_EraserWidth(@as(*const IInkPicture, @ptrCast(self)), newEraserWidth);
+    }
+    pub fn putref_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).putref_Picture(@as(*const IInkPicture, @ptrCast(self)), pPicture);
+    }
+    pub fn put_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_Picture(@as(*const IInkPicture, @ptrCast(self)), pPicture);
+    }
+    pub fn get_Picture(self: *const IInkPicture, ppPicture: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Picture(@as(*const IInkPicture, @ptrCast(self)), ppPicture);
+    }
+    pub fn put_SizeMode(self: *const IInkPicture, smNewSizeMode: InkPictureSizeMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_SizeMode(@as(*const IInkPicture, @ptrCast(self)), smNewSizeMode);
+    }
+    pub fn get_SizeMode(self: *const IInkPicture, smSizeMode: ?*InkPictureSizeMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_SizeMode(@as(*const IInkPicture, @ptrCast(self)), smSizeMode);
+    }
+    pub fn put_BackColor(self: *const IInkPicture, newColor: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const IInkPicture, @ptrCast(self)), newColor);
+    }
+    pub fn get_BackColor(self: *const IInkPicture, pColor: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const IInkPicture, @ptrCast(self)), pColor);
+    }
+    pub fn get_Cursors(self: *const IInkPicture, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Cursors(@as(*const IInkPicture, @ptrCast(self)), Cursors);
+    }
+    pub fn get_MarginX(self: *const IInkPicture, MarginX: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_MarginX(@as(*const IInkPicture, @ptrCast(self)), MarginX);
+    }
+    pub fn put_MarginX(self: *const IInkPicture, MarginX: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_MarginX(@as(*const IInkPicture, @ptrCast(self)), MarginX);
+    }
+    pub fn get_MarginY(self: *const IInkPicture, MarginY: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_MarginY(@as(*const IInkPicture, @ptrCast(self)), MarginY);
+    }
+    pub fn put_MarginY(self: *const IInkPicture, MarginY: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_MarginY(@as(*const IInkPicture, @ptrCast(self)), MarginY);
+    }
+    pub fn get_Tablet(self: *const IInkPicture, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Tablet(@as(*const IInkPicture, @ptrCast(self)), SingleTablet);
+    }
+    pub fn get_SupportHighContrastInk(self: *const IInkPicture, Support: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_SupportHighContrastInk(@as(*const IInkPicture, @ptrCast(self)), Support);
+    }
+    pub fn put_SupportHighContrastInk(self: *const IInkPicture, Support: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_SupportHighContrastInk(@as(*const IInkPicture, @ptrCast(self)), Support);
+    }
+    pub fn get_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_SupportHighContrastSelectionUI(@as(*const IInkPicture, @ptrCast(self)), Support);
+    }
+    pub fn put_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_SupportHighContrastSelectionUI(@as(*const IInkPicture, @ptrCast(self)), Support);
+    }
+    pub fn HitTestSelection(self: *const IInkPicture, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).HitTestSelection(@as(*const IInkPicture, @ptrCast(self)), x, y, SelArea);
+    }
+    pub fn SetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).SetGestureStatus(@as(*const IInkPicture, @ptrCast(self)), Gesture, Listen);
+    }
+    pub fn GetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).GetGestureStatus(@as(*const IInkPicture, @ptrCast(self)), Gesture, Listening);
+    }
+    pub fn GetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).GetWindowInputRectangle(@as(*const IInkPicture, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).SetWindowInputRectangle(@as(*const IInkPicture, @ptrCast(self)), WindowInputRectangle);
+    }
+    pub fn SetAllTabletsMode(self: *const IInkPicture, UseMouseForInput: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).SetAllTabletsMode(@as(*const IInkPicture, @ptrCast(self)), UseMouseForInput);
+    }
+    pub fn SetSingleTabletIntegratedMode(self: *const IInkPicture, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).SetSingleTabletIntegratedMode(@as(*const IInkPicture, @ptrCast(self)), Tablet);
+    }
+    pub fn GetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const IInkPicture, @ptrCast(self)), EventId, Listen);
+    }
+    pub fn SetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const IInkPicture, @ptrCast(self)), EventId, Listen);
+    }
+    pub fn get_InkEnabled(self: *const IInkPicture, Collecting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_InkEnabled(@as(*const IInkPicture, @ptrCast(self)), Collecting);
+    }
+    pub fn put_InkEnabled(self: *const IInkPicture, Collecting: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_InkEnabled(@as(*const IInkPicture, @ptrCast(self)), Collecting);
+    }
+    pub fn get_Enabled(self: *const IInkPicture, pbool: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IInkPicture, @ptrCast(self)), pbool);
+    }
+    pub fn put_Enabled(self: *const IInkPicture, vbool: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkPicture.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IInkPicture, @ptrCast(self)), vbool);
+    }
 };
 
 const IID__IInkPictureEvents_Value = Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
@@ -5370,7 +6417,7 @@ pub const _IInkPictureEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5447,7 +6494,28 @@ pub const IInkRecognizer = extern union {
             return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).CreateRecognizerContext(@as(*const IInkRecognizer, @ptrCast(self)), Context);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IInkRecognizer, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IInkRecognizer, @ptrCast(self)), Name);
+    }
+    pub fn get_Vendor(self: *const IInkRecognizer, Vendor: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_Vendor(@as(*const IInkRecognizer, @ptrCast(self)), Vendor);
+    }
+    pub fn get_Capabilities(self: *const IInkRecognizer, CapabilitiesFlags: ?*InkRecognizerCapabilities) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_Capabilities(@as(*const IInkRecognizer, @ptrCast(self)), CapabilitiesFlags);
+    }
+    pub fn get_Languages(self: *const IInkRecognizer, Languages: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_Languages(@as(*const IInkRecognizer, @ptrCast(self)), Languages);
+    }
+    pub fn get_SupportedProperties(self: *const IInkRecognizer, SupportedProperties: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_SupportedProperties(@as(*const IInkRecognizer, @ptrCast(self)), SupportedProperties);
+    }
+    pub fn get_PreferredPacketDescription(self: *const IInkRecognizer, PreferredPacketDescription: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).get_PreferredPacketDescription(@as(*const IInkRecognizer, @ptrCast(self)), PreferredPacketDescription);
+    }
+    pub fn CreateRecognizerContext(self: *const IInkRecognizer, Context: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer.VTable, @ptrCast(self.vtable)).CreateRecognizerContext(@as(*const IInkRecognizer, @ptrCast(self)), Context);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5480,7 +6548,13 @@ pub const IInkRecognizer2 = extern union {
             return @as(*const IInkRecognizer2.VTable, @ptrCast(self.vtable)).get_UnicodeRanges(@as(*const IInkRecognizer2, @ptrCast(self)), UnicodeRanges);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Id(self: *const IInkRecognizer2, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer2.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IInkRecognizer2, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_UnicodeRanges(self: *const IInkRecognizer2, UnicodeRanges: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizer2.VTable, @ptrCast(self.vtable)).get_UnicodeRanges(@as(*const IInkRecognizer2, @ptrCast(self)), UnicodeRanges);
+    }
 };
 
 const IID_IInkRecognizers_Value = Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
@@ -5530,7 +6604,19 @@ pub const IInkRecognizers = extern union {
             return @as(*const IInkRecognizers.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkRecognizers, @ptrCast(self)), Index, InkRecognizer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkRecognizers, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizers.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkRecognizers, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkRecognizers, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizers.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkRecognizers, @ptrCast(self)), _NewEnum);
+    }
+    pub fn GetDefaultRecognizer(self: *const IInkRecognizers, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizers.VTable, @ptrCast(self.vtable)).GetDefaultRecognizer(@as(*const IInkRecognizers, @ptrCast(self)), lcid, DefaultRecognizer);
+    }
+    pub fn Item(self: *const IInkRecognizers, Index: i32, InkRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizers.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkRecognizers, @ptrCast(self)), Index, InkRecognizer);
+    }
 };
 
 const IID__IInkRecognitionEvents_Value = Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
@@ -5544,7 +6630,7 @@ pub const _IInkRecognitionEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IInkRecognizerContext_Value = Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
@@ -5764,7 +6850,79 @@ pub const IInkRecognizerContext = extern union {
             return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).IsStringSupported(@as(*const IInkRecognizerContext, @ptrCast(self)), String, Supported);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Strokes(self: *const IInkRecognizerContext, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkRecognizerContext, @ptrCast(self)), Strokes);
+    }
+    pub fn putref_Strokes(self: *const IInkRecognizerContext, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).putref_Strokes(@as(*const IInkRecognizerContext, @ptrCast(self)), Strokes);
+    }
+    pub fn get_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: ?*InkRecognizerCharacterAutoCompletionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_CharacterAutoCompletionMode(@as(*const IInkRecognizerContext, @ptrCast(self)), Mode);
+    }
+    pub fn put_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: InkRecognizerCharacterAutoCompletionMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).put_CharacterAutoCompletionMode(@as(*const IInkRecognizerContext, @ptrCast(self)), Mode);
+    }
+    pub fn get_Factoid(self: *const IInkRecognizerContext, Factoid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_Factoid(@as(*const IInkRecognizerContext, @ptrCast(self)), Factoid);
+    }
+    pub fn put_Factoid(self: *const IInkRecognizerContext, factoid: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).put_Factoid(@as(*const IInkRecognizerContext, @ptrCast(self)), factoid);
+    }
+    pub fn get_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*?*IInkRecognizerGuide) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_Guide(@as(*const IInkRecognizerContext, @ptrCast(self)), RecognizerGuide);
+    }
+    pub fn putref_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*IInkRecognizerGuide) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).putref_Guide(@as(*const IInkRecognizerContext, @ptrCast(self)), RecognizerGuide);
+    }
+    pub fn get_PrefixText(self: *const IInkRecognizerContext, Prefix: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_PrefixText(@as(*const IInkRecognizerContext, @ptrCast(self)), Prefix);
+    }
+    pub fn put_PrefixText(self: *const IInkRecognizerContext, Prefix: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).put_PrefixText(@as(*const IInkRecognizerContext, @ptrCast(self)), Prefix);
+    }
+    pub fn get_SuffixText(self: *const IInkRecognizerContext, Suffix: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_SuffixText(@as(*const IInkRecognizerContext, @ptrCast(self)), Suffix);
+    }
+    pub fn put_SuffixText(self: *const IInkRecognizerContext, Suffix: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).put_SuffixText(@as(*const IInkRecognizerContext, @ptrCast(self)), Suffix);
+    }
+    pub fn get_RecognitionFlags(self: *const IInkRecognizerContext, Modes: ?*InkRecognitionModes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_RecognitionFlags(@as(*const IInkRecognizerContext, @ptrCast(self)), Modes);
+    }
+    pub fn put_RecognitionFlags(self: *const IInkRecognizerContext, Modes: InkRecognitionModes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).put_RecognitionFlags(@as(*const IInkRecognizerContext, @ptrCast(self)), Modes);
+    }
+    pub fn get_WordList(self: *const IInkRecognizerContext, WordList: ?*?*IInkWordList) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_WordList(@as(*const IInkRecognizerContext, @ptrCast(self)), WordList);
+    }
+    pub fn putref_WordList(self: *const IInkRecognizerContext, WordList: ?*IInkWordList) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).putref_WordList(@as(*const IInkRecognizerContext, @ptrCast(self)), WordList);
+    }
+    pub fn get_Recognizer(self: *const IInkRecognizerContext, Recognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const IInkRecognizerContext, @ptrCast(self)), Recognizer);
+    }
+    pub fn Recognize(self: *const IInkRecognizerContext, RecognitionStatus: ?*InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).Recognize(@as(*const IInkRecognizerContext, @ptrCast(self)), RecognitionStatus, RecognitionResult);
+    }
+    pub fn StopBackgroundRecognition(self: *const IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).StopBackgroundRecognition(@as(*const IInkRecognizerContext, @ptrCast(self)));
+    }
+    pub fn EndInkInput(self: *const IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).EndInkInput(@as(*const IInkRecognizerContext, @ptrCast(self)));
+    }
+    pub fn BackgroundRecognize(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).BackgroundRecognize(@as(*const IInkRecognizerContext, @ptrCast(self)), CustomData);
+    }
+    pub fn BackgroundRecognizeWithAlternates(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).BackgroundRecognizeWithAlternates(@as(*const IInkRecognizerContext, @ptrCast(self)), CustomData);
+    }
+    pub fn Clone(self: *const IInkRecognizerContext, RecoContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).Clone(@as(*const IInkRecognizerContext, @ptrCast(self)), RecoContext);
+    }
+    pub fn IsStringSupported(self: *const IInkRecognizerContext, String: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext.VTable, @ptrCast(self.vtable)).IsStringSupported(@as(*const IInkRecognizerContext, @ptrCast(self)), String, Supported);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5797,7 +6955,13 @@ pub const IInkRecognizerContext2 = extern union {
             return @as(*const IInkRecognizerContext2.VTable, @ptrCast(self.vtable)).put_EnabledUnicodeRanges(@as(*const IInkRecognizerContext2, @ptrCast(self)), UnicodeRanges);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext2.VTable, @ptrCast(self.vtable)).get_EnabledUnicodeRanges(@as(*const IInkRecognizerContext2, @ptrCast(self)), UnicodeRanges);
+    }
+    pub fn put_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerContext2.VTable, @ptrCast(self.vtable)).put_EnabledUnicodeRanges(@as(*const IInkRecognizerContext2, @ptrCast(self)), UnicodeRanges);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5862,8 +7026,8 @@ pub const IInkRecognitionResult = extern union {
             return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkRecognitionResult, @ptrCast(self)), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).AlternatesFromSelection(@as(*const IInkRecognitionResult, @ptrCast(self)), selectionStart, selectionLength, maximumAlternates, AlternatesFromSelection);
+        pub fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, _param_AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+            return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).AlternatesFromSelection(@as(*const IInkRecognitionResult, @ptrCast(self)), selectionStart, selectionLength, maximumAlternates, _param_AlternatesFromSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkRecognitionResult_ModifyTopAlternate(self: *const T, Alternate: ?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
@@ -5874,7 +7038,28 @@ pub const IInkRecognitionResult = extern union {
             return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).SetResultOnStrokes(@as(*const IInkRecognitionResult, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_TopString(self: *const IInkRecognitionResult, TopString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).get_TopString(@as(*const IInkRecognitionResult, @ptrCast(self)), TopString);
+    }
+    pub fn get_TopAlternate(self: *const IInkRecognitionResult, TopAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).get_TopAlternate(@as(*const IInkRecognitionResult, @ptrCast(self)), TopAlternate);
+    }
+    pub fn get_TopConfidence(self: *const IInkRecognitionResult, TopConfidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).get_TopConfidence(@as(*const IInkRecognitionResult, @ptrCast(self)), TopConfidence);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionResult, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkRecognitionResult, @ptrCast(self)), Strokes);
+    }
+    pub fn AlternatesFromSelection(self: *const IInkRecognitionResult, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, _param_AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).AlternatesFromSelection(@as(*const IInkRecognitionResult, @ptrCast(self)), selectionStart, selectionLength, maximumAlternates, _param_AlternatesFromSelection);
+    }
+    pub fn ModifyTopAlternate(self: *const IInkRecognitionResult, Alternate: ?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).ModifyTopAlternate(@as(*const IInkRecognitionResult, @ptrCast(self)), Alternate);
+    }
+    pub fn SetResultOnStrokes(self: *const IInkRecognitionResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionResult.VTable, @ptrCast(self.vtable)).SetResultOnStrokes(@as(*const IInkRecognitionResult, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6006,27 +7191,72 @@ pub const IInkRecognitionAlternate = extern union {
             return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_ConfidenceAlternates(@as(*const IInkRecognitionAlternate, @ptrCast(self)), ConfidenceAlternates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromStrokeRanges(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes, GetStrokesFromStrokeRanges);
+        pub fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, _param_GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromStrokeRanges(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes, _param_GetStrokesFromStrokeRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: ?*i32, selectionLength: ?*i32, GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromTextRange(@as(*const IInkRecognitionAlternate, @ptrCast(self)), selectionStart, selectionLength, GetStrokesFromTextRange);
+        pub fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: ?*i32, selectionLength: ?*i32, _param_GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromTextRange(@as(*const IInkRecognitionAlternate, @ptrCast(self)), selectionStart, selectionLength, _param_GetStrokesFromTextRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkRecognitionAlternate_GetTextRangeFromStrokes(self: *const T, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetTextRangeFromStrokes(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes, selectionStart, selectionLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: ?BSTR, AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).AlternatesWithConstantPropertyValues(@as(*const IInkRecognitionAlternate, @ptrCast(self)), PropertyType, AlternatesWithConstantPropertyValues);
+        pub fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: ?BSTR, _param_AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+            return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).AlternatesWithConstantPropertyValues(@as(*const IInkRecognitionAlternate, @ptrCast(self)), PropertyType, _param_AlternatesWithConstantPropertyValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkRecognitionAlternate_GetPropertyValue(self: *const T, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IInkRecognitionAlternate, @ptrCast(self)), PropertyType, PropertyValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_String(self: *const IInkRecognitionAlternate, RecoString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_String(@as(*const IInkRecognitionAlternate, @ptrCast(self)), RecoString);
+    }
+    pub fn get_Confidence(self: *const IInkRecognitionAlternate, Confidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Confidence);
+    }
+    pub fn get_Baseline(self: *const IInkRecognitionAlternate, Baseline: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Baseline(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Baseline);
+    }
+    pub fn get_Midline(self: *const IInkRecognitionAlternate, Midline: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Midline(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Midline);
+    }
+    pub fn get_Ascender(self: *const IInkRecognitionAlternate, Ascender: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Ascender(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Ascender);
+    }
+    pub fn get_Descender(self: *const IInkRecognitionAlternate, Descender: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Descender(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Descender);
+    }
+    pub fn get_LineNumber(self: *const IInkRecognitionAlternate, LineNumber: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_LineNumber(@as(*const IInkRecognitionAlternate, @ptrCast(self)), LineNumber);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionAlternate, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes);
+    }
+    pub fn get_LineAlternates(self: *const IInkRecognitionAlternate, LineAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_LineAlternates(@as(*const IInkRecognitionAlternate, @ptrCast(self)), LineAlternates);
+    }
+    pub fn get_ConfidenceAlternates(self: *const IInkRecognitionAlternate, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).get_ConfidenceAlternates(@as(*const IInkRecognitionAlternate, @ptrCast(self)), ConfidenceAlternates);
+    }
+    pub fn GetStrokesFromStrokeRanges(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, _param_GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromStrokeRanges(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes, _param_GetStrokesFromStrokeRanges);
+    }
+    pub fn GetStrokesFromTextRange(self: *const IInkRecognitionAlternate, selectionStart: ?*i32, selectionLength: ?*i32, _param_GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetStrokesFromTextRange(@as(*const IInkRecognitionAlternate, @ptrCast(self)), selectionStart, selectionLength, _param_GetStrokesFromTextRange);
+    }
+    pub fn GetTextRangeFromStrokes(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetTextRangeFromStrokes(@as(*const IInkRecognitionAlternate, @ptrCast(self)), Strokes, selectionStart, selectionLength);
+    }
+    pub fn AlternatesWithConstantPropertyValues(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, _param_AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).AlternatesWithConstantPropertyValues(@as(*const IInkRecognitionAlternate, @ptrCast(self)), PropertyType, _param_AlternatesWithConstantPropertyValues);
+    }
+    pub fn GetPropertyValue(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternate.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IInkRecognitionAlternate, @ptrCast(self)), PropertyType, PropertyValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6077,7 +7307,19 @@ pub const IInkRecognitionAlternates = extern union {
             return @as(*const IInkRecognitionAlternates.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkRecognitionAlternates, @ptrCast(self)), Index, InkRecoAlternate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkRecognitionAlternates, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkRecognitionAlternates, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkRecognitionAlternates, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkRecognitionAlternates, @ptrCast(self)), _NewEnum);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionAlternates, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternates.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkRecognitionAlternates, @ptrCast(self)), Strokes);
+    }
+    pub fn Item(self: *const IInkRecognitionAlternates, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognitionAlternates.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkRecognitionAlternates, @ptrCast(self)), Index, InkRecoAlternate);
+    }
 };
 
 const IID_IInkRecognizerGuide_Value = Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
@@ -6199,7 +7441,43 @@ pub const IInkRecognizerGuide = extern union {
             return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_GuideData(@as(*const IInkRecognizerGuide, @ptrCast(self)), recoGuide);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_WritingBox(@as(*const IInkRecognizerGuide, @ptrCast(self)), Rectangle);
+    }
+    pub fn put_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_WritingBox(@as(*const IInkRecognizerGuide, @ptrCast(self)), Rectangle);
+    }
+    pub fn get_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_DrawnBox(@as(*const IInkRecognizerGuide, @ptrCast(self)), Rectangle);
+    }
+    pub fn put_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_DrawnBox(@as(*const IInkRecognizerGuide, @ptrCast(self)), Rectangle);
+    }
+    pub fn get_Rows(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_Rows(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn put_Rows(self: *const IInkRecognizerGuide, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_Rows(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn get_Columns(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_Columns(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn put_Columns(self: *const IInkRecognizerGuide, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_Columns(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn get_Midline(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_Midline(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn put_Midline(self: *const IInkRecognizerGuide, Units: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_Midline(@as(*const IInkRecognizerGuide, @ptrCast(self)), Units);
+    }
+    pub fn get_GuideData(self: *const IInkRecognizerGuide, pRecoGuide: ?*InkRecoGuide) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).get_GuideData(@as(*const IInkRecognizerGuide, @ptrCast(self)), pRecoGuide);
+    }
+    pub fn put_GuideData(self: *const IInkRecognizerGuide, recoGuide: InkRecoGuide) callconv(.Inline) HRESULT {
+        return @as(*const IInkRecognizerGuide.VTable, @ptrCast(self.vtable)).put_GuideData(@as(*const IInkRecognizerGuide, @ptrCast(self)), recoGuide);
+    }
 };
 
 const IID_IInkWordList_Value = Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
@@ -6229,15 +7507,24 @@ pub const IInkWordList = extern union {
             return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).AddWord(@as(*const IInkWordList, @ptrCast(self)), NewWord);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkWordList_RemoveWord(self: *const T, RemoveWord: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).RemoveWord(@as(*const IInkWordList, @ptrCast(self)), RemoveWord);
+        pub fn IInkWordList_RemoveWord(self: *const T, _param_RemoveWord: ?BSTR) callconv(.Inline) HRESULT {
+            return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).RemoveWord(@as(*const IInkWordList, @ptrCast(self)), _param_RemoveWord);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkWordList_Merge(self: *const T, MergeWordList: ?*IInkWordList) callconv(.Inline) HRESULT {
             return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IInkWordList, @ptrCast(self)), MergeWordList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AddWord(self: *const IInkWordList, NewWord: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).AddWord(@as(*const IInkWordList, @ptrCast(self)), NewWord);
+    }
+    pub fn RemoveWord(self: *const IInkWordList, _param_RemoveWord: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).RemoveWord(@as(*const IInkWordList, @ptrCast(self)), _param_RemoveWord);
+    }
+    pub fn Merge(self: *const IInkWordList, MergeWordList: ?*IInkWordList) callconv(.Inline) HRESULT {
+        return @as(*const IInkWordList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IInkWordList, @ptrCast(self)), MergeWordList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6260,7 +7547,10 @@ pub const IInkWordList2 = extern union {
             return @as(*const IInkWordList2.VTable, @ptrCast(self.vtable)).AddWords(@as(*const IInkWordList2, @ptrCast(self)), NewWords);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn AddWords(self: *const IInkWordList2, NewWords: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkWordList2.VTable, @ptrCast(self.vtable)).AddWords(@as(*const IInkWordList2, @ptrCast(self)), NewWords);
+    }
 };
 
 const IID_IInk_Value = Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
@@ -6274,7 +7564,7 @@ pub const IInk = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6341,7 +7631,25 @@ pub const IInkLineInfo = extern union {
             return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).Recognize(@as(*const IInkLineInfo, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IInkLineInfo, @ptrCast(self)), pim);
+    }
+    pub fn GetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IInkLineInfo, @ptrCast(self)), pim);
+    }
+    pub fn GetInkExtent(self: *const IInkLineInfo, pim: ?*INKMETRIC, pnWidth: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).GetInkExtent(@as(*const IInkLineInfo, @ptrCast(self)), pim, pnWidth);
+    }
+    pub fn GetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).GetCandidate(@as(*const IInkLineInfo, @ptrCast(self)), nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
+    }
+    pub fn SetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, strRecogWord: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).SetCandidate(@as(*const IInkLineInfo, @ptrCast(self)), nCandidateNum, strRecogWord);
+    }
+    pub fn Recognize(self: *const IInkLineInfo) callconv(.Inline) HRESULT {
+        return @as(*const IInkLineInfo.VTable, @ptrCast(self.vtable)).Recognize(@as(*const IInkLineInfo, @ptrCast(self)));
+    }
 };
 
 const IID_ISketchInk_Value = Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
@@ -6355,7 +7663,7 @@ pub const ISketchInk = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const CLSID_InkDivider_Value = Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
@@ -6481,7 +7789,28 @@ pub const IInkDivider = extern union {
             return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).Divide(@as(*const IInkDivider, @ptrCast(self)), InkDivisionResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Strokes(self: *const IInkDivider, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkDivider, @ptrCast(self)), Strokes);
+    }
+    pub fn putref_Strokes(self: *const IInkDivider, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).putref_Strokes(@as(*const IInkDivider, @ptrCast(self)), Strokes);
+    }
+    pub fn get_RecognizerContext(self: *const IInkDivider, RecognizerContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).get_RecognizerContext(@as(*const IInkDivider, @ptrCast(self)), RecognizerContext);
+    }
+    pub fn putref_RecognizerContext(self: *const IInkDivider, RecognizerContext: ?*IInkRecognizerContext) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).putref_RecognizerContext(@as(*const IInkDivider, @ptrCast(self)), RecognizerContext);
+    }
+    pub fn get_LineHeight(self: *const IInkDivider, LineHeight: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).get_LineHeight(@as(*const IInkDivider, @ptrCast(self)), LineHeight);
+    }
+    pub fn put_LineHeight(self: *const IInkDivider, LineHeight: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).put_LineHeight(@as(*const IInkDivider, @ptrCast(self)), LineHeight);
+    }
+    pub fn Divide(self: *const IInkDivider, InkDivisionResult: ?*?*IInkDivisionResult) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivider.VTable, @ptrCast(self.vtable)).Divide(@as(*const IInkDivider, @ptrCast(self)), InkDivisionResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6514,7 +7843,13 @@ pub const IInkDivisionResult = extern union {
             return @as(*const IInkDivisionResult.VTable, @ptrCast(self.vtable)).ResultByType(@as(*const IInkDivisionResult, @ptrCast(self)), divisionType, InkDivisionUnits);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Strokes(self: *const IInkDivisionResult, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionResult.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkDivisionResult, @ptrCast(self)), Strokes);
+    }
+    pub fn ResultByType(self: *const IInkDivisionResult, divisionType: InkDivisionType, InkDivisionUnits: ?*?*IInkDivisionUnits) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionResult.VTable, @ptrCast(self.vtable)).ResultByType(@as(*const IInkDivisionResult, @ptrCast(self)), divisionType, InkDivisionUnits);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6565,7 +7900,19 @@ pub const IInkDivisionUnit = extern union {
             return @as(*const IInkDivisionUnit.VTable, @ptrCast(self.vtable)).get_RotationTransform(@as(*const IInkDivisionUnit, @ptrCast(self)), RotationTransform);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Strokes(self: *const IInkDivisionUnit, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnit.VTable, @ptrCast(self.vtable)).get_Strokes(@as(*const IInkDivisionUnit, @ptrCast(self)), Strokes);
+    }
+    pub fn get_DivisionType(self: *const IInkDivisionUnit, divisionType: ?*InkDivisionType) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnit.VTable, @ptrCast(self.vtable)).get_DivisionType(@as(*const IInkDivisionUnit, @ptrCast(self)), divisionType);
+    }
+    pub fn get_RecognizedString(self: *const IInkDivisionUnit, RecoString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnit.VTable, @ptrCast(self.vtable)).get_RecognizedString(@as(*const IInkDivisionUnit, @ptrCast(self)), RecoString);
+    }
+    pub fn get_RotationTransform(self: *const IInkDivisionUnit, RotationTransform: ?*?*IInkTransform) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnit.VTable, @ptrCast(self.vtable)).get_RotationTransform(@as(*const IInkDivisionUnit, @ptrCast(self)), RotationTransform);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6607,7 +7954,16 @@ pub const IInkDivisionUnits = extern union {
             return @as(*const IInkDivisionUnits.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkDivisionUnits, @ptrCast(self)), Index, InkDivisionUnit);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IInkDivisionUnits, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnits.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IInkDivisionUnits, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IInkDivisionUnits, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnits.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IInkDivisionUnits, @ptrCast(self)), _NewEnum);
+    }
+    pub fn Item(self: *const IInkDivisionUnits, Index: i32, InkDivisionUnit: ?*?*IInkDivisionUnit) callconv(.Inline) HRESULT {
+        return @as(*const IInkDivisionUnits.VTable, @ptrCast(self.vtable)).Item(@as(*const IInkDivisionUnits, @ptrCast(self)), Index, InkDivisionUnit);
+    }
 };
 
 const CLSID_HandwrittenTextInsertion_Value = Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
@@ -7014,7 +8370,82 @@ pub const IPenInputPanel = extern union {
             return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).EnableTsf(@as(*const IPenInputPanel, @ptrCast(self)), Enable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Busy(self: *const IPenInputPanel, Busy: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Busy(@as(*const IPenInputPanel, @ptrCast(self)), Busy);
+    }
+    pub fn get_Factoid(self: *const IPenInputPanel, Factoid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Factoid(@as(*const IPenInputPanel, @ptrCast(self)), Factoid);
+    }
+    pub fn put_Factoid(self: *const IPenInputPanel, Factoid: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_Factoid(@as(*const IPenInputPanel, @ptrCast(self)), Factoid);
+    }
+    pub fn get_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_AttachedEditWindow(@as(*const IPenInputPanel, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_AttachedEditWindow(@as(*const IPenInputPanel, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn get_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: ?*PanelType) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_CurrentPanel(@as(*const IPenInputPanel, @ptrCast(self)), CurrentPanel);
+    }
+    pub fn put_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: PanelType) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_CurrentPanel(@as(*const IPenInputPanel, @ptrCast(self)), CurrentPanel);
+    }
+    pub fn get_DefaultPanel(self: *const IPenInputPanel, pDefaultPanel: ?*PanelType) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_DefaultPanel(@as(*const IPenInputPanel, @ptrCast(self)), pDefaultPanel);
+    }
+    pub fn put_DefaultPanel(self: *const IPenInputPanel, DefaultPanel: PanelType) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_DefaultPanel(@as(*const IPenInputPanel, @ptrCast(self)), DefaultPanel);
+    }
+    pub fn get_Visible(self: *const IPenInputPanel, Visible: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const IPenInputPanel, @ptrCast(self)), Visible);
+    }
+    pub fn put_Visible(self: *const IPenInputPanel, Visible: i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const IPenInputPanel, @ptrCast(self)), Visible);
+    }
+    pub fn get_Top(self: *const IPenInputPanel, Top: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Top(@as(*const IPenInputPanel, @ptrCast(self)), Top);
+    }
+    pub fn get_Left(self: *const IPenInputPanel, Left: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Left(@as(*const IPenInputPanel, @ptrCast(self)), Left);
+    }
+    pub fn get_Width(self: *const IPenInputPanel, Width: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IPenInputPanel, @ptrCast(self)), Width);
+    }
+    pub fn get_Height(self: *const IPenInputPanel, Height: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IPenInputPanel, @ptrCast(self)), Height);
+    }
+    pub fn get_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_VerticalOffset(@as(*const IPenInputPanel, @ptrCast(self)), VerticalOffset);
+    }
+    pub fn put_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_VerticalOffset(@as(*const IPenInputPanel, @ptrCast(self)), VerticalOffset);
+    }
+    pub fn get_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_HorizontalOffset(@as(*const IPenInputPanel, @ptrCast(self)), HorizontalOffset);
+    }
+    pub fn put_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_HorizontalOffset(@as(*const IPenInputPanel, @ptrCast(self)), HorizontalOffset);
+    }
+    pub fn get_AutoShow(self: *const IPenInputPanel, pAutoShow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).get_AutoShow(@as(*const IPenInputPanel, @ptrCast(self)), pAutoShow);
+    }
+    pub fn put_AutoShow(self: *const IPenInputPanel, AutoShow: i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).put_AutoShow(@as(*const IPenInputPanel, @ptrCast(self)), AutoShow);
+    }
+    pub fn MoveTo(self: *const IPenInputPanel, Left: i32, Top: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).MoveTo(@as(*const IPenInputPanel, @ptrCast(self)), Left, Top);
+    }
+    pub fn CommitPendingInput(self: *const IPenInputPanel) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).CommitPendingInput(@as(*const IPenInputPanel, @ptrCast(self)));
+    }
+    pub fn Refresh(self: *const IPenInputPanel) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IPenInputPanel, @ptrCast(self)));
+    }
+    pub fn EnableTsf(self: *const IPenInputPanel, Enable: i16) callconv(.Inline) HRESULT {
+        return @as(*const IPenInputPanel.VTable, @ptrCast(self.vtable)).EnableTsf(@as(*const IPenInputPanel, @ptrCast(self)), Enable);
+    }
 };
 
 const IID__IPenInputPanelEvents_Value = Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
@@ -7028,7 +8459,7 @@ pub const _IPenInputPanelEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7063,7 +8494,13 @@ pub const IHandwrittenTextInsertion = extern union {
             return @as(*const IHandwrittenTextInsertion.VTable, @ptrCast(self.vtable)).InsertInkRecognitionResult(@as(*const IHandwrittenTextInsertion, @ptrCast(self)), pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InsertRecognitionResultsArray(self: *const IHandwrittenTextInsertion, psaAlternates: ?*SAFEARRAY, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IHandwrittenTextInsertion.VTable, @ptrCast(self.vtable)).InsertRecognitionResultsArray(@as(*const IHandwrittenTextInsertion, @ptrCast(self)), psaAlternates, locale, fAlternateContainsAutoSpacingInformation);
+    }
+    pub fn InsertInkRecognitionResult(self: *const IHandwrittenTextInsertion, pIInkRecoResult: ?*IInkRecognitionResult, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IHandwrittenTextInsertion.VTable, @ptrCast(self.vtable)).InsertInkRecognitionResult(@as(*const IHandwrittenTextInsertion, @ptrCast(self)), pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7184,7 +8621,43 @@ pub const ITextInputPanelEventSink = extern union {
             return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).TextInserted(@as(*const ITextInputPanelEventSink, @ptrCast(self)), Ink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InPlaceStateChanging(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceStateChanging(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldInPlaceState, newInPlaceState);
+    }
+    pub fn InPlaceStateChanged(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceStateChanged(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldInPlaceState, newInPlaceState);
+    }
+    pub fn InPlaceSizeChanging(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceSizeChanging(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldBoundingRectangle, newBoundingRectangle);
+    }
+    pub fn InPlaceSizeChanged(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceSizeChanged(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldBoundingRectangle, newBoundingRectangle);
+    }
+    pub fn InputAreaChanging(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InputAreaChanging(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldInputArea, newInputArea);
+    }
+    pub fn InputAreaChanged(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InputAreaChanged(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldInputArea, newInputArea);
+    }
+    pub fn CorrectionModeChanging(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).CorrectionModeChanging(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldCorrectionMode, newCorrectionMode);
+    }
+    pub fn CorrectionModeChanged(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).CorrectionModeChanged(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldCorrectionMode, newCorrectionMode);
+    }
+    pub fn InPlaceVisibilityChanging(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceVisibilityChanging(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldVisible, newVisible);
+    }
+    pub fn InPlaceVisibilityChanged(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).InPlaceVisibilityChanged(@as(*const ITextInputPanelEventSink, @ptrCast(self)), oldVisible, newVisible);
+    }
+    pub fn TextInserting(self: *const ITextInputPanelEventSink, Ink: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).TextInserting(@as(*const ITextInputPanelEventSink, @ptrCast(self)), Ink);
+    }
+    pub fn TextInserted(self: *const ITextInputPanelEventSink, Ink: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelEventSink.VTable, @ptrCast(self.vtable)).TextInserted(@as(*const ITextInputPanelEventSink, @ptrCast(self)), Ink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7421,7 +8894,82 @@ pub const ITextInputPanel = extern union {
             return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const ITextInputPanel, @ptrCast(self)), EventSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_AttachedEditWindow(@as(*const ITextInputPanel, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_AttachedEditWindow(@as(*const ITextInputPanel, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn get_CurrentInteractionMode(self: *const ITextInputPanel, CurrentInteractionMode: ?*InteractionMode) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_CurrentInteractionMode(@as(*const ITextInputPanel, @ptrCast(self)), CurrentInteractionMode);
+    }
+    pub fn get_DefaultInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_DefaultInPlaceState(@as(*const ITextInputPanel, @ptrCast(self)), State);
+    }
+    pub fn put_DefaultInPlaceState(self: *const ITextInputPanel, State: InPlaceState) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_DefaultInPlaceState(@as(*const ITextInputPanel, @ptrCast(self)), State);
+    }
+    pub fn get_CurrentInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_CurrentInPlaceState(@as(*const ITextInputPanel, @ptrCast(self)), State);
+    }
+    pub fn get_DefaultInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_DefaultInputArea(@as(*const ITextInputPanel, @ptrCast(self)), Area);
+    }
+    pub fn put_DefaultInputArea(self: *const ITextInputPanel, Area: PanelInputArea) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_DefaultInputArea(@as(*const ITextInputPanel, @ptrCast(self)), Area);
+    }
+    pub fn get_CurrentInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_CurrentInputArea(@as(*const ITextInputPanel, @ptrCast(self)), Area);
+    }
+    pub fn get_CurrentCorrectionMode(self: *const ITextInputPanel, Mode: ?*CorrectionMode) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_CurrentCorrectionMode(@as(*const ITextInputPanel, @ptrCast(self)), Mode);
+    }
+    pub fn get_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: ?*InPlaceDirection) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_PreferredInPlaceDirection(@as(*const ITextInputPanel, @ptrCast(self)), Direction);
+    }
+    pub fn put_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: InPlaceDirection) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_PreferredInPlaceDirection(@as(*const ITextInputPanel, @ptrCast(self)), Direction);
+    }
+    pub fn get_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_ExpandPostInsertionCorrection(@as(*const ITextInputPanel, @ptrCast(self)), Expand);
+    }
+    pub fn put_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_ExpandPostInsertionCorrection(@as(*const ITextInputPanel, @ptrCast(self)), Expand);
+    }
+    pub fn get_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_InPlaceVisibleOnFocus(@as(*const ITextInputPanel, @ptrCast(self)), Visible);
+    }
+    pub fn put_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).put_InPlaceVisibleOnFocus(@as(*const ITextInputPanel, @ptrCast(self)), Visible);
+    }
+    pub fn get_InPlaceBoundingRectangle(self: *const ITextInputPanel, BoundingRectangle: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_InPlaceBoundingRectangle(@as(*const ITextInputPanel, @ptrCast(self)), BoundingRectangle);
+    }
+    pub fn get_PopUpCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_PopUpCorrectionHeight(@as(*const ITextInputPanel, @ptrCast(self)), Height);
+    }
+    pub fn get_PopDownCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).get_PopDownCorrectionHeight(@as(*const ITextInputPanel, @ptrCast(self)), Height);
+    }
+    pub fn CommitPendingInput(self: *const ITextInputPanel) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).CommitPendingInput(@as(*const ITextInputPanel, @ptrCast(self)));
+    }
+    pub fn SetInPlaceVisibility(self: *const ITextInputPanel, Visible: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).SetInPlaceVisibility(@as(*const ITextInputPanel, @ptrCast(self)), Visible);
+    }
+    pub fn SetInPlacePosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32, position: CorrectionPosition) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).SetInPlacePosition(@as(*const ITextInputPanel, @ptrCast(self)), xPosition, yPosition, position);
+    }
+    pub fn SetInPlaceHoverTargetPosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).SetInPlaceHoverTargetPosition(@as(*const ITextInputPanel, @ptrCast(self)), xPosition, yPosition);
+    }
+    pub fn Advise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).Advise(@as(*const ITextInputPanel, @ptrCast(self)), EventSink, _param_EventMask);
+    }
+    pub fn Unadvise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanel.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const ITextInputPanel, @ptrCast(self)), EventSink);
+    }
 };
 
 const IID_IInputPanelWindowHandle_Value = Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
@@ -7471,7 +9019,19 @@ pub const IInputPanelWindowHandle = extern union {
             return @as(*const IInputPanelWindowHandle.VTable, @ptrCast(self.vtable)).put_AttachedEditWindow64(@as(*const IInputPanelWindowHandle, @ptrCast(self)), AttachedEditWindow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInputPanelWindowHandle.VTable, @ptrCast(self.vtable)).get_AttachedEditWindow32(@as(*const IInputPanelWindowHandle, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInputPanelWindowHandle.VTable, @ptrCast(self.vtable)).put_AttachedEditWindow32(@as(*const IInputPanelWindowHandle, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn get_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IInputPanelWindowHandle.VTable, @ptrCast(self.vtable)).get_AttachedEditWindow64(@as(*const IInputPanelWindowHandle, @ptrCast(self)), AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: i64) callconv(.Inline) HRESULT {
+        return @as(*const IInputPanelWindowHandle.VTable, @ptrCast(self.vtable)).put_AttachedEditWindow64(@as(*const IInputPanelWindowHandle, @ptrCast(self)), AttachedEditWindow);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7494,7 +9054,10 @@ pub const ITextInputPanelRunInfo = extern union {
             return @as(*const ITextInputPanelRunInfo.VTable, @ptrCast(self.vtable)).IsTipRunning(@as(*const ITextInputPanelRunInfo, @ptrCast(self)), pfRunning);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsTipRunning(self: *const ITextInputPanelRunInfo, pfRunning: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITextInputPanelRunInfo.VTable, @ptrCast(self.vtable)).IsTipRunning(@as(*const ITextInputPanelRunInfo, @ptrCast(self)), pfRunning);
+    }
 };
 
 pub const FLICKDIRECTION = enum(i32) {
@@ -8478,7 +10041,238 @@ pub const IInkEdit = extern union {
             return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IInkEdit, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Status(self: *const IInkEdit, pStatus: ?*InkEditStatus) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IInkEdit, @ptrCast(self)), pStatus);
+    }
+    pub fn get_UseMouseForInput(self: *const IInkEdit, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_UseMouseForInput(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_UseMouseForInput(self: *const IInkEdit, newVal: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_UseMouseForInput(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_InkMode(self: *const IInkEdit, pVal: ?*InkMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_InkMode(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_InkMode(self: *const IInkEdit, newVal: InkMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_InkMode(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_InkInsertMode(self: *const IInkEdit, pVal: ?*InkInsertMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_InkInsertMode(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_InkInsertMode(self: *const IInkEdit, newVal: InkInsertMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_InkInsertMode(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_DrawingAttributes(self: *const IInkEdit, pVal: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_DrawingAttributes(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn putref_DrawingAttributes(self: *const IInkEdit, newVal: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).putref_DrawingAttributes(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_RecognitionTimeout(self: *const IInkEdit, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_RecognitionTimeout(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_RecognitionTimeout(self: *const IInkEdit, newVal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_RecognitionTimeout(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_Recognizer(self: *const IInkEdit, pVal: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn putref_Recognizer(self: *const IInkEdit, newVal: ?*IInkRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).putref_Recognizer(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_Factoid(self: *const IInkEdit, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Factoid(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_Factoid(self: *const IInkEdit, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_Factoid(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_SelInks(self: *const IInkEdit, pSelInk: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelInks(@as(*const IInkEdit, @ptrCast(self)), pSelInk);
+    }
+    pub fn put_SelInks(self: *const IInkEdit, SelInk: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelInks(@as(*const IInkEdit, @ptrCast(self)), SelInk);
+    }
+    pub fn get_SelInksDisplayMode(self: *const IInkEdit, pInkDisplayMode: ?*InkDisplayMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelInksDisplayMode(@as(*const IInkEdit, @ptrCast(self)), pInkDisplayMode);
+    }
+    pub fn put_SelInksDisplayMode(self: *const IInkEdit, _param_InkDisplayMode: InkDisplayMode) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelInksDisplayMode(@as(*const IInkEdit, @ptrCast(self)), _param_InkDisplayMode);
+    }
+    pub fn Recognize(self: *const IInkEdit) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).Recognize(@as(*const IInkEdit, @ptrCast(self)));
+    }
+    pub fn GetGestureStatus(self: *const IInkEdit, Gesture: InkApplicationGesture, pListen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).GetGestureStatus(@as(*const IInkEdit, @ptrCast(self)), Gesture, pListen);
+    }
+    pub fn SetGestureStatus(self: *const IInkEdit, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).SetGestureStatus(@as(*const IInkEdit, @ptrCast(self)), Gesture, Listen);
+    }
+    pub fn put_BackColor(self: *const IInkEdit, clr: u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const IInkEdit, @ptrCast(self)), clr);
+    }
+    pub fn get_BackColor(self: *const IInkEdit, pclr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const IInkEdit, @ptrCast(self)), pclr);
+    }
+    pub fn get_Appearance(self: *const IInkEdit, pAppearance: ?*AppearanceConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Appearance(@as(*const IInkEdit, @ptrCast(self)), pAppearance);
+    }
+    pub fn put_Appearance(self: *const IInkEdit, pAppearance: AppearanceConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_Appearance(@as(*const IInkEdit, @ptrCast(self)), pAppearance);
+    }
+    pub fn get_BorderStyle(self: *const IInkEdit, pBorderStyle: ?*BorderStyleConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_BorderStyle(@as(*const IInkEdit, @ptrCast(self)), pBorderStyle);
+    }
+    pub fn put_BorderStyle(self: *const IInkEdit, pBorderStyle: BorderStyleConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_BorderStyle(@as(*const IInkEdit, @ptrCast(self)), pBorderStyle);
+    }
+    pub fn get_Hwnd(self: *const IInkEdit, pohHwnd: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Hwnd(@as(*const IInkEdit, @ptrCast(self)), pohHwnd);
+    }
+    pub fn get_Font(self: *const IInkEdit, ppFont: ?*?*IFontDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Font(@as(*const IInkEdit, @ptrCast(self)), ppFont);
+    }
+    pub fn putref_Font(self: *const IInkEdit, ppFont: ?*IFontDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).putref_Font(@as(*const IInkEdit, @ptrCast(self)), ppFont);
+    }
+    pub fn get_Text(self: *const IInkEdit, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Text(@as(*const IInkEdit, @ptrCast(self)), pbstrText);
+    }
+    pub fn put_Text(self: *const IInkEdit, pbstrText: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_Text(@as(*const IInkEdit, @ptrCast(self)), pbstrText);
+    }
+    pub fn get_MouseIcon(self: *const IInkEdit, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_MouseIcon(@as(*const IInkEdit, @ptrCast(self)), MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkEdit, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_MouseIcon(@as(*const IInkEdit, @ptrCast(self)), MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkEdit, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).putref_MouseIcon(@as(*const IInkEdit, @ptrCast(self)), MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkEdit, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_MousePointer(@as(*const IInkEdit, @ptrCast(self)), MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkEdit, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_MousePointer(@as(*const IInkEdit, @ptrCast(self)), MousePointer);
+    }
+    pub fn get_Locked(self: *const IInkEdit, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Locked(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_Locked(self: *const IInkEdit, newVal: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_Locked(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_Enabled(self: *const IInkEdit, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_Enabled(self: *const IInkEdit, newVal: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_MaxLength(self: *const IInkEdit, plMaxLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_MaxLength(@as(*const IInkEdit, @ptrCast(self)), plMaxLength);
+    }
+    pub fn put_MaxLength(self: *const IInkEdit, lMaxLength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_MaxLength(@as(*const IInkEdit, @ptrCast(self)), lMaxLength);
+    }
+    pub fn get_MultiLine(self: *const IInkEdit, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_MultiLine(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_MultiLine(self: *const IInkEdit, newVal: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_MultiLine(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_ScrollBars(self: *const IInkEdit, pVal: ?*ScrollBarsConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_ScrollBars(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_ScrollBars(self: *const IInkEdit, newVal: ScrollBarsConstants) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_ScrollBars(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_DisableNoScroll(self: *const IInkEdit, pVal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_DisableNoScroll(@as(*const IInkEdit, @ptrCast(self)), pVal);
+    }
+    pub fn put_DisableNoScroll(self: *const IInkEdit, newVal: i16) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_DisableNoScroll(@as(*const IInkEdit, @ptrCast(self)), newVal);
+    }
+    pub fn get_SelAlignment(self: *const IInkEdit, pvarSelAlignment: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelAlignment(@as(*const IInkEdit, @ptrCast(self)), pvarSelAlignment);
+    }
+    pub fn put_SelAlignment(self: *const IInkEdit, pvarSelAlignment: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelAlignment(@as(*const IInkEdit, @ptrCast(self)), pvarSelAlignment);
+    }
+    pub fn get_SelBold(self: *const IInkEdit, pvarSelBold: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelBold(@as(*const IInkEdit, @ptrCast(self)), pvarSelBold);
+    }
+    pub fn put_SelBold(self: *const IInkEdit, pvarSelBold: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelBold(@as(*const IInkEdit, @ptrCast(self)), pvarSelBold);
+    }
+    pub fn get_SelItalic(self: *const IInkEdit, pvarSelItalic: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelItalic(@as(*const IInkEdit, @ptrCast(self)), pvarSelItalic);
+    }
+    pub fn put_SelItalic(self: *const IInkEdit, pvarSelItalic: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelItalic(@as(*const IInkEdit, @ptrCast(self)), pvarSelItalic);
+    }
+    pub fn get_SelUnderline(self: *const IInkEdit, pvarSelUnderline: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelUnderline(@as(*const IInkEdit, @ptrCast(self)), pvarSelUnderline);
+    }
+    pub fn put_SelUnderline(self: *const IInkEdit, pvarSelUnderline: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelUnderline(@as(*const IInkEdit, @ptrCast(self)), pvarSelUnderline);
+    }
+    pub fn get_SelColor(self: *const IInkEdit, pvarSelColor: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelColor(@as(*const IInkEdit, @ptrCast(self)), pvarSelColor);
+    }
+    pub fn put_SelColor(self: *const IInkEdit, pvarSelColor: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelColor(@as(*const IInkEdit, @ptrCast(self)), pvarSelColor);
+    }
+    pub fn get_SelFontName(self: *const IInkEdit, pvarSelFontName: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelFontName(@as(*const IInkEdit, @ptrCast(self)), pvarSelFontName);
+    }
+    pub fn put_SelFontName(self: *const IInkEdit, pvarSelFontName: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelFontName(@as(*const IInkEdit, @ptrCast(self)), pvarSelFontName);
+    }
+    pub fn get_SelFontSize(self: *const IInkEdit, pvarSelFontSize: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelFontSize(@as(*const IInkEdit, @ptrCast(self)), pvarSelFontSize);
+    }
+    pub fn put_SelFontSize(self: *const IInkEdit, pvarSelFontSize: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelFontSize(@as(*const IInkEdit, @ptrCast(self)), pvarSelFontSize);
+    }
+    pub fn get_SelCharOffset(self: *const IInkEdit, pvarSelCharOffset: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelCharOffset(@as(*const IInkEdit, @ptrCast(self)), pvarSelCharOffset);
+    }
+    pub fn put_SelCharOffset(self: *const IInkEdit, pvarSelCharOffset: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelCharOffset(@as(*const IInkEdit, @ptrCast(self)), pvarSelCharOffset);
+    }
+    pub fn get_TextRTF(self: *const IInkEdit, pbstrTextRTF: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_TextRTF(@as(*const IInkEdit, @ptrCast(self)), pbstrTextRTF);
+    }
+    pub fn put_TextRTF(self: *const IInkEdit, pbstrTextRTF: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_TextRTF(@as(*const IInkEdit, @ptrCast(self)), pbstrTextRTF);
+    }
+    pub fn get_SelStart(self: *const IInkEdit, plSelStart: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelStart(@as(*const IInkEdit, @ptrCast(self)), plSelStart);
+    }
+    pub fn put_SelStart(self: *const IInkEdit, plSelStart: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelStart(@as(*const IInkEdit, @ptrCast(self)), plSelStart);
+    }
+    pub fn get_SelLength(self: *const IInkEdit, plSelLength: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelLength(@as(*const IInkEdit, @ptrCast(self)), plSelLength);
+    }
+    pub fn put_SelLength(self: *const IInkEdit, plSelLength: i32) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelLength(@as(*const IInkEdit, @ptrCast(self)), plSelLength);
+    }
+    pub fn get_SelText(self: *const IInkEdit, pbstrSelText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelText(@as(*const IInkEdit, @ptrCast(self)), pbstrSelText);
+    }
+    pub fn put_SelText(self: *const IInkEdit, pbstrSelText: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelText(@as(*const IInkEdit, @ptrCast(self)), pbstrSelText);
+    }
+    pub fn get_SelRTF(self: *const IInkEdit, pbstrSelRTF: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).get_SelRTF(@as(*const IInkEdit, @ptrCast(self)), pbstrSelRTF);
+    }
+    pub fn put_SelRTF(self: *const IInkEdit, pbstrSelRTF: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).put_SelRTF(@as(*const IInkEdit, @ptrCast(self)), pbstrSelRTF);
+    }
+    pub fn Refresh(self: *const IInkEdit) callconv(.Inline) HRESULT {
+        return @as(*const IInkEdit.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IInkEdit, @ptrCast(self)));
+    }
 };
 
 const IID__IInkEditEvents_Value = Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
@@ -8492,7 +10286,7 @@ pub const _IInkEditEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const CLSID_MathInputControl_Value = Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
@@ -8694,7 +10488,58 @@ pub const IMathInputControl = extern union {
             return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).GetHoverIcon(@as(*const IMathInputControl, @ptrCast(self)), HoverImage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Show(self: *const IMathInputControl) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).Show(@as(*const IMathInputControl, @ptrCast(self)));
+    }
+    pub fn Hide(self: *const IMathInputControl) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).Hide(@as(*const IMathInputControl, @ptrCast(self)));
+    }
+    pub fn IsVisible(self: *const IMathInputControl, pvbShown: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).IsVisible(@as(*const IMathInputControl, @ptrCast(self)), pvbShown);
+    }
+    pub fn GetPosition(self: *const IMathInputControl, Left: ?*i32, Top: ?*i32, Right: ?*i32, Bottom: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IMathInputControl, @ptrCast(self)), Left, Top, Right, Bottom);
+    }
+    pub fn SetPosition(self: *const IMathInputControl, Left: i32, Top: i32, Right: i32, Bottom: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IMathInputControl, @ptrCast(self)), Left, Top, Right, Bottom);
+    }
+    pub fn Clear(self: *const IMathInputControl) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMathInputControl, @ptrCast(self)));
+    }
+    pub fn SetCustomPaint(self: *const IMathInputControl, Element: i32, Paint: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).SetCustomPaint(@as(*const IMathInputControl, @ptrCast(self)), Element, Paint);
+    }
+    pub fn SetCaptionText(self: *const IMathInputControl, CaptionText: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).SetCaptionText(@as(*const IMathInputControl, @ptrCast(self)), CaptionText);
+    }
+    pub fn LoadInk(self: *const IMathInputControl, Ink: ?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).LoadInk(@as(*const IMathInputControl, @ptrCast(self)), Ink);
+    }
+    pub fn SetOwnerWindow(self: *const IMathInputControl, OwnerWindow: isize) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).SetOwnerWindow(@as(*const IMathInputControl, @ptrCast(self)), OwnerWindow);
+    }
+    pub fn EnableExtendedButtons(self: *const IMathInputControl, Extended: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).EnableExtendedButtons(@as(*const IMathInputControl, @ptrCast(self)), Extended);
+    }
+    pub fn GetPreviewHeight(self: *const IMathInputControl, Height: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).GetPreviewHeight(@as(*const IMathInputControl, @ptrCast(self)), Height);
+    }
+    pub fn SetPreviewHeight(self: *const IMathInputControl, Height: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).SetPreviewHeight(@as(*const IMathInputControl, @ptrCast(self)), Height);
+    }
+    pub fn EnableAutoGrow(self: *const IMathInputControl, AutoGrow: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).EnableAutoGrow(@as(*const IMathInputControl, @ptrCast(self)), AutoGrow);
+    }
+    pub fn AddFunctionName(self: *const IMathInputControl, FunctionName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).AddFunctionName(@as(*const IMathInputControl, @ptrCast(self)), FunctionName);
+    }
+    pub fn RemoveFunctionName(self: *const IMathInputControl, FunctionName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).RemoveFunctionName(@as(*const IMathInputControl, @ptrCast(self)), FunctionName);
+    }
+    pub fn GetHoverIcon(self: *const IMathInputControl, HoverImage: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
+        return @as(*const IMathInputControl.VTable, @ptrCast(self.vtable)).GetHoverIcon(@as(*const IMathInputControl, @ptrCast(self)), HoverImage);
+    }
 };
 
 const IID__IMathInputControlEvents_Value = Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
@@ -8708,7 +10553,7 @@ pub const _IMathInputControlEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const CLSID_RealTimeStylus_Value = Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
@@ -9090,7 +10935,100 @@ pub const IRealTimeStylus = extern union {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetPacketDescriptionData(@as(*const IRealTimeStylus, @ptrCast(self)), tcid, pfInkToDeviceScaleX, pfInkToDeviceScaleY, pcPacketProperties, ppPacketProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Enabled(self: *const IRealTimeStylus, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IRealTimeStylus, @ptrCast(self)), pfEnable);
+    }
+    pub fn put_Enabled(self: *const IRealTimeStylus, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IRealTimeStylus, @ptrCast(self)), fEnable);
+    }
+    pub fn get_HWND(self: *const IRealTimeStylus, phwnd: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).get_HWND(@as(*const IRealTimeStylus, @ptrCast(self)), phwnd);
+    }
+    pub fn put_HWND(self: *const IRealTimeStylus, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).put_HWND(@as(*const IRealTimeStylus, @ptrCast(self)), hwnd);
+    }
+    pub fn get_WindowInputRectangle(self: *const IRealTimeStylus, prcWndInputRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).get_WindowInputRectangle(@as(*const IRealTimeStylus, @ptrCast(self)), prcWndInputRect);
+    }
+    pub fn put_WindowInputRectangle(self: *const IRealTimeStylus, prcWndInputRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).put_WindowInputRectangle(@as(*const IRealTimeStylus, @ptrCast(self)), prcWndInputRect);
+    }
+    pub fn AddStylusSyncPlugin(self: *const IRealTimeStylus, iIndex: u32, piPlugin: ?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).AddStylusSyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, piPlugin);
+    }
+    pub fn RemoveStylusSyncPlugin(self: *const IRealTimeStylus, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).RemoveStylusSyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, ppiPlugin);
+    }
+    pub fn RemoveAllStylusSyncPlugins(self: *const IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).RemoveAllStylusSyncPlugins(@as(*const IRealTimeStylus, @ptrCast(self)));
+    }
+    pub fn GetStylusSyncPlugin(self: *const IRealTimeStylus, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStylusSyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, ppiPlugin);
+    }
+    pub fn GetStylusSyncPluginCount(self: *const IRealTimeStylus, pcPlugins: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStylusSyncPluginCount(@as(*const IRealTimeStylus, @ptrCast(self)), pcPlugins);
+    }
+    pub fn AddStylusAsyncPlugin(self: *const IRealTimeStylus, iIndex: u32, piPlugin: ?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).AddStylusAsyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, piPlugin);
+    }
+    pub fn RemoveStylusAsyncPlugin(self: *const IRealTimeStylus, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).RemoveStylusAsyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, ppiPlugin);
+    }
+    pub fn RemoveAllStylusAsyncPlugins(self: *const IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).RemoveAllStylusAsyncPlugins(@as(*const IRealTimeStylus, @ptrCast(self)));
+    }
+    pub fn GetStylusAsyncPlugin(self: *const IRealTimeStylus, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStylusAsyncPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), iIndex, ppiPlugin);
+    }
+    pub fn GetStylusAsyncPluginCount(self: *const IRealTimeStylus, pcPlugins: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStylusAsyncPluginCount(@as(*const IRealTimeStylus, @ptrCast(self)), pcPlugins);
+    }
+    pub fn get_ChildRealTimeStylusPlugin(self: *const IRealTimeStylus, ppiRTS: ?*?*IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).get_ChildRealTimeStylusPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), ppiRTS);
+    }
+    pub fn putref_ChildRealTimeStylusPlugin(self: *const IRealTimeStylus, piRTS: ?*IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).putref_ChildRealTimeStylusPlugin(@as(*const IRealTimeStylus, @ptrCast(self)), piRTS);
+    }
+    pub fn AddCustomStylusDataToQueue(self: *const IRealTimeStylus, sq: StylusQueue, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]u8) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).AddCustomStylusDataToQueue(@as(*const IRealTimeStylus, @ptrCast(self)), sq, pGuidId, cbData, pbData);
+    }
+    pub fn ClearStylusQueues(self: *const IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).ClearStylusQueues(@as(*const IRealTimeStylus, @ptrCast(self)));
+    }
+    pub fn SetAllTabletsMode(self: *const IRealTimeStylus, fUseMouseForInput: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).SetAllTabletsMode(@as(*const IRealTimeStylus, @ptrCast(self)), fUseMouseForInput);
+    }
+    pub fn SetSingleTabletMode(self: *const IRealTimeStylus, piTablet: ?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).SetSingleTabletMode(@as(*const IRealTimeStylus, @ptrCast(self)), piTablet);
+    }
+    pub fn GetTablet(self: *const IRealTimeStylus, ppiSingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetTablet(@as(*const IRealTimeStylus, @ptrCast(self)), ppiSingleTablet);
+    }
+    pub fn GetTabletContextIdFromTablet(self: *const IRealTimeStylus, piTablet: ?*IInkTablet, ptcid: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetTabletContextIdFromTablet(@as(*const IRealTimeStylus, @ptrCast(self)), piTablet, ptcid);
+    }
+    pub fn GetTabletFromTabletContextId(self: *const IRealTimeStylus, tcid: u32, ppiTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetTabletFromTabletContextId(@as(*const IRealTimeStylus, @ptrCast(self)), tcid, ppiTablet);
+    }
+    pub fn GetAllTabletContextIds(self: *const IRealTimeStylus, pcTcidCount: ?*u32, ppTcids: [*]?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetAllTabletContextIds(@as(*const IRealTimeStylus, @ptrCast(self)), pcTcidCount, ppTcids);
+    }
+    pub fn GetStyluses(self: *const IRealTimeStylus, ppiInkCursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStyluses(@as(*const IRealTimeStylus, @ptrCast(self)), ppiInkCursors);
+    }
+    pub fn GetStylusForId(self: *const IRealTimeStylus, sid: u32, ppiInkCursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetStylusForId(@as(*const IRealTimeStylus, @ptrCast(self)), sid, ppiInkCursor);
+    }
+    pub fn SetDesiredPacketDescription(self: *const IRealTimeStylus, cProperties: u32, pPropertyGuids: [*]const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).SetDesiredPacketDescription(@as(*const IRealTimeStylus, @ptrCast(self)), cProperties, pPropertyGuids);
+    }
+    pub fn GetDesiredPacketDescription(self: *const IRealTimeStylus, pcProperties: ?*u32, ppPropertyGuids: [*]?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetDesiredPacketDescription(@as(*const IRealTimeStylus, @ptrCast(self)), pcProperties, ppPropertyGuids);
+    }
+    pub fn GetPacketDescriptionData(self: *const IRealTimeStylus, tcid: u32, pfInkToDeviceScaleX: ?*f32, pfInkToDeviceScaleY: ?*f32, pcPacketProperties: ?*u32, ppPacketProperties: [*]?*PACKET_PROPERTY) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetPacketDescriptionData(@as(*const IRealTimeStylus, @ptrCast(self)), tcid, pfInkToDeviceScaleX, pfInkToDeviceScaleY, pcPacketProperties, ppPacketProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9123,7 +11061,13 @@ pub const IRealTimeStylus2 = extern union {
             return @as(*const IRealTimeStylus2.VTable, @ptrCast(self.vtable)).put_FlicksEnabled(@as(*const IRealTimeStylus2, @ptrCast(self)), fEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_FlicksEnabled(self: *const IRealTimeStylus2, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus2.VTable, @ptrCast(self.vtable)).get_FlicksEnabled(@as(*const IRealTimeStylus2, @ptrCast(self)), pfEnable);
+    }
+    pub fn put_FlicksEnabled(self: *const IRealTimeStylus2, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus2.VTable, @ptrCast(self.vtable)).put_FlicksEnabled(@as(*const IRealTimeStylus2, @ptrCast(self)), fEnable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9156,7 +11100,13 @@ pub const IRealTimeStylus3 = extern union {
             return @as(*const IRealTimeStylus3.VTable, @ptrCast(self.vtable)).put_MultiTouchEnabled(@as(*const IRealTimeStylus3, @ptrCast(self)), fEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_MultiTouchEnabled(self: *const IRealTimeStylus3, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus3.VTable, @ptrCast(self.vtable)).get_MultiTouchEnabled(@as(*const IRealTimeStylus3, @ptrCast(self)), pfEnable);
+    }
+    pub fn put_MultiTouchEnabled(self: *const IRealTimeStylus3, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylus3.VTable, @ptrCast(self.vtable)).put_MultiTouchEnabled(@as(*const IRealTimeStylus3, @ptrCast(self)), fEnable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9187,7 +11137,13 @@ pub const IRealTimeStylusSynchronization = extern union {
             return @as(*const IRealTimeStylusSynchronization.VTable, @ptrCast(self.vtable)).ReleaseLock(@as(*const IRealTimeStylusSynchronization, @ptrCast(self)), lock);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AcquireLock(self: *const IRealTimeStylusSynchronization, lock: RealTimeStylusLockType) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylusSynchronization.VTable, @ptrCast(self.vtable)).AcquireLock(@as(*const IRealTimeStylusSynchronization, @ptrCast(self)), lock);
+    }
+    pub fn ReleaseLock(self: *const IRealTimeStylusSynchronization, lock: RealTimeStylusLockType) callconv(.Inline) HRESULT {
+        return @as(*const IRealTimeStylusSynchronization.VTable, @ptrCast(self.vtable)).ReleaseLock(@as(*const IRealTimeStylusSynchronization, @ptrCast(self)), lock);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9270,7 +11226,25 @@ pub const IStrokeBuilder = extern union {
             return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).putref_Ink(@as(*const IStrokeBuilder, @ptrCast(self)), piInkObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateStroke(self: *const IStrokeBuilder, cPktBuffLength: u32, pPackets: [*]const i32, cPacketProperties: u32, pPacketProperties: [*]const PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).CreateStroke(@as(*const IStrokeBuilder, @ptrCast(self)), cPktBuffLength, pPackets, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
+    }
+    pub fn BeginStroke(self: *const IStrokeBuilder, tcid: u32, sid: u32, pPacket: ?*const i32, cPacketProperties: u32, pPacketProperties: [*]PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).BeginStroke(@as(*const IStrokeBuilder, @ptrCast(self)), tcid, sid, pPacket, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
+    }
+    pub fn AppendPackets(self: *const IStrokeBuilder, tcid: u32, sid: u32, cPktBuffLength: u32, pPackets: [*]const i32) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).AppendPackets(@as(*const IStrokeBuilder, @ptrCast(self)), tcid, sid, cPktBuffLength, pPackets);
+    }
+    pub fn EndStroke(self: *const IStrokeBuilder, tcid: u32, sid: u32, ppIInkStroke: ?*?*IInkStrokeDisp, pDirtyRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).EndStroke(@as(*const IStrokeBuilder, @ptrCast(self)), tcid, sid, ppIInkStroke, pDirtyRect);
+    }
+    pub fn get_Ink(self: *const IStrokeBuilder, ppiInkObj: ?*?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).get_Ink(@as(*const IStrokeBuilder, @ptrCast(self)), ppiInkObj);
+    }
+    pub fn putref_Ink(self: *const IStrokeBuilder, piInkObj: ?*IInkDisp) callconv(.Inline) HRESULT {
+        return @as(*const IStrokeBuilder.VTable, @ptrCast(self.vtable)).putref_Ink(@as(*const IStrokeBuilder, @ptrCast(self)), piInkObj);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9468,7 +11442,58 @@ pub const IStylusPlugin = extern union {
             return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).DataInterest(@as(*const IStylusPlugin, @ptrCast(self)), pDataInterest);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RealTimeStylusEnabled(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).RealTimeStylusEnabled(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, cTcidCount, pTcids);
+    }
+    pub fn RealTimeStylusDisabled(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).RealTimeStylusDisabled(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, cTcidCount, pTcids);
+    }
+    pub fn StylusInRange(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusInRange(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, tcid, sid);
+    }
+    pub fn StylusOutOfRange(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusOutOfRange(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, tcid, sid);
+    }
+    pub fn StylusDown(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusDown(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
+    }
+    pub fn StylusUp(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusUp(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
+    }
+    pub fn StylusButtonDown(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusButtonDown(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
+    }
+    pub fn StylusButtonUp(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).StylusButtonUp(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
+    }
+    pub fn InAirPackets(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).InAirPackets(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
+    }
+    pub fn Packets(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).Packets(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
+    }
+    pub fn CustomStylusDataAdded(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).CustomStylusDataAdded(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, pGuidId, cbData, pbData);
+    }
+    pub fn SystemEvent(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32, event: u16, eventdata: SYSTEM_EVENT_DATA) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).SystemEvent(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, tcid, sid, event, eventdata);
+    }
+    pub fn TabletAdded(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, piTablet: ?*IInkTablet) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).TabletAdded(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, piTablet);
+    }
+    pub fn TabletRemoved(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, iTabletIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).TabletRemoved(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, iTabletIndex);
+    }
+    pub fn Error(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus, piPlugin: ?*IStylusPlugin, dataInterest: RealTimeStylusDataInterest, hrErrorCode: HRESULT, lptrKey: ?*isize) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).Error(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc, piPlugin, dataInterest, hrErrorCode, lptrKey);
+    }
+    pub fn UpdateMapping(self: *const IStylusPlugin, piRtsSrc: ?*IRealTimeStylus) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).UpdateMapping(@as(*const IStylusPlugin, @ptrCast(self)), piRtsSrc);
+    }
+    pub fn DataInterest(self: *const IStylusPlugin, pDataInterest: ?*RealTimeStylusDataInterest) callconv(.Inline) HRESULT {
+        return @as(*const IStylusPlugin.VTable, @ptrCast(self.vtable)).DataInterest(@as(*const IStylusPlugin, @ptrCast(self)), pDataInterest);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9483,7 +11508,7 @@ pub const IStylusSyncPlugin = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStylusPlugin.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IStylusPlugin.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9498,7 +11523,7 @@ pub const IStylusAsyncPlugin = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStylusPlugin.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IStylusPlugin.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9643,7 +11668,52 @@ pub const IDynamicRenderer = extern union {
             return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDynamicRenderer, @ptrCast(self)), hDC);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Enabled(self: *const IDynamicRenderer, bEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IDynamicRenderer, @ptrCast(self)), bEnabled);
+    }
+    pub fn put_Enabled(self: *const IDynamicRenderer, bEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IDynamicRenderer, @ptrCast(self)), bEnabled);
+    }
+    pub fn get_HWND(self: *const IDynamicRenderer, hwnd: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_HWND(@as(*const IDynamicRenderer, @ptrCast(self)), hwnd);
+    }
+    pub fn put_HWND(self: *const IDynamicRenderer, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).put_HWND(@as(*const IDynamicRenderer, @ptrCast(self)), hwnd);
+    }
+    pub fn get_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_ClipRectangle(@as(*const IDynamicRenderer, @ptrCast(self)), prcClipRect);
+    }
+    pub fn put_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).put_ClipRectangle(@as(*const IDynamicRenderer, @ptrCast(self)), prcClipRect);
+    }
+    pub fn get_ClipRegion(self: *const IDynamicRenderer, phClipRgn: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_ClipRegion(@as(*const IDynamicRenderer, @ptrCast(self)), phClipRgn);
+    }
+    pub fn put_ClipRegion(self: *const IDynamicRenderer, hClipRgn: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).put_ClipRegion(@as(*const IDynamicRenderer, @ptrCast(self)), hClipRgn);
+    }
+    pub fn get_DrawingAttributes(self: *const IDynamicRenderer, ppiDA: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_DrawingAttributes(@as(*const IDynamicRenderer, @ptrCast(self)), ppiDA);
+    }
+    pub fn putref_DrawingAttributes(self: *const IDynamicRenderer, piDA: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).putref_DrawingAttributes(@as(*const IDynamicRenderer, @ptrCast(self)), piDA);
+    }
+    pub fn get_DataCacheEnabled(self: *const IDynamicRenderer, pfCacheData: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).get_DataCacheEnabled(@as(*const IDynamicRenderer, @ptrCast(self)), pfCacheData);
+    }
+    pub fn put_DataCacheEnabled(self: *const IDynamicRenderer, fCacheData: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).put_DataCacheEnabled(@as(*const IDynamicRenderer, @ptrCast(self)), fCacheData);
+    }
+    pub fn ReleaseCachedData(self: *const IDynamicRenderer, strokeId: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).ReleaseCachedData(@as(*const IDynamicRenderer, @ptrCast(self)), strokeId);
+    }
+    pub fn Refresh(self: *const IDynamicRenderer) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IDynamicRenderer, @ptrCast(self)));
+    }
+    pub fn Draw(self: *const IDynamicRenderer, hDC: HANDLE_PTR) callconv(.Inline) HRESULT {
+        return @as(*const IDynamicRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDynamicRenderer, @ptrCast(self)), hDC);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9710,7 +11780,25 @@ pub const IGestureRecognizer = extern union {
             return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).Reset(@as(*const IGestureRecognizer, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Enabled(self: *const IGestureRecognizer, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IGestureRecognizer, @ptrCast(self)), pfEnabled);
+    }
+    pub fn put_Enabled(self: *const IGestureRecognizer, fEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IGestureRecognizer, @ptrCast(self)), fEnabled);
+    }
+    pub fn get_MaxStrokeCount(self: *const IGestureRecognizer, pcStrokes: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).get_MaxStrokeCount(@as(*const IGestureRecognizer, @ptrCast(self)), pcStrokes);
+    }
+    pub fn put_MaxStrokeCount(self: *const IGestureRecognizer, cStrokes: i32) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).put_MaxStrokeCount(@as(*const IGestureRecognizer, @ptrCast(self)), cStrokes);
+    }
+    pub fn EnableGestures(self: *const IGestureRecognizer, cGestures: u32, pGestures: [*]const i32) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).EnableGestures(@as(*const IGestureRecognizer, @ptrCast(self)), cGestures, pGestures);
+    }
+    pub fn Reset(self: *const IGestureRecognizer) callconv(.Inline) HRESULT {
+        return @as(*const IGestureRecognizer.VTable, @ptrCast(self.vtable)).Reset(@as(*const IGestureRecognizer, @ptrCast(self)));
+    }
 };
 
 pub const RECO_GUIDE = extern struct {
@@ -9857,7 +11945,13 @@ pub const ITipAutoCompleteProvider = extern union {
             return @as(*const ITipAutoCompleteProvider.VTable, @ptrCast(self.vtable)).Show(@as(*const ITipAutoCompleteProvider, @ptrCast(self)), fShow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn UpdatePendingText(self: *const ITipAutoCompleteProvider, bstrPendingText: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteProvider.VTable, @ptrCast(self.vtable)).UpdatePendingText(@as(*const ITipAutoCompleteProvider, @ptrCast(self)), bstrPendingText);
+    }
+    pub fn Show(self: *const ITipAutoCompleteProvider, fShow: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteProvider.VTable, @ptrCast(self.vtable)).Show(@as(*const ITipAutoCompleteProvider, @ptrCast(self)), fShow);
+    }
 };
 
 const IID_ITipAutoCompleteClient_Value = Guid.initString("5e078e03-8265-4bbe-9487-d242edbef910");
@@ -9916,7 +12010,22 @@ pub const ITipAutoCompleteClient = extern union {
             return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).RequestShowUI(@as(*const ITipAutoCompleteClient, @ptrCast(self)), hWndList, pfAllowShowing);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AdviseProvider(self: *const ITipAutoCompleteClient, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).AdviseProvider(@as(*const ITipAutoCompleteClient, @ptrCast(self)), hWndField, pIProvider);
+    }
+    pub fn UnadviseProvider(self: *const ITipAutoCompleteClient, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).UnadviseProvider(@as(*const ITipAutoCompleteClient, @ptrCast(self)), hWndField, pIProvider);
+    }
+    pub fn UserSelection(self: *const ITipAutoCompleteClient) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).UserSelection(@as(*const ITipAutoCompleteClient, @ptrCast(self)));
+    }
+    pub fn PreferredRects(self: *const ITipAutoCompleteClient, prcACList: ?*RECT, prcField: ?*RECT, prcModifiedACList: ?*RECT, pfShownAboveTip: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).PreferredRects(@as(*const ITipAutoCompleteClient, @ptrCast(self)), prcACList, prcField, prcModifiedACList, pfShownAboveTip);
+    }
+    pub fn RequestShowUI(self: *const ITipAutoCompleteClient, hWndList: ?HWND, pfAllowShowing: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ITipAutoCompleteClient.VTable, @ptrCast(self.vtable)).RequestShowUI(@as(*const ITipAutoCompleteClient, @ptrCast(self)), hWndList, pfAllowShowing);
+    }
 };
 
 

@@ -26,7 +26,10 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
             return @as(*const IDirect3DDxgiInterfaceAccess.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDirect3DDxgiInterfaceAccess, @ptrCast(self)), iid, p);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInterface(self: *const IDirect3DDxgiInterfaceAccess, iid: ?*const Guid, p: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDirect3DDxgiInterfaceAccess.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDirect3DDxgiInterfaceAccess, @ptrCast(self)), iid, p);
+    }
 };
 
 

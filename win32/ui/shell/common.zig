@@ -196,7 +196,13 @@ pub const IObjectArray = extern union {
             return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IObjectArray, @ptrCast(self)), uiIndex, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IObjectArray, @ptrCast(self)), pcObjects);
+    }
+    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IObjectArray, @ptrCast(self)), uiIndex, riid, ppv);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -242,7 +248,19 @@ pub const IObjectCollection = extern union {
             return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectCollection, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IObjectArray.MethodMixin(@This());
+    pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddObject(@as(*const IObjectCollection, @ptrCast(self)), punk);
+    }
+    pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) callconv(.Inline) HRESULT {
+        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddFromArray(@as(*const IObjectCollection, @ptrCast(self)), poaSource);
+    }
+    pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).RemoveObjectAt(@as(*const IObjectCollection, @ptrCast(self)), uiIndex);
+    }
+    pub fn Clear(self: *const IObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectCollection, @ptrCast(self)));
+    }
 };
 
 

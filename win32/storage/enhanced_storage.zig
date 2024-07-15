@@ -1455,7 +1455,13 @@ pub const IEnumEnhancedStorageACT = extern union {
             return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingACT(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), szVolume, ppIEnhancedStorageACT);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetACTs(self: *const IEnumEnhancedStorageACT, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetACTs(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
+    }
+    pub fn GetMatchingACT(self: *const IEnumEnhancedStorageACT, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingACT(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), szVolume, ppIEnhancedStorageACT);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1519,7 +1525,25 @@ pub const IEnhancedStorageACT = extern union {
             return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetSilos(@as(*const IEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Authorize(self: *const IEnhancedStorageACT, hwndParent: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Authorize(@as(*const IEnhancedStorageACT, @ptrCast(self)), hwndParent, dwFlags);
+    }
+    pub fn Unauthorize(self: *const IEnhancedStorageACT) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Unauthorize(@as(*const IEnhancedStorageACT, @ptrCast(self)));
+    }
+    pub fn GetAuthorizationState(self: *const IEnhancedStorageACT, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetAuthorizationState(@as(*const IEnhancedStorageACT, @ptrCast(self)), pState);
+    }
+    pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingVolume(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszVolume);
+    }
+    pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetUniqueIdentity(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszIdentity);
+    }
+    pub fn GetSilos(self: *const IEnhancedStorageACT, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetSilos(@as(*const IEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1550,7 +1574,13 @@ pub const IEnhancedStorageACT2 = extern union {
             return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).IsDeviceRemovable(@as(*const IEnhancedStorageACT2, @ptrCast(self)), pIsDeviceRemovable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IEnhancedStorageACT.MethodMixin(@This());
+    pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).GetDeviceName(@as(*const IEnhancedStorageACT2, @ptrCast(self)), ppwszDeviceName);
+    }
+    pub fn IsDeviceRemovable(self: *const IEnhancedStorageACT2, pIsDeviceRemovable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).IsDeviceRemovable(@as(*const IEnhancedStorageACT2, @ptrCast(self)), pIsDeviceRemovable);
+    }
 };
 
 const IID_IEnhancedStorageACT3_Value = Guid.initString("022150a1-113d-11df-bb61-001aa01bbc58");
@@ -1588,7 +1618,16 @@ pub const IEnhancedStorageACT3 = extern union {
             return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).GetShellExtSupport(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pShellExtSupport);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IEnhancedStorageACT2.MethodMixin(@This());
+    pub fn UnauthorizeEx(self: *const IEnhancedStorageACT3, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).UnauthorizeEx(@as(*const IEnhancedStorageACT3, @ptrCast(self)), dwFlags);
+    }
+    pub fn IsQueueFrozen(self: *const IEnhancedStorageACT3, pIsQueueFrozen: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).IsQueueFrozen(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pIsQueueFrozen);
+    }
+    pub fn GetShellExtSupport(self: *const IEnhancedStorageACT3, pShellExtSupport: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).GetShellExtSupport(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pShellExtSupport);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1648,7 +1687,22 @@ pub const IEnhancedStorageSilo = extern union {
             return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetDevicePath(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppwszSiloDevicePath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInfo(self: *const IEnhancedStorageSilo, pSiloInfo: ?*SILO_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pSiloInfo);
+    }
+    pub fn GetActions(self: *const IEnhancedStorageSilo, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetActions(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
+    }
+    pub fn SendCommand(self: *const IEnhancedStorageSilo, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).SendCommand(@as(*const IEnhancedStorageSilo, @ptrCast(self)), Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
+    }
+    pub fn GetPortableDevice(self: *const IEnhancedStorageSilo, ppIPortableDevice: ?*?*IPortableDevice) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetPortableDevice(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppIPortableDevice);
+    }
+    pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetDevicePath(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppwszSiloDevicePath);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1686,7 +1740,16 @@ pub const IEnhancedStorageSiloAction = extern union {
             return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionName);
+    }
+    pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionDescription);
+    }
+    pub fn Invoke(self: *const IEnhancedStorageSiloAction) callconv(.Inline) HRESULT {
+        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)));
+    }
 };
 
 

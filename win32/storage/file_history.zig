@@ -106,7 +106,13 @@ pub const IFhTarget = extern union {
             return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetNumericalProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStringProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetStringProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
+    }
+    pub fn GetNumericalProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetNumericalProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -136,7 +142,13 @@ pub const IFhScopeIterator = extern union {
             return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IFhScopeIterator, @ptrCast(self)), Item);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveToNextItem(self: *const IFhScopeIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).MoveToNextItem(@as(*const IFhScopeIterator, @ptrCast(self)));
+    }
+    pub fn GetItem(self: *const IFhScopeIterator, Item: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IFhScopeIterator, @ptrCast(self)), Item);
+    }
 };
 
 pub const FH_PROTECTED_ITEM_CATEGORY = enum(i32) {
@@ -333,7 +345,49 @@ pub const IFhConfigMgr = extern union {
             return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).QueryProtectionStatus(@as(*const IFhConfigMgr, @ptrCast(self)), ProtectionState, ProtectedUntilTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LoadConfiguration(self: *const IFhConfigMgr) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).LoadConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
+    }
+    pub fn CreateDefaultConfiguration(self: *const IFhConfigMgr, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).CreateDefaultConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)), OverwriteIfExists);
+    }
+    pub fn SaveConfiguration(self: *const IFhConfigMgr) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SaveConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
+    }
+    pub fn AddRemoveExcludeRule(self: *const IFhConfigMgr, Add: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Item: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).AddRemoveExcludeRule(@as(*const IFhConfigMgr, @ptrCast(self)), Add, Category, Item);
+    }
+    pub fn GetIncludeExcludeRules(self: *const IFhConfigMgr, Include: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Iterator: ?*?*IFhScopeIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetIncludeExcludeRules(@as(*const IFhConfigMgr, @ptrCast(self)), Include, Category, Iterator);
+    }
+    pub fn GetLocalPolicy(self: *const IFhConfigMgr, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
+    }
+    pub fn SetLocalPolicy(self: *const IFhConfigMgr, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: u64) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
+    }
+    pub fn GetBackupStatus(self: *const IFhConfigMgr, BackupStatus: ?*FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
+    }
+    pub fn SetBackupStatus(self: *const IFhConfigMgr, BackupStatus: FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
+    }
+    pub fn GetDefaultTarget(self: *const IFhConfigMgr, DefaultTarget: ?*?*IFhTarget) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetDefaultTarget(@as(*const IFhConfigMgr, @ptrCast(self)), DefaultTarget);
+    }
+    pub fn ValidateTarget(self: *const IFhConfigMgr, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, ValidationResult);
+    }
+    pub fn ProvisionAndSetNewTarget(self: *const IFhConfigMgr, TargetUrl: ?BSTR, TargetName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ProvisionAndSetNewTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, TargetName);
+    }
+    pub fn ChangeDefaultTargetRecommendation(self: *const IFhConfigMgr, Recommend: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ChangeDefaultTargetRecommendation(@as(*const IFhConfigMgr, @ptrCast(self)), Recommend);
+    }
+    pub fn QueryProtectionStatus(self: *const IFhConfigMgr, ProtectionState: ?*u32, ProtectedUntilTime: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).QueryProtectionStatus(@as(*const IFhConfigMgr, @ptrCast(self)), ProtectionState, ProtectedUntilTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -392,7 +446,22 @@ pub const IFhReassociation = extern union {
             return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).PerformReassociation(@as(*const IFhReassociation, @ptrCast(self)), OverwriteIfExists);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ValidateTarget(self: *const IFhReassociation, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl, ValidationResult);
+    }
+    pub fn ScanTargetForConfigurations(self: *const IFhReassociation, TargetUrl: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ScanTargetForConfigurations(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl);
+    }
+    pub fn GetConfigurationDetails(self: *const IFhReassociation, Index: u32, UserName: ?*?BSTR, PcName: ?*?BSTR, BackupTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).GetConfigurationDetails(@as(*const IFhReassociation, @ptrCast(self)), Index, UserName, PcName, BackupTime);
+    }
+    pub fn SelectConfiguration(self: *const IFhReassociation, Index: u32) callconv(.Inline) HRESULT {
+        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).SelectConfiguration(@as(*const IFhReassociation, @ptrCast(self)), Index);
+    }
+    pub fn PerformReassociation(self: *const IFhReassociation, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).PerformReassociation(@as(*const IFhReassociation, @ptrCast(self)), OverwriteIfExists);
+    }
 };
 
 pub const FhBackupStopReason = enum(i32) {

@@ -48,7 +48,13 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
             return @as(*const IWindowsMediaLibrarySharingDeviceProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IWindowsMediaLibrarySharingDeviceProperty, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDeviceProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWindowsMediaLibrarySharingDeviceProperty, @ptrCast(self)), name);
+    }
+    pub fn get_Value(self: *const IWindowsMediaLibrarySharingDeviceProperty, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDeviceProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IWindowsMediaLibrarySharingDeviceProperty, @ptrCast(self)), value);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -90,7 +96,16 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
             return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), name, property);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), index, property);
+    }
+    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDeviceProperties, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), count);
+    }
+    pub fn GetProperty(self: *const IWindowsMediaLibrarySharingDeviceProperties, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), name, property);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -141,7 +156,19 @@ pub const IWindowsMediaLibrarySharingDevice = extern union {
             return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), deviceProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_DeviceID(self: *const IWindowsMediaLibrarySharingDevice, deviceID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_DeviceID(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), deviceID);
+    }
+    pub fn get_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: ?*WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_Authorization(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), authorization);
+    }
+    pub fn put_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).put_Authorization(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), authorization);
+    }
+    pub fn get_Properties(self: *const IWindowsMediaLibrarySharingDevice, deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), deviceProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -183,7 +210,16 @@ pub const IWindowsMediaLibrarySharingDevices = extern union {
             return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), deviceID, device);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDevices, index: i32, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), index, device);
+    }
+    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDevices, count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), count);
+    }
+    pub fn GetDevice(self: *const IWindowsMediaLibrarySharingDevices, deviceID: ?BSTR, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), deviceID, device);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -368,7 +404,64 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
             return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_customSettingsApplied(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), customSettingsApplied);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn showShareMediaCPL(self: *const IWindowsMediaLibrarySharingServices, device: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).showShareMediaCPL(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), device);
+    }
+    pub fn get_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userHomeMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn put_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userHomeMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn get_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userHomeMediaSharingLibraryName(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), libraryName);
+    }
+    pub fn put_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userHomeMediaSharingLibraryName(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), libraryName);
+    }
+    pub fn get_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_computerHomeMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
+    }
+    pub fn put_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_computerHomeMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
+    }
+    pub fn get_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userInternetMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn put_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userInternetMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn get_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_computerInternetMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
+    }
+    pub fn put_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_computerInternetMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
+    }
+    pub fn get_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_internetMediaSharingSecurityGroup(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), securityGroup);
+    }
+    pub fn put_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_internetMediaSharingSecurityGroup(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), securityGroup);
+    }
+    pub fn get_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_allowSharingToAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn put_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_allowSharingToAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
+    }
+    pub fn setDefaultAuthorization(self: *const IWindowsMediaLibrarySharingServices, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).setDefaultAuthorization(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), MACAddresses, friendlyName, authorization);
+    }
+    pub fn setAuthorizationState(self: *const IWindowsMediaLibrarySharingServices, MACAddress: ?BSTR, authorizationState: i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).setAuthorizationState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), MACAddress, authorizationState);
+    }
+    pub fn getAllDevices(self: *const IWindowsMediaLibrarySharingServices, devices: ?*?*IWindowsMediaLibrarySharingDevices) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).getAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), devices);
+    }
+    pub fn get_customSettingsApplied(self: *const IWindowsMediaLibrarySharingServices, customSettingsApplied: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_customSettingsApplied(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), customSettingsApplied);
+    }
 };
 
 

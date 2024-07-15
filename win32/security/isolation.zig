@@ -35,7 +35,10 @@ pub const IIsolatedAppLauncher = extern union {
             return @as(*const IIsolatedAppLauncher.VTable, @ptrCast(self.vtable)).Launch(@as(*const IIsolatedAppLauncher, @ptrCast(self)), appUserModelId, arguments, telemetryParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Launch(self: *const IIsolatedAppLauncher, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
+        return @as(*const IIsolatedAppLauncher.VTable, @ptrCast(self.vtable)).Launch(@as(*const IIsolatedAppLauncher, @ptrCast(self)), appUserModelId, arguments, telemetryParameters);
+    }
 };
 
 

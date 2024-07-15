@@ -1579,7 +1579,58 @@ pub const IFaxJobStatus = extern union {
             return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrRoutingInformation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Status(self: *const IFaxJobStatus, pStatus: ?*FAX_JOB_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxJobStatus, @ptrCast(self)), pStatus);
+    }
+    pub fn get_Pages(self: *const IFaxJobStatus, plPages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxJobStatus, @ptrCast(self)), plPages);
+    }
+    pub fn get_Size(self: *const IFaxJobStatus, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxJobStatus, @ptrCast(self)), plSize);
+    }
+    pub fn get_CurrentPage(self: *const IFaxJobStatus, plCurrentPage: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxJobStatus, @ptrCast(self)), plCurrentPage);
+    }
+    pub fn get_DeviceId(self: *const IFaxJobStatus, plDeviceId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxJobStatus, @ptrCast(self)), plDeviceId);
+    }
+    pub fn get_CSID(self: *const IFaxJobStatus, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxJobStatus, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn get_ExtendedStatusCode(self: *const IFaxJobStatus, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxJobStatus, @ptrCast(self)), pExtendedStatusCode);
+    }
+    pub fn get_ExtendedStatus(self: *const IFaxJobStatus, pbstrExtendedStatus: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrExtendedStatus);
+    }
+    pub fn get_AvailableOperations(self: *const IFaxJobStatus, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxJobStatus, @ptrCast(self)), pAvailableOperations);
+    }
+    pub fn get_Retries(self: *const IFaxJobStatus, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxJobStatus, @ptrCast(self)), plRetries);
+    }
+    pub fn get_JobType(self: *const IFaxJobStatus, pJobType: ?*FAX_JOB_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_JobType(@as(*const IFaxJobStatus, @ptrCast(self)), pJobType);
+    }
+    pub fn get_ScheduledTime(self: *const IFaxJobStatus, pdateScheduledTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ScheduledTime(@as(*const IFaxJobStatus, @ptrCast(self)), pdateScheduledTime);
+    }
+    pub fn get_TransmissionStart(self: *const IFaxJobStatus, pdateTransmissionStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxJobStatus, @ptrCast(self)), pdateTransmissionStart);
+    }
+    pub fn get_TransmissionEnd(self: *const IFaxJobStatus, pdateTransmissionEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxJobStatus, @ptrCast(self)), pdateTransmissionEnd);
+    }
+    pub fn get_CallerId(self: *const IFaxJobStatus, pbstrCallerId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrCallerId);
+    }
+    pub fn get_RoutingInformation(self: *const IFaxJobStatus, pbstrRoutingInformation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrRoutingInformation);
+    }
 };
 
 pub const FAX_SERVER_EVENTS_TYPE_ENUM = enum(i32) {
@@ -1861,7 +1912,85 @@ pub const IFaxServer = extern union {
             return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_APIVersion(@as(*const IFaxServer, @ptrCast(self)), pAPIVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Connect(self: *const IFaxServer, bstrServerName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).Connect(@as(*const IFaxServer, @ptrCast(self)), bstrServerName);
+    }
+    pub fn get_ServerName(self: *const IFaxServer, pbstrServerName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_ServerName(@as(*const IFaxServer, @ptrCast(self)), pbstrServerName);
+    }
+    pub fn GetDeviceProviders(self: *const IFaxServer, ppFaxDeviceProviders: ?*?*IFaxDeviceProviders) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetDeviceProviders(@as(*const IFaxServer, @ptrCast(self)), ppFaxDeviceProviders);
+    }
+    pub fn GetDevices(self: *const IFaxServer, ppFaxDevices: ?*?*IFaxDevices) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetDevices(@as(*const IFaxServer, @ptrCast(self)), ppFaxDevices);
+    }
+    pub fn get_InboundRouting(self: *const IFaxServer, ppFaxInboundRouting: ?*?*IFaxInboundRouting) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_InboundRouting(@as(*const IFaxServer, @ptrCast(self)), ppFaxInboundRouting);
+    }
+    pub fn get_Folders(self: *const IFaxServer, pFaxFolders: ?*?*IFaxFolders) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Folders(@as(*const IFaxServer, @ptrCast(self)), pFaxFolders);
+    }
+    pub fn get_LoggingOptions(self: *const IFaxServer, ppFaxLoggingOptions: ?*?*IFaxLoggingOptions) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_LoggingOptions(@as(*const IFaxServer, @ptrCast(self)), ppFaxLoggingOptions);
+    }
+    pub fn get_MajorVersion(self: *const IFaxServer, plMajorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxServer, @ptrCast(self)), plMajorVersion);
+    }
+    pub fn get_MinorVersion(self: *const IFaxServer, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxServer, @ptrCast(self)), plMinorVersion);
+    }
+    pub fn get_MajorBuild(self: *const IFaxServer, plMajorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxServer, @ptrCast(self)), plMajorBuild);
+    }
+    pub fn get_MinorBuild(self: *const IFaxServer, plMinorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxServer, @ptrCast(self)), plMinorBuild);
+    }
+    pub fn get_Debug(self: *const IFaxServer, pbDebug: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxServer, @ptrCast(self)), pbDebug);
+    }
+    pub fn get_Activity(self: *const IFaxServer, ppFaxActivity: ?*?*IFaxActivity) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Activity(@as(*const IFaxServer, @ptrCast(self)), ppFaxActivity);
+    }
+    pub fn get_OutboundRouting(self: *const IFaxServer, ppFaxOutboundRouting: ?*?*IFaxOutboundRouting) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_OutboundRouting(@as(*const IFaxServer, @ptrCast(self)), ppFaxOutboundRouting);
+    }
+    pub fn get_ReceiptOptions(self: *const IFaxServer, ppFaxReceiptOptions: ?*?*IFaxReceiptOptions) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_ReceiptOptions(@as(*const IFaxServer, @ptrCast(self)), ppFaxReceiptOptions);
+    }
+    pub fn get_Security(self: *const IFaxServer, ppFaxSecurity: ?*?*IFaxSecurity) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IFaxServer, @ptrCast(self)), ppFaxSecurity);
+    }
+    pub fn Disconnect(self: *const IFaxServer) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IFaxServer, @ptrCast(self)));
+    }
+    pub fn GetExtensionProperty(self: *const IFaxServer, bstrGUID: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetExtensionProperty(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, pvProperty);
+    }
+    pub fn SetExtensionProperty(self: *const IFaxServer, bstrGUID: ?BSTR, vProperty: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).SetExtensionProperty(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, vProperty);
+    }
+    pub fn ListenToServerEvents(self: *const IFaxServer, EventTypes: FAX_SERVER_EVENTS_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).ListenToServerEvents(@as(*const IFaxServer, @ptrCast(self)), EventTypes);
+    }
+    pub fn RegisterDeviceProvider(self: *const IFaxServer, bstrGUID: ?BSTR, bstrFriendlyName: ?BSTR, bstrImageName: ?BSTR, TspName: ?BSTR, lFSPIVersion: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).RegisterDeviceProvider(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, bstrFriendlyName, bstrImageName, TspName, lFSPIVersion);
+    }
+    pub fn UnregisterDeviceProvider(self: *const IFaxServer, bstrUniqueName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IFaxServer, @ptrCast(self)), bstrUniqueName);
+    }
+    pub fn RegisterInboundRoutingExtension(self: *const IFaxServer, bstrExtensionName: ?BSTR, bstrFriendlyName: ?BSTR, bstrImageName: ?BSTR, vMethods: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).RegisterInboundRoutingExtension(@as(*const IFaxServer, @ptrCast(self)), bstrExtensionName, bstrFriendlyName, bstrImageName, vMethods);
+    }
+    pub fn UnregisterInboundRoutingExtension(self: *const IFaxServer, bstrExtensionUniqueName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).UnregisterInboundRoutingExtension(@as(*const IFaxServer, @ptrCast(self)), bstrExtensionUniqueName);
+    }
+    pub fn get_RegisteredEvents(self: *const IFaxServer, pEventTypes: ?*FAX_SERVER_EVENTS_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_RegisteredEvents(@as(*const IFaxServer, @ptrCast(self)), pEventTypes);
+    }
+    pub fn get_APIVersion(self: *const IFaxServer, pAPIVersion: ?*FAX_SERVER_APIVERSION_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_APIVersion(@as(*const IFaxServer, @ptrCast(self)), pAPIVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1903,7 +2032,16 @@ pub const IFaxDeviceProviders = extern union {
             return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDeviceProviders, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxDeviceProviders, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDeviceProviders, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxDeviceProviders, vIndex: VARIANT, pFaxDeviceProvider: ?*?*IFaxDeviceProvider) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDeviceProviders, @ptrCast(self)), vIndex, pFaxDeviceProvider);
+    }
+    pub fn get_Count(self: *const IFaxDeviceProviders, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDeviceProviders, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1954,7 +2092,19 @@ pub const IFaxDevices = extern union {
             return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_ItemById(@as(*const IFaxDevices, @ptrCast(self)), lId, ppFaxDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxDevices, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDevices, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxDevices, vIndex: VARIANT, pFaxDevice: ?*?*IFaxDevice) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDevices, @ptrCast(self)), vIndex, pFaxDevice);
+    }
+    pub fn get_Count(self: *const IFaxDevices, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDevices, @ptrCast(self)), plCount);
+    }
+    pub fn get_ItemById(self: *const IFaxDevices, lId: i32, ppFaxDevice: ?*?*IFaxDevice) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_ItemById(@as(*const IFaxDevices, @ptrCast(self)), lId, ppFaxDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1985,7 +2135,13 @@ pub const IFaxInboundRouting = extern union {
             return @as(*const IFaxInboundRouting.VTable, @ptrCast(self.vtable)).GetMethods(@as(*const IFaxInboundRouting, @ptrCast(self)), pFaxInboundRoutingMethods);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetExtensions(self: *const IFaxInboundRouting, pFaxInboundRoutingExtensions: ?*?*IFaxInboundRoutingExtensions) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRouting.VTable, @ptrCast(self.vtable)).GetExtensions(@as(*const IFaxInboundRouting, @ptrCast(self)), pFaxInboundRoutingExtensions);
+    }
+    pub fn GetMethods(self: *const IFaxInboundRouting, pFaxInboundRoutingMethods: ?*?*IFaxInboundRoutingMethods) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRouting.VTable, @ptrCast(self.vtable)).GetMethods(@as(*const IFaxInboundRouting, @ptrCast(self)), pFaxInboundRoutingMethods);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2036,7 +2192,19 @@ pub const IFaxFolders = extern union {
             return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxFolders, @ptrCast(self)), pFaxOutgoingArchive);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_OutgoingQueue(self: *const IFaxFolders, pFaxOutgoingQueue: ?*?*IFaxOutgoingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_OutgoingQueue(@as(*const IFaxFolders, @ptrCast(self)), pFaxOutgoingQueue);
+    }
+    pub fn get_IncomingQueue(self: *const IFaxFolders, pFaxIncomingQueue: ?*?*IFaxIncomingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_IncomingQueue(@as(*const IFaxFolders, @ptrCast(self)), pFaxIncomingQueue);
+    }
+    pub fn get_IncomingArchive(self: *const IFaxFolders, pFaxIncomingArchive: ?*?*IFaxIncomingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_IncomingArchive(@as(*const IFaxFolders, @ptrCast(self)), pFaxIncomingArchive);
+    }
+    pub fn get_OutgoingArchive(self: *const IFaxFolders, pFaxOutgoingArchive: ?*?*IFaxOutgoingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxFolders, @ptrCast(self)), pFaxOutgoingArchive);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2069,7 +2237,13 @@ pub const IFaxLoggingOptions = extern union {
             return @as(*const IFaxLoggingOptions.VTable, @ptrCast(self.vtable)).get_ActivityLogging(@as(*const IFaxLoggingOptions, @ptrCast(self)), pFaxActivityLogging);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_EventLogging(self: *const IFaxLoggingOptions, pFaxEventLogging: ?*?*IFaxEventLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxLoggingOptions.VTable, @ptrCast(self.vtable)).get_EventLogging(@as(*const IFaxLoggingOptions, @ptrCast(self)), pFaxEventLogging);
+    }
+    pub fn get_ActivityLogging(self: *const IFaxLoggingOptions, pFaxActivityLogging: ?*?*IFaxActivityLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxLoggingOptions.VTable, @ptrCast(self.vtable)).get_ActivityLogging(@as(*const IFaxLoggingOptions, @ptrCast(self)), pFaxActivityLogging);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2127,7 +2301,22 @@ pub const IFaxActivity = extern union {
             return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxActivity, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_IncomingMessages(self: *const IFaxActivity, plIncomingMessages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_IncomingMessages(@as(*const IFaxActivity, @ptrCast(self)), plIncomingMessages);
+    }
+    pub fn get_RoutingMessages(self: *const IFaxActivity, plRoutingMessages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_RoutingMessages(@as(*const IFaxActivity, @ptrCast(self)), plRoutingMessages);
+    }
+    pub fn get_OutgoingMessages(self: *const IFaxActivity, plOutgoingMessages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_OutgoingMessages(@as(*const IFaxActivity, @ptrCast(self)), plOutgoingMessages);
+    }
+    pub fn get_QueuedMessages(self: *const IFaxActivity, plQueuedMessages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_QueuedMessages(@as(*const IFaxActivity, @ptrCast(self)), plQueuedMessages);
+    }
+    pub fn Refresh(self: *const IFaxActivity) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxActivity, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2158,7 +2347,13 @@ pub const IFaxOutboundRouting = extern union {
             return @as(*const IFaxOutboundRouting.VTable, @ptrCast(self.vtable)).GetRules(@as(*const IFaxOutboundRouting, @ptrCast(self)), pFaxOutboundRoutingRules);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetGroups(self: *const IFaxOutboundRouting, pFaxOutboundRoutingGroups: ?*?*IFaxOutboundRoutingGroups) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRouting.VTable, @ptrCast(self.vtable)).GetGroups(@as(*const IFaxOutboundRouting, @ptrCast(self)), pFaxOutboundRoutingGroups);
+    }
+    pub fn GetRules(self: *const IFaxOutboundRouting, pFaxOutboundRoutingRules: ?*?*IFaxOutboundRoutingRules) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRouting.VTable, @ptrCast(self.vtable)).GetRules(@as(*const IFaxOutboundRouting, @ptrCast(self)), pFaxOutboundRoutingRules);
+    }
 };
 
 pub const FAX_SMTP_AUTHENTICATION_TYPE_ENUM = enum(i32) {
@@ -2349,7 +2544,61 @@ pub const IFaxReceiptOptions = extern union {
             return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_UseForInboundRouting(@as(*const IFaxReceiptOptions, @ptrCast(self)), bUseForInboundRouting);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AuthenticationType(self: *const IFaxReceiptOptions, pType: ?*FAX_SMTP_AUTHENTICATION_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_AuthenticationType(@as(*const IFaxReceiptOptions, @ptrCast(self)), pType);
+    }
+    pub fn put_AuthenticationType(self: *const IFaxReceiptOptions, Type: FAX_SMTP_AUTHENTICATION_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_AuthenticationType(@as(*const IFaxReceiptOptions, @ptrCast(self)), Type);
+    }
+    pub fn get_SMTPServer(self: *const IFaxReceiptOptions, pbstrSMTPServer: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPServer(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPServer);
+    }
+    pub fn put_SMTPServer(self: *const IFaxReceiptOptions, bstrSMTPServer: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPServer(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPServer);
+    }
+    pub fn get_SMTPPort(self: *const IFaxReceiptOptions, plSMTPPort: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPPort(@as(*const IFaxReceiptOptions, @ptrCast(self)), plSMTPPort);
+    }
+    pub fn put_SMTPPort(self: *const IFaxReceiptOptions, lSMTPPort: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPPort(@as(*const IFaxReceiptOptions, @ptrCast(self)), lSMTPPort);
+    }
+    pub fn get_SMTPSender(self: *const IFaxReceiptOptions, pbstrSMTPSender: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPSender(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPSender);
+    }
+    pub fn put_SMTPSender(self: *const IFaxReceiptOptions, bstrSMTPSender: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPSender(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPSender);
+    }
+    pub fn get_SMTPUser(self: *const IFaxReceiptOptions, pbstrSMTPUser: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPUser(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPUser);
+    }
+    pub fn put_SMTPUser(self: *const IFaxReceiptOptions, bstrSMTPUser: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPUser(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPUser);
+    }
+    pub fn get_AllowedReceipts(self: *const IFaxReceiptOptions, pAllowedReceipts: ?*FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_AllowedReceipts(@as(*const IFaxReceiptOptions, @ptrCast(self)), pAllowedReceipts);
+    }
+    pub fn put_AllowedReceipts(self: *const IFaxReceiptOptions, AllowedReceipts: FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_AllowedReceipts(@as(*const IFaxReceiptOptions, @ptrCast(self)), AllowedReceipts);
+    }
+    pub fn get_SMTPPassword(self: *const IFaxReceiptOptions, pbstrSMTPPassword: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPPassword(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPPassword);
+    }
+    pub fn put_SMTPPassword(self: *const IFaxReceiptOptions, bstrSMTPPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPPassword(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPPassword);
+    }
+    pub fn Refresh(self: *const IFaxReceiptOptions) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxReceiptOptions, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxReceiptOptions) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxReceiptOptions, @ptrCast(self)));
+    }
+    pub fn get_UseForInboundRouting(self: *const IFaxReceiptOptions, pbUseForInboundRouting: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_UseForInboundRouting(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbUseForInboundRouting);
+    }
+    pub fn put_UseForInboundRouting(self: *const IFaxReceiptOptions, bUseForInboundRouting: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_UseForInboundRouting(@as(*const IFaxReceiptOptions, @ptrCast(self)), bUseForInboundRouting);
+    }
 };
 
 pub const FAX_ACCESS_RIGHTS_ENUM = enum(i32) {
@@ -2448,7 +2697,28 @@ pub const IFaxSecurity = extern union {
             return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity, @ptrCast(self)), lInformationType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Descriptor(self: *const IFaxSecurity, pvDescriptor: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_Descriptor(@as(*const IFaxSecurity, @ptrCast(self)), pvDescriptor);
+    }
+    pub fn put_Descriptor(self: *const IFaxSecurity, vDescriptor: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).put_Descriptor(@as(*const IFaxSecurity, @ptrCast(self)), vDescriptor);
+    }
+    pub fn get_GrantedRights(self: *const IFaxSecurity, pGrantedRights: ?*FAX_ACCESS_RIGHTS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_GrantedRights(@as(*const IFaxSecurity, @ptrCast(self)), pGrantedRights);
+    }
+    pub fn Refresh(self: *const IFaxSecurity) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxSecurity, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxSecurity) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxSecurity, @ptrCast(self)));
+    }
+    pub fn get_InformationType(self: *const IFaxSecurity, plInformationType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_InformationType(@as(*const IFaxSecurity, @ptrCast(self)), plInformationType);
+    }
+    pub fn put_InformationType(self: *const IFaxSecurity, lInformationType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity, @ptrCast(self)), lInformationType);
+    }
 };
 
 pub const FAX_PRIORITY_TYPE_ENUM = enum(i32) {
@@ -2795,7 +3065,109 @@ pub const IFaxDocument = extern union {
             return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_AttachFaxToReceipt(@as(*const IFaxDocument, @ptrCast(self)), bAttachFax);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Body(self: *const IFaxDocument, pbstrBody: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IFaxDocument, @ptrCast(self)), pbstrBody);
+    }
+    pub fn put_Body(self: *const IFaxDocument, bstrBody: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IFaxDocument, @ptrCast(self)), bstrBody);
+    }
+    pub fn get_Sender(self: *const IFaxDocument, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxDocument, @ptrCast(self)), ppFaxSender);
+    }
+    pub fn get_Recipients(self: *const IFaxDocument, ppFaxRecipients: ?*?*IFaxRecipients) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Recipients(@as(*const IFaxDocument, @ptrCast(self)), ppFaxRecipients);
+    }
+    pub fn get_CoverPage(self: *const IFaxDocument, pbstrCoverPage: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CoverPage(@as(*const IFaxDocument, @ptrCast(self)), pbstrCoverPage);
+    }
+    pub fn put_CoverPage(self: *const IFaxDocument, bstrCoverPage: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CoverPage(@as(*const IFaxDocument, @ptrCast(self)), bstrCoverPage);
+    }
+    pub fn get_Subject(self: *const IFaxDocument, pbstrSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxDocument, @ptrCast(self)), pbstrSubject);
+    }
+    pub fn put_Subject(self: *const IFaxDocument, bstrSubject: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IFaxDocument, @ptrCast(self)), bstrSubject);
+    }
+    pub fn get_Note(self: *const IFaxDocument, pbstrNote: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Note(@as(*const IFaxDocument, @ptrCast(self)), pbstrNote);
+    }
+    pub fn put_Note(self: *const IFaxDocument, bstrNote: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Note(@as(*const IFaxDocument, @ptrCast(self)), bstrNote);
+    }
+    pub fn get_ScheduleTime(self: *const IFaxDocument, pdateScheduleTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ScheduleTime(@as(*const IFaxDocument, @ptrCast(self)), pdateScheduleTime);
+    }
+    pub fn put_ScheduleTime(self: *const IFaxDocument, dateScheduleTime: f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ScheduleTime(@as(*const IFaxDocument, @ptrCast(self)), dateScheduleTime);
+    }
+    pub fn get_ReceiptAddress(self: *const IFaxDocument, pbstrReceiptAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxDocument, @ptrCast(self)), pbstrReceiptAddress);
+    }
+    pub fn put_ReceiptAddress(self: *const IFaxDocument, bstrReceiptAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ReceiptAddress(@as(*const IFaxDocument, @ptrCast(self)), bstrReceiptAddress);
+    }
+    pub fn get_DocumentName(self: *const IFaxDocument, pbstrDocumentName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxDocument, @ptrCast(self)), pbstrDocumentName);
+    }
+    pub fn put_DocumentName(self: *const IFaxDocument, bstrDocumentName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_DocumentName(@as(*const IFaxDocument, @ptrCast(self)), bstrDocumentName);
+    }
+    pub fn get_CallHandle(self: *const IFaxDocument, plCallHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CallHandle(@as(*const IFaxDocument, @ptrCast(self)), plCallHandle);
+    }
+    pub fn put_CallHandle(self: *const IFaxDocument, lCallHandle: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CallHandle(@as(*const IFaxDocument, @ptrCast(self)), lCallHandle);
+    }
+    pub fn get_CoverPageType(self: *const IFaxDocument, pCoverPageType: ?*FAX_COVERPAGE_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CoverPageType(@as(*const IFaxDocument, @ptrCast(self)), pCoverPageType);
+    }
+    pub fn put_CoverPageType(self: *const IFaxDocument, CoverPageType: FAX_COVERPAGE_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CoverPageType(@as(*const IFaxDocument, @ptrCast(self)), CoverPageType);
+    }
+    pub fn get_ScheduleType(self: *const IFaxDocument, pScheduleType: ?*FAX_SCHEDULE_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ScheduleType(@as(*const IFaxDocument, @ptrCast(self)), pScheduleType);
+    }
+    pub fn put_ScheduleType(self: *const IFaxDocument, ScheduleType: FAX_SCHEDULE_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ScheduleType(@as(*const IFaxDocument, @ptrCast(self)), ScheduleType);
+    }
+    pub fn get_ReceiptType(self: *const IFaxDocument, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxDocument, @ptrCast(self)), pReceiptType);
+    }
+    pub fn put_ReceiptType(self: *const IFaxDocument, ReceiptType: FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ReceiptType(@as(*const IFaxDocument, @ptrCast(self)), ReceiptType);
+    }
+    pub fn get_GroupBroadcastReceipts(self: *const IFaxDocument, pbUseGrouping: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_GroupBroadcastReceipts(@as(*const IFaxDocument, @ptrCast(self)), pbUseGrouping);
+    }
+    pub fn put_GroupBroadcastReceipts(self: *const IFaxDocument, bUseGrouping: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_GroupBroadcastReceipts(@as(*const IFaxDocument, @ptrCast(self)), bUseGrouping);
+    }
+    pub fn get_Priority(self: *const IFaxDocument, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxDocument, @ptrCast(self)), pPriority);
+    }
+    pub fn put_Priority(self: *const IFaxDocument, Priority: FAX_PRIORITY_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IFaxDocument, @ptrCast(self)), Priority);
+    }
+    pub fn get_TapiConnection(self: *const IFaxDocument, ppTapiConnection: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_TapiConnection(@as(*const IFaxDocument, @ptrCast(self)), ppTapiConnection);
+    }
+    pub fn putref_TapiConnection(self: *const IFaxDocument, pTapiConnection: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).putref_TapiConnection(@as(*const IFaxDocument, @ptrCast(self)), pTapiConnection);
+    }
+    pub fn Submit(self: *const IFaxDocument, bstrFaxServerName: ?BSTR, pvFaxOutgoingJobIDs: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).Submit(@as(*const IFaxDocument, @ptrCast(self)), bstrFaxServerName, pvFaxOutgoingJobIDs);
+    }
+    pub fn ConnectedSubmit(self: *const IFaxDocument, pFaxServer: ?*IFaxServer, pvFaxOutgoingJobIDs: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).ConnectedSubmit(@as(*const IFaxDocument, @ptrCast(self)), pFaxServer, pvFaxOutgoingJobIDs);
+    }
+    pub fn get_AttachFaxToReceipt(self: *const IFaxDocument, pbAttachFax: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_AttachFaxToReceipt(@as(*const IFaxDocument, @ptrCast(self)), pbAttachFax);
+    }
+    pub fn put_AttachFaxToReceipt(self: *const IFaxDocument, bAttachFax: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_AttachFaxToReceipt(@as(*const IFaxDocument, @ptrCast(self)), bAttachFax);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3112,7 +3484,109 @@ pub const IFaxSender = extern union {
             return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).SaveDefaultSender(@as(*const IFaxSender, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_BillingCode(self: *const IFaxSender, pbstrBillingCode: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_BillingCode(@as(*const IFaxSender, @ptrCast(self)), pbstrBillingCode);
+    }
+    pub fn put_BillingCode(self: *const IFaxSender, bstrBillingCode: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_BillingCode(@as(*const IFaxSender, @ptrCast(self)), bstrBillingCode);
+    }
+    pub fn get_City(self: *const IFaxSender, pbstrCity: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_City(@as(*const IFaxSender, @ptrCast(self)), pbstrCity);
+    }
+    pub fn put_City(self: *const IFaxSender, bstrCity: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_City(@as(*const IFaxSender, @ptrCast(self)), bstrCity);
+    }
+    pub fn get_Company(self: *const IFaxSender, pbstrCompany: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Company(@as(*const IFaxSender, @ptrCast(self)), pbstrCompany);
+    }
+    pub fn put_Company(self: *const IFaxSender, bstrCompany: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Company(@as(*const IFaxSender, @ptrCast(self)), bstrCompany);
+    }
+    pub fn get_Country(self: *const IFaxSender, pbstrCountry: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Country(@as(*const IFaxSender, @ptrCast(self)), pbstrCountry);
+    }
+    pub fn put_Country(self: *const IFaxSender, bstrCountry: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Country(@as(*const IFaxSender, @ptrCast(self)), bstrCountry);
+    }
+    pub fn get_Department(self: *const IFaxSender, pbstrDepartment: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Department(@as(*const IFaxSender, @ptrCast(self)), pbstrDepartment);
+    }
+    pub fn put_Department(self: *const IFaxSender, bstrDepartment: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Department(@as(*const IFaxSender, @ptrCast(self)), bstrDepartment);
+    }
+    pub fn get_Email(self: *const IFaxSender, pbstrEmail: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Email(@as(*const IFaxSender, @ptrCast(self)), pbstrEmail);
+    }
+    pub fn put_Email(self: *const IFaxSender, bstrEmail: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Email(@as(*const IFaxSender, @ptrCast(self)), bstrEmail);
+    }
+    pub fn get_FaxNumber(self: *const IFaxSender, pbstrFaxNumber: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IFaxSender, @ptrCast(self)), pbstrFaxNumber);
+    }
+    pub fn put_FaxNumber(self: *const IFaxSender, bstrFaxNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IFaxSender, @ptrCast(self)), bstrFaxNumber);
+    }
+    pub fn get_HomePhone(self: *const IFaxSender, pbstrHomePhone: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_HomePhone(@as(*const IFaxSender, @ptrCast(self)), pbstrHomePhone);
+    }
+    pub fn put_HomePhone(self: *const IFaxSender, bstrHomePhone: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_HomePhone(@as(*const IFaxSender, @ptrCast(self)), bstrHomePhone);
+    }
+    pub fn get_Name(self: *const IFaxSender, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxSender, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IFaxSender, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFaxSender, @ptrCast(self)), bstrName);
+    }
+    pub fn get_TSID(self: *const IFaxSender, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxSender, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn put_TSID(self: *const IFaxSender, bstrTSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_TSID(@as(*const IFaxSender, @ptrCast(self)), bstrTSID);
+    }
+    pub fn get_OfficePhone(self: *const IFaxSender, pbstrOfficePhone: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_OfficePhone(@as(*const IFaxSender, @ptrCast(self)), pbstrOfficePhone);
+    }
+    pub fn put_OfficePhone(self: *const IFaxSender, bstrOfficePhone: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_OfficePhone(@as(*const IFaxSender, @ptrCast(self)), bstrOfficePhone);
+    }
+    pub fn get_OfficeLocation(self: *const IFaxSender, pbstrOfficeLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_OfficeLocation(@as(*const IFaxSender, @ptrCast(self)), pbstrOfficeLocation);
+    }
+    pub fn put_OfficeLocation(self: *const IFaxSender, bstrOfficeLocation: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_OfficeLocation(@as(*const IFaxSender, @ptrCast(self)), bstrOfficeLocation);
+    }
+    pub fn get_State(self: *const IFaxSender, pbstrState: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_State(@as(*const IFaxSender, @ptrCast(self)), pbstrState);
+    }
+    pub fn put_State(self: *const IFaxSender, bstrState: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_State(@as(*const IFaxSender, @ptrCast(self)), bstrState);
+    }
+    pub fn get_StreetAddress(self: *const IFaxSender, pbstrStreetAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_StreetAddress(@as(*const IFaxSender, @ptrCast(self)), pbstrStreetAddress);
+    }
+    pub fn put_StreetAddress(self: *const IFaxSender, bstrStreetAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_StreetAddress(@as(*const IFaxSender, @ptrCast(self)), bstrStreetAddress);
+    }
+    pub fn get_Title(self: *const IFaxSender, pbstrTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IFaxSender, @ptrCast(self)), pbstrTitle);
+    }
+    pub fn put_Title(self: *const IFaxSender, bstrTitle: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Title(@as(*const IFaxSender, @ptrCast(self)), bstrTitle);
+    }
+    pub fn get_ZipCode(self: *const IFaxSender, pbstrZipCode: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_ZipCode(@as(*const IFaxSender, @ptrCast(self)), pbstrZipCode);
+    }
+    pub fn put_ZipCode(self: *const IFaxSender, bstrZipCode: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_ZipCode(@as(*const IFaxSender, @ptrCast(self)), bstrZipCode);
+    }
+    pub fn LoadDefaultSender(self: *const IFaxSender) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).LoadDefaultSender(@as(*const IFaxSender, @ptrCast(self)));
+    }
+    pub fn SaveDefaultSender(self: *const IFaxSender) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).SaveDefaultSender(@as(*const IFaxSender, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3163,7 +3637,19 @@ pub const IFaxRecipient = extern union {
             return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFaxRecipient, @ptrCast(self)), bstrName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_FaxNumber(self: *const IFaxRecipient, pbstrFaxNumber: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IFaxRecipient, @ptrCast(self)), pbstrFaxNumber);
+    }
+    pub fn put_FaxNumber(self: *const IFaxRecipient, bstrFaxNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IFaxRecipient, @ptrCast(self)), bstrFaxNumber);
+    }
+    pub fn get_Name(self: *const IFaxRecipient, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxRecipient, @ptrCast(self)), pbstrName);
+    }
+    pub fn put_Name(self: *const IFaxRecipient, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFaxRecipient, @ptrCast(self)), bstrName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3223,7 +3709,22 @@ pub const IFaxRecipients = extern union {
             return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxRecipients, @ptrCast(self)), lIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxRecipients, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxRecipients, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxRecipients, lIndex: i32, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxRecipients, @ptrCast(self)), lIndex, ppFaxRecipient);
+    }
+    pub fn get_Count(self: *const IFaxRecipients, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxRecipients, @ptrCast(self)), plCount);
+    }
+    pub fn Add(self: *const IFaxRecipients, bstrFaxNumber: ?BSTR, bstrRecipientName: ?BSTR, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxRecipients, @ptrCast(self)), bstrFaxNumber, bstrRecipientName, ppFaxRecipient);
+    }
+    pub fn Remove(self: *const IFaxRecipients, lIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxRecipients, @ptrCast(self)), lIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3396,7 +3897,61 @@ pub const IFaxIncomingArchive = extern union {
             return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_UseArchive(self: *const IFaxIncomingArchive, pbUseArchive: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbUseArchive);
+    }
+    pub fn put_UseArchive(self: *const IFaxIncomingArchive, bUseArchive: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxIncomingArchive, @ptrCast(self)), bUseArchive);
+    }
+    pub fn get_ArchiveFolder(self: *const IFaxIncomingArchive, pbstrArchiveFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_ArchiveFolder(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbstrArchiveFolder);
+    }
+    pub fn put_ArchiveFolder(self: *const IFaxIncomingArchive, bstrArchiveFolder: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_ArchiveFolder(@as(*const IFaxIncomingArchive, @ptrCast(self)), bstrArchiveFolder);
+    }
+    pub fn get_SizeQuotaWarning(self: *const IFaxIncomingArchive, pbSizeQuotaWarning: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbSizeQuotaWarning);
+    }
+    pub fn put_SizeQuotaWarning(self: *const IFaxIncomingArchive, bSizeQuotaWarning: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxIncomingArchive, @ptrCast(self)), bSizeQuotaWarning);
+    }
+    pub fn get_HighQuotaWaterMark(self: *const IFaxIncomingArchive, plHighQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), plHighQuotaWaterMark);
+    }
+    pub fn put_HighQuotaWaterMark(self: *const IFaxIncomingArchive, lHighQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), lHighQuotaWaterMark);
+    }
+    pub fn get_LowQuotaWaterMark(self: *const IFaxIncomingArchive, plLowQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), plLowQuotaWaterMark);
+    }
+    pub fn put_LowQuotaWaterMark(self: *const IFaxIncomingArchive, lLowQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), lLowQuotaWaterMark);
+    }
+    pub fn get_AgeLimit(self: *const IFaxIncomingArchive, plAgeLimit: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxIncomingArchive, @ptrCast(self)), plAgeLimit);
+    }
+    pub fn put_AgeLimit(self: *const IFaxIncomingArchive, lAgeLimit: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxIncomingArchive, @ptrCast(self)), lAgeLimit);
+    }
+    pub fn get_SizeLow(self: *const IFaxIncomingArchive, plSizeLow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxIncomingArchive, @ptrCast(self)), plSizeLow);
+    }
+    pub fn get_SizeHigh(self: *const IFaxIncomingArchive, plSizeHigh: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxIncomingArchive, @ptrCast(self)), plSizeHigh);
+    }
+    pub fn Refresh(self: *const IFaxIncomingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingArchive, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxIncomingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingArchive, @ptrCast(self)));
+    }
+    pub fn GetMessages(self: *const IFaxIncomingArchive, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxIncomingArchive, @ptrCast(self)), lPrefetchSize, pFaxIncomingMessageIterator);
+    }
+    pub fn GetMessage(self: *const IFaxIncomingArchive, bstrMessageId: ?BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3460,7 +4015,25 @@ pub const IFaxIncomingQueue = extern union {
             return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Blocked(self: *const IFaxIncomingQueue, pbBlocked: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).get_Blocked(@as(*const IFaxIncomingQueue, @ptrCast(self)), pbBlocked);
+    }
+    pub fn put_Blocked(self: *const IFaxIncomingQueue, bBlocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).put_Blocked(@as(*const IFaxIncomingQueue, @ptrCast(self)), bBlocked);
+    }
+    pub fn Refresh(self: *const IFaxIncomingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingQueue, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxIncomingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingQueue, @ptrCast(self)));
+    }
+    pub fn GetJobs(self: *const IFaxIncomingQueue, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxIncomingQueue, @ptrCast(self)), pFaxIncomingJobs);
+    }
+    pub fn GetJob(self: *const IFaxIncomingQueue, bstrJobId: ?BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3633,7 +4206,61 @@ pub const IFaxOutgoingArchive = extern union {
             return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_UseArchive(self: *const IFaxOutgoingArchive, pbUseArchive: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbUseArchive);
+    }
+    pub fn put_UseArchive(self: *const IFaxOutgoingArchive, bUseArchive: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bUseArchive);
+    }
+    pub fn get_ArchiveFolder(self: *const IFaxOutgoingArchive, pbstrArchiveFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_ArchiveFolder(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbstrArchiveFolder);
+    }
+    pub fn put_ArchiveFolder(self: *const IFaxOutgoingArchive, bstrArchiveFolder: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_ArchiveFolder(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bstrArchiveFolder);
+    }
+    pub fn get_SizeQuotaWarning(self: *const IFaxOutgoingArchive, pbSizeQuotaWarning: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbSizeQuotaWarning);
+    }
+    pub fn put_SizeQuotaWarning(self: *const IFaxOutgoingArchive, bSizeQuotaWarning: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bSizeQuotaWarning);
+    }
+    pub fn get_HighQuotaWaterMark(self: *const IFaxOutgoingArchive, plHighQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plHighQuotaWaterMark);
+    }
+    pub fn put_HighQuotaWaterMark(self: *const IFaxOutgoingArchive, lHighQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lHighQuotaWaterMark);
+    }
+    pub fn get_LowQuotaWaterMark(self: *const IFaxOutgoingArchive, plLowQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plLowQuotaWaterMark);
+    }
+    pub fn put_LowQuotaWaterMark(self: *const IFaxOutgoingArchive, lLowQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lLowQuotaWaterMark);
+    }
+    pub fn get_AgeLimit(self: *const IFaxOutgoingArchive, plAgeLimit: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plAgeLimit);
+    }
+    pub fn put_AgeLimit(self: *const IFaxOutgoingArchive, lAgeLimit: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lAgeLimit);
+    }
+    pub fn get_SizeLow(self: *const IFaxOutgoingArchive, plSizeLow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plSizeLow);
+    }
+    pub fn get_SizeHigh(self: *const IFaxOutgoingArchive, plSizeHigh: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plSizeHigh);
+    }
+    pub fn Refresh(self: *const IFaxOutgoingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingArchive, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxOutgoingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingArchive, @ptrCast(self)));
+    }
+    pub fn GetMessages(self: *const IFaxOutgoingArchive, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lPrefetchSize, pFaxOutgoingMessageIterator);
+    }
+    pub fn GetMessage(self: *const IFaxOutgoingArchive, bstrMessageId: ?BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3859,7 +4486,79 @@ pub const IFaxOutgoingQueue = extern union {
             return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Blocked(self: *const IFaxOutgoingQueue, pbBlocked: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Blocked(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbBlocked);
+    }
+    pub fn put_Blocked(self: *const IFaxOutgoingQueue, bBlocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Blocked(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bBlocked);
+    }
+    pub fn get_Paused(self: *const IFaxOutgoingQueue, pbPaused: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Paused(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbPaused);
+    }
+    pub fn put_Paused(self: *const IFaxOutgoingQueue, bPaused: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Paused(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bPaused);
+    }
+    pub fn get_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, pbAllowPersonalCoverPages: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_AllowPersonalCoverPages(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbAllowPersonalCoverPages);
+    }
+    pub fn put_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, bAllowPersonalCoverPages: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_AllowPersonalCoverPages(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bAllowPersonalCoverPages);
+    }
+    pub fn get_UseDeviceTSID(self: *const IFaxOutgoingQueue, pbUseDeviceTSID: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_UseDeviceTSID(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbUseDeviceTSID);
+    }
+    pub fn put_UseDeviceTSID(self: *const IFaxOutgoingQueue, bUseDeviceTSID: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_UseDeviceTSID(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bUseDeviceTSID);
+    }
+    pub fn get_Retries(self: *const IFaxOutgoingQueue, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plRetries);
+    }
+    pub fn put_Retries(self: *const IFaxOutgoingQueue, lRetries: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Retries(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lRetries);
+    }
+    pub fn get_RetryDelay(self: *const IFaxOutgoingQueue, plRetryDelay: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_RetryDelay(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plRetryDelay);
+    }
+    pub fn put_RetryDelay(self: *const IFaxOutgoingQueue, lRetryDelay: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_RetryDelay(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lRetryDelay);
+    }
+    pub fn get_DiscountRateStart(self: *const IFaxOutgoingQueue, pdateDiscountRateStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_DiscountRateStart(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pdateDiscountRateStart);
+    }
+    pub fn put_DiscountRateStart(self: *const IFaxOutgoingQueue, dateDiscountRateStart: f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_DiscountRateStart(@as(*const IFaxOutgoingQueue, @ptrCast(self)), dateDiscountRateStart);
+    }
+    pub fn get_DiscountRateEnd(self: *const IFaxOutgoingQueue, pdateDiscountRateEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_DiscountRateEnd(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pdateDiscountRateEnd);
+    }
+    pub fn put_DiscountRateEnd(self: *const IFaxOutgoingQueue, dateDiscountRateEnd: f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_DiscountRateEnd(@as(*const IFaxOutgoingQueue, @ptrCast(self)), dateDiscountRateEnd);
+    }
+    pub fn get_AgeLimit(self: *const IFaxOutgoingQueue, plAgeLimit: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plAgeLimit);
+    }
+    pub fn put_AgeLimit(self: *const IFaxOutgoingQueue, lAgeLimit: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lAgeLimit);
+    }
+    pub fn get_Branding(self: *const IFaxOutgoingQueue, pbBranding: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Branding(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbBranding);
+    }
+    pub fn put_Branding(self: *const IFaxOutgoingQueue, bBranding: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Branding(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bBranding);
+    }
+    pub fn Refresh(self: *const IFaxOutgoingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingQueue, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxOutgoingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingQueue, @ptrCast(self)));
+    }
+    pub fn GetJobs(self: *const IFaxOutgoingQueue, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pFaxOutgoingJobs);
+    }
+    pub fn GetJob(self: *const IFaxOutgoingQueue, bstrJobId: ?BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3924,7 +4623,25 @@ pub const IFaxIncomingMessageIterator = extern union {
             return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Message(self: *const IFaxIncomingMessageIterator, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), pFaxIncomingMessage);
+    }
+    pub fn get_PrefetchSize(self: *const IFaxIncomingMessageIterator, plPrefetchSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_PrefetchSize(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), plPrefetchSize);
+    }
+    pub fn put_PrefetchSize(self: *const IFaxIncomingMessageIterator, lPrefetchSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).put_PrefetchSize(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), lPrefetchSize);
+    }
+    pub fn get_AtEOF(self: *const IFaxIncomingMessageIterator, pbEOF: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_AtEOF(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), pbEOF);
+    }
+    pub fn MoveFirst(self: *const IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).MoveFirst(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)));
+    }
+    pub fn MoveNext(self: *const IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4053,7 +4770,46 @@ pub const IFaxIncomingMessage = extern union {
             return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxIncomingMessage, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Id(self: *const IFaxIncomingMessage, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_Pages(self: *const IFaxIncomingMessage, plPages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxIncomingMessage, @ptrCast(self)), plPages);
+    }
+    pub fn get_Size(self: *const IFaxIncomingMessage, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxIncomingMessage, @ptrCast(self)), plSize);
+    }
+    pub fn get_DeviceName(self: *const IFaxIncomingMessage, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrDeviceName);
+    }
+    pub fn get_Retries(self: *const IFaxIncomingMessage, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxIncomingMessage, @ptrCast(self)), plRetries);
+    }
+    pub fn get_TransmissionStart(self: *const IFaxIncomingMessage, pdateTransmissionStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxIncomingMessage, @ptrCast(self)), pdateTransmissionStart);
+    }
+    pub fn get_TransmissionEnd(self: *const IFaxIncomingMessage, pdateTransmissionEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxIncomingMessage, @ptrCast(self)), pdateTransmissionEnd);
+    }
+    pub fn get_CSID(self: *const IFaxIncomingMessage, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxIncomingMessage, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn get_CallerId(self: *const IFaxIncomingMessage, pbstrCallerId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrCallerId);
+    }
+    pub fn get_RoutingInformation(self: *const IFaxIncomingMessage, pbstrRoutingInformation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrRoutingInformation);
+    }
+    pub fn CopyTiff(self: *const IFaxIncomingMessage, bstrTiffPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxIncomingMessage, @ptrCast(self)), bstrTiffPath);
+    }
+    pub fn Delete(self: *const IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxIncomingMessage, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4095,7 +4851,16 @@ pub const IFaxOutgoingJobs = extern union {
             return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutgoingJobs, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxOutgoingJobs, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutgoingJobs, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxOutgoingJobs, vIndex: VARIANT, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutgoingJobs, @ptrCast(self)), vIndex, pFaxOutgoingJob);
+    }
+    pub fn get_Count(self: *const IFaxOutgoingJobs, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutgoingJobs, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4378,7 +5143,100 @@ pub const IFaxOutgoingJob = extern union {
             return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFaxOutgoingJob, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Subject(self: *const IFaxOutgoingJob, pbstrSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrSubject);
+    }
+    pub fn get_DocumentName(self: *const IFaxOutgoingJob, pbstrDocumentName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrDocumentName);
+    }
+    pub fn get_Pages(self: *const IFaxOutgoingJob, plPages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxOutgoingJob, @ptrCast(self)), plPages);
+    }
+    pub fn get_Size(self: *const IFaxOutgoingJob, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxOutgoingJob, @ptrCast(self)), plSize);
+    }
+    pub fn get_SubmissionId(self: *const IFaxOutgoingJob, pbstrSubmissionId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrSubmissionId);
+    }
+    pub fn get_Id(self: *const IFaxOutgoingJob, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_OriginalScheduledTime(self: *const IFaxOutgoingJob, pdateOriginalScheduledTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_OriginalScheduledTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateOriginalScheduledTime);
+    }
+    pub fn get_SubmissionTime(self: *const IFaxOutgoingJob, pdateSubmissionTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateSubmissionTime);
+    }
+    pub fn get_ReceiptType(self: *const IFaxOutgoingJob, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxOutgoingJob, @ptrCast(self)), pReceiptType);
+    }
+    pub fn get_Priority(self: *const IFaxOutgoingJob, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxOutgoingJob, @ptrCast(self)), pPriority);
+    }
+    pub fn get_Sender(self: *const IFaxOutgoingJob, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxOutgoingJob, @ptrCast(self)), ppFaxSender);
+    }
+    pub fn get_Recipient(self: *const IFaxOutgoingJob, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Recipient(@as(*const IFaxOutgoingJob, @ptrCast(self)), ppFaxRecipient);
+    }
+    pub fn get_CurrentPage(self: *const IFaxOutgoingJob, plCurrentPage: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxOutgoingJob, @ptrCast(self)), plCurrentPage);
+    }
+    pub fn get_DeviceId(self: *const IFaxOutgoingJob, plDeviceId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxOutgoingJob, @ptrCast(self)), plDeviceId);
+    }
+    pub fn get_Status(self: *const IFaxOutgoingJob, pStatus: ?*FAX_JOB_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutgoingJob, @ptrCast(self)), pStatus);
+    }
+    pub fn get_ExtendedStatusCode(self: *const IFaxOutgoingJob, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxOutgoingJob, @ptrCast(self)), pExtendedStatusCode);
+    }
+    pub fn get_ExtendedStatus(self: *const IFaxOutgoingJob, pbstrExtendedStatus: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrExtendedStatus);
+    }
+    pub fn get_AvailableOperations(self: *const IFaxOutgoingJob, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxOutgoingJob, @ptrCast(self)), pAvailableOperations);
+    }
+    pub fn get_Retries(self: *const IFaxOutgoingJob, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingJob, @ptrCast(self)), plRetries);
+    }
+    pub fn get_ScheduledTime(self: *const IFaxOutgoingJob, pdateScheduledTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ScheduledTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateScheduledTime);
+    }
+    pub fn get_TransmissionStart(self: *const IFaxOutgoingJob, pdateTransmissionStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateTransmissionStart);
+    }
+    pub fn get_TransmissionEnd(self: *const IFaxOutgoingJob, pdateTransmissionEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateTransmissionEnd);
+    }
+    pub fn get_CSID(self: *const IFaxOutgoingJob, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxOutgoingJob, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn get_GroupBroadcastReceipts(self: *const IFaxOutgoingJob, pbGroupBroadcastReceipts: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_GroupBroadcastReceipts(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbGroupBroadcastReceipts);
+    }
+    pub fn Pause(self: *const IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Pause(@as(*const IFaxOutgoingJob, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Resume(@as(*const IFaxOutgoingJob, @ptrCast(self)));
+    }
+    pub fn Restart(self: *const IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Restart(@as(*const IFaxOutgoingJob, @ptrCast(self)));
+    }
+    pub fn CopyTiff(self: *const IFaxOutgoingJob, bstrTiffPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxOutgoingJob, @ptrCast(self)), bstrTiffPath);
+    }
+    pub fn Refresh(self: *const IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingJob, @ptrCast(self)));
+    }
+    pub fn Cancel(self: *const IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFaxOutgoingJob, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4443,7 +5301,25 @@ pub const IFaxOutgoingMessageIterator = extern union {
             return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Message(self: *const IFaxOutgoingMessageIterator, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), pFaxOutgoingMessage);
+    }
+    pub fn get_AtEOF(self: *const IFaxOutgoingMessageIterator, pbEOF: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_AtEOF(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), pbEOF);
+    }
+    pub fn get_PrefetchSize(self: *const IFaxOutgoingMessageIterator, plPrefetchSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_PrefetchSize(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), plPrefetchSize);
+    }
+    pub fn put_PrefetchSize(self: *const IFaxOutgoingMessageIterator, lPrefetchSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).put_PrefetchSize(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), lPrefetchSize);
+    }
+    pub fn MoveFirst(self: *const IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).MoveFirst(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)));
+    }
+    pub fn MoveNext(self: *const IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4626,7 +5502,64 @@ pub const IFaxOutgoingMessage = extern union {
             return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxOutgoingMessage, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SubmissionId(self: *const IFaxOutgoingMessage, pbstrSubmissionId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrSubmissionId);
+    }
+    pub fn get_Id(self: *const IFaxOutgoingMessage, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_Subject(self: *const IFaxOutgoingMessage, pbstrSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrSubject);
+    }
+    pub fn get_DocumentName(self: *const IFaxOutgoingMessage, pbstrDocumentName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrDocumentName);
+    }
+    pub fn get_Retries(self: *const IFaxOutgoingMessage, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plRetries);
+    }
+    pub fn get_Pages(self: *const IFaxOutgoingMessage, plPages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plPages);
+    }
+    pub fn get_Size(self: *const IFaxOutgoingMessage, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plSize);
+    }
+    pub fn get_OriginalScheduledTime(self: *const IFaxOutgoingMessage, pdateOriginalScheduledTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_OriginalScheduledTime(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateOriginalScheduledTime);
+    }
+    pub fn get_SubmissionTime(self: *const IFaxOutgoingMessage, pdateSubmissionTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateSubmissionTime);
+    }
+    pub fn get_Priority(self: *const IFaxOutgoingMessage, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pPriority);
+    }
+    pub fn get_Sender(self: *const IFaxOutgoingMessage, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxOutgoingMessage, @ptrCast(self)), ppFaxSender);
+    }
+    pub fn get_Recipient(self: *const IFaxOutgoingMessage, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Recipient(@as(*const IFaxOutgoingMessage, @ptrCast(self)), ppFaxRecipient);
+    }
+    pub fn get_DeviceName(self: *const IFaxOutgoingMessage, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrDeviceName);
+    }
+    pub fn get_TransmissionStart(self: *const IFaxOutgoingMessage, pdateTransmissionStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateTransmissionStart);
+    }
+    pub fn get_TransmissionEnd(self: *const IFaxOutgoingMessage, pdateTransmissionEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateTransmissionEnd);
+    }
+    pub fn get_CSID(self: *const IFaxOutgoingMessage, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxOutgoingMessage, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn CopyTiff(self: *const IFaxOutgoingMessage, bstrTiffPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxOutgoingMessage, @ptrCast(self)), bstrTiffPath);
+    }
+    pub fn Delete(self: *const IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxOutgoingMessage, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4668,7 +5601,16 @@ pub const IFaxIncomingJobs = extern union {
             return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxIncomingJobs, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxIncomingJobs, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxIncomingJobs, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxIncomingJobs, vIndex: VARIANT, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxIncomingJobs, @ptrCast(self)), vIndex, pFaxIncomingJob);
+    }
+    pub fn get_Count(self: *const IFaxIncomingJobs, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxIncomingJobs, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4849,7 +5791,64 @@ pub const IFaxIncomingJob = extern union {
             return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxIncomingJob, @ptrCast(self)), bstrTiffPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Size(self: *const IFaxIncomingJob, plSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxIncomingJob, @ptrCast(self)), plSize);
+    }
+    pub fn get_Id(self: *const IFaxIncomingJob, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_CurrentPage(self: *const IFaxIncomingJob, plCurrentPage: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxIncomingJob, @ptrCast(self)), plCurrentPage);
+    }
+    pub fn get_DeviceId(self: *const IFaxIncomingJob, plDeviceId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxIncomingJob, @ptrCast(self)), plDeviceId);
+    }
+    pub fn get_Status(self: *const IFaxIncomingJob, pStatus: ?*FAX_JOB_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxIncomingJob, @ptrCast(self)), pStatus);
+    }
+    pub fn get_ExtendedStatusCode(self: *const IFaxIncomingJob, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxIncomingJob, @ptrCast(self)), pExtendedStatusCode);
+    }
+    pub fn get_ExtendedStatus(self: *const IFaxIncomingJob, pbstrExtendedStatus: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrExtendedStatus);
+    }
+    pub fn get_AvailableOperations(self: *const IFaxIncomingJob, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxIncomingJob, @ptrCast(self)), pAvailableOperations);
+    }
+    pub fn get_Retries(self: *const IFaxIncomingJob, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxIncomingJob, @ptrCast(self)), plRetries);
+    }
+    pub fn get_TransmissionStart(self: *const IFaxIncomingJob, pdateTransmissionStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxIncomingJob, @ptrCast(self)), pdateTransmissionStart);
+    }
+    pub fn get_TransmissionEnd(self: *const IFaxIncomingJob, pdateTransmissionEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxIncomingJob, @ptrCast(self)), pdateTransmissionEnd);
+    }
+    pub fn get_CSID(self: *const IFaxIncomingJob, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxIncomingJob, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn get_CallerId(self: *const IFaxIncomingJob, pbstrCallerId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrCallerId);
+    }
+    pub fn get_RoutingInformation(self: *const IFaxIncomingJob, pbstrRoutingInformation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrRoutingInformation);
+    }
+    pub fn get_JobType(self: *const IFaxIncomingJob, pJobType: ?*FAX_JOB_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_JobType(@as(*const IFaxIncomingJob, @ptrCast(self)), pJobType);
+    }
+    pub fn Cancel(self: *const IFaxIncomingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFaxIncomingJob, @ptrCast(self)));
+    }
+    pub fn Refresh(self: *const IFaxIncomingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingJob, @ptrCast(self)));
+    }
+    pub fn CopyTiff(self: *const IFaxIncomingJob, bstrTiffPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxIncomingJob, @ptrCast(self)), bstrTiffPath);
+    }
 };
 
 pub const FAX_PROVIDER_STATUS_ENUM = enum(i32) {
@@ -4989,7 +5988,43 @@ pub const IFaxDeviceProvider = extern union {
             return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxDeviceProvider, @ptrCast(self)), pvDeviceIds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_FriendlyName(self: *const IFaxDeviceProvider, pbstrFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrFriendlyName);
+    }
+    pub fn get_ImageName(self: *const IFaxDeviceProvider, pbstrImageName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_ImageName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrImageName);
+    }
+    pub fn get_UniqueName(self: *const IFaxDeviceProvider, pbstrUniqueName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_UniqueName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrUniqueName);
+    }
+    pub fn get_TapiProviderName(self: *const IFaxDeviceProvider, pbstrTapiProviderName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_TapiProviderName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrTapiProviderName);
+    }
+    pub fn get_MajorVersion(self: *const IFaxDeviceProvider, plMajorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMajorVersion);
+    }
+    pub fn get_MinorVersion(self: *const IFaxDeviceProvider, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMinorVersion);
+    }
+    pub fn get_MajorBuild(self: *const IFaxDeviceProvider, plMajorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMajorBuild);
+    }
+    pub fn get_MinorBuild(self: *const IFaxDeviceProvider, plMinorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMinorBuild);
+    }
+    pub fn get_Debug(self: *const IFaxDeviceProvider, pbDebug: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbDebug);
+    }
+    pub fn get_Status(self: *const IFaxDeviceProvider, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxDeviceProvider, @ptrCast(self)), pStatus);
+    }
+    pub fn get_InitErrorCode(self: *const IFaxDeviceProvider, plInitErrorCode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_InitErrorCode(@as(*const IFaxDeviceProvider, @ptrCast(self)), plInitErrorCode);
+    }
+    pub fn get_DeviceIds(self: *const IFaxDeviceProvider, pvDeviceIds: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxDeviceProvider, @ptrCast(self)), pvDeviceIds);
+    }
 };
 
 pub const FAX_DEVICE_RECEIVE_MODE_ENUM = enum(i32) {
@@ -5241,7 +6276,85 @@ pub const IFaxDevice = extern union {
             return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).AnswerCall(@as(*const IFaxDevice, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Id(self: *const IFaxDevice, plId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxDevice, @ptrCast(self)), plId);
+    }
+    pub fn get_DeviceName(self: *const IFaxDevice, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxDevice, @ptrCast(self)), pbstrDeviceName);
+    }
+    pub fn get_ProviderUniqueName(self: *const IFaxDevice, pbstrProviderUniqueName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ProviderUniqueName(@as(*const IFaxDevice, @ptrCast(self)), pbstrProviderUniqueName);
+    }
+    pub fn get_PoweredOff(self: *const IFaxDevice, pbPoweredOff: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_PoweredOff(@as(*const IFaxDevice, @ptrCast(self)), pbPoweredOff);
+    }
+    pub fn get_ReceivingNow(self: *const IFaxDevice, pbReceivingNow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ReceivingNow(@as(*const IFaxDevice, @ptrCast(self)), pbReceivingNow);
+    }
+    pub fn get_SendingNow(self: *const IFaxDevice, pbSendingNow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_SendingNow(@as(*const IFaxDevice, @ptrCast(self)), pbSendingNow);
+    }
+    pub fn get_UsedRoutingMethods(self: *const IFaxDevice, pvUsedRoutingMethods: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_UsedRoutingMethods(@as(*const IFaxDevice, @ptrCast(self)), pvUsedRoutingMethods);
+    }
+    pub fn get_Description(self: *const IFaxDevice, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IFaxDevice, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IFaxDevice, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IFaxDevice, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_SendEnabled(self: *const IFaxDevice, pbSendEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_SendEnabled(@as(*const IFaxDevice, @ptrCast(self)), pbSendEnabled);
+    }
+    pub fn put_SendEnabled(self: *const IFaxDevice, bSendEnabled: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_SendEnabled(@as(*const IFaxDevice, @ptrCast(self)), bSendEnabled);
+    }
+    pub fn get_ReceiveMode(self: *const IFaxDevice, pReceiveMode: ?*FAX_DEVICE_RECEIVE_MODE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ReceiveMode(@as(*const IFaxDevice, @ptrCast(self)), pReceiveMode);
+    }
+    pub fn put_ReceiveMode(self: *const IFaxDevice, ReceiveMode: FAX_DEVICE_RECEIVE_MODE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_ReceiveMode(@as(*const IFaxDevice, @ptrCast(self)), ReceiveMode);
+    }
+    pub fn get_RingsBeforeAnswer(self: *const IFaxDevice, plRingsBeforeAnswer: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_RingsBeforeAnswer(@as(*const IFaxDevice, @ptrCast(self)), plRingsBeforeAnswer);
+    }
+    pub fn put_RingsBeforeAnswer(self: *const IFaxDevice, lRingsBeforeAnswer: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_RingsBeforeAnswer(@as(*const IFaxDevice, @ptrCast(self)), lRingsBeforeAnswer);
+    }
+    pub fn get_CSID(self: *const IFaxDevice, pbstrCSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxDevice, @ptrCast(self)), pbstrCSID);
+    }
+    pub fn put_CSID(self: *const IFaxDevice, bstrCSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_CSID(@as(*const IFaxDevice, @ptrCast(self)), bstrCSID);
+    }
+    pub fn get_TSID(self: *const IFaxDevice, pbstrTSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxDevice, @ptrCast(self)), pbstrTSID);
+    }
+    pub fn put_TSID(self: *const IFaxDevice, bstrTSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_TSID(@as(*const IFaxDevice, @ptrCast(self)), bstrTSID);
+    }
+    pub fn Refresh(self: *const IFaxDevice) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxDevice, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxDevice) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxDevice, @ptrCast(self)));
+    }
+    pub fn GetExtensionProperty(self: *const IFaxDevice, bstrGUID: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).GetExtensionProperty(@as(*const IFaxDevice, @ptrCast(self)), bstrGUID, pvProperty);
+    }
+    pub fn SetExtensionProperty(self: *const IFaxDevice, bstrGUID: ?BSTR, vProperty: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).SetExtensionProperty(@as(*const IFaxDevice, @ptrCast(self)), bstrGUID, vProperty);
+    }
+    pub fn UseRoutingMethod(self: *const IFaxDevice, bstrMethodGUID: ?BSTR, bUse: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).UseRoutingMethod(@as(*const IFaxDevice, @ptrCast(self)), bstrMethodGUID, bUse);
+    }
+    pub fn get_RingingNow(self: *const IFaxDevice, pbRingingNow: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_RingingNow(@as(*const IFaxDevice, @ptrCast(self)), pbRingingNow);
+    }
+    pub fn AnswerCall(self: *const IFaxDevice) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).AnswerCall(@as(*const IFaxDevice, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5324,7 +6437,31 @@ pub const IFaxActivityLogging = extern union {
             return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxActivityLogging, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_LogIncoming(self: *const IFaxActivityLogging, pbLogIncoming: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_LogIncoming(@as(*const IFaxActivityLogging, @ptrCast(self)), pbLogIncoming);
+    }
+    pub fn put_LogIncoming(self: *const IFaxActivityLogging, bLogIncoming: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_LogIncoming(@as(*const IFaxActivityLogging, @ptrCast(self)), bLogIncoming);
+    }
+    pub fn get_LogOutgoing(self: *const IFaxActivityLogging, pbLogOutgoing: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_LogOutgoing(@as(*const IFaxActivityLogging, @ptrCast(self)), pbLogOutgoing);
+    }
+    pub fn put_LogOutgoing(self: *const IFaxActivityLogging, bLogOutgoing: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_LogOutgoing(@as(*const IFaxActivityLogging, @ptrCast(self)), bLogOutgoing);
+    }
+    pub fn get_DatabasePath(self: *const IFaxActivityLogging, pbstrDatabasePath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_DatabasePath(@as(*const IFaxActivityLogging, @ptrCast(self)), pbstrDatabasePath);
+    }
+    pub fn put_DatabasePath(self: *const IFaxActivityLogging, bstrDatabasePath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_DatabasePath(@as(*const IFaxActivityLogging, @ptrCast(self)), bstrDatabasePath);
+    }
+    pub fn Refresh(self: *const IFaxActivityLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxActivityLogging, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxActivityLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxActivityLogging, @ptrCast(self)));
+    }
 };
 
 pub const FAX_LOG_LEVEL_ENUM = enum(i32) {
@@ -5436,7 +6573,37 @@ pub const IFaxEventLogging = extern union {
             return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxEventLogging, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_InitEventsLevel(self: *const IFaxEventLogging, pInitEventLevel: ?*FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_InitEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pInitEventLevel);
+    }
+    pub fn put_InitEventsLevel(self: *const IFaxEventLogging, InitEventLevel: FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_InitEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), InitEventLevel);
+    }
+    pub fn get_InboundEventsLevel(self: *const IFaxEventLogging, pInboundEventLevel: ?*FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_InboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pInboundEventLevel);
+    }
+    pub fn put_InboundEventsLevel(self: *const IFaxEventLogging, InboundEventLevel: FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_InboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), InboundEventLevel);
+    }
+    pub fn get_OutboundEventsLevel(self: *const IFaxEventLogging, pOutboundEventLevel: ?*FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_OutboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pOutboundEventLevel);
+    }
+    pub fn put_OutboundEventsLevel(self: *const IFaxEventLogging, OutboundEventLevel: FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_OutboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), OutboundEventLevel);
+    }
+    pub fn get_GeneralEventsLevel(self: *const IFaxEventLogging, pGeneralEventLevel: ?*FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_GeneralEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pGeneralEventLevel);
+    }
+    pub fn put_GeneralEventsLevel(self: *const IFaxEventLogging, GeneralEventLevel: FAX_LOG_LEVEL_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_GeneralEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), GeneralEventLevel);
+    }
+    pub fn Refresh(self: *const IFaxEventLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxEventLogging, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxEventLogging) callconv(.Inline) HRESULT {
+        return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxEventLogging, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5495,7 +6662,22 @@ pub const IFaxOutboundRoutingGroups = extern union {
             return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), vIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxOutboundRoutingGroups, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxOutboundRoutingGroups, vIndex: VARIANT, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), vIndex, pFaxOutboundRoutingGroup);
+    }
+    pub fn get_Count(self: *const IFaxOutboundRoutingGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), plCount);
+    }
+    pub fn Add(self: *const IFaxOutboundRoutingGroups, bstrName: ?BSTR, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), bstrName, pFaxOutboundRoutingGroup);
+    }
+    pub fn Remove(self: *const IFaxOutboundRoutingGroups, vIndex: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), vIndex);
+    }
 };
 
 pub const FAX_GROUP_STATUS_ENUM = enum(i32) {
@@ -5548,7 +6730,16 @@ pub const IFaxOutboundRoutingGroup = extern union {
             return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pFaxDeviceIds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IFaxOutboundRoutingGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_Status(self: *const IFaxOutboundRoutingGroup, pStatus: ?*FAX_GROUP_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pStatus);
+    }
+    pub fn get_DeviceIds(self: *const IFaxOutboundRoutingGroup, pFaxDeviceIds: ?*?*IFaxDeviceIds) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pFaxDeviceIds);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5615,7 +6806,25 @@ pub const IFaxDeviceIds = extern union {
             return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).SetOrder(@as(*const IFaxDeviceIds, @ptrCast(self)), lDeviceId, lNewOrder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxDeviceIds, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDeviceIds, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxDeviceIds, lIndex: i32, plDeviceId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDeviceIds, @ptrCast(self)), lIndex, plDeviceId);
+    }
+    pub fn get_Count(self: *const IFaxDeviceIds, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDeviceIds, @ptrCast(self)), plCount);
+    }
+    pub fn Add(self: *const IFaxDeviceIds, lDeviceId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxDeviceIds, @ptrCast(self)), lDeviceId);
+    }
+    pub fn Remove(self: *const IFaxDeviceIds, lIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxDeviceIds, @ptrCast(self)), lIndex);
+    }
+    pub fn SetOrder(self: *const IFaxDeviceIds, lDeviceId: i32, lNewOrder: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).SetOrder(@as(*const IFaxDeviceIds, @ptrCast(self)), lDeviceId, lNewOrder);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5697,7 +6906,28 @@ pub const IFaxOutboundRoutingRules = extern union {
             return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxOutboundRoutingRules, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxOutboundRoutingRules, lIndex: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lIndex, pFaxOutboundRoutingRule);
+    }
+    pub fn get_Count(self: *const IFaxOutboundRoutingRules, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), plCount);
+    }
+    pub fn ItemByCountryAndArea(self: *const IFaxOutboundRoutingRules, lCountryCode: i32, lAreaCode: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).ItemByCountryAndArea(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode, pFaxOutboundRoutingRule);
+    }
+    pub fn RemoveByCountryAndArea(self: *const IFaxOutboundRoutingRules, lCountryCode: i32, lAreaCode: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).RemoveByCountryAndArea(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode);
+    }
+    pub fn Remove(self: *const IFaxOutboundRoutingRules, lIndex: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lIndex);
+    }
+    pub fn Add(self: *const IFaxOutboundRoutingRules, lCountryCode: i32, lAreaCode: i32, bUseDevice: i16, bstrGroupName: ?BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
+    }
 };
 
 pub const FAX_RULE_STATUS_ENUM = enum(i32) {
@@ -5820,7 +7050,40 @@ pub const IFaxOutboundRoutingRule = extern union {
             return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_CountryCode(self: *const IFaxOutboundRoutingRule, plCountryCode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_CountryCode(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plCountryCode);
+    }
+    pub fn get_AreaCode(self: *const IFaxOutboundRoutingRule, plAreaCode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_AreaCode(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plAreaCode);
+    }
+    pub fn get_Status(self: *const IFaxOutboundRoutingRule, pStatus: ?*FAX_RULE_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pStatus);
+    }
+    pub fn get_UseDevice(self: *const IFaxOutboundRoutingRule, pbUseDevice: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_UseDevice(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pbUseDevice);
+    }
+    pub fn put_UseDevice(self: *const IFaxOutboundRoutingRule, bUseDevice: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_UseDevice(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), bUseDevice);
+    }
+    pub fn get_DeviceId(self: *const IFaxOutboundRoutingRule, plDeviceId: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plDeviceId);
+    }
+    pub fn put_DeviceId(self: *const IFaxOutboundRoutingRule, DeviceId: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_DeviceId(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), DeviceId);
+    }
+    pub fn get_GroupName(self: *const IFaxOutboundRoutingRule, pbstrGroupName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_GroupName(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pbstrGroupName);
+    }
+    pub fn put_GroupName(self: *const IFaxOutboundRoutingRule, bstrGroupName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_GroupName(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), bstrGroupName);
+    }
+    pub fn Refresh(self: *const IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5862,7 +7125,16 @@ pub const IFaxInboundRoutingExtensions = extern union {
             return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxInboundRoutingExtensions, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxInboundRoutingExtensions, vIndex: VARIANT, pFaxInboundRoutingExtension: ?*?*IFaxInboundRoutingExtension) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), vIndex, pFaxInboundRoutingExtension);
+    }
+    pub fn get_Count(self: *const IFaxInboundRoutingExtensions, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5976,7 +7248,40 @@ pub const IFaxInboundRoutingExtension = extern union {
             return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Methods(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pvMethods);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_FriendlyName(self: *const IFaxInboundRoutingExtension, pbstrFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrFriendlyName);
+    }
+    pub fn get_ImageName(self: *const IFaxInboundRoutingExtension, pbstrImageName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_ImageName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrImageName);
+    }
+    pub fn get_UniqueName(self: *const IFaxInboundRoutingExtension, pbstrUniqueName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_UniqueName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrUniqueName);
+    }
+    pub fn get_MajorVersion(self: *const IFaxInboundRoutingExtension, plMajorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMajorVersion);
+    }
+    pub fn get_MinorVersion(self: *const IFaxInboundRoutingExtension, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMinorVersion);
+    }
+    pub fn get_MajorBuild(self: *const IFaxInboundRoutingExtension, plMajorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMajorBuild);
+    }
+    pub fn get_MinorBuild(self: *const IFaxInboundRoutingExtension, plMinorBuild: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMinorBuild);
+    }
+    pub fn get_Debug(self: *const IFaxInboundRoutingExtension, pbDebug: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbDebug);
+    }
+    pub fn get_Status(self: *const IFaxInboundRoutingExtension, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pStatus);
+    }
+    pub fn get_InitErrorCode(self: *const IFaxInboundRoutingExtension, plInitErrorCode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_InitErrorCode(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plInitErrorCode);
+    }
+    pub fn get_Methods(self: *const IFaxInboundRoutingExtension, pvMethods: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Methods(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pvMethods);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6018,7 +7323,16 @@ pub const IFaxInboundRoutingMethods = extern union {
             return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxInboundRoutingMethods, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxInboundRoutingMethods, vIndex: VARIANT, pFaxInboundRoutingMethod: ?*?*IFaxInboundRoutingMethod) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), vIndex, pFaxInboundRoutingMethod);
+    }
+    pub fn get_Count(self: *const IFaxInboundRoutingMethods, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), plCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6110,7 +7424,34 @@ pub const IFaxInboundRoutingMethod = extern union {
             return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IFaxInboundRoutingMethod, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrName);
+    }
+    pub fn get_GUID(self: *const IFaxInboundRoutingMethod, pbstrGUID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_GUID(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrGUID);
+    }
+    pub fn get_FunctionName(self: *const IFaxInboundRoutingMethod, pbstrFunctionName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_FunctionName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrFunctionName);
+    }
+    pub fn get_ExtensionFriendlyName(self: *const IFaxInboundRoutingMethod, pbstrExtensionFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_ExtensionFriendlyName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrExtensionFriendlyName);
+    }
+    pub fn get_ExtensionImageName(self: *const IFaxInboundRoutingMethod, pbstrExtensionImageName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_ExtensionImageName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrExtensionImageName);
+    }
+    pub fn get_Priority(self: *const IFaxInboundRoutingMethod, plPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), plPriority);
+    }
+    pub fn put_Priority(self: *const IFaxInboundRoutingMethod, lPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), lPriority);
+    }
+    pub fn Refresh(self: *const IFaxInboundRoutingMethod) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxInboundRoutingMethod) callconv(.Inline) HRESULT {
+        return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6172,7 +7513,22 @@ pub const IFaxDocument2 = extern union {
             return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).ConnectedSubmit2(@as(*const IFaxDocument2, @ptrCast(self)), pFaxServer, pvFaxOutgoingJobIDs, plErrorBodyFile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IFaxDocument.MethodMixin(@This());
+    pub fn get_SubmissionId(self: *const IFaxDocument2, pbstrSubmissionId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxDocument2, @ptrCast(self)), pbstrSubmissionId);
+    }
+    pub fn get_Bodies(self: *const IFaxDocument2, pvBodies: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).get_Bodies(@as(*const IFaxDocument2, @ptrCast(self)), pvBodies);
+    }
+    pub fn put_Bodies(self: *const IFaxDocument2, vBodies: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).put_Bodies(@as(*const IFaxDocument2, @ptrCast(self)), vBodies);
+    }
+    pub fn Submit2(self: *const IFaxDocument2, bstrFaxServerName: ?BSTR, pvFaxOutgoingJobIDs: ?*VARIANT, plErrorBodyFile: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).Submit2(@as(*const IFaxDocument2, @ptrCast(self)), bstrFaxServerName, pvFaxOutgoingJobIDs, plErrorBodyFile);
+    }
+    pub fn ConnectedSubmit2(self: *const IFaxDocument2, pFaxServer: ?*IFaxServer, pvFaxOutgoingJobIDs: ?*VARIANT, plErrorBodyFile: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).ConnectedSubmit2(@as(*const IFaxDocument2, @ptrCast(self)), pFaxServer, pvFaxOutgoingJobIDs, plErrorBodyFile);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6561,7 +7917,133 @@ pub const IFaxConfiguration = extern union {
             return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxConfiguration, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_UseArchive(self: *const IFaxConfiguration, pbUseArchive: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxConfiguration, @ptrCast(self)), pbUseArchive);
+    }
+    pub fn put_UseArchive(self: *const IFaxConfiguration, bUseArchive: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxConfiguration, @ptrCast(self)), bUseArchive);
+    }
+    pub fn get_ArchiveLocation(self: *const IFaxConfiguration, pbstrArchiveLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveLocation(@as(*const IFaxConfiguration, @ptrCast(self)), pbstrArchiveLocation);
+    }
+    pub fn put_ArchiveLocation(self: *const IFaxConfiguration, bstrArchiveLocation: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_ArchiveLocation(@as(*const IFaxConfiguration, @ptrCast(self)), bstrArchiveLocation);
+    }
+    pub fn get_SizeQuotaWarning(self: *const IFaxConfiguration, pbSizeQuotaWarning: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxConfiguration, @ptrCast(self)), pbSizeQuotaWarning);
+    }
+    pub fn put_SizeQuotaWarning(self: *const IFaxConfiguration, bSizeQuotaWarning: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxConfiguration, @ptrCast(self)), bSizeQuotaWarning);
+    }
+    pub fn get_HighQuotaWaterMark(self: *const IFaxConfiguration, plHighQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), plHighQuotaWaterMark);
+    }
+    pub fn put_HighQuotaWaterMark(self: *const IFaxConfiguration, lHighQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), lHighQuotaWaterMark);
+    }
+    pub fn get_LowQuotaWaterMark(self: *const IFaxConfiguration, plLowQuotaWaterMark: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), plLowQuotaWaterMark);
+    }
+    pub fn put_LowQuotaWaterMark(self: *const IFaxConfiguration, lLowQuotaWaterMark: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), lLowQuotaWaterMark);
+    }
+    pub fn get_ArchiveAgeLimit(self: *const IFaxConfiguration, plArchiveAgeLimit: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), plArchiveAgeLimit);
+    }
+    pub fn put_ArchiveAgeLimit(self: *const IFaxConfiguration, lArchiveAgeLimit: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_ArchiveAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), lArchiveAgeLimit);
+    }
+    pub fn get_ArchiveSizeLow(self: *const IFaxConfiguration, plSizeLow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveSizeLow(@as(*const IFaxConfiguration, @ptrCast(self)), plSizeLow);
+    }
+    pub fn get_ArchiveSizeHigh(self: *const IFaxConfiguration, plSizeHigh: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveSizeHigh(@as(*const IFaxConfiguration, @ptrCast(self)), plSizeHigh);
+    }
+    pub fn get_OutgoingQueueBlocked(self: *const IFaxConfiguration, pbOutgoingBlocked: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), pbOutgoingBlocked);
+    }
+    pub fn put_OutgoingQueueBlocked(self: *const IFaxConfiguration, bOutgoingBlocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), bOutgoingBlocked);
+    }
+    pub fn get_OutgoingQueuePaused(self: *const IFaxConfiguration, pbOutgoingPaused: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueuePaused(@as(*const IFaxConfiguration, @ptrCast(self)), pbOutgoingPaused);
+    }
+    pub fn put_OutgoingQueuePaused(self: *const IFaxConfiguration, bOutgoingPaused: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueuePaused(@as(*const IFaxConfiguration, @ptrCast(self)), bOutgoingPaused);
+    }
+    pub fn get_AllowPersonalCoverPages(self: *const IFaxConfiguration, pbAllowPersonalCoverPages: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_AllowPersonalCoverPages(@as(*const IFaxConfiguration, @ptrCast(self)), pbAllowPersonalCoverPages);
+    }
+    pub fn put_AllowPersonalCoverPages(self: *const IFaxConfiguration, bAllowPersonalCoverPages: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_AllowPersonalCoverPages(@as(*const IFaxConfiguration, @ptrCast(self)), bAllowPersonalCoverPages);
+    }
+    pub fn get_UseDeviceTSID(self: *const IFaxConfiguration, pbUseDeviceTSID: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_UseDeviceTSID(@as(*const IFaxConfiguration, @ptrCast(self)), pbUseDeviceTSID);
+    }
+    pub fn put_UseDeviceTSID(self: *const IFaxConfiguration, bUseDeviceTSID: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_UseDeviceTSID(@as(*const IFaxConfiguration, @ptrCast(self)), bUseDeviceTSID);
+    }
+    pub fn get_Retries(self: *const IFaxConfiguration, plRetries: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxConfiguration, @ptrCast(self)), plRetries);
+    }
+    pub fn put_Retries(self: *const IFaxConfiguration, lRetries: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_Retries(@as(*const IFaxConfiguration, @ptrCast(self)), lRetries);
+    }
+    pub fn get_RetryDelay(self: *const IFaxConfiguration, plRetryDelay: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_RetryDelay(@as(*const IFaxConfiguration, @ptrCast(self)), plRetryDelay);
+    }
+    pub fn put_RetryDelay(self: *const IFaxConfiguration, lRetryDelay: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_RetryDelay(@as(*const IFaxConfiguration, @ptrCast(self)), lRetryDelay);
+    }
+    pub fn get_DiscountRateStart(self: *const IFaxConfiguration, pdateDiscountRateStart: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_DiscountRateStart(@as(*const IFaxConfiguration, @ptrCast(self)), pdateDiscountRateStart);
+    }
+    pub fn put_DiscountRateStart(self: *const IFaxConfiguration, dateDiscountRateStart: f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_DiscountRateStart(@as(*const IFaxConfiguration, @ptrCast(self)), dateDiscountRateStart);
+    }
+    pub fn get_DiscountRateEnd(self: *const IFaxConfiguration, pdateDiscountRateEnd: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_DiscountRateEnd(@as(*const IFaxConfiguration, @ptrCast(self)), pdateDiscountRateEnd);
+    }
+    pub fn put_DiscountRateEnd(self: *const IFaxConfiguration, dateDiscountRateEnd: f64) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_DiscountRateEnd(@as(*const IFaxConfiguration, @ptrCast(self)), dateDiscountRateEnd);
+    }
+    pub fn get_OutgoingQueueAgeLimit(self: *const IFaxConfiguration, plOutgoingQueueAgeLimit: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueueAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), plOutgoingQueueAgeLimit);
+    }
+    pub fn put_OutgoingQueueAgeLimit(self: *const IFaxConfiguration, lOutgoingQueueAgeLimit: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueueAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), lOutgoingQueueAgeLimit);
+    }
+    pub fn get_Branding(self: *const IFaxConfiguration, pbBranding: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_Branding(@as(*const IFaxConfiguration, @ptrCast(self)), pbBranding);
+    }
+    pub fn put_Branding(self: *const IFaxConfiguration, bBranding: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_Branding(@as(*const IFaxConfiguration, @ptrCast(self)), bBranding);
+    }
+    pub fn get_IncomingQueueBlocked(self: *const IFaxConfiguration, pbIncomingBlocked: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_IncomingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), pbIncomingBlocked);
+    }
+    pub fn put_IncomingQueueBlocked(self: *const IFaxConfiguration, bIncomingBlocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_IncomingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), bIncomingBlocked);
+    }
+    pub fn get_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, pbAutoCreateAccountOnConnect: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_AutoCreateAccountOnConnect(@as(*const IFaxConfiguration, @ptrCast(self)), pbAutoCreateAccountOnConnect);
+    }
+    pub fn put_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, bAutoCreateAccountOnConnect: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_AutoCreateAccountOnConnect(@as(*const IFaxConfiguration, @ptrCast(self)), bAutoCreateAccountOnConnect);
+    }
+    pub fn get_IncomingFaxesArePublic(self: *const IFaxConfiguration, pbIncomingFaxesArePublic: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_IncomingFaxesArePublic(@as(*const IFaxConfiguration, @ptrCast(self)), pbIncomingFaxesArePublic);
+    }
+    pub fn put_IncomingFaxesArePublic(self: *const IFaxConfiguration, bIncomingFaxesArePublic: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_IncomingFaxesArePublic(@as(*const IFaxConfiguration, @ptrCast(self)), bIncomingFaxesArePublic);
+    }
+    pub fn Refresh(self: *const IFaxConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxConfiguration, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxConfiguration, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6612,7 +8094,19 @@ pub const IFaxServer2 = extern union {
             return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_Security2(@as(*const IFaxServer2, @ptrCast(self)), ppFaxSecurity2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IFaxServer.MethodMixin(@This());
+    pub fn get_Configuration(self: *const IFaxServer2, ppFaxConfiguration: ?*?*IFaxConfiguration) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_Configuration(@as(*const IFaxServer2, @ptrCast(self)), ppFaxConfiguration);
+    }
+    pub fn get_CurrentAccount(self: *const IFaxServer2, ppCurrentAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_CurrentAccount(@as(*const IFaxServer2, @ptrCast(self)), ppCurrentAccount);
+    }
+    pub fn get_FaxAccountSet(self: *const IFaxServer2, ppFaxAccountSet: ?*?*IFaxAccountSet) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_FaxAccountSet(@as(*const IFaxServer2, @ptrCast(self)), ppFaxAccountSet);
+    }
+    pub fn get_Security2(self: *const IFaxServer2, ppFaxSecurity2: ?*?*IFaxSecurity2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_Security2(@as(*const IFaxServer2, @ptrCast(self)), ppFaxSecurity2);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6661,7 +8155,19 @@ pub const IFaxAccountSet = extern union {
             return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).RemoveAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetAccounts(self: *const IFaxAccountSet, ppFaxAccounts: ?*?*IFaxAccounts) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).GetAccounts(@as(*const IFaxAccountSet, @ptrCast(self)), ppFaxAccounts);
+    }
+    pub fn GetAccount(self: *const IFaxAccountSet, bstrAccountName: ?BSTR, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).GetAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName, pFaxAccount);
+    }
+    pub fn AddAccount(self: *const IFaxAccountSet, bstrAccountName: ?BSTR, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).AddAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName, pFaxAccount);
+    }
+    pub fn RemoveAccount(self: *const IFaxAccountSet, bstrAccountName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).RemoveAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6703,7 +8209,16 @@ pub const IFaxAccounts = extern union {
             return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxAccounts, @ptrCast(self)), plCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IFaxAccounts, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxAccounts, @ptrCast(self)), ppUnk);
+    }
+    pub fn get_Item(self: *const IFaxAccounts, vIndex: VARIANT, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxAccounts, @ptrCast(self)), vIndex, pFaxAccount);
+    }
+    pub fn get_Count(self: *const IFaxAccounts, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxAccounts, @ptrCast(self)), plCount);
+    }
 };
 
 pub const FAX_ACCOUNT_EVENTS_TYPE_ENUM = enum(i32) {
@@ -6768,7 +8283,19 @@ pub const IFaxAccount = extern union {
             return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_RegisteredEvents(@as(*const IFaxAccount, @ptrCast(self)), pRegisteredEvents);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AccountName(self: *const IFaxAccount, pbstrAccountName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_AccountName(@as(*const IFaxAccount, @ptrCast(self)), pbstrAccountName);
+    }
+    pub fn get_Folders(self: *const IFaxAccount, ppFolders: ?*?*IFaxAccountFolders) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_Folders(@as(*const IFaxAccount, @ptrCast(self)), ppFolders);
+    }
+    pub fn ListenToAccountEvents(self: *const IFaxAccount, EventTypes: FAX_ACCOUNT_EVENTS_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).ListenToAccountEvents(@as(*const IFaxAccount, @ptrCast(self)), EventTypes);
+    }
+    pub fn get_RegisteredEvents(self: *const IFaxAccount, pRegisteredEvents: ?*FAX_ACCOUNT_EVENTS_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_RegisteredEvents(@as(*const IFaxAccount, @ptrCast(self)), pRegisteredEvents);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6810,7 +8337,16 @@ pub const IFaxOutgoingJob2 = extern union {
             return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_ScheduleType(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pScheduleType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IFaxOutgoingJob.MethodMixin(@This());
+    pub fn get_HasCoverPage(self: *const IFaxOutgoingJob2, pbHasCoverPage: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pbHasCoverPage);
+    }
+    pub fn get_ReceiptAddress(self: *const IFaxOutgoingJob2, pbstrReceiptAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pbstrReceiptAddress);
+    }
+    pub fn get_ScheduleType(self: *const IFaxOutgoingJob2, pScheduleType: ?*FAX_SCHEDULE_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_ScheduleType(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pScheduleType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6861,7 +8397,19 @@ pub const IFaxAccountFolders = extern union {
             return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxOutgoingArchive);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_OutgoingQueue(self: *const IFaxAccountFolders, pFaxOutgoingQueue: ?*?*IFaxAccountOutgoingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_OutgoingQueue(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxOutgoingQueue);
+    }
+    pub fn get_IncomingQueue(self: *const IFaxAccountFolders, pFaxIncomingQueue: ?*?*IFaxAccountIncomingQueue) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_IncomingQueue(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxIncomingQueue);
+    }
+    pub fn get_IncomingArchive(self: *const IFaxAccountFolders, pFaxIncomingArchive: ?*?*IFaxAccountIncomingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_IncomingArchive(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxIncomingArchive);
+    }
+    pub fn get_OutgoingArchive(self: *const IFaxAccountFolders, pFaxOutgoingArchive: ?*?*IFaxAccountOutgoingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxOutgoingArchive);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6893,7 +8441,13 @@ pub const IFaxAccountIncomingQueue = extern union {
             return @as(*const IFaxAccountIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetJobs(self: *const IFaxAccountIncomingQueue, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxAccountIncomingQueue, @ptrCast(self)), pFaxIncomingJobs);
+    }
+    pub fn GetJob(self: *const IFaxAccountIncomingQueue, bstrJobId: ?BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6925,7 +8479,13 @@ pub const IFaxAccountOutgoingQueue = extern union {
             return @as(*const IFaxAccountOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetJobs(self: *const IFaxAccountOutgoingQueue, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxAccountOutgoingQueue, @ptrCast(self)), pFaxOutgoingJobs);
+    }
+    pub fn GetJob(self: *const IFaxAccountOutgoingQueue, bstrJobId: ?BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6999,7 +8559,28 @@ pub const IFaxOutgoingMessage2 = extern union {
             return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingMessage2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IFaxOutgoingMessage.MethodMixin(@This());
+    pub fn get_HasCoverPage(self: *const IFaxOutgoingMessage2, pbHasCoverPage: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbHasCoverPage);
+    }
+    pub fn get_ReceiptType(self: *const IFaxOutgoingMessage2, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pReceiptType);
+    }
+    pub fn get_ReceiptAddress(self: *const IFaxOutgoingMessage2, pbstrReceiptAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbstrReceiptAddress);
+    }
+    pub fn get_Read(self: *const IFaxOutgoingMessage2, pbRead: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_Read(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbRead);
+    }
+    pub fn put_Read(self: *const IFaxOutgoingMessage2, bRead: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).put_Read(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), bRead);
+    }
+    pub fn Save(self: *const IFaxOutgoingMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingMessage2, @ptrCast(self)));
+    }
+    pub fn Refresh(self: *const IFaxOutgoingMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingMessage2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7057,7 +8638,22 @@ pub const IFaxAccountIncomingArchive = extern union {
             return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SizeLow(self: *const IFaxAccountIncomingArchive, plSizeLow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), plSizeLow);
+    }
+    pub fn get_SizeHigh(self: *const IFaxAccountIncomingArchive, plSizeHigh: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), plSizeHigh);
+    }
+    pub fn Refresh(self: *const IFaxAccountIncomingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)));
+    }
+    pub fn GetMessages(self: *const IFaxAccountIncomingArchive, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), lPrefetchSize, pFaxIncomingMessageIterator);
+    }
+    pub fn GetMessage(self: *const IFaxAccountIncomingArchive, bstrMessageId: ?BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7115,7 +8711,22 @@ pub const IFaxAccountOutgoingArchive = extern union {
             return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SizeLow(self: *const IFaxAccountOutgoingArchive, plSizeLow: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), plSizeLow);
+    }
+    pub fn get_SizeHigh(self: *const IFaxAccountOutgoingArchive, plSizeHigh: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), plSizeHigh);
+    }
+    pub fn Refresh(self: *const IFaxAccountOutgoingArchive) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)));
+    }
+    pub fn GetMessages(self: *const IFaxAccountOutgoingArchive, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), lPrefetchSize, pFaxOutgoingMessageIterator);
+    }
+    pub fn GetMessage(self: *const IFaxAccountOutgoingArchive, bstrMessageId: ?BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
+    }
 };
 
 pub const FAX_ACCESS_RIGHTS_ENUM_2 = enum(i32) {
@@ -7212,7 +8823,28 @@ pub const IFaxSecurity2 = extern union {
             return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity2, @ptrCast(self)), lInformationType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Descriptor(self: *const IFaxSecurity2, pvDescriptor: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_Descriptor(@as(*const IFaxSecurity2, @ptrCast(self)), pvDescriptor);
+    }
+    pub fn put_Descriptor(self: *const IFaxSecurity2, vDescriptor: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).put_Descriptor(@as(*const IFaxSecurity2, @ptrCast(self)), vDescriptor);
+    }
+    pub fn get_GrantedRights(self: *const IFaxSecurity2, pGrantedRights: ?*FAX_ACCESS_RIGHTS_ENUM_2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_GrantedRights(@as(*const IFaxSecurity2, @ptrCast(self)), pGrantedRights);
+    }
+    pub fn Refresh(self: *const IFaxSecurity2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxSecurity2, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxSecurity2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxSecurity2, @ptrCast(self)));
+    }
+    pub fn get_InformationType(self: *const IFaxSecurity2, plInformationType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_InformationType(@as(*const IFaxSecurity2, @ptrCast(self)), plInformationType);
+    }
+    pub fn put_InformationType(self: *const IFaxSecurity2, lInformationType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity2, @ptrCast(self)), lInformationType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7365,7 +8997,55 @@ pub const IFaxIncomingMessage2 = extern union {
             return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IFaxIncomingMessage.MethodMixin(@This());
+    pub fn get_Subject(self: *const IFaxIncomingMessage2, pbstrSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSubject);
+    }
+    pub fn put_Subject(self: *const IFaxIncomingMessage2, bstrSubject: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSubject);
+    }
+    pub fn get_SenderName(self: *const IFaxIncomingMessage2, pbstrSenderName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_SenderName(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSenderName);
+    }
+    pub fn put_SenderName(self: *const IFaxIncomingMessage2, bstrSenderName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_SenderName(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSenderName);
+    }
+    pub fn get_SenderFaxNumber(self: *const IFaxIncomingMessage2, pbstrSenderFaxNumber: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_SenderFaxNumber(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSenderFaxNumber);
+    }
+    pub fn put_SenderFaxNumber(self: *const IFaxIncomingMessage2, bstrSenderFaxNumber: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_SenderFaxNumber(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSenderFaxNumber);
+    }
+    pub fn get_HasCoverPage(self: *const IFaxIncomingMessage2, pbHasCoverPage: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbHasCoverPage);
+    }
+    pub fn put_HasCoverPage(self: *const IFaxIncomingMessage2, bHasCoverPage: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_HasCoverPage(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bHasCoverPage);
+    }
+    pub fn get_Recipients(self: *const IFaxIncomingMessage2, pbstrRecipients: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Recipients(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrRecipients);
+    }
+    pub fn put_Recipients(self: *const IFaxIncomingMessage2, bstrRecipients: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Recipients(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrRecipients);
+    }
+    pub fn get_WasReAssigned(self: *const IFaxIncomingMessage2, pbWasReAssigned: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_WasReAssigned(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbWasReAssigned);
+    }
+    pub fn get_Read(self: *const IFaxIncomingMessage2, pbRead: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Read(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbRead);
+    }
+    pub fn put_Read(self: *const IFaxIncomingMessage2, bRead: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Read(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bRead);
+    }
+    pub fn ReAssign(self: *const IFaxIncomingMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).ReAssign(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IFaxIncomingMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
+    }
+    pub fn Refresh(self: *const IFaxIncomingMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
+    }
 };
 
 pub const FAX_ROUTING_RULE_CODE_ENUM = enum(i32) {
@@ -7384,7 +9064,7 @@ pub const IFaxServerNotify = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7634,7 +9314,85 @@ pub const _IFaxServerNotify2 = extern union {
             return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnGeneralServerConfigChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OnIncomingJobAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
+    }
+    pub fn OnIncomingJobRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
+    }
+    pub fn OnIncomingJobChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId, pJobStatus);
+    }
+    pub fn OnOutgoingJobAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
+    }
+    pub fn OnOutgoingJobRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
+    }
+    pub fn OnOutgoingJobChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId, pJobStatus);
+    }
+    pub fn OnIncomingMessageAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingMessageAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
+    }
+    pub fn OnIncomingMessageRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingMessageRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingMessageAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingMessageRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
+    }
+    pub fn OnReceiptOptionsChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnReceiptOptionsChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnActivityLoggingConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnActivityLoggingConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnSecurityConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnSecurityConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnEventLoggingConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnEventLoggingConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnOutgoingQueueConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingQueueConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnOutgoingArchiveConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingArchiveConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnIncomingArchiveConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingArchiveConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnDevicesConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnDevicesConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnOutboundRoutingGroupsConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutboundRoutingGroupsConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnOutboundRoutingRulesConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutboundRoutingRulesConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnServerActivityChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lIncomingMessages: i32, lRoutingMessages: i32, lOutgoingMessages: i32, lQueuedMessages: i32) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnServerActivityChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lIncomingMessages, lRoutingMessages, lOutgoingMessages, lQueuedMessages);
+    }
+    pub fn OnQueuesStatusChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bOutgoingQueueBlocked: i16, bOutgoingQueuePaused: i16, bIncomingQueueBlocked: i16) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnQueuesStatusChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bOutgoingQueueBlocked, bOutgoingQueuePaused, bIncomingQueueBlocked);
+    }
+    pub fn OnNewCall(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lCallId: i32, lDeviceId: i32, bstrCallerId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnNewCall(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lCallId, lDeviceId, bstrCallerId);
+    }
+    pub fn OnServerShutDown(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnServerShutDown(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
+    pub fn OnDeviceStatusChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lDeviceId: i32, bPoweredOff: i16, bSending: i16, bReceiving: i16, bRinging: i16) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnDeviceStatusChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lDeviceId, bPoweredOff, bSending, bReceiving, bRinging);
+    }
+    pub fn OnGeneralServerConfigChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnGeneralServerConfigChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7649,7 +9407,7 @@ pub const IFaxServerNotify2 = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7766,7 +9524,40 @@ pub const _IFaxAccountNotify = extern union {
             return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnServerShutDown(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxServer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OnIncomingJobAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
+    }
+    pub fn OnIncomingJobRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
+    }
+    pub fn OnIncomingJobChanged(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobChanged(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId, pJobStatus);
+    }
+    pub fn OnOutgoingJobAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
+    }
+    pub fn OnOutgoingJobRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
+    }
+    pub fn OnOutgoingJobChanged(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobChanged(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId, pJobStatus);
+    }
+    pub fn OnIncomingMessageAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fAddedToReceiveFolder: i16) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingMessageAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId, fAddedToReceiveFolder);
+    }
+    pub fn OnIncomingMessageRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fRemovedFromReceiveFolder: i16) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingMessageRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId, fRemovedFromReceiveFolder);
+    }
+    pub fn OnOutgoingMessageAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingMessageAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingMessageRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId);
+    }
+    pub fn OnServerShutDown(self: *const _IFaxAccountNotify, pFaxServer: ?*IFaxServer2) callconv(.Inline) HRESULT {
+        return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnServerShutDown(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxServer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7781,7 +9572,7 @@ pub const IFaxAccountNotify = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 pub const PFAXROUTEADDFILE = *const fn(
@@ -8196,7 +9987,52 @@ pub const IStillImageW = extern union {
             return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStillImageW, @ptrCast(self)), dwMessageType, pszMessage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IStillImageW, hinst: ?HINSTANCE, dwVersion: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStillImageW, @ptrCast(self)), hinst, dwVersion);
+    }
+    pub fn GetDeviceList(self: *const IStillImageW, dwType: u32, dwFlags: u32, pdwItemsReturned: ?*u32, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceList(@as(*const IStillImageW, @ptrCast(self)), dwType, dwFlags, pdwItemsReturned, ppBuffer);
+    }
+    pub fn GetDeviceInfo(self: *const IStillImageW, pwszDeviceName: ?PWSTR, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, ppBuffer);
+    }
+    pub fn CreateDevice(self: *const IStillImageW, pwszDeviceName: ?PWSTR, dwMode: u32, pDevice: ?*?*IStiDevice, punkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, dwMode, pDevice, punkOuter);
+    }
+    pub fn GetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, pType: ?*u32, pData: ?*u8, cbData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceValue(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pValueName, pType, pData, cbData);
+    }
+    pub fn SetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, Type: u32, pData: ?*u8, cbData: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).SetDeviceValue(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pValueName, Type, pData, cbData);
+    }
+    pub fn GetSTILaunchInformation(self: *const IStillImageW, pwszDeviceName: *[128]u16, pdwEventCode: ?*u32, pwszEventName: *[128]u16) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetSTILaunchInformation(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pdwEventCode, pwszEventName);
+    }
+    pub fn RegisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?PWSTR, pwszCommandLine: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).RegisterLaunchApplication(@as(*const IStillImageW, @ptrCast(self)), pwszAppName, pwszCommandLine);
+    }
+    pub fn UnregisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).UnregisterLaunchApplication(@as(*const IStillImageW, @ptrCast(self)), pwszAppName);
+    }
+    pub fn EnableHwNotifications(self: *const IStillImageW, pwszDeviceName: ?[*:0]const u16, bNewState: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).EnableHwNotifications(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, bNewState);
+    }
+    pub fn GetHwNotificationState(self: *const IStillImageW, pwszDeviceName: ?[*:0]const u16, pbCurrentState: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetHwNotificationState(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pbCurrentState);
+    }
+    pub fn RefreshDeviceBus(self: *const IStillImageW, pwszDeviceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).RefreshDeviceBus(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName);
+    }
+    pub fn LaunchApplicationForDevice(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pwszAppName: ?PWSTR, pStiNotify: ?*STINOTIFY) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).LaunchApplicationForDevice(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pwszAppName, pStiNotify);
+    }
+    pub fn SetupDeviceParameters(self: *const IStillImageW, param0: ?*STI_DEVICE_INFORMATIONW) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).SetupDeviceParameters(@as(*const IStillImageW, @ptrCast(self)), param0);
+    }
+    pub fn WriteToErrorLog(self: *const IStillImageW, dwMessageType: u32, pszMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStillImageW, @ptrCast(self)), dwMessageType, pszMessage);
+    }
 };
 
 const IID_IStiDevice_Value = Guid.initString("6cfa5a80-2dc8-11d0-90ea-00aa0060f86c");
@@ -8365,7 +10201,58 @@ pub const IStiDevice = extern union {
             return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiDevice, @ptrCast(self)), pLastErrorInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IStiDevice, hinst: ?HINSTANCE, pwszDeviceName: ?[*:0]const u16, dwVersion: u32, dwMode: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiDevice, @ptrCast(self)), hinst, pwszDeviceName, dwVersion, dwMode);
+    }
+    pub fn GetCapabilities(self: *const IStiDevice, pDevCaps: ?*STI_DEV_CAPS) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IStiDevice, @ptrCast(self)), pDevCaps);
+    }
+    pub fn GetStatus(self: *const IStiDevice, pDevStatus: ?*STI_DEVICE_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IStiDevice, @ptrCast(self)), pDevStatus);
+    }
+    pub fn DeviceReset(self: *const IStiDevice) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).DeviceReset(@as(*const IStiDevice, @ptrCast(self)));
+    }
+    pub fn Diagnostic(self: *const IStiDevice, pBuffer: ?*STI_DIAG) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IStiDevice, @ptrCast(self)), pBuffer);
+    }
+    pub fn Escape(self: *const IStiDevice, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Escape(@as(*const IStiDevice, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
+    }
+    pub fn GetLastError(self: *const IStiDevice, pdwLastDeviceError: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiDevice, @ptrCast(self)), pdwLastDeviceError);
+    }
+    pub fn LockDevice(self: *const IStiDevice, dwTimeOut: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IStiDevice, @ptrCast(self)), dwTimeOut);
+    }
+    pub fn UnLockDevice(self: *const IStiDevice) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).UnLockDevice(@as(*const IStiDevice, @ptrCast(self)));
+    }
+    pub fn RawReadData(self: *const IStiDevice, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteData(self: *const IStiDevice, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawReadCommand(self: *const IStiDevice, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteCommand(self: *const IStiDevice, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn Subscribe(self: *const IStiDevice, lpSubsribe: ?*STISUBSCRIBE) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Subscribe(@as(*const IStiDevice, @ptrCast(self)), lpSubsribe);
+    }
+    pub fn GetLastNotificationData(self: *const IStiDevice, lpNotify: ?*STINOTIFY) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastNotificationData(@as(*const IStiDevice, @ptrCast(self)), lpNotify);
+    }
+    pub fn UnSubscribe(self: *const IStiDevice) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).UnSubscribe(@as(*const IStiDevice, @ptrCast(self)));
+    }
+    pub fn GetLastErrorInfo(self: *const IStiDevice, pLastErrorInfo: ?*_ERROR_INFOW) callconv(.Inline) HRESULT {
+        return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiDevice, @ptrCast(self)), pLastErrorInfo);
+    }
 };
 
 pub const STI_USD_CAPS = extern struct {
@@ -8491,7 +10378,40 @@ pub const IStiDeviceControl = extern union {
             return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStiDeviceControl, @ptrCast(self)), dwMessageType, pszMessage, dwErrorCode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IStiDeviceControl, dwDeviceType: u32, dwMode: u32, pwszPortName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiDeviceControl, @ptrCast(self)), dwDeviceType, dwMode, pwszPortName, dwFlags);
+    }
+    pub fn RawReadData(self: *const IStiDeviceControl, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteData(self: *const IStiDeviceControl, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawReadCommand(self: *const IStiDeviceControl, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteCommand(self: *const IStiDeviceControl, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawDeviceControl(self: *const IStiDeviceControl, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawDeviceControl(@as(*const IStiDeviceControl, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
+    }
+    pub fn GetLastError(self: *const IStiDeviceControl, lpdwLastError: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiDeviceControl, @ptrCast(self)), lpdwLastError);
+    }
+    pub fn GetMyDevicePortName(self: *const IStiDeviceControl, lpszDevicePath: [*:0]u16, cwDevicePathSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDevicePortName(@as(*const IStiDeviceControl, @ptrCast(self)), lpszDevicePath, cwDevicePathSize);
+    }
+    pub fn GetMyDeviceHandle(self: *const IStiDeviceControl, lph: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDeviceHandle(@as(*const IStiDeviceControl, @ptrCast(self)), lph);
+    }
+    pub fn GetMyDeviceOpenMode(self: *const IStiDeviceControl, pdwOpenMode: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDeviceOpenMode(@as(*const IStiDeviceControl, @ptrCast(self)), pdwOpenMode);
+    }
+    pub fn WriteToErrorLog(self: *const IStiDeviceControl, dwMessageType: u32, pszMessage: ?[*:0]const u16, dwErrorCode: u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStiDeviceControl, @ptrCast(self)), dwMessageType, pszMessage, dwErrorCode);
+    }
 };
 
 const IID_IStiUSD_Value = Guid.initString("0c9bb460-51ac-11d0-90ea-00aa0060f86c");
@@ -8651,7 +10571,55 @@ pub const IStiUSD = extern union {
             return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiUSD, @ptrCast(self)), pLastErrorInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IStiUSD, pHelDcb: ?*IStiDeviceControl, dwStiVersion: u32, hParametersKey: ?HKEY) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiUSD, @ptrCast(self)), pHelDcb, dwStiVersion, hParametersKey);
+    }
+    pub fn GetCapabilities(self: *const IStiUSD, pDevCaps: ?*STI_USD_CAPS) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IStiUSD, @ptrCast(self)), pDevCaps);
+    }
+    pub fn GetStatus(self: *const IStiUSD, pDevStatus: ?*STI_DEVICE_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IStiUSD, @ptrCast(self)), pDevStatus);
+    }
+    pub fn DeviceReset(self: *const IStiUSD) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).DeviceReset(@as(*const IStiUSD, @ptrCast(self)));
+    }
+    pub fn Diagnostic(self: *const IStiUSD, pBuffer: ?*STI_DIAG) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IStiUSD, @ptrCast(self)), pBuffer);
+    }
+    pub fn Escape(self: *const IStiUSD, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, cbOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Escape(@as(*const IStiUSD, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, cbOutDataSize, pdwActualData);
+    }
+    pub fn GetLastError(self: *const IStiUSD, pdwLastDeviceError: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiUSD, @ptrCast(self)), pdwLastDeviceError);
+    }
+    pub fn LockDevice(self: *const IStiUSD) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IStiUSD, @ptrCast(self)));
+    }
+    pub fn UnLockDevice(self: *const IStiUSD) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).UnLockDevice(@as(*const IStiUSD, @ptrCast(self)));
+    }
+    pub fn RawReadData(self: *const IStiUSD, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteData(self: *const IStiUSD, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawReadCommand(self: *const IStiUSD, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+    }
+    pub fn RawWriteCommand(self: *const IStiUSD, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
+    }
+    pub fn SetNotificationHandle(self: *const IStiUSD, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).SetNotificationHandle(@as(*const IStiUSD, @ptrCast(self)), hEvent);
+    }
+    pub fn GetNotificationData(self: *const IStiUSD, lpNotify: ?*STINOTIFY) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetNotificationData(@as(*const IStiUSD, @ptrCast(self)), lpNotify);
+    }
+    pub fn GetLastErrorInfo(self: *const IStiUSD, pLastErrorInfo: ?*_ERROR_INFOW) callconv(.Inline) HRESULT {
+        return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiUSD, @ptrCast(self)), pLastErrorInfo);
+    }
 };
 
 

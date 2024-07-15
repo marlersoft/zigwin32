@@ -166,7 +166,16 @@ pub const ISceSvcAttachmentPersistInfo = extern union {
             return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), pvData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Save(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).Save(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
+    }
+    pub fn IsDirty(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), lpTemplateName);
+    }
+    pub fn FreeBuffer(self: *const ISceSvcAttachmentPersistInfo, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), pvData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -219,7 +228,19 @@ pub const ISceSvcAttachmentData = extern union {
             return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).CloseHandle(@as(*const ISceSvcAttachmentData, @ptrCast(self)), scesvcHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetData(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISceSvcAttachmentData, @ptrCast(self)), scesvcHandle, sceType, ppvData, psceEnumHandle);
+    }
+    pub fn Initialize(self: *const ISceSvcAttachmentData, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISceSvcAttachmentData, @ptrCast(self)), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
+    }
+    pub fn FreeBuffer(self: *const ISceSvcAttachmentData, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const ISceSvcAttachmentData, @ptrCast(self)), pvData);
+    }
+    pub fn CloseHandle(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).CloseHandle(@as(*const ISceSvcAttachmentData, @ptrCast(self)), scesvcHandle);
+    }
 };
 
 

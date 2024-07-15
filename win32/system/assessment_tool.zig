@@ -111,7 +111,16 @@ pub const IProvideWinSATAssessmentInfo = extern union {
             return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), description);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Score(self: *const IProvideWinSATAssessmentInfo, score: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Score(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), score);
+    }
+    pub fn get_Title(self: *const IProvideWinSATAssessmentInfo, title: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), title);
+    }
+    pub fn get_Description(self: *const IProvideWinSATAssessmentInfo, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), description);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -171,7 +180,22 @@ pub const IProvideWinSATResultsInfo = extern union {
             return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_RatingStateDesc(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), description);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetAssessmentInfo(self: *const IProvideWinSATResultsInfo, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).GetAssessmentInfo(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), assessment, ppinfo);
+    }
+    pub fn get_AssessmentState(self: *const IProvideWinSATResultsInfo, state: ?*WINSAT_ASSESSMENT_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentState(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), state);
+    }
+    pub fn get_AssessmentDateTime(self: *const IProvideWinSATResultsInfo, fileTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentDateTime(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), fileTime);
+    }
+    pub fn get_SystemRating(self: *const IProvideWinSATResultsInfo, level: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_SystemRating(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), level);
+    }
+    pub fn get_RatingStateDesc(self: *const IProvideWinSATResultsInfo, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_RatingStateDesc(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), description);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -205,7 +229,13 @@ pub const IQueryRecentWinSATAssessment = extern union {
             return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), ppWinSATAssessmentInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_XML(self: *const IQueryRecentWinSATAssessment, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
+    }
+    pub fn get_Info(self: *const IQueryRecentWinSATAssessment, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.Inline) HRESULT {
+        return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), ppWinSATAssessmentInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -231,7 +261,10 @@ pub const IProvideWinSATVisuals = extern union {
             return @as(*const IProvideWinSATVisuals.VTable, @ptrCast(self.vtable)).get_Bitmap(@as(*const IProvideWinSATVisuals, @ptrCast(self)), bitmapSize, state, rating, pBitmap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Bitmap(self: *const IProvideWinSATVisuals, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+        return @as(*const IProvideWinSATVisuals.VTable, @ptrCast(self.vtable)).get_Bitmap(@as(*const IProvideWinSATVisuals, @ptrCast(self)), bitmapSize, state, rating, pBitmap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -256,7 +289,10 @@ pub const IQueryAllWinSATAssessments = extern union {
             return @as(*const IQueryAllWinSATAssessments.VTable, @ptrCast(self.vtable)).get_AllXML(@as(*const IQueryAllWinSATAssessments, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_AllXML(self: *const IQueryAllWinSATAssessments, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return @as(*const IQueryAllWinSATAssessments.VTable, @ptrCast(self.vtable)).get_AllXML(@as(*const IQueryAllWinSATAssessments, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -290,7 +326,13 @@ pub const IWinSATInitiateEvents = extern union {
             return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATUpdate(@as(*const IWinSATInitiateEvents, @ptrCast(self)), uCurrentTick, uTickTotal, strCurrentState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn WinSATComplete(self: *const IWinSATInitiateEvents, hresult: HRESULT, strDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATComplete(@as(*const IWinSATInitiateEvents, @ptrCast(self)), hresult, strDescription);
+    }
+    pub fn WinSATUpdate(self: *const IWinSATInitiateEvents, uCurrentTick: u32, uTickTotal: u32, strCurrentState: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATUpdate(@as(*const IWinSATInitiateEvents, @ptrCast(self)), uCurrentTick, uTickTotal, strCurrentState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -331,7 +373,16 @@ pub const IInitiateWinSATAssessment = extern union {
             return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).CancelAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn InitiateAssessment(self: *const IInitiateWinSATAssessment, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), cmdLine, pCallbacks, callerHwnd);
+    }
+    pub fn InitiateFormalAssessment(self: *const IInitiateWinSATAssessment, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateFormalAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), pCallbacks, callerHwnd);
+    }
+    pub fn CancelAssessment(self: *const IInitiateWinSATAssessment) callconv(.Inline) HRESULT {
+        return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).CancelAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)));
+    }
 };
 
 const IID_IAccessibleWinSAT_Value = Guid.initString("30e6018a-94a8-4ff8-a69a-71b67413f07b");
@@ -355,7 +406,10 @@ pub const IAccessibleWinSAT = extern union {
             return @as(*const IAccessibleWinSAT.VTable, @ptrCast(self.vtable)).SetAccessiblityData(@as(*const IAccessibleWinSAT, @ptrCast(self)), wsName, wsValue, wsDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAccessible.MethodMixin(@This());
+    pub fn SetAccessiblityData(self: *const IAccessibleWinSAT, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAccessibleWinSAT.VTable, @ptrCast(self.vtable)).SetAccessiblityData(@as(*const IAccessibleWinSAT, @ptrCast(self)), wsName, wsValue, wsDesc);
+    }
 };
 
 const IID_IQueryOEMWinSATCustomization_Value = Guid.initString("bc9a6a9f-ad4e-420e-9953-b34671e9df22");
@@ -377,7 +431,10 @@ pub const IQueryOEMWinSATCustomization = extern union {
             return @as(*const IQueryOEMWinSATCustomization.VTable, @ptrCast(self.vtable)).GetOEMPrePopulationInfo(@as(*const IQueryOEMWinSATCustomization, @ptrCast(self)), state);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IQueryOEMWinSATCustomization.VTable, @ptrCast(self.vtable)).GetOEMPrePopulationInfo(@as(*const IQueryOEMWinSATCustomization, @ptrCast(self)), state);
+    }
 };
 
 

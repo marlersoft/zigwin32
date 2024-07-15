@@ -180,7 +180,25 @@ pub const IContactManager = extern union {
             return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).GetContactCollection(@as(*const IContactManager, @ptrCast(self)), ppContactCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IContactManager, @ptrCast(self)), pszAppName, pszAppVersion);
+    }
+    pub fn Load(self: *const IContactManager, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).Load(@as(*const IContactManager, @ptrCast(self)), pszContactID, ppContact);
+    }
+    pub fn MergeContactIDs(self: *const IContactManager, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).MergeContactIDs(@as(*const IContactManager, @ptrCast(self)), pszNewContactID, pszOldContactID);
+    }
+    pub fn GetMeContact(self: *const IContactManager, ppMeContact: ?*?*IContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).GetMeContact(@as(*const IContactManager, @ptrCast(self)), ppMeContact);
+    }
+    pub fn SetMeContact(self: *const IContactManager, pMeContact: ?*IContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).SetMeContact(@as(*const IContactManager, @ptrCast(self)), pMeContact);
+    }
+    pub fn GetContactCollection(self: *const IContactManager, ppContactCollection: ?*?*IContactCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).GetContactCollection(@as(*const IContactManager, @ptrCast(self)), ppContactCollection);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -217,7 +235,16 @@ pub const IContactCollection = extern union {
             return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IContactCollection, @ptrCast(self)), ppContact);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Reset(self: *const IContactCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IContactCollection, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IContactCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).Next(@as(*const IContactCollection, @ptrCast(self)));
+    }
+    pub fn GetCurrent(self: *const IContactCollection, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IContactCollection, @ptrCast(self)), ppContact);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -374,7 +401,46 @@ pub const IContactProperties = extern union {
             return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetPropertyCollection(@as(*const IContactProperties, @ptrCast(self)), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetString(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
+    }
+    pub fn GetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetDate(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pftDateTime);
+    }
+    pub fn GetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetBinary(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
+    }
+    pub fn GetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
+    }
+    pub fn SetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetString(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszValue);
+    }
+    pub fn SetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetDate(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, ftDateTime);
+    }
+    pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetBinary(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszContentType, pStream);
+    }
+    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
+    }
+    pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).CreateArrayNode(@as(*const IContactProperties, @ptrCast(self)), pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
+    }
+    pub fn DeleteProperty(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags);
+    }
+    pub fn DeleteArrayNode(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteArrayNode(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags);
+    }
+    pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags);
+    }
+    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetPropertyCollection(@as(*const IContactProperties, @ptrCast(self)), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -417,7 +483,16 @@ pub const IContact = extern union {
             return @as(*const IContact.VTable, @ptrCast(self.vtable)).CommitChanges(@as(*const IContact, @ptrCast(self)), dwCommitFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetContactID(self: *const IContact, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContact.VTable, @ptrCast(self.vtable)).GetContactID(@as(*const IContact, @ptrCast(self)), pszContactID, cchContactID, pdwcchContactIDRequired);
+    }
+    pub fn GetPath(self: *const IContact, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContact.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IContact, @ptrCast(self)), pszPath, cchPath, pdwcchPathRequired);
+    }
+    pub fn CommitChanges(self: *const IContact, dwCommitFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContact.VTable, @ptrCast(self.vtable)).CommitChanges(@as(*const IContact, @ptrCast(self)), dwCommitFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -490,7 +565,28 @@ pub const IContactPropertyCollection = extern union {
             return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyArrayElementID(@as(*const IContactPropertyCollection, @ptrCast(self)), pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Reset(self: *const IContactPropertyCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IContactPropertyCollection, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IContactPropertyCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).Next(@as(*const IContactPropertyCollection, @ptrCast(self)));
+    }
+    pub fn GetPropertyName(self: *const IContactPropertyCollection, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyName(@as(*const IContactPropertyCollection, @ptrCast(self)), pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
+    }
+    pub fn GetPropertyType(self: *const IContactPropertyCollection, pdwType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyType(@as(*const IContactPropertyCollection, @ptrCast(self)), pdwType);
+    }
+    pub fn GetPropertyVersion(self: *const IContactPropertyCollection, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyVersion(@as(*const IContactPropertyCollection, @ptrCast(self)), pdwVersion);
+    }
+    pub fn GetPropertyModificationDate(self: *const IContactPropertyCollection, pftModificationDate: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyModificationDate(@as(*const IContactPropertyCollection, @ptrCast(self)), pftModificationDate);
+    }
+    pub fn GetPropertyArrayElementID(self: *const IContactPropertyCollection, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyArrayElementID(@as(*const IContactPropertyCollection, @ptrCast(self)), pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
+    }
 };
 
 pub const CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS = enum(i32) {
@@ -657,7 +753,52 @@ pub const IContactAggregationManager = extern union {
             return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_ServerContactLinks(@as(*const IContactAggregationManager, @ptrCast(self)), pPersonItemId, ppServerContactLinkCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).GetVersionInfo(@as(*const IContactAggregationManager, @ptrCast(self)), plMajorVersion, plMinorVersion);
+    }
+    pub fn CreateOrOpenGroup(self: *const IContactAggregationManager, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateOrOpenGroup(@as(*const IContactAggregationManager, @ptrCast(self)), pGroupName, options, pCreatedGroup, ppGroup);
+    }
+    pub fn CreateExternalContact(self: *const IContactAggregationManager, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateExternalContact(@as(*const IContactAggregationManager, @ptrCast(self)), ppItem);
+    }
+    pub fn CreateServerPerson(self: *const IContactAggregationManager, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateServerPerson(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerPerson);
+    }
+    pub fn CreateServerContactLink(self: *const IContactAggregationManager, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateServerContactLink(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerContactLink);
+    }
+    pub fn Flush(self: *const IContactAggregationManager) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).Flush(@as(*const IContactAggregationManager, @ptrCast(self)));
+    }
+    pub fn OpenAggregateContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenAggregateContact(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
+    }
+    pub fn OpenContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenContact(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
+    }
+    pub fn OpenServerContactLink(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenServerContactLink(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
+    }
+    pub fn OpenServerPerson(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenServerPerson(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
+    }
+    pub fn get_Contacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_Contacts(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppItems);
+    }
+    pub fn get_AggregateContacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_AggregateContacts(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppAggregates);
+    }
+    pub fn get_Groups(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppGroups);
+    }
+    pub fn get_ServerPersons(self: *const IContactAggregationManager, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_ServerPersons(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerPersonCollection);
+    }
+    pub fn get_ServerContactLinks(self: *const IContactAggregationManager, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_ServerContactLinks(@as(*const IContactAggregationManager, @ptrCast(self)), pPersonItemId, ppServerContactLinkCollection);
+    }
 };
 
 const IID_IContactAggregationContact_Value = Guid.initString("1eb22e86-4c86-41f0-9f9f-c251e9fda6c3");
@@ -826,7 +967,61 @@ pub const IContactAggregationContact = extern union {
             return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationContact, @ptrCast(self)), pSyncIdentityHash);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Delete(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationContact, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationContact, @ptrCast(self)));
+    }
+    pub fn MoveToAggregate(self: *const IContactAggregationContact, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).MoveToAggregate(@as(*const IContactAggregationContact, @ptrCast(self)), pAggregateId);
+    }
+    pub fn Unlink(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Unlink(@as(*const IContactAggregationContact, @ptrCast(self)));
+    }
+    pub fn get_AccountId(self: *const IContactAggregationContact, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_AccountId(@as(*const IContactAggregationContact, @ptrCast(self)), ppAccountId);
+    }
+    pub fn put_AccountId(self: *const IContactAggregationContact, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_AccountId(@as(*const IContactAggregationContact, @ptrCast(self)), pAccountId);
+    }
+    pub fn get_AggregateId(self: *const IContactAggregationContact, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_AggregateId(@as(*const IContactAggregationContact, @ptrCast(self)), ppAggregateId);
+    }
+    pub fn get_Id(self: *const IContactAggregationContact, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationContact, @ptrCast(self)), ppItemId);
+    }
+    pub fn get_IsMe(self: *const IContactAggregationContact, pIsMe: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_IsMe(@as(*const IContactAggregationContact, @ptrCast(self)), pIsMe);
+    }
+    pub fn get_IsExternal(self: *const IContactAggregationContact, pIsExternal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_IsExternal(@as(*const IContactAggregationContact, @ptrCast(self)), pIsExternal);
+    }
+    pub fn get_NetworkSourceId(self: *const IContactAggregationContact, pNetworkSourceId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_NetworkSourceId(@as(*const IContactAggregationContact, @ptrCast(self)), pNetworkSourceId);
+    }
+    pub fn put_NetworkSourceId(self: *const IContactAggregationContact, networkSourceId: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_NetworkSourceId(@as(*const IContactAggregationContact, @ptrCast(self)), networkSourceId);
+    }
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationContact, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_NetworkSourceIdString(@as(*const IContactAggregationContact, @ptrCast(self)), ppNetworkSourceId);
+    }
+    pub fn put_NetworkSourceIdString(self: *const IContactAggregationContact, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_NetworkSourceIdString(@as(*const IContactAggregationContact, @ptrCast(self)), pNetworkSourceId);
+    }
+    pub fn get_RemoteObjectId(self: *const IContactAggregationContact, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_RemoteObjectId(@as(*const IContactAggregationContact, @ptrCast(self)), ppRemoteObjectId);
+    }
+    pub fn put_RemoteObjectId(self: *const IContactAggregationContact, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_RemoteObjectId(@as(*const IContactAggregationContact, @ptrCast(self)), pRemoteObjectId);
+    }
+    pub fn get_SyncIdentityHash(self: *const IContactAggregationContact, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_SyncIdentityHash(@as(*const IContactAggregationContact, @ptrCast(self)), ppSyncIdentityHash);
+    }
+    pub fn put_SyncIdentityHash(self: *const IContactAggregationContact, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationContact, @ptrCast(self)), pSyncIdentityHash);
+    }
 };
 
 const IID_IContactAggregationContactCollection_Value = Guid.initString("826e66fa-81de-43ca-a6fb-8c785cd996c6");
@@ -887,7 +1082,22 @@ pub const IContactAggregationContactCollection = extern union {
             return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirstByRemoteId(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pSourceType, pAccountId, pRemoteObjectId, ppItem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindFirst(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationContactCollection, @ptrCast(self)), ppItem);
+    }
+    pub fn FindNext(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationContactCollection, @ptrCast(self)), ppItem);
+    }
+    pub fn FindFirstByIdentityHash(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirstByIdentityHash(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pSourceType, pAccountId, pIdentityHash, ppItem);
+    }
+    pub fn get_Count(self: *const IContactAggregationContactCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pCount);
+    }
+    pub fn FindFirstByRemoteId(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirstByRemoteId(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pSourceType, pAccountId, pRemoteObjectId, ppItem);
+    }
 };
 
 const IID_IContactAggregationAggregate_Value = Guid.initString("7ed1c814-cd30-43c8-9b8d-2e489e53d54b");
@@ -978,7 +1188,34 @@ pub const IContactAggregationAggregate = extern union {
             return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationAggregate, @ptrCast(self)), ppItemId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Save(self: *const IContactAggregationAggregate) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationAggregate, @ptrCast(self)));
+    }
+    pub fn GetComponentItems(self: *const IContactAggregationAggregate, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).GetComponentItems(@as(*const IContactAggregationAggregate, @ptrCast(self)), pComponentItems);
+    }
+    pub fn Link(self: *const IContactAggregationAggregate, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).Link(@as(*const IContactAggregationAggregate, @ptrCast(self)), pAggregateId);
+    }
+    pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationAggregate, @ptrCast(self)), options, ppGroups);
+    }
+    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_AntiLink(@as(*const IContactAggregationAggregate, @ptrCast(self)), ppAntiLink);
+    }
+    pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).put_AntiLink(@as(*const IContactAggregationAggregate, @ptrCast(self)), pAntiLink);
+    }
+    pub fn get_FavoriteOrder(self: *const IContactAggregationAggregate, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_FavoriteOrder(@as(*const IContactAggregationAggregate, @ptrCast(self)), pFavoriteOrder);
+    }
+    pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).put_FavoriteOrder(@as(*const IContactAggregationAggregate, @ptrCast(self)), favoriteOrder);
+    }
+    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationAggregate, @ptrCast(self)), ppItemId);
+    }
 };
 
 const IID_IContactAggregationAggregateCollection_Value = Guid.initString("2359f3a6-3a68-40af-98db-0f9eb143c3bb");
@@ -1026,7 +1263,19 @@ pub const IContactAggregationAggregateCollection = extern union {
             return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), pCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), ppAggregate);
+    }
+    pub fn FindFirstByAntiLinkId(self: *const IContactAggregationAggregateCollection, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindFirstByAntiLinkId(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), pAntiLinkId, ppAggregate);
+    }
+    pub fn FindNext(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), ppAggregate);
+    }
+    pub fn get_Count(self: *const IContactAggregationAggregateCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), pCount);
+    }
 };
 
 const IID_IContactAggregationGroup_Value = Guid.initString("c93c545f-1284-499b-96af-07372af473e0");
@@ -1124,7 +1373,37 @@ pub const IContactAggregationGroup = extern union {
             return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IContactAggregationGroup, @ptrCast(self)), pName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Delete(self: *const IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationGroup, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationGroup, @ptrCast(self)));
+    }
+    pub fn Add(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Add(@as(*const IContactAggregationGroup, @ptrCast(self)), pAggregateId);
+    }
+    pub fn Remove(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Remove(@as(*const IContactAggregationGroup, @ptrCast(self)), pAggregateId);
+    }
+    pub fn get_Members(self: *const IContactAggregationGroup, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IContactAggregationGroup, @ptrCast(self)), ppAggregateContactCollection);
+    }
+    pub fn get_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_GlobalObjectId(@as(*const IContactAggregationGroup, @ptrCast(self)), pGlobalObjectId);
+    }
+    pub fn put_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).put_GlobalObjectId(@as(*const IContactAggregationGroup, @ptrCast(self)), pGlobalObjectId);
+    }
+    pub fn get_Id(self: *const IContactAggregationGroup, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationGroup, @ptrCast(self)), ppItemId);
+    }
+    pub fn get_Name(self: *const IContactAggregationGroup, ppName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IContactAggregationGroup, @ptrCast(self)), ppName);
+    }
+    pub fn put_Name(self: *const IContactAggregationGroup, pName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IContactAggregationGroup, @ptrCast(self)), pName);
+    }
 };
 
 const IID_IContactAggregationGroupCollection_Value = Guid.initString("20a19a9c-d2f3-4b83-9143-beffd2cc226d");
@@ -1172,7 +1451,19 @@ pub const IContactAggregationGroupCollection = extern union {
             return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), pCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindFirst(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), ppGroup);
+    }
+    pub fn FindFirstByGlobalObjectId(self: *const IContactAggregationGroupCollection, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindFirstByGlobalObjectId(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), pGlobalObjectId, ppGroup);
+    }
+    pub fn FindNext(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), ppGroup);
+    }
+    pub fn get_Count(self: *const IContactAggregationGroupCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), pCount);
+    }
 };
 
 const IID_IContactAggregationLink_Value = Guid.initString("b6813323-a183-4654-8627-79b30de3a0ec");
@@ -1335,7 +1626,58 @@ pub const IContactAggregationLink = extern union {
             return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationLink, @ptrCast(self)), pSyncIdentityHash);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Delete(self: *const IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationLink, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationLink, @ptrCast(self)));
+    }
+    pub fn get_AccountId(self: *const IContactAggregationLink, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_AccountId(@as(*const IContactAggregationLink, @ptrCast(self)), ppAccountId);
+    }
+    pub fn put_AccountId(self: *const IContactAggregationLink, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_AccountId(@as(*const IContactAggregationLink, @ptrCast(self)), pAccountId);
+    }
+    pub fn get_Id(self: *const IContactAggregationLink, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationLink, @ptrCast(self)), ppItemId);
+    }
+    pub fn get_IsLinkResolved(self: *const IContactAggregationLink, pIsLinkResolved: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_IsLinkResolved(@as(*const IContactAggregationLink, @ptrCast(self)), pIsLinkResolved);
+    }
+    pub fn put_IsLinkResolved(self: *const IContactAggregationLink, isLinkResolved: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_IsLinkResolved(@as(*const IContactAggregationLink, @ptrCast(self)), isLinkResolved);
+    }
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationLink, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_NetworkSourceIdString(@as(*const IContactAggregationLink, @ptrCast(self)), ppNetworkSourceId);
+    }
+    pub fn put_NetworkSourceIdString(self: *const IContactAggregationLink, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_NetworkSourceIdString(@as(*const IContactAggregationLink, @ptrCast(self)), pNetworkSourceId);
+    }
+    pub fn get_RemoteObjectId(self: *const IContactAggregationLink, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_RemoteObjectId(@as(*const IContactAggregationLink, @ptrCast(self)), ppRemoteObjectId);
+    }
+    pub fn put_RemoteObjectId(self: *const IContactAggregationLink, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_RemoteObjectId(@as(*const IContactAggregationLink, @ptrCast(self)), pRemoteObjectId);
+    }
+    pub fn get_ServerPerson(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_ServerPerson(@as(*const IContactAggregationLink, @ptrCast(self)), ppServerPersonId);
+    }
+    pub fn put_ServerPerson(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_ServerPerson(@as(*const IContactAggregationLink, @ptrCast(self)), pServerPersonId);
+    }
+    pub fn get_ServerPersonBaseline(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_ServerPersonBaseline(@as(*const IContactAggregationLink, @ptrCast(self)), ppServerPersonId);
+    }
+    pub fn put_ServerPersonBaseline(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_ServerPersonBaseline(@as(*const IContactAggregationLink, @ptrCast(self)), pServerPersonId);
+    }
+    pub fn get_SyncIdentityHash(self: *const IContactAggregationLink, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_SyncIdentityHash(@as(*const IContactAggregationLink, @ptrCast(self)), ppSyncIdentityHash);
+    }
+    pub fn put_SyncIdentityHash(self: *const IContactAggregationLink, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationLink, @ptrCast(self)), pSyncIdentityHash);
+    }
 };
 
 const IID_IContactAggregationLinkCollection_Value = Guid.initString("f8bc0e93-fb55-4f28-b9fa-b1c274153292");
@@ -1385,7 +1727,19 @@ pub const IContactAggregationLinkCollection = extern union {
             return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), pCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindFirst(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), ppServerContactLink);
+    }
+    pub fn FindFirstByRemoteId(self: *const IContactAggregationLinkCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindFirstByRemoteId(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), pSourceType, pAccountId, pRemoteId, ppServerContactLink);
+    }
+    pub fn FindNext(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), ppServerContactLink);
+    }
+    pub fn get_Count(self: *const IContactAggregationLinkCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), pCount);
+    }
 };
 
 const IID_IContactAggregationServerPerson_Value = Guid.initString("7fdc3d4b-1b82-4334-85c5-25184ee5a5f2");
@@ -1602,7 +1956,76 @@ pub const IContactAggregationServerPerson = extern union {
             return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_ObjectId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pObjectId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Delete(self: *const IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationServerPerson, @ptrCast(self)));
+    }
+    pub fn Save(self: *const IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationServerPerson, @ptrCast(self)));
+    }
+    pub fn get_AggregateId(self: *const IContactAggregationServerPerson, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAggregateId);
+    }
+    pub fn put_AggregateId(self: *const IContactAggregationServerPerson, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAggregateId);
+    }
+    pub fn get_AntiLink(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AntiLink(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAntiLink);
+    }
+    pub fn put_AntiLink(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AntiLink(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAntiLink);
+    }
+    pub fn get_AntiLinkBaseline(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AntiLinkBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAntiLink);
+    }
+    pub fn put_AntiLinkBaseline(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AntiLinkBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAntiLink);
+    }
+    pub fn get_FavoriteOrder(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_FavoriteOrder(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pFavoriteOrder);
+    }
+    pub fn put_FavoriteOrder(self: *const IContactAggregationServerPerson, favoriteOrder: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_FavoriteOrder(@as(*const IContactAggregationServerPerson, @ptrCast(self)), favoriteOrder);
+    }
+    pub fn get_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_FavoriteOrderBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pFavoriteOrder);
+    }
+    pub fn put_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, favoriteOrder: u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_FavoriteOrderBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), favoriteOrder);
+    }
+    pub fn get_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
+    }
+    pub fn put_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_Groups(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
+    }
+    pub fn get_GroupsBaseline(self: *const IContactAggregationServerPerson, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_GroupsBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppGroups);
+    }
+    pub fn put_GroupsBaseline(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_GroupsBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
+    }
+    pub fn get_Id(self: *const IContactAggregationServerPerson, ppId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppId);
+    }
+    pub fn get_IsTombstone(self: *const IContactAggregationServerPerson, pIsTombstone: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_IsTombstone(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pIsTombstone);
+    }
+    pub fn put_IsTombstone(self: *const IContactAggregationServerPerson, isTombstone: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_IsTombstone(@as(*const IContactAggregationServerPerson, @ptrCast(self)), isTombstone);
+    }
+    pub fn get_LinkedAggregateId(self: *const IContactAggregationServerPerson, ppLinkedAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_LinkedAggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppLinkedAggregateId);
+    }
+    pub fn put_LinkedAggregateId(self: *const IContactAggregationServerPerson, pLinkedAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_LinkedAggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pLinkedAggregateId);
+    }
+    pub fn get_ObjectId(self: *const IContactAggregationServerPerson, ppObjectId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppObjectId);
+    }
+    pub fn put_ObjectId(self: *const IContactAggregationServerPerson, pObjectId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_ObjectId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pObjectId);
+    }
 };
 
 const IID_IContactAggregationServerPersonCollection_Value = Guid.initString("4f730a4a-6604-47b6-a987-669ecf1e5751");
@@ -1668,7 +2091,25 @@ pub const IContactAggregationServerPersonCollection = extern union {
             return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindFirst(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), ppServerPerson);
+    }
+    pub fn FindFirstByServerId(self: *const IContactAggregationServerPersonCollection, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByServerId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pServerId, ppServerPerson);
+    }
+    pub fn FindFirstByAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByAggregateId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pAggregateId, ppServerPerson);
+    }
+    pub fn FindFirstByLinkedAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByLinkedAggregateId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pAggregateId, ppServerPerson);
+    }
+    pub fn FindNext(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), ppServerPerson);
+    }
+    pub fn get_Count(self: *const IContactAggregationServerPersonCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pCount);
+    }
 };
 
 

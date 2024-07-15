@@ -870,7 +870,10 @@ pub const ID2D1Resource = extern union {
             return @as(*const ID2D1Resource.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const ID2D1Resource, @ptrCast(self)), factory);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFactory(self: *const ID2D1Resource, factory: ?*?*ID2D1Factory) callconv(.Inline) void {
+        return @as(*const ID2D1Resource.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const ID2D1Resource, @ptrCast(self)), factory);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -885,7 +888,7 @@ pub const ID2D1Image = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -960,7 +963,28 @@ pub const ID2D1Bitmap = extern union {
             return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromMemory(@as(*const ID2D1Bitmap, @ptrCast(self)), dstRect, srcData, pitch);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Image.MethodMixin(@This());
+    pub fn GetSize(self: *const ID2D1Bitmap) callconv(.Inline) D2D_SIZE_F {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1Bitmap, @ptrCast(self)));
+    }
+    pub fn GetPixelSize(self: *const ID2D1Bitmap) callconv(.Inline) D2D_SIZE_U {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetPixelSize(@as(*const ID2D1Bitmap, @ptrCast(self)));
+    }
+    pub fn GetPixelFormat(self: *const ID2D1Bitmap) callconv(.Inline) D2D1_PIXEL_FORMAT {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const ID2D1Bitmap, @ptrCast(self)));
+    }
+    pub fn GetDpi(self: *const ID2D1Bitmap, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1Bitmap, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn CopyFromBitmap(self: *const ID2D1Bitmap, destPoint: ?*const D2D_POINT_2U, bitmap: ?*ID2D1Bitmap, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromBitmap(@as(*const ID2D1Bitmap, @ptrCast(self)), destPoint, bitmap, srcRect);
+    }
+    pub fn CopyFromRenderTarget(self: *const ID2D1Bitmap, destPoint: ?*const D2D_POINT_2U, renderTarget: ?*ID2D1RenderTarget, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromRenderTarget(@as(*const ID2D1Bitmap, @ptrCast(self)), destPoint, renderTarget, srcRect);
+    }
+    pub fn CopyFromMemory(self: *const ID2D1Bitmap, dstRect: ?*const D2D_RECT_U, srcData: ?*const anyopaque, pitch: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromMemory(@as(*const ID2D1Bitmap, @ptrCast(self)), dstRect, srcData, pitch);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1005,7 +1029,19 @@ pub const ID2D1GradientStopCollection = extern union {
             return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetExtendMode(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetGradientStopCount(self: *const ID2D1GradientStopCollection) callconv(.Inline) u32 {
+        return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetGradientStopCount(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
+    }
+    pub fn GetGradientStops(self: *const ID2D1GradientStopCollection, gradientStops: [*]D2D1_GRADIENT_STOP, gradientStopsCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetGradientStops(@as(*const ID2D1GradientStopCollection, @ptrCast(self)), gradientStops, gradientStopsCount);
+    }
+    pub fn GetColorInterpolationGamma(self: *const ID2D1GradientStopCollection) callconv(.Inline) D2D1_GAMMA {
+        return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetColorInterpolationGamma(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
+    }
+    pub fn GetExtendMode(self: *const ID2D1GradientStopCollection) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetExtendMode(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1051,7 +1087,19 @@ pub const ID2D1Brush = extern union {
             return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1Brush, @ptrCast(self)), transform);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn SetOpacity(self: *const ID2D1Brush, opacity: f32) callconv(.Inline) void {
+        return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const ID2D1Brush, @ptrCast(self)), opacity);
+    }
+    pub fn SetTransform(self: *const ID2D1Brush, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1Brush, @ptrCast(self)), transform);
+    }
+    pub fn GetOpacity(self: *const ID2D1Brush) callconv(.Inline) f32 {
+        return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const ID2D1Brush, @ptrCast(self)));
+    }
+    pub fn GetTransform(self: *const ID2D1Brush, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1Brush, @ptrCast(self)), transform);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1127,7 +1175,31 @@ pub const ID2D1BitmapBrush = extern union {
             return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapBrush, @ptrCast(self)), bitmap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Brush.MethodMixin(@This());
+    pub fn SetExtendModeX(self: *const ID2D1BitmapBrush, extendModeX: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1BitmapBrush, @ptrCast(self)), extendModeX);
+    }
+    pub fn SetExtendModeY(self: *const ID2D1BitmapBrush, extendModeY: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1BitmapBrush, @ptrCast(self)), extendModeY);
+    }
+    pub fn SetInterpolationMode(self: *const ID2D1BitmapBrush, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const ID2D1BitmapBrush, @ptrCast(self)), interpolationMode);
+    }
+    pub fn SetBitmap(self: *const ID2D1BitmapBrush, bitmap: ?*ID2D1Bitmap) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetBitmap(@as(*const ID2D1BitmapBrush, @ptrCast(self)), bitmap);
+    }
+    pub fn GetExtendModeX(self: *const ID2D1BitmapBrush) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
+    }
+    pub fn GetExtendModeY(self: *const ID2D1BitmapBrush) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
+    }
+    pub fn GetInterpolationMode(self: *const ID2D1BitmapBrush) callconv(.Inline) D2D1_BITMAP_INTERPOLATION_MODE {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetInterpolationMode(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
+    }
+    pub fn GetBitmap(self: *const ID2D1BitmapBrush, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapBrush, @ptrCast(self)), bitmap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1157,7 +1229,13 @@ pub const ID2D1SolidColorBrush = extern union {
             return @as(*const ID2D1SolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const ID2D1SolidColorBrush, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Brush.MethodMixin(@This());
+    pub fn SetColor(self: *const ID2D1SolidColorBrush, color: ?*const D2D1_COLOR_F) callconv(.Inline) void {
+        return @as(*const ID2D1SolidColorBrush.VTable, @ptrCast(self.vtable)).SetColor(@as(*const ID2D1SolidColorBrush, @ptrCast(self)), color);
+    }
+    pub fn GetColor(self: *const ID2D1SolidColorBrush) callconv(.Inline) D2D1_COLOR_F {
+        return @as(*const ID2D1SolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const ID2D1SolidColorBrush, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1210,7 +1288,22 @@ pub const ID2D1LinearGradientBrush = extern union {
             return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), gradientStopCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Brush.MethodMixin(@This());
+    pub fn SetStartPoint(self: *const ID2D1LinearGradientBrush, startPoint: D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), startPoint);
+    }
+    pub fn SetEndPoint(self: *const ID2D1LinearGradientBrush, endPoint: D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).SetEndPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), endPoint);
+    }
+    pub fn GetStartPoint(self: *const ID2D1LinearGradientBrush) callconv(.Inline) D2D_POINT_2F {
+        return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetEndPoint(self: *const ID2D1LinearGradientBrush) callconv(.Inline) D2D_POINT_2F {
+        return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetEndPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetGradientStopCollection(self: *const ID2D1LinearGradientBrush, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) void {
+        return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), gradientStopCollection);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1293,7 +1386,34 @@ pub const ID2D1RadialGradientBrush = extern union {
             return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), gradientStopCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Brush.MethodMixin(@This());
+    pub fn SetCenter(self: *const ID2D1RadialGradientBrush, center: D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetCenter(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), center);
+    }
+    pub fn SetGradientOriginOffset(self: *const ID2D1RadialGradientBrush, gradientOriginOffset: D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetGradientOriginOffset(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), gradientOriginOffset);
+    }
+    pub fn SetRadiusX(self: *const ID2D1RadialGradientBrush, radiusX: f32) callconv(.Inline) void {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiusX(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), radiusX);
+    }
+    pub fn SetRadiusY(self: *const ID2D1RadialGradientBrush, radiusY: f32) callconv(.Inline) void {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiusY(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), radiusY);
+    }
+    pub fn GetCenter(self: *const ID2D1RadialGradientBrush) callconv(.Inline) D2D_POINT_2F {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetCenter(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetGradientOriginOffset(self: *const ID2D1RadialGradientBrush) callconv(.Inline) D2D_POINT_2F {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientOriginOffset(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetRadiusX(self: *const ID2D1RadialGradientBrush) callconv(.Inline) f32 {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiusX(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetRadiusY(self: *const ID2D1RadialGradientBrush) callconv(.Inline) f32 {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiusY(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
+    }
+    pub fn GetGradientStopCollection(self: *const ID2D1RadialGradientBrush, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) void {
+        return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), gradientStopCollection);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1373,7 +1493,34 @@ pub const ID2D1StrokeStyle = extern union {
             return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1StrokeStyle, @ptrCast(self)), dashes, dashesCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetStartCap(self: *const ID2D1StrokeStyle) callconv(.Inline) D2D1_CAP_STYLE {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetStartCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetEndCap(self: *const ID2D1StrokeStyle) callconv(.Inline) D2D1_CAP_STYLE {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetEndCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetDashCap(self: *const ID2D1StrokeStyle) callconv(.Inline) D2D1_CAP_STYLE {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetMiterLimit(self: *const ID2D1StrokeStyle) callconv(.Inline) f32 {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetMiterLimit(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetLineJoin(self: *const ID2D1StrokeStyle) callconv(.Inline) D2D1_LINE_JOIN {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetLineJoin(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetDashOffset(self: *const ID2D1StrokeStyle) callconv(.Inline) f32 {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashOffset(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetDashStyle(self: *const ID2D1StrokeStyle) callconv(.Inline) D2D1_DASH_STYLE {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashStyle(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetDashesCount(self: *const ID2D1StrokeStyle) callconv(.Inline) u32 {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashesCount(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
+    }
+    pub fn GetDashes(self: *const ID2D1StrokeStyle, dashes: [*]f32, dashesCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1StrokeStyle, @ptrCast(self)), dashes, dashesCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1531,7 +1678,46 @@ pub const ID2D1Geometry = extern union {
             return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Widen(@as(*const ID2D1Geometry, @ptrCast(self)), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, geometrySink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetBounds(self: *const ID2D1Geometry, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, bounds);
+    }
+    pub fn GetWidenedBounds(self: *const ID2D1Geometry, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).GetWidenedBounds(@as(*const ID2D1Geometry, @ptrCast(self)), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, bounds);
+    }
+    pub fn StrokeContainsPoint(self: *const ID2D1Geometry, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).StrokeContainsPoint(@as(*const ID2D1Geometry, @ptrCast(self)), point, strokeWidth, strokeStyle, worldTransform, flatteningTolerance, contains);
+    }
+    pub fn FillContainsPoint(self: *const ID2D1Geometry, point: D2D_POINT_2F, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).FillContainsPoint(@as(*const ID2D1Geometry, @ptrCast(self)), point, worldTransform, flatteningTolerance, contains);
+    }
+    pub fn CompareWithGeometry(self: *const ID2D1Geometry, inputGeometry: ?*ID2D1Geometry, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: ?*D2D1_GEOMETRY_RELATION) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).CompareWithGeometry(@as(*const ID2D1Geometry, @ptrCast(self)), inputGeometry, inputGeometryTransform, flatteningTolerance, relation);
+    }
+    pub fn Simplify(self: *const ID2D1Geometry, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Simplify(@as(*const ID2D1Geometry, @ptrCast(self)), simplificationOption, worldTransform, flatteningTolerance, geometrySink);
+    }
+    pub fn Tessellate(self: *const ID2D1Geometry, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: ?*ID2D1TessellationSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Tessellate(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, tessellationSink);
+    }
+    pub fn CombineWithGeometry(self: *const ID2D1Geometry, inputGeometry: ?*ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).CombineWithGeometry(@as(*const ID2D1Geometry, @ptrCast(self)), inputGeometry, combineMode, inputGeometryTransform, flatteningTolerance, geometrySink);
+    }
+    pub fn Outline(self: *const ID2D1Geometry, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Outline(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, geometrySink);
+    }
+    pub fn ComputeArea(self: *const ID2D1Geometry, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputeArea(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, area);
+    }
+    pub fn ComputeLength(self: *const ID2D1Geometry, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputeLength(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, length);
+    }
+    pub fn ComputePointAtLength(self: *const ID2D1Geometry, length: f32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, point: ?*D2D_POINT_2F, unitTangentVector: ?*D2D_POINT_2F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputePointAtLength(@as(*const ID2D1Geometry, @ptrCast(self)), length, worldTransform, flatteningTolerance, point, unitTangentVector);
+    }
+    pub fn Widen(self: *const ID2D1Geometry, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Widen(@as(*const ID2D1Geometry, @ptrCast(self)), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, geometrySink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1554,7 +1740,10 @@ pub const ID2D1RectangleGeometry = extern union {
             return @as(*const ID2D1RectangleGeometry.VTable, @ptrCast(self.vtable)).GetRect(@as(*const ID2D1RectangleGeometry, @ptrCast(self)), rect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn GetRect(self: *const ID2D1RectangleGeometry, rect: ?*D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1RectangleGeometry.VTable, @ptrCast(self.vtable)).GetRect(@as(*const ID2D1RectangleGeometry, @ptrCast(self)), rect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1577,7 +1766,10 @@ pub const ID2D1RoundedRectangleGeometry = extern union {
             return @as(*const ID2D1RoundedRectangleGeometry.VTable, @ptrCast(self.vtable)).GetRoundedRect(@as(*const ID2D1RoundedRectangleGeometry, @ptrCast(self)), roundedRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn GetRoundedRect(self: *const ID2D1RoundedRectangleGeometry, roundedRect: ?*D2D1_ROUNDED_RECT) callconv(.Inline) void {
+        return @as(*const ID2D1RoundedRectangleGeometry.VTable, @ptrCast(self.vtable)).GetRoundedRect(@as(*const ID2D1RoundedRectangleGeometry, @ptrCast(self)), roundedRect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1600,7 +1792,10 @@ pub const ID2D1EllipseGeometry = extern union {
             return @as(*const ID2D1EllipseGeometry.VTable, @ptrCast(self.vtable)).GetEllipse(@as(*const ID2D1EllipseGeometry, @ptrCast(self)), ellipse);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn GetEllipse(self: *const ID2D1EllipseGeometry, ellipse: ?*D2D1_ELLIPSE) callconv(.Inline) void {
+        return @as(*const ID2D1EllipseGeometry.VTable, @ptrCast(self.vtable)).GetEllipse(@as(*const ID2D1EllipseGeometry, @ptrCast(self)), ellipse);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1638,7 +1833,16 @@ pub const ID2D1GeometryGroup = extern union {
             return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetSourceGeometries(@as(*const ID2D1GeometryGroup, @ptrCast(self)), geometries, geometriesCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn GetFillMode(self: *const ID2D1GeometryGroup) callconv(.Inline) D2D1_FILL_MODE {
+        return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetFillMode(@as(*const ID2D1GeometryGroup, @ptrCast(self)));
+    }
+    pub fn GetSourceGeometryCount(self: *const ID2D1GeometryGroup) callconv(.Inline) u32 {
+        return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetSourceGeometryCount(@as(*const ID2D1GeometryGroup, @ptrCast(self)));
+    }
+    pub fn GetSourceGeometries(self: *const ID2D1GeometryGroup, geometries: [*]?*ID2D1Geometry, geometriesCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetSourceGeometries(@as(*const ID2D1GeometryGroup, @ptrCast(self)), geometries, geometriesCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1669,7 +1873,13 @@ pub const ID2D1TransformedGeometry = extern union {
             return @as(*const ID2D1TransformedGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1TransformedGeometry, @ptrCast(self)), transform);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn GetSourceGeometry(self: *const ID2D1TransformedGeometry, sourceGeometry: ?*?*ID2D1Geometry) callconv(.Inline) void {
+        return @as(*const ID2D1TransformedGeometry.VTable, @ptrCast(self.vtable)).GetSourceGeometry(@as(*const ID2D1TransformedGeometry, @ptrCast(self)), sourceGeometry);
+    }
+    pub fn GetTransform(self: *const ID2D1TransformedGeometry, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1TransformedGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1TransformedGeometry, @ptrCast(self)), transform);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1725,7 +1935,22 @@ pub const ID2D1GeometrySink = extern union {
             return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddArc(@as(*const ID2D1GeometrySink, @ptrCast(self)), arc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1SimplifiedGeometrySink.MethodMixin(@This());
+    pub fn AddLine(self: *const ID2D1GeometrySink, point: D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddLine(@as(*const ID2D1GeometrySink, @ptrCast(self)), point);
+    }
+    pub fn AddBezier(self: *const ID2D1GeometrySink, bezier: ?*const D2D1_BEZIER_SEGMENT) callconv(.Inline) void {
+        return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddBezier(@as(*const ID2D1GeometrySink, @ptrCast(self)), bezier);
+    }
+    pub fn AddQuadraticBezier(self: *const ID2D1GeometrySink, bezier: ?*const D2D1_QUADRATIC_BEZIER_SEGMENT) callconv(.Inline) void {
+        return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddQuadraticBezier(@as(*const ID2D1GeometrySink, @ptrCast(self)), bezier);
+    }
+    pub fn AddQuadraticBeziers(self: *const ID2D1GeometrySink, beziers: [*]const D2D1_QUADRATIC_BEZIER_SEGMENT, beziersCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddQuadraticBeziers(@as(*const ID2D1GeometrySink, @ptrCast(self)), beziers, beziersCount);
+    }
+    pub fn AddArc(self: *const ID2D1GeometrySink, arc: ?*const D2D1_ARC_SEGMENT) callconv(.Inline) void {
+        return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddArc(@as(*const ID2D1GeometrySink, @ptrCast(self)), arc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1756,7 +1981,13 @@ pub const ID2D1TessellationSink = extern union {
             return @as(*const ID2D1TessellationSink.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1TessellationSink, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddTriangles(self: *const ID2D1TessellationSink, triangles: [*]const D2D1_TRIANGLE, trianglesCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1TessellationSink.VTable, @ptrCast(self.vtable)).AddTriangles(@as(*const ID2D1TessellationSink, @ptrCast(self)), triangles, trianglesCount);
+    }
+    pub fn Close(self: *const ID2D1TessellationSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TessellationSink.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1TessellationSink, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1803,7 +2034,19 @@ pub const ID2D1PathGeometry = extern union {
             return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).GetFigureCount(@as(*const ID2D1PathGeometry, @ptrCast(self)), count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Geometry.MethodMixin(@This());
+    pub fn Open(self: *const ID2D1PathGeometry, geometrySink: ?*?*ID2D1GeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).Open(@as(*const ID2D1PathGeometry, @ptrCast(self)), geometrySink);
+    }
+    pub fn Stream(self: *const ID2D1PathGeometry, geometrySink: ?*ID2D1GeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1PathGeometry, @ptrCast(self)), geometrySink);
+    }
+    pub fn GetSegmentCount(self: *const ID2D1PathGeometry, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const ID2D1PathGeometry, @ptrCast(self)), count);
+    }
+    pub fn GetFigureCount(self: *const ID2D1PathGeometry, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).GetFigureCount(@as(*const ID2D1PathGeometry, @ptrCast(self)), count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1826,7 +2069,10 @@ pub const ID2D1Mesh = extern union {
             return @as(*const ID2D1Mesh.VTable, @ptrCast(self.vtable)).Open(@as(*const ID2D1Mesh, @ptrCast(self)), tessellationSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn Open(self: *const ID2D1Mesh, tessellationSink: ?*?*ID2D1TessellationSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Mesh.VTable, @ptrCast(self.vtable)).Open(@as(*const ID2D1Mesh, @ptrCast(self)), tessellationSink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1848,7 +2094,10 @@ pub const ID2D1Layer = extern union {
             return @as(*const ID2D1Layer.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1Layer, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetSize(self: *const ID2D1Layer) callconv(.Inline) D2D_SIZE_F {
+        return @as(*const ID2D1Layer.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1Layer, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1895,7 +2144,19 @@ pub const ID2D1DrawingStateBlock = extern union {
             return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).GetTextRenderingParams(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), textRenderingParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetDescription(self: *const ID2D1DrawingStateBlock, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), stateDescription);
+    }
+    pub fn SetDescription(self: *const ID2D1DrawingStateBlock, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), stateDescription);
+    }
+    pub fn SetTextRenderingParams(self: *const ID2D1DrawingStateBlock, textRenderingParams: ?*IDWriteRenderingParams) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), textRenderingParams);
+    }
+    pub fn GetTextRenderingParams(self: *const ID2D1DrawingStateBlock, textRenderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).GetTextRenderingParams(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), textRenderingParams);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2404,7 +2665,166 @@ pub const ID2D1RenderTarget = extern union {
             return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ID2D1RenderTarget, @ptrCast(self)), renderTargetProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn CreateBitmap(self: *const ID2D1RenderTarget, size: D2D_SIZE_U, srcData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), size, srcData, pitch, bitmapProperties, bitmap);
+    }
+    pub fn CreateBitmapFromWicBitmap(self: *const ID2D1RenderTarget, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmapFromWicBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), wicBitmapSource, bitmapProperties, bitmap);
+    }
+    pub fn CreateSharedBitmap(self: *const ID2D1RenderTarget, riid: ?*const Guid, data: ?*anyopaque, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateSharedBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), riid, data, bitmapProperties, bitmap);
+    }
+    pub fn CreateBitmapBrush(self: *const ID2D1RenderTarget, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmapBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
+    }
+    pub fn CreateSolidColorBrush(self: *const ID2D1RenderTarget, color: ?*const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: ?*?*ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateSolidColorBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), color, brushProperties, solidColorBrush);
+    }
+    pub fn CreateGradientStopCollection(self: *const ID2D1RenderTarget, gradientStops: [*]const D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateGradientStopCollection(@as(*const ID2D1RenderTarget, @ptrCast(self)), gradientStops, gradientStopsCount, colorInterpolationGamma, extendMode, gradientStopCollection);
+    }
+    pub fn CreateLinearGradientBrush(self: *const ID2D1RenderTarget, linearGradientBrushProperties: ?*const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, linearGradientBrush: ?*?*ID2D1LinearGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateLinearGradientBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), linearGradientBrushProperties, brushProperties, gradientStopCollection, linearGradientBrush);
+    }
+    pub fn CreateRadialGradientBrush(self: *const ID2D1RenderTarget, radialGradientBrushProperties: ?*const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, radialGradientBrush: ?*?*ID2D1RadialGradientBrush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateRadialGradientBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), radialGradientBrushProperties, brushProperties, gradientStopCollection, radialGradientBrush);
+    }
+    pub fn CreateCompatibleRenderTarget(self: *const ID2D1RenderTarget, desiredSize: ?*const D2D_SIZE_F, desiredPixelSize: ?*const D2D_SIZE_U, desiredFormat: ?*const D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: ?*?*ID2D1BitmapRenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateCompatibleRenderTarget(@as(*const ID2D1RenderTarget, @ptrCast(self)), desiredSize, desiredPixelSize, desiredFormat, options, bitmapRenderTarget);
+    }
+    pub fn CreateLayer(self: *const ID2D1RenderTarget, size: ?*const D2D_SIZE_F, layer: ?*?*ID2D1Layer) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)), size, layer);
+    }
+    pub fn CreateMesh(self: *const ID2D1RenderTarget, mesh: ?*?*ID2D1Mesh) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateMesh(@as(*const ID2D1RenderTarget, @ptrCast(self)), mesh);
+    }
+    pub fn DrawLine(self: *const ID2D1RenderTarget, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawLine(@as(*const ID2D1RenderTarget, @ptrCast(self)), point0, point1, brush, strokeWidth, strokeStyle);
+    }
+    pub fn DrawRectangle(self: *const ID2D1RenderTarget, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), rect, brush, strokeWidth, strokeStyle);
+    }
+    pub fn FillRectangle(self: *const ID2D1RenderTarget, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), rect, brush);
+    }
+    pub fn DrawRoundedRectangle(self: *const ID2D1RenderTarget, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawRoundedRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), roundedRect, brush, strokeWidth, strokeStyle);
+    }
+    pub fn FillRoundedRectangle(self: *const ID2D1RenderTarget, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillRoundedRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), roundedRect, brush);
+    }
+    pub fn DrawEllipse(self: *const ID2D1RenderTarget, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawEllipse(@as(*const ID2D1RenderTarget, @ptrCast(self)), ellipse, brush, strokeWidth, strokeStyle);
+    }
+    pub fn FillEllipse(self: *const ID2D1RenderTarget, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillEllipse(@as(*const ID2D1RenderTarget, @ptrCast(self)), ellipse, brush);
+    }
+    pub fn DrawGeometry(self: *const ID2D1RenderTarget, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawGeometry(@as(*const ID2D1RenderTarget, @ptrCast(self)), geometry, brush, strokeWidth, strokeStyle);
+    }
+    pub fn FillGeometry(self: *const ID2D1RenderTarget, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillGeometry(@as(*const ID2D1RenderTarget, @ptrCast(self)), geometry, brush, opacityBrush);
+    }
+    pub fn FillMesh(self: *const ID2D1RenderTarget, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillMesh(@as(*const ID2D1RenderTarget, @ptrCast(self)), mesh, brush);
+    }
+    pub fn FillOpacityMask(self: *const ID2D1RenderTarget, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, content: D2D1_OPACITY_MASK_CONTENT, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1RenderTarget, @ptrCast(self)), opacityMask, brush, content, destinationRectangle, sourceRectangle);
+    }
+    pub fn DrawBitmap(self: *const ID2D1RenderTarget, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle);
+    }
+    pub fn DrawText(self: *const ID2D1RenderTarget, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawText(@as(*const ID2D1RenderTarget, @ptrCast(self)), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
+    }
+    pub fn DrawTextLayout(self: *const ID2D1RenderTarget, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawTextLayout(@as(*const ID2D1RenderTarget, @ptrCast(self)), origin, textLayout, defaultFillBrush, options);
+    }
+    pub fn DrawGlyphRun(self: *const ID2D1RenderTarget, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1RenderTarget, @ptrCast(self)), baselineOrigin, glyphRun, foregroundBrush, measuringMode);
+    }
+    pub fn SetTransform(self: *const ID2D1RenderTarget, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1RenderTarget, @ptrCast(self)), transform);
+    }
+    pub fn GetTransform(self: *const ID2D1RenderTarget, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1RenderTarget, @ptrCast(self)), transform);
+    }
+    pub fn SetAntialiasMode(self: *const ID2D1RenderTarget, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)), antialiasMode);
+    }
+    pub fn GetAntialiasMode(self: *const ID2D1RenderTarget) callconv(.Inline) D2D1_ANTIALIAS_MODE {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn SetTextAntialiasMode(self: *const ID2D1RenderTarget, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)), textAntialiasMode);
+    }
+    pub fn GetTextAntialiasMode(self: *const ID2D1RenderTarget) callconv(.Inline) D2D1_TEXT_ANTIALIAS_MODE {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTextAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn SetTextRenderingParams(self: *const ID2D1RenderTarget, textRenderingParams: ?*IDWriteRenderingParams) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1RenderTarget, @ptrCast(self)), textRenderingParams);
+    }
+    pub fn GetTextRenderingParams(self: *const ID2D1RenderTarget, textRenderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTextRenderingParams(@as(*const ID2D1RenderTarget, @ptrCast(self)), textRenderingParams);
+    }
+    pub fn SetTags(self: *const ID2D1RenderTarget, tag1: u64, tag2: u64) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTags(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
+    }
+    pub fn GetTags(self: *const ID2D1RenderTarget, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTags(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
+    }
+    pub fn PushLayer(self: *const ID2D1RenderTarget, layerParameters: ?*const D2D1_LAYER_PARAMETERS, layer: ?*ID2D1Layer) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)), layerParameters, layer);
+    }
+    pub fn PopLayer(self: *const ID2D1RenderTarget) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PopLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn Flush(self: *const ID2D1RenderTarget, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).Flush(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
+    }
+    pub fn SaveDrawingState(self: *const ID2D1RenderTarget, drawingStateBlock: ?*ID2D1DrawingStateBlock) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SaveDrawingState(@as(*const ID2D1RenderTarget, @ptrCast(self)), drawingStateBlock);
+    }
+    pub fn RestoreDrawingState(self: *const ID2D1RenderTarget, drawingStateBlock: ?*ID2D1DrawingStateBlock) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).RestoreDrawingState(@as(*const ID2D1RenderTarget, @ptrCast(self)), drawingStateBlock);
+    }
+    pub fn PushAxisAlignedClip(self: *const ID2D1RenderTarget, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PushAxisAlignedClip(@as(*const ID2D1RenderTarget, @ptrCast(self)), clipRect, antialiasMode);
+    }
+    pub fn PopAxisAlignedClip(self: *const ID2D1RenderTarget) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PopAxisAlignedClip(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn Clear(self: *const ID2D1RenderTarget, clearColor: ?*const D2D1_COLOR_F) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1RenderTarget, @ptrCast(self)), clearColor);
+    }
+    pub fn BeginDraw(self: *const ID2D1RenderTarget) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn EndDraw(self: *const ID2D1RenderTarget, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
+    }
+    pub fn GetPixelFormat(self: *const ID2D1RenderTarget) callconv(.Inline) D2D1_PIXEL_FORMAT {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn SetDpi(self: *const ID2D1RenderTarget, dpiX: f32, dpiY: f32) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetDpi(@as(*const ID2D1RenderTarget, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn GetDpi(self: *const ID2D1RenderTarget, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1RenderTarget, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn GetSize(self: *const ID2D1RenderTarget) callconv(.Inline) D2D_SIZE_F {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn GetPixelSize(self: *const ID2D1RenderTarget) callconv(.Inline) D2D_SIZE_U {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetPixelSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn GetMaximumBitmapSize(self: *const ID2D1RenderTarget) callconv(.Inline) u32 {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetMaximumBitmapSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
+    }
+    pub fn IsSupported(self: *const ID2D1RenderTarget, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES) callconv(.Inline) BOOL {
+        return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ID2D1RenderTarget, @ptrCast(self)), renderTargetProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2427,7 +2847,10 @@ pub const ID2D1BitmapRenderTarget = extern union {
             return @as(*const ID2D1BitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapRenderTarget, @ptrCast(self)), bitmap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderTarget.MethodMixin(@This());
+    pub fn GetBitmap(self: *const ID2D1BitmapRenderTarget, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1BitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapRenderTarget, @ptrCast(self)), bitmap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2464,7 +2887,16 @@ pub const ID2D1HwndRenderTarget = extern union {
             return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).GetHwnd(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderTarget.MethodMixin(@This());
+    pub fn CheckWindowState(self: *const ID2D1HwndRenderTarget) callconv(.Inline) D2D1_WINDOW_STATE {
+        return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).CheckWindowState(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)));
+    }
+    pub fn Resize(self: *const ID2D1HwndRenderTarget, pixelSize: ?*const D2D_SIZE_U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).Resize(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)), pixelSize);
+    }
+    pub fn GetHwnd(self: *const ID2D1HwndRenderTarget) callconv(.Inline) ?HWND {
+        return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).GetHwnd(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2496,7 +2928,13 @@ pub const ID2D1GdiInteropRenderTarget = extern union {
             return @as(*const ID2D1GdiInteropRenderTarget.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const ID2D1GdiInteropRenderTarget, @ptrCast(self)), update);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDC(self: *const ID2D1GdiInteropRenderTarget, mode: D2D1_DC_INITIALIZE_MODE, hdc: ?*?HDC) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiInteropRenderTarget.VTable, @ptrCast(self.vtable)).GetDC(@as(*const ID2D1GdiInteropRenderTarget, @ptrCast(self)), mode, hdc);
+    }
+    pub fn ReleaseDC(self: *const ID2D1GdiInteropRenderTarget, update: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiInteropRenderTarget.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const ID2D1GdiInteropRenderTarget, @ptrCast(self)), update);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2520,7 +2958,10 @@ pub const ID2D1DCRenderTarget = extern union {
             return @as(*const ID2D1DCRenderTarget.VTable, @ptrCast(self.vtable)).BindDC(@as(*const ID2D1DCRenderTarget, @ptrCast(self)), hDC, pSubRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderTarget.MethodMixin(@This());
+    pub fn BindDC(self: *const ID2D1DCRenderTarget, hDC: ?HDC, pSubRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DCRenderTarget.VTable, @ptrCast(self.vtable)).BindDC(@as(*const ID2D1DCRenderTarget, @ptrCast(self)), hDC, pSubRect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2667,7 +3108,49 @@ pub const ID2D1Factory = extern union {
             return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDCRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), renderTargetProperties, dcRenderTarget);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReloadSystemMetrics(self: *const ID2D1Factory) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).ReloadSystemMetrics(@as(*const ID2D1Factory, @ptrCast(self)));
+    }
+    pub fn GetDesktopDpi(self: *const ID2D1Factory, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).GetDesktopDpi(@as(*const ID2D1Factory, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn CreateRectangleGeometry(self: *const ID2D1Factory, rectangle: ?*const D2D_RECT_F, rectangleGeometry: ?*?*ID2D1RectangleGeometry) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateRectangleGeometry(@as(*const ID2D1Factory, @ptrCast(self)), rectangle, rectangleGeometry);
+    }
+    pub fn CreateRoundedRectangleGeometry(self: *const ID2D1Factory, roundedRectangle: ?*const D2D1_ROUNDED_RECT, roundedRectangleGeometry: ?*?*ID2D1RoundedRectangleGeometry) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateRoundedRectangleGeometry(@as(*const ID2D1Factory, @ptrCast(self)), roundedRectangle, roundedRectangleGeometry);
+    }
+    pub fn CreateEllipseGeometry(self: *const ID2D1Factory, ellipse: ?*const D2D1_ELLIPSE, ellipseGeometry: ?*?*ID2D1EllipseGeometry) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateEllipseGeometry(@as(*const ID2D1Factory, @ptrCast(self)), ellipse, ellipseGeometry);
+    }
+    pub fn CreateGeometryGroup(self: *const ID2D1Factory, fillMode: D2D1_FILL_MODE, geometries: [*]?*ID2D1Geometry, geometriesCount: u32, geometryGroup: ?*?*ID2D1GeometryGroup) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateGeometryGroup(@as(*const ID2D1Factory, @ptrCast(self)), fillMode, geometries, geometriesCount, geometryGroup);
+    }
+    pub fn CreateTransformedGeometry(self: *const ID2D1Factory, sourceGeometry: ?*ID2D1Geometry, transform: ?*const D2D_MATRIX_3X2_F, transformedGeometry: ?*?*ID2D1TransformedGeometry) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateTransformedGeometry(@as(*const ID2D1Factory, @ptrCast(self)), sourceGeometry, transform, transformedGeometry);
+    }
+    pub fn CreatePathGeometry(self: *const ID2D1Factory, pathGeometry: ?*?*ID2D1PathGeometry) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1Factory, @ptrCast(self)), pathGeometry);
+    }
+    pub fn CreateStrokeStyle(self: *const ID2D1Factory, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateStrokeStyle(@as(*const ID2D1Factory, @ptrCast(self)), strokeStyleProperties, dashes, dashesCount, strokeStyle);
+    }
+    pub fn CreateDrawingStateBlock(self: *const ID2D1Factory, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDrawingStateBlock(@as(*const ID2D1Factory, @ptrCast(self)), drawingStateDescription, textRenderingParams, drawingStateBlock);
+    }
+    pub fn CreateWicBitmapRenderTarget(self: *const ID2D1Factory, target: ?*IWICBitmap, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateWicBitmapRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), target, renderTargetProperties, renderTarget);
+    }
+    pub fn CreateHwndRenderTarget(self: *const ID2D1Factory, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: ?*const D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: ?*?*ID2D1HwndRenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateHwndRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), renderTargetProperties, hwndRenderTargetProperties, hwndRenderTarget);
+    }
+    pub fn CreateDxgiSurfaceRenderTarget(self: *const ID2D1Factory, dxgiSurface: ?*IDXGISurface, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDxgiSurfaceRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), dxgiSurface, renderTargetProperties, renderTarget);
+    }
+    pub fn CreateDCRenderTarget(self: *const ID2D1Factory, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: ?*?*ID2D1DCRenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDCRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), renderTargetProperties, dcRenderTarget);
+    }
 };
 
 pub const D2D1_CHANNEL_SELECTOR = enum(u32) {
@@ -4161,7 +4644,10 @@ pub const ID2D1GdiMetafileSink = extern union {
             return @as(*const ID2D1GdiMetafileSink.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink, @ptrCast(self)), recordType, recordData, recordDataSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ProcessRecord(self: *const ID2D1GdiMetafileSink, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafileSink.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink, @ptrCast(self)), recordType, recordData, recordDataSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4192,7 +4678,13 @@ pub const ID2D1GdiMetafile = extern union {
             return @as(*const ID2D1GdiMetafile.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1GdiMetafile, @ptrCast(self)), bounds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn Stream(self: *const ID2D1GdiMetafile, sink: ?*ID2D1GdiMetafileSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafile.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1GdiMetafile, @ptrCast(self)), sink);
+    }
+    pub fn GetBounds(self: *const ID2D1GdiMetafile, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafile.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1GdiMetafile, @ptrCast(self)), bounds);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4437,7 +4929,82 @@ pub const ID2D1CommandSink = extern union {
             return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PopLayer(@as(*const ID2D1CommandSink, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BeginDraw(self: *const ID2D1CommandSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ID2D1CommandSink, @ptrCast(self)));
+    }
+    pub fn EndDraw(self: *const ID2D1CommandSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ID2D1CommandSink, @ptrCast(self)));
+    }
+    pub fn SetAntialiasMode(self: *const ID2D1CommandSink, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetAntialiasMode(@as(*const ID2D1CommandSink, @ptrCast(self)), antialiasMode);
+    }
+    pub fn SetTags(self: *const ID2D1CommandSink, tag1: u64, tag2: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTags(@as(*const ID2D1CommandSink, @ptrCast(self)), tag1, tag2);
+    }
+    pub fn SetTextAntialiasMode(self: *const ID2D1CommandSink, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const ID2D1CommandSink, @ptrCast(self)), textAntialiasMode);
+    }
+    pub fn SetTextRenderingParams(self: *const ID2D1CommandSink, textRenderingParams: ?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1CommandSink, @ptrCast(self)), textRenderingParams);
+    }
+    pub fn SetTransform(self: *const ID2D1CommandSink, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1CommandSink, @ptrCast(self)), transform);
+    }
+    pub fn SetPrimitiveBlend(self: *const ID2D1CommandSink, primitiveBlend: D2D1_PRIMITIVE_BLEND) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend(@as(*const ID2D1CommandSink, @ptrCast(self)), primitiveBlend);
+    }
+    pub fn SetUnitMode(self: *const ID2D1CommandSink, unitMode: D2D1_UNIT_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetUnitMode(@as(*const ID2D1CommandSink, @ptrCast(self)), unitMode);
+    }
+    pub fn Clear(self: *const ID2D1CommandSink, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1CommandSink, @ptrCast(self)), color);
+    }
+    pub fn DrawGlyphRun(self: *const ID2D1CommandSink, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1CommandSink, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
+    }
+    pub fn DrawLine(self: *const ID2D1CommandSink, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawLine(@as(*const ID2D1CommandSink, @ptrCast(self)), point0, point1, brush, strokeWidth, strokeStyle);
+    }
+    pub fn DrawGeometry(self: *const ID2D1CommandSink, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGeometry(@as(*const ID2D1CommandSink, @ptrCast(self)), geometry, brush, strokeWidth, strokeStyle);
+    }
+    pub fn DrawRectangle(self: *const ID2D1CommandSink, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawRectangle(@as(*const ID2D1CommandSink, @ptrCast(self)), rect, brush, strokeWidth, strokeStyle);
+    }
+    pub fn DrawBitmap(self: *const ID2D1CommandSink, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1CommandSink, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
+    }
+    pub fn DrawImage(self: *const ID2D1CommandSink, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawImage(@as(*const ID2D1CommandSink, @ptrCast(self)), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
+    }
+    pub fn DrawGdiMetafile(self: *const ID2D1CommandSink, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1CommandSink, @ptrCast(self)), gdiMetafile, targetOffset);
+    }
+    pub fn FillMesh(self: *const ID2D1CommandSink, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillMesh(@as(*const ID2D1CommandSink, @ptrCast(self)), mesh, brush);
+    }
+    pub fn FillOpacityMask(self: *const ID2D1CommandSink, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1CommandSink, @ptrCast(self)), opacityMask, brush, destinationRectangle, sourceRectangle);
+    }
+    pub fn FillGeometry(self: *const ID2D1CommandSink, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillGeometry(@as(*const ID2D1CommandSink, @ptrCast(self)), geometry, brush, opacityBrush);
+    }
+    pub fn FillRectangle(self: *const ID2D1CommandSink, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillRectangle(@as(*const ID2D1CommandSink, @ptrCast(self)), rect, brush);
+    }
+    pub fn PushAxisAlignedClip(self: *const ID2D1CommandSink, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PushAxisAlignedClip(@as(*const ID2D1CommandSink, @ptrCast(self)), clipRect, antialiasMode);
+    }
+    pub fn PushLayer(self: *const ID2D1CommandSink, layerParameters1: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1CommandSink, @ptrCast(self)), layerParameters1, layer);
+    }
+    pub fn PopAxisAlignedClip(self: *const ID2D1CommandSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PopAxisAlignedClip(@as(*const ID2D1CommandSink, @ptrCast(self)));
+    }
+    pub fn PopLayer(self: *const ID2D1CommandSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PopLayer(@as(*const ID2D1CommandSink, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4467,7 +5034,13 @@ pub const ID2D1CommandList = extern union {
             return @as(*const ID2D1CommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1CommandList, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Image.MethodMixin(@This());
+    pub fn Stream(self: *const ID2D1CommandList, sink: ?*ID2D1CommandSink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandList.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1CommandList, @ptrCast(self)), sink);
+    }
+    pub fn Close(self: *const ID2D1CommandList) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1CommandList, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4501,7 +5074,13 @@ pub const ID2D1PrintControl = extern union {
             return @as(*const ID2D1PrintControl.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1PrintControl, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddPage(self: *const ID2D1PrintControl, commandList: ?*ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ?*IStream, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PrintControl.VTable, @ptrCast(self.vtable)).AddPage(@as(*const ID2D1PrintControl, @ptrCast(self)), commandList, pageSize, pagePrintTicketStream, tag1, tag2);
+    }
+    pub fn Close(self: *const ID2D1PrintControl) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PrintControl.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1PrintControl, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4593,7 +5172,37 @@ pub const ID2D1ImageBrush = extern union {
             return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetSourceRectangle(@as(*const ID2D1ImageBrush, @ptrCast(self)), sourceRectangle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Brush.MethodMixin(@This());
+    pub fn SetImage(self: *const ID2D1ImageBrush, image: ?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetImage(@as(*const ID2D1ImageBrush, @ptrCast(self)), image);
+    }
+    pub fn SetExtendModeX(self: *const ID2D1ImageBrush, extendModeX: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1ImageBrush, @ptrCast(self)), extendModeX);
+    }
+    pub fn SetExtendModeY(self: *const ID2D1ImageBrush, extendModeY: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1ImageBrush, @ptrCast(self)), extendModeY);
+    }
+    pub fn SetInterpolationMode(self: *const ID2D1ImageBrush, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const ID2D1ImageBrush, @ptrCast(self)), interpolationMode);
+    }
+    pub fn SetSourceRectangle(self: *const ID2D1ImageBrush, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetSourceRectangle(@as(*const ID2D1ImageBrush, @ptrCast(self)), sourceRectangle);
+    }
+    pub fn GetImage(self: *const ID2D1ImageBrush, image: ?*?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetImage(@as(*const ID2D1ImageBrush, @ptrCast(self)), image);
+    }
+    pub fn GetExtendModeX(self: *const ID2D1ImageBrush) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1ImageBrush, @ptrCast(self)));
+    }
+    pub fn GetExtendModeY(self: *const ID2D1ImageBrush) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1ImageBrush, @ptrCast(self)));
+    }
+    pub fn GetInterpolationMode(self: *const ID2D1ImageBrush) callconv(.Inline) D2D1_INTERPOLATION_MODE {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetInterpolationMode(@as(*const ID2D1ImageBrush, @ptrCast(self)));
+    }
+    pub fn GetSourceRectangle(self: *const ID2D1ImageBrush, sourceRectangle: ?*D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetSourceRectangle(@as(*const ID2D1ImageBrush, @ptrCast(self)), sourceRectangle);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4623,7 +5232,13 @@ pub const ID2D1BitmapBrush1 = extern union {
             return @as(*const ID2D1BitmapBrush1.VTable, @ptrCast(self.vtable)).GetInterpolationMode1(@as(*const ID2D1BitmapBrush1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1BitmapBrush.MethodMixin(@This());
+    pub fn SetInterpolationMode1(self: *const ID2D1BitmapBrush1, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BitmapBrush1.VTable, @ptrCast(self.vtable)).SetInterpolationMode1(@as(*const ID2D1BitmapBrush1, @ptrCast(self)), interpolationMode);
+    }
+    pub fn GetInterpolationMode1(self: *const ID2D1BitmapBrush1) callconv(.Inline) D2D1_INTERPOLATION_MODE {
+        return @as(*const ID2D1BitmapBrush1.VTable, @ptrCast(self.vtable)).GetInterpolationMode1(@as(*const ID2D1BitmapBrush1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4645,7 +5260,10 @@ pub const ID2D1StrokeStyle1 = extern union {
             return @as(*const ID2D1StrokeStyle1.VTable, @ptrCast(self.vtable)).GetStrokeTransformType(@as(*const ID2D1StrokeStyle1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1StrokeStyle.MethodMixin(@This());
+    pub fn GetStrokeTransformType(self: *const ID2D1StrokeStyle1) callconv(.Inline) D2D1_STROKE_TRANSFORM_TYPE {
+        return @as(*const ID2D1StrokeStyle1.VTable, @ptrCast(self.vtable)).GetStrokeTransformType(@as(*const ID2D1StrokeStyle1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4672,7 +5290,10 @@ pub const ID2D1PathGeometry1 = extern union {
             return @as(*const ID2D1PathGeometry1.VTable, @ptrCast(self.vtable)).ComputePointAndSegmentAtLength(@as(*const ID2D1PathGeometry1, @ptrCast(self)), length, startSegment, worldTransform, flatteningTolerance, pointDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1PathGeometry.MethodMixin(@This());
+    pub fn ComputePointAndSegmentAtLength(self: *const ID2D1PathGeometry1, length: f32, startSegment: u32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: ?*D2D1_POINT_DESCRIPTION) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1PathGeometry1.VTable, @ptrCast(self.vtable)).ComputePointAndSegmentAtLength(@as(*const ID2D1PathGeometry1, @ptrCast(self)), length, startSegment, worldTransform, flatteningTolerance, pointDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4789,7 +5410,40 @@ pub const ID2D1Properties = extern union {
             return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetSubProperties(@as(*const ID2D1Properties, @ptrCast(self)), index, subProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPropertyCount(self: *const ID2D1Properties) callconv(.Inline) u32 {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyCount(@as(*const ID2D1Properties, @ptrCast(self)));
+    }
+    pub fn GetPropertyName(self: *const ID2D1Properties, index: u32, name: [*:0]u16, nameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyName(@as(*const ID2D1Properties, @ptrCast(self)), index, name, nameCount);
+    }
+    pub fn GetPropertyNameLength(self: *const ID2D1Properties, index: u32) callconv(.Inline) u32 {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyNameLength(@as(*const ID2D1Properties, @ptrCast(self)), index);
+    }
+    pub fn GetType(self: *const ID2D1Properties, index: u32) callconv(.Inline) D2D1_PROPERTY_TYPE {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID2D1Properties, @ptrCast(self)), index);
+    }
+    pub fn GetPropertyIndex(self: *const ID2D1Properties, name: ?[*:0]const u16) callconv(.Inline) u32 {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyIndex(@as(*const ID2D1Properties, @ptrCast(self)), name);
+    }
+    pub fn SetValueByName(self: *const ID2D1Properties, name: ?[*:0]const u16, @"type": D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).SetValueByName(@as(*const ID2D1Properties, @ptrCast(self)), name, @"type", data, dataSize);
+    }
+    pub fn SetValue(self: *const ID2D1Properties, index: u32, @"type": D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ID2D1Properties, @ptrCast(self)), index, @"type", data, dataSize);
+    }
+    pub fn GetValueByName(self: *const ID2D1Properties, name: ?[*:0]const u16, @"type": D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValueByName(@as(*const ID2D1Properties, @ptrCast(self)), name, @"type", data, dataSize);
+    }
+    pub fn GetValue(self: *const ID2D1Properties, index: u32, @"type": D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ID2D1Properties, @ptrCast(self)), index, @"type", data, dataSize);
+    }
+    pub fn GetValueSize(self: *const ID2D1Properties, index: u32) callconv(.Inline) u32 {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValueSize(@as(*const ID2D1Properties, @ptrCast(self)), index);
+    }
+    pub fn GetSubProperties(self: *const ID2D1Properties, index: u32, subProperties: ?*?*ID2D1Properties) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetSubProperties(@as(*const ID2D1Properties, @ptrCast(self)), index, subProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4846,7 +5500,22 @@ pub const ID2D1Effect = extern union {
             return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const ID2D1Effect, @ptrCast(self)), outputImage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Properties.MethodMixin(@This());
+    pub fn SetInput(self: *const ID2D1Effect, index: u32, input: ?*ID2D1Image, invalidate: BOOL) callconv(.Inline) void {
+        return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).SetInput(@as(*const ID2D1Effect, @ptrCast(self)), index, input, invalidate);
+    }
+    pub fn SetInputCount(self: *const ID2D1Effect, inputCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).SetInputCount(@as(*const ID2D1Effect, @ptrCast(self)), inputCount);
+    }
+    pub fn GetInput(self: *const ID2D1Effect, index: u32, input: ?*?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetInput(@as(*const ID2D1Effect, @ptrCast(self)), index, input);
+    }
+    pub fn GetInputCount(self: *const ID2D1Effect) callconv(.Inline) u32 {
+        return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1Effect, @ptrCast(self)));
+    }
+    pub fn GetOutput(self: *const ID2D1Effect, outputImage: ?*?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const ID2D1Effect, @ptrCast(self)), outputImage);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4900,7 +5569,22 @@ pub const ID2D1Bitmap1 = extern union {
             return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1Bitmap1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Bitmap.MethodMixin(@This());
+    pub fn GetColorContext(self: *const ID2D1Bitmap1, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) void {
+        return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetColorContext(@as(*const ID2D1Bitmap1, @ptrCast(self)), colorContext);
+    }
+    pub fn GetOptions(self: *const ID2D1Bitmap1) callconv(.Inline) D2D1_BITMAP_OPTIONS {
+        return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const ID2D1Bitmap1, @ptrCast(self)));
+    }
+    pub fn GetSurface(self: *const ID2D1Bitmap1, dxgiSurface: ?*?*IDXGISurface) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetSurface(@as(*const ID2D1Bitmap1, @ptrCast(self)), dxgiSurface);
+    }
+    pub fn Map(self: *const ID2D1Bitmap1, options: D2D1_MAP_OPTIONS, mappedRect: ?*D2D1_MAPPED_RECT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).Map(@as(*const ID2D1Bitmap1, @ptrCast(self)), options, mappedRect);
+    }
+    pub fn Unmap(self: *const ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1Bitmap1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4938,7 +5622,16 @@ pub const ID2D1ColorContext = extern union {
             return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const ID2D1ColorContext, @ptrCast(self)), profile, profileSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetColorSpace(self: *const ID2D1ColorContext) callconv(.Inline) D2D1_COLOR_SPACE {
+        return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetColorSpace(@as(*const ID2D1ColorContext, @ptrCast(self)));
+    }
+    pub fn GetProfileSize(self: *const ID2D1ColorContext) callconv(.Inline) u32 {
+        return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetProfileSize(@as(*const ID2D1ColorContext, @ptrCast(self)));
+    }
+    pub fn GetProfile(self: *const ID2D1ColorContext, profile: [*:0]u8, profileSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const ID2D1ColorContext, @ptrCast(self)), profile, profileSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4990,7 +5683,22 @@ pub const ID2D1GradientStopCollection1 = extern union {
             return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1GradientStopCollection.MethodMixin(@This());
+    pub fn GetGradientStops1(self: *const ID2D1GradientStopCollection1, gradientStops: [*]D2D1_GRADIENT_STOP, gradientStopsCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetGradientStops1(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)), gradientStops, gradientStopsCount);
+    }
+    pub fn GetPreInterpolationSpace(self: *const ID2D1GradientStopCollection1) callconv(.Inline) D2D1_COLOR_SPACE {
+        return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetPreInterpolationSpace(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
+    }
+    pub fn GetPostInterpolationSpace(self: *const ID2D1GradientStopCollection1) callconv(.Inline) D2D1_COLOR_SPACE {
+        return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetPostInterpolationSpace(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
+    }
+    pub fn GetBufferPrecision(self: *const ID2D1GradientStopCollection1) callconv(.Inline) D2D1_BUFFER_PRECISION {
+        return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetBufferPrecision(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
+    }
+    pub fn GetColorInterpolationMode(self: *const ID2D1GradientStopCollection1) callconv(.Inline) D2D1_COLOR_INTERPOLATION_MODE {
+        return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5021,7 +5729,13 @@ pub const ID2D1DrawingStateBlock1 = extern union {
             return @as(*const ID2D1DrawingStateBlock1.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1DrawingStateBlock1, @ptrCast(self)), stateDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DrawingStateBlock.MethodMixin(@This());
+    pub fn GetDescription(self: *const ID2D1DrawingStateBlock1, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock1.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1DrawingStateBlock1, @ptrCast(self)), stateDescription);
+    }
+    pub fn SetDescription(self: *const ID2D1DrawingStateBlock1, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
+        return @as(*const ID2D1DrawingStateBlock1.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1DrawingStateBlock1, @ptrCast(self)), stateDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5373,7 +6087,112 @@ pub const ID2D1DeviceContext = extern union {
             return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1DeviceContext, @ptrCast(self)), opacityMask, brush, destinationRectangle, sourceRectangle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderTarget.MethodMixin(@This());
+    pub fn CreateBitmap(self: *const ID2D1DeviceContext, size: D2D_SIZE_U, sourceData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), size, sourceData, pitch, bitmapProperties, bitmap);
+    }
+    pub fn CreateBitmapFromWicBitmap(self: *const ID2D1DeviceContext, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapFromWicBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), wicBitmapSource, bitmapProperties, bitmap);
+    }
+    pub fn CreateColorContext(self: *const ID2D1DeviceContext, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContext(@as(*const ID2D1DeviceContext, @ptrCast(self)), space, profile, profileSize, colorContext);
+    }
+    pub fn CreateColorContextFromFilename(self: *const ID2D1DeviceContext, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromFilename(@as(*const ID2D1DeviceContext, @ptrCast(self)), filename, colorContext);
+    }
+    pub fn CreateColorContextFromWicColorContext(self: *const ID2D1DeviceContext, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromWicColorContext(@as(*const ID2D1DeviceContext, @ptrCast(self)), wicColorContext, colorContext);
+    }
+    pub fn CreateBitmapFromDxgiSurface(self: *const ID2D1DeviceContext, surface: ?*IDXGISurface, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapFromDxgiSurface(@as(*const ID2D1DeviceContext, @ptrCast(self)), surface, bitmapProperties, bitmap);
+    }
+    pub fn CreateEffect(self: *const ID2D1DeviceContext, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const ID2D1DeviceContext, @ptrCast(self)), effectId, effect);
+    }
+    pub fn CreateGradientStopCollection(self: *const ID2D1DeviceContext, straightAlphaGradientStops: [*]const D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: ?*?*ID2D1GradientStopCollection1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateGradientStopCollection(@as(*const ID2D1DeviceContext, @ptrCast(self)), straightAlphaGradientStops, straightAlphaGradientStopsCount, preInterpolationSpace, postInterpolationSpace, bufferPrecision, extendMode, colorInterpolationMode, gradientStopCollection1);
+    }
+    pub fn CreateImageBrush(self: *const ID2D1DeviceContext, image: ?*ID2D1Image, imageBrushProperties: ?*const D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, imageBrush: ?*?*ID2D1ImageBrush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateImageBrush(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, imageBrushProperties, brushProperties, imageBrush);
+    }
+    pub fn CreateBitmapBrush(self: *const ID2D1DeviceContext, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapBrush(@as(*const ID2D1DeviceContext, @ptrCast(self)), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
+    }
+    pub fn CreateCommandList(self: *const ID2D1DeviceContext, commandList: ?*?*ID2D1CommandList) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID2D1DeviceContext, @ptrCast(self)), commandList);
+    }
+    pub fn IsDxgiFormatSupported(self: *const ID2D1DeviceContext, format: DXGI_FORMAT) callconv(.Inline) BOOL {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).IsDxgiFormatSupported(@as(*const ID2D1DeviceContext, @ptrCast(self)), format);
+    }
+    pub fn IsBufferPrecisionSupported(self: *const ID2D1DeviceContext, bufferPrecision: D2D1_BUFFER_PRECISION) callconv(.Inline) BOOL {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).IsBufferPrecisionSupported(@as(*const ID2D1DeviceContext, @ptrCast(self)), bufferPrecision);
+    }
+    pub fn GetImageLocalBounds(self: *const ID2D1DeviceContext, image: ?*ID2D1Image, localBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetImageLocalBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, localBounds);
+    }
+    pub fn GetImageWorldBounds(self: *const ID2D1DeviceContext, image: ?*ID2D1Image, worldBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetImageWorldBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, worldBounds);
+    }
+    pub fn GetGlyphRunWorldBounds(self: *const ID2D1DeviceContext, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetGlyphRunWorldBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), baselineOrigin, glyphRun, measuringMode, bounds);
+    }
+    pub fn GetDevice(self: *const ID2D1DeviceContext, device: ?*?*ID2D1Device) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID2D1DeviceContext, @ptrCast(self)), device);
+    }
+    pub fn SetTarget(self: *const ID2D1DeviceContext, image: ?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetTarget(@as(*const ID2D1DeviceContext, @ptrCast(self)), image);
+    }
+    pub fn GetTarget(self: *const ID2D1DeviceContext, image: ?*?*ID2D1Image) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetTarget(@as(*const ID2D1DeviceContext, @ptrCast(self)), image);
+    }
+    pub fn SetRenderingControls(self: *const ID2D1DeviceContext, renderingControls: ?*const D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetRenderingControls(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderingControls);
+    }
+    pub fn GetRenderingControls(self: *const ID2D1DeviceContext, renderingControls: ?*D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetRenderingControls(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderingControls);
+    }
+    pub fn SetPrimitiveBlend(self: *const ID2D1DeviceContext, primitiveBlend: D2D1_PRIMITIVE_BLEND) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend(@as(*const ID2D1DeviceContext, @ptrCast(self)), primitiveBlend);
+    }
+    pub fn GetPrimitiveBlend(self: *const ID2D1DeviceContext) callconv(.Inline) D2D1_PRIMITIVE_BLEND {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetPrimitiveBlend(@as(*const ID2D1DeviceContext, @ptrCast(self)));
+    }
+    pub fn SetUnitMode(self: *const ID2D1DeviceContext, unitMode: D2D1_UNIT_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetUnitMode(@as(*const ID2D1DeviceContext, @ptrCast(self)), unitMode);
+    }
+    pub fn GetUnitMode(self: *const ID2D1DeviceContext) callconv(.Inline) D2D1_UNIT_MODE {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetUnitMode(@as(*const ID2D1DeviceContext, @ptrCast(self)));
+    }
+    pub fn DrawGlyphRun(self: *const ID2D1DeviceContext, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1DeviceContext, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
+    }
+    pub fn DrawImage(self: *const ID2D1DeviceContext, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawImage(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
+    }
+    pub fn DrawGdiMetafile(self: *const ID2D1DeviceContext, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1DeviceContext, @ptrCast(self)), gdiMetafile, targetOffset);
+    }
+    pub fn DrawBitmap(self: *const ID2D1DeviceContext, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
+    }
+    pub fn PushLayer(self: *const ID2D1DeviceContext, layerParameters: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1DeviceContext, @ptrCast(self)), layerParameters, layer);
+    }
+    pub fn InvalidateEffectInputRectangle(self: *const ID2D1DeviceContext, effect: ?*ID2D1Effect, input: u32, inputRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).InvalidateEffectInputRectangle(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, input, inputRectangle);
+    }
+    pub fn GetEffectInvalidRectangleCount(self: *const ID2D1DeviceContext, effect: ?*ID2D1Effect, rectangleCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectInvalidRectangleCount(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, rectangleCount);
+    }
+    pub fn GetEffectInvalidRectangles(self: *const ID2D1DeviceContext, effect: ?*ID2D1Effect, rectangles: [*]D2D_RECT_F, rectanglesCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectInvalidRectangles(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, rectangles, rectanglesCount);
+    }
+    pub fn GetEffectRequiredInputRectangles(self: *const ID2D1DeviceContext, renderEffect: ?*ID2D1Effect, renderImageRectangle: ?*const D2D_RECT_F, inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: [*]D2D_RECT_F, inputCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectRequiredInputRectangles(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderEffect, renderImageRectangle, inputDescriptions, requiredInputRects, inputCount);
+    }
+    pub fn FillOpacityMask(self: *const ID2D1DeviceContext, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1DeviceContext, @ptrCast(self)), opacityMask, brush, destinationRectangle, sourceRectangle);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5431,7 +6250,22 @@ pub const ID2D1Device = extern union {
             return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).ClearResources(@as(*const ID2D1Device, @ptrCast(self)), millisecondsSinceUse);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: ?*?*ID2D1DeviceContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device, @ptrCast(self)), options, deviceContext);
+    }
+    pub fn CreatePrintControl(self: *const ID2D1Device, wicFactory: ?*IWICImagingFactory, documentTarget: ?*IPrintDocumentPackageTarget, printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES, printControl: ?*?*ID2D1PrintControl) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).CreatePrintControl(@as(*const ID2D1Device, @ptrCast(self)), wicFactory, documentTarget, printControlProperties, printControl);
+    }
+    pub fn SetMaximumTextureMemory(self: *const ID2D1Device, maximumInBytes: u64) callconv(.Inline) void {
+        return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).SetMaximumTextureMemory(@as(*const ID2D1Device, @ptrCast(self)), maximumInBytes);
+    }
+    pub fn GetMaximumTextureMemory(self: *const ID2D1Device) callconv(.Inline) u64 {
+        return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).GetMaximumTextureMemory(@as(*const ID2D1Device, @ptrCast(self)));
+    }
+    pub fn ClearResources(self: *const ID2D1Device, millisecondsSinceUse: u32) callconv(.Inline) void {
+        return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).ClearResources(@as(*const ID2D1Device, @ptrCast(self)), millisecondsSinceUse);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5545,7 +6379,37 @@ pub const ID2D1Factory1 = extern union {
             return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).GetEffectProperties(@as(*const ID2D1Factory1, @ptrCast(self)), effectId, properties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory1, dxgiDevice: ?*IDXGIDevice, d2dDevice: ?*?*ID2D1Device) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory1, @ptrCast(self)), dxgiDevice, d2dDevice);
+    }
+    pub fn CreateStrokeStyle(self: *const ID2D1Factory1, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES1, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateStrokeStyle(@as(*const ID2D1Factory1, @ptrCast(self)), strokeStyleProperties, dashes, dashesCount, strokeStyle);
+    }
+    pub fn CreatePathGeometry(self: *const ID2D1Factory1, pathGeometry: ?*?*ID2D1PathGeometry1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1Factory1, @ptrCast(self)), pathGeometry);
+    }
+    pub fn CreateDrawingStateBlock(self: *const ID2D1Factory1, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateDrawingStateBlock(@as(*const ID2D1Factory1, @ptrCast(self)), drawingStateDescription, textRenderingParams, drawingStateBlock);
+    }
+    pub fn CreateGdiMetafile(self: *const ID2D1Factory1, metafileStream: ?*IStream, metafile: ?*?*ID2D1GdiMetafile) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateGdiMetafile(@as(*const ID2D1Factory1, @ptrCast(self)), metafileStream, metafile);
+    }
+    pub fn RegisterEffectFromStream(self: *const ID2D1Factory1, classId: ?*const Guid, propertyXml: ?*IStream, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).RegisterEffectFromStream(@as(*const ID2D1Factory1, @ptrCast(self)), classId, propertyXml, bindings, bindingsCount, effectFactory);
+    }
+    pub fn RegisterEffectFromString(self: *const ID2D1Factory1, classId: ?*const Guid, propertyXml: ?[*:0]const u16, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).RegisterEffectFromString(@as(*const ID2D1Factory1, @ptrCast(self)), classId, propertyXml, bindings, bindingsCount, effectFactory);
+    }
+    pub fn UnregisterEffect(self: *const ID2D1Factory1, classId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).UnregisterEffect(@as(*const ID2D1Factory1, @ptrCast(self)), classId);
+    }
+    pub fn GetRegisteredEffects(self: *const ID2D1Factory1, effects: ?[*]Guid, effectsCount: u32, effectsReturned: ?*u32, effectsRegistered: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).GetRegisteredEffects(@as(*const ID2D1Factory1, @ptrCast(self)), effects, effectsCount, effectsReturned, effectsRegistered);
+    }
+    pub fn GetEffectProperties(self: *const ID2D1Factory1, effectId: ?*const Guid, properties: ?*?*ID2D1Properties) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).GetEffectProperties(@as(*const ID2D1Factory1, @ptrCast(self)), effectId, properties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5581,7 +6445,16 @@ pub const ID2D1Multithread = extern union {
             return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID2D1Multithread, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetMultithreadProtected(self: *const ID2D1Multithread) callconv(.Inline) BOOL {
+        return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID2D1Multithread, @ptrCast(self)));
+    }
+    pub fn Enter(self: *const ID2D1Multithread) callconv(.Inline) void {
+        return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).Enter(@as(*const ID2D1Multithread, @ptrCast(self)));
+    }
+    pub fn Leave(self: *const ID2D1Multithread) callconv(.Inline) void {
+        return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID2D1Multithread, @ptrCast(self)));
+    }
 };
 
 pub const Matrix4x3F = extern struct {
@@ -6021,7 +6894,13 @@ pub const ID2D1VertexBuffer = extern union {
             return @as(*const ID2D1VertexBuffer.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1VertexBuffer, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Map(self: *const ID2D1VertexBuffer, data: ?*?*u8, bufferSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1VertexBuffer.VTable, @ptrCast(self.vtable)).Map(@as(*const ID2D1VertexBuffer, @ptrCast(self)), data, bufferSize);
+    }
+    pub fn Unmap(self: *const ID2D1VertexBuffer) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1VertexBuffer.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1VertexBuffer, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6049,7 +6928,10 @@ pub const ID2D1ResourceTexture = extern union {
             return @as(*const ID2D1ResourceTexture.VTable, @ptrCast(self.vtable)).Update(@as(*const ID2D1ResourceTexture, @ptrCast(self)), minimumExtents, maximimumExtents, strides, dimensions, data, dataCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Update(self: *const ID2D1ResourceTexture, minimumExtents: ?[*]const u32, maximimumExtents: ?[*]const u32, strides: ?*const u32, dimensions: u32, data: [*:0]const u8, dataCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ResourceTexture.VTable, @ptrCast(self.vtable)).Update(@as(*const ID2D1ResourceTexture, @ptrCast(self)), minimumExtents, maximimumExtents, strides, dimensions, data, dataCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6098,7 +6980,19 @@ pub const ID2D1RenderInfo = extern union {
             return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetInstructionCountHint(@as(*const ID2D1RenderInfo, @ptrCast(self)), instructionCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInputDescription(self: *const ID2D1RenderInfo, inputIndex: u32, inputDescription: D2D1_INPUT_DESCRIPTION) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetInputDescription(@as(*const ID2D1RenderInfo, @ptrCast(self)), inputIndex, inputDescription);
+    }
+    pub fn SetOutputBuffer(self: *const ID2D1RenderInfo, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetOutputBuffer(@as(*const ID2D1RenderInfo, @ptrCast(self)), bufferPrecision, channelDepth);
+    }
+    pub fn SetCached(self: *const ID2D1RenderInfo, isCached: BOOL) callconv(.Inline) void {
+        return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetCached(@as(*const ID2D1RenderInfo, @ptrCast(self)), isCached);
+    }
+    pub fn SetInstructionCountHint(self: *const ID2D1RenderInfo, instructionCount: u32) callconv(.Inline) void {
+        return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetInstructionCountHint(@as(*const ID2D1RenderInfo, @ptrCast(self)), instructionCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6161,7 +7055,22 @@ pub const ID2D1DrawInfo = extern union {
             return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetVertexProcessing(@as(*const ID2D1DrawInfo, @ptrCast(self)), vertexBuffer, vertexOptions, blendDescription, vertexRange, vertexShader);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderInfo.MethodMixin(@This());
+    pub fn SetPixelShaderConstantBuffer(self: *const ID2D1DrawInfo, buffer: [*:0]const u8, bufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantBuffer(@as(*const ID2D1DrawInfo, @ptrCast(self)), buffer, bufferCount);
+    }
+    pub fn SetResourceTexture(self: *const ID2D1DrawInfo, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetResourceTexture(@as(*const ID2D1DrawInfo, @ptrCast(self)), textureIndex, resourceTexture);
+    }
+    pub fn SetVertexShaderConstantBuffer(self: *const ID2D1DrawInfo, buffer: [*:0]const u8, bufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantBuffer(@as(*const ID2D1DrawInfo, @ptrCast(self)), buffer, bufferCount);
+    }
+    pub fn SetPixelShader(self: *const ID2D1DrawInfo, shaderId: ?*const Guid, pixelOptions: D2D1_PIXEL_OPTIONS) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetPixelShader(@as(*const ID2D1DrawInfo, @ptrCast(self)), shaderId, pixelOptions);
+    }
+    pub fn SetVertexProcessing(self: *const ID2D1DrawInfo, vertexBuffer: ?*ID2D1VertexBuffer, vertexOptions: D2D1_VERTEX_OPTIONS, blendDescription: ?*const D2D1_BLEND_DESCRIPTION, vertexRange: ?*const D2D1_VERTEX_RANGE, vertexShader: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetVertexProcessing(@as(*const ID2D1DrawInfo, @ptrCast(self)), vertexBuffer, vertexOptions, blendDescription, vertexRange, vertexShader);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6202,7 +7111,16 @@ pub const ID2D1ComputeInfo = extern union {
             return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetResourceTexture(@as(*const ID2D1ComputeInfo, @ptrCast(self)), textureIndex, resourceTexture);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1RenderInfo.MethodMixin(@This());
+    pub fn SetComputeShaderConstantBuffer(self: *const ID2D1ComputeInfo, buffer: [*:0]const u8, bufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetComputeShaderConstantBuffer(@as(*const ID2D1ComputeInfo, @ptrCast(self)), buffer, bufferCount);
+    }
+    pub fn SetComputeShader(self: *const ID2D1ComputeInfo, shaderId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetComputeShader(@as(*const ID2D1ComputeInfo, @ptrCast(self)), shaderId);
+    }
+    pub fn SetResourceTexture(self: *const ID2D1ComputeInfo, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetResourceTexture(@as(*const ID2D1ComputeInfo, @ptrCast(self)), textureIndex, resourceTexture);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6224,7 +7142,10 @@ pub const ID2D1TransformNode = extern union {
             return @as(*const ID2D1TransformNode.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1TransformNode, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInputCount(self: *const ID2D1TransformNode) callconv(.Inline) u32 {
+        return @as(*const ID2D1TransformNode.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1TransformNode, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6313,7 +7234,34 @@ pub const ID2D1TransformGraph = extern union {
             return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetPassthroughGraph(@as(*const ID2D1TransformGraph, @ptrCast(self)), effectInputIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInputCount(self: *const ID2D1TransformGraph) callconv(.Inline) u32 {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1TransformGraph, @ptrCast(self)));
+    }
+    pub fn SetSingleTransformNode(self: *const ID2D1TransformGraph, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetSingleTransformNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
+    }
+    pub fn AddNode(self: *const ID2D1TransformGraph, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).AddNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
+    }
+    pub fn RemoveNode(self: *const ID2D1TransformGraph, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).RemoveNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
+    }
+    pub fn SetOutputNode(self: *const ID2D1TransformGraph, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetOutputNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
+    }
+    pub fn ConnectNode(self: *const ID2D1TransformGraph, fromNode: ?*ID2D1TransformNode, toNode: ?*ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).ConnectNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), fromNode, toNode, toNodeInputIndex);
+    }
+    pub fn ConnectToEffectInput(self: *const ID2D1TransformGraph, toEffectInputIndex: u32, node: ?*ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).ConnectToEffectInput(@as(*const ID2D1TransformGraph, @ptrCast(self)), toEffectInputIndex, node, toNodeInputIndex);
+    }
+    pub fn Clear(self: *const ID2D1TransformGraph) callconv(.Inline) void {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1TransformGraph, @ptrCast(self)));
+    }
+    pub fn SetPassthroughGraph(self: *const ID2D1TransformGraph, effectInputIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetPassthroughGraph(@as(*const ID2D1TransformGraph, @ptrCast(self)), effectInputIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6360,7 +7308,16 @@ pub const ID2D1Transform = extern union {
             return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapInvalidRect(@as(*const ID2D1Transform, @ptrCast(self)), inputIndex, invalidInputRect, invalidOutputRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1TransformNode.MethodMixin(@This());
+    pub fn MapOutputRectToInputRects(self: *const ID2D1Transform, outputRect: ?*const RECT, inputRects: [*]RECT, inputRectsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapOutputRectToInputRects(@as(*const ID2D1Transform, @ptrCast(self)), outputRect, inputRects, inputRectsCount);
+    }
+    pub fn MapInputRectsToOutputRect(self: *const ID2D1Transform, inputRects: [*]const RECT, inputOpaqueSubRects: [*]const RECT, inputRectCount: u32, outputRect: ?*RECT, outputOpaqueSubRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapInputRectsToOutputRect(@as(*const ID2D1Transform, @ptrCast(self)), inputRects, inputOpaqueSubRects, inputRectCount, outputRect, outputOpaqueSubRect);
+    }
+    pub fn MapInvalidRect(self: *const ID2D1Transform, inputIndex: u32, invalidInputRect: RECT, invalidOutputRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapInvalidRect(@as(*const ID2D1Transform, @ptrCast(self)), inputIndex, invalidInputRect, invalidOutputRect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6383,7 +7340,10 @@ pub const ID2D1DrawTransform = extern union {
             return @as(*const ID2D1DrawTransform.VTable, @ptrCast(self.vtable)).SetDrawInfo(@as(*const ID2D1DrawTransform, @ptrCast(self)), drawInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Transform.MethodMixin(@This());
+    pub fn SetDrawInfo(self: *const ID2D1DrawTransform, drawInfo: ?*ID2D1DrawInfo) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DrawTransform.VTable, @ptrCast(self.vtable)).SetDrawInfo(@as(*const ID2D1DrawTransform, @ptrCast(self)), drawInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6417,7 +7377,13 @@ pub const ID2D1ComputeTransform = extern union {
             return @as(*const ID2D1ComputeTransform.VTable, @ptrCast(self.vtable)).CalculateThreadgroups(@as(*const ID2D1ComputeTransform, @ptrCast(self)), outputRect, dimensionX, dimensionY, dimensionZ);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Transform.MethodMixin(@This());
+    pub fn SetComputeInfo(self: *const ID2D1ComputeTransform, computeInfo: ?*ID2D1ComputeInfo) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ComputeTransform.VTable, @ptrCast(self.vtable)).SetComputeInfo(@as(*const ID2D1ComputeTransform, @ptrCast(self)), computeInfo);
+    }
+    pub fn CalculateThreadgroups(self: *const ID2D1ComputeTransform, outputRect: ?*const RECT, dimensionX: ?*u32, dimensionY: ?*u32, dimensionZ: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ComputeTransform.VTable, @ptrCast(self.vtable)).CalculateThreadgroups(@as(*const ID2D1ComputeTransform, @ptrCast(self)), outputRect, dimensionX, dimensionY, dimensionZ);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6441,7 +7407,10 @@ pub const ID2D1AnalysisTransform = extern union {
             return @as(*const ID2D1AnalysisTransform.VTable, @ptrCast(self.vtable)).ProcessAnalysisResults(@as(*const ID2D1AnalysisTransform, @ptrCast(self)), analysisData, analysisDataCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ProcessAnalysisResults(self: *const ID2D1AnalysisTransform, analysisData: [*:0]const u8, analysisDataCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1AnalysisTransform.VTable, @ptrCast(self.vtable)).ProcessAnalysisResults(@as(*const ID2D1AnalysisTransform, @ptrCast(self)), analysisData, analysisDataCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6474,7 +7443,13 @@ pub const ID2D1SourceTransform = extern union {
             return @as(*const ID2D1SourceTransform.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID2D1SourceTransform, @ptrCast(self)), target, drawRect, targetOrigin);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Transform.MethodMixin(@This());
+    pub fn SetRenderInfo(self: *const ID2D1SourceTransform, renderInfo: ?*ID2D1RenderInfo) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SourceTransform.VTable, @ptrCast(self.vtable)).SetRenderInfo(@as(*const ID2D1SourceTransform, @ptrCast(self)), renderInfo);
+    }
+    pub fn Draw(self: *const ID2D1SourceTransform, target: ?*ID2D1Bitmap1, drawRect: ?*const RECT, targetOrigin: D2D_POINT_2U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SourceTransform.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID2D1SourceTransform, @ptrCast(self)), target, drawRect, targetOrigin);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6506,7 +7481,13 @@ pub const ID2D1ConcreteTransform = extern union {
             return @as(*const ID2D1ConcreteTransform.VTable, @ptrCast(self.vtable)).SetCached(@as(*const ID2D1ConcreteTransform, @ptrCast(self)), isCached);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1TransformNode.MethodMixin(@This());
+    pub fn SetOutputBuffer(self: *const ID2D1ConcreteTransform, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ConcreteTransform.VTable, @ptrCast(self.vtable)).SetOutputBuffer(@as(*const ID2D1ConcreteTransform, @ptrCast(self)), bufferPrecision, channelDepth);
+    }
+    pub fn SetCached(self: *const ID2D1ConcreteTransform, isCached: BOOL) callconv(.Inline) void {
+        return @as(*const ID2D1ConcreteTransform.VTable, @ptrCast(self.vtable)).SetCached(@as(*const ID2D1ConcreteTransform, @ptrCast(self)), isCached);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6537,7 +7518,13 @@ pub const ID2D1BlendTransform = extern union {
             return @as(*const ID2D1BlendTransform.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1BlendTransform, @ptrCast(self)), description);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1ConcreteTransform.MethodMixin(@This());
+    pub fn SetDescription(self: *const ID2D1BlendTransform, description: ?*const D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
+        return @as(*const ID2D1BlendTransform.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1BlendTransform, @ptrCast(self)), description);
+    }
+    pub fn GetDescription(self: *const ID2D1BlendTransform, description: ?*D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
+        return @as(*const ID2D1BlendTransform.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1BlendTransform, @ptrCast(self)), description);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6582,7 +7569,19 @@ pub const ID2D1BorderTransform = extern union {
             return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1BorderTransform, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1ConcreteTransform.MethodMixin(@This());
+    pub fn SetExtendModeX(self: *const ID2D1BorderTransform, extendMode: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1BorderTransform, @ptrCast(self)), extendMode);
+    }
+    pub fn SetExtendModeY(self: *const ID2D1BorderTransform, extendMode: D2D1_EXTEND_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1BorderTransform, @ptrCast(self)), extendMode);
+    }
+    pub fn GetExtendModeX(self: *const ID2D1BorderTransform) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1BorderTransform, @ptrCast(self)));
+    }
+    pub fn GetExtendModeY(self: *const ID2D1BorderTransform) callconv(.Inline) D2D1_EXTEND_MODE {
+        return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1BorderTransform, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6612,7 +7611,13 @@ pub const ID2D1OffsetTransform = extern union {
             return @as(*const ID2D1OffsetTransform.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const ID2D1OffsetTransform, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1TransformNode.MethodMixin(@This());
+    pub fn SetOffset(self: *const ID2D1OffsetTransform, offset: POINT) callconv(.Inline) void {
+        return @as(*const ID2D1OffsetTransform.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const ID2D1OffsetTransform, @ptrCast(self)), offset);
+    }
+    pub fn GetOffset(self: *const ID2D1OffsetTransform) callconv(.Inline) POINT {
+        return @as(*const ID2D1OffsetTransform.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const ID2D1OffsetTransform, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1BoundsAdjustmentTransform_Value = Guid.initString("90f732e2-5092-4606-a819-8651970baccd");
@@ -6642,7 +7647,13 @@ pub const ID2D1BoundsAdjustmentTransform = extern union {
             return @as(*const ID2D1BoundsAdjustmentTransform.VTable, @ptrCast(self.vtable)).GetOutputBounds(@as(*const ID2D1BoundsAdjustmentTransform, @ptrCast(self)), outputBounds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1TransformNode.MethodMixin(@This());
+    pub fn SetOutputBounds(self: *const ID2D1BoundsAdjustmentTransform, outputBounds: ?*const RECT) callconv(.Inline) void {
+        return @as(*const ID2D1BoundsAdjustmentTransform.VTable, @ptrCast(self.vtable)).SetOutputBounds(@as(*const ID2D1BoundsAdjustmentTransform, @ptrCast(self)), outputBounds);
+    }
+    pub fn GetOutputBounds(self: *const ID2D1BoundsAdjustmentTransform, outputBounds: ?*RECT) callconv(.Inline) void {
+        return @as(*const ID2D1BoundsAdjustmentTransform.VTable, @ptrCast(self.vtable)).GetOutputBounds(@as(*const ID2D1BoundsAdjustmentTransform, @ptrCast(self)), outputBounds);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6682,7 +7693,16 @@ pub const ID2D1EffectImpl = extern union {
             return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).SetGraph(@as(*const ID2D1EffectImpl, @ptrCast(self)), transformGraph);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const ID2D1EffectImpl, effectContext: ?*ID2D1EffectContext, transformGraph: ?*ID2D1TransformGraph) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ID2D1EffectImpl, @ptrCast(self)), effectContext, transformGraph);
+    }
+    pub fn PrepareForRender(self: *const ID2D1EffectImpl, changeType: D2D1_CHANGE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).PrepareForRender(@as(*const ID2D1EffectImpl, @ptrCast(self)), changeType);
+    }
+    pub fn SetGraph(self: *const ID2D1EffectImpl, transformGraph: ?*ID2D1TransformGraph) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).SetGraph(@as(*const ID2D1EffectImpl, @ptrCast(self)), transformGraph);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6900,7 +7920,70 @@ pub const ID2D1EffectContext = extern union {
             return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).IsBufferPrecisionSupported(@as(*const ID2D1EffectContext, @ptrCast(self)), bufferPrecision);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDpi(self: *const ID2D1EffectContext, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1EffectContext, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn CreateEffect(self: *const ID2D1EffectContext, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const ID2D1EffectContext, @ptrCast(self)), effectId, effect);
+    }
+    pub fn GetMaximumSupportedFeatureLevel(self: *const ID2D1EffectContext, featureLevels: [*]const D3D_FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: ?*D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).GetMaximumSupportedFeatureLevel(@as(*const ID2D1EffectContext, @ptrCast(self)), featureLevels, featureLevelsCount, maximumSupportedFeatureLevel);
+    }
+    pub fn CreateTransformNodeFromEffect(self: *const ID2D1EffectContext, effect: ?*ID2D1Effect, transformNode: ?*?*ID2D1TransformNode) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateTransformNodeFromEffect(@as(*const ID2D1EffectContext, @ptrCast(self)), effect, transformNode);
+    }
+    pub fn CreateBlendTransform(self: *const ID2D1EffectContext, numInputs: u32, blendDescription: ?*const D2D1_BLEND_DESCRIPTION, transform: ?*?*ID2D1BlendTransform) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBlendTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), numInputs, blendDescription, transform);
+    }
+    pub fn CreateBorderTransform(self: *const ID2D1EffectContext, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: ?*?*ID2D1BorderTransform) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBorderTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), extendModeX, extendModeY, transform);
+    }
+    pub fn CreateOffsetTransform(self: *const ID2D1EffectContext, offset: POINT, transform: ?*?*ID2D1OffsetTransform) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateOffsetTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), offset, transform);
+    }
+    pub fn CreateBoundsAdjustmentTransform(self: *const ID2D1EffectContext, outputRectangle: ?*const RECT, transform: ?*?*ID2D1BoundsAdjustmentTransform) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBoundsAdjustmentTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), outputRectangle, transform);
+    }
+    pub fn LoadPixelShader(self: *const ID2D1EffectContext, shaderId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadPixelShader(@as(*const ID2D1EffectContext, @ptrCast(self)), shaderId, shaderBuffer, shaderBufferCount);
+    }
+    pub fn LoadVertexShader(self: *const ID2D1EffectContext, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadVertexShader(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, shaderBuffer, shaderBufferCount);
+    }
+    pub fn LoadComputeShader(self: *const ID2D1EffectContext, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadComputeShader(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, shaderBuffer, shaderBufferCount);
+    }
+    pub fn IsShaderLoaded(self: *const ID2D1EffectContext, shaderId: ?*const Guid) callconv(.Inline) BOOL {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).IsShaderLoaded(@as(*const ID2D1EffectContext, @ptrCast(self)), shaderId);
+    }
+    pub fn CreateResourceTexture(self: *const ID2D1EffectContext, resourceId: ?*const Guid, resourceTextureProperties: ?*const D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ?[*:0]const u8, strides: ?*const u32, dataSize: u32, resourceTexture: ?*?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateResourceTexture(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, resourceTextureProperties, data, strides, dataSize, resourceTexture);
+    }
+    pub fn FindResourceTexture(self: *const ID2D1EffectContext, resourceId: ?*const Guid, resourceTexture: ?*?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).FindResourceTexture(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, resourceTexture);
+    }
+    pub fn CreateVertexBuffer(self: *const ID2D1EffectContext, vertexBufferProperties: ?*const D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ?*const Guid, customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: ?*?*ID2D1VertexBuffer) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateVertexBuffer(@as(*const ID2D1EffectContext, @ptrCast(self)), vertexBufferProperties, resourceId, customVertexBufferProperties, buffer);
+    }
+    pub fn FindVertexBuffer(self: *const ID2D1EffectContext, resourceId: ?*const Guid, buffer: ?*?*ID2D1VertexBuffer) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).FindVertexBuffer(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, buffer);
+    }
+    pub fn CreateColorContext(self: *const ID2D1EffectContext, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContext(@as(*const ID2D1EffectContext, @ptrCast(self)), space, profile, profileSize, colorContext);
+    }
+    pub fn CreateColorContextFromFilename(self: *const ID2D1EffectContext, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromFilename(@as(*const ID2D1EffectContext, @ptrCast(self)), filename, colorContext);
+    }
+    pub fn CreateColorContextFromWicColorContext(self: *const ID2D1EffectContext, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromWicColorContext(@as(*const ID2D1EffectContext, @ptrCast(self)), wicColorContext, colorContext);
+    }
+    pub fn CheckFeatureSupport(self: *const ID2D1EffectContext, feature: D2D1_FEATURE, featureSupportData: ?*anyopaque, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID2D1EffectContext, @ptrCast(self)), feature, featureSupportData, featureSupportDataSize);
+    }
+    pub fn IsBufferPrecisionSupported(self: *const ID2D1EffectContext, bufferPrecision: D2D1_BUFFER_PRECISION) callconv(.Inline) BOOL {
+        return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).IsBufferPrecisionSupported(@as(*const ID2D1EffectContext, @ptrCast(self)), bufferPrecision);
+    }
 };
 
 pub const D2D1_YCBCR_PROP = enum(u32) {
@@ -7221,7 +8304,7 @@ pub const ID2D1GeometryRealization = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7267,7 +8350,16 @@ pub const ID2D1DeviceContext1 = extern union {
             return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).DrawGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometryRealization, brush);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext.MethodMixin(@This());
+    pub fn CreateFilledGeometryRealization(self: *const ID2D1DeviceContext1, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, geometryRealization: ?*?*ID2D1GeometryRealization) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).CreateFilledGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometry, flatteningTolerance, geometryRealization);
+    }
+    pub fn CreateStrokedGeometryRealization(self: *const ID2D1DeviceContext1, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, geometryRealization: ?*?*ID2D1GeometryRealization) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).CreateStrokedGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometry, flatteningTolerance, strokeWidth, strokeStyle, geometryRealization);
+    }
+    pub fn DrawGeometryRealization(self: *const ID2D1DeviceContext1, geometryRealization: ?*ID2D1GeometryRealization, brush: ?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).DrawGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometryRealization, brush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7306,7 +8398,16 @@ pub const ID2D1Device1 = extern union {
             return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device1, @ptrCast(self)), options, deviceContext1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device.MethodMixin(@This());
+    pub fn GetRenderingPriority(self: *const ID2D1Device1) callconv(.Inline) D2D1_RENDERING_PRIORITY {
+        return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).GetRenderingPriority(@as(*const ID2D1Device1, @ptrCast(self)));
+    }
+    pub fn SetRenderingPriority(self: *const ID2D1Device1, renderingPriority: D2D1_RENDERING_PRIORITY) callconv(.Inline) void {
+        return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).SetRenderingPriority(@as(*const ID2D1Device1, @ptrCast(self)), renderingPriority);
+    }
+    pub fn CreateDeviceContext(self: *const ID2D1Device1, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: ?*?*ID2D1DeviceContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device1, @ptrCast(self)), options, deviceContext1);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7330,7 +8431,10 @@ pub const ID2D1Factory2 = extern union {
             return @as(*const ID2D1Factory2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory2, @ptrCast(self)), dxgiDevice, d2dDevice1);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory1.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory2, dxgiDevice: ?*IDXGIDevice, d2dDevice1: ?*?*ID2D1Device1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory2, @ptrCast(self)), dxgiDevice, d2dDevice1);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -7353,7 +8457,10 @@ pub const ID2D1CommandSink1 = extern union {
             return @as(*const ID2D1CommandSink1.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend1(@as(*const ID2D1CommandSink1, @ptrCast(self)), primitiveBlend);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1CommandSink.MethodMixin(@This());
+    pub fn SetPrimitiveBlend1(self: *const ID2D1CommandSink1, primitiveBlend: D2D1_PRIMITIVE_BLEND) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink1.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend1(@as(*const ID2D1CommandSink1, @ptrCast(self)), primitiveBlend);
+    }
 };
 
 pub const D2D1_SVG_PAINT_TYPE = enum(u32) {
@@ -7606,7 +8713,13 @@ pub const ID2D1SvgAttribute = extern union {
             return @as(*const ID2D1SvgAttribute.VTable, @ptrCast(self.vtable)).Clone(@as(*const ID2D1SvgAttribute, @ptrCast(self)), attribute);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetElement(self: *const ID2D1SvgAttribute, element: ?*?*ID2D1SvgElement) callconv(.Inline) void {
+        return @as(*const ID2D1SvgAttribute.VTable, @ptrCast(self.vtable)).GetElement(@as(*const ID2D1SvgAttribute, @ptrCast(self)), element);
+    }
+    pub fn Clone(self: *const ID2D1SvgAttribute, attribute: ?*?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgAttribute.VTable, @ptrCast(self.vtable)).Clone(@as(*const ID2D1SvgAttribute, @ptrCast(self)), attribute);
+    }
 };
 
 const IID_ID2D1SvgPaint_Value = Guid.initString("d59bab0a-68a2-455b-a5dc-9eb2854e2490");
@@ -7675,7 +8788,28 @@ pub const ID2D1SvgPaint = extern union {
             return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetIdLength(@as(*const ID2D1SvgPaint, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1SvgAttribute.MethodMixin(@This());
+    pub fn SetPaintType(self: *const ID2D1SvgPaint, paintType: D2D1_SVG_PAINT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetPaintType(@as(*const ID2D1SvgPaint, @ptrCast(self)), paintType);
+    }
+    pub fn GetPaintType(self: *const ID2D1SvgPaint) callconv(.Inline) D2D1_SVG_PAINT_TYPE {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetPaintType(@as(*const ID2D1SvgPaint, @ptrCast(self)));
+    }
+    pub fn SetColor(self: *const ID2D1SvgPaint, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetColor(@as(*const ID2D1SvgPaint, @ptrCast(self)), color);
+    }
+    pub fn GetColor(self: *const ID2D1SvgPaint, color: ?*D2D1_COLOR_F) callconv(.Inline) void {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetColor(@as(*const ID2D1SvgPaint, @ptrCast(self)), color);
+    }
+    pub fn SetId(self: *const ID2D1SvgPaint, id: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetId(@as(*const ID2D1SvgPaint, @ptrCast(self)), id);
+    }
+    pub fn GetId(self: *const ID2D1SvgPaint, id: [*:0]u16, idCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetId(@as(*const ID2D1SvgPaint, @ptrCast(self)), id, idCount);
+    }
+    pub fn GetIdLength(self: *const ID2D1SvgPaint) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetIdLength(@as(*const ID2D1SvgPaint, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1SvgStrokeDashArray_Value = Guid.initString("f1c0ca52-92a3-4f00-b4ce-f35691efd9d9");
@@ -7744,7 +8878,25 @@ pub const ID2D1SvgStrokeDashArray = extern union {
             return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashesCount(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1SvgAttribute.MethodMixin(@This());
+    pub fn RemoveDashesAtEnd(self: *const ID2D1SvgStrokeDashArray, dashesCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).RemoveDashesAtEnd(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashesCount);
+    }
+    pub fn UpdateDashes(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).UpdateDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
+    }
+    pub fn UpdateDashes1(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).UpdateDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
+    }
+    pub fn GetDashes(self: *const ID2D1SvgStrokeDashArray, dashes: [*]D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
+    }
+    pub fn GetDashes1(self: *const ID2D1SvgStrokeDashArray, dashes: [*]f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
+    }
+    pub fn GetDashesCount(self: *const ID2D1SvgStrokeDashArray) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashesCount(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1SvgPointCollection_Value = Guid.initString("9dbe4c0d-3572-4dd9-9825-5530813bb712");
@@ -7793,7 +8945,19 @@ pub const ID2D1SvgPointCollection = extern union {
             return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).GetPointsCount(@as(*const ID2D1SvgPointCollection, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1SvgAttribute.MethodMixin(@This());
+    pub fn RemovePointsAtEnd(self: *const ID2D1SvgPointCollection, pointsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).RemovePointsAtEnd(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), pointsCount);
+    }
+    pub fn UpdatePoints(self: *const ID2D1SvgPointCollection, points: [*]const D2D_POINT_2F, pointsCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).UpdatePoints(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), points, pointsCount, startIndex);
+    }
+    pub fn GetPoints(self: *const ID2D1SvgPointCollection, points: [*]D2D_POINT_2F, pointsCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).GetPoints(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), points, pointsCount, startIndex);
+    }
+    pub fn GetPointsCount(self: *const ID2D1SvgPointCollection) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).GetPointsCount(@as(*const ID2D1SvgPointCollection, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1SvgPathData_Value = Guid.initString("c095e4f4-bb98-43d6-9745-4d1b84ec9888");
@@ -7886,7 +9050,34 @@ pub const ID2D1SvgPathData = extern union {
             return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1SvgPathData, @ptrCast(self)), fillMode, pathGeometry);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1SvgAttribute.MethodMixin(@This());
+    pub fn RemoveSegmentDataAtEnd(self: *const ID2D1SvgPathData, dataCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).RemoveSegmentDataAtEnd(@as(*const ID2D1SvgPathData, @ptrCast(self)), dataCount);
+    }
+    pub fn UpdateSegmentData(self: *const ID2D1SvgPathData, data: [*]const f32, dataCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).UpdateSegmentData(@as(*const ID2D1SvgPathData, @ptrCast(self)), data, dataCount, startIndex);
+    }
+    pub fn GetSegmentData(self: *const ID2D1SvgPathData, data: [*]f32, dataCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetSegmentData(@as(*const ID2D1SvgPathData, @ptrCast(self)), data, dataCount, startIndex);
+    }
+    pub fn GetSegmentDataCount(self: *const ID2D1SvgPathData) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetSegmentDataCount(@as(*const ID2D1SvgPathData, @ptrCast(self)));
+    }
+    pub fn RemoveCommandsAtEnd(self: *const ID2D1SvgPathData, commandsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).RemoveCommandsAtEnd(@as(*const ID2D1SvgPathData, @ptrCast(self)), commandsCount);
+    }
+    pub fn UpdateCommands(self: *const ID2D1SvgPathData, commands: [*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).UpdateCommands(@as(*const ID2D1SvgPathData, @ptrCast(self)), commands, commandsCount, startIndex);
+    }
+    pub fn GetCommands(self: *const ID2D1SvgPathData, commands: [*]D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetCommands(@as(*const ID2D1SvgPathData, @ptrCast(self)), commands, commandsCount, startIndex);
+    }
+    pub fn GetCommandsCount(self: *const ID2D1SvgPathData) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetCommandsCount(@as(*const ID2D1SvgPathData, @ptrCast(self)));
+    }
+    pub fn CreatePathGeometry(self: *const ID2D1SvgPathData, fillMode: D2D1_FILL_MODE, pathGeometry: ?*?*ID2D1PathGeometry1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1SvgPathData, @ptrCast(self)), fillMode, pathGeometry);
+    }
 };
 
 const IID_ID2D1SvgElement_Value = Guid.initString("ac7b67a6-183e-49c1-a823-0ebe40b0db29");
@@ -8167,7 +9358,97 @@ pub const ID2D1SvgElement = extern union {
             return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValueLength(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", valueLength);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetDocument(self: *const ID2D1SvgElement, document: ?*?*ID2D1SvgDocument) callconv(.Inline) void {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const ID2D1SvgElement, @ptrCast(self)), document);
+    }
+    pub fn GetTagName(self: *const ID2D1SvgElement, name: [*:0]u16, nameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTagName(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
+    }
+    pub fn GetTagNameLength(self: *const ID2D1SvgElement) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTagNameLength(@as(*const ID2D1SvgElement, @ptrCast(self)));
+    }
+    pub fn IsTextContent(self: *const ID2D1SvgElement) callconv(.Inline) BOOL {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).IsTextContent(@as(*const ID2D1SvgElement, @ptrCast(self)));
+    }
+    pub fn GetParent(self: *const ID2D1SvgElement, parent: ?*?*ID2D1SvgElement) callconv(.Inline) void {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetParent(@as(*const ID2D1SvgElement, @ptrCast(self)), parent);
+    }
+    pub fn HasChildren(self: *const ID2D1SvgElement) callconv(.Inline) BOOL {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).HasChildren(@as(*const ID2D1SvgElement, @ptrCast(self)));
+    }
+    pub fn GetFirstChild(self: *const ID2D1SvgElement, child: ?*?*ID2D1SvgElement) callconv(.Inline) void {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetFirstChild(@as(*const ID2D1SvgElement, @ptrCast(self)), child);
+    }
+    pub fn GetLastChild(self: *const ID2D1SvgElement, child: ?*?*ID2D1SvgElement) callconv(.Inline) void {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetLastChild(@as(*const ID2D1SvgElement, @ptrCast(self)), child);
+    }
+    pub fn GetPreviousChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, previousChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetPreviousChild(@as(*const ID2D1SvgElement, @ptrCast(self)), referenceChild, previousChild);
+    }
+    pub fn GetNextChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, nextChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetNextChild(@as(*const ID2D1SvgElement, @ptrCast(self)), referenceChild, nextChild);
+    }
+    pub fn InsertChildBefore(self: *const ID2D1SvgElement, newChild: ?*ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).InsertChildBefore(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild, referenceChild);
+    }
+    pub fn AppendChild(self: *const ID2D1SvgElement, newChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).AppendChild(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild);
+    }
+    pub fn ReplaceChild(self: *const ID2D1SvgElement, newChild: ?*ID2D1SvgElement, oldChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).ReplaceChild(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild, oldChild);
+    }
+    pub fn RemoveChild(self: *const ID2D1SvgElement, oldChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).RemoveChild(@as(*const ID2D1SvgElement, @ptrCast(self)), oldChild);
+    }
+    pub fn CreateChild(self: *const ID2D1SvgElement, tagName: ?[*:0]const u16, newChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).CreateChild(@as(*const ID2D1SvgElement, @ptrCast(self)), tagName, newChild);
+    }
+    pub fn IsAttributeSpecified(self: *const ID2D1SvgElement, name: ?[*:0]const u16, inherited: ?*BOOL) callconv(.Inline) BOOL {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).IsAttributeSpecified(@as(*const ID2D1SvgElement, @ptrCast(self)), name, inherited);
+    }
+    pub fn GetSpecifiedAttributeCount(self: *const ID2D1SvgElement) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeCount(@as(*const ID2D1SvgElement, @ptrCast(self)));
+    }
+    pub fn GetSpecifiedAttributeName(self: *const ID2D1SvgElement, index: u32, name: [*:0]u16, nameCount: u32, inherited: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeName(@as(*const ID2D1SvgElement, @ptrCast(self)), index, name, nameCount, inherited);
+    }
+    pub fn GetSpecifiedAttributeNameLength(self: *const ID2D1SvgElement, index: u32, nameLength: ?*u32, inherited: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeNameLength(@as(*const ID2D1SvgElement, @ptrCast(self)), index, nameLength, inherited);
+    }
+    pub fn RemoveAttribute(self: *const ID2D1SvgElement, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).RemoveAttribute(@as(*const ID2D1SvgElement, @ptrCast(self)), name);
+    }
+    pub fn SetTextValue(self: *const ID2D1SvgElement, name: [*:0]const u16, nameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetTextValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
+    }
+    pub fn GetTextValue(self: *const ID2D1SvgElement, name: [*:0]u16, nameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTextValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
+    }
+    pub fn GetTextValueLength(self: *const ID2D1SvgElement) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTextValueLength(@as(*const ID2D1SvgElement, @ptrCast(self)));
+    }
+    pub fn SetAttributeValue(self: *const ID2D1SvgElement, name: ?[*:0]const u16, value: ?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, value);
+    }
+    pub fn SetAttributeValue1(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", value, valueSizeInBytes);
+    }
+    pub fn SetAttributeValue2(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", value);
+    }
+    pub fn GetAttributeValue(self: *const ID2D1SvgElement, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, riid, value);
+    }
+    pub fn GetAttributeValue1(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", value, valueSizeInBytes);
+    }
+    pub fn GetAttributeValue2(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", value, valueCount);
+    }
+    pub fn GetAttributeValueLength(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValueLength(@as(*const ID2D1SvgElement, @ptrCast(self)), name, @"type", valueLength);
+    }
 };
 
 const IID_ID2D1SvgDocument_Value = Guid.initString("86b88e4d-afa4-4d7b-88e4-68a51c4a0aec");
@@ -8282,7 +9563,40 @@ pub const ID2D1SvgDocument = extern union {
             return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePathData(@as(*const ID2D1SvgDocument, @ptrCast(self)), segmentData, segmentDataCount, commands, commandsCount, pathData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn SetViewportSize(self: *const ID2D1SvgDocument, viewportSize: D2D_SIZE_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).SetViewportSize(@as(*const ID2D1SvgDocument, @ptrCast(self)), viewportSize);
+    }
+    pub fn GetViewportSize(self: *const ID2D1SvgDocument) callconv(.Inline) D2D_SIZE_F {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).GetViewportSize(@as(*const ID2D1SvgDocument, @ptrCast(self)));
+    }
+    pub fn SetRoot(self: *const ID2D1SvgDocument, root: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).SetRoot(@as(*const ID2D1SvgDocument, @ptrCast(self)), root);
+    }
+    pub fn GetRoot(self: *const ID2D1SvgDocument, root: ?*?*ID2D1SvgElement) callconv(.Inline) void {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).GetRoot(@as(*const ID2D1SvgDocument, @ptrCast(self)), root);
+    }
+    pub fn FindElementById(self: *const ID2D1SvgDocument, id: ?[*:0]const u16, svgElement: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).FindElementById(@as(*const ID2D1SvgDocument, @ptrCast(self)), id, svgElement);
+    }
+    pub fn Serialize(self: *const ID2D1SvgDocument, outputXmlStream: ?*IStream, subtree: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ID2D1SvgDocument, @ptrCast(self)), outputXmlStream, subtree);
+    }
+    pub fn Deserialize(self: *const ID2D1SvgDocument, inputXmlStream: ?*IStream, subtree: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const ID2D1SvgDocument, @ptrCast(self)), inputXmlStream, subtree);
+    }
+    pub fn CreatePaint(self: *const ID2D1SvgDocument, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: ?*?*ID2D1SvgPaint) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePaint(@as(*const ID2D1SvgDocument, @ptrCast(self)), paintType, color, id, paint);
+    }
+    pub fn CreateStrokeDashArray(self: *const ID2D1SvgDocument, dashes: ?[*]const D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ?*?*ID2D1SvgStrokeDashArray) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreateStrokeDashArray(@as(*const ID2D1SvgDocument, @ptrCast(self)), dashes, dashesCount, strokeDashArray);
+    }
+    pub fn CreatePointCollection(self: *const ID2D1SvgDocument, points: ?[*]const D2D_POINT_2F, pointsCount: u32, pointCollection: ?*?*ID2D1SvgPointCollection) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePointCollection(@as(*const ID2D1SvgDocument, @ptrCast(self)), points, pointsCount, pointCollection);
+    }
+    pub fn CreatePathData(self: *const ID2D1SvgDocument, segmentData: ?[*]const f32, segmentDataCount: u32, commands: ?[*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: ?*?*ID2D1SvgPathData) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePathData(@as(*const ID2D1SvgDocument, @ptrCast(self)), segmentData, segmentDataCount, commands, commandsCount, pathData);
+    }
 };
 
 pub const D2D1_INK_NIB_SHAPE = enum(u32) {
@@ -8744,7 +10058,19 @@ pub const ID2D1InkStyle = extern union {
             return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).GetNibShape(@as(*const ID2D1InkStyle, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn SetNibTransform(self: *const ID2D1InkStyle, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).SetNibTransform(@as(*const ID2D1InkStyle, @ptrCast(self)), transform);
+    }
+    pub fn GetNibTransform(self: *const ID2D1InkStyle, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).GetNibTransform(@as(*const ID2D1InkStyle, @ptrCast(self)), transform);
+    }
+    pub fn SetNibShape(self: *const ID2D1InkStyle, nibShape: D2D1_INK_NIB_SHAPE) callconv(.Inline) void {
+        return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).SetNibShape(@as(*const ID2D1InkStyle, @ptrCast(self)), nibShape);
+    }
+    pub fn GetNibShape(self: *const ID2D1InkStyle) callconv(.Inline) D2D1_INK_NIB_SHAPE {
+        return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).GetNibShape(@as(*const ID2D1InkStyle, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1Ink_Value = Guid.initString("b499923b-7029-478f-a8b3-432c7c5f5312");
@@ -8846,7 +10172,37 @@ pub const ID2D1Ink = extern union {
             return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1Ink, @ptrCast(self)), inkStyle, worldTransform, bounds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn SetStartPoint(self: *const ID2D1Ink, startPoint: ?*const D2D1_INK_POINT) callconv(.Inline) void {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const ID2D1Ink, @ptrCast(self)), startPoint);
+    }
+    pub fn GetStartPoint(self: *const ID2D1Ink) callconv(.Inline) D2D1_INK_POINT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const ID2D1Ink, @ptrCast(self)));
+    }
+    pub fn AddSegments(self: *const ID2D1Ink, segments: [*]const D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).AddSegments(@as(*const ID2D1Ink, @ptrCast(self)), segments, segmentsCount);
+    }
+    pub fn RemoveSegmentsAtEnd(self: *const ID2D1Ink, segmentsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).RemoveSegmentsAtEnd(@as(*const ID2D1Ink, @ptrCast(self)), segmentsCount);
+    }
+    pub fn SetSegments(self: *const ID2D1Ink, startSegment: u32, segments: [*]const D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetSegments(@as(*const ID2D1Ink, @ptrCast(self)), startSegment, segments, segmentsCount);
+    }
+    pub fn SetSegmentAtEnd(self: *const ID2D1Ink, segment: ?*const D2D1_INK_BEZIER_SEGMENT) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetSegmentAtEnd(@as(*const ID2D1Ink, @ptrCast(self)), segment);
+    }
+    pub fn GetSegmentCount(self: *const ID2D1Ink) callconv(.Inline) u32 {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const ID2D1Ink, @ptrCast(self)));
+    }
+    pub fn GetSegments(self: *const ID2D1Ink, startSegment: u32, segments: [*]D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetSegments(@as(*const ID2D1Ink, @ptrCast(self)), startSegment, segments, segmentsCount);
+    }
+    pub fn StreamAsGeometry(self: *const ID2D1Ink, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).StreamAsGeometry(@as(*const ID2D1Ink, @ptrCast(self)), inkStyle, worldTransform, flatteningTolerance, geometrySink);
+    }
+    pub fn GetBounds(self: *const ID2D1Ink, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1Ink, @ptrCast(self)), inkStyle, worldTransform, bounds);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -8878,7 +10234,13 @@ pub const ID2D1GradientMesh = extern union {
             return @as(*const ID2D1GradientMesh.VTable, @ptrCast(self.vtable)).GetPatches(@as(*const ID2D1GradientMesh, @ptrCast(self)), startIndex, patches, patchesCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn GetPatchCount(self: *const ID2D1GradientMesh) callconv(.Inline) u32 {
+        return @as(*const ID2D1GradientMesh.VTable, @ptrCast(self.vtable)).GetPatchCount(@as(*const ID2D1GradientMesh, @ptrCast(self)));
+    }
+    pub fn GetPatches(self: *const ID2D1GradientMesh, startIndex: u32, patches: [*]D2D1_GRADIENT_MESH_PATCH, patchesCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GradientMesh.VTable, @ptrCast(self.vtable)).GetPatches(@as(*const ID2D1GradientMesh, @ptrCast(self)), startIndex, patches, patchesCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -8908,7 +10270,13 @@ pub const ID2D1ImageSource = extern union {
             return @as(*const ID2D1ImageSource.VTable, @ptrCast(self.vtable)).TryReclaimResources(@as(*const ID2D1ImageSource, @ptrCast(self)), resourcesDiscarded);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Image.MethodMixin(@This());
+    pub fn OfferResources(self: *const ID2D1ImageSource) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ImageSource.VTable, @ptrCast(self.vtable)).OfferResources(@as(*const ID2D1ImageSource, @ptrCast(self)));
+    }
+    pub fn TryReclaimResources(self: *const ID2D1ImageSource, resourcesDiscarded: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ImageSource.VTable, @ptrCast(self.vtable)).TryReclaimResources(@as(*const ID2D1ImageSource, @ptrCast(self)), resourcesDiscarded);
+    }
 };
 
 const IID_ID2D1ImageSourceFromWic_Value = Guid.initString("77395441-1c8f-4555-8683-f50dab0fe792");
@@ -8946,7 +10314,16 @@ pub const ID2D1ImageSourceFromWic = extern union {
             return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), wicBitmapSource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1ImageSource.MethodMixin(@This());
+    pub fn EnsureCached(self: *const ID2D1ImageSourceFromWic, rectangleToFill: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).EnsureCached(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), rectangleToFill);
+    }
+    pub fn TrimCache(self: *const ID2D1ImageSourceFromWic, rectangleToPreserve: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).TrimCache(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), rectangleToPreserve);
+    }
+    pub fn GetSource(self: *const ID2D1ImageSourceFromWic, wicBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) void {
+        return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), wicBitmapSource);
+    }
 };
 
 const IID_ID2D1TransformedImageSource_Value = Guid.initString("7f1f79e5-2796-416c-8f55-700f911445e5");
@@ -8976,7 +10353,13 @@ pub const ID2D1TransformedImageSource = extern union {
             return @as(*const ID2D1TransformedImageSource.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ID2D1TransformedImageSource, @ptrCast(self)), properties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Image.MethodMixin(@This());
+    pub fn GetSource(self: *const ID2D1TransformedImageSource, imageSource: ?*?*ID2D1ImageSource) callconv(.Inline) void {
+        return @as(*const ID2D1TransformedImageSource.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ID2D1TransformedImageSource, @ptrCast(self)), imageSource);
+    }
+    pub fn GetProperties(self: *const ID2D1TransformedImageSource, properties: ?*D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES) callconv(.Inline) void {
+        return @as(*const ID2D1TransformedImageSource.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ID2D1TransformedImageSource, @ptrCast(self)), properties);
+    }
 };
 
 const IID_ID2D1LookupTable3D_Value = Guid.initString("53dd9855-a3b0-4d5b-82e1-26e25c5e5797");
@@ -8990,7 +10373,7 @@ pub const ID2D1LookupTable3D = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9116,7 +10499,40 @@ pub const ID2D1DeviceContext2 = extern union {
             return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateTransformedImageSource(@as(*const ID2D1DeviceContext2, @ptrCast(self)), imageSource, properties, transformedImageSource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext1.MethodMixin(@This());
+    pub fn CreateInk(self: *const ID2D1DeviceContext2, startPoint: ?*const D2D1_INK_POINT, ink: ?*?*ID2D1Ink) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateInk(@as(*const ID2D1DeviceContext2, @ptrCast(self)), startPoint, ink);
+    }
+    pub fn CreateInkStyle(self: *const ID2D1DeviceContext2, inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES, inkStyle: ?*?*ID2D1InkStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateInkStyle(@as(*const ID2D1DeviceContext2, @ptrCast(self)), inkStyleProperties, inkStyle);
+    }
+    pub fn CreateGradientMesh(self: *const ID2D1DeviceContext2, patches: [*]const D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: ?*?*ID2D1GradientMesh) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateGradientMesh(@as(*const ID2D1DeviceContext2, @ptrCast(self)), patches, patchesCount, gradientMesh);
+    }
+    pub fn CreateImageSourceFromWic(self: *const ID2D1DeviceContext2, wicBitmapSource: ?*IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: ?*?*ID2D1ImageSourceFromWic) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateImageSourceFromWic(@as(*const ID2D1DeviceContext2, @ptrCast(self)), wicBitmapSource, loadingOptions, alphaMode, imageSource);
+    }
+    pub fn CreateLookupTable3D(self: *const ID2D1DeviceContext2, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateLookupTable3D(@as(*const ID2D1DeviceContext2, @ptrCast(self)), precision, extents, data, dataCount, strides, lookupTable);
+    }
+    pub fn CreateImageSourceFromDxgi(self: *const ID2D1DeviceContext2, surfaces: [*]?*IDXGISurface, surfaceCount: u32, colorSpace: DXGI_COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: ?*?*ID2D1ImageSource) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateImageSourceFromDxgi(@as(*const ID2D1DeviceContext2, @ptrCast(self)), surfaces, surfaceCount, colorSpace, options, imageSource);
+    }
+    pub fn GetGradientMeshWorldBounds(self: *const ID2D1DeviceContext2, gradientMesh: ?*ID2D1GradientMesh, pBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).GetGradientMeshWorldBounds(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gradientMesh, pBounds);
+    }
+    pub fn DrawInk(self: *const ID2D1DeviceContext2, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawInk(@as(*const ID2D1DeviceContext2, @ptrCast(self)), ink, brush, inkStyle);
+    }
+    pub fn DrawGradientMesh(self: *const ID2D1DeviceContext2, gradientMesh: ?*ID2D1GradientMesh) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawGradientMesh(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gradientMesh);
+    }
+    pub fn DrawGdiMetafile(self: *const ID2D1DeviceContext2, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gdiMetafile, destinationRectangle, sourceRectangle);
+    }
+    pub fn CreateTransformedImageSource(self: *const ID2D1DeviceContext2, imageSource: ?*ID2D1ImageSource, properties: ?*const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: ?*?*ID2D1TransformedImageSource) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateTransformedImageSource(@as(*const ID2D1DeviceContext2, @ptrCast(self)), imageSource, properties, transformedImageSource);
+    }
 };
 
 const IID_ID2D1Device2_Value = Guid.initString("a44472e1-8dfb-4e60-8492-6e2861c9ca8b");
@@ -9155,7 +10571,16 @@ pub const ID2D1Device2 = extern union {
             return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).GetDxgiDevice(@as(*const ID2D1Device2, @ptrCast(self)), dxgiDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device1.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device2, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: ?*?*ID2D1DeviceContext2) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device2, @ptrCast(self)), options, deviceContext2);
+    }
+    pub fn FlushDeviceContexts(self: *const ID2D1Device2, bitmap: ?*ID2D1Bitmap) callconv(.Inline) void {
+        return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).FlushDeviceContexts(@as(*const ID2D1Device2, @ptrCast(self)), bitmap);
+    }
+    pub fn GetDxgiDevice(self: *const ID2D1Device2, dxgiDevice: ?*?*IDXGIDevice) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).GetDxgiDevice(@as(*const ID2D1Device2, @ptrCast(self)), dxgiDevice);
+    }
 };
 
 const IID_ID2D1Factory3_Value = Guid.initString("0869759f-4f00-413f-b03e-2bda45404d0f");
@@ -9178,7 +10603,10 @@ pub const ID2D1Factory3 = extern union {
             return @as(*const ID2D1Factory3.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory3, @ptrCast(self)), dxgiDevice, d2dDevice2);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory2.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory3, dxgiDevice: ?*IDXGIDevice, d2dDevice2: ?*?*ID2D1Device2) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory3.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory3, @ptrCast(self)), dxgiDevice, d2dDevice2);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -9221,7 +10649,16 @@ pub const ID2D1CommandSink2 = extern union {
             return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1CommandSink2, @ptrCast(self)), gdiMetafile, destinationRectangle, sourceRectangle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1CommandSink1.MethodMixin(@This());
+    pub fn DrawInk(self: *const ID2D1CommandSink2, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawInk(@as(*const ID2D1CommandSink2, @ptrCast(self)), ink, brush, inkStyle);
+    }
+    pub fn DrawGradientMesh(self: *const ID2D1CommandSink2, gradientMesh: ?*ID2D1GradientMesh) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawGradientMesh(@as(*const ID2D1CommandSink2, @ptrCast(self)), gradientMesh);
+    }
+    pub fn DrawGdiMetafile(self: *const ID2D1CommandSink2, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1CommandSink2, @ptrCast(self)), gdiMetafile, destinationRectangle, sourceRectangle);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9253,7 +10690,13 @@ pub const ID2D1GdiMetafile1 = extern union {
             return @as(*const ID2D1GdiMetafile1.VTable, @ptrCast(self.vtable)).GetSourceBounds(@as(*const ID2D1GdiMetafile1, @ptrCast(self)), bounds);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1GdiMetafile.MethodMixin(@This());
+    pub fn GetDpi(self: *const ID2D1GdiMetafile1, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafile1.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1GdiMetafile1, @ptrCast(self)), dpiX, dpiY);
+    }
+    pub fn GetSourceBounds(self: *const ID2D1GdiMetafile1, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafile1.VTable, @ptrCast(self.vtable)).GetSourceBounds(@as(*const ID2D1GdiMetafile1, @ptrCast(self)), bounds);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9279,7 +10722,10 @@ pub const ID2D1GdiMetafileSink1 = extern union {
             return @as(*const ID2D1GdiMetafileSink1.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink1, @ptrCast(self)), recordType, recordData, recordDataSize, flags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1GdiMetafileSink.MethodMixin(@This());
+    pub fn ProcessRecord(self: *const ID2D1GdiMetafileSink1, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32, flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1GdiMetafileSink1.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink1, @ptrCast(self)), recordType, recordData, recordDataSize, flags);
+    }
 };
 
 const IID_ID2D1SpriteBatch_Value = Guid.initString("4dc583bf-3a10-438a-8722-e9765224f1f1");
@@ -9353,7 +10799,22 @@ pub const ID2D1SpriteBatch = extern union {
             return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1SpriteBatch, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn AddSprites(self: *const ID2D1SpriteBatch, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).AddSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
+    }
+    pub fn SetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).SetSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
+    }
+    pub fn GetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D2D1_COLOR_F, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).GetSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
+    }
+    pub fn GetSpriteCount(self: *const ID2D1SpriteBatch) callconv(.Inline) u32 {
+        return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).GetSpriteCount(@as(*const ID2D1SpriteBatch, @ptrCast(self)));
+    }
+    pub fn Clear(self: *const ID2D1SpriteBatch) callconv(.Inline) void {
+        return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1SpriteBatch, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1DeviceContext3_Value = Guid.initString("235a7496-8351-414c-bcd4-6672ab2d8e00");
@@ -9388,7 +10849,13 @@ pub const ID2D1DeviceContext3 = extern union {
             return @as(*const ID2D1DeviceContext3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1DeviceContext3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext2.MethodMixin(@This());
+    pub fn CreateSpriteBatch(self: *const ID2D1DeviceContext3, spriteBatch: ?*?*ID2D1SpriteBatch) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext3.VTable, @ptrCast(self.vtable)).CreateSpriteBatch(@as(*const ID2D1DeviceContext3, @ptrCast(self)), spriteBatch);
+    }
+    pub fn DrawSpriteBatch(self: *const ID2D1DeviceContext3, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1DeviceContext3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
+    }
 };
 
 const IID_ID2D1Device3_Value = Guid.initString("852f2087-802c-4037-ab60-ff2e7ee6fc01");
@@ -9411,7 +10878,10 @@ pub const ID2D1Device3 = extern union {
             return @as(*const ID2D1Device3.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device3, @ptrCast(self)), options, deviceContext3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device2.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device3, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: ?*?*ID2D1DeviceContext3) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device3.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device3, @ptrCast(self)), options, deviceContext3);
+    }
 };
 
 const IID_ID2D1Factory4_Value = Guid.initString("bd4ec2d2-0662-4bee-ba8e-6f29f032e096");
@@ -9434,7 +10904,10 @@ pub const ID2D1Factory4 = extern union {
             return @as(*const ID2D1Factory4.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory4, @ptrCast(self)), dxgiDevice, d2dDevice3);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory3.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory4, dxgiDevice: ?*IDXGIDevice, d2dDevice3: ?*?*ID2D1Device3) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory4.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory4, @ptrCast(self)), dxgiDevice, d2dDevice3);
+    }
 };
 
 const IID_ID2D1CommandSink3_Value = Guid.initString("18079135-4cf3-4868-bc8e-06067e6d242d");
@@ -9461,7 +10934,10 @@ pub const ID2D1CommandSink3 = extern union {
             return @as(*const ID2D1CommandSink3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1CommandSink3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1CommandSink2.MethodMixin(@This());
+    pub fn DrawSpriteBatch(self: *const ID2D1CommandSink3, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1CommandSink3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
+    }
 };
 
 const IID_ID2D1SvgGlyphStyle_Value = Guid.initString("af671749-d241-4db8-8e41-dcc2e5c1a438");
@@ -9522,7 +10998,22 @@ pub const ID2D1SvgGlyphStyle = extern union {
             return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetStroke(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush, strokeWidth, dashes, dashesCount, dashOffset);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Resource.MethodMixin(@This());
+    pub fn SetFill(self: *const ID2D1SvgGlyphStyle, brush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).SetFill(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush);
+    }
+    pub fn GetFill(self: *const ID2D1SvgGlyphStyle, brush: ?*?*ID2D1Brush) callconv(.Inline) void {
+        return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetFill(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush);
+    }
+    pub fn SetStroke(self: *const ID2D1SvgGlyphStyle, brush: ?*ID2D1Brush, strokeWidth: f32, dashes: ?[*]const f32, dashesCount: u32, dashOffset: f32) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).SetStroke(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush, strokeWidth, dashes, dashesCount, dashOffset);
+    }
+    pub fn GetStrokeDashesCount(self: *const ID2D1SvgGlyphStyle) callconv(.Inline) u32 {
+        return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetStrokeDashesCount(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)));
+    }
+    pub fn GetStroke(self: *const ID2D1SvgGlyphStyle, brush: ?*?*ID2D1Brush, strokeWidth: ?*f32, dashes: ?[*]f32, dashesCount: u32, dashOffset: ?*f32) callconv(.Inline) void {
+        return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetStroke(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush, strokeWidth, dashes, dashesCount, dashOffset);
+    }
 };
 
 const IID_ID2D1DeviceContext4_Value = Guid.initString("8c427831-3d90-4476-b647-c4fae349e4db");
@@ -9634,7 +11125,28 @@ pub const ID2D1DeviceContext4 = extern union {
             return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).GetSvgGlyphImage(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, glyphTransform, glyphImage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext3.MethodMixin(@This());
+    pub fn CreateSvgGlyphStyle(self: *const ID2D1DeviceContext4, svgGlyphStyle: ?*?*ID2D1SvgGlyphStyle) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).CreateSvgGlyphStyle(@as(*const ID2D1DeviceContext4, @ptrCast(self)), svgGlyphStyle);
+    }
+    pub fn DrawText(self: *const ID2D1DeviceContext4, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawText(@as(*const ID2D1DeviceContext4, @ptrCast(self)), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
+    }
+    pub fn DrawTextLayout(self: *const ID2D1DeviceContext4, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawTextLayout(@as(*const ID2D1DeviceContext4, @ptrCast(self)), origin, textLayout, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options);
+    }
+    pub fn DrawColorBitmapGlyphRun(self: *const ID2D1DeviceContext4, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawColorBitmapGlyphRun(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphImageFormat, baselineOrigin, glyphRun, measuringMode, bitmapSnapOption);
+    }
+    pub fn DrawSvgGlyphRun(self: *const ID2D1DeviceContext4, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawSvgGlyphRun(@as(*const ID2D1DeviceContext4, @ptrCast(self)), baselineOrigin, glyphRun, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, measuringMode);
+    }
+    pub fn GetColorBitmapGlyphImage(self: *const ID2D1DeviceContext4, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1Image) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).GetColorBitmapGlyphImage(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphImageFormat, glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, dpiX, dpiY, glyphTransform, glyphImage);
+    }
+    pub fn GetSvgGlyphImage(self: *const ID2D1DeviceContext4, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1CommandList) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).GetSvgGlyphImage(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, glyphTransform, glyphImage);
+    }
 };
 
 const IID_ID2D1Device4_Value = Guid.initString("d7bdb159-5683-4a46-bc9c-72dc720b858b");
@@ -9672,7 +11184,16 @@ pub const ID2D1Device4 = extern union {
             return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).GetMaximumColorGlyphCacheMemory(@as(*const ID2D1Device4, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device3.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device4, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: ?*?*ID2D1DeviceContext4) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device4, @ptrCast(self)), options, deviceContext4);
+    }
+    pub fn SetMaximumColorGlyphCacheMemory(self: *const ID2D1Device4, maximumInBytes: u64) callconv(.Inline) void {
+        return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).SetMaximumColorGlyphCacheMemory(@as(*const ID2D1Device4, @ptrCast(self)), maximumInBytes);
+    }
+    pub fn GetMaximumColorGlyphCacheMemory(self: *const ID2D1Device4) callconv(.Inline) u64 {
+        return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).GetMaximumColorGlyphCacheMemory(@as(*const ID2D1Device4, @ptrCast(self)));
+    }
 };
 
 const IID_ID2D1Factory5_Value = Guid.initString("c4349994-838e-4b0f-8cab-44997d9eeacc");
@@ -9695,7 +11216,10 @@ pub const ID2D1Factory5 = extern union {
             return @as(*const ID2D1Factory5.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory5, @ptrCast(self)), dxgiDevice, d2dDevice4);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory4.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory5, dxgiDevice: ?*IDXGIDevice, d2dDevice4: ?*?*ID2D1Device4) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory5.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory5, @ptrCast(self)), dxgiDevice, d2dDevice4);
+    }
 };
 
 const IID_ID2D1CommandSink4_Value = Guid.initString("c78a6519-40d6-4218-b2de-beeeb744bb3e");
@@ -9717,7 +11241,10 @@ pub const ID2D1CommandSink4 = extern union {
             return @as(*const ID2D1CommandSink4.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend2(@as(*const ID2D1CommandSink4, @ptrCast(self)), primitiveBlend);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1CommandSink3.MethodMixin(@This());
+    pub fn SetPrimitiveBlend2(self: *const ID2D1CommandSink4, primitiveBlend: D2D1_PRIMITIVE_BLEND) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink4.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend2(@as(*const ID2D1CommandSink4, @ptrCast(self)), primitiveBlend);
+    }
 };
 
 const IID_ID2D1ColorContext1_Value = Guid.initString("1ab42875-c57f-4be9-bd85-9cd78d6f55ee");
@@ -9753,7 +11280,16 @@ pub const ID2D1ColorContext1 = extern union {
             return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetSimpleColorProfile(@as(*const ID2D1ColorContext1, @ptrCast(self)), simpleProfile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1ColorContext.MethodMixin(@This());
+    pub fn GetColorContextType(self: *const ID2D1ColorContext1) callconv(.Inline) D2D1_COLOR_CONTEXT_TYPE {
+        return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetColorContextType(@as(*const ID2D1ColorContext1, @ptrCast(self)));
+    }
+    pub fn GetDXGIColorSpace(self: *const ID2D1ColorContext1) callconv(.Inline) DXGI_COLOR_SPACE_TYPE {
+        return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetDXGIColorSpace(@as(*const ID2D1ColorContext1, @ptrCast(self)));
+    }
+    pub fn GetSimpleColorProfile(self: *const ID2D1ColorContext1, simpleProfile: ?*D2D1_SIMPLE_COLOR_PROFILE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetSimpleColorProfile(@as(*const ID2D1ColorContext1, @ptrCast(self)), simpleProfile);
+    }
 };
 
 const IID_ID2D1DeviceContext5_Value = Guid.initString("7836d248-68cc-4df6-b9e8-de991bf62eb7");
@@ -9803,7 +11339,19 @@ pub const ID2D1DeviceContext5 = extern union {
             return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1DeviceContext5, @ptrCast(self)), simpleProfile, colorContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext4.MethodMixin(@This());
+    pub fn CreateSvgDocument(self: *const ID2D1DeviceContext5, inputXmlStream: ?*IStream, viewportSize: D2D_SIZE_F, svgDocument: ?*?*ID2D1SvgDocument) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateSvgDocument(@as(*const ID2D1DeviceContext5, @ptrCast(self)), inputXmlStream, viewportSize, svgDocument);
+    }
+    pub fn DrawSvgDocument(self: *const ID2D1DeviceContext5, svgDocument: ?*ID2D1SvgDocument) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).DrawSvgDocument(@as(*const ID2D1DeviceContext5, @ptrCast(self)), svgDocument);
+    }
+    pub fn CreateColorContextFromDxgiColorSpace(self: *const ID2D1DeviceContext5, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateColorContextFromDxgiColorSpace(@as(*const ID2D1DeviceContext5, @ptrCast(self)), colorSpace, colorContext);
+    }
+    pub fn CreateColorContextFromSimpleColorProfile(self: *const ID2D1DeviceContext5, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1DeviceContext5, @ptrCast(self)), simpleProfile, colorContext);
+    }
 };
 
 const IID_ID2D1Device5_Value = Guid.initString("d55ba0a4-6405-4694-aef5-08ee1a4358b4");
@@ -9826,7 +11374,10 @@ pub const ID2D1Device5 = extern union {
             return @as(*const ID2D1Device5.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device5, @ptrCast(self)), options, deviceContext5);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device4.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device5, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: ?*?*ID2D1DeviceContext5) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device5.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device5, @ptrCast(self)), options, deviceContext5);
+    }
 };
 
 const IID_ID2D1Factory6_Value = Guid.initString("f9976f46-f642-44c1-97ca-da32ea2a2635");
@@ -9849,7 +11400,10 @@ pub const ID2D1Factory6 = extern union {
             return @as(*const ID2D1Factory6.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory6, @ptrCast(self)), dxgiDevice, d2dDevice5);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory5.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory6, dxgiDevice: ?*IDXGIDevice, d2dDevice5: ?*?*ID2D1Device5) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory6.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory6, @ptrCast(self)), dxgiDevice, d2dDevice5);
+    }
 };
 
 const IID_ID2D1CommandSink5_Value = Guid.initString("7047dd26-b1e7-44a7-959a-8349e2144fa8");
@@ -9875,7 +11429,10 @@ pub const ID2D1CommandSink5 = extern union {
             return @as(*const ID2D1CommandSink5.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1CommandSink5, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1CommandSink4.MethodMixin(@This());
+    pub fn BlendImage(self: *const ID2D1CommandSink5, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1CommandSink5.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1CommandSink5, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
+    }
 };
 
 const IID_ID2D1DeviceContext6_Value = Guid.initString("985f7e37-4ed0-4a19-98a3-15b0edfde306");
@@ -9901,7 +11458,10 @@ pub const ID2D1DeviceContext6 = extern union {
             return @as(*const ID2D1DeviceContext6.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1DeviceContext6, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1DeviceContext5.MethodMixin(@This());
+    pub fn BlendImage(self: *const ID2D1DeviceContext6, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) void {
+        return @as(*const ID2D1DeviceContext6.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1DeviceContext6, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
+    }
 };
 
 const IID_ID2D1Device6_Value = Guid.initString("7bfef914-2d75-4bad-be87-e18ddb077b6d");
@@ -9924,7 +11484,10 @@ pub const ID2D1Device6 = extern union {
             return @as(*const ID2D1Device6.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device6, @ptrCast(self)), options, deviceContext6);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Device5.MethodMixin(@This());
+    pub fn CreateDeviceContext(self: *const ID2D1Device6, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: ?*?*ID2D1DeviceContext6) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Device6.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device6, @ptrCast(self)), options, deviceContext6);
+    }
 };
 
 const IID_ID2D1Factory7_Value = Guid.initString("bdc2bdd3-b96c-4de6-bdf7-99d4745454de");
@@ -9947,7 +11510,10 @@ pub const ID2D1Factory7 = extern union {
             return @as(*const ID2D1Factory7.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory7, @ptrCast(self)), dxgiDevice, d2dDevice6);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1Factory6.MethodMixin(@This());
+    pub fn CreateDevice(self: *const ID2D1Factory7, dxgiDevice: ?*IDXGIDevice, d2dDevice6: ?*?*ID2D1Device6) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1Factory7.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory7, @ptrCast(self)), dxgiDevice, d2dDevice6);
+    }
 };
 
 const IID_ID2D1EffectContext1_Value = Guid.initString("84ab595a-fc81-4546-bacd-e8ef4d8abe7a");
@@ -9974,7 +11540,10 @@ pub const ID2D1EffectContext1 = extern union {
             return @as(*const ID2D1EffectContext1.VTable, @ptrCast(self.vtable)).CreateLookupTable3D(@as(*const ID2D1EffectContext1, @ptrCast(self)), precision, extents, data, dataCount, strides, lookupTable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1EffectContext.MethodMixin(@This());
+    pub fn CreateLookupTable3D(self: *const ID2D1EffectContext1, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext1.VTable, @ptrCast(self.vtable)).CreateLookupTable3D(@as(*const ID2D1EffectContext1, @ptrCast(self)), precision, extents, data, dataCount, strides, lookupTable);
+    }
 };
 
 const IID_ID2D1EffectContext2_Value = Guid.initString("577ad2a0-9fc7-4dda-8b18-dab810140052");
@@ -10006,7 +11575,13 @@ pub const ID2D1EffectContext2 = extern union {
             return @as(*const ID2D1EffectContext2.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1EffectContext2, @ptrCast(self)), simpleProfile, colorContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID2D1EffectContext1.MethodMixin(@This());
+    pub fn CreateColorContextFromDxgiColorSpace(self: *const ID2D1EffectContext2, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext2.VTable, @ptrCast(self.vtable)).CreateColorContextFromDxgiColorSpace(@as(*const ID2D1EffectContext2, @ptrCast(self)), colorSpace, colorContext);
+    }
+    pub fn CreateColorContextFromSimpleColorProfile(self: *const ID2D1EffectContext2, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        return @as(*const ID2D1EffectContext2.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1EffectContext2, @ptrCast(self)), simpleProfile, colorContext);
+    }
 };
 
 

@@ -2056,7 +2056,43 @@ pub const ITraceEvent = extern union {
             return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProviderId(@as(*const ITraceEvent, @ptrCast(self)), ProviderId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const ITraceEvent, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).Clone(@as(*const ITraceEvent, @ptrCast(self)), NewEvent);
+    }
+    pub fn GetUserContext(self: *const ITraceEvent, UserContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetUserContext(@as(*const ITraceEvent, @ptrCast(self)), UserContext);
+    }
+    pub fn GetEventRecord(self: *const ITraceEvent, EventRecord: ?*?*EVENT_RECORD) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetEventRecord(@as(*const ITraceEvent, @ptrCast(self)), EventRecord);
+    }
+    pub fn SetPayload(self: *const ITraceEvent, Payload: [*:0]u8, PayloadSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetPayload(@as(*const ITraceEvent, @ptrCast(self)), Payload, PayloadSize);
+    }
+    pub fn SetEventDescriptor(self: *const ITraceEvent, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetEventDescriptor(@as(*const ITraceEvent, @ptrCast(self)), EventDescriptor);
+    }
+    pub fn SetProcessId(self: *const ITraceEvent, ProcessId: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessId(@as(*const ITraceEvent, @ptrCast(self)), ProcessId);
+    }
+    pub fn SetProcessorIndex(self: *const ITraceEvent, ProcessorIndex: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessorIndex(@as(*const ITraceEvent, @ptrCast(self)), ProcessorIndex);
+    }
+    pub fn SetThreadId(self: *const ITraceEvent, ThreadId: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadId(@as(*const ITraceEvent, @ptrCast(self)), ThreadId);
+    }
+    pub fn SetThreadTimes(self: *const ITraceEvent, KernelTime: u32, UserTime: u32) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadTimes(@as(*const ITraceEvent, @ptrCast(self)), KernelTime, UserTime);
+    }
+    pub fn SetActivityId(self: *const ITraceEvent, ActivityId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetActivityId(@as(*const ITraceEvent, @ptrCast(self)), ActivityId);
+    }
+    pub fn SetTimeStamp(self: *const ITraceEvent, TimeStamp: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetTimeStamp(@as(*const ITraceEvent, @ptrCast(self)), TimeStamp);
+    }
+    pub fn SetProviderId(self: *const ITraceEvent, ProviderId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProviderId(@as(*const ITraceEvent, @ptrCast(self)), ProviderId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2097,7 +2133,16 @@ pub const ITraceEventCallback = extern union {
             return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ITraceEventCallback, @ptrCast(self)), Event, Relogger);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnBeginProcessTrace(self: *const ITraceEventCallback, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnBeginProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), HeaderEvent, Relogger);
+    }
+    pub fn OnFinalizeProcessTrace(self: *const ITraceEventCallback, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnFinalizeProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), Relogger);
+    }
+    pub fn OnEvent(self: *const ITraceEventCallback, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+        return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ITraceEventCallback, @ptrCast(self)), Event, Relogger);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2188,7 +2233,34 @@ pub const ITraceRelogger = extern union {
             return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ITraceRelogger, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddLogfileTraceStream(self: *const ITraceRelogger, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddLogfileTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName, UserContext, TraceHandle);
+    }
+    pub fn AddRealtimeTraceStream(self: *const ITraceRelogger, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddRealtimeTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LoggerName, UserContext, TraceHandle);
+    }
+    pub fn RegisterCallback(self: *const ITraceRelogger, Callback: ?*ITraceEventCallback) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const ITraceRelogger, @ptrCast(self)), Callback);
+    }
+    pub fn Inject(self: *const ITraceRelogger, Event: ?*ITraceEvent) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Inject(@as(*const ITraceRelogger, @ptrCast(self)), Event);
+    }
+    pub fn CreateEventInstance(self: *const ITraceRelogger, TraceHandle: RELOGSTREAM_HANDLE, Flags: u32, Event: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).CreateEventInstance(@as(*const ITraceRelogger, @ptrCast(self)), TraceHandle, Flags, Event);
+    }
+    pub fn ProcessTrace(self: *const ITraceRelogger) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).ProcessTrace(@as(*const ITraceRelogger, @ptrCast(self)));
+    }
+    pub fn SetOutputFilename(self: *const ITraceRelogger, LogfileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetOutputFilename(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName);
+    }
+    pub fn SetCompressionMode(self: *const ITraceRelogger, CompressionMode: BOOLEAN) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetCompressionMode(@as(*const ITraceRelogger, @ptrCast(self)), CompressionMode);
+    }
+    pub fn Cancel(self: *const ITraceRelogger) callconv(.Inline) HRESULT {
+        return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ITraceRelogger, @ptrCast(self)));
+    }
 };
 
 

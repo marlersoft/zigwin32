@@ -69,7 +69,16 @@ pub const ID3D11On12Device = extern union {
             return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).AcquireWrappedResources(@as(*const ID3D11On12Device, @ptrCast(self)), ppResources, NumResources);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateWrappedResource(self: *const ID3D11On12Device, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).CreateWrappedResource(@as(*const ID3D11On12Device, @ptrCast(self)), pResource12, pFlags11, InState, OutState, riid, ppResource11);
+    }
+    pub fn ReleaseWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.Inline) void {
+        return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).ReleaseWrappedResources(@as(*const ID3D11On12Device, @ptrCast(self)), ppResources, NumResources);
+    }
+    pub fn AcquireWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.Inline) void {
+        return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).AcquireWrappedResources(@as(*const ID3D11On12Device, @ptrCast(self)), ppResources, NumResources);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.18362'
@@ -94,7 +103,10 @@ pub const ID3D11On12Device1 = extern union {
             return @as(*const ID3D11On12Device1.VTable, @ptrCast(self.vtable)).GetD3D12Device(@as(*const ID3D11On12Device1, @ptrCast(self)), riid, ppvDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11On12Device.MethodMixin(@This());
+    pub fn GetD3D12Device(self: *const ID3D11On12Device1, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11On12Device1.VTable, @ptrCast(self.vtable)).GetD3D12Device(@as(*const ID3D11On12Device1, @ptrCast(self)), riid, ppvDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -132,7 +144,13 @@ pub const ID3D11On12Device2 = extern union {
             return @as(*const ID3D11On12Device2.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const ID3D11On12Device2, @ptrCast(self)), pResource11, NumSync, pSignalValues, ppFences);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D11On12Device1.MethodMixin(@This());
+    pub fn UnwrapUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11On12Device2.VTable, @ptrCast(self.vtable)).UnwrapUnderlyingResource(@as(*const ID3D11On12Device2, @ptrCast(self)), pResource11, pCommandQueue, riid, ppvResource12);
+    }
+    pub fn ReturnUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, NumSync: u32, pSignalValues: [*]u64, ppFences: [*]?*ID3D12Fence) callconv(.Inline) HRESULT {
+        return @as(*const ID3D11On12Device2.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const ID3D11On12Device2, @ptrCast(self)), pResource11, NumSync, pSignalValues, ppFences);
+    }
 };
 
 

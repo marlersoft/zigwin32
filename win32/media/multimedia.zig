@@ -6059,7 +6059,40 @@ pub const IAVIStream = extern union {
             return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIStream, @ptrCast(self)), lpInfo, cbInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Create(self: *const IAVIStream, lParam1: LPARAM, lParam2: LPARAM) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Create(@as(*const IAVIStream, @ptrCast(self)), lParam1, lParam2);
+    }
+    pub fn Info(self: *const IAVIStream, psi: ?*AVISTREAMINFOW, lSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Info(@as(*const IAVIStream, @ptrCast(self)), psi, lSize);
+    }
+    pub fn FindSample(self: *const IAVIStream, lPos: i32, lFlags: i32) callconv(.Inline) i32 {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).FindSample(@as(*const IAVIStream, @ptrCast(self)), lPos, lFlags);
+    }
+    pub fn ReadFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).ReadFormat(@as(*const IAVIStream, @ptrCast(self)), lPos, lpFormat, lpcbFormat);
+    }
+    pub fn SetFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IAVIStream, @ptrCast(self)), lPos, lpFormat, cbFormat);
+    }
+    pub fn Read(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
+    }
+    pub fn Write(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
+    }
+    pub fn Delete(self: *const IAVIStream, lStart: i32, lSamples: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Delete(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples);
+    }
+    pub fn ReadData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).ReadData(@as(*const IAVIStream, @ptrCast(self)), fcc, lp, lpcb);
+    }
+    pub fn WriteData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, cb: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IAVIStream, @ptrCast(self)), fcc, lp, cb);
+    }
+    pub fn SetInfo(self: *const IAVIStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIStream, @ptrCast(self)), lpInfo, cbInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6091,7 +6124,13 @@ pub const IAVIStreaming = extern union {
             return @as(*const IAVIStreaming.VTable, @ptrCast(self.vtable)).End(@as(*const IAVIStreaming, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Begin(self: *const IAVIStreaming, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStreaming.VTable, @ptrCast(self.vtable)).Begin(@as(*const IAVIStreaming, @ptrCast(self)), lStart, lEnd, lRate);
+    }
+    pub fn End(self: *const IAVIStreaming) callconv(.Inline) HRESULT {
+        return @as(*const IAVIStreaming.VTable, @ptrCast(self.vtable)).End(@as(*const IAVIStreaming, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6156,7 +6195,22 @@ pub const IAVIEditStream = extern union {
             return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIEditStream, @ptrCast(self)), lpInfo, cbInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Cut(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+        return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Cut(@as(*const IAVIEditStream, @ptrCast(self)), plStart, plLength, ppResult);
+    }
+    pub fn Copy(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+        return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Copy(@as(*const IAVIEditStream, @ptrCast(self)), plStart, plLength, ppResult);
+    }
+    pub fn Paste(self: *const IAVIEditStream, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Paste(@as(*const IAVIEditStream, @ptrCast(self)), plPos, plLength, pstream, lStart, lEnd);
+    }
+    pub fn Clone(self: *const IAVIEditStream, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+        return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Clone(@as(*const IAVIEditStream, @ptrCast(self)), ppResult);
+    }
+    pub fn SetInfo(self: *const IAVIEditStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIEditStream, @ptrCast(self)), lpInfo, cbInfo);
+    }
 };
 
 const IID_IAVIPersistFile_Value = Guid.initString("00020025-0000-0000-c000-000000000046");
@@ -6177,7 +6231,10 @@ pub const IAVIPersistFile = extern union {
             return @as(*const IAVIPersistFile.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const IAVIPersistFile, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPersistFile.MethodMixin(@This());
+    pub fn Reserved1(self: *const IAVIPersistFile) callconv(.Inline) HRESULT {
+        return @as(*const IAVIPersistFile.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const IAVIPersistFile, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6259,7 +6316,28 @@ pub const IAVIFile = extern union {
             return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).DeleteStream(@as(*const IAVIFile, @ptrCast(self)), fccType, lParam);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Info(self: *const IAVIFile, pfi: ?*AVIFILEINFOW, lSize: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).Info(@as(*const IAVIFile, @ptrCast(self)), pfi, lSize);
+    }
+    pub fn GetStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IAVIFile, @ptrCast(self)), ppStream, fccType, lParam);
+    }
+    pub fn CreateStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const IAVIFile, @ptrCast(self)), ppStream, psi);
+    }
+    pub fn WriteData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, cbData: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IAVIFile, @ptrCast(self)), ckid, lpData, cbData);
+    }
+    pub fn ReadData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).ReadData(@as(*const IAVIFile, @ptrCast(self)), ckid, lpData, lpcbData);
+    }
+    pub fn EndRecord(self: *const IAVIFile) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).EndRecord(@as(*const IAVIFile, @ptrCast(self)));
+    }
+    pub fn DeleteStream(self: *const IAVIFile, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
+        return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).DeleteStream(@as(*const IAVIFile, @ptrCast(self)), fccType, lParam);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6312,7 +6390,19 @@ pub const IGetFrame = extern union {
             return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IGetFrame, @ptrCast(self)), lpbi, lpBits, x, y, dx, dy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFrame(self: *const IGetFrame, lPos: i32) callconv(.Inline) ?*anyopaque {
+        return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).GetFrame(@as(*const IGetFrame, @ptrCast(self)), lPos);
+    }
+    pub fn Begin(self: *const IGetFrame, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).Begin(@as(*const IGetFrame, @ptrCast(self)), lStart, lEnd, lRate);
+    }
+    pub fn End(self: *const IGetFrame) callconv(.Inline) HRESULT {
+        return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).End(@as(*const IGetFrame, @ptrCast(self)));
+    }
+    pub fn SetFormat(self: *const IGetFrame, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) callconv(.Inline) HRESULT {
+        return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IGetFrame, @ptrCast(self)), lpbi, lpBits, x, y, dx, dy);
+    }
 };
 
 pub const VIDEOHDR = extern struct {

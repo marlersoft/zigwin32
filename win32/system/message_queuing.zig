@@ -959,7 +959,10 @@ pub const IMSMQQuery = extern union {
             return @as(*const IMSMQQuery.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn LookupQueue(self: *const IMSMQQuery, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+    }
 };
 
 const IID_IMSMQQueueInfo_Value = Guid.initString("d7d6e07b-dccd-11d0-aa4b-0060970debae");
@@ -1238,7 +1241,97 @@ pub const IMSMQQueueInfo = extern union {
             return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrGuidQueue);
+    }
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrGuidServiceType);
+    }
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrGuidServiceType);
+    }
+    pub fn get_Label(self: *const IMSMQQueueInfo, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQQueueInfo, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_PathName(self: *const IMSMQQueueInfo, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrPathName);
+    }
+    pub fn put_PathName(self: *const IMSMQQueueInfo, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrPathName);
+    }
+    pub fn get_FormatName(self: *const IMSMQQueueInfo, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn put_FormatName(self: *const IMSMQQueueInfo, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrFormatName);
+    }
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_Journal(self: *const IMSMQQueueInfo, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQQueueInfo, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo, @ptrCast(self)), lJournal);
+    }
+    pub fn get_Quota(self: *const IMSMQQueueInfo, plQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo, @ptrCast(self)), plQuota);
+    }
+    pub fn put_Quota(self: *const IMSMQQueueInfo, lQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo, @ptrCast(self)), lQuota);
+    }
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo, @ptrCast(self)), plBasePriority);
+    }
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo, lBasePriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo, @ptrCast(self)), lBasePriority);
+    }
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo, @ptrCast(self)), pvarCreateTime);
+    }
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo, @ptrCast(self)), pvarModifyTime);
+    }
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo, @ptrCast(self)), plAuthenticate);
+    }
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo, lAuthenticate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo, @ptrCast(self)), lAuthenticate);
+    }
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo, @ptrCast(self)), plJournalQuota);
+    }
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo, lJournalQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo, @ptrCast(self)), lJournalQuota);
+    }
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn Create(self: *const IMSMQQueueInfo, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo, @ptrCast(self)), IsTransactional, IsWorldReadable);
+    }
+    pub fn Delete(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo, @ptrCast(self)));
+    }
+    pub fn Open(self: *const IMSMQQueueInfo, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo, @ptrCast(self)), Access, ShareMode, ppq);
+    }
+    pub fn Refresh(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo, @ptrCast(self)));
+    }
 };
 
 const IID_IMSMQQueueInfo2_Value = Guid.initString("fd174a80-89cf-11d2-b0f2-00e02c074f6b");
@@ -1553,7 +1646,109 @@ pub const IMSMQQueueInfo2 = extern union {
             return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo2, @ptrCast(self)), varSecurity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo2, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrGuidQueue);
+    }
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo2, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrGuidServiceType);
+    }
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo2, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrGuidServiceType);
+    }
+    pub fn get_Label(self: *const IMSMQQueueInfo2, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQQueueInfo2, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_PathName(self: *const IMSMQQueueInfo2, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrPathName);
+    }
+    pub fn put_PathName(self: *const IMSMQQueueInfo2, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrPathName);
+    }
+    pub fn get_FormatName(self: *const IMSMQQueueInfo2, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn put_FormatName(self: *const IMSMQQueueInfo2, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrFormatName);
+    }
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo2, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo2, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo2, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_Journal(self: *const IMSMQQueueInfo2, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQQueueInfo2, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lJournal);
+    }
+    pub fn get_Quota(self: *const IMSMQQueueInfo2, plQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plQuota);
+    }
+    pub fn put_Quota(self: *const IMSMQQueueInfo2, lQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lQuota);
+    }
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo2, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plBasePriority);
+    }
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo2, lBasePriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lBasePriority);
+    }
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo2, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarCreateTime);
+    }
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo2, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarModifyTime);
+    }
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo2, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plAuthenticate);
+    }
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo2, lAuthenticate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lAuthenticate);
+    }
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo2, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plJournalQuota);
+    }
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo2, lJournalQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lJournalQuota);
+    }
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo2, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn Create(self: *const IMSMQQueueInfo2, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo2, @ptrCast(self)), IsTransactional, IsWorldReadable);
+    }
+    pub fn Delete(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
+    }
+    pub fn Open(self: *const IMSMQQueueInfo2, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo2, @ptrCast(self)), Access, ShareMode, ppq);
+    }
+    pub fn Refresh(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
+    }
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo2, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrPathNameDNS);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfo2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo2, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_Security(self: *const IMSMQQueueInfo2, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarSecurity);
+    }
+    pub fn put_Security(self: *const IMSMQQueueInfo2, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo2, @ptrCast(self)), varSecurity);
+    }
 };
 
 const IID_IMSMQQueueInfo3_Value = Guid.initString("eba96b1d-2168-11d3-898c-00e02c074f6b");
@@ -1913,7 +2108,124 @@ pub const IMSMQQueueInfo3 = extern union {
             return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrADsPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo3, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrGuidQueue);
+    }
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo3, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrGuidServiceType);
+    }
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo3, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrGuidServiceType);
+    }
+    pub fn get_Label(self: *const IMSMQQueueInfo3, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQQueueInfo3, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_PathName(self: *const IMSMQQueueInfo3, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrPathName);
+    }
+    pub fn put_PathName(self: *const IMSMQQueueInfo3, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrPathName);
+    }
+    pub fn get_FormatName(self: *const IMSMQQueueInfo3, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn put_FormatName(self: *const IMSMQQueueInfo3, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrFormatName);
+    }
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo3, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo3, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_Journal(self: *const IMSMQQueueInfo3, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQQueueInfo3, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lJournal);
+    }
+    pub fn get_Quota(self: *const IMSMQQueueInfo3, plQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plQuota);
+    }
+    pub fn put_Quota(self: *const IMSMQQueueInfo3, lQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lQuota);
+    }
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo3, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plBasePriority);
+    }
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo3, lBasePriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lBasePriority);
+    }
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo3, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarCreateTime);
+    }
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo3, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarModifyTime);
+    }
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo3, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plAuthenticate);
+    }
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo3, lAuthenticate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lAuthenticate);
+    }
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo3, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plJournalQuota);
+    }
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo3, lJournalQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lJournalQuota);
+    }
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn Create(self: *const IMSMQQueueInfo3, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo3, @ptrCast(self)), IsTransactional, IsWorldReadable);
+    }
+    pub fn Delete(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
+    }
+    pub fn Open(self: *const IMSMQQueueInfo3, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo3, @ptrCast(self)), Access, ShareMode, ppq);
+    }
+    pub fn Refresh(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
+    }
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo3, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrPathNameDNS);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfo3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo3, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_Security(self: *const IMSMQQueueInfo3, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarSecurity);
+    }
+    pub fn put_Security(self: *const IMSMQQueueInfo3, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo3, @ptrCast(self)), varSecurity);
+    }
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsTransactional2(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsWorldReadable2(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo3, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_MulticastAddress(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrMulticastAddress);
+    }
+    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo3, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_MulticastAddress(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrMulticastAddress);
+    }
+    pub fn get_ADsPath(self: *const IMSMQQueueInfo3, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrADsPath);
+    }
 };
 
 const IID_IMSMQQueueInfo4_Value = Guid.initString("eba96b21-2168-11d3-898c-00e02c074f6b");
@@ -2273,7 +2585,124 @@ pub const IMSMQQueueInfo4 = extern union {
             return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrADsPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo4, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrGuidQueue);
+    }
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo4, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrGuidServiceType);
+    }
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo4, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrGuidServiceType);
+    }
+    pub fn get_Label(self: *const IMSMQQueueInfo4, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQQueueInfo4, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_PathName(self: *const IMSMQQueueInfo4, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrPathName);
+    }
+    pub fn put_PathName(self: *const IMSMQQueueInfo4, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrPathName);
+    }
+    pub fn get_FormatName(self: *const IMSMQQueueInfo4, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn put_FormatName(self: *const IMSMQQueueInfo4, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrFormatName);
+    }
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo4, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo4, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_Journal(self: *const IMSMQQueueInfo4, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQQueueInfo4, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lJournal);
+    }
+    pub fn get_Quota(self: *const IMSMQQueueInfo4, plQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plQuota);
+    }
+    pub fn put_Quota(self: *const IMSMQQueueInfo4, lQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lQuota);
+    }
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo4, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plBasePriority);
+    }
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo4, lBasePriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lBasePriority);
+    }
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo4, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarCreateTime);
+    }
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo4, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarModifyTime);
+    }
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo4, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plAuthenticate);
+    }
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo4, lAuthenticate: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lAuthenticate);
+    }
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo4, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plJournalQuota);
+    }
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo4, lJournalQuota: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lJournalQuota);
+    }
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn Create(self: *const IMSMQQueueInfo4, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo4, @ptrCast(self)), IsTransactional, IsWorldReadable);
+    }
+    pub fn Delete(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
+    }
+    pub fn Open(self: *const IMSMQQueueInfo4, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo4, @ptrCast(self)), Access, ShareMode, ppq);
+    }
+    pub fn Refresh(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
+    }
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo4, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrPathNameDNS);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfo4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo4, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_Security(self: *const IMSMQQueueInfo4, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarSecurity);
+    }
+    pub fn put_Security(self: *const IMSMQQueueInfo4, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo4, @ptrCast(self)), varSecurity);
+    }
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsTransactional2(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisTransactional);
+    }
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsWorldReadable2(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisWorldReadable);
+    }
+    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo4, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_MulticastAddress(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrMulticastAddress);
+    }
+    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo4, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_MulticastAddress(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrMulticastAddress);
+    }
+    pub fn get_ADsPath(self: *const IMSMQQueueInfo4, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrADsPath);
+    }
 };
 
 const IID_IMSMQQueue_Value = Guid.initString("d7d6e076-dccd-11d0-aa4b-0060970debae");
@@ -2413,7 +2842,46 @@ pub const IMSMQQueue = extern union {
             return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Access(self: *const IMSMQQueue, plAccess: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue, @ptrCast(self)), plAccess);
+    }
+    pub fn get_ShareMode(self: *const IMSMQQueue, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue, @ptrCast(self)), plShareMode);
+    }
+    pub fn get_QueueInfo(self: *const IMSMQQueue, ppqinfo: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue, @ptrCast(self)), ppqinfo);
+    }
+    pub fn get_Handle(self: *const IMSMQQueue, plHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue, @ptrCast(self)), plHandle);
+    }
+    pub fn get_IsOpen(self: *const IMSMQQueue, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue, @ptrCast(self)), pisOpen);
+    }
+    pub fn Close(self: *const IMSMQQueue) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue, @ptrCast(self)));
+    }
+    pub fn Receive(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Peek(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn EnableNotification(self: *const IMSMQQueue, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
+    }
+    pub fn Reset(self: *const IMSMQQueue) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue, @ptrCast(self)));
+    }
+    pub fn ReceiveCurrent(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekNext(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekCurrent(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
 };
 
 const IID_IMSMQQueue2_Value = Guid.initString("ef0574e0-06d8-11d3-b100-00e02c074f6b");
@@ -2624,7 +3092,64 @@ pub const IMSMQQueue2 = extern union {
             return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Access(self: *const IMSMQQueue2, plAccess: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue2, @ptrCast(self)), plAccess);
+    }
+    pub fn get_ShareMode(self: *const IMSMQQueue2, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue2, @ptrCast(self)), plShareMode);
+    }
+    pub fn get_QueueInfo(self: *const IMSMQQueue2, ppqinfo: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue2, @ptrCast(self)), ppqinfo);
+    }
+    pub fn get_Handle(self: *const IMSMQQueue2, plHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue2, @ptrCast(self)), plHandle);
+    }
+    pub fn get_IsOpen(self: *const IMSMQQueue2, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue2, @ptrCast(self)), pisOpen);
+    }
+    pub fn Close(self: *const IMSMQQueue2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue2, @ptrCast(self)));
+    }
+    pub fn Receive_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Peek_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn EnableNotification(self: *const IMSMQQueue2, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue2, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
+    }
+    pub fn Reset(self: *const IMSMQQueue2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue2, @ptrCast(self)));
+    }
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekNext_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Receive(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn Peek(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveCurrent(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekNext(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekCurrent(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn get_Properties(self: *const IMSMQQueue2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQQueue3_Value = Guid.initString("eba96b1b-2168-11d3-898c-00e02c074f6b");
@@ -2981,7 +3506,103 @@ pub const IMSMQQueue3 = extern union {
             return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_IsOpen2(@as(*const IMSMQQueue3, @ptrCast(self)), pisOpen);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Access(self: *const IMSMQQueue3, plAccess: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue3, @ptrCast(self)), plAccess);
+    }
+    pub fn get_ShareMode(self: *const IMSMQQueue3, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue3, @ptrCast(self)), plShareMode);
+    }
+    pub fn get_QueueInfo(self: *const IMSMQQueue3, ppqinfo: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue3, @ptrCast(self)), ppqinfo);
+    }
+    pub fn get_Handle(self: *const IMSMQQueue3, plHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue3, @ptrCast(self)), plHandle);
+    }
+    pub fn get_IsOpen(self: *const IMSMQQueue3, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue3, @ptrCast(self)), pisOpen);
+    }
+    pub fn Close(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue3, @ptrCast(self)));
+    }
+    pub fn Receive_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Peek_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn EnableNotification(self: *const IMSMQQueue3, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue3, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
+    }
+    pub fn Reset(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue3, @ptrCast(self)));
+    }
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekNext_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Receive(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn Peek(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveCurrent(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekNext(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekCurrent(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn get_Properties(self: *const IMSMQQueue3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue3, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_Handle2(self: *const IMSMQQueue3, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Handle2(@as(*const IMSMQQueue3, @ptrCast(self)), pvarHandle);
+    }
+    pub fn ReceiveByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveNextByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceivePreviousByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveFirstByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveLastByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNextByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekPreviousByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekFirstByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekFirstByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekLastByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekLastByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn Purge(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Purge(@as(*const IMSMQQueue3, @ptrCast(self)));
+    }
+    pub fn get_IsOpen2(self: *const IMSMQQueue3, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_IsOpen2(@as(*const IMSMQQueue3, @ptrCast(self)), pisOpen);
+    }
 };
 
 const IID_IMSMQQueue4_Value = Guid.initString("eba96b20-2168-11d3-898c-00e02c074f6b");
@@ -3351,7 +3972,106 @@ pub const IMSMQQueue4 = extern union {
             return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveByLookupIdAllowPeek(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Access(self: *const IMSMQQueue4, plAccess: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue4, @ptrCast(self)), plAccess);
+    }
+    pub fn get_ShareMode(self: *const IMSMQQueue4, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue4, @ptrCast(self)), plShareMode);
+    }
+    pub fn get_QueueInfo(self: *const IMSMQQueue4, ppqinfo: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue4, @ptrCast(self)), ppqinfo);
+    }
+    pub fn get_Handle(self: *const IMSMQQueue4, plHandle: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue4, @ptrCast(self)), plHandle);
+    }
+    pub fn get_IsOpen(self: *const IMSMQQueue4, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue4, @ptrCast(self)), pisOpen);
+    }
+    pub fn Close(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue4, @ptrCast(self)));
+    }
+    pub fn Receive_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Peek_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn EnableNotification(self: *const IMSMQQueue4, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue4, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
+    }
+    pub fn Reset(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue4, @ptrCast(self)));
+    }
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekNext_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+    }
+    pub fn Receive(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn Peek(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveCurrent(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekNext(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn PeekCurrent(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+    }
+    pub fn get_Properties(self: *const IMSMQQueue4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue4, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_Handle2(self: *const IMSMQQueue4, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Handle2(@as(*const IMSMQQueue4, @ptrCast(self)), pvarHandle);
+    }
+    pub fn ReceiveByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveNextByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceivePreviousByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveFirstByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveLastByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNextByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekPreviousByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekFirstByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekFirstByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn PeekLastByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekLastByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
+    pub fn Purge(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Purge(@as(*const IMSMQQueue4, @ptrCast(self)));
+    }
+    pub fn get_IsOpen2(self: *const IMSMQQueue4, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_IsOpen2(@as(*const IMSMQQueue4, @ptrCast(self)), pisOpen);
+    }
+    pub fn ReceiveByLookupIdAllowPeek(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveByLookupIdAllowPeek(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+    }
 };
 
 const IID_IMSMQMessage_Value = Guid.initString("d7d6e074-dccd-11d0-aa4b-0060970debae");
@@ -3802,7 +4522,154 @@ pub const IMSMQMessage = extern union {
             return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Class(self: *const IMSMQMessage, plClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage, @ptrCast(self)), plClass);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQMessage, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQMessage, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_AuthLevel(self: *const IMSMQMessage, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage, @ptrCast(self)), plAuthLevel);
+    }
+    pub fn put_AuthLevel(self: *const IMSMQMessage, lAuthLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage, @ptrCast(self)), lAuthLevel);
+    }
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_Delivery(self: *const IMSMQMessage, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage, @ptrCast(self)), plDelivery);
+    }
+    pub fn put_Delivery(self: *const IMSMQMessage, lDelivery: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage, @ptrCast(self)), lDelivery);
+    }
+    pub fn get_Trace(self: *const IMSMQMessage, plTrace: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage, @ptrCast(self)), plTrace);
+    }
+    pub fn put_Trace(self: *const IMSMQMessage, lTrace: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage, @ptrCast(self)), lTrace);
+    }
+    pub fn get_Priority(self: *const IMSMQMessage, plPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage, @ptrCast(self)), plPriority);
+    }
+    pub fn put_Priority(self: *const IMSMQMessage, lPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage, @ptrCast(self)), lPriority);
+    }
+    pub fn get_Journal(self: *const IMSMQMessage, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQMessage, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage, @ptrCast(self)), lJournal);
+    }
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AppSpecific(self: *const IMSMQMessage, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage, @ptrCast(self)), plAppSpecific);
+    }
+    pub fn put_AppSpecific(self: *const IMSMQMessage, lAppSpecific: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage, @ptrCast(self)), lAppSpecific);
+    }
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage, @ptrCast(self)), pbstrGuidSrcMachine);
+    }
+    pub fn get_BodyLength(self: *const IMSMQMessage, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage, @ptrCast(self)), pcbBody);
+    }
+    pub fn get_Body(self: *const IMSMQMessage, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage, @ptrCast(self)), pvarBody);
+    }
+    pub fn put_Body(self: *const IMSMQMessage, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage, @ptrCast(self)), varBody);
+    }
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_Id(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn get_CorrelationId(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn put_CorrelationId(self: *const IMSMQMessage, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage, @ptrCast(self)), varMsgId);
+    }
+    pub fn get_Ack(self: *const IMSMQMessage, plAck: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage, @ptrCast(self)), plAck);
+    }
+    pub fn put_Ack(self: *const IMSMQMessage, lAck: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage, @ptrCast(self)), lAck);
+    }
+    pub fn get_Label(self: *const IMSMQMessage, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQMessage, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage, @ptrCast(self)), plMaxTimeToReachQueue);
+    }
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage, @ptrCast(self)), lMaxTimeToReachQueue);
+    }
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage, @ptrCast(self)), plMaxTimeToReceive);
+    }
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage, @ptrCast(self)), lMaxTimeToReceive);
+    }
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), plHashAlg);
+    }
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage, lHashAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), lHashAlg);
+    }
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), plEncryptAlg);
+    }
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), lEncryptAlg);
+    }
+    pub fn get_SentTime(self: *const IMSMQMessage, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage, @ptrCast(self)), pvarSentTime);
+    }
+    pub fn get_ArrivedTime(self: *const IMSMQMessage, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage, @ptrCast(self)), plArrivedTime);
+    }
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage, ppqinfoDest: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoDest);
+    }
+    pub fn get_SenderCertificate(self: *const IMSMQMessage, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage, @ptrCast(self)), pvarSenderCert);
+    }
+    pub fn put_SenderCertificate(self: *const IMSMQMessage, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage, @ptrCast(self)), varSenderCert);
+    }
+    pub fn get_SenderId(self: *const IMSMQMessage, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage, @ptrCast(self)), pvarSenderId);
+    }
+    pub fn get_SenderIdType(self: *const IMSMQMessage, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage, @ptrCast(self)), plSenderIdType);
+    }
+    pub fn put_SenderIdType(self: *const IMSMQMessage, lSenderIdType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage, @ptrCast(self)), lSenderIdType);
+    }
+    pub fn Send(self: *const IMSMQMessage, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage, @ptrCast(self)), DestinationQueue, Transaction);
+    }
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage, @ptrCast(self)));
+    }
 };
 
 const IID_IMSMQQueueInfos_Value = Guid.initString("d7d6e07d-dccd-11d0-aa4b-0060970debae");
@@ -3831,7 +4698,13 @@ pub const IMSMQQueueInfos = extern union {
             return @as(*const IMSMQQueueInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos, @ptrCast(self)), ppqinfoNext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const IMSMQQueueInfos) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IMSMQQueueInfos, ppqinfoNext: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos, @ptrCast(self)), ppqinfoNext);
+    }
 };
 
 const IID_IMSMQQueueInfos2_Value = Guid.initString("eba96b0f-2168-11d3-898c-00e02c074f6b");
@@ -3869,7 +4742,16 @@ pub const IMSMQQueueInfos2 = extern union {
             return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const IMSMQQueueInfos2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos2, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IMSMQQueueInfos2, ppqinfoNext: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos2, @ptrCast(self)), ppqinfoNext);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfos2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQQueueInfos3_Value = Guid.initString("eba96b1e-2168-11d3-898c-00e02c074f6b");
@@ -3907,7 +4789,16 @@ pub const IMSMQQueueInfos3 = extern union {
             return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos3, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos3, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IMSMQQueueInfos3, ppqinfoNext: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos3, @ptrCast(self)), ppqinfoNext);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfos3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos3, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQQueueInfos4_Value = Guid.initString("eba96b22-2168-11d3-898c-00e02c074f6b");
@@ -3945,7 +4836,16 @@ pub const IMSMQQueueInfos4 = extern union {
             return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos4, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Reset(self: *const IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos4, @ptrCast(self)));
+    }
+    pub fn Next(self: *const IMSMQQueueInfos4, ppqinfoNext: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos4, @ptrCast(self)), ppqinfoNext);
+    }
+    pub fn get_Properties(self: *const IMSMQQueueInfos4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos4, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQEvent_Value = Guid.initString("d7d6e077-dccd-11d0-aa4b-0060970debae");
@@ -3959,7 +4859,7 @@ pub const IMSMQEvent = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IMSMQEvent2_Value = Guid.initString("eba96b12-2168-11d3-898c-00e02c074f6b");
@@ -3982,7 +4882,10 @@ pub const IMSMQEvent2 = extern union {
             return @as(*const IMSMQEvent2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQEvent2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQEvent.MethodMixin(@This());
+    pub fn get_Properties(self: *const IMSMQEvent2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQEvent2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQEvent2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQEvent3_Value = Guid.initString("eba96b1c-2168-11d3-898c-00e02c074f6b");
@@ -3996,7 +4899,7 @@ pub const IMSMQEvent3 = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMSMQEvent2.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQEvent2.MethodMixin(@This());
 };
 
 const IID_IMSMQTransaction_Value = Guid.initString("d7d6e07f-dccd-11d0-aa4b-0060970debae");
@@ -4038,7 +4941,16 @@ pub const IMSMQTransaction = extern union {
             return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMSMQTransaction, @ptrCast(self)), fRetaining, fAsync);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Transaction(self: *const IMSMQTransaction, plTransaction: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).get_Transaction(@as(*const IMSMQTransaction, @ptrCast(self)), plTransaction);
+    }
+    pub fn Commit(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).Commit(@as(*const IMSMQTransaction, @ptrCast(self)), fRetaining, grfTC, grfRM);
+    }
+    pub fn Abort(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMSMQTransaction, @ptrCast(self)), fRetaining, fAsync);
+    }
 };
 
 const IID_IMSMQCoordinatedTransactionDispenser_Value = Guid.initString("d7d6e081-dccd-11d0-aa4b-0060970debae");
@@ -4060,7 +4972,10 @@ pub const IMSMQCoordinatedTransactionDispenser = extern union {
             return @as(*const IMSMQCoordinatedTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser, @ptrCast(self)), ptransaction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCoordinatedTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser, @ptrCast(self)), ptransaction);
+    }
 };
 
 const IID_IMSMQTransactionDispenser_Value = Guid.initString("d7d6e083-dccd-11d0-aa4b-0060970debae");
@@ -4082,7 +4997,10 @@ pub const IMSMQTransactionDispenser = extern union {
             return @as(*const IMSMQTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser, @ptrCast(self)), ptransaction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser, @ptrCast(self)), ptransaction);
+    }
 };
 
 const IID_IMSMQQuery2_Value = Guid.initString("eba96b0e-2168-11d3-898c-00e02c074f6b");
@@ -4122,7 +5040,13 @@ pub const IMSMQQuery2 = extern union {
             return @as(*const IMSMQQuery2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn LookupQueue(self: *const IMSMQQuery2, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery2.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery2, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+    }
+    pub fn get_Properties(self: *const IMSMQQuery2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQQuery3_Value = Guid.initString("eba96b19-2168-11d3-898c-00e02c074f6b");
@@ -4181,7 +5105,16 @@ pub const IMSMQQuery3 = extern union {
             return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery3, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn LookupQueue_v2(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).LookupQueue_v2(@as(*const IMSMQQuery3, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+    }
+    pub fn get_Properties(self: *const IMSMQQuery3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery3, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn LookupQueue(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery3, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+    }
 };
 
 const IID_IMSMQQuery4_Value = Guid.initString("eba96b24-2168-11d3-898c-00e02c074f6b");
@@ -4240,7 +5173,16 @@ pub const IMSMQQuery4 = extern union {
             return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery4, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn LookupQueue_v2(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).LookupQueue_v2(@as(*const IMSMQQuery4, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+    }
+    pub fn get_Properties(self: *const IMSMQQuery4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery4, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn LookupQueue(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery4, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+    }
 };
 
 const IID_IMSMQMessage2_Value = Guid.initString("d9933be0-a567-11d2-b0f3-00e02c074f6b");
@@ -4923,7 +5865,232 @@ pub const IMSMQMessage2 = extern union {
             return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage2, @ptrCast(self)), psReceivedAuthenticationLevel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Class(self: *const IMSMQMessage2, plClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage2, @ptrCast(self)), plClass);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQMessage2, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage2, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQMessage2, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage2, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_AuthLevel(self: *const IMSMQMessage2, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage2, @ptrCast(self)), plAuthLevel);
+    }
+    pub fn put_AuthLevel(self: *const IMSMQMessage2, lAuthLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage2, @ptrCast(self)), lAuthLevel);
+    }
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage2, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage2, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_Delivery(self: *const IMSMQMessage2, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage2, @ptrCast(self)), plDelivery);
+    }
+    pub fn put_Delivery(self: *const IMSMQMessage2, lDelivery: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage2, @ptrCast(self)), lDelivery);
+    }
+    pub fn get_Trace(self: *const IMSMQMessage2, plTrace: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage2, @ptrCast(self)), plTrace);
+    }
+    pub fn put_Trace(self: *const IMSMQMessage2, lTrace: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage2, @ptrCast(self)), lTrace);
+    }
+    pub fn get_Priority(self: *const IMSMQMessage2, plPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage2, @ptrCast(self)), plPriority);
+    }
+    pub fn put_Priority(self: *const IMSMQMessage2, lPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage2, @ptrCast(self)), lPriority);
+    }
+    pub fn get_Journal(self: *const IMSMQMessage2, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage2, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQMessage2, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage2, @ptrCast(self)), lJournal);
+    }
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AppSpecific(self: *const IMSMQMessage2, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage2, @ptrCast(self)), plAppSpecific);
+    }
+    pub fn put_AppSpecific(self: *const IMSMQMessage2, lAppSpecific: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage2, @ptrCast(self)), lAppSpecific);
+    }
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage2, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrGuidSrcMachine);
+    }
+    pub fn get_BodyLength(self: *const IMSMQMessage2, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage2, @ptrCast(self)), pcbBody);
+    }
+    pub fn get_Body(self: *const IMSMQMessage2, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage2, @ptrCast(self)), pvarBody);
+    }
+    pub fn put_Body(self: *const IMSMQMessage2, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage2, @ptrCast(self)), varBody);
+    }
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_Id(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage2, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn get_CorrelationId(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn put_CorrelationId(self: *const IMSMQMessage2, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage2, @ptrCast(self)), varMsgId);
+    }
+    pub fn get_Ack(self: *const IMSMQMessage2, plAck: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage2, @ptrCast(self)), plAck);
+    }
+    pub fn put_Ack(self: *const IMSMQMessage2, lAck: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage2, @ptrCast(self)), lAck);
+    }
+    pub fn get_Label(self: *const IMSMQMessage2, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQMessage2, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage2, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage2, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage2, @ptrCast(self)), plMaxTimeToReachQueue);
+    }
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage2, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage2, @ptrCast(self)), lMaxTimeToReachQueue);
+    }
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage2, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage2, @ptrCast(self)), plMaxTimeToReceive);
+    }
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage2, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage2, @ptrCast(self)), lMaxTimeToReceive);
+    }
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage2, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), plHashAlg);
+    }
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage2, lHashAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), lHashAlg);
+    }
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage2, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), plEncryptAlg);
+    }
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage2, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), lEncryptAlg);
+    }
+    pub fn get_SentTime(self: *const IMSMQMessage2, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSentTime);
+    }
+    pub fn get_ArrivedTime(self: *const IMSMQMessage2, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage2, @ptrCast(self)), plArrivedTime);
+    }
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage2, ppqinfoDest: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoDest);
+    }
+    pub fn get_SenderCertificate(self: *const IMSMQMessage2, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSenderCert);
+    }
+    pub fn put_SenderCertificate(self: *const IMSMQMessage2, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage2, @ptrCast(self)), varSenderCert);
+    }
+    pub fn get_SenderId(self: *const IMSMQMessage2, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSenderId);
+    }
+    pub fn get_SenderIdType(self: *const IMSMQMessage2, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage2, @ptrCast(self)), plSenderIdType);
+    }
+    pub fn put_SenderIdType(self: *const IMSMQMessage2, lSenderIdType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage2, @ptrCast(self)), lSenderIdType);
+    }
+    pub fn Send(self: *const IMSMQMessage2, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage2, @ptrCast(self)), DestinationQueue, Transaction);
+    }
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage2, @ptrCast(self)));
+    }
+    pub fn get_SenderVersion(self: *const IMSMQMessage2, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage2, @ptrCast(self)), plSenderVersion);
+    }
+    pub fn get_Extension(self: *const IMSMQMessage2, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage2, @ptrCast(self)), pvarExtension);
+    }
+    pub fn put_Extension(self: *const IMSMQMessage2, varExtension: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage2, @ptrCast(self)), varExtension);
+    }
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage2, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrGuidConnectorType);
+    }
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage2, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage2, @ptrCast(self)), bstrGuidConnectorType);
+    }
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage2, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoXactStatus);
+    }
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage2, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage2, @ptrCast(self)), pvarDestSymmKey);
+    }
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage2, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage2, @ptrCast(self)), varDestSymmKey);
+    }
+    pub fn get_Signature(self: *const IMSMQMessage2, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSignature);
+    }
+    pub fn put_Signature(self: *const IMSMQMessage2, varSignature: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage2, @ptrCast(self)), varSignature);
+    }
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage2, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage2, @ptrCast(self)), plAuthProvType);
+    }
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage2, lAuthProvType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage2, @ptrCast(self)), lAuthProvType);
+    }
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage2, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrAuthProvName);
+    }
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage2, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage2, @ptrCast(self)), bstrAuthProvName);
+    }
+    pub fn put_SenderId(self: *const IMSMQMessage2, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage2, @ptrCast(self)), varSenderId);
+    }
+    pub fn get_MsgClass(self: *const IMSMQMessage2, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage2, @ptrCast(self)), plMsgClass);
+    }
+    pub fn put_MsgClass(self: *const IMSMQMessage2, lMsgClass: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage2, @ptrCast(self)), lMsgClass);
+    }
+    pub fn get_Properties(self: *const IMSMQMessage2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage2, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_TransactionId(self: *const IMSMQMessage2, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarXactId);
+    }
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage2, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage2, @ptrCast(self)), pisFirstInXact);
+    }
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage2, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage2, @ptrCast(self)), pisLastInXact);
+    }
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage2, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage2, @ptrCast(self)), psReceivedAuthenticationLevel);
+    }
 };
 
 const IID_IMSMQMessage3_Value = Guid.initString("eba96b1a-2168-11d3-898c-00e02c074f6b");
@@ -5745,7 +6912,280 @@ pub const IMSMQMessage3 = extern union {
             return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage3, @ptrCast(self)), bstrSoapBody);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Class(self: *const IMSMQMessage3, plClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage3, @ptrCast(self)), plClass);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQMessage3, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage3, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQMessage3, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage3, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_AuthLevel(self: *const IMSMQMessage3, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage3, @ptrCast(self)), plAuthLevel);
+    }
+    pub fn put_AuthLevel(self: *const IMSMQMessage3, lAuthLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage3, @ptrCast(self)), lAuthLevel);
+    }
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage3, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_Delivery(self: *const IMSMQMessage3, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage3, @ptrCast(self)), plDelivery);
+    }
+    pub fn put_Delivery(self: *const IMSMQMessage3, lDelivery: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage3, @ptrCast(self)), lDelivery);
+    }
+    pub fn get_Trace(self: *const IMSMQMessage3, plTrace: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage3, @ptrCast(self)), plTrace);
+    }
+    pub fn put_Trace(self: *const IMSMQMessage3, lTrace: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage3, @ptrCast(self)), lTrace);
+    }
+    pub fn get_Priority(self: *const IMSMQMessage3, plPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage3, @ptrCast(self)), plPriority);
+    }
+    pub fn put_Priority(self: *const IMSMQMessage3, lPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage3, @ptrCast(self)), lPriority);
+    }
+    pub fn get_Journal(self: *const IMSMQMessage3, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage3, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQMessage3, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage3, @ptrCast(self)), lJournal);
+    }
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AppSpecific(self: *const IMSMQMessage3, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage3, @ptrCast(self)), plAppSpecific);
+    }
+    pub fn put_AppSpecific(self: *const IMSMQMessage3, lAppSpecific: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage3, @ptrCast(self)), lAppSpecific);
+    }
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage3, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrGuidSrcMachine);
+    }
+    pub fn get_BodyLength(self: *const IMSMQMessage3, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage3, @ptrCast(self)), pcbBody);
+    }
+    pub fn get_Body(self: *const IMSMQMessage3, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage3, @ptrCast(self)), pvarBody);
+    }
+    pub fn put_Body(self: *const IMSMQMessage3, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage3, @ptrCast(self)), varBody);
+    }
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_Id(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage3, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn get_CorrelationId(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn put_CorrelationId(self: *const IMSMQMessage3, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage3, @ptrCast(self)), varMsgId);
+    }
+    pub fn get_Ack(self: *const IMSMQMessage3, plAck: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage3, @ptrCast(self)), plAck);
+    }
+    pub fn put_Ack(self: *const IMSMQMessage3, lAck: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage3, @ptrCast(self)), lAck);
+    }
+    pub fn get_Label(self: *const IMSMQMessage3, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQMessage3, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage3, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage3, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage3, @ptrCast(self)), plMaxTimeToReachQueue);
+    }
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage3, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage3, @ptrCast(self)), lMaxTimeToReachQueue);
+    }
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage3, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage3, @ptrCast(self)), plMaxTimeToReceive);
+    }
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage3, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage3, @ptrCast(self)), lMaxTimeToReceive);
+    }
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage3, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), plHashAlg);
+    }
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage3, lHashAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), lHashAlg);
+    }
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage3, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), plEncryptAlg);
+    }
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage3, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), lEncryptAlg);
+    }
+    pub fn get_SentTime(self: *const IMSMQMessage3, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSentTime);
+    }
+    pub fn get_ArrivedTime(self: *const IMSMQMessage3, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage3, @ptrCast(self)), plArrivedTime);
+    }
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage3, ppqinfoDest: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoDest);
+    }
+    pub fn get_SenderCertificate(self: *const IMSMQMessage3, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSenderCert);
+    }
+    pub fn put_SenderCertificate(self: *const IMSMQMessage3, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage3, @ptrCast(self)), varSenderCert);
+    }
+    pub fn get_SenderId(self: *const IMSMQMessage3, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSenderId);
+    }
+    pub fn get_SenderIdType(self: *const IMSMQMessage3, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage3, @ptrCast(self)), plSenderIdType);
+    }
+    pub fn put_SenderIdType(self: *const IMSMQMessage3, lSenderIdType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage3, @ptrCast(self)), lSenderIdType);
+    }
+    pub fn Send(self: *const IMSMQMessage3, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage3, @ptrCast(self)), DestinationQueue, Transaction);
+    }
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage3, @ptrCast(self)));
+    }
+    pub fn get_SenderVersion(self: *const IMSMQMessage3, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage3, @ptrCast(self)), plSenderVersion);
+    }
+    pub fn get_Extension(self: *const IMSMQMessage3, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage3, @ptrCast(self)), pvarExtension);
+    }
+    pub fn put_Extension(self: *const IMSMQMessage3, varExtension: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage3, @ptrCast(self)), varExtension);
+    }
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage3, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrGuidConnectorType);
+    }
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage3, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage3, @ptrCast(self)), bstrGuidConnectorType);
+    }
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage3, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoXactStatus);
+    }
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage3, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage3, @ptrCast(self)), pvarDestSymmKey);
+    }
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage3, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage3, @ptrCast(self)), varDestSymmKey);
+    }
+    pub fn get_Signature(self: *const IMSMQMessage3, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSignature);
+    }
+    pub fn put_Signature(self: *const IMSMQMessage3, varSignature: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage3, @ptrCast(self)), varSignature);
+    }
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage3, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage3, @ptrCast(self)), plAuthProvType);
+    }
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage3, lAuthProvType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage3, @ptrCast(self)), lAuthProvType);
+    }
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage3, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrAuthProvName);
+    }
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage3, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage3, @ptrCast(self)), bstrAuthProvName);
+    }
+    pub fn put_SenderId(self: *const IMSMQMessage3, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage3, @ptrCast(self)), varSenderId);
+    }
+    pub fn get_MsgClass(self: *const IMSMQMessage3, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage3, @ptrCast(self)), plMsgClass);
+    }
+    pub fn put_MsgClass(self: *const IMSMQMessage3, lMsgClass: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage3, @ptrCast(self)), lMsgClass);
+    }
+    pub fn get_Properties(self: *const IMSMQMessage3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage3, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_TransactionId(self: *const IMSMQMessage3, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarXactId);
+    }
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage3, @ptrCast(self)), pisFirstInXact);
+    }
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage3, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage3, @ptrCast(self)), pisLastInXact);
+    }
+    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage3, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage3, @ptrCast(self)), psReceivedAuthenticationLevel);
+    }
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_ResponseDestination(self: *const IMSMQMessage3, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseDestination(@as(*const IMSMQMessage3, @ptrCast(self)), ppdestResponse);
+    }
+    pub fn putref_ResponseDestination(self: *const IMSMQMessage3, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseDestination(@as(*const IMSMQMessage3, @ptrCast(self)), pdestResponse);
+    }
+    pub fn get_Destination(self: *const IMSMQMessage3, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IMSMQMessage3, @ptrCast(self)), ppdestDestination);
+    }
+    pub fn get_LookupId(self: *const IMSMQMessage3, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_LookupId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarLookupId);
+    }
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsAuthenticated2(@as(*const IMSMQMessage3, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction2(@as(*const IMSMQMessage3, @ptrCast(self)), pisFirstInXact);
+    }
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage3, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction2(@as(*const IMSMQMessage3, @ptrCast(self)), pisLastInXact);
+    }
+    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext2(@as(*const IMSMQMessage3, @ptrCast(self)));
+    }
+    pub fn get_SoapEnvelope(self: *const IMSMQMessage3, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SoapEnvelope(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrSoapEnvelope);
+    }
+    pub fn get_CompoundMessage(self: *const IMSMQMessage3, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_CompoundMessage(@as(*const IMSMQMessage3, @ptrCast(self)), pvarCompoundMessage);
+    }
+    pub fn put_SoapHeader(self: *const IMSMQMessage3, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SoapHeader(@as(*const IMSMQMessage3, @ptrCast(self)), bstrSoapHeader);
+    }
+    pub fn put_SoapBody(self: *const IMSMQMessage3, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage3, @ptrCast(self)), bstrSoapBody);
+    }
 };
 
 const IID_IMSMQMessage4_Value = Guid.initString("eba96b23-2168-11d3-898c-00e02c074f6b");
@@ -6567,7 +8007,280 @@ pub const IMSMQMessage4 = extern union {
             return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage4, @ptrCast(self)), bstrSoapBody);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Class(self: *const IMSMQMessage4, plClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage4, @ptrCast(self)), plClass);
+    }
+    pub fn get_PrivLevel(self: *const IMSMQMessage4, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage4, @ptrCast(self)), plPrivLevel);
+    }
+    pub fn put_PrivLevel(self: *const IMSMQMessage4, lPrivLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage4, @ptrCast(self)), lPrivLevel);
+    }
+    pub fn get_AuthLevel(self: *const IMSMQMessage4, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage4, @ptrCast(self)), plAuthLevel);
+    }
+    pub fn put_AuthLevel(self: *const IMSMQMessage4, lAuthLevel: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage4, @ptrCast(self)), lAuthLevel);
+    }
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage4, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_Delivery(self: *const IMSMQMessage4, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage4, @ptrCast(self)), plDelivery);
+    }
+    pub fn put_Delivery(self: *const IMSMQMessage4, lDelivery: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage4, @ptrCast(self)), lDelivery);
+    }
+    pub fn get_Trace(self: *const IMSMQMessage4, plTrace: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage4, @ptrCast(self)), plTrace);
+    }
+    pub fn put_Trace(self: *const IMSMQMessage4, lTrace: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage4, @ptrCast(self)), lTrace);
+    }
+    pub fn get_Priority(self: *const IMSMQMessage4, plPriority: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage4, @ptrCast(self)), plPriority);
+    }
+    pub fn put_Priority(self: *const IMSMQMessage4, lPriority: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage4, @ptrCast(self)), lPriority);
+    }
+    pub fn get_Journal(self: *const IMSMQMessage4, plJournal: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage4, @ptrCast(self)), plJournal);
+    }
+    pub fn put_Journal(self: *const IMSMQMessage4, lJournal: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage4, @ptrCast(self)), lJournal);
+    }
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AppSpecific(self: *const IMSMQMessage4, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage4, @ptrCast(self)), plAppSpecific);
+    }
+    pub fn put_AppSpecific(self: *const IMSMQMessage4, lAppSpecific: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage4, @ptrCast(self)), lAppSpecific);
+    }
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage4, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrGuidSrcMachine);
+    }
+    pub fn get_BodyLength(self: *const IMSMQMessage4, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage4, @ptrCast(self)), pcbBody);
+    }
+    pub fn get_Body(self: *const IMSMQMessage4, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage4, @ptrCast(self)), pvarBody);
+    }
+    pub fn put_Body(self: *const IMSMQMessage4, varBody: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage4, @ptrCast(self)), varBody);
+    }
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_Id(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage4, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn get_CorrelationId(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarMsgId);
+    }
+    pub fn put_CorrelationId(self: *const IMSMQMessage4, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage4, @ptrCast(self)), varMsgId);
+    }
+    pub fn get_Ack(self: *const IMSMQMessage4, plAck: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage4, @ptrCast(self)), plAck);
+    }
+    pub fn put_Ack(self: *const IMSMQMessage4, lAck: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage4, @ptrCast(self)), lAck);
+    }
+    pub fn get_Label(self: *const IMSMQMessage4, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrLabel);
+    }
+    pub fn put_Label(self: *const IMSMQMessage4, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage4, @ptrCast(self)), bstrLabel);
+    }
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage4, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage4, @ptrCast(self)), plMaxTimeToReachQueue);
+    }
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage4, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage4, @ptrCast(self)), lMaxTimeToReachQueue);
+    }
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage4, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage4, @ptrCast(self)), plMaxTimeToReceive);
+    }
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage4, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage4, @ptrCast(self)), lMaxTimeToReceive);
+    }
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage4, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), plHashAlg);
+    }
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage4, lHashAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), lHashAlg);
+    }
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage4, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), plEncryptAlg);
+    }
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage4, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), lEncryptAlg);
+    }
+    pub fn get_SentTime(self: *const IMSMQMessage4, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSentTime);
+    }
+    pub fn get_ArrivedTime(self: *const IMSMQMessage4, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage4, @ptrCast(self)), plArrivedTime);
+    }
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage4, ppqinfoDest: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoDest);
+    }
+    pub fn get_SenderCertificate(self: *const IMSMQMessage4, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSenderCert);
+    }
+    pub fn put_SenderCertificate(self: *const IMSMQMessage4, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage4, @ptrCast(self)), varSenderCert);
+    }
+    pub fn get_SenderId(self: *const IMSMQMessage4, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSenderId);
+    }
+    pub fn get_SenderIdType(self: *const IMSMQMessage4, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage4, @ptrCast(self)), plSenderIdType);
+    }
+    pub fn put_SenderIdType(self: *const IMSMQMessage4, lSenderIdType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage4, @ptrCast(self)), lSenderIdType);
+    }
+    pub fn Send(self: *const IMSMQMessage4, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage4, @ptrCast(self)), DestinationQueue, Transaction);
+    }
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage4, @ptrCast(self)));
+    }
+    pub fn get_SenderVersion(self: *const IMSMQMessage4, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage4, @ptrCast(self)), plSenderVersion);
+    }
+    pub fn get_Extension(self: *const IMSMQMessage4, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage4, @ptrCast(self)), pvarExtension);
+    }
+    pub fn put_Extension(self: *const IMSMQMessage4, varExtension: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage4, @ptrCast(self)), varExtension);
+    }
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage4, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrGuidConnectorType);
+    }
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage4, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage4, @ptrCast(self)), bstrGuidConnectorType);
+    }
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage4, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoXactStatus);
+    }
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage4, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage4, @ptrCast(self)), pvarDestSymmKey);
+    }
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage4, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage4, @ptrCast(self)), varDestSymmKey);
+    }
+    pub fn get_Signature(self: *const IMSMQMessage4, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSignature);
+    }
+    pub fn put_Signature(self: *const IMSMQMessage4, varSignature: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage4, @ptrCast(self)), varSignature);
+    }
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage4, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage4, @ptrCast(self)), plAuthProvType);
+    }
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage4, lAuthProvType: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage4, @ptrCast(self)), lAuthProvType);
+    }
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage4, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrAuthProvName);
+    }
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage4, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage4, @ptrCast(self)), bstrAuthProvName);
+    }
+    pub fn put_SenderId(self: *const IMSMQMessage4, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage4, @ptrCast(self)), varSenderId);
+    }
+    pub fn get_MsgClass(self: *const IMSMQMessage4, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage4, @ptrCast(self)), plMsgClass);
+    }
+    pub fn put_MsgClass(self: *const IMSMQMessage4, lMsgClass: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage4, @ptrCast(self)), lMsgClass);
+    }
+    pub fn get_Properties(self: *const IMSMQMessage4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage4, @ptrCast(self)), ppcolProperties);
+    }
+    pub fn get_TransactionId(self: *const IMSMQMessage4, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarXactId);
+    }
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage4, @ptrCast(self)), pisFirstInXact);
+    }
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage4, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage4, @ptrCast(self)), pisLastInXact);
+    }
+    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage4, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage4, @ptrCast(self)), psReceivedAuthenticationLevel);
+    }
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
+    }
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
+    }
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
+    }
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
+    }
+    pub fn get_ResponseDestination(self: *const IMSMQMessage4, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseDestination(@as(*const IMSMQMessage4, @ptrCast(self)), ppdestResponse);
+    }
+    pub fn putref_ResponseDestination(self: *const IMSMQMessage4, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseDestination(@as(*const IMSMQMessage4, @ptrCast(self)), pdestResponse);
+    }
+    pub fn get_Destination(self: *const IMSMQMessage4, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IMSMQMessage4, @ptrCast(self)), ppdestDestination);
+    }
+    pub fn get_LookupId(self: *const IMSMQMessage4, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_LookupId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarLookupId);
+    }
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsAuthenticated2(@as(*const IMSMQMessage4, @ptrCast(self)), pisAuthenticated);
+    }
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction2(@as(*const IMSMQMessage4, @ptrCast(self)), pisFirstInXact);
+    }
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage4, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction2(@as(*const IMSMQMessage4, @ptrCast(self)), pisLastInXact);
+    }
+    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage4) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext2(@as(*const IMSMQMessage4, @ptrCast(self)));
+    }
+    pub fn get_SoapEnvelope(self: *const IMSMQMessage4, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SoapEnvelope(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrSoapEnvelope);
+    }
+    pub fn get_CompoundMessage(self: *const IMSMQMessage4, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_CompoundMessage(@as(*const IMSMQMessage4, @ptrCast(self)), pvarCompoundMessage);
+    }
+    pub fn put_SoapHeader(self: *const IMSMQMessage4, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SoapHeader(@as(*const IMSMQMessage4, @ptrCast(self)), bstrSoapHeader);
+    }
+    pub fn put_SoapBody(self: *const IMSMQMessage4, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage4, @ptrCast(self)), bstrSoapBody);
+    }
 };
 
 const IID_IMSMQPrivateEvent_Value = Guid.initString("d7ab3341-c9d3-11d1-bb47-0080c7c5a2c0");
@@ -6609,7 +8322,16 @@ pub const IMSMQPrivateEvent = extern union {
             return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).FireArrivedErrorEvent(@as(*const IMSMQPrivateEvent, @ptrCast(self)), pq, hrStatus, msgcursor);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Hwnd(self: *const IMSMQPrivateEvent, phwnd: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).get_Hwnd(@as(*const IMSMQPrivateEvent, @ptrCast(self)), phwnd);
+    }
+    pub fn FireArrivedEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, msgcursor: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).FireArrivedEvent(@as(*const IMSMQPrivateEvent, @ptrCast(self)), pq, msgcursor);
+    }
+    pub fn FireArrivedErrorEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).FireArrivedErrorEvent(@as(*const IMSMQPrivateEvent, @ptrCast(self)), pq, hrStatus, msgcursor);
+    }
 };
 
 const IID__DMSMQEventEvents_Value = Guid.initString("d7d6e078-dccd-11d0-aa4b-0060970debae");
@@ -6623,7 +8345,7 @@ pub const _DMSMQEventEvents = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 const IID_IMSMQTransaction2_Value = Guid.initString("2ce0c5b0-6e67-11d2-b0e6-00e02c074f6b");
@@ -6654,7 +8376,13 @@ pub const IMSMQTransaction2 = extern union {
             return @as(*const IMSMQTransaction2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransaction2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQTransaction.MethodMixin(@This());
+    pub fn InitNew(self: *const IMSMQTransaction2, varTransaction: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction2.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IMSMQTransaction2, @ptrCast(self)), varTransaction);
+    }
+    pub fn get_Properties(self: *const IMSMQTransaction2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransaction2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQTransaction3_Value = Guid.initString("eba96b13-2168-11d3-898c-00e02c074f6b");
@@ -6677,7 +8405,10 @@ pub const IMSMQTransaction3 = extern union {
             return @as(*const IMSMQTransaction3.VTable, @ptrCast(self.vtable)).get_ITransaction(@as(*const IMSMQTransaction3, @ptrCast(self)), pvarITransaction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQTransaction2.MethodMixin(@This());
+    pub fn get_ITransaction(self: *const IMSMQTransaction3, pvarITransaction: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransaction3.VTable, @ptrCast(self.vtable)).get_ITransaction(@as(*const IMSMQTransaction3, @ptrCast(self)), pvarITransaction);
+    }
 };
 
 const IID_IMSMQCoordinatedTransactionDispenser2_Value = Guid.initString("eba96b10-2168-11d3-898c-00e02c074f6b");
@@ -6708,7 +8439,13 @@ pub const IMSMQCoordinatedTransactionDispenser2 = extern union {
             return @as(*const IMSMQCoordinatedTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCoordinatedTransactionDispenser2.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser2, @ptrCast(self)), ptransaction);
+    }
+    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCoordinatedTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQCoordinatedTransactionDispenser3_Value = Guid.initString("eba96b14-2168-11d3-898c-00e02c074f6b");
@@ -6739,7 +8476,13 @@ pub const IMSMQCoordinatedTransactionDispenser3 = extern union {
             return @as(*const IMSMQCoordinatedTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser3, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCoordinatedTransactionDispenser3.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser3, @ptrCast(self)), ptransaction);
+    }
+    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCoordinatedTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser3, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQTransactionDispenser2_Value = Guid.initString("eba96b11-2168-11d3-898c-00e02c074f6b");
@@ -6770,7 +8513,13 @@ pub const IMSMQTransactionDispenser2 = extern union {
             return @as(*const IMSMQTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransactionDispenser2.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser2, @ptrCast(self)), ptransaction);
+    }
+    pub fn get_Properties(self: *const IMSMQTransactionDispenser2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQTransactionDispenser3_Value = Guid.initString("eba96b15-2168-11d3-898c-00e02c074f6b");
@@ -6801,7 +8550,13 @@ pub const IMSMQTransactionDispenser3 = extern union {
             return @as(*const IMSMQTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser3, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransactionDispenser3.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser3, @ptrCast(self)), ptransaction);
+    }
+    pub fn get_Properties(self: *const IMSMQTransactionDispenser3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser3, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQApplication_Value = Guid.initString("d7d6e085-dccd-11d0-aa4b-0060970debae");
@@ -6824,7 +8579,10 @@ pub const IMSMQApplication = extern union {
             return @as(*const IMSMQApplication.VTable, @ptrCast(self.vtable)).MachineIdOfMachineName(@as(*const IMSMQApplication, @ptrCast(self)), MachineName, pbstrGuid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn MachineIdOfMachineName(self: *const IMSMQApplication, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication.VTable, @ptrCast(self.vtable)).MachineIdOfMachineName(@as(*const IMSMQApplication, @ptrCast(self)), MachineName, pbstrGuid);
+    }
 };
 
 const IID_IMSMQApplication2_Value = Guid.initString("12a30900-7300-11d2-b0e6-00e02c074f6b");
@@ -6901,7 +8659,28 @@ pub const IMSMQApplication2 = extern union {
             return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQApplication2, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQApplication.MethodMixin(@This());
+    pub fn RegisterCertificate(self: *const IMSMQApplication2, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).RegisterCertificate(@as(*const IMSMQApplication2, @ptrCast(self)), Flags, ExternalCertificate);
+    }
+    pub fn MachineNameOfMachineId(self: *const IMSMQApplication2, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).MachineNameOfMachineId(@as(*const IMSMQApplication2, @ptrCast(self)), bstrGuid, pbstrMachineName);
+    }
+    pub fn get_MSMQVersionMajor(self: *const IMSMQApplication2, psMSMQVersionMajor: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionMajor(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionMajor);
+    }
+    pub fn get_MSMQVersionMinor(self: *const IMSMQApplication2, psMSMQVersionMinor: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionMinor(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionMinor);
+    }
+    pub fn get_MSMQVersionBuild(self: *const IMSMQApplication2, psMSMQVersionBuild: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionBuild(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionBuild);
+    }
+    pub fn get_IsDsEnabled(self: *const IMSMQApplication2, pfIsDsEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_IsDsEnabled(@as(*const IMSMQApplication2, @ptrCast(self)), pfIsDsEnabled);
+    }
+    pub fn get_Properties(self: *const IMSMQApplication2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQApplication2, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQApplication3_Value = Guid.initString("eba96b1f-2168-11d3-898c-00e02c074f6b");
@@ -6999,7 +8778,37 @@ pub const IMSMQApplication3 = extern union {
             return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Tidy(@as(*const IMSMQApplication3, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQApplication2.MethodMixin(@This());
+    pub fn get_ActiveQueues(self: *const IMSMQApplication3, pvActiveQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_ActiveQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvActiveQueues);
+    }
+    pub fn get_PrivateQueues(self: *const IMSMQApplication3, pvPrivateQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_PrivateQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvPrivateQueues);
+    }
+    pub fn get_DirectoryServiceServer(self: *const IMSMQApplication3, pbstrDirectoryServiceServer: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_DirectoryServiceServer(@as(*const IMSMQApplication3, @ptrCast(self)), pbstrDirectoryServiceServer);
+    }
+    pub fn get_IsConnected(self: *const IMSMQApplication3, pfIsConnected: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const IMSMQApplication3, @ptrCast(self)), pfIsConnected);
+    }
+    pub fn get_BytesInAllQueues(self: *const IMSMQApplication3, pvBytesInAllQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_BytesInAllQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvBytesInAllQueues);
+    }
+    pub fn put_Machine(self: *const IMSMQApplication3, bstrMachine: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).put_Machine(@as(*const IMSMQApplication3, @ptrCast(self)), bstrMachine);
+    }
+    pub fn get_Machine(self: *const IMSMQApplication3, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_Machine(@as(*const IMSMQApplication3, @ptrCast(self)), pbstrMachine);
+    }
+    pub fn Connect(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Connect(@as(*const IMSMQApplication3, @ptrCast(self)));
+    }
+    pub fn Disconnect(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IMSMQApplication3, @ptrCast(self)));
+    }
+    pub fn Tidy(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Tidy(@as(*const IMSMQApplication3, @ptrCast(self)));
+    }
 };
 
 const IID_IMSMQDestination_Value = Guid.initString("eba96b16-2168-11d3-898c-00e02c074f6b");
@@ -7133,7 +8942,49 @@ pub const IMSMQDestination = extern union {
             return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQDestination, @ptrCast(self)), ppcolProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Open(self: *const IMSMQDestination) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQDestination, @ptrCast(self)));
+    }
+    pub fn Close(self: *const IMSMQDestination) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQDestination, @ptrCast(self)));
+    }
+    pub fn get_IsOpen(self: *const IMSMQDestination, pfIsOpen: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQDestination, @ptrCast(self)), pfIsOpen);
+    }
+    pub fn get_IADs(self: *const IMSMQDestination, ppIADs: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_IADs(@as(*const IMSMQDestination, @ptrCast(self)), ppIADs);
+    }
+    pub fn putref_IADs(self: *const IMSMQDestination, pIADs: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).putref_IADs(@as(*const IMSMQDestination, @ptrCast(self)), pIADs);
+    }
+    pub fn get_ADsPath(self: *const IMSMQDestination, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQDestination, @ptrCast(self)), pbstrADsPath);
+    }
+    pub fn put_ADsPath(self: *const IMSMQDestination, bstrADsPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_ADsPath(@as(*const IMSMQDestination, @ptrCast(self)), bstrADsPath);
+    }
+    pub fn get_PathName(self: *const IMSMQDestination, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQDestination, @ptrCast(self)), pbstrPathName);
+    }
+    pub fn put_PathName(self: *const IMSMQDestination, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQDestination, @ptrCast(self)), bstrPathName);
+    }
+    pub fn get_FormatName(self: *const IMSMQDestination, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQDestination, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn put_FormatName(self: *const IMSMQDestination, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQDestination, @ptrCast(self)), bstrFormatName);
+    }
+    pub fn get_Destinations(self: *const IMSMQDestination, ppDestinations: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_Destinations(@as(*const IMSMQDestination, @ptrCast(self)), ppDestinations);
+    }
+    pub fn putref_Destinations(self: *const IMSMQDestination, pDestinations: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).putref_Destinations(@as(*const IMSMQDestination, @ptrCast(self)), pDestinations);
+    }
+    pub fn get_Properties(self: *const IMSMQDestination, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQDestination, @ptrCast(self)), ppcolProperties);
+    }
 };
 
 const IID_IMSMQPrivateDestination_Value = Guid.initString("eba96b17-2168-11d3-898c-00e02c074f6b");
@@ -7165,7 +9016,13 @@ pub const IMSMQPrivateDestination = extern union {
             return @as(*const IMSMQPrivateDestination.VTable, @ptrCast(self.vtable)).put_Handle(@as(*const IMSMQPrivateDestination, @ptrCast(self)), varHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Handle(self: *const IMSMQPrivateDestination, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQPrivateDestination.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQPrivateDestination, @ptrCast(self)), pvarHandle);
+    }
+    pub fn put_Handle(self: *const IMSMQPrivateDestination, varHandle: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQPrivateDestination.VTable, @ptrCast(self.vtable)).put_Handle(@as(*const IMSMQPrivateDestination, @ptrCast(self)), varHandle);
+    }
 };
 
 const IID_IMSMQCollection_Value = Guid.initString("0188ac2f-ecb3-4173-9779-635ca2039c72");
@@ -7205,7 +9062,16 @@ pub const IMSMQCollection = extern union {
             return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const IMSMQCollection, @ptrCast(self)), ppunk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Item(self: *const IMSMQCollection, Index: ?*VARIANT, pvarRet: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const IMSMQCollection, @ptrCast(self)), Index, pvarRet);
+    }
+    pub fn get_Count(self: *const IMSMQCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMSMQCollection, @ptrCast(self)), pCount);
+    }
+    pub fn _NewEnum(self: *const IMSMQCollection, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const IMSMQCollection, @ptrCast(self)), ppunk);
+    }
 };
 
 const IID_IMSMQManagement_Value = Guid.initString("be5f0241-e489-4957-8cc4-a452fcf3e23e");
@@ -7301,7 +9167,34 @@ pub const IMSMQManagement = extern union {
             return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_BytesInQueue(@as(*const IMSMQManagement, @ptrCast(self)), pvBytesInQueue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Init(self: *const IMSMQManagement, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).Init(@as(*const IMSMQManagement, @ptrCast(self)), Machine, Pathname, FormatName);
+    }
+    pub fn get_FormatName(self: *const IMSMQManagement, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQManagement, @ptrCast(self)), pbstrFormatName);
+    }
+    pub fn get_Machine(self: *const IMSMQManagement, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_Machine(@as(*const IMSMQManagement, @ptrCast(self)), pbstrMachine);
+    }
+    pub fn get_MessageCount(self: *const IMSMQManagement, plMessageCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_MessageCount(@as(*const IMSMQManagement, @ptrCast(self)), plMessageCount);
+    }
+    pub fn get_ForeignStatus(self: *const IMSMQManagement, plForeignStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_ForeignStatus(@as(*const IMSMQManagement, @ptrCast(self)), plForeignStatus);
+    }
+    pub fn get_QueueType(self: *const IMSMQManagement, plQueueType: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_QueueType(@as(*const IMSMQManagement, @ptrCast(self)), plQueueType);
+    }
+    pub fn get_IsLocal(self: *const IMSMQManagement, pfIsLocal: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const IMSMQManagement, @ptrCast(self)), pfIsLocal);
+    }
+    pub fn get_TransactionalStatus(self: *const IMSMQManagement, plTransactionalStatus: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_TransactionalStatus(@as(*const IMSMQManagement, @ptrCast(self)), plTransactionalStatus);
+    }
+    pub fn get_BytesInQueue(self: *const IMSMQManagement, pvBytesInQueue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_BytesInQueue(@as(*const IMSMQManagement, @ptrCast(self)), pvBytesInQueue);
+    }
 };
 
 const IID_IMSMQOutgoingQueueManagement_Value = Guid.initString("64c478fb-f9b0-4695-8a7f-439ac94326d3");
@@ -7362,7 +9255,25 @@ pub const IMSMQOutgoingQueueManagement = extern union {
             return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).EodResend(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQManagement.MethodMixin(@This());
+    pub fn get_State(self: *const IMSMQOutgoingQueueManagement, plState: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).get_State(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), plState);
+    }
+    pub fn get_NextHops(self: *const IMSMQOutgoingQueueManagement, pvNextHops: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).get_NextHops(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), pvNextHops);
+    }
+    pub fn EodGetSendInfo(self: *const IMSMQOutgoingQueueManagement, ppCollection: ?*?*IMSMQCollection) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).EodGetSendInfo(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), ppCollection);
+    }
+    pub fn Resume(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).Resume(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
+    }
+    pub fn Pause(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
+    }
+    pub fn EodResend(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).EodResend(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
+    }
 };
 
 const IID_IMSMQQueueManagement_Value = Guid.initString("7fbe7759-5760-444d-b8a5-5e7ab9a84cce");
@@ -7402,7 +9313,16 @@ pub const IMSMQQueueManagement = extern union {
             return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).EodGetReceiveInfo(@as(*const IMSMQQueueManagement, @ptrCast(self)), pvCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMSMQManagement.MethodMixin(@This());
+    pub fn get_JournalMessageCount(self: *const IMSMQQueueManagement, plJournalMessageCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).get_JournalMessageCount(@as(*const IMSMQQueueManagement, @ptrCast(self)), plJournalMessageCount);
+    }
+    pub fn get_BytesInJournal(self: *const IMSMQQueueManagement, pvBytesInJournal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).get_BytesInJournal(@as(*const IMSMQQueueManagement, @ptrCast(self)), pvBytesInJournal);
+    }
+    pub fn EodGetReceiveInfo(self: *const IMSMQQueueManagement, pvCollection: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).EodGetReceiveInfo(@as(*const IMSMQQueueManagement, @ptrCast(self)), pvCollection);
+    }
 };
 
 

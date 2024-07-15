@@ -214,7 +214,13 @@ pub const IClockVectorElement = extern union {
             return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetTickCount(@as(*const IClockVectorElement, @ptrCast(self)), pullTickCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetReplicaKey(self: *const IClockVectorElement, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetReplicaKey(@as(*const IClockVectorElement, @ptrCast(self)), pdwReplicaKey);
+    }
+    pub fn GetTickCount(self: *const IClockVectorElement, pullTickCount: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetTickCount(@as(*const IClockVectorElement, @ptrCast(self)), pullTickCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -245,7 +251,13 @@ pub const IFeedClockVectorElement = extern union {
             return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IFeedClockVectorElement, @ptrCast(self)), pbFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IClockVectorElement.MethodMixin(@This());
+    pub fn GetSyncTime(self: *const IFeedClockVectorElement, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
+        return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetSyncTime(@as(*const IFeedClockVectorElement, @ptrCast(self)), pSyncTime);
+    }
+    pub fn GetFlags(self: *const IFeedClockVectorElement, pbFlags: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IFeedClockVectorElement, @ptrCast(self)), pbFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -277,7 +289,13 @@ pub const IClockVector = extern union {
             return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElementCount(@as(*const IClockVector, @ptrCast(self)), pdwCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClockVectorElements(self: *const IClockVector, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElements(@as(*const IClockVector, @ptrCast(self)), riid, ppiEnumClockVector);
+    }
+    pub fn GetClockVectorElementCount(self: *const IClockVector, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElementCount(@as(*const IClockVector, @ptrCast(self)), pdwCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -308,7 +326,13 @@ pub const IFeedClockVector = extern union {
             return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).IsNoConflictsSpecified(@as(*const IFeedClockVector, @ptrCast(self)), pfIsNoConflictsSpecified);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IClockVector.MethodMixin(@This());
+    pub fn GetUpdateCount(self: *const IFeedClockVector, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).GetUpdateCount(@as(*const IFeedClockVector, @ptrCast(self)), pdwUpdateCount);
+    }
+    pub fn IsNoConflictsSpecified(self: *const IFeedClockVector, pfIsNoConflictsSpecified: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).IsNoConflictsSpecified(@as(*const IFeedClockVector, @ptrCast(self)), pfIsNoConflictsSpecified);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -356,7 +380,19 @@ pub const IEnumClockVector = extern union {
             return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumClockVector, @ptrCast(self)), ppiEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumClockVector, @ptrCast(self)), cSyncVersions);
+    }
+    pub fn Reset(self: *const IEnumClockVector) callconv(.Inline) HRESULT {
+        return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumClockVector, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumClockVector, ppiEnum: ?*?*IEnumClockVector) callconv(.Inline) HRESULT {
+        return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumClockVector, @ptrCast(self)), ppiEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -404,7 +440,19 @@ pub const IEnumFeedClockVector = extern union {
             return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFeedClockVector, @ptrCast(self)), ppiEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumFeedClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFeedClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumFeedClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFeedClockVector, @ptrCast(self)), cSyncVersions);
+    }
+    pub fn Reset(self: *const IEnumFeedClockVector) callconv(.Inline) HRESULT {
+        return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFeedClockVector, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumFeedClockVector, ppiEnum: ?*?*IEnumFeedClockVector) callconv(.Inline) HRESULT {
+        return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFeedClockVector, @ptrCast(self)), ppiEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -461,7 +509,22 @@ pub const ICoreFragment = extern union {
             return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetRangeCount(@as(*const ICoreFragment, @ptrCast(self)), pRangeCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn NextColumn(self: *const ICoreFragment, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextColumn(@as(*const ICoreFragment, @ptrCast(self)), pChangeUnitId, pChangeUnitIdSize);
+    }
+    pub fn NextRange(self: *const ICoreFragment, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextRange(@as(*const ICoreFragment, @ptrCast(self)), pItemId, pItemIdSize, piClockVector);
+    }
+    pub fn Reset(self: *const ICoreFragment) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragment, @ptrCast(self)));
+    }
+    pub fn GetColumnCount(self: *const ICoreFragment, pColumnCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICoreFragment, @ptrCast(self)), pColumnCount);
+    }
+    pub fn GetRangeCount(self: *const ICoreFragment, pRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetRangeCount(@as(*const ICoreFragment, @ptrCast(self)), pRangeCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -493,7 +556,13 @@ pub const ICoreFragmentInspector = extern union {
             return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragmentInspector, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn NextCoreFragments(self: *const ICoreFragmentInspector, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).NextCoreFragments(@as(*const ICoreFragmentInspector, @ptrCast(self)), requestedCount, ppiCoreFragments, pFetchedCount);
+    }
+    pub fn Reset(self: *const ICoreFragmentInspector) callconv(.Inline) HRESULT {
+        return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragmentInspector, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -535,7 +604,16 @@ pub const IRangeException = extern union {
             return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IRangeException, @ptrCast(self)), riid, ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClosedRangeStart(self: *const IRangeException, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeStart(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeStart, pcbIdSize);
+    }
+    pub fn GetClosedRangeEnd(self: *const IRangeException, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeEnd(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeEnd, pcbIdSize);
+    }
+    pub fn GetClockVector(self: *const IRangeException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IRangeException, @ptrCast(self)), riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -583,7 +661,19 @@ pub const IEnumRangeExceptions = extern union {
             return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRangeExceptions, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumRangeExceptions, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions, ppRangeException, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumRangeExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions);
+    }
+    pub fn Reset(self: *const IEnumRangeExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRangeExceptions, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumRangeExceptions, ppEnum: ?*?*IEnumRangeExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRangeExceptions, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -616,7 +706,13 @@ pub const ISingleItemException = extern union {
             return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const ISingleItemException, @ptrCast(self)), riid, ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemId(self: *const ISingleItemException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const ISingleItemException, @ptrCast(self)), pbItemId, pcbIdSize);
+    }
+    pub fn GetClockVector(self: *const ISingleItemException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const ISingleItemException, @ptrCast(self)), riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -664,7 +760,19 @@ pub const IEnumSingleItemExceptions = extern union {
             return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSingleItemExceptions, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions, ppSingleItemException, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumSingleItemExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions);
+    }
+    pub fn Reset(self: *const IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSingleItemExceptions, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumSingleItemExceptions, ppEnum: ?*?*IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -706,7 +814,16 @@ pub const IChangeUnitException = extern union {
             return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IChangeUnitException, @ptrCast(self)), riid, ppUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemId(self: *const IChangeUnitException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const IChangeUnitException, @ptrCast(self)), pbItemId, pcbIdSize);
+    }
+    pub fn GetChangeUnitId(self: *const IChangeUnitException, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitException, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
+    }
+    pub fn GetClockVector(self: *const IChangeUnitException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IChangeUnitException, @ptrCast(self)), riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -754,7 +871,19 @@ pub const IEnumChangeUnitExceptions = extern union {
             return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumChangeUnitExceptions, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions, ppChangeUnitException, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumChangeUnitExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions);
+    }
+    pub fn Reset(self: *const IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumChangeUnitExceptions, ppEnum: ?*?*IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+        return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -797,7 +926,16 @@ pub const IReplicaKeyMap = extern union {
             return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaKeyMap, pcbReplicaKeyMap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LookupReplicaKey(self: *const IReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaKey(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
+    }
+    pub fn LookupReplicaId(self: *const IReplicaKeyMap, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaId(@as(*const IReplicaKeyMap, @ptrCast(self)), dwReplicaKey, pbReplicaId, pcbIdSize);
+    }
+    pub fn Serialize(self: *const IReplicaKeyMap, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaKeyMap, pcbReplicaKeyMap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -821,7 +959,10 @@ pub const IConstructReplicaKeyMap = extern union {
             return @as(*const IConstructReplicaKeyMap.VTable, @ptrCast(self.vtable)).FindOrAddReplica(@as(*const IConstructReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FindOrAddReplica(self: *const IConstructReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IConstructReplicaKeyMap.VTable, @ptrCast(self.vtable)).FindOrAddReplica(@as(*const IConstructReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1057,7 +1198,79 @@ pub const ISyncKnowledge = extern union {
             return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pdwVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwnerReplicaId(self: *const ISyncKnowledge, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pcbIdSize);
+    }
+    pub fn Serialize(self: *const ISyncKnowledge, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncKnowledge, @ptrCast(self)), fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
+    }
+    pub fn SetLocalTickCount(self: *const ISyncKnowledge, ullTickCount: u64) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).SetLocalTickCount(@as(*const ISyncKnowledge, @ptrCast(self)), ullTickCount);
+    }
+    pub fn ContainsChange(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChange(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
+    }
+    pub fn ContainsChangeUnit(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
+    }
+    pub fn GetScopeVector(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetScopeVector(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
+    }
+    pub fn GetReplicaKeyMap(self: *const ISyncKnowledge, ppReplicaKeyMap: ?*?*IReplicaKeyMap) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetReplicaKeyMap(@as(*const ISyncKnowledge, @ptrCast(self)), ppReplicaKeyMap);
+    }
+    pub fn Clone(self: *const ISyncKnowledge, ppClonedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISyncKnowledge, @ptrCast(self)), ppClonedKnowledge);
+    }
+    pub fn ConvertVersion(self: *const ISyncKnowledge, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ConvertVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
+    }
+    pub fn MapRemoteToLocal(self: *const ISyncKnowledge, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).MapRemoteToLocal(@as(*const ISyncKnowledge, @ptrCast(self)), pRemoteKnowledge, ppMappedKnowledge);
+    }
+    pub fn Union(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Union(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
+    }
+    pub fn ProjectOntoItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, ppKnowledgeOut);
+    }
+    pub fn ProjectOntoChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, ppKnowledgeOut);
+    }
+    pub fn ProjectOntoRange(self: *const ISyncKnowledge, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoRange(@as(*const ISyncKnowledge, @ptrCast(self)), psrngSyncRange, ppKnowledgeOut);
+    }
+    pub fn ExcludeItem(self: *const ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId);
+    }
+    pub fn ExcludeChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId);
+    }
+    pub fn ContainsKnowledge(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsKnowledge(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
+    }
+    pub fn FindMinTickCountForReplica(self: *const ISyncKnowledge, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindMinTickCountForReplica(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pullReplicaTickCount);
+    }
+    pub fn GetRangeExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetRangeExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
+    }
+    pub fn GetSingleItemExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetSingleItemExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
+    }
+    pub fn GetChangeUnitExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetChangeUnitExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
+    }
+    pub fn FindClockVectorForItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, riid, ppUnk);
+    }
+    pub fn FindClockVectorForChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, riid, ppUnk);
+    }
+    pub fn GetVersion(self: *const ISyncKnowledge, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pdwVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1081,7 +1294,10 @@ pub const IForgottenKnowledge = extern union {
             return @as(*const IForgottenKnowledge.VTable, @ptrCast(self.vtable)).ForgetToVersion(@as(*const IForgottenKnowledge, @ptrCast(self)), pKnowledge, pVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncKnowledge.MethodMixin(@This());
+    pub fn ForgetToVersion(self: *const IForgottenKnowledge, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const IForgottenKnowledge.VTable, @ptrCast(self.vtable)).ForgetToVersion(@as(*const IForgottenKnowledge, @ptrCast(self)), pKnowledge, pVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1224,7 +1440,49 @@ pub const ISyncKnowledge2 = extern union {
             return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).CompareToKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledgeCookie, pResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncKnowledge.MethodMixin(@This());
+    pub fn GetIdParameters(self: *const ISyncKnowledge2, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncKnowledge2, @ptrCast(self)), pIdParameters);
+    }
+    pub fn ProjectOntoColumnSet(self: *const ISyncKnowledge2, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoColumnSet(@as(*const ISyncKnowledge2, @ptrCast(self)), ppColumns, count, ppiKnowledgeOut);
+    }
+    pub fn SerializeWithOptions(self: *const ISyncKnowledge2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncKnowledge2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
+    }
+    pub fn GetLowestUncontainedId(self: *const ISyncKnowledge2, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetLowestUncontainedId(@as(*const ISyncKnowledge2, @ptrCast(self)), piSyncKnowledge, pbItemId, pcbItemIdSize);
+    }
+    pub fn GetInspector(self: *const ISyncKnowledge2, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetInspector(@as(*const ISyncKnowledge2, @ptrCast(self)), riid, ppiInspector);
+    }
+    pub fn GetMinimumSupportedVersion(self: *const ISyncKnowledge2, pVersion: ?*SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetMinimumSupportedVersion(@as(*const ISyncKnowledge2, @ptrCast(self)), pVersion);
+    }
+    pub fn GetStatistics(self: *const ISyncKnowledge2, which: SYNC_STATISTICS, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const ISyncKnowledge2, @ptrCast(self)), which, pValue);
+    }
+    pub fn ContainsKnowledgeForItem(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForItem(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId);
+    }
+    pub fn ContainsKnowledgeForChangeUnit(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForChangeUnit(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId, pbChangeUnitId);
+    }
+    pub fn ProjectOntoKnowledgeWithPrerequisite(self: *const ISyncKnowledge2, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoKnowledgeWithPrerequisite(@as(*const ISyncKnowledge2, @ptrCast(self)), pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
+    }
+    pub fn Complement(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).Complement(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge, ppComplementedKnowledge);
+    }
+    pub fn IntersectsWithKnowledge(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).IntersectsWithKnowledge(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge);
+    }
+    pub fn GetKnowledgeCookie(self: *const ISyncKnowledge2, ppKnowledgeCookie: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), ppKnowledgeCookie);
+    }
+    pub fn CompareToKnowledgeCookie(self: *const ISyncKnowledge2, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).CompareToKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledgeCookie, pResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1266,7 +1524,16 @@ pub const IRecoverableErrorData = extern union {
             return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IRecoverableErrorData, @ptrCast(self)), pszErrorDescription, pcchErrorDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRecoverableErrorData, @ptrCast(self)), pcszItemDisplayName, pcszErrorDescription);
+    }
+    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetItemDisplayName(@as(*const IRecoverableErrorData, @ptrCast(self)), pszItemDisplayName, pcchItemDisplayName);
+    }
+    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IRecoverableErrorData, @ptrCast(self)), pszErrorDescription, pcchErrorDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1324,7 +1591,22 @@ pub const IRecoverableError = extern union {
             return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChangeUnit(@as(*const IRecoverableError, @ptrCast(self)), pChangeUnit, phrError, ppErrorData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStage(self: *const IRecoverableError, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetStage(@as(*const IRecoverableError, @ptrCast(self)), pStage);
+    }
+    pub fn GetProvider(self: *const IRecoverableError, pProviderRole: ?*SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IRecoverableError, @ptrCast(self)), pProviderRole);
+    }
+    pub fn GetChangeWithRecoverableError(self: *const IRecoverableError, ppChangeWithRecoverableError: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetChangeWithRecoverableError(@as(*const IRecoverableError, @ptrCast(self)), ppChangeWithRecoverableError);
+    }
+    pub fn GetRecoverableErrorDataForChange(self: *const IRecoverableError, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChange(@as(*const IRecoverableError, @ptrCast(self)), phrError, ppErrorData);
+    }
+    pub fn GetRecoverableErrorDataForChangeUnit(self: *const IRecoverableError, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChangeUnit(@as(*const IRecoverableError, @ptrCast(self)), pChangeUnit, phrError, ppErrorData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1405,7 +1687,31 @@ pub const IChangeConflict = extern union {
             return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, resolveAction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDestinationProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
+    }
+    pub fn GetSourceProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
+    }
+    pub fn GetDestinationProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
+    }
+    pub fn GetSourceProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
+    }
+    pub fn GetResolveActionForChange(self: *const IChangeConflict, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), pResolveAction);
+    }
+    pub fn SetResolveActionForChange(self: *const IChangeConflict, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), resolveAction);
+    }
+    pub fn GetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, pResolveAction);
+    }
+    pub fn SetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, resolveAction);
+    }
 };
 
 const IID_IConstraintConflict_Value = Guid.initString("00d2302e-1cf8-4835-b85f-b7ca4f799e0a");
@@ -1516,7 +1822,43 @@ pub const IConstraintConflict = extern union {
             return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).IsTemporary(@as(*const IConstraintConflict, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDestinationProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
+    }
+    pub fn GetSourceProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
+    }
+    pub fn GetDestinationProviderOriginalChange(self: *const IConstraintConflict, ppOriginalChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalChange(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalChange);
+    }
+    pub fn GetDestinationProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
+    }
+    pub fn GetSourceProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
+    }
+    pub fn GetDestinationProviderOriginalData(self: *const IConstraintConflict, ppOriginalData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalData(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalData);
+    }
+    pub fn GetConstraintResolveActionForChange(self: *const IConstraintConflict, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintResolveAction);
+    }
+    pub fn SetConstraintResolveActionForChange(self: *const IConstraintConflict, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), constraintResolveAction);
+    }
+    pub fn GetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, pConstraintResolveAction);
+    }
+    pub fn SetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, constraintResolveAction);
+    }
+    pub fn GetConstraintConflictReason(self: *const IConstraintConflict, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintConflictReason(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintConflictReason);
+    }
+    pub fn IsTemporary(self: *const IConstraintConflict) callconv(.Inline) HRESULT {
+        return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).IsTemporary(@as(*const IConstraintConflict, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1574,7 +1916,22 @@ pub const ISyncCallback = extern union {
             return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnRecoverableError(@as(*const ISyncCallback, @ptrCast(self)), pRecoverableError);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnProgress(self: *const ISyncCallback, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncCallback, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
+    }
+    pub fn OnChange(self: *const ISyncCallback, pSyncChange: ?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnChange(@as(*const ISyncCallback, @ptrCast(self)), pSyncChange);
+    }
+    pub fn OnConflict(self: *const ISyncCallback, pConflict: ?*IChangeConflict) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnConflict(@as(*const ISyncCallback, @ptrCast(self)), pConflict);
+    }
+    pub fn OnFullEnumerationNeeded(self: *const ISyncCallback, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnFullEnumerationNeeded(@as(*const ISyncCallback, @ptrCast(self)), pFullEnumerationAction);
+    }
+    pub fn OnRecoverableError(self: *const ISyncCallback, pRecoverableError: ?*IRecoverableError) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnRecoverableError(@as(*const ISyncCallback, @ptrCast(self)), pRecoverableError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1607,7 +1964,13 @@ pub const ISyncCallback2 = extern union {
             return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeFailed(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncCallback.MethodMixin(@This());
+    pub fn OnChangeApplied(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeApplied(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
+    }
+    pub fn OnChangeFailed(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeFailed(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
+    }
 };
 
 const IID_ISyncConstraintCallback_Value = Guid.initString("8af3843e-75b3-438c-bb51-6f020d70d3cb");
@@ -1629,7 +1992,10 @@ pub const ISyncConstraintCallback = extern union {
             return @as(*const ISyncConstraintCallback.VTable, @ptrCast(self.vtable)).OnConstraintConflict(@as(*const ISyncConstraintCallback, @ptrCast(self)), pConflict);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnConstraintConflict(self: *const ISyncConstraintCallback, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
+        return @as(*const ISyncConstraintCallback.VTable, @ptrCast(self.vtable)).OnConstraintConflict(@as(*const ISyncConstraintCallback, @ptrCast(self)), pConflict);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1652,7 +2018,10 @@ pub const ISyncProvider = extern union {
             return @as(*const ISyncProvider.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncProvider, @ptrCast(self)), pIdParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIdParameters(self: *const ISyncProvider, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProvider.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncProvider, @ptrCast(self)), pIdParameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1730,7 +2099,28 @@ pub const ISyncSessionState = extern union {
             return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncSessionState, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsCanceled(self: *const ISyncSessionState, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).IsCanceled(@as(*const ISyncSessionState, @ptrCast(self)), pfIsCanceled);
+    }
+    pub fn GetInfoForChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetInfoForChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, pcbChangeApplierInfo);
+    }
+    pub fn LoadInfoFromChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).LoadInfoFromChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, cbChangeApplierInfo);
+    }
+    pub fn GetForgottenKnowledgeRecoveryRangeStart(self: *const ISyncSessionState, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeStart(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeStart, pcbRangeStart);
+    }
+    pub fn GetForgottenKnowledgeRecoveryRangeEnd(self: *const ISyncSessionState, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeEnd(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeEnd, pcbRangeEnd);
+    }
+    pub fn SetForgottenKnowledgeRecoveryRange(self: *const ISyncSessionState, pRange: ?*const SYNC_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).SetForgottenKnowledgeRecoveryRange(@as(*const ISyncSessionState, @ptrCast(self)), pRange);
+    }
+    pub fn OnProgress(self: *const ISyncSessionState, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncSessionState, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1753,7 +2143,10 @@ pub const ISyncSessionExtendedErrorInfo = extern union {
             return @as(*const ISyncSessionExtendedErrorInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderWithError(@as(*const ISyncSessionExtendedErrorInfo, @ptrCast(self)), ppProviderWithError);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSyncProviderWithError(self: *const ISyncSessionExtendedErrorInfo, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionExtendedErrorInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderWithError(@as(*const ISyncSessionExtendedErrorInfo, @ptrCast(self)), ppProviderWithError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1784,7 +2177,13 @@ pub const ISyncSessionState2 = extern union {
             return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).GetSessionErrorStatus(@as(*const ISyncSessionState2, @ptrCast(self)), phrSessionError);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncSessionState.MethodMixin(@This());
+    pub fn SetProviderWithError(self: *const ISyncSessionState2, fSelf: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).SetProviderWithError(@as(*const ISyncSessionState2, @ptrCast(self)), fSelf);
+    }
+    pub fn GetSessionErrorStatus(self: *const ISyncSessionState2, phrSessionError: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).GetSessionErrorStatus(@as(*const ISyncSessionState2, @ptrCast(self)), phrSessionError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1808,7 +2207,10 @@ pub const ISyncFilterInfo = extern union {
             return @as(*const ISyncFilterInfo.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilterInfo, @ptrCast(self)), pbBuffer, pcbBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Serialize(self: *const ISyncFilterInfo, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFilterInfo.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilterInfo, @ptrCast(self)), pbBuffer, pcbBuffer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1831,7 +2233,10 @@ pub const ISyncFilterInfo2 = extern union {
             return @as(*const ISyncFilterInfo2.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncFilterInfo2, @ptrCast(self)), pdwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    pub fn GetFlags(self: *const ISyncFilterInfo2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFilterInfo2.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncFilterInfo2, @ptrCast(self)), pdwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1873,7 +2278,16 @@ pub const IChangeUnitListFilterInfo = extern union {
             return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    pub fn Initialize(self: *const IChangeUnitListFilterInfo, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), ppbChangeUnitIds, dwChangeUnitCount);
+    }
+    pub fn GetChangeUnitIdCount(self: *const IChangeUnitListFilterInfo, pdwChangeUnitIdCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitIdCount(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), pdwChangeUnitIdCount);
+    }
+    pub fn GetChangeUnitId(self: *const IChangeUnitListFilterInfo, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
+    }
 };
 
 const IID_ISyncFilter_Value = Guid.initString("087a3f15-0fcb-44c1-9639-53c14e2b5506");
@@ -1904,7 +2318,13 @@ pub const ISyncFilter = extern union {
             return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilter, @ptrCast(self)), pbSyncFilter, pcbSyncFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsIdentical(self: *const ISyncFilter, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).IsIdentical(@as(*const ISyncFilter, @ptrCast(self)), pSyncFilter);
+    }
+    pub fn Serialize(self: *const ISyncFilter, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilter, @ptrCast(self)), pbSyncFilter, pcbSyncFilter);
+    }
 };
 
 const IID_ISyncFilterDeserializer_Value = Guid.initString("b45b7a72-e5c7-46be-9c82-77b8b15dab8a");
@@ -1928,7 +2348,10 @@ pub const ISyncFilterDeserializer = extern union {
             return @as(*const ISyncFilterDeserializer.VTable, @ptrCast(self.vtable)).DeserializeSyncFilter(@as(*const ISyncFilterDeserializer, @ptrCast(self)), pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeserializeSyncFilter(self: *const ISyncFilterDeserializer, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFilterDeserializer.VTable, @ptrCast(self.vtable)).DeserializeSyncFilter(@as(*const ISyncFilterDeserializer, @ptrCast(self)), pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
+    }
 };
 
 const IID_ICustomFilterInfo_Value = Guid.initString("1d335dff-6f88-4e4d-91a8-a3f351cfd473");
@@ -1950,7 +2373,10 @@ pub const ICustomFilterInfo = extern union {
             return @as(*const ICustomFilterInfo.VTable, @ptrCast(self.vtable)).GetSyncFilter(@as(*const ICustomFilterInfo, @ptrCast(self)), pISyncFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    pub fn GetSyncFilter(self: *const ICustomFilterInfo, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const ICustomFilterInfo.VTable, @ptrCast(self.vtable)).GetSyncFilter(@as(*const ICustomFilterInfo, @ptrCast(self)), pISyncFilter);
+    }
 };
 
 pub const FILTER_COMBINATION_TYPE = enum(i32) {
@@ -1994,7 +2420,16 @@ pub const ICombinedFilterInfo = extern union {
             return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCombinationType(@as(*const ICombinedFilterInfo, @ptrCast(self)), pFilterCombinationType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    pub fn GetFilterCount(self: *const ICombinedFilterInfo, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ICombinedFilterInfo, @ptrCast(self)), pdwFilterCount);
+    }
+    pub fn GetFilterInfo(self: *const ICombinedFilterInfo, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+        return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ICombinedFilterInfo, @ptrCast(self)), dwFilterIndex, ppIFilterInfo);
+    }
+    pub fn GetFilterCombinationType(self: *const ICombinedFilterInfo, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCombinationType(@as(*const ICombinedFilterInfo, @ptrCast(self)), pFilterCombinationType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2042,7 +2477,19 @@ pub const IEnumSyncChanges = extern union {
             return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChanges, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSyncChanges, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges, ppChange, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumSyncChanges, cChanges: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges);
+    }
+    pub fn Reset(self: *const IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChanges, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumSyncChanges, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChanges, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2066,7 +2513,10 @@ pub const ISyncChangeBuilder = extern union {
             return @as(*const ISyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddChangeUnitMetadata(@as(*const ISyncChangeBuilder, @ptrCast(self)), pbChangeUnitId, pChangeUnitVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddChangeUnitMetadata(self: *const ISyncChangeBuilder, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddChangeUnitMetadata(@as(*const ISyncChangeBuilder, @ptrCast(self)), pbChangeUnitId, pChangeUnitVersion);
+    }
 };
 
 const IID_IFilterTrackingSyncChangeBuilder_Value = Guid.initString("295024a0-70da-4c58-883c-ce2afb308d0b");
@@ -2096,7 +2546,13 @@ pub const IFilterTrackingSyncChangeBuilder = extern union {
             return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).SetAllChangeUnitsPresentFlag(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddFilterChange(self: *const IFilterTrackingSyncChangeBuilder, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddFilterChange(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)), dwFilterKey, pFilterChange);
+    }
+    pub fn SetAllChangeUnitsPresentFlag(self: *const IFilterTrackingSyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).SetAllChangeUnitsPresentFlag(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2230,7 +2686,49 @@ pub const ISyncChangeBatchBase = extern union {
             return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbChangeBatch, pcbChangeBatch);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetChangeEnumerator(self: *const ISyncChangeBatchBase, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetChangeEnumerator(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppEnum);
+    }
+    pub fn GetIsLastBatch(self: *const ISyncChangeBatchBase, pfLastBatch: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetIsLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pfLastBatch);
+    }
+    pub fn GetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, pdwWorkForBatch: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwWorkForBatch);
+    }
+    pub fn GetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, pdwRemainingWorkForSession: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwRemainingWorkForSession);
+    }
+    pub fn BeginOrderedGroup(self: *const ISyncChangeBatchBase, pbLowerBound: ?*const u8) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).BeginOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbLowerBound);
+    }
+    pub fn EndOrderedGroup(self: *const ISyncChangeBatchBase, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).EndOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbUpperBound, pMadeWithKnowledge);
+    }
+    pub fn AddItemMetadataToGroup(self: *const ISyncChangeBatchBase, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).AddItemMetadataToGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
+    }
+    pub fn GetLearnedKnowledge(self: *const ISyncChangeBatchBase, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppLearnedKnowledge);
+    }
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeBatchBase, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppPrerequisteKnowledge);
+    }
+    pub fn GetSourceForgottenKnowledge(self: *const ISyncChangeBatchBase, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetSourceForgottenKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppSourceForgottenKnowledge);
+    }
+    pub fn SetLastBatch(self: *const ISyncChangeBatchBase) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)));
+    }
+    pub fn SetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, dwWorkForBatch: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwWorkForBatch);
+    }
+    pub fn SetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, dwRemainingWorkForSession: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwRemainingWorkForSession);
+    }
+    pub fn Serialize(self: *const ISyncChangeBatchBase, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbChangeBatch, pcbChangeBatch);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2276,7 +2774,16 @@ pub const ISyncChangeBatch = extern union {
             return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).AddLoggedConflict(@as(*const ISyncChangeBatch, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    pub fn BeginUnorderedGroup(self: *const ISyncChangeBatch) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).BeginUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)));
+    }
+    pub fn EndUnorderedGroup(self: *const ISyncChangeBatch, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).EndUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)), pMadeWithKnowledge, fAllChangesForKnowledge);
+    }
+    pub fn AddLoggedConflict(self: *const ISyncChangeBatch, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).AddLoggedConflict(@as(*const ISyncChangeBatch, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2317,7 +2824,16 @@ pub const ISyncFullEnumerationChangeBatch = extern union {
             return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedUpperBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedUpperBoundItemId, pcbIdSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChangeBatch, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), ppLearnedKnowledgeAfterRecoveryComplete);
+    }
+    pub fn GetClosedLowerBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedLowerBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedLowerBoundItemId, pcbIdSize);
+    }
+    pub fn GetClosedUpperBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedUpperBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedUpperBoundItemId, pcbIdSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2357,7 +2873,16 @@ pub const ISyncChangeBatchWithPrerequisite = extern union {
             return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), ppLearnedForgottenKnowledge);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    pub fn SetPrerequisiteKnowledge(self: *const ISyncChangeBatchWithPrerequisite, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).SetPrerequisiteKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pPrerequisiteKnowledge);
+    }
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeBatchWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
+    }
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithPrerequisite, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), ppLearnedForgottenKnowledge);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2383,7 +2908,10 @@ pub const ISyncChangeBatchBase2 = extern union {
             return @as(*const ISyncChangeBatchBase2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncChangeBatchBase2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    pub fn SerializeWithOptions(self: *const ISyncChangeBatchBase2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchBase2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncChangeBatchBase2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2431,7 +2959,19 @@ pub const ISyncChangeBatchAdvanced = extern union {
             return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetBatchLevelKnowledgeShouldBeApplied(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pfBatchKnowledgeShouldBeApplied);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFilterInfo(self: *const ISyncChangeBatchAdvanced, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppFilterInfo);
+    }
+    pub fn ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const ISyncChangeBatchAdvanced, ppChangeBatch: ?*?*ISyncChangeBatch) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).ConvertFullEnumerationChangeBatchToRegularChangeBatch(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppChangeBatch);
+    }
+    pub fn GetUpperBoundItemId(self: *const ISyncChangeBatchAdvanced, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetUpperBoundItemId(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pbItemId, pcbIdSize);
+    }
+    pub fn GetBatchLevelKnowledgeShouldBeApplied(self: *const ISyncChangeBatchAdvanced, pfBatchKnowledgeShouldBeApplied: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetBatchLevelKnowledgeShouldBeApplied(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pfBatchKnowledgeShouldBeApplied);
+    }
 };
 
 const IID_ISyncChangeBatch2_Value = Guid.initString("225f4a33-f5ee-4cc7-b039-67a262b4b2ac");
@@ -2474,7 +3014,13 @@ pub const ISyncChangeBatch2 = extern union {
             return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneLoggedConflict(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncChangeBatch.MethodMixin(@This());
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
+    }
+    pub fn AddMergeTombstoneLoggedConflict(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneLoggedConflict(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
+    }
 };
 
 const IID_ISyncFullEnumerationChangeBatch2_Value = Guid.initString("e06449f4-a205-4b65-9724-01b22101eec1");
@@ -2502,7 +3048,10 @@ pub const ISyncFullEnumerationChangeBatch2 = extern union {
             return @as(*const ISyncFullEnumerationChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncFullEnumerationChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncFullEnumerationChangeBatch.MethodMixin(@This());
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncFullEnumerationChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncFullEnumerationChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2590,7 +3139,28 @@ pub const IKnowledgeSyncProvider = extern union {
             return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), pSessionState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISyncProvider.MethodMixin(@This());
+    pub fn BeginSession(self: *const IKnowledgeSyncProvider, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).BeginSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), role, pSessionState);
+    }
+    pub fn GetSyncBatchParameters(self: *const IKnowledgeSyncProvider, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetSyncBatchParameters(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), ppSyncKnowledge, pdwRequestedBatchSize);
+    }
+    pub fn GetChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
+    }
+    pub fn GetFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
+    }
+    pub fn ProcessChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
+    }
+    pub fn ProcessFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
+    }
+    pub fn EndSession(self: *const IKnowledgeSyncProvider, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+        return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), pSessionState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2631,7 +3201,16 @@ pub const ISyncChangeUnit = extern union {
             return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitVersion(@as(*const ISyncChangeUnit, @ptrCast(self)), pbCurrentReplicaId, pVersion);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemChange(self: *const ISyncChangeUnit, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetItemChange(@as(*const ISyncChangeUnit, @ptrCast(self)), ppSyncChange);
+    }
+    pub fn GetChangeUnitId(self: *const ISyncChangeUnit, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const ISyncChangeUnit, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
+    }
+    pub fn GetChangeUnitVersion(self: *const ISyncChangeUnit, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitVersion(@as(*const ISyncChangeUnit, @ptrCast(self)), pbCurrentReplicaId, pVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2679,7 +3258,19 @@ pub const IEnumSyncChangeUnits = extern union {
             return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSyncChangeUnits, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges, ppChangeUnit, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumSyncChangeUnits, cChanges: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges);
+    }
+    pub fn Reset(self: *const IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChangeUnits, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumSyncChangeUnits, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2778,7 +3369,37 @@ pub const ISyncChange = extern union {
             return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).SetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), dwWork);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOwnerReplicaId(self: *const ISyncChange, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncChange, @ptrCast(self)), pbReplicaId, pcbIdSize);
+    }
+    pub fn GetRootItemId(self: *const ISyncChange, pbRootItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetRootItemId(@as(*const ISyncChange, @ptrCast(self)), pbRootItemId, pcbIdSize);
+    }
+    pub fn GetChangeVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
+    }
+    pub fn GetCreationVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetCreationVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
+    }
+    pub fn GetFlags(self: *const ISyncChange, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncChange, @ptrCast(self)), pdwFlags);
+    }
+    pub fn GetWorkEstimate(self: *const ISyncChange, pdwWork: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), pdwWork);
+    }
+    pub fn GetChangeUnits(self: *const ISyncChange, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeUnits(@as(*const ISyncChange, @ptrCast(self)), ppEnum);
+    }
+    pub fn GetMadeWithKnowledge(self: *const ISyncChange, ppMadeWithKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetMadeWithKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppMadeWithKnowledge);
+    }
+    pub fn GetLearnedKnowledge(self: *const ISyncChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppLearnedKnowledge);
+    }
+    pub fn SetWorkEstimate(self: *const ISyncChange, dwWork: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).SetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), dwWork);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2810,7 +3431,13 @@ pub const ISyncChangeWithPrerequisite = extern union {
             return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeWithPrerequisite, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), ppPrerequisiteKnowledge);
+    }
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2841,7 +3468,13 @@ pub const ISyncFullEnumerationChange = extern union {
             return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedForgottenKnowledge);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedKnowledge);
+    }
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncFullEnumerationChange, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedForgottenKnowledge);
+    }
 };
 
 const IID_ISyncMergeTombstoneChange_Value = Guid.initString("6ec62597-0903-484c-ad61-36d6e938f47b");
@@ -2864,7 +3497,10 @@ pub const ISyncMergeTombstoneChange = extern union {
             return @as(*const ISyncMergeTombstoneChange.VTable, @ptrCast(self.vtable)).GetWinnerItemId(@as(*const ISyncMergeTombstoneChange, @ptrCast(self)), pbWinnerItemId, pcbIdSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWinnerItemId(self: *const ISyncMergeTombstoneChange, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncMergeTombstoneChange.VTable, @ptrCast(self.vtable)).GetWinnerItemId(@as(*const ISyncMergeTombstoneChange, @ptrCast(self)), pbWinnerItemId, pcbIdSize);
+    }
 };
 
 const IID_IEnumItemIds_Value = Guid.initString("43aa3f61-4b2e-4b60-83df-b110d3e148f1");
@@ -2887,7 +3523,10 @@ pub const IEnumItemIds = extern union {
             return @as(*const IEnumItemIds.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumItemIds, @ptrCast(self)), pbItemId, pcbItemIdSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumItemIds, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumItemIds.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumItemIds, @ptrCast(self)), pbItemId, pcbItemIdSize);
+    }
 };
 
 const IID_IFilterKeyMap_Value = Guid.initString("ca169652-07c6-4708-a3da-6e4eba8d2297");
@@ -2936,7 +3575,19 @@ pub const IFilterKeyMap = extern union {
             return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IFilterKeyMap, @ptrCast(self)), pbFilterKeyMap, pcbFilterKeyMap);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IFilterKeyMap, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IFilterKeyMap, @ptrCast(self)), pdwCount);
+    }
+    pub fn AddFilter(self: *const IFilterKeyMap, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const IFilterKeyMap, @ptrCast(self)), pISyncFilter, pdwFilterKey);
+    }
+    pub fn GetFilter(self: *const IFilterKeyMap, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilter(@as(*const IFilterKeyMap, @ptrCast(self)), dwFilterKey, ppISyncFilter);
+    }
+    pub fn Serialize(self: *const IFilterKeyMap, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IFilterKeyMap, @ptrCast(self)), pbFilterKeyMap, pcbFilterKeyMap);
+    }
 };
 
 const IID_ISyncChangeWithFilterKeyMap_Value = Guid.initString("bfe1ef00-e87d-42fd-a4e9-242d70414aef");
@@ -3036,7 +3687,34 @@ pub const ISyncChangeWithFilterKeyMap = extern union {
             return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFilterCount(self: *const ISyncChangeWithFilterKeyMap, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pdwFilterCount);
+    }
+    pub fn GetFilterChange(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterChange(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterChange);
+    }
+    pub fn GetAllChangeUnitsPresentFlag(self: *const ISyncChangeWithFilterKeyMap, pfAllChangeUnitsPresent: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetAllChangeUnitsPresentFlag(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pfAllChangeUnitsPresent);
+    }
+    pub fn GetFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, ppIFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
 };
 
 const IID_ISyncChangeBatchWithFilterKeyMap_Value = Guid.initString("de247002-566d-459a-a6ed-a5aab3459fb7");
@@ -3127,7 +3805,31 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern union {
             return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), ppIFilterKeyMap);
+    }
+    pub fn SetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, pIFilterKeyMap: ?*IFilterKeyMap) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pIFilterKeyMap);
+    }
+    pub fn SetFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3158,7 +3860,13 @@ pub const IDataRetrieverCallback = extern union {
             return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataError(@as(*const IDataRetrieverCallback, @ptrCast(self)), hrError);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LoadChangeDataComplete(self: *const IDataRetrieverCallback, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataComplete(@as(*const IDataRetrieverCallback, @ptrCast(self)), pUnkData);
+    }
+    pub fn LoadChangeDataError(self: *const IDataRetrieverCallback, hrError: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataError(@as(*const IDataRetrieverCallback, @ptrCast(self)), hrError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3200,7 +3908,16 @@ pub const ILoadChangeContext = extern union {
             return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChangeUnit(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pChangeUnit, pErrorData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSyncChange(self: *const ILoadChangeContext, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).GetSyncChange(@as(*const ILoadChangeContext, @ptrCast(self)), ppSyncChange);
+    }
+    pub fn SetRecoverableErrorOnChange(self: *const ILoadChangeContext, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChange(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pErrorData);
+    }
+    pub fn SetRecoverableErrorOnChangeUnit(self: *const ILoadChangeContext, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChangeUnit(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pChangeUnit, pErrorData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3232,7 +3949,13 @@ pub const ISynchronousDataRetriever = extern union {
             return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext, ppUnkData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIdParameters(self: *const ISynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pIdParameters);
+    }
+    pub fn LoadChangeData(self: *const ISynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext, ppUnkData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3279,7 +4002,19 @@ pub const IAsynchronousDataRetriever = extern union {
             return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetIdParameters(self: *const IAsynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pIdParameters);
+    }
+    pub fn RegisterCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
+    }
+    pub fn RevokeCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RevokeCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
+    }
+    pub fn LoadChangeData(self: *const IAsynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext) callconv(.Inline) HRESULT {
+        return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3303,7 +4038,10 @@ pub const IFilterRequestCallback = extern union {
             return @as(*const IFilterRequestCallback.VTable, @ptrCast(self.vtable)).RequestFilter(@as(*const IFilterRequestCallback, @ptrCast(self)), pFilter, filteringType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RequestFilter(self: *const IFilterRequestCallback, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IFilterRequestCallback.VTable, @ptrCast(self.vtable)).RequestFilter(@as(*const IFilterRequestCallback, @ptrCast(self)), pFilter, filteringType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3326,7 +4064,10 @@ pub const IRequestFilteredSync = extern union {
             return @as(*const IRequestFilteredSync.VTable, @ptrCast(self.vtable)).SpecifyFilter(@as(*const IRequestFilteredSync, @ptrCast(self)), pCallback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SpecifyFilter(self: *const IRequestFilteredSync, pCallback: ?*IFilterRequestCallback) callconv(.Inline) HRESULT {
+        return @as(*const IRequestFilteredSync.VTable, @ptrCast(self.vtable)).SpecifyFilter(@as(*const IRequestFilteredSync, @ptrCast(self)), pCallback);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3350,7 +4091,10 @@ pub const ISupportFilteredSync = extern union {
             return @as(*const ISupportFilteredSync.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const ISupportFilteredSync, @ptrCast(self)), pFilter, filteringType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddFilter(self: *const ISupportFilteredSync, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const ISupportFilteredSync.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const ISupportFilteredSync, @ptrCast(self)), pFilter, filteringType);
+    }
 };
 
 const IID_IFilterTrackingRequestCallback_Value = Guid.initString("713ca7bb-c858-4674-b4b6-1122436587a9");
@@ -3372,7 +4116,10 @@ pub const IFilterTrackingRequestCallback = extern union {
             return @as(*const IFilterTrackingRequestCallback.VTable, @ptrCast(self.vtable)).RequestTrackedFilter(@as(*const IFilterTrackingRequestCallback, @ptrCast(self)), pFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RequestTrackedFilter(self: *const IFilterTrackingRequestCallback, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const IFilterTrackingRequestCallback.VTable, @ptrCast(self.vtable)).RequestTrackedFilter(@as(*const IFilterTrackingRequestCallback, @ptrCast(self)), pFilter);
+    }
 };
 
 const IID_IFilterTrackingProvider_Value = Guid.initString("743383c0-fc4e-45ba-ad81-d9d84c7a24f8");
@@ -3402,7 +4149,13 @@ pub const IFilterTrackingProvider = extern union {
             return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).AddTrackedFilter(@as(*const IFilterTrackingProvider, @ptrCast(self)), pFilter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SpecifyTrackedFilters(self: *const IFilterTrackingProvider, pCallback: ?*IFilterTrackingRequestCallback) callconv(.Inline) HRESULT {
+        return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).SpecifyTrackedFilters(@as(*const IFilterTrackingProvider, @ptrCast(self)), pCallback);
+    }
+    pub fn AddTrackedFilter(self: *const IFilterTrackingProvider, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).AddTrackedFilter(@as(*const IFilterTrackingProvider, @ptrCast(self)), pFilter);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3436,7 +4189,13 @@ pub const ISupportLastWriteTime = extern union {
             return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetChangeUnitChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pbChangeUnitId, pullTimestamp);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetItemChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetItemChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pullTimestamp);
+    }
+    pub fn GetChangeUnitChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetChangeUnitChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pbChangeUnitId, pullTimestamp);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3459,7 +4218,10 @@ pub const IProviderConverter = extern union {
             return @as(*const IProviderConverter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IProviderConverter, @ptrCast(self)), pISyncProvider);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IProviderConverter, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
+        return @as(*const IProviderConverter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IProviderConverter, @ptrCast(self)), pISyncProvider);
+    }
 };
 
 const IID_ISyncDataConverter_Value = Guid.initString("435d4861-68d5-44aa-a0f9-72a0b00ef9cf");
@@ -3513,7 +4275,19 @@ pub const ISyncDataConverter = extern union {
             return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataOut, ppUnkDataout);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConvertDataRetrieverFromProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
+    }
+    pub fn ConvertDataRetrieverToProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
+    }
+    pub fn ConvertDataFromProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataIn, ppUnkDataOut);
+    }
+    pub fn ConvertDataToProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataOut, ppUnkDataout);
+    }
 };
 
 const CLSID_SyncProviderRegistration_Value = Guid.initString("f82b4ef1-93a9-4dde-8015-f7950a1a6e31");
@@ -3699,7 +4473,55 @@ pub const ISyncProviderRegistration = extern union {
             return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetChange(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent, ppChange);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateSyncProviderConfigUIRegistrationInstance(self: *const ISyncProviderRegistration, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderConfigUIRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pConfigUIConfig, ppConfigUIInfo);
+    }
+    pub fn UnregisterSyncProviderConfigUI(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProviderConfigUI(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
+    }
+    pub fn EnumerateSyncProviderConfigUIs(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviderConfigUIs(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
+    }
+    pub fn CreateSyncProviderRegistrationInstance(self: *const ISyncProviderRegistration, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pProviderConfiguration, ppProviderInfo);
+    }
+    pub fn UnregisterSyncProvider(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
+    }
+    pub fn GetSyncProviderConfigUIInfoforProvider(self: *const ISyncProviderRegistration, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfoforProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidProviderInstanceId, ppProviderConfigUIInfo);
+    }
+    pub fn EnumerateSyncProviders(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviders(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
+    }
+    pub fn GetSyncProviderInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppProviderInfo);
+    }
+    pub fn GetSyncProviderFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppSyncProvider);
+    }
+    pub fn GetSyncProviderConfigUIInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppConfigUIInfo);
+    }
+    pub fn GetSyncProviderConfigUIFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppConfigUI);
+    }
+    pub fn GetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, pdwStateFlags);
+    }
+    pub fn SetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).SetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwStateFlagsMask, dwStateFlags);
+    }
+    pub fn RegisterForEvent(self: *const ISyncProviderRegistration, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RegisterForEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), phEvent);
+    }
+    pub fn RevokeEvent(self: *const ISyncProviderRegistration, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RevokeEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent);
+    }
+    pub fn GetChange(self: *const ISyncProviderRegistration, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetChange(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent, ppChange);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3747,7 +4569,19 @@ pub const IEnumSyncProviderConfigUIInfos = extern union {
             return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories, ppSyncProviderConfigUIInfo, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories);
+    }
+    pub fn Reset(self: *const IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumSyncProviderConfigUIInfos, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3795,7 +4629,19 @@ pub const IEnumSyncProviderInfos = extern union {
             return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumSyncProviderInfos, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances, ppSyncProviderInfo, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumSyncProviderInfos, cInstances: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances);
+    }
+    pub fn Reset(self: *const IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderInfos, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumSyncProviderInfos, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3819,7 +4665,10 @@ pub const ISyncProviderInfo = extern union {
             return @as(*const ISyncProviderInfo.VTable, @ptrCast(self.vtable)).GetSyncProvider(@as(*const ISyncProviderInfo, @ptrCast(self)), dwClsContext, ppSyncProvider);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPropertyStore.MethodMixin(@This());
+    pub fn GetSyncProvider(self: *const ISyncProviderInfo, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderInfo.VTable, @ptrCast(self.vtable)).GetSyncProvider(@as(*const ISyncProviderInfo, @ptrCast(self)), dwClsContext, ppSyncProvider);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3843,7 +4692,10 @@ pub const ISyncProviderConfigUIInfo = extern union {
             return @as(*const ISyncProviderConfigUIInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUI(@as(*const ISyncProviderConfigUIInfo, @ptrCast(self)), dwClsContext, ppSyncProviderConfigUI);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPropertyStore.MethodMixin(@This());
+    pub fn GetSyncProviderConfigUI(self: *const ISyncProviderConfigUIInfo, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderConfigUIInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUI(@as(*const ISyncProviderConfigUIInfo, @ptrCast(self)), dwClsContext, ppSyncProviderConfigUI);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3896,7 +4748,19 @@ pub const ISyncProviderConfigUI = extern union {
             return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).ModifySyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, pProviderInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Init(self: *const ISyncProviderConfigUI, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).Init(@as(*const ISyncProviderConfigUI, @ptrCast(self)), pguidInstanceId, pguidContentType, pConfigurationProperties);
+    }
+    pub fn GetRegisteredProperties(self: *const ISyncProviderConfigUI, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).GetRegisteredProperties(@as(*const ISyncProviderConfigUI, @ptrCast(self)), ppConfigUIProperties);
+    }
+    pub fn CreateAndRegisterNewSyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).CreateAndRegisterNewSyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, ppProviderInfo);
+    }
+    pub fn ModifySyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).ModifySyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, pProviderInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3936,7 +4800,16 @@ pub const IRegisteredSyncProvider = extern union {
             return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRegisteredSyncProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Init(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Init(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId, pguidContentType, pContextPropertyStore);
+    }
+    pub fn GetInstanceId(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId);
+    }
+    pub fn Reset(self: *const IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRegisteredSyncProvider, @ptrCast(self)));
+    }
 };
 
 pub const SYNC_REGISTRATION_EVENT = enum(i32) {
@@ -3984,7 +4857,13 @@ pub const ISyncRegistrationChange = extern union {
             return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const ISyncRegistrationChange, @ptrCast(self)), pguidInstanceId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEvent(self: *const ISyncRegistrationChange, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
+        return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const ISyncRegistrationChange, @ptrCast(self)), psreEvent);
+    }
+    pub fn GetInstanceId(self: *const ISyncRegistrationChange, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const ISyncRegistrationChange, @ptrCast(self)), pguidInstanceId);
+    }
 };
 
 

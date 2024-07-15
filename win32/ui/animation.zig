@@ -232,7 +232,64 @@ pub const IUIAnimationManager = extern union {
             return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IUIAnimationManager, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateAnimationVariable(self: *const IUIAnimationManager, initialValue: f64, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).CreateAnimationVariable(@as(*const IUIAnimationManager, @ptrCast(self)), initialValue, variable);
+    }
+    pub fn ScheduleTransition(self: *const IUIAnimationManager, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, timeNow: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).ScheduleTransition(@as(*const IUIAnimationManager, @ptrCast(self)), variable, transition, timeNow);
+    }
+    pub fn CreateStoryboard(self: *const IUIAnimationManager, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).CreateStoryboard(@as(*const IUIAnimationManager, @ptrCast(self)), storyboard);
+    }
+    pub fn FinishAllStoryboards(self: *const IUIAnimationManager, completionDeadline: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).FinishAllStoryboards(@as(*const IUIAnimationManager, @ptrCast(self)), completionDeadline);
+    }
+    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).AbandonAllStoryboards(@as(*const IUIAnimationManager, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IUIAnimationManager, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).Update(@as(*const IUIAnimationManager, @ptrCast(self)), timeNow, updateResult);
+    }
+    pub fn GetVariableFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).GetVariableFromTag(@as(*const IUIAnimationManager, @ptrCast(self)), object, id, variable);
+    }
+    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).GetStoryboardFromTag(@as(*const IUIAnimationManager, @ptrCast(self)), object, id, storyboard);
+    }
+    pub fn GetStatus(self: *const IUIAnimationManager, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IUIAnimationManager, @ptrCast(self)), status);
+    }
+    pub fn SetAnimationMode(self: *const IUIAnimationManager, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetAnimationMode(@as(*const IUIAnimationManager, @ptrCast(self)), mode);
+    }
+    pub fn Pause(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).Pause(@as(*const IUIAnimationManager, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).Resume(@as(*const IUIAnimationManager, @ptrCast(self)));
+    }
+    pub fn SetManagerEventHandler(self: *const IUIAnimationManager, handler: ?*IUIAnimationManagerEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetManagerEventHandler(@as(*const IUIAnimationManager, @ptrCast(self)), handler);
+    }
+    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetCancelPriorityComparison(@as(*const IUIAnimationManager, @ptrCast(self)), comparison);
+    }
+    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetTrimPriorityComparison(@as(*const IUIAnimationManager, @ptrCast(self)), comparison);
+    }
+    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetCompressPriorityComparison(@as(*const IUIAnimationManager, @ptrCast(self)), comparison);
+    }
+    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetConcludePriorityComparison(@as(*const IUIAnimationManager, @ptrCast(self)), comparison);
+    }
+    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager, delay: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).SetDefaultLongestAcceptableDelay(@as(*const IUIAnimationManager, @ptrCast(self)), delay);
+    }
+    pub fn Shutdown(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IUIAnimationManager, @ptrCast(self)));
+    }
 };
 
 pub const UI_ANIMATION_ROUNDING_MODE = enum(i32) {
@@ -370,7 +427,49 @@ pub const IUIAnimationVariable = extern union {
             return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetVariableIntegerChangeHandler(@as(*const IUIAnimationVariable, @ptrCast(self)), handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetValue(self: *const IUIAnimationVariable, value: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IUIAnimationVariable, @ptrCast(self)), value);
+    }
+    pub fn GetFinalValue(self: *const IUIAnimationVariable, finalValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetFinalValue(@as(*const IUIAnimationVariable, @ptrCast(self)), finalValue);
+    }
+    pub fn GetPreviousValue(self: *const IUIAnimationVariable, previousValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetPreviousValue(@as(*const IUIAnimationVariable, @ptrCast(self)), previousValue);
+    }
+    pub fn GetIntegerValue(self: *const IUIAnimationVariable, value: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetIntegerValue(@as(*const IUIAnimationVariable, @ptrCast(self)), value);
+    }
+    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable, finalValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetFinalIntegerValue(@as(*const IUIAnimationVariable, @ptrCast(self)), finalValue);
+    }
+    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable, previousValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetPreviousIntegerValue(@as(*const IUIAnimationVariable, @ptrCast(self)), previousValue);
+    }
+    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetCurrentStoryboard(@as(*const IUIAnimationVariable, @ptrCast(self)), storyboard);
+    }
+    pub fn SetLowerBound(self: *const IUIAnimationVariable, bound: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetLowerBound(@as(*const IUIAnimationVariable, @ptrCast(self)), bound);
+    }
+    pub fn SetUpperBound(self: *const IUIAnimationVariable, bound: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetUpperBound(@as(*const IUIAnimationVariable, @ptrCast(self)), bound);
+    }
+    pub fn SetRoundingMode(self: *const IUIAnimationVariable, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetRoundingMode(@as(*const IUIAnimationVariable, @ptrCast(self)), mode);
+    }
+    pub fn SetTag(self: *const IUIAnimationVariable, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IUIAnimationVariable, @ptrCast(self)), object, id);
+    }
+    pub fn GetTag(self: *const IUIAnimationVariable, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IUIAnimationVariable, @ptrCast(self)), object, id);
+    }
+    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableChangeHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetVariableChangeHandler(@as(*const IUIAnimationVariable, @ptrCast(self)), handler);
+    }
+    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableIntegerChangeHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable.VTable, @ptrCast(self.vtable)).SetVariableIntegerChangeHandler(@as(*const IUIAnimationVariable, @ptrCast(self)), handler);
+    }
 };
 
 pub const UI_ANIMATION_STORYBOARD_STATUS = enum(i32) {
@@ -565,7 +664,58 @@ pub const IUIAnimationStoryboard = extern union {
             return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).SetStoryboardEventHandler(@as(*const IUIAnimationStoryboard, @ptrCast(self)), handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddTransition(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).AddTransition(@as(*const IUIAnimationStoryboard, @ptrCast(self)), variable, transition);
+    }
+    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).AddKeyframeAtOffset(@as(*const IUIAnimationStoryboard, @ptrCast(self)), existingKeyframe, offset, keyframe);
+    }
+    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard, transition: ?*IUIAnimationTransition, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).AddKeyframeAfterTransition(@as(*const IUIAnimationStoryboard, @ptrCast(self)), transition, keyframe);
+    }
+    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).AddTransitionAtKeyframe(@as(*const IUIAnimationStoryboard, @ptrCast(self)), variable, transition, startKeyframe);
+    }
+    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).AddTransitionBetweenKeyframes(@as(*const IUIAnimationStoryboard, @ptrCast(self)), variable, transition, startKeyframe, endKeyframe);
+    }
+    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, repetitionCount: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).RepeatBetweenKeyframes(@as(*const IUIAnimationStoryboard, @ptrCast(self)), startKeyframe, endKeyframe, repetitionCount);
+    }
+    pub fn HoldVariable(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).HoldVariable(@as(*const IUIAnimationStoryboard, @ptrCast(self)), variable);
+    }
+    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard, delay: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).SetLongestAcceptableDelay(@as(*const IUIAnimationStoryboard, @ptrCast(self)), delay);
+    }
+    pub fn Schedule(self: *const IUIAnimationStoryboard, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).Schedule(@as(*const IUIAnimationStoryboard, @ptrCast(self)), timeNow, schedulingResult);
+    }
+    pub fn Conclude(self: *const IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).Conclude(@as(*const IUIAnimationStoryboard, @ptrCast(self)));
+    }
+    pub fn Finish(self: *const IUIAnimationStoryboard, completionDeadline: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).Finish(@as(*const IUIAnimationStoryboard, @ptrCast(self)), completionDeadline);
+    }
+    pub fn Abandon(self: *const IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).Abandon(@as(*const IUIAnimationStoryboard, @ptrCast(self)));
+    }
+    pub fn SetTag(self: *const IUIAnimationStoryboard, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IUIAnimationStoryboard, @ptrCast(self)), object, id);
+    }
+    pub fn GetTag(self: *const IUIAnimationStoryboard, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IUIAnimationStoryboard, @ptrCast(self)), object, id);
+    }
+    pub fn GetStatus(self: *const IUIAnimationStoryboard, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IUIAnimationStoryboard, @ptrCast(self)), status);
+    }
+    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).GetElapsedTime(@as(*const IUIAnimationStoryboard, @ptrCast(self)), elapsedTime);
+    }
+    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard, handler: ?*IUIAnimationStoryboardEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard.VTable, @ptrCast(self.vtable)).SetStoryboardEventHandler(@as(*const IUIAnimationStoryboard, @ptrCast(self)), handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -611,7 +761,19 @@ pub const IUIAnimationTransition = extern union {
             return @as(*const IUIAnimationTransition.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationTransition, @ptrCast(self)), duration);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInitialValue(self: *const IUIAnimationTransition, value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition.VTable, @ptrCast(self.vtable)).SetInitialValue(@as(*const IUIAnimationTransition, @ptrCast(self)), value);
+    }
+    pub fn SetInitialVelocity(self: *const IUIAnimationTransition, velocity: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition.VTable, @ptrCast(self.vtable)).SetInitialVelocity(@as(*const IUIAnimationTransition, @ptrCast(self)), velocity);
+    }
+    pub fn IsDurationKnown(self: *const IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition.VTable, @ptrCast(self.vtable)).IsDurationKnown(@as(*const IUIAnimationTransition, @ptrCast(self)));
+    }
+    pub fn GetDuration(self: *const IUIAnimationTransition, duration: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationTransition, @ptrCast(self)), duration);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -635,7 +797,10 @@ pub const IUIAnimationManagerEventHandler = extern union {
             return @as(*const IUIAnimationManagerEventHandler.VTable, @ptrCast(self.vtable)).OnManagerStatusChanged(@as(*const IUIAnimationManagerEventHandler, @ptrCast(self)), newStatus, previousStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManagerEventHandler.VTable, @ptrCast(self.vtable)).OnManagerStatusChanged(@as(*const IUIAnimationManagerEventHandler, @ptrCast(self)), newStatus, previousStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -661,7 +826,10 @@ pub const IUIAnimationVariableChangeHandler = extern union {
             return @as(*const IUIAnimationVariableChangeHandler.VTable, @ptrCast(self.vtable)).OnValueChanged(@as(*const IUIAnimationVariableChangeHandler, @ptrCast(self)), storyboard, variable, newValue, previousValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: f64, previousValue: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariableChangeHandler.VTable, @ptrCast(self.vtable)).OnValueChanged(@as(*const IUIAnimationVariableChangeHandler, @ptrCast(self)), storyboard, variable, newValue, previousValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -687,7 +855,10 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern union {
             return @as(*const IUIAnimationVariableIntegerChangeHandler.VTable, @ptrCast(self.vtable)).OnIntegerValueChanged(@as(*const IUIAnimationVariableIntegerChangeHandler, @ptrCast(self)), storyboard, variable, newValue, previousValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: i32, previousValue: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariableIntegerChangeHandler.VTable, @ptrCast(self.vtable)).OnIntegerValueChanged(@as(*const IUIAnimationVariableIntegerChangeHandler, @ptrCast(self)), storyboard, variable, newValue, previousValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -720,7 +891,13 @@ pub const IUIAnimationStoryboardEventHandler = extern union {
             return @as(*const IUIAnimationStoryboardEventHandler.VTable, @ptrCast(self.vtable)).OnStoryboardUpdated(@as(*const IUIAnimationStoryboardEventHandler, @ptrCast(self)), storyboard);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboardEventHandler.VTable, @ptrCast(self.vtable)).OnStoryboardStatusChanged(@as(*const IUIAnimationStoryboardEventHandler, @ptrCast(self)), storyboard, newStatus, previousStatus);
+    }
+    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboardEventHandler.VTable, @ptrCast(self.vtable)).OnStoryboardUpdated(@as(*const IUIAnimationStoryboardEventHandler, @ptrCast(self)), storyboard);
+    }
 };
 
 pub const UI_ANIMATION_PRIORITY_EFFECT = enum(i32) {
@@ -752,7 +929,10 @@ pub const IUIAnimationPriorityComparison = extern union {
             return @as(*const IUIAnimationPriorityComparison.VTable, @ptrCast(self.vtable)).HasPriority(@as(*const IUIAnimationPriorityComparison, @ptrCast(self)), scheduledStoryboard, newStoryboard, priorityEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HasPriority(self: *const IUIAnimationPriorityComparison, scheduledStoryboard: ?*IUIAnimationStoryboard, newStoryboard: ?*IUIAnimationStoryboard, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationPriorityComparison.VTable, @ptrCast(self.vtable)).HasPriority(@as(*const IUIAnimationPriorityComparison, @ptrCast(self)), scheduledStoryboard, newStoryboard, priorityEffect);
+    }
 };
 
 pub const UI_ANIMATION_SLOPE = enum(i32) {
@@ -899,7 +1079,43 @@ pub const IUIAnimationTransitionLibrary = extern union {
             return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateParabolicTransitionFromAcceleration(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), finalValue, finalVelocity, acceleration, transition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateInstantaneousTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), finalValue, transition);
+    }
+    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateConstantTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, transition);
+    }
+    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateDiscreteTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), delay, finalValue, hold, transition);
+    }
+    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateLinearTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, finalValue, transition);
+    }
+    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateLinearTransitionFromSpeed(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), speed, finalValue, transition);
+    }
+    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateSinusoidalTransitionFromVelocity(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, period, transition);
+    }
+    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateSinusoidalTransitionFromRange(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, minimumValue, maximumValue, period, slope, transition);
+    }
+    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateAccelerateDecelerateTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, finalValue, accelerationRatio, decelerationRatio, transition);
+    }
+    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateReversalTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, transition);
+    }
+    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateCubicTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), duration, finalValue, finalVelocity, transition);
+    }
+    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateSmoothStopTransition(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), maximumDuration, finalValue, transition);
+    }
+    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary.VTable, @ptrCast(self.vtable)).CreateParabolicTransitionFromAcceleration(@as(*const IUIAnimationTransitionLibrary, @ptrCast(self)), finalValue, finalVelocity, acceleration, transition);
+    }
 };
 
 pub const UI_ANIMATION_DEPENDENCIES = packed struct(u32) {
@@ -1015,7 +1231,28 @@ pub const IUIAnimationInterpolator = extern union {
             return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).GetDependencies(@as(*const IUIAnimationInterpolator, @ptrCast(self)), initialValueDependencies, initialVelocityDependencies, durationDependencies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator, initialValue: f64, initialVelocity: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).SetInitialValueAndVelocity(@as(*const IUIAnimationInterpolator, @ptrCast(self)), initialValue, initialVelocity);
+    }
+    pub fn SetDuration(self: *const IUIAnimationInterpolator, duration: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).SetDuration(@as(*const IUIAnimationInterpolator, @ptrCast(self)), duration);
+    }
+    pub fn GetDuration(self: *const IUIAnimationInterpolator, duration: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationInterpolator, @ptrCast(self)), duration);
+    }
+    pub fn GetFinalValue(self: *const IUIAnimationInterpolator, value: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).GetFinalValue(@as(*const IUIAnimationInterpolator, @ptrCast(self)), value);
+    }
+    pub fn InterpolateValue(self: *const IUIAnimationInterpolator, offset: f64, value: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).InterpolateValue(@as(*const IUIAnimationInterpolator, @ptrCast(self)), offset, value);
+    }
+    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator, offset: f64, velocity: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).InterpolateVelocity(@as(*const IUIAnimationInterpolator, @ptrCast(self)), offset, velocity);
+    }
+    pub fn GetDependencies(self: *const IUIAnimationInterpolator, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator.VTable, @ptrCast(self.vtable)).GetDependencies(@as(*const IUIAnimationInterpolator, @ptrCast(self)), initialValueDependencies, initialVelocityDependencies, durationDependencies);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1039,7 +1276,10 @@ pub const IUIAnimationTransitionFactory = extern union {
             return @as(*const IUIAnimationTransitionFactory.VTable, @ptrCast(self.vtable)).CreateTransition(@as(*const IUIAnimationTransitionFactory, @ptrCast(self)), interpolator, transition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory, interpolator: ?*IUIAnimationInterpolator, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionFactory.VTable, @ptrCast(self.vtable)).CreateTransition(@as(*const IUIAnimationTransitionFactory, @ptrCast(self)), interpolator, transition);
+    }
 };
 
 pub const UI_ANIMATION_IDLE_BEHAVIOR = enum(i32) {
@@ -1115,7 +1355,28 @@ pub const IUIAnimationTimer = extern union {
             return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).SetFrameRateThreshold(@as(*const IUIAnimationTimer, @ptrCast(self)), framesPerSecond);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetTimerUpdateHandler(self: *const IUIAnimationTimer, updateHandler: ?*IUIAnimationTimerUpdateHandler, idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).SetTimerUpdateHandler(@as(*const IUIAnimationTimer, @ptrCast(self)), updateHandler, idleBehavior);
+    }
+    pub fn SetTimerEventHandler(self: *const IUIAnimationTimer, handler: ?*IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).SetTimerEventHandler(@as(*const IUIAnimationTimer, @ptrCast(self)), handler);
+    }
+    pub fn Enable(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).Enable(@as(*const IUIAnimationTimer, @ptrCast(self)));
+    }
+    pub fn Disable(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).Disable(@as(*const IUIAnimationTimer, @ptrCast(self)));
+    }
+    pub fn IsEnabled(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const IUIAnimationTimer, @ptrCast(self)));
+    }
+    pub fn GetTime(self: *const IUIAnimationTimer, seconds: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IUIAnimationTimer, @ptrCast(self)), seconds);
+    }
+    pub fn SetFrameRateThreshold(self: *const IUIAnimationTimer, framesPerSecond: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimer.VTable, @ptrCast(self.vtable)).SetFrameRateThreshold(@as(*const IUIAnimationTimer, @ptrCast(self)), framesPerSecond);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1154,7 +1415,16 @@ pub const IUIAnimationTimerUpdateHandler = extern union {
             return @as(*const IUIAnimationTimerUpdateHandler.VTable, @ptrCast(self.vtable)).ClearTimerClientEventHandler(@as(*const IUIAnimationTimerUpdateHandler, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnUpdate(self: *const IUIAnimationTimerUpdateHandler, timeNow: f64, result: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerUpdateHandler.VTable, @ptrCast(self.vtable)).OnUpdate(@as(*const IUIAnimationTimerUpdateHandler, @ptrCast(self)), timeNow, result);
+    }
+    pub fn SetTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler, handler: ?*IUIAnimationTimerClientEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerUpdateHandler.VTable, @ptrCast(self.vtable)).SetTimerClientEventHandler(@as(*const IUIAnimationTimerUpdateHandler, @ptrCast(self)), handler);
+    }
+    pub fn ClearTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerUpdateHandler.VTable, @ptrCast(self.vtable)).ClearTimerClientEventHandler(@as(*const IUIAnimationTimerUpdateHandler, @ptrCast(self)));
+    }
 };
 
 pub const UI_ANIMATION_TIMER_CLIENT_STATUS = enum(i32) {
@@ -1185,7 +1455,10 @@ pub const IUIAnimationTimerClientEventHandler = extern union {
             return @as(*const IUIAnimationTimerClientEventHandler.VTable, @ptrCast(self.vtable)).OnTimerClientStatusChanged(@as(*const IUIAnimationTimerClientEventHandler, @ptrCast(self)), newStatus, previousStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnTimerClientStatusChanged(self: *const IUIAnimationTimerClientEventHandler, newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS, previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerClientEventHandler.VTable, @ptrCast(self.vtable)).OnTimerClientStatusChanged(@as(*const IUIAnimationTimerClientEventHandler, @ptrCast(self)), newStatus, previousStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1222,7 +1495,16 @@ pub const IUIAnimationTimerEventHandler = extern union {
             return @as(*const IUIAnimationTimerEventHandler.VTable, @ptrCast(self.vtable)).OnRenderingTooSlow(@as(*const IUIAnimationTimerEventHandler, @ptrCast(self)), framesPerSecond);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnPreUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerEventHandler.VTable, @ptrCast(self.vtable)).OnPreUpdate(@as(*const IUIAnimationTimerEventHandler, @ptrCast(self)));
+    }
+    pub fn OnPostUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerEventHandler.VTable, @ptrCast(self.vtable)).OnPostUpdate(@as(*const IUIAnimationTimerEventHandler, @ptrCast(self)));
+    }
+    pub fn OnRenderingTooSlow(self: *const IUIAnimationTimerEventHandler, framesPerSecond: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTimerEventHandler.VTable, @ptrCast(self.vtable)).OnRenderingTooSlow(@as(*const IUIAnimationTimerEventHandler, @ptrCast(self)), framesPerSecond);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1412,7 +1694,70 @@ pub const IUIAnimationManager2 = extern union {
             return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IUIAnimationManager2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateAnimationVectorVariable(self: *const IUIAnimationManager2, initialValue: [*]const f64, cDimension: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).CreateAnimationVectorVariable(@as(*const IUIAnimationManager2, @ptrCast(self)), initialValue, cDimension, variable);
+    }
+    pub fn CreateAnimationVariable(self: *const IUIAnimationManager2, initialValue: f64, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).CreateAnimationVariable(@as(*const IUIAnimationManager2, @ptrCast(self)), initialValue, variable);
+    }
+    pub fn ScheduleTransition(self: *const IUIAnimationManager2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, timeNow: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).ScheduleTransition(@as(*const IUIAnimationManager2, @ptrCast(self)), variable, transition, timeNow);
+    }
+    pub fn CreateStoryboard(self: *const IUIAnimationManager2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).CreateStoryboard(@as(*const IUIAnimationManager2, @ptrCast(self)), storyboard);
+    }
+    pub fn FinishAllStoryboards(self: *const IUIAnimationManager2, completionDeadline: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).FinishAllStoryboards(@as(*const IUIAnimationManager2, @ptrCast(self)), completionDeadline);
+    }
+    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).AbandonAllStoryboards(@as(*const IUIAnimationManager2, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IUIAnimationManager2, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).Update(@as(*const IUIAnimationManager2, @ptrCast(self)), timeNow, updateResult);
+    }
+    pub fn GetVariableFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).GetVariableFromTag(@as(*const IUIAnimationManager2, @ptrCast(self)), object, id, variable);
+    }
+    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).GetStoryboardFromTag(@as(*const IUIAnimationManager2, @ptrCast(self)), object, id, storyboard);
+    }
+    pub fn EstimateNextEventTime(self: *const IUIAnimationManager2, seconds: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).EstimateNextEventTime(@as(*const IUIAnimationManager2, @ptrCast(self)), seconds);
+    }
+    pub fn GetStatus(self: *const IUIAnimationManager2, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IUIAnimationManager2, @ptrCast(self)), status);
+    }
+    pub fn SetAnimationMode(self: *const IUIAnimationManager2, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetAnimationMode(@as(*const IUIAnimationManager2, @ptrCast(self)), mode);
+    }
+    pub fn Pause(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).Pause(@as(*const IUIAnimationManager2, @ptrCast(self)));
+    }
+    pub fn Resume(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).Resume(@as(*const IUIAnimationManager2, @ptrCast(self)));
+    }
+    pub fn SetManagerEventHandler(self: *const IUIAnimationManager2, handler: ?*IUIAnimationManagerEventHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetManagerEventHandler(@as(*const IUIAnimationManager2, @ptrCast(self)), handler, fRegisterForNextAnimationEvent);
+    }
+    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetCancelPriorityComparison(@as(*const IUIAnimationManager2, @ptrCast(self)), comparison);
+    }
+    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetTrimPriorityComparison(@as(*const IUIAnimationManager2, @ptrCast(self)), comparison);
+    }
+    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetCompressPriorityComparison(@as(*const IUIAnimationManager2, @ptrCast(self)), comparison);
+    }
+    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetConcludePriorityComparison(@as(*const IUIAnimationManager2, @ptrCast(self)), comparison);
+    }
+    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager2, delay: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).SetDefaultLongestAcceptableDelay(@as(*const IUIAnimationManager2, @ptrCast(self)), delay);
+    }
+    pub fn Shutdown(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManager2.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IUIAnimationManager2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1648,7 +1993,85 @@ pub const IUIAnimationVariable2 = extern union {
             return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetVariableCurveChangeHandler(@as(*const IUIAnimationVariable2, @ptrCast(self)), handler);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDimension(self: *const IUIAnimationVariable2, dimension: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetDimension(@as(*const IUIAnimationVariable2, @ptrCast(self)), dimension);
+    }
+    pub fn GetValue(self: *const IUIAnimationVariable2, value: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), value);
+    }
+    pub fn GetVectorValue(self: *const IUIAnimationVariable2, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), value, cDimension);
+    }
+    pub fn GetCurve(self: *const IUIAnimationVariable2, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetCurve(@as(*const IUIAnimationVariable2, @ptrCast(self)), animation);
+    }
+    pub fn GetVectorCurve(self: *const IUIAnimationVariable2, animation: [*]?*IDCompositionAnimation, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetVectorCurve(@as(*const IUIAnimationVariable2, @ptrCast(self)), animation, cDimension);
+    }
+    pub fn GetFinalValue(self: *const IUIAnimationVariable2, finalValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetFinalValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), finalValue);
+    }
+    pub fn GetFinalVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetFinalVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), finalValue, cDimension);
+    }
+    pub fn GetPreviousValue(self: *const IUIAnimationVariable2, previousValue: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetPreviousValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), previousValue);
+    }
+    pub fn GetPreviousVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetPreviousVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), previousValue, cDimension);
+    }
+    pub fn GetIntegerValue(self: *const IUIAnimationVariable2, value: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetIntegerValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), value);
+    }
+    pub fn GetIntegerVectorValue(self: *const IUIAnimationVariable2, value: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetIntegerVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), value, cDimension);
+    }
+    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable2, finalValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetFinalIntegerValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), finalValue);
+    }
+    pub fn GetFinalIntegerVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetFinalIntegerVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), finalValue, cDimension);
+    }
+    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable2, previousValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetPreviousIntegerValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), previousValue);
+    }
+    pub fn GetPreviousIntegerVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetPreviousIntegerVectorValue(@as(*const IUIAnimationVariable2, @ptrCast(self)), previousValue, cDimension);
+    }
+    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetCurrentStoryboard(@as(*const IUIAnimationVariable2, @ptrCast(self)), storyboard);
+    }
+    pub fn SetLowerBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetLowerBound(@as(*const IUIAnimationVariable2, @ptrCast(self)), bound);
+    }
+    pub fn SetLowerBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetLowerBoundVector(@as(*const IUIAnimationVariable2, @ptrCast(self)), bound, cDimension);
+    }
+    pub fn SetUpperBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetUpperBound(@as(*const IUIAnimationVariable2, @ptrCast(self)), bound);
+    }
+    pub fn SetUpperBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetUpperBoundVector(@as(*const IUIAnimationVariable2, @ptrCast(self)), bound, cDimension);
+    }
+    pub fn SetRoundingMode(self: *const IUIAnimationVariable2, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetRoundingMode(@as(*const IUIAnimationVariable2, @ptrCast(self)), mode);
+    }
+    pub fn SetTag(self: *const IUIAnimationVariable2, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IUIAnimationVariable2, @ptrCast(self)), object, id);
+    }
+    pub fn GetTag(self: *const IUIAnimationVariable2, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IUIAnimationVariable2, @ptrCast(self)), object, id);
+    }
+    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetVariableChangeHandler(@as(*const IUIAnimationVariable2, @ptrCast(self)), handler, fRegisterForNextAnimationEvent);
+    }
+    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableIntegerChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetVariableIntegerChangeHandler(@as(*const IUIAnimationVariable2, @ptrCast(self)), handler, fRegisterForNextAnimationEvent);
+    }
+    pub fn SetVariableCurveChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableCurveChangeHandler2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariable2.VTable, @ptrCast(self.vtable)).SetVariableCurveChangeHandler(@as(*const IUIAnimationVariable2, @ptrCast(self)), handler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1720,7 +2143,28 @@ pub const IUIAnimationTransition2 = extern union {
             return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationTransition2, @ptrCast(self)), duration);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDimension(self: *const IUIAnimationTransition2, dimension: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).GetDimension(@as(*const IUIAnimationTransition2, @ptrCast(self)), dimension);
+    }
+    pub fn SetInitialValue(self: *const IUIAnimationTransition2, value: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).SetInitialValue(@as(*const IUIAnimationTransition2, @ptrCast(self)), value);
+    }
+    pub fn SetInitialVectorValue(self: *const IUIAnimationTransition2, value: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).SetInitialVectorValue(@as(*const IUIAnimationTransition2, @ptrCast(self)), value, cDimension);
+    }
+    pub fn SetInitialVelocity(self: *const IUIAnimationTransition2, velocity: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).SetInitialVelocity(@as(*const IUIAnimationTransition2, @ptrCast(self)), velocity);
+    }
+    pub fn SetInitialVectorVelocity(self: *const IUIAnimationTransition2, velocity: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).SetInitialVectorVelocity(@as(*const IUIAnimationTransition2, @ptrCast(self)), velocity, cDimension);
+    }
+    pub fn IsDurationKnown(self: *const IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).IsDurationKnown(@as(*const IUIAnimationTransition2, @ptrCast(self)));
+    }
+    pub fn GetDuration(self: *const IUIAnimationTransition2, duration: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransition2.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationTransition2, @ptrCast(self)), duration);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1744,7 +2188,10 @@ pub const IUIAnimationManagerEventHandler2 = extern union {
             return @as(*const IUIAnimationManagerEventHandler2.VTable, @ptrCast(self.vtable)).OnManagerStatusChanged(@as(*const IUIAnimationManagerEventHandler2, @ptrCast(self)), newStatus, previousStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler2, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationManagerEventHandler2.VTable, @ptrCast(self.vtable)).OnManagerStatusChanged(@as(*const IUIAnimationManagerEventHandler2, @ptrCast(self)), newStatus, previousStatus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1771,7 +2218,10 @@ pub const IUIAnimationVariableChangeHandler2 = extern union {
             return @as(*const IUIAnimationVariableChangeHandler2.VTable, @ptrCast(self.vtable)).OnValueChanged(@as(*const IUIAnimationVariableChangeHandler2, @ptrCast(self)), storyboard, variable, newValue, previousValue, cDimension);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]f64, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariableChangeHandler2.VTable, @ptrCast(self.vtable)).OnValueChanged(@as(*const IUIAnimationVariableChangeHandler2, @ptrCast(self)), storyboard, variable, newValue, previousValue, cDimension);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1798,7 +2248,10 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern union {
             return @as(*const IUIAnimationVariableIntegerChangeHandler2.VTable, @ptrCast(self.vtable)).OnIntegerValueChanged(@as(*const IUIAnimationVariableIntegerChangeHandler2, @ptrCast(self)), storyboard, variable, newValue, previousValue, cDimension);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]i32, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariableIntegerChangeHandler2.VTable, @ptrCast(self.vtable)).OnIntegerValueChanged(@as(*const IUIAnimationVariableIntegerChangeHandler2, @ptrCast(self)), storyboard, variable, newValue, previousValue, cDimension);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1821,7 +2274,10 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern union {
             return @as(*const IUIAnimationVariableCurveChangeHandler2.VTable, @ptrCast(self.vtable)).OnCurveChanged(@as(*const IUIAnimationVariableCurveChangeHandler2, @ptrCast(self)), variable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnCurveChanged(self: *const IUIAnimationVariableCurveChangeHandler2, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationVariableCurveChangeHandler2.VTable, @ptrCast(self.vtable)).OnCurveChanged(@as(*const IUIAnimationVariableCurveChangeHandler2, @ptrCast(self)), variable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1854,7 +2310,13 @@ pub const IUIAnimationStoryboardEventHandler2 = extern union {
             return @as(*const IUIAnimationStoryboardEventHandler2.VTable, @ptrCast(self.vtable)).OnStoryboardUpdated(@as(*const IUIAnimationStoryboardEventHandler2, @ptrCast(self)), storyboard);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboardEventHandler2.VTable, @ptrCast(self.vtable)).OnStoryboardStatusChanged(@as(*const IUIAnimationStoryboardEventHandler2, @ptrCast(self)), storyboard, newStatus, previousStatus);
+    }
+    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboardEventHandler2.VTable, @ptrCast(self.vtable)).OnStoryboardUpdated(@as(*const IUIAnimationStoryboardEventHandler2, @ptrCast(self)), storyboard);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1880,7 +2342,10 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern union {
             return @as(*const IUIAnimationLoopIterationChangeHandler2.VTable, @ptrCast(self.vtable)).OnLoopIterationChanged(@as(*const IUIAnimationLoopIterationChangeHandler2, @ptrCast(self)), storyboard, id, newIterationCount, oldIterationCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnLoopIterationChanged(self: *const IUIAnimationLoopIterationChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationLoopIterationChangeHandler2.VTable, @ptrCast(self.vtable)).OnLoopIterationChanged(@as(*const IUIAnimationLoopIterationChangeHandler2, @ptrCast(self)), storyboard, id, newIterationCount, oldIterationCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1905,7 +2370,10 @@ pub const IUIAnimationPriorityComparison2 = extern union {
             return @as(*const IUIAnimationPriorityComparison2.VTable, @ptrCast(self.vtable)).HasPriority(@as(*const IUIAnimationPriorityComparison2, @ptrCast(self)), scheduledStoryboard, newStoryboard, priorityEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HasPriority(self: *const IUIAnimationPriorityComparison2, scheduledStoryboard: ?*IUIAnimationStoryboard2, newStoryboard: ?*IUIAnimationStoryboard2, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationPriorityComparison2.VTable, @ptrCast(self.vtable)).HasPriority(@as(*const IUIAnimationPriorityComparison2, @ptrCast(self)), scheduledStoryboard, newStoryboard, priorityEffect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2130,7 +2598,64 @@ pub const IUIAnimationTransitionLibrary2 = extern union {
             return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateCubicBezierLinearVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, cDimension, x1, y1, x2, y2, ppTransition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateInstantaneousTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), finalValue, transition);
+    }
+    pub fn CreateInstantaneousVectorTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateInstantaneousVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), finalValue, cDimension, transition);
+    }
+    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateConstantTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, transition);
+    }
+    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateDiscreteTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), delay, finalValue, hold, transition);
+    }
+    pub fn CreateDiscreteVectorTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: [*]const f64, cDimension: u32, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateDiscreteVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), delay, finalValue, cDimension, hold, transition);
+    }
+    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateLinearTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, transition);
+    }
+    pub fn CreateLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateLinearVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, cDimension, transition);
+    }
+    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateLinearTransitionFromSpeed(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), speed, finalValue, transition);
+    }
+    pub fn CreateLinearVectorTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateLinearVectorTransitionFromSpeed(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), speed, finalValue, cDimension, transition);
+    }
+    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary2, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateSinusoidalTransitionFromVelocity(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, period, transition);
+    }
+    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary2, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateSinusoidalTransitionFromRange(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, minimumValue, maximumValue, period, slope, transition);
+    }
+    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateAccelerateDecelerateTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, accelerationRatio, decelerationRatio, transition);
+    }
+    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateReversalTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, transition);
+    }
+    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateCubicTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, finalVelocity, transition);
+    }
+    pub fn CreateCubicVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, finalVelocity: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateCubicVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, finalVelocity, cDimension, transition);
+    }
+    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary2, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateSmoothStopTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), maximumDuration, finalValue, transition);
+    }
+    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateParabolicTransitionFromAcceleration(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), finalValue, finalVelocity, acceleration, transition);
+    }
+    pub fn CreateCubicBezierLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateCubicBezierLinearTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, x1, y1, x2, y2, ppTransition);
+    }
+    pub fn CreateCubicBezierLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionLibrary2.VTable, @ptrCast(self.vtable)).CreateCubicBezierLinearVectorTransition(@as(*const IUIAnimationTransitionLibrary2, @ptrCast(self)), duration, finalValue, cDimension, x1, y1, x2, y2, ppTransition);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2171,7 +2696,13 @@ pub const IUIAnimationPrimitiveInterpolation = extern union {
             return @as(*const IUIAnimationPrimitiveInterpolation.VTable, @ptrCast(self.vtable)).AddSinusoidal(@as(*const IUIAnimationPrimitiveInterpolation, @ptrCast(self)), dimension, beginOffset, bias, amplitude, frequency, phase);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddCubic(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationPrimitiveInterpolation.VTable, @ptrCast(self.vtable)).AddCubic(@as(*const IUIAnimationPrimitiveInterpolation, @ptrCast(self)), dimension, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
+    }
+    pub fn AddSinusoidal(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationPrimitiveInterpolation.VTable, @ptrCast(self.vtable)).AddSinusoidal(@as(*const IUIAnimationPrimitiveInterpolation, @ptrCast(self)), dimension, beginOffset, bias, amplitude, frequency, phase);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2268,7 +2799,34 @@ pub const IUIAnimationInterpolator2 = extern union {
             return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetDependencies(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), initialValueDependencies, initialVelocityDependencies, durationDependencies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDimension(self: *const IUIAnimationInterpolator2, dimension: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetDimension(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), dimension);
+    }
+    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator2, initialValue: [*]f64, initialVelocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).SetInitialValueAndVelocity(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), initialValue, initialVelocity, cDimension);
+    }
+    pub fn SetDuration(self: *const IUIAnimationInterpolator2, duration: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).SetDuration(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), duration);
+    }
+    pub fn GetDuration(self: *const IUIAnimationInterpolator2, duration: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), duration);
+    }
+    pub fn GetFinalValue(self: *const IUIAnimationInterpolator2, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetFinalValue(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), value, cDimension);
+    }
+    pub fn InterpolateValue(self: *const IUIAnimationInterpolator2, offset: f64, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).InterpolateValue(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), offset, value, cDimension);
+    }
+    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator2, offset: f64, velocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).InterpolateVelocity(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), offset, velocity, cDimension);
+    }
+    pub fn GetPrimitiveInterpolation(self: *const IUIAnimationInterpolator2, interpolation: ?*IUIAnimationPrimitiveInterpolation, cDimension: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetPrimitiveInterpolation(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), interpolation, cDimension);
+    }
+    pub fn GetDependencies(self: *const IUIAnimationInterpolator2, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationInterpolator2.VTable, @ptrCast(self.vtable)).GetDependencies(@as(*const IUIAnimationInterpolator2, @ptrCast(self)), initialValueDependencies, initialVelocityDependencies, durationDependencies);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2292,7 +2850,10 @@ pub const IUIAnimationTransitionFactory2 = extern union {
             return @as(*const IUIAnimationTransitionFactory2.VTable, @ptrCast(self.vtable)).CreateTransition(@as(*const IUIAnimationTransitionFactory2, @ptrCast(self)), interpolator, transition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory2, interpolator: ?*IUIAnimationInterpolator2, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationTransitionFactory2.VTable, @ptrCast(self.vtable)).CreateTransition(@as(*const IUIAnimationTransitionFactory2, @ptrCast(self)), interpolator, transition);
+    }
 };
 
 const IID_IUIAnimationStoryboard2_Value = Guid.initString("ae289cd2-12d4-4945-9419-9e41be034df2");
@@ -2468,7 +3029,61 @@ pub const IUIAnimationStoryboard2 = extern union {
             return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).SetStoryboardEventHandler(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), handler, fRegisterStatusChangeForNextAnimationEvent, fRegisterUpdateForNextAnimationEvent);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddTransition(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).AddTransition(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), variable, transition);
+    }
+    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard2, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).AddKeyframeAtOffset(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), existingKeyframe, offset, keyframe);
+    }
+    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard2, transition: ?*IUIAnimationTransition2, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).AddKeyframeAfterTransition(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), transition, keyframe);
+    }
+    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).AddTransitionAtKeyframe(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), variable, transition, startKeyframe);
+    }
+    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).AddTransitionBetweenKeyframes(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), variable, transition, startKeyframe, endKeyframe);
+    }
+    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).RepeatBetweenKeyframes(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), startKeyframe, endKeyframe, cRepetition, repeatMode, pIterationChangeHandler, id, fRegisterForNextAnimationEvent);
+    }
+    pub fn HoldVariable(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).HoldVariable(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), variable);
+    }
+    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard2, delay: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).SetLongestAcceptableDelay(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), delay);
+    }
+    pub fn SetSkipDuration(self: *const IUIAnimationStoryboard2, secondsDuration: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).SetSkipDuration(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), secondsDuration);
+    }
+    pub fn Schedule(self: *const IUIAnimationStoryboard2, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).Schedule(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), timeNow, schedulingResult);
+    }
+    pub fn Conclude(self: *const IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).Conclude(@as(*const IUIAnimationStoryboard2, @ptrCast(self)));
+    }
+    pub fn Finish(self: *const IUIAnimationStoryboard2, completionDeadline: f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).Finish(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), completionDeadline);
+    }
+    pub fn Abandon(self: *const IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).Abandon(@as(*const IUIAnimationStoryboard2, @ptrCast(self)));
+    }
+    pub fn SetTag(self: *const IUIAnimationStoryboard2, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), object, id);
+    }
+    pub fn GetTag(self: *const IUIAnimationStoryboard2, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), object, id);
+    }
+    pub fn GetStatus(self: *const IUIAnimationStoryboard2, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), status);
+    }
+    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard2, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).GetElapsedTime(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), elapsedTime);
+    }
+    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard2, handler: ?*IUIAnimationStoryboardEventHandler2, fRegisterStatusChangeForNextAnimationEvent: BOOL, fRegisterUpdateForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUIAnimationStoryboard2.VTable, @ptrCast(self.vtable)).SetStoryboardEventHandler(@as(*const IUIAnimationStoryboard2, @ptrCast(self)), handler, fRegisterStatusChangeForNextAnimationEvent, fRegisterUpdateForNextAnimationEvent);
+    }
 };
 
 

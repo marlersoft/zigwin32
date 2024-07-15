@@ -744,7 +744,16 @@ pub const IMessageFilter = extern union {
             return @as(*const IMessageFilter.VTable, @ptrCast(self.vtable)).MessagePending(@as(*const IMessageFilter, @ptrCast(self)), htaskCallee, dwTickCount, dwPendingType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn HandleInComingCall(self: *const IMessageFilter, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.Inline) u32 {
+        return @as(*const IMessageFilter.VTable, @ptrCast(self.vtable)).HandleInComingCall(@as(*const IMessageFilter, @ptrCast(self)), dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
+    }
+    pub fn RetryRejectedCall(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.Inline) u32 {
+        return @as(*const IMessageFilter.VTable, @ptrCast(self.vtable)).RetryRejectedCall(@as(*const IMessageFilter, @ptrCast(self)), htaskCallee, dwTickCount, dwRejectType);
+    }
+    pub fn MessagePending(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.Inline) u32 {
+        return @as(*const IMessageFilter.VTable, @ptrCast(self.vtable)).MessagePending(@as(*const IMessageFilter, @ptrCast(self)), htaskCallee, dwTickCount, dwPendingType);
+    }
 };
 
 pub const WAVEFORMATEXTENSIBLE = extern struct {
@@ -1495,7 +1504,43 @@ pub const IAudioClient = extern union {
             return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetService(@as(*const IAudioClient, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, StreamFlags: u32, hnsBufferDuration: i64, hnsPeriodicity: i64, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAudioClient, @ptrCast(self)), ShareMode, StreamFlags, hnsBufferDuration, hnsPeriodicity, pFormat, AudioSessionGuid);
+    }
+    pub fn GetBufferSize(self: *const IAudioClient, pNumBufferFrames: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const IAudioClient, @ptrCast(self)), pNumBufferFrames);
+    }
+    pub fn GetStreamLatency(self: *const IAudioClient, phnsLatency: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetStreamLatency(@as(*const IAudioClient, @ptrCast(self)), phnsLatency);
+    }
+    pub fn GetCurrentPadding(self: *const IAudioClient, pNumPaddingFrames: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetCurrentPadding(@as(*const IAudioClient, @ptrCast(self)), pNumPaddingFrames);
+    }
+    pub fn IsFormatSupported(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, pFormat: ?*const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).IsFormatSupported(@as(*const IAudioClient, @ptrCast(self)), ShareMode, pFormat, ppClosestMatch);
+    }
+    pub fn GetMixFormat(self: *const IAudioClient, ppDeviceFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetMixFormat(@as(*const IAudioClient, @ptrCast(self)), ppDeviceFormat);
+    }
+    pub fn GetDevicePeriod(self: *const IAudioClient, phnsDefaultDevicePeriod: ?*i64, phnsMinimumDevicePeriod: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetDevicePeriod(@as(*const IAudioClient, @ptrCast(self)), phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
+    }
+    pub fn Start(self: *const IAudioClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).Start(@as(*const IAudioClient, @ptrCast(self)));
+    }
+    pub fn Stop(self: *const IAudioClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).Stop(@as(*const IAudioClient, @ptrCast(self)));
+    }
+    pub fn Reset(self: *const IAudioClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).Reset(@as(*const IAudioClient, @ptrCast(self)));
+    }
+    pub fn SetEventHandle(self: *const IAudioClient, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).SetEventHandle(@as(*const IAudioClient, @ptrCast(self)), eventHandle);
+    }
+    pub fn GetService(self: *const IAudioClient, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient.VTable, @ptrCast(self.vtable)).GetService(@as(*const IAudioClient, @ptrCast(self)), riid, ppv);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1538,7 +1583,16 @@ pub const IAudioClient2 = extern union {
             return @as(*const IAudioClient2.VTable, @ptrCast(self.vtable)).GetBufferSizeLimits(@as(*const IAudioClient2, @ptrCast(self)), pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAudioClient.MethodMixin(@This());
+    pub fn IsOffloadCapable(self: *const IAudioClient2, Category: AUDIO_STREAM_CATEGORY, pbOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient2.VTable, @ptrCast(self.vtable)).IsOffloadCapable(@as(*const IAudioClient2, @ptrCast(self)), Category, pbOffloadCapable);
+    }
+    pub fn SetClientProperties(self: *const IAudioClient2, pProperties: ?*const AudioClientProperties) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient2.VTable, @ptrCast(self.vtable)).SetClientProperties(@as(*const IAudioClient2, @ptrCast(self)), pProperties);
+    }
+    pub fn GetBufferSizeLimits(self: *const IAudioClient2, pFormat: ?*const WAVEFORMATEX, bEventDriven: BOOL, phnsMinBufferDuration: ?*i64, phnsMaxBufferDuration: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient2.VTable, @ptrCast(self.vtable)).GetBufferSizeLimits(@as(*const IAudioClient2, @ptrCast(self)), pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
+    }
 };
 
 pub const AudioClient3ActivationParams = extern struct {
@@ -1589,7 +1643,16 @@ pub const IAudioClient3 = extern union {
             return @as(*const IAudioClient3.VTable, @ptrCast(self.vtable)).InitializeSharedAudioStream(@as(*const IAudioClient3, @ptrCast(self)), StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAudioClient2.MethodMixin(@This());
+    pub fn GetSharedModeEnginePeriod(self: *const IAudioClient3, pFormat: ?*const WAVEFORMATEX, pDefaultPeriodInFrames: ?*u32, pFundamentalPeriodInFrames: ?*u32, pMinPeriodInFrames: ?*u32, pMaxPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient3.VTable, @ptrCast(self.vtable)).GetSharedModeEnginePeriod(@as(*const IAudioClient3, @ptrCast(self)), pFormat, pDefaultPeriodInFrames, pFundamentalPeriodInFrames, pMinPeriodInFrames, pMaxPeriodInFrames);
+    }
+    pub fn GetCurrentSharedModeEnginePeriod(self: *const IAudioClient3, ppFormat: ?*?*WAVEFORMATEX, pCurrentPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient3.VTable, @ptrCast(self.vtable)).GetCurrentSharedModeEnginePeriod(@as(*const IAudioClient3, @ptrCast(self)), ppFormat, pCurrentPeriodInFrames);
+    }
+    pub fn InitializeSharedAudioStream(self: *const IAudioClient3, StreamFlags: u32, PeriodInFrames: u32, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClient3.VTable, @ptrCast(self.vtable)).InitializeSharedAudioStream(@as(*const IAudioClient3, @ptrCast(self)), StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1622,7 +1685,13 @@ pub const IAudioRenderClient = extern union {
             return @as(*const IAudioRenderClient.VTable, @ptrCast(self.vtable)).ReleaseBuffer(@as(*const IAudioRenderClient, @ptrCast(self)), NumFramesWritten, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBuffer(self: *const IAudioRenderClient, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IAudioRenderClient.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IAudioRenderClient, @ptrCast(self)), NumFramesRequested, ppData);
+    }
+    pub fn ReleaseBuffer(self: *const IAudioRenderClient, NumFramesWritten: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioRenderClient.VTable, @ptrCast(self.vtable)).ReleaseBuffer(@as(*const IAudioRenderClient, @ptrCast(self)), NumFramesWritten, dwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1665,7 +1734,16 @@ pub const IAudioCaptureClient = extern union {
             return @as(*const IAudioCaptureClient.VTable, @ptrCast(self.vtable)).GetNextPacketSize(@as(*const IAudioCaptureClient, @ptrCast(self)), pNumFramesInNextPacket);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBuffer(self: *const IAudioCaptureClient, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioCaptureClient.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IAudioCaptureClient, @ptrCast(self)), ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
+    }
+    pub fn ReleaseBuffer(self: *const IAudioCaptureClient, NumFramesRead: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioCaptureClient.VTable, @ptrCast(self.vtable)).ReleaseBuffer(@as(*const IAudioCaptureClient, @ptrCast(self)), NumFramesRead);
+    }
+    pub fn GetNextPacketSize(self: *const IAudioCaptureClient, pNumFramesInNextPacket: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioCaptureClient.VTable, @ptrCast(self.vtable)).GetNextPacketSize(@as(*const IAudioCaptureClient, @ptrCast(self)), pNumFramesInNextPacket);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1705,7 +1783,16 @@ pub const IAudioClock = extern union {
             return @as(*const IAudioClock.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IAudioClock, @ptrCast(self)), pdwCharacteristics);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFrequency(self: *const IAudioClock, pu64Frequency: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClock.VTable, @ptrCast(self.vtable)).GetFrequency(@as(*const IAudioClock, @ptrCast(self)), pu64Frequency);
+    }
+    pub fn GetPosition(self: *const IAudioClock, pu64Position: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClock.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IAudioClock, @ptrCast(self)), pu64Position, pu64QPCPosition);
+    }
+    pub fn GetCharacteristics(self: *const IAudioClock, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClock.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IAudioClock, @ptrCast(self)), pdwCharacteristics);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1729,7 +1816,10 @@ pub const IAudioClock2 = extern union {
             return @as(*const IAudioClock2.VTable, @ptrCast(self.vtable)).GetDevicePosition(@as(*const IAudioClock2, @ptrCast(self)), DevicePosition, QPCPosition);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevicePosition(self: *const IAudioClock2, DevicePosition: ?*u64, QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClock2.VTable, @ptrCast(self.vtable)).GetDevicePosition(@as(*const IAudioClock2, @ptrCast(self)), DevicePosition, QPCPosition);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1752,7 +1842,10 @@ pub const IAudioClockAdjustment = extern union {
             return @as(*const IAudioClockAdjustment.VTable, @ptrCast(self.vtable)).SetSampleRate(@as(*const IAudioClockAdjustment, @ptrCast(self)), flSampleRate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSampleRate(self: *const IAudioClockAdjustment, flSampleRate: f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClockAdjustment.VTable, @ptrCast(self.vtable)).SetSampleRate(@as(*const IAudioClockAdjustment, @ptrCast(self)), flSampleRate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1801,7 +1894,19 @@ pub const ISimpleAudioVolume = extern union {
             return @as(*const ISimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMute(@as(*const ISimpleAudioVolume, @ptrCast(self)), pbMute);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMasterVolume(self: *const ISimpleAudioVolume, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMasterVolume(@as(*const ISimpleAudioVolume, @ptrCast(self)), fLevel, EventContext);
+    }
+    pub fn GetMasterVolume(self: *const ISimpleAudioVolume, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMasterVolume(@as(*const ISimpleAudioVolume, @ptrCast(self)), pfLevel);
+    }
+    pub fn SetMute(self: *const ISimpleAudioVolume, bMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMute(@as(*const ISimpleAudioVolume, @ptrCast(self)), bMute, EventContext);
+    }
+    pub fn GetMute(self: *const ISimpleAudioVolume, pbMute: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMute(@as(*const ISimpleAudioVolume, @ptrCast(self)), pbMute);
+    }
 };
 
 pub const AUDIO_DUCKING_OPTIONS = packed struct(u32) {
@@ -1860,7 +1965,10 @@ pub const IAudioClientDuckingControl = extern union {
             return @as(*const IAudioClientDuckingControl.VTable, @ptrCast(self.vtable)).SetDuckingOptionsForCurrentStream(@as(*const IAudioClientDuckingControl, @ptrCast(self)), options);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDuckingOptionsForCurrentStream(self: *const IAudioClientDuckingControl, options: AUDIO_DUCKING_OPTIONS) callconv(.Inline) HRESULT {
+        return @as(*const IAudioClientDuckingControl.VTable, @ptrCast(self.vtable)).SetDuckingOptionsForCurrentStream(@as(*const IAudioClientDuckingControl, @ptrCast(self)), options);
+    }
 };
 
 pub const AUDIO_EFFECT_STATE = enum(i32) {
@@ -1894,7 +2002,10 @@ pub const IAudioEffectsChangedNotificationClient = extern union {
             return @as(*const IAudioEffectsChangedNotificationClient.VTable, @ptrCast(self.vtable)).OnAudioEffectsChanged(@as(*const IAudioEffectsChangedNotificationClient, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnAudioEffectsChanged(self: *const IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioEffectsChangedNotificationClient.VTable, @ptrCast(self.vtable)).OnAudioEffectsChanged(@as(*const IAudioEffectsChangedNotificationClient, @ptrCast(self)));
+    }
 };
 
 const IID_IAudioEffectsManager_Value = Guid.initString("4460b3ae-4b44-4527-8676-7548a8acd260");
@@ -1942,7 +2053,19 @@ pub const IAudioEffectsManager = extern union {
             return @as(*const IAudioEffectsManager.VTable, @ptrCast(self.vtable)).SetAudioEffectState(@as(*const IAudioEffectsManager, @ptrCast(self)), effectId, state);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioEffectsManager.VTable, @ptrCast(self.vtable)).RegisterAudioEffectsChangedNotificationCallback(@as(*const IAudioEffectsManager, @ptrCast(self)), client);
+    }
+    pub fn UnregisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioEffectsManager.VTable, @ptrCast(self.vtable)).UnregisterAudioEffectsChangedNotificationCallback(@as(*const IAudioEffectsManager, @ptrCast(self)), client);
+    }
+    pub fn GetAudioEffects(self: *const IAudioEffectsManager, effects: ?*?*AUDIO_EFFECT, numEffects: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioEffectsManager.VTable, @ptrCast(self.vtable)).GetAudioEffects(@as(*const IAudioEffectsManager, @ptrCast(self)), effects, numEffects);
+    }
+    pub fn SetAudioEffectState(self: *const IAudioEffectsManager, effectId: Guid, state: AUDIO_EFFECT_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IAudioEffectsManager.VTable, @ptrCast(self.vtable)).SetAudioEffectState(@as(*const IAudioEffectsManager, @ptrCast(self)), effectId, state);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2001,7 +2124,22 @@ pub const IAudioStreamVolume = extern union {
             return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetChannelCount(self: *const IAudioStreamVolume, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IAudioStreamVolume, @ptrCast(self)), pdwCount);
+    }
+    pub fn SetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetChannelVolume(@as(*const IAudioStreamVolume, @ptrCast(self)), dwIndex, fLevel);
+    }
+    pub fn GetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelVolume(@as(*const IAudioStreamVolume, @ptrCast(self)), dwIndex, pfLevel);
+    }
+    pub fn SetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetAllVolumes(@as(*const IAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
+    }
+    pub fn GetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
+    }
 };
 
 pub const AMBISONICS_TYPE = enum(i32) {
@@ -2079,7 +2217,19 @@ pub const IAudioAmbisonicsControl = extern union {
             return @as(*const IAudioAmbisonicsControl.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IAudioAmbisonicsControl, @ptrCast(self)), X, Y, Z, W);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetData(self: *const IAudioAmbisonicsControl, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAmbisonicsControl.VTable, @ptrCast(self.vtable)).SetData(@as(*const IAudioAmbisonicsControl, @ptrCast(self)), pAmbisonicsParams, cbAmbisonicsParams);
+    }
+    pub fn SetHeadTracking(self: *const IAudioAmbisonicsControl, bEnableHeadTracking: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAmbisonicsControl.VTable, @ptrCast(self.vtable)).SetHeadTracking(@as(*const IAudioAmbisonicsControl, @ptrCast(self)), bEnableHeadTracking);
+    }
+    pub fn GetHeadTracking(self: *const IAudioAmbisonicsControl, pbEnableHeadTracking: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAmbisonicsControl.VTable, @ptrCast(self.vtable)).GetHeadTracking(@as(*const IAudioAmbisonicsControl, @ptrCast(self)), pbEnableHeadTracking);
+    }
+    pub fn SetRotation(self: *const IAudioAmbisonicsControl, X: f32, Y: f32, Z: f32, W: f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAmbisonicsControl.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IAudioAmbisonicsControl, @ptrCast(self)), X, Y, Z, W);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2140,7 +2290,22 @@ pub const IChannelAudioVolume = extern union {
             return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IChannelAudioVolume, @ptrCast(self)), dwCount, pfVolumes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetChannelCount(self: *const IChannelAudioVolume, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IChannelAudioVolume, @ptrCast(self)), pdwCount);
+    }
+    pub fn SetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).SetChannelVolume(@as(*const IChannelAudioVolume, @ptrCast(self)), dwIndex, fLevel, EventContext);
+    }
+    pub fn GetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).GetChannelVolume(@as(*const IChannelAudioVolume, @ptrCast(self)), dwIndex, pfLevel);
+    }
+    pub fn SetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).SetAllVolumes(@as(*const IChannelAudioVolume, @ptrCast(self)), dwCount, pfVolumes, EventContext);
+    }
+    pub fn GetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
+        return @as(*const IChannelAudioVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IChannelAudioVolume, @ptrCast(self)), dwCount, pfVolumes);
+    }
 };
 
 pub const AudioObjectType = packed struct(u32) {
@@ -2283,7 +2448,13 @@ pub const IAudioFormatEnumerator = extern union {
             return @as(*const IAudioFormatEnumerator.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IAudioFormatEnumerator, @ptrCast(self)), index, format);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IAudioFormatEnumerator, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioFormatEnumerator.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IAudioFormatEnumerator, @ptrCast(self)), count);
+    }
+    pub fn GetFormat(self: *const IAudioFormatEnumerator, index: u32, format: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        return @as(*const IAudioFormatEnumerator.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IAudioFormatEnumerator, @ptrCast(self)), index, format);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2331,7 +2502,19 @@ pub const ISpatialAudioObjectBase = extern union {
             return @as(*const ISpatialAudioObjectBase.VTable, @ptrCast(self.vtable)).GetAudioObjectType(@as(*const ISpatialAudioObjectBase, @ptrCast(self)), audioObjectType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetBuffer(self: *const ISpatialAudioObjectBase, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectBase.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ISpatialAudioObjectBase, @ptrCast(self)), buffer, bufferLength);
+    }
+    pub fn SetEndOfStream(self: *const ISpatialAudioObjectBase, frameCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectBase.VTable, @ptrCast(self.vtable)).SetEndOfStream(@as(*const ISpatialAudioObjectBase, @ptrCast(self)), frameCount);
+    }
+    pub fn IsActive(self: *const ISpatialAudioObjectBase, isActive: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectBase.VTable, @ptrCast(self.vtable)).IsActive(@as(*const ISpatialAudioObjectBase, @ptrCast(self)), isActive);
+    }
+    pub fn GetAudioObjectType(self: *const ISpatialAudioObjectBase, audioObjectType: ?*AudioObjectType) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectBase.VTable, @ptrCast(self.vtable)).GetAudioObjectType(@as(*const ISpatialAudioObjectBase, @ptrCast(self)), audioObjectType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2364,7 +2547,13 @@ pub const ISpatialAudioObject = extern union {
             return @as(*const ISpatialAudioObject.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const ISpatialAudioObject, @ptrCast(self)), volume);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectBase.MethodMixin(@This());
+    pub fn SetPosition(self: *const ISpatialAudioObject, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObject.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const ISpatialAudioObject, @ptrCast(self)), x, y, z);
+    }
+    pub fn SetVolume(self: *const ISpatialAudioObject, volume: f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObject.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const ISpatialAudioObject, @ptrCast(self)), volume);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2433,7 +2622,28 @@ pub const ISpatialAudioObjectRenderStreamBase = extern union {
             return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).EndUpdatingAudioObjects(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).GetAvailableDynamicObjectCount(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)), value);
+    }
+    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).GetService(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)), riid, service);
+    }
+    pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).Start(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)));
+    }
+    pub fn Stop(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).Stop(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)));
+    }
+    pub fn Reset(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)));
+    }
+    pub fn BeginUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).BeginUpdatingAudioObjects(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)), availableDynamicObjectCount, frameCountPerBuffer);
+    }
+    pub fn EndUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamBase.VTable, @ptrCast(self.vtable)).EndUpdatingAudioObjects(@as(*const ISpatialAudioObjectRenderStreamBase, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2457,7 +2667,10 @@ pub const ISpatialAudioObjectRenderStream = extern union {
             return @as(*const ISpatialAudioObjectRenderStream.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObject(@as(*const ISpatialAudioObjectRenderStream, @ptrCast(self)), @"type", audioObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(@This());
+    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObject) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStream.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObject(@as(*const ISpatialAudioObjectRenderStream, @ptrCast(self)), @"type", audioObject);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2482,7 +2695,10 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern union {
             return @as(*const ISpatialAudioObjectRenderStreamNotify.VTable, @ptrCast(self.vtable)).OnAvailableDynamicObjectCountChange(@as(*const ISpatialAudioObjectRenderStreamNotify, @ptrCast(self)), sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnAvailableDynamicObjectCountChange(self: *const ISpatialAudioObjectRenderStreamNotify, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamNotify.VTable, @ptrCast(self.vtable)).OnAvailableDynamicObjectCountChange(@as(*const ISpatialAudioObjectRenderStreamNotify, @ptrCast(self)), sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2568,7 +2784,31 @@ pub const ISpatialAudioClient = extern union {
             return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioStream(@as(*const ISpatialAudioClient, @ptrCast(self)), activationParams, riid, stream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetStaticObjectPosition(self: *const ISpatialAudioClient, @"type": AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).GetStaticObjectPosition(@as(*const ISpatialAudioClient, @ptrCast(self)), @"type", x, y, z);
+    }
+    pub fn GetNativeStaticObjectTypeMask(self: *const ISpatialAudioClient, mask: ?*AudioObjectType) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).GetNativeStaticObjectTypeMask(@as(*const ISpatialAudioClient, @ptrCast(self)), mask);
+    }
+    pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).GetMaxDynamicObjectCount(@as(*const ISpatialAudioClient, @ptrCast(self)), value);
+    }
+    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: ?*?*IAudioFormatEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).GetSupportedAudioObjectFormatEnumerator(@as(*const ISpatialAudioClient, @ptrCast(self)), enumerator);
+    }
+    pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).GetMaxFrameCount(@as(*const ISpatialAudioClient, @ptrCast(self)), objectFormat, frameCountPerBuffer);
+    }
+    pub fn IsAudioObjectFormatSupported(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).IsAudioObjectFormatSupported(@as(*const ISpatialAudioClient, @ptrCast(self)), objectFormat);
+    }
+    pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).IsSpatialAudioStreamAvailable(@as(*const ISpatialAudioClient, @ptrCast(self)), streamUuid, auxiliaryInfo);
+    }
+    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioStream(@as(*const ISpatialAudioClient, @ptrCast(self)), activationParams, riid, stream);
+    }
 };
 
 const IID_ISpatialAudioClient2_Value = Guid.initString("caabe452-a66a-4bee-a93e-e320463f6a53");
@@ -2602,7 +2842,13 @@ pub const ISpatialAudioClient2 = extern union {
             return @as(*const ISpatialAudioClient2.VTable, @ptrCast(self.vtable)).GetMaxFrameCountForCategory(@as(*const ISpatialAudioClient2, @ptrCast(self)), category, offloadEnabled, objectFormat, frameCountPerBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioClient.MethodMixin(@This());
+    pub fn IsOffloadCapable(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient2.VTable, @ptrCast(self.vtable)).IsOffloadCapable(@as(*const ISpatialAudioClient2, @ptrCast(self)), category, isOffloadCapable);
+    }
+    pub fn GetMaxFrameCountForCategory(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioClient2.VTable, @ptrCast(self.vtable)).GetMaxFrameCountForCategory(@as(*const ISpatialAudioClient2, @ptrCast(self)), category, offloadEnabled, objectFormat, frameCountPerBuffer);
+    }
 };
 
 pub const SpatialAudioClientActivationParams = extern struct {
@@ -2764,7 +3010,25 @@ pub const ISpatialAudioObjectForHrtf = extern union {
             return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetDirectivity(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), directivity);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectBase.MethodMixin(@This());
+    pub fn SetPosition(self: *const ISpatialAudioObjectForHrtf, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), x, y, z);
+    }
+    pub fn SetGain(self: *const ISpatialAudioObjectForHrtf, gain: f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetGain(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), gain);
+    }
+    pub fn SetOrientation(self: *const ISpatialAudioObjectForHrtf, orientation: ?*const ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetOrientation(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), orientation);
+    }
+    pub fn SetEnvironment(self: *const ISpatialAudioObjectForHrtf, environment: SpatialAudioHrtfEnvironmentType) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetEnvironment(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), environment);
+    }
+    pub fn SetDistanceDecay(self: *const ISpatialAudioObjectForHrtf, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetDistanceDecay(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), distanceDecay);
+    }
+    pub fn SetDirectivity(self: *const ISpatialAudioObjectForHrtf, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForHrtf.VTable, @ptrCast(self.vtable)).SetDirectivity(@as(*const ISpatialAudioObjectForHrtf, @ptrCast(self)), directivity);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -2788,7 +3052,10 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
             return @as(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObjectForHrtf(@as(*const ISpatialAudioObjectRenderStreamForHrtf, @ptrCast(self)), @"type", audioObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(@This());
+    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObjectForHrtf(@as(*const ISpatialAudioObjectRenderStreamForHrtf, @ptrCast(self)), @"type", audioObject);
+    }
 };
 
 const CLSID_MMDeviceEnumerator_Value = Guid.initString("bcde0395-e52f-467c-8e3d-c4579291692e");
@@ -2905,7 +3172,22 @@ pub const IMMNotificationClient = extern union {
             return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnPropertyValueChanged(@as(*const IMMNotificationClient, @ptrCast(self)), pwstrDeviceId, key);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnDeviceStateChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnDeviceStateChanged(@as(*const IMMNotificationClient, @ptrCast(self)), pwstrDeviceId, dwNewState);
+    }
+    pub fn OnDeviceAdded(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnDeviceAdded(@as(*const IMMNotificationClient, @ptrCast(self)), pwstrDeviceId);
+    }
+    pub fn OnDeviceRemoved(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnDeviceRemoved(@as(*const IMMNotificationClient, @ptrCast(self)), pwstrDeviceId);
+    }
+    pub fn OnDefaultDeviceChanged(self: *const IMMNotificationClient, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnDefaultDeviceChanged(@as(*const IMMNotificationClient, @ptrCast(self)), flow, role, pwstrDefaultDeviceId);
+    }
+    pub fn OnPropertyValueChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.Inline) HRESULT {
+        return @as(*const IMMNotificationClient.VTable, @ptrCast(self.vtable)).OnPropertyValueChanged(@as(*const IMMNotificationClient, @ptrCast(self)), pwstrDeviceId, key);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2956,7 +3238,19 @@ pub const IMMDevice = extern union {
             return @as(*const IMMDevice.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMMDevice, @ptrCast(self)), pdwState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IMMDevice.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMMDevice, @ptrCast(self)), iid, dwClsCtx, pActivationParams, ppInterface);
+    }
+    pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IMMDevice.VTable, @ptrCast(self.vtable)).OpenPropertyStore(@as(*const IMMDevice, @ptrCast(self)), stgmAccess, ppProperties);
+    }
+    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMMDevice.VTable, @ptrCast(self.vtable)).GetId(@as(*const IMMDevice, @ptrCast(self)), ppstrId);
+    }
+    pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMMDevice.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMMDevice, @ptrCast(self)), pdwState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2988,7 +3282,13 @@ pub const IMMDeviceCollection = extern union {
             return @as(*const IMMDeviceCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const IMMDeviceCollection, @ptrCast(self)), nDevice, ppDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IMMDeviceCollection, pcDevices: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IMMDeviceCollection, @ptrCast(self)), pcDevices);
+    }
+    pub fn Item(self: *const IMMDeviceCollection, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const IMMDeviceCollection, @ptrCast(self)), nDevice, ppDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3011,7 +3311,10 @@ pub const IMMEndpoint = extern union {
             return @as(*const IMMEndpoint.VTable, @ptrCast(self.vtable)).GetDataFlow(@as(*const IMMEndpoint, @ptrCast(self)), pDataFlow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDataFlow(self: *const IMMEndpoint, pDataFlow: ?*EDataFlow) callconv(.Inline) HRESULT {
+        return @as(*const IMMEndpoint.VTable, @ptrCast(self.vtable)).GetDataFlow(@as(*const IMMEndpoint, @ptrCast(self)), pDataFlow);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3071,7 +3374,22 @@ pub const IMMDeviceEnumerator = extern union {
             return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).UnregisterEndpointNotificationCallback(@as(*const IMMDeviceEnumerator, @ptrCast(self)), pClient);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumAudioEndpoints(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).EnumAudioEndpoints(@as(*const IMMDeviceEnumerator, @ptrCast(self)), dataFlow, dwStateMask, ppDevices);
+    }
+    pub fn GetDefaultAudioEndpoint(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).GetDefaultAudioEndpoint(@as(*const IMMDeviceEnumerator, @ptrCast(self)), dataFlow, role, ppEndpoint);
+    }
+    pub fn GetDevice(self: *const IMMDeviceEnumerator, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IMMDeviceEnumerator, @ptrCast(self)), pwstrId, ppDevice);
+    }
+    pub fn RegisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).RegisterEndpointNotificationCallback(@as(*const IMMDeviceEnumerator, @ptrCast(self)), pClient);
+    }
+    pub fn UnregisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceEnumerator.VTable, @ptrCast(self.vtable)).UnregisterEndpointNotificationCallback(@as(*const IMMDeviceEnumerator, @ptrCast(self)), pClient);
+    }
 };
 
 const IID_IMMDeviceActivator_Value = Guid.initString("3b0d0ea4-d0a9-4b0e-935b-09516746fac0");
@@ -3096,7 +3414,10 @@ pub const IMMDeviceActivator = extern union {
             return @as(*const IMMDeviceActivator.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMMDeviceActivator, @ptrCast(self)), iid, pDevice, pActivationParams, ppInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Activate(self: *const IMMDeviceActivator, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IMMDeviceActivator.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMMDeviceActivator, @ptrCast(self)), iid, pDevice, pActivationParams, ppInterface);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3119,7 +3440,10 @@ pub const IActivateAudioInterfaceCompletionHandler = extern union {
             return @as(*const IActivateAudioInterfaceCompletionHandler.VTable, @ptrCast(self.vtable)).ActivateCompleted(@as(*const IActivateAudioInterfaceCompletionHandler, @ptrCast(self)), activateOperation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ActivateCompleted(self: *const IActivateAudioInterfaceCompletionHandler, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.Inline) HRESULT {
+        return @as(*const IActivateAudioInterfaceCompletionHandler.VTable, @ptrCast(self.vtable)).ActivateCompleted(@as(*const IActivateAudioInterfaceCompletionHandler, @ptrCast(self)), activateOperation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3143,7 +3467,10 @@ pub const IActivateAudioInterfaceAsyncOperation = extern union {
             return @as(*const IActivateAudioInterfaceAsyncOperation.VTable, @ptrCast(self.vtable)).GetActivateResult(@as(*const IActivateAudioInterfaceAsyncOperation, @ptrCast(self)), activateResult, activatedInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetActivateResult(self: *const IActivateAudioInterfaceAsyncOperation, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IActivateAudioInterfaceAsyncOperation.VTable, @ptrCast(self.vtable)).GetActivateResult(@as(*const IActivateAudioInterfaceAsyncOperation, @ptrCast(self)), activateResult, activatedInterface);
+    }
 };
 
 pub const AudioExtensionParams = extern struct {
@@ -3184,7 +3511,10 @@ pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern union {
             return @as(*const IAudioSystemEffectsPropertyChangeNotificationClient.VTable, @ptrCast(self.vtable)).OnPropertyChanged(@as(*const IAudioSystemEffectsPropertyChangeNotificationClient, @ptrCast(self)), @"type", key);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnPropertyChanged(self: *const IAudioSystemEffectsPropertyChangeNotificationClient, @"type": AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE, key: PROPERTYKEY) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyChangeNotificationClient.VTable, @ptrCast(self.vtable)).OnPropertyChanged(@as(*const IAudioSystemEffectsPropertyChangeNotificationClient, @ptrCast(self)), @"type", key);
+    }
 };
 
 const IID_IAudioSystemEffectsPropertyStore_Value = Guid.initString("302ae7f9-d7e0-43e4-971b-1f8293613d2a");
@@ -3255,7 +3585,28 @@ pub const IAudioSystemEffectsPropertyStore = extern union {
             return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).UnregisterPropertyChangeNotification(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), callback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).OpenDefaultPropertyStore(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), stgmAccess, propStore);
+    }
+    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).OpenUserPropertyStore(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), stgmAccess, propStore);
+    }
+    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).OpenVolatilePropertyStore(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), stgmAccess, propStore);
+    }
+    pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).ResetUserPropertyStore(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)));
+    }
+    pub fn ResetVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).ResetVolatilePropertyStore(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)));
+    }
+    pub fn RegisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).RegisterPropertyChangeNotification(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), callback);
+    }
+    pub fn UnregisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSystemEffectsPropertyStore.VTable, @ptrCast(self.vtable)).UnregisterPropertyChangeNotification(@as(*const IAudioSystemEffectsPropertyStore, @ptrCast(self)), callback);
+    }
 };
 
 const CLSID_DeviceTopology_Value = Guid.initString("1df639d0-5ec1-47aa-9379-828dc1aa8c59");
@@ -3354,7 +3705,25 @@ pub const IPerChannelDbLevel = extern union {
             return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).SetLevelAllChannels(@as(*const IPerChannelDbLevel, @ptrCast(self)), aLevelsDB, cChannels, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetChannelCount(self: *const IPerChannelDbLevel, pcChannels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IPerChannelDbLevel, @ptrCast(self)), pcChannels);
+    }
+    pub fn GetLevelRange(self: *const IPerChannelDbLevel, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).GetLevelRange(@as(*const IPerChannelDbLevel, @ptrCast(self)), nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
+    }
+    pub fn GetLevel(self: *const IPerChannelDbLevel, nChannel: u32, pfLevelDB: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).GetLevel(@as(*const IPerChannelDbLevel, @ptrCast(self)), nChannel, pfLevelDB);
+    }
+    pub fn SetLevel(self: *const IPerChannelDbLevel, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).SetLevel(@as(*const IPerChannelDbLevel, @ptrCast(self)), nChannel, fLevelDB, pguidEventContext);
+    }
+    pub fn SetLevelUniform(self: *const IPerChannelDbLevel, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).SetLevelUniform(@as(*const IPerChannelDbLevel, @ptrCast(self)), fLevelDB, pguidEventContext);
+    }
+    pub fn SetLevelAllChannels(self: *const IPerChannelDbLevel, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPerChannelDbLevel.VTable, @ptrCast(self.vtable)).SetLevelAllChannels(@as(*const IPerChannelDbLevel, @ptrCast(self)), aLevelsDB, cChannels, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3369,7 +3738,7 @@ pub const IAudioVolumeLevel = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPerChannelDbLevel.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3401,7 +3770,13 @@ pub const IAudioChannelConfig = extern union {
             return @as(*const IAudioChannelConfig.VTable, @ptrCast(self.vtable)).GetChannelConfig(@as(*const IAudioChannelConfig, @ptrCast(self)), pdwConfig);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetChannelConfig(self: *const IAudioChannelConfig, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioChannelConfig.VTable, @ptrCast(self.vtable)).SetChannelConfig(@as(*const IAudioChannelConfig, @ptrCast(self)), dwConfig, pguidEventContext);
+    }
+    pub fn GetChannelConfig(self: *const IAudioChannelConfig, pdwConfig: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioChannelConfig.VTable, @ptrCast(self.vtable)).GetChannelConfig(@as(*const IAudioChannelConfig, @ptrCast(self)), pdwConfig);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3433,7 +3808,13 @@ pub const IAudioLoudness = extern union {
             return @as(*const IAudioLoudness.VTable, @ptrCast(self.vtable)).SetEnabled(@as(*const IAudioLoudness, @ptrCast(self)), bEnable, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEnabled(self: *const IAudioLoudness, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioLoudness.VTable, @ptrCast(self.vtable)).GetEnabled(@as(*const IAudioLoudness, @ptrCast(self)), pbEnabled);
+    }
+    pub fn SetEnabled(self: *const IAudioLoudness, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioLoudness.VTable, @ptrCast(self.vtable)).SetEnabled(@as(*const IAudioLoudness, @ptrCast(self)), bEnable, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3465,7 +3846,13 @@ pub const IAudioInputSelector = extern union {
             return @as(*const IAudioInputSelector.VTable, @ptrCast(self.vtable)).SetSelection(@as(*const IAudioInputSelector, @ptrCast(self)), nIdSelect, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSelection(self: *const IAudioInputSelector, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioInputSelector.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const IAudioInputSelector, @ptrCast(self)), pnIdSelected);
+    }
+    pub fn SetSelection(self: *const IAudioInputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioInputSelector.VTable, @ptrCast(self.vtable)).SetSelection(@as(*const IAudioInputSelector, @ptrCast(self)), nIdSelect, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3497,7 +3884,13 @@ pub const IAudioOutputSelector = extern union {
             return @as(*const IAudioOutputSelector.VTable, @ptrCast(self.vtable)).SetSelection(@as(*const IAudioOutputSelector, @ptrCast(self)), nIdSelect, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSelection(self: *const IAudioOutputSelector, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioOutputSelector.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const IAudioOutputSelector, @ptrCast(self)), pnIdSelected);
+    }
+    pub fn SetSelection(self: *const IAudioOutputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioOutputSelector.VTable, @ptrCast(self.vtable)).SetSelection(@as(*const IAudioOutputSelector, @ptrCast(self)), nIdSelect, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3529,7 +3922,13 @@ pub const IAudioMute = extern union {
             return @as(*const IAudioMute.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IAudioMute, @ptrCast(self)), pbMuted);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMute(self: *const IAudioMute, bMuted: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioMute.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IAudioMute, @ptrCast(self)), bMuted, pguidEventContext);
+    }
+    pub fn GetMute(self: *const IAudioMute, pbMuted: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioMute.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IAudioMute, @ptrCast(self)), pbMuted);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3544,7 +3943,7 @@ pub const IAudioBass = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPerChannelDbLevel.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3559,7 +3958,7 @@ pub const IAudioMidrange = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPerChannelDbLevel.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3574,7 +3973,7 @@ pub const IAudioTreble = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPerChannelDbLevel.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3606,7 +4005,13 @@ pub const IAudioAutoGainControl = extern union {
             return @as(*const IAudioAutoGainControl.VTable, @ptrCast(self.vtable)).SetEnabled(@as(*const IAudioAutoGainControl, @ptrCast(self)), bEnable, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEnabled(self: *const IAudioAutoGainControl, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAutoGainControl.VTable, @ptrCast(self.vtable)).GetEnabled(@as(*const IAudioAutoGainControl, @ptrCast(self)), pbEnabled);
+    }
+    pub fn SetEnabled(self: *const IAudioAutoGainControl, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioAutoGainControl.VTable, @ptrCast(self.vtable)).SetEnabled(@as(*const IAudioAutoGainControl, @ptrCast(self)), bEnable, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3638,7 +4043,13 @@ pub const IAudioPeakMeter = extern union {
             return @as(*const IAudioPeakMeter.VTable, @ptrCast(self.vtable)).GetLevel(@as(*const IAudioPeakMeter, @ptrCast(self)), nChannel, pfLevel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetChannelCount(self: *const IAudioPeakMeter, pcChannels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioPeakMeter.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IAudioPeakMeter, @ptrCast(self)), pcChannels);
+    }
+    pub fn GetLevel(self: *const IAudioPeakMeter, nChannel: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioPeakMeter.VTable, @ptrCast(self.vtable)).GetLevel(@as(*const IAudioPeakMeter, @ptrCast(self)), nChannel, pfLevel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3690,7 +4101,19 @@ pub const IDeviceSpecificProperty = extern union {
             return @as(*const IDeviceSpecificProperty.VTable, @ptrCast(self.vtable)).Get4BRange(@as(*const IDeviceSpecificProperty, @ptrCast(self)), plMin, plMax, plStepping);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetType(self: *const IDeviceSpecificProperty, pVType: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceSpecificProperty.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDeviceSpecificProperty, @ptrCast(self)), pVType);
+    }
+    pub fn GetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceSpecificProperty.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IDeviceSpecificProperty, @ptrCast(self)), pvValue, pcbValue);
+    }
+    pub fn SetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceSpecificProperty.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IDeviceSpecificProperty, @ptrCast(self)), pvValue, cbValue, pguidEventContext);
+    }
+    pub fn Get4BRange(self: *const IDeviceSpecificProperty, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceSpecificProperty.VTable, @ptrCast(self.vtable)).Get4BRange(@as(*const IDeviceSpecificProperty, @ptrCast(self)), plMin, plMax, plStepping);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3722,7 +4145,13 @@ pub const IPartsList = extern union {
             return @as(*const IPartsList.VTable, @ptrCast(self.vtable)).GetPart(@as(*const IPartsList, @ptrCast(self)), nIndex, ppPart);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IPartsList, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPartsList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPartsList, @ptrCast(self)), pCount);
+    }
+    pub fn GetPart(self: *const IPartsList, nIndex: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
+        return @as(*const IPartsList.VTable, @ptrCast(self.vtable)).GetPart(@as(*const IPartsList, @ptrCast(self)), nIndex, ppPart);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3845,7 +4274,46 @@ pub const IPart = extern union {
             return @as(*const IPart.VTable, @ptrCast(self.vtable)).UnregisterControlChangeCallback(@as(*const IPart, @ptrCast(self)), pNotify);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetName(@as(*const IPart, @ptrCast(self)), ppwstrName);
+    }
+    pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetLocalId(@as(*const IPart, @ptrCast(self)), pnId);
+    }
+    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetGlobalId(@as(*const IPart, @ptrCast(self)), ppwstrGlobalId);
+    }
+    pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetPartType(@as(*const IPart, @ptrCast(self)), pPartType);
+    }
+    pub fn GetSubType(self: *const IPart, pSubType: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetSubType(@as(*const IPart, @ptrCast(self)), pSubType);
+    }
+    pub fn GetControlInterfaceCount(self: *const IPart, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetControlInterfaceCount(@as(*const IPart, @ptrCast(self)), pCount);
+    }
+    pub fn GetControlInterface(self: *const IPart, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetControlInterface(@as(*const IPart, @ptrCast(self)), nIndex, ppInterfaceDesc);
+    }
+    pub fn EnumPartsIncoming(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).EnumPartsIncoming(@as(*const IPart, @ptrCast(self)), ppParts);
+    }
+    pub fn EnumPartsOutgoing(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).EnumPartsOutgoing(@as(*const IPart, @ptrCast(self)), ppParts);
+    }
+    pub fn GetTopologyObject(self: *const IPart, ppTopology: ?*?*IDeviceTopology) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).GetTopologyObject(@as(*const IPart, @ptrCast(self)), ppTopology);
+    }
+    pub fn Activate(self: *const IPart, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).Activate(@as(*const IPart, @ptrCast(self)), dwClsContext, refiid, ppvObject);
+    }
+    pub fn RegisterControlChangeCallback(self: *const IPart, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).RegisterControlChangeCallback(@as(*const IPart, @ptrCast(self)), riid, pNotify);
+    }
+    pub fn UnregisterControlChangeCallback(self: *const IPart, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
+        return @as(*const IPart.VTable, @ptrCast(self.vtable)).UnregisterControlChangeCallback(@as(*const IPart, @ptrCast(self)), pNotify);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3923,7 +4391,31 @@ pub const IConnector = extern union {
             return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetDeviceIdConnectedTo(@as(*const IConnector, @ptrCast(self)), ppwstrDeviceId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetType(self: *const IConnector, pType: ?*ConnectorType) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetType(@as(*const IConnector, @ptrCast(self)), pType);
+    }
+    pub fn GetDataFlow(self: *const IConnector, pFlow: ?*DataFlow) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetDataFlow(@as(*const IConnector, @ptrCast(self)), pFlow);
+    }
+    pub fn ConnectTo(self: *const IConnector, pConnectTo: ?*IConnector) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).ConnectTo(@as(*const IConnector, @ptrCast(self)), pConnectTo);
+    }
+    pub fn Disconnect(self: *const IConnector) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IConnector, @ptrCast(self)));
+    }
+    pub fn IsConnected(self: *const IConnector, pbConnected: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const IConnector, @ptrCast(self)), pbConnected);
+    }
+    pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetConnectedTo(@as(*const IConnector, @ptrCast(self)), ppConTo);
+    }
+    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetConnectorIdConnectedTo(@as(*const IConnector, @ptrCast(self)), ppwstrConnectorId);
+    }
+    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IConnector.VTable, @ptrCast(self.vtable)).GetDeviceIdConnectedTo(@as(*const IConnector, @ptrCast(self)), ppwstrDeviceId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3938,7 +4430,7 @@ pub const ISubunit = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3969,7 +4461,13 @@ pub const IControlInterface = extern union {
             return @as(*const IControlInterface.VTable, @ptrCast(self.vtable)).GetIID(@as(*const IControlInterface, @ptrCast(self)), pIID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IControlInterface.VTable, @ptrCast(self.vtable)).GetName(@as(*const IControlInterface, @ptrCast(self)), ppwstrName);
+    }
+    pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IControlInterface.VTable, @ptrCast(self.vtable)).GetIID(@as(*const IControlInterface, @ptrCast(self)), pIID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3993,7 +4491,10 @@ pub const IControlChangeNotify = extern union {
             return @as(*const IControlChangeNotify.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IControlChangeNotify, @ptrCast(self)), dwSenderProcessId, pguidEventContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnNotify(self: *const IControlChangeNotify, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IControlChangeNotify.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IControlChangeNotify, @ptrCast(self)), dwSenderProcessId, pguidEventContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4070,7 +4571,28 @@ pub const IDeviceTopology = extern union {
             return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetSignalPath(@as(*const IDeviceTopology, @ptrCast(self)), pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetConnectorCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetConnectorCount(@as(*const IDeviceTopology, @ptrCast(self)), pCount);
+    }
+    pub fn GetConnector(self: *const IDeviceTopology, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetConnector(@as(*const IDeviceTopology, @ptrCast(self)), nIndex, ppConnector);
+    }
+    pub fn GetSubunitCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetSubunitCount(@as(*const IDeviceTopology, @ptrCast(self)), pCount);
+    }
+    pub fn GetSubunit(self: *const IDeviceTopology, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetSubunit(@as(*const IDeviceTopology, @ptrCast(self)), nIndex, ppSubunit);
+    }
+    pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetPartById(@as(*const IDeviceTopology, @ptrCast(self)), nId, ppPart);
+    }
+    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const IDeviceTopology, @ptrCast(self)), ppwstrDeviceId);
+    }
+    pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+        return @as(*const IDeviceTopology.VTable, @ptrCast(self.vtable)).GetSignalPath(@as(*const IDeviceTopology, @ptrCast(self)), pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
+    }
 };
 
 pub const AudioSessionDisconnectReason = enum(i32) {
@@ -4164,7 +4686,28 @@ pub const IAudioSessionEvents = extern union {
             return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnSessionDisconnected(@as(*const IAudioSessionEvents, @ptrCast(self)), DisconnectReason);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnDisplayNameChanged(self: *const IAudioSessionEvents, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnDisplayNameChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), NewDisplayName, EventContext);
+    }
+    pub fn OnIconPathChanged(self: *const IAudioSessionEvents, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnIconPathChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), NewIconPath, EventContext);
+    }
+    pub fn OnSimpleVolumeChanged(self: *const IAudioSessionEvents, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnSimpleVolumeChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), NewVolume, NewMute, EventContext);
+    }
+    pub fn OnChannelVolumeChanged(self: *const IAudioSessionEvents, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnChannelVolumeChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
+    }
+    pub fn OnGroupingParamChanged(self: *const IAudioSessionEvents, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnGroupingParamChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), NewGroupingParam, EventContext);
+    }
+    pub fn OnStateChanged(self: *const IAudioSessionEvents, NewState: AudioSessionState) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const IAudioSessionEvents, @ptrCast(self)), NewState);
+    }
+    pub fn OnSessionDisconnected(self: *const IAudioSessionEvents, DisconnectReason: AudioSessionDisconnectReason) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEvents.VTable, @ptrCast(self.vtable)).OnSessionDisconnected(@as(*const IAudioSessionEvents, @ptrCast(self)), DisconnectReason);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4254,7 +4797,34 @@ pub const IAudioSessionControl = extern union {
             return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).UnregisterAudioSessionNotification(@as(*const IAudioSessionControl, @ptrCast(self)), NewNotifications);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetState(self: *const IAudioSessionControl, pRetVal: ?*AudioSessionState) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).GetState(@as(*const IAudioSessionControl, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetDisplayName(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IAudioSessionControl, @ptrCast(self)), pRetVal);
+    }
+    pub fn SetDisplayName(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IAudioSessionControl, @ptrCast(self)), Value, EventContext);
+    }
+    pub fn GetIconPath(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).GetIconPath(@as(*const IAudioSessionControl, @ptrCast(self)), pRetVal);
+    }
+    pub fn SetIconPath(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).SetIconPath(@as(*const IAudioSessionControl, @ptrCast(self)), Value, EventContext);
+    }
+    pub fn GetGroupingParam(self: *const IAudioSessionControl, pRetVal: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).GetGroupingParam(@as(*const IAudioSessionControl, @ptrCast(self)), pRetVal);
+    }
+    pub fn SetGroupingParam(self: *const IAudioSessionControl, Override: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).SetGroupingParam(@as(*const IAudioSessionControl, @ptrCast(self)), Override, EventContext);
+    }
+    pub fn RegisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).RegisterAudioSessionNotification(@as(*const IAudioSessionControl, @ptrCast(self)), NewNotifications);
+    }
+    pub fn UnregisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl.VTable, @ptrCast(self.vtable)).UnregisterAudioSessionNotification(@as(*const IAudioSessionControl, @ptrCast(self)), NewNotifications);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4308,7 +4878,22 @@ pub const IAudioSessionControl2 = extern union {
             return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).SetDuckingPreference(@as(*const IAudioSessionControl2, @ptrCast(self)), optOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAudioSessionControl.MethodMixin(@This());
+    pub fn GetSessionIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).GetSessionIdentifier(@as(*const IAudioSessionControl2, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetSessionInstanceIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).GetSessionInstanceIdentifier(@as(*const IAudioSessionControl2, @ptrCast(self)), pRetVal);
+    }
+    pub fn GetProcessId(self: *const IAudioSessionControl2, pRetVal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).GetProcessId(@as(*const IAudioSessionControl2, @ptrCast(self)), pRetVal);
+    }
+    pub fn IsSystemSoundsSession(self: *const IAudioSessionControl2) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).IsSystemSoundsSession(@as(*const IAudioSessionControl2, @ptrCast(self)));
+    }
+    pub fn SetDuckingPreference(self: *const IAudioSessionControl2, optOut: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionControl2.VTable, @ptrCast(self.vtable)).SetDuckingPreference(@as(*const IAudioSessionControl2, @ptrCast(self)), optOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4343,7 +4928,13 @@ pub const IAudioSessionManager = extern union {
             return @as(*const IAudioSessionManager.VTable, @ptrCast(self.vtable)).GetSimpleAudioVolume(@as(*const IAudioSessionManager, @ptrCast(self)), AudioSessionGuid, StreamFlags, AudioVolume);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAudioSessionControl(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, SessionControl: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager.VTable, @ptrCast(self.vtable)).GetAudioSessionControl(@as(*const IAudioSessionManager, @ptrCast(self)), AudioSessionGuid, StreamFlags, SessionControl);
+    }
+    pub fn GetSimpleAudioVolume(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager.VTable, @ptrCast(self.vtable)).GetSimpleAudioVolume(@as(*const IAudioSessionManager, @ptrCast(self)), AudioSessionGuid, StreamFlags, AudioVolume);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4375,7 +4966,13 @@ pub const IAudioVolumeDuckNotification = extern union {
             return @as(*const IAudioVolumeDuckNotification.VTable, @ptrCast(self.vtable)).OnVolumeUnduckNotification(@as(*const IAudioVolumeDuckNotification, @ptrCast(self)), sessionID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnVolumeDuckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioVolumeDuckNotification.VTable, @ptrCast(self.vtable)).OnVolumeDuckNotification(@as(*const IAudioVolumeDuckNotification, @ptrCast(self)), sessionID, countCommunicationSessions);
+    }
+    pub fn OnVolumeUnduckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAudioVolumeDuckNotification.VTable, @ptrCast(self.vtable)).OnVolumeUnduckNotification(@as(*const IAudioVolumeDuckNotification, @ptrCast(self)), sessionID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4398,7 +4995,10 @@ pub const IAudioSessionNotification = extern union {
             return @as(*const IAudioSessionNotification.VTable, @ptrCast(self.vtable)).OnSessionCreated(@as(*const IAudioSessionNotification, @ptrCast(self)), NewSession);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnSessionCreated(self: *const IAudioSessionNotification, NewSession: ?*IAudioSessionControl) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionNotification.VTable, @ptrCast(self.vtable)).OnSessionCreated(@as(*const IAudioSessionNotification, @ptrCast(self)), NewSession);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4430,7 +5030,13 @@ pub const IAudioSessionEnumerator = extern union {
             return @as(*const IAudioSessionEnumerator.VTable, @ptrCast(self.vtable)).GetSession(@as(*const IAudioSessionEnumerator, @ptrCast(self)), SessionCount, Session);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IAudioSessionEnumerator, SessionCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEnumerator.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IAudioSessionEnumerator, @ptrCast(self)), SessionCount);
+    }
+    pub fn GetSession(self: *const IAudioSessionEnumerator, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionEnumerator.VTable, @ptrCast(self.vtable)).GetSession(@as(*const IAudioSessionEnumerator, @ptrCast(self)), SessionCount, Session);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4486,7 +5092,22 @@ pub const IAudioSessionManager2 = extern union {
             return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).UnregisterDuckNotification(@as(*const IAudioSessionManager2, @ptrCast(self)), duckNotification);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAudioSessionManager.MethodMixin(@This());
+    pub fn GetSessionEnumerator(self: *const IAudioSessionManager2, SessionEnum: ?*?*IAudioSessionEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).GetSessionEnumerator(@as(*const IAudioSessionManager2, @ptrCast(self)), SessionEnum);
+    }
+    pub fn RegisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).RegisterSessionNotification(@as(*const IAudioSessionManager2, @ptrCast(self)), SessionNotification);
+    }
+    pub fn UnregisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).UnregisterSessionNotification(@as(*const IAudioSessionManager2, @ptrCast(self)), SessionNotification);
+    }
+    pub fn RegisterDuckNotification(self: *const IAudioSessionManager2, sessionID: ?[*:0]const u16, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).RegisterDuckNotification(@as(*const IAudioSessionManager2, @ptrCast(self)), sessionID, duckNotification);
+    }
+    pub fn UnregisterDuckNotification(self: *const IAudioSessionManager2, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
+        return @as(*const IAudioSessionManager2.VTable, @ptrCast(self.vtable)).UnregisterDuckNotification(@as(*const IAudioSessionManager2, @ptrCast(self)), duckNotification);
+    }
 };
 
 pub const SpatialAudioMetadataWriterOverflowMode = enum(i32) {
@@ -4595,7 +5216,22 @@ pub const ISpatialAudioMetadataItems = extern union {
             return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), info);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFrameCount(self: *const ISpatialAudioMetadataItems, frameCount: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetFrameCount(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), frameCount);
+    }
+    pub fn GetItemCount(self: *const ISpatialAudioMetadataItems, itemCount: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetItemCount(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), itemCount);
+    }
+    pub fn GetMaxItemCount(self: *const ISpatialAudioMetadataItems, maxItemCount: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetMaxItemCount(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), maxItemCount);
+    }
+    pub fn GetMaxValueBufferLength(self: *const ISpatialAudioMetadataItems, maxValueBufferLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetMaxValueBufferLength(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), maxValueBufferLength);
+    }
+    pub fn GetInfo(self: *const ISpatialAudioMetadataItems, info: ?*SpatialAudioMetadataItemsInfo) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItems.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ISpatialAudioMetadataItems, @ptrCast(self)), info);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4644,7 +5280,19 @@ pub const ISpatialAudioMetadataWriter = extern union {
             return @as(*const ISpatialAudioMetadataWriter.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataWriter, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const ISpatialAudioMetadataWriter, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataWriter.VTable, @ptrCast(self.vtable)).Open(@as(*const ISpatialAudioMetadataWriter, @ptrCast(self)), metadataItems);
+    }
+    pub fn WriteNextItem(self: *const ISpatialAudioMetadataWriter, frameOffset: u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataWriter.VTable, @ptrCast(self.vtable)).WriteNextItem(@as(*const ISpatialAudioMetadataWriter, @ptrCast(self)), frameOffset);
+    }
+    pub fn WriteNextItemCommand(self: *const ISpatialAudioMetadataWriter, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataWriter.VTable, @ptrCast(self.vtable)).WriteNextItemCommand(@as(*const ISpatialAudioMetadataWriter, @ptrCast(self)), commandID, valueBuffer, valueBufferLength);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataWriter) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataWriter.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataWriter, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4695,7 +5343,19 @@ pub const ISpatialAudioMetadataReader = extern union {
             return @as(*const ISpatialAudioMetadataReader.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataReader, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const ISpatialAudioMetadataReader, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataReader.VTable, @ptrCast(self.vtable)).Open(@as(*const ISpatialAudioMetadataReader, @ptrCast(self)), metadataItems);
+    }
+    pub fn ReadNextItem(self: *const ISpatialAudioMetadataReader, commandCount: ?*u8, frameOffset: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataReader.VTable, @ptrCast(self.vtable)).ReadNextItem(@as(*const ISpatialAudioMetadataReader, @ptrCast(self)), commandCount, frameOffset);
+    }
+    pub fn ReadNextItemCommand(self: *const ISpatialAudioMetadataReader, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataReader.VTable, @ptrCast(self.vtable)).ReadNextItemCommand(@as(*const ISpatialAudioMetadataReader, @ptrCast(self)), commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataReader) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataReader.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataReader, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4736,7 +5396,16 @@ pub const ISpatialAudioMetadataCopier = extern union {
             return @as(*const ISpatialAudioMetadataCopier.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataCopier, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const ISpatialAudioMetadataCopier, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataCopier.VTable, @ptrCast(self.vtable)).Open(@as(*const ISpatialAudioMetadataCopier, @ptrCast(self)), metadataItems);
+    }
+    pub fn CopyMetadataForFrames(self: *const ISpatialAudioMetadataCopier, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataCopier.VTable, @ptrCast(self.vtable)).CopyMetadataForFrames(@as(*const ISpatialAudioMetadataCopier, @ptrCast(self)), copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataCopier) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataCopier.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpatialAudioMetadataCopier, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4778,7 +5447,16 @@ pub const ISpatialAudioMetadataItemsBuffer = extern union {
             return @as(*const ISpatialAudioMetadataItemsBuffer.VTable, @ptrCast(self.vtable)).DetachBuffer(@as(*const ISpatialAudioMetadataItemsBuffer, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AttachToBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItemsBuffer.VTable, @ptrCast(self.vtable)).AttachToBuffer(@as(*const ISpatialAudioMetadataItemsBuffer, @ptrCast(self)), buffer, bufferLength);
+    }
+    pub fn AttachToPopulatedBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItemsBuffer.VTable, @ptrCast(self.vtable)).AttachToPopulatedBuffer(@as(*const ISpatialAudioMetadataItemsBuffer, @ptrCast(self)), buffer, bufferLength);
+    }
+    pub fn DetachBuffer(self: *const ISpatialAudioMetadataItemsBuffer) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataItemsBuffer.VTable, @ptrCast(self.vtable)).DetachBuffer(@as(*const ISpatialAudioMetadataItemsBuffer, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4838,7 +5516,22 @@ pub const ISpatialAudioMetadataClient = extern union {
             return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioMetadataReader(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), metadataReader);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ActivateSpatialAudioMetadataItems(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioMetadataItems(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), maxItemCount, frameCount, metadataItemsBuffer, metadataItems);
+    }
+    pub fn GetSpatialAudioMetadataItemsBufferLength(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, bufferLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).GetSpatialAudioMetadataItemsBufferLength(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), maxItemCount, bufferLength);
+    }
+    pub fn ActivateSpatialAudioMetadataWriter(self: *const ISpatialAudioMetadataClient, overflowMode: SpatialAudioMetadataWriterOverflowMode, metadataWriter: ?*?*ISpatialAudioMetadataWriter) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioMetadataWriter(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), overflowMode, metadataWriter);
+    }
+    pub fn ActivateSpatialAudioMetadataCopier(self: *const ISpatialAudioMetadataClient, metadataCopier: ?*?*ISpatialAudioMetadataCopier) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioMetadataCopier(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), metadataCopier);
+    }
+    pub fn ActivateSpatialAudioMetadataReader(self: *const ISpatialAudioMetadataClient, metadataReader: ?*?*ISpatialAudioMetadataReader) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioMetadataClient.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioMetadataReader(@as(*const ISpatialAudioMetadataClient, @ptrCast(self)), metadataReader);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4864,7 +5557,10 @@ pub const ISpatialAudioObjectForMetadataCommands = extern union {
             return @as(*const ISpatialAudioObjectForMetadataCommands.VTable, @ptrCast(self.vtable)).WriteNextMetadataCommand(@as(*const ISpatialAudioObjectForMetadataCommands, @ptrCast(self)), commandID, valueBuffer, valueBufferLength);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectBase.MethodMixin(@This());
+    pub fn WriteNextMetadataCommand(self: *const ISpatialAudioObjectForMetadataCommands, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForMetadataCommands.VTable, @ptrCast(self.vtable)).WriteNextMetadataCommand(@as(*const ISpatialAudioObjectForMetadataCommands, @ptrCast(self)), commandID, valueBuffer, valueBufferLength);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4887,7 +5583,10 @@ pub const ISpatialAudioObjectForMetadataItems = extern union {
             return @as(*const ISpatialAudioObjectForMetadataItems.VTable, @ptrCast(self.vtable)).GetSpatialAudioMetadataItems(@as(*const ISpatialAudioObjectForMetadataItems, @ptrCast(self)), metadataItems);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectBase.MethodMixin(@This());
+    pub fn GetSpatialAudioMetadataItems(self: *const ISpatialAudioObjectForMetadataItems, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectForMetadataItems.VTable, @ptrCast(self.vtable)).GetSpatialAudioMetadataItems(@as(*const ISpatialAudioObjectForMetadataItems, @ptrCast(self)), metadataItems);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -4920,7 +5619,13 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
             return @as(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObjectForMetadataItems(@as(*const ISpatialAudioObjectRenderStreamForMetadata, @ptrCast(self)), @"type", audioObject);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(@This());
+    pub fn ActivateSpatialAudioObjectForMetadataCommands(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObjectForMetadataCommands(@as(*const ISpatialAudioObjectRenderStreamForMetadata, @ptrCast(self)), @"type", audioObject);
+    }
+    pub fn ActivateSpatialAudioObjectForMetadataItems(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
+        return @as(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, @ptrCast(self.vtable)).ActivateSpatialAudioObjectForMetadataItems(@as(*const ISpatialAudioObjectRenderStreamForMetadata, @ptrCast(self)), @"type", audioObject);
+    }
 };
 
 pub const PROCESS_LOOPBACK_MODE = enum(i32) {
@@ -4997,7 +5702,16 @@ pub const IAudioStateMonitor = extern union {
             return @as(*const IAudioStateMonitor.VTable, @ptrCast(self.vtable)).GetSoundLevel(@as(*const IAudioStateMonitor, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterCallback(self: *const IAudioStateMonitor, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.Inline) HRESULT {
+        return @as(*const IAudioStateMonitor.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const IAudioStateMonitor, @ptrCast(self)), callback, context, registration);
+    }
+    pub fn UnregisterCallback(self: *const IAudioStateMonitor, registration: i64) callconv(.Inline) void {
+        return @as(*const IAudioStateMonitor.VTable, @ptrCast(self.vtable)).UnregisterCallback(@as(*const IAudioStateMonitor, @ptrCast(self)), registration);
+    }
+    pub fn GetSoundLevel(self: *const IAudioStateMonitor) callconv(.Inline) AudioStateMonitorSoundLevel {
+        return @as(*const IAudioStateMonitor.VTable, @ptrCast(self.vtable)).GetSoundLevel(@as(*const IAudioStateMonitor, @ptrCast(self)));
+    }
 };
 
 pub const ACMDRIVERENUMCB = *const fn(

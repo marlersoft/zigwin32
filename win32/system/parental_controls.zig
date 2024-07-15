@@ -144,7 +144,13 @@ pub const IWPCProviderState = extern union {
             return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Disable(@as(*const IWPCProviderState, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Enable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Enable(@as(*const IWPCProviderState, @ptrCast(self)));
+    }
+    pub fn Disable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Disable(@as(*const IWPCProviderState, @ptrCast(self)));
+    }
 };
 
 pub const WPCFLAG_OVERRIDE = enum(i32) {
@@ -192,7 +198,16 @@ pub const IWPCProviderConfig = extern union {
             return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).RequestOverride(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrPath, dwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).GetUserSummary(@as(*const IWPCProviderConfig, @ptrCast(self)), bstrSID, pbstrUserSummary);
+    }
+    pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).Configure(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrSID);
+    }
+    pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).RequestOverride(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrPath, dwFlags);
+    }
 };
 
 pub const WPCFLAG_RESTRICTION = enum(i32) {
@@ -250,7 +265,16 @@ pub const IWPCSettings = extern union {
             return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IWPCSettings, @ptrCast(self)), pdwRestrictions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).IsLoggingRequired(@as(*const IWPCSettings, @ptrCast(self)), pfRequired);
+    }
+    pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetLastSettingsChangeTime(@as(*const IWPCSettings, @ptrCast(self)), pTime);
+    }
+    pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
+        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IWPCSettings, @ptrCast(self)), pdwRestrictions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -274,7 +298,10 @@ pub const IWPCGamesSettings = extern union {
             return @as(*const IWPCGamesSettings.VTable, @ptrCast(self.vtable)).IsBlocked(@as(*const IWPCGamesSettings, @ptrCast(self)), guidAppID, pdwReasons);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWPCSettings.MethodMixin(@This());
+    pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWPCGamesSettings.VTable, @ptrCast(self.vtable)).IsBlocked(@as(*const IWPCGamesSettings, @ptrCast(self)), guidAppID, pdwReasons);
+    }
 };
 
 pub const WPCFLAG_WEB_SETTING = enum(i32) {
@@ -316,7 +343,13 @@ pub const IWPCWebSettings = extern union {
             return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).RequestURLOverride(@as(*const IWPCWebSettings, @ptrCast(self)), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWPCSettings.MethodMixin(@This());
+    pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.Inline) HRESULT {
+        return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).GetSettings(@as(*const IWPCWebSettings, @ptrCast(self)), pdwSettings);
+    }
+    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).RequestURLOverride(@as(*const IWPCWebSettings, @ptrCast(self)), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
+    }
 };
 
 pub const WPCFLAG_VISIBILITY = enum(i32) {
@@ -373,7 +406,19 @@ pub const IWindowsParentalControlsCore = extern union {
             return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebFilterInfo(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pguidID, ppszName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetVisibility(self: *const IWindowsParentalControlsCore, peVisibility: ?*WPCFLAG_VISIBILITY) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetVisibility(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), peVisibility);
+    }
+    pub fn GetUserSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetUserSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
+    }
+    pub fn GetWebSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
+    }
+    pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebFilterInfo(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pguidID, ppszName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -397,7 +442,10 @@ pub const IWindowsParentalControls = extern union {
             return @as(*const IWindowsParentalControls.VTable, @ptrCast(self.vtable)).GetGamesSettings(@as(*const IWindowsParentalControls, @ptrCast(self)), pcszSID, ppSettings);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWindowsParentalControlsCore.MethodMixin(@This());
+    pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
+        return @as(*const IWindowsParentalControls.VTable, @ptrCast(self.vtable)).GetGamesSettings(@as(*const IWindowsParentalControls, @ptrCast(self)), pcszSID, ppSettings);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -420,7 +468,10 @@ pub const IWPCProviderSupport = extern union {
             return @as(*const IWPCProviderSupport.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IWPCProviderSupport, @ptrCast(self)), pguidProvider);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCurrent(self: *const IWPCProviderSupport, pguidProvider: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IWPCProviderSupport.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IWPCProviderSupport, @ptrCast(self)), pguidProvider);
+    }
 };
 
 pub const WPCFLAG_ISBLOCKED = enum(i32) {

@@ -1860,7 +1860,19 @@ pub const IDMLObject = extern union {
             return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetName(@as(*const IDMLObject, @ptrCast(self)), name);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDMLObject, @ptrCast(self)), guid, dataSize, data);
+    }
+    pub fn SetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDMLObject, @ptrCast(self)), guid, dataSize, data);
+    }
+    pub fn SetPrivateDataInterface(self: *const IDMLObject, guid: ?*const Guid, data: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const IDMLObject, @ptrCast(self)), guid, data);
+    }
+    pub fn SetName(self: *const IDMLObject, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetName(@as(*const IDMLObject, @ptrCast(self)), name);
+    }
 };
 
 const IID_IDMLDevice_Value = Guid.initString("6dbd6437-96fd-423f-a98c-ae5e7c2a573f");
@@ -1973,7 +1985,37 @@ pub const IDMLDevice = extern union {
             return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).GetParentDevice(@as(*const IDMLDevice, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLObject.MethodMixin(@This());
+    pub fn CheckFeatureSupport(self: *const IDMLDevice, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const anyopaque, featureSupportDataSize: u32, featureSupportData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const IDMLDevice, @ptrCast(self)), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
+    }
+    pub fn CreateOperator(self: *const IDMLDevice, desc: ?*const DML_OPERATOR_DESC, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateOperator(@as(*const IDMLDevice, @ptrCast(self)), desc, riid, ppv);
+    }
+    pub fn CompileOperator(self: *const IDMLDevice, op: ?*IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CompileOperator(@as(*const IDMLDevice, @ptrCast(self)), op, flags, riid, ppv);
+    }
+    pub fn CreateOperatorInitializer(self: *const IDMLDevice, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateOperatorInitializer(@as(*const IDMLDevice, @ptrCast(self)), operatorCount, operators, riid, ppv);
+    }
+    pub fn CreateCommandRecorder(self: *const IDMLDevice, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateCommandRecorder(@as(*const IDMLDevice, @ptrCast(self)), riid, ppv);
+    }
+    pub fn CreateBindingTable(self: *const IDMLDevice, desc: ?*const DML_BINDING_TABLE_DESC, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateBindingTable(@as(*const IDMLDevice, @ptrCast(self)), desc, riid, ppv);
+    }
+    pub fn Evict(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).Evict(@as(*const IDMLDevice, @ptrCast(self)), count, ppObjects);
+    }
+    pub fn MakeResident(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).MakeResident(@as(*const IDMLDevice, @ptrCast(self)), count, ppObjects);
+    }
+    pub fn GetDeviceRemovedReason(self: *const IDMLDevice) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const IDMLDevice, @ptrCast(self)));
+    }
+    pub fn GetParentDevice(self: *const IDMLDevice, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).GetParentDevice(@as(*const IDMLDevice, @ptrCast(self)), riid, ppv);
+    }
 };
 
 const IID_IDMLDeviceChild_Value = Guid.initString("27e83142-8165-49e3-974e-2fd66e4cb69d");
@@ -1996,7 +2038,10 @@ pub const IDMLDeviceChild = extern union {
             return @as(*const IDMLDeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDMLDeviceChild, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLObject.MethodMixin(@This());
+    pub fn GetDevice(self: *const IDMLDeviceChild, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDMLDeviceChild, @ptrCast(self)), riid, ppv);
+    }
 };
 
 const IID_IDMLPageable_Value = Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
@@ -2010,7 +2055,7 @@ pub const IDMLPageable = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDeviceChild.MethodMixin(@This());
 };
 
 const IID_IDMLOperator_Value = Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
@@ -2024,7 +2069,7 @@ pub const IDMLOperator = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDeviceChild.MethodMixin(@This());
 };
 
 pub const DML_BINDING_PROPERTIES = extern struct {
@@ -2051,7 +2096,10 @@ pub const IDMLDispatchable = extern union {
             return @as(*const IDMLDispatchable.VTable, @ptrCast(self.vtable)).GetBindingProperties(@as(*const IDMLDispatchable, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLPageable.MethodMixin(@This());
+    pub fn GetBindingProperties(self: *const IDMLDispatchable) callconv(.Inline) DML_BINDING_PROPERTIES {
+        return @as(*const IDMLDispatchable.VTable, @ptrCast(self.vtable)).GetBindingProperties(@as(*const IDMLDispatchable, @ptrCast(self)));
+    }
 };
 
 const IID_IDMLCompiledOperator_Value = Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
@@ -2065,7 +2113,7 @@ pub const IDMLCompiledOperator = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDispatchable.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDispatchable.MethodMixin(@This());
 };
 
 const IID_IDMLOperatorInitializer_Value = Guid.initString("427c1113-435c-469c-8676-4d5dd072f813");
@@ -2088,7 +2136,10 @@ pub const IDMLOperatorInitializer = extern union {
             return @as(*const IDMLOperatorInitializer.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLOperatorInitializer, @ptrCast(self)), operatorCount, operators);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDispatchable.MethodMixin(@This());
+    pub fn Reset(self: *const IDMLOperatorInitializer, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) callconv(.Inline) HRESULT {
+        return @as(*const IDMLOperatorInitializer.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLOperatorInitializer, @ptrCast(self)), operatorCount, operators);
+    }
 };
 
 pub const DML_BINDING_TYPE = enum(i32) {
@@ -2169,7 +2220,22 @@ pub const IDMLBindingTable = extern union {
             return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLBindingTable, @ptrCast(self)), desc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDeviceChild.MethodMixin(@This());
+    pub fn BindInputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.Inline) void {
+        return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindInputs(@as(*const IDMLBindingTable, @ptrCast(self)), bindingCount, bindings);
+    }
+    pub fn BindOutputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.Inline) void {
+        return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindOutputs(@as(*const IDMLBindingTable, @ptrCast(self)), bindingCount, bindings);
+    }
+    pub fn BindTemporaryResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.Inline) void {
+        return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindTemporaryResource(@as(*const IDMLBindingTable, @ptrCast(self)), binding);
+    }
+    pub fn BindPersistentResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.Inline) void {
+        return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindPersistentResource(@as(*const IDMLBindingTable, @ptrCast(self)), binding);
+    }
+    pub fn Reset(self: *const IDMLBindingTable, desc: ?*const DML_BINDING_TABLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLBindingTable, @ptrCast(self)), desc);
+    }
 };
 
 const IID_IDMLCommandRecorder_Value = Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
@@ -2193,7 +2259,10 @@ pub const IDMLCommandRecorder = extern union {
             return @as(*const IDMLCommandRecorder.VTable, @ptrCast(self.vtable)).RecordDispatch(@as(*const IDMLCommandRecorder, @ptrCast(self)), commandList, dispatchable, bindings);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDeviceChild.MethodMixin(@This());
+    pub fn RecordDispatch(self: *const IDMLCommandRecorder, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.Inline) void {
+        return @as(*const IDMLCommandRecorder.VTable, @ptrCast(self.vtable)).RecordDispatch(@as(*const IDMLCommandRecorder, @ptrCast(self)), commandList, dispatchable, bindings);
+    }
 };
 
 const IID_IDMLDebugDevice_Value = Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
@@ -2215,7 +2284,10 @@ pub const IDMLDebugDevice = extern union {
             return @as(*const IDMLDebugDevice.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const IDMLDebugDevice, @ptrCast(self)), mute);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMuteDebugOutput(self: *const IDMLDebugDevice, mute: BOOL) callconv(.Inline) void {
+        return @as(*const IDMLDebugDevice.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const IDMLDebugDevice, @ptrCast(self)), mute);
+    }
 };
 
 pub const DML_GRAPH_EDGE_TYPE = enum(i32) {
@@ -2308,7 +2380,10 @@ pub const IDMLDevice1 = extern union {
             return @as(*const IDMLDevice1.VTable, @ptrCast(self.vtable)).CompileGraph(@as(*const IDMLDevice1, @ptrCast(self)), desc, flags, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDMLDevice.MethodMixin(@This());
+    pub fn CompileGraph(self: *const IDMLDevice1, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDMLDevice1.VTable, @ptrCast(self.vtable)).CompileGraph(@as(*const IDMLDevice1, @ptrCast(self)), desc, flags, riid, ppv);
+    }
 };
 
 

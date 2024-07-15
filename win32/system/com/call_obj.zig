@@ -274,7 +274,64 @@ pub const ICallFrame = extern union {
             return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ICallFrame, @ptrCast(self)), pvReceiver);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetInfo(self: *const ICallFrame, pInfo: ?*CALLFRAMEINFO) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ICallFrame, @ptrCast(self)), pInfo);
+    }
+    pub fn GetIIDAndMethod(self: *const ICallFrame, pIID: ?*Guid, piMethod: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetIIDAndMethod(@as(*const ICallFrame, @ptrCast(self)), pIID, piMethod);
+    }
+    pub fn GetNames(self: *const ICallFrame, pwszInterface: ?*?PWSTR, pwszMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetNames(@as(*const ICallFrame, @ptrCast(self)), pwszInterface, pwszMethod);
+    }
+    pub fn GetStackLocation(self: *const ICallFrame) callconv(.Inline) ?*anyopaque {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetStackLocation(@as(*const ICallFrame, @ptrCast(self)));
+    }
+    pub fn SetStackLocation(self: *const ICallFrame, pvStack: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetStackLocation(@as(*const ICallFrame, @ptrCast(self)), pvStack);
+    }
+    pub fn SetReturnValue(self: *const ICallFrame, hr: HRESULT) callconv(.Inline) void {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetReturnValue(@as(*const ICallFrame, @ptrCast(self)), hr);
+    }
+    pub fn GetReturnValue(self: *const ICallFrame) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetReturnValue(@as(*const ICallFrame, @ptrCast(self)));
+    }
+    pub fn GetParamInfo(self: *const ICallFrame, iparam: u32, pInfo: ?*CALLFRAMEPARAMINFO) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetParamInfo(@as(*const ICallFrame, @ptrCast(self)), iparam, pInfo);
+    }
+    pub fn SetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetParam(@as(*const ICallFrame, @ptrCast(self)), iparam, pvar);
+    }
+    pub fn GetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetParam(@as(*const ICallFrame, @ptrCast(self)), iparam, pvar);
+    }
+    pub fn Copy(self: *const ICallFrame, copyControl: CALLFRAME_COPY, pWalker: ?*ICallFrameWalker, ppFrame: ?*?*ICallFrame) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Copy(@as(*const ICallFrame, @ptrCast(self)), copyControl, pWalker, ppFrame);
+    }
+    pub fn Free(self: *const ICallFrame, pframeArgsDest: ?*ICallFrame, pWalkerDestFree: ?*ICallFrameWalker, pWalkerCopy: ?*ICallFrameWalker, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Free(@as(*const ICallFrame, @ptrCast(self)), pframeArgsDest, pWalkerDestFree, pWalkerCopy, freeFlags, pWalkerFree, nullFlags);
+    }
+    pub fn FreeParam(self: *const ICallFrame, iparam: u32, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).FreeParam(@as(*const ICallFrame, @ptrCast(self)), iparam, freeFlags, pWalkerFree, nullFlags);
+    }
+    pub fn WalkFrame(self: *const ICallFrame, walkWhat: u32, pWalker: ?*ICallFrameWalker) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).WalkFrame(@as(*const ICallFrame, @ptrCast(self)), walkWhat, pWalker);
+    }
+    pub fn GetMarshalSizeMax(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pcbBufferNeeded: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const ICallFrame, @ptrCast(self)), pmshlContext, mshlflags, pcbBufferNeeded);
+    }
+    pub fn Marshal(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pBuffer: [*]u8, cbBuffer: u32, pcbBufferUsed: ?*u32, pdataRep: ?*u32, prpcFlags: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Marshal(@as(*const ICallFrame, @ptrCast(self)), pmshlContext, mshlflags, pBuffer, cbBuffer, pcbBufferUsed, pdataRep, prpcFlags);
+    }
+    pub fn Unmarshal(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ICallFrame, @ptrCast(self)), pBuffer, cbBuffer, dataRep, pcontext, pcbUnmarshalled);
+    }
+    pub fn ReleaseMarshalData(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const ICallFrame, @ptrCast(self)), pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
+    }
+    pub fn Invoke(self: *const ICallFrame, pvReceiver: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ICallFrame, @ptrCast(self)), pvReceiver);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -330,7 +387,19 @@ pub const ICallIndirect = extern union {
             return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetIID(@as(*const ICallIndirect, @ptrCast(self)), piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CallIndirect(self: *const ICallIndirect, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).CallIndirect(@as(*const ICallIndirect, @ptrCast(self)), phrReturn, iMethod, pvArgs, cbArgs);
+    }
+    pub fn GetMethodInfo(self: *const ICallIndirect, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetMethodInfo(@as(*const ICallIndirect, @ptrCast(self)), iMethod, pInfo, pwszMethod);
+    }
+    pub fn GetStackSize(self: *const ICallIndirect, iMethod: u32, cbArgs: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetStackSize(@as(*const ICallIndirect, @ptrCast(self)), iMethod, cbArgs);
+    }
+    pub fn GetIID(self: *const ICallIndirect, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetIID(@as(*const ICallIndirect, @ptrCast(self)), piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -361,7 +430,13 @@ pub const ICallInterceptor = extern union {
             return @as(*const ICallInterceptor.VTable, @ptrCast(self.vtable)).GetRegisteredSink(@as(*const ICallInterceptor, @ptrCast(self)), ppsink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICallIndirect.MethodMixin(@This());
+    pub fn RegisterSink(self: *const ICallInterceptor, psink: ?*ICallFrameEvents) callconv(.Inline) HRESULT {
+        return @as(*const ICallInterceptor.VTable, @ptrCast(self.vtable)).RegisterSink(@as(*const ICallInterceptor, @ptrCast(self)), psink);
+    }
+    pub fn GetRegisteredSink(self: *const ICallInterceptor, ppsink: ?*?*ICallFrameEvents) callconv(.Inline) HRESULT {
+        return @as(*const ICallInterceptor.VTable, @ptrCast(self.vtable)).GetRegisteredSink(@as(*const ICallInterceptor, @ptrCast(self)), ppsink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -384,7 +459,10 @@ pub const ICallFrameEvents = extern union {
             return @as(*const ICallFrameEvents.VTable, @ptrCast(self.vtable)).OnCall(@as(*const ICallFrameEvents, @ptrCast(self)), pFrame);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnCall(self: *const ICallFrameEvents, pFrame: ?*ICallFrame) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrameEvents.VTable, @ptrCast(self.vtable)).OnCall(@as(*const ICallFrameEvents, @ptrCast(self)), pFrame);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -427,7 +505,13 @@ pub const ICallUnmarshal = extern union {
             return @as(*const ICallUnmarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const ICallUnmarshal, @ptrCast(self)), iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Unmarshal(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, fForceBufferCopy: BOOL, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32, ppFrame: ?*?*ICallFrame) callconv(.Inline) HRESULT {
+        return @as(*const ICallUnmarshal.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ICallUnmarshal, @ptrCast(self)), iMethod, pBuffer, cbBuffer, fForceBufferCopy, dataRep, pcontext, pcbUnmarshalled, ppFrame);
+    }
+    pub fn ReleaseMarshalData(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const ICallUnmarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const ICallUnmarshal, @ptrCast(self)), iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -453,7 +537,10 @@ pub const ICallFrameWalker = extern union {
             return @as(*const ICallFrameWalker.VTable, @ptrCast(self.vtable)).OnWalkInterface(@as(*const ICallFrameWalker, @ptrCast(self)), iid, ppvInterface, fIn, fOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnWalkInterface(self: *const ICallFrameWalker, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ICallFrameWalker.VTable, @ptrCast(self.vtable)).OnWalkInterface(@as(*const ICallFrameWalker, @ptrCast(self)), iid, ppvInterface, fIn, fOut);
+    }
 };
 
 const IID_IInterfaceRelated_Value = Guid.initString("d1fb5a79-7706-11d1-adba-00c04fc2adc0");
@@ -483,7 +570,13 @@ pub const IInterfaceRelated = extern union {
             return @as(*const IInterfaceRelated.VTable, @ptrCast(self.vtable)).GetIID(@as(*const IInterfaceRelated, @ptrCast(self)), piid);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetIID(self: *const IInterfaceRelated, iid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IInterfaceRelated.VTable, @ptrCast(self.vtable)).SetIID(@as(*const IInterfaceRelated, @ptrCast(self)), iid);
+    }
+    pub fn GetIID(self: *const IInterfaceRelated, piid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IInterfaceRelated.VTable, @ptrCast(self.vtable)).GetIID(@as(*const IInterfaceRelated, @ptrCast(self)), piid);
+    }
 };
 
 

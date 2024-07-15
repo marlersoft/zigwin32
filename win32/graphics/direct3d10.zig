@@ -546,7 +546,19 @@ pub const ID3D10DeviceChild = extern union {
             return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, pData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDevice(self: *const ID3D10DeviceChild, ppDevice: ?*?*ID3D10Device) callconv(.Inline) void {
+        return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10DeviceChild, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, pDataSize, pData);
+    }
+    pub fn SetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D10DeviceChild, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, pData);
+    }
 };
 
 pub const D3D10_COMPARISON_FUNC = enum(i32) {
@@ -632,7 +644,10 @@ pub const ID3D10DepthStencilState = extern union {
             return @as(*const ID3D10DepthStencilState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10DepthStencilState, pDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10DepthStencilState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_BLEND = enum(i32) {
@@ -730,7 +745,10 @@ pub const ID3D10BlendState = extern union {
             return @as(*const ID3D10BlendState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10BlendState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10BlendState, pDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10BlendState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10BlendState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_RASTERIZER_DESC = extern struct {
@@ -766,7 +784,10 @@ pub const ID3D10RasterizerState = extern union {
             return @as(*const ID3D10RasterizerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RasterizerState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10RasterizerState, pDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10RasterizerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RasterizerState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_SUBRESOURCE_DATA = extern struct {
@@ -810,7 +831,16 @@ pub const ID3D10Resource = extern union {
             return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const ID3D10Resource, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetType(self: *const ID3D10Resource, rType: ?*D3D10_RESOURCE_DIMENSION) callconv(.Inline) void {
+        return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10Resource, @ptrCast(self)), rType);
+    }
+    pub fn SetEvictionPriority(self: *const ID3D10Resource, EvictionPriority: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).SetEvictionPriority(@as(*const ID3D10Resource, @ptrCast(self)), EvictionPriority);
+    }
+    pub fn GetEvictionPriority(self: *const ID3D10Resource) callconv(.Inline) u32 {
+        return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const ID3D10Resource, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_BUFFER_DESC = extern struct {
@@ -858,7 +888,16 @@ pub const ID3D10Buffer = extern union {
             return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Buffer, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    pub fn Map(self: *const ID3D10Buffer, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Buffer, @ptrCast(self)), MapType, MapFlags, ppData);
+    }
+    pub fn Unmap(self: *const ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Buffer, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const ID3D10Buffer, pDesc: ?*D3D10_BUFFER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Buffer, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEXTURE1D_DESC = extern struct {
@@ -911,7 +950,16 @@ pub const ID3D10Texture1D = extern union {
             return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture1D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    pub fn Map(self: *const ID3D10Texture1D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture1D, @ptrCast(self)), Subresource, MapType, MapFlags, ppData);
+    }
+    pub fn Unmap(self: *const ID3D10Texture1D, Subresource: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture1D, @ptrCast(self)), Subresource);
+    }
+    pub fn GetDesc(self: *const ID3D10Texture1D, pDesc: ?*D3D10_TEXTURE1D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture1D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEXTURE2D_DESC = extern struct {
@@ -971,7 +1019,16 @@ pub const ID3D10Texture2D = extern union {
             return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture2D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    pub fn Map(self: *const ID3D10Texture2D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture2D, @ptrCast(self)), Subresource, MapType, MapFlags, pMappedTex2D);
+    }
+    pub fn Unmap(self: *const ID3D10Texture2D, Subresource: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture2D, @ptrCast(self)), Subresource);
+    }
+    pub fn GetDesc(self: *const ID3D10Texture2D, pDesc: ?*D3D10_TEXTURE2D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture2D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEXTURE3D_DESC = extern struct {
@@ -1031,7 +1088,16 @@ pub const ID3D10Texture3D = extern union {
             return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture3D, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    pub fn Map(self: *const ID3D10Texture3D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture3D, @ptrCast(self)), Subresource, MapType, MapFlags, pMappedTex3D);
+    }
+    pub fn Unmap(self: *const ID3D10Texture3D, Subresource: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture3D, @ptrCast(self)), Subresource);
+    }
+    pub fn GetDesc(self: *const ID3D10Texture3D, pDesc: ?*D3D10_TEXTURE3D_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture3D, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEXTURECUBE_FACE = enum(i32) {
@@ -1069,7 +1135,10 @@ pub const ID3D10View = extern union {
             return @as(*const ID3D10View.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D10View, @ptrCast(self)), ppResource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetResource(self: *const ID3D10View, ppResource: ?*?*ID3D10Resource) callconv(.Inline) void {
+        return @as(*const ID3D10View.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D10View, @ptrCast(self)), ppResource);
+    }
 };
 
 pub const D3D10_BUFFER_SRV = extern struct {
@@ -1162,7 +1231,10 @@ pub const ID3D10ShaderResourceView = extern union {
             return @as(*const ID3D10ShaderResourceView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderResourceView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderResourceView, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10ShaderResourceView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderResourceView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_BUFFER_RTV = extern struct {
@@ -1246,7 +1318,10 @@ pub const ID3D10RenderTargetView = extern union {
             return @as(*const ID3D10RenderTargetView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RenderTargetView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10RenderTargetView, pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10RenderTargetView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RenderTargetView, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEX1D_DSV = extern struct {
@@ -1311,7 +1386,10 @@ pub const ID3D10DepthStencilView = extern union {
             return @as(*const ID3D10DepthStencilView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilView, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10View.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10DepthStencilView, pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10DepthStencilView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilView, @ptrCast(self)), pDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -1326,7 +1404,7 @@ pub const ID3D10VertexShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
 };
 
 // This COM type is Agile, not sure what that means
@@ -1341,7 +1419,7 @@ pub const ID3D10GeometryShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
 };
 
 // This COM type is Agile, not sure what that means
@@ -1356,7 +1434,7 @@ pub const ID3D10PixelShader = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
 };
 
 // This COM type is Agile, not sure what that means
@@ -1371,7 +1449,7 @@ pub const ID3D10InputLayout = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
 };
 
 pub const D3D10_FILTER = enum(i32) {
@@ -1468,7 +1546,10 @@ pub const ID3D10SamplerState = extern union {
             return @as(*const ID3D10SamplerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10SamplerState, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10SamplerState, pDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10SamplerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10SamplerState, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_FORMAT_SUPPORT = enum(i32) {
@@ -1568,7 +1649,19 @@ pub const ID3D10Asynchronous = extern union {
             return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const ID3D10Asynchronous, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    pub fn Begin(self: *const ID3D10Asynchronous) callconv(.Inline) void {
+        return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).Begin(@as(*const ID3D10Asynchronous, @ptrCast(self)));
+    }
+    pub fn End(self: *const ID3D10Asynchronous) callconv(.Inline) void {
+        return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).End(@as(*const ID3D10Asynchronous, @ptrCast(self)));
+    }
+    pub fn GetData(self: *const ID3D10Asynchronous, pData: ?*anyopaque, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).GetData(@as(*const ID3D10Asynchronous, @ptrCast(self)), pData, DataSize, GetDataFlags);
+    }
+    pub fn GetDataSize(self: *const ID3D10Asynchronous) callconv(.Inline) u32 {
+        return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const ID3D10Asynchronous, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_ASYNC_GETDATA_FLAG = enum(i32) {
@@ -1625,7 +1718,10 @@ pub const ID3D10Query = extern union {
             return @as(*const ID3D10Query.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Query, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Asynchronous.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10Query, pDesc: ?*D3D10_QUERY_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Query.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Query, @ptrCast(self)), pDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -1640,7 +1736,7 @@ pub const ID3D10Predicate = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Query.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Query.MethodMixin(@This());
 };
 
 pub const D3D10_QUERY_DATA_TIMESTAMP_DISJOINT = extern struct {
@@ -1747,7 +1843,10 @@ pub const ID3D10Counter = extern union {
             return @as(*const ID3D10Counter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Counter, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Asynchronous.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10Counter, pDesc: ?*D3D10_COUNTER_DESC) callconv(.Inline) void {
+        return @as(*const ID3D10Counter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Counter, @ptrCast(self)), pDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -2673,7 +2772,292 @@ pub const ID3D10Device = extern union {
             return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetTextFilterSize(@as(*const ID3D10Device, @ptrCast(self)), pWidth, pHeight);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn VSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn PSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn PSSetShader(self: *const ID3D10Device, pPixelShader: ?*ID3D10PixelShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pPixelShader);
+    }
+    pub fn PSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn VSSetShader(self: *const ID3D10Device, pVertexShader: ?*ID3D10VertexShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pVertexShader);
+    }
+    pub fn DrawIndexed(self: *const ID3D10Device, IndexCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawIndexed(@as(*const ID3D10Device, @ptrCast(self)), IndexCount, StartIndexLocation, BaseVertexLocation);
+    }
+    pub fn Draw(self: *const ID3D10Device, VertexCount: u32, StartVertexLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID3D10Device, @ptrCast(self)), VertexCount, StartVertexLocation);
+    }
+    pub fn PSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn IASetInputLayout(self: *const ID3D10Device, pInputLayout: ?*ID3D10InputLayout) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetInputLayout(@as(*const ID3D10Device, @ptrCast(self)), pInputLayout);
+    }
+    pub fn IASetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetVertexBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+    }
+    pub fn IASetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*ID3D10Buffer, Format: DXGI_FORMAT, Offset: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetIndexBuffer(@as(*const ID3D10Device, @ptrCast(self)), pIndexBuffer, Format, Offset);
+    }
+    pub fn DrawIndexedInstanced(self: *const ID3D10Device, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawIndexedInstanced(@as(*const ID3D10Device, @ptrCast(self)), IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
+    }
+    pub fn DrawInstanced(self: *const ID3D10Device, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawInstanced(@as(*const ID3D10Device, @ptrCast(self)), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
+    }
+    pub fn GSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn GSSetShader(self: *const ID3D10Device, pShader: ?*ID3D10GeometryShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pShader);
+    }
+    pub fn IASetPrimitiveTopology(self: *const ID3D10Device, Topology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetPrimitiveTopology(@as(*const ID3D10Device, @ptrCast(self)), Topology);
+    }
+    pub fn VSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn VSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn SetPredication(self: *const ID3D10Device, pPredicate: ?*ID3D10Predicate, PredicateValue: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D10Device, @ptrCast(self)), pPredicate, PredicateValue);
+    }
+    pub fn GSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn GSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn OMSetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetRenderTargets(@as(*const ID3D10Device, @ptrCast(self)), NumViews, ppRenderTargetViews, pDepthStencilView);
+    }
+    pub fn OMSetBlendState(self: *const ID3D10Device, pBlendState: ?*ID3D10BlendState, BlendFactor: ?*const f32, SampleMask: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetBlendState(@as(*const ID3D10Device, @ptrCast(self)), pBlendState, BlendFactor, SampleMask);
+    }
+    pub fn OMSetDepthStencilState(self: *const ID3D10Device, pDepthStencilState: ?*ID3D10DepthStencilState, StencilRef: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilState, StencilRef);
+    }
+    pub fn SOSetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SOSetTargets(@as(*const ID3D10Device, @ptrCast(self)), NumBuffers, ppSOTargets, pOffsets);
+    }
+    pub fn DrawAuto(self: *const ID3D10Device) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawAuto(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn RSSetState(self: *const ID3D10Device, pRasterizerState: ?*ID3D10RasterizerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetState(@as(*const ID3D10Device, @ptrCast(self)), pRasterizerState);
+    }
+    pub fn RSSetViewports(self: *const ID3D10Device, NumViewports: u32, pViewports: ?[*]const D3D10_VIEWPORT) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetViewports(@as(*const ID3D10Device, @ptrCast(self)), NumViewports, pViewports);
+    }
+    pub fn RSSetScissorRects(self: *const ID3D10Device, NumRects: u32, pRects: ?[*]const RECT) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetScissorRects(@as(*const ID3D10Device, @ptrCast(self)), NumRects, pRects);
+    }
+    pub fn CopySubresourceRegion(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, pSrcBox: ?*const D3D10_BOX) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CopySubresourceRegion(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox);
+    }
+    pub fn CopyResource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, pSrcResource: ?*ID3D10Resource) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CopyResource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, pSrcResource);
+    }
+    pub fn UpdateSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pDstBox: ?*const D3D10_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).UpdateSubresource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+    }
+    pub fn ClearRenderTargetView(self: *const ID3D10Device, pRenderTargetView: ?*ID3D10RenderTargetView, ColorRGBA: ?*const f32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearRenderTargetView(@as(*const ID3D10Device, @ptrCast(self)), pRenderTargetView, ColorRGBA);
+    }
+    pub fn ClearDepthStencilView(self: *const ID3D10Device, pDepthStencilView: ?*ID3D10DepthStencilView, ClearFlags: u32, Depth: f32, Stencil: u8) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearDepthStencilView(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilView, ClearFlags, Depth, Stencil);
+    }
+    pub fn GenerateMips(self: *const ID3D10Device, pShaderResourceView: ?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GenerateMips(@as(*const ID3D10Device, @ptrCast(self)), pShaderResourceView);
+    }
+    pub fn ResolveSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ResolveSubresource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
+    }
+    pub fn VSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn PSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn PSGetShader(self: *const ID3D10Device, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppPixelShader);
+    }
+    pub fn PSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn VSGetShader(self: *const ID3D10Device, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppVertexShader);
+    }
+    pub fn PSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn IAGetInputLayout(self: *const ID3D10Device, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetInputLayout(@as(*const ID3D10Device, @ptrCast(self)), ppInputLayout);
+    }
+    pub fn IAGetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetVertexBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+    }
+    pub fn IAGetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*?*ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetIndexBuffer(@as(*const ID3D10Device, @ptrCast(self)), pIndexBuffer, Format, Offset);
+    }
+    pub fn GSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
+    }
+    pub fn GSGetShader(self: *const ID3D10Device, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppGeometryShader);
+    }
+    pub fn IAGetPrimitiveTopology(self: *const ID3D10Device, pTopology: ?*D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetPrimitiveTopology(@as(*const ID3D10Device, @ptrCast(self)), pTopology);
+    }
+    pub fn VSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn VSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn GetPredication(self: *const ID3D10Device, ppPredicate: ?*?*ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetPredication(@as(*const ID3D10Device, @ptrCast(self)), ppPredicate, pPredicateValue);
+    }
+    pub fn GSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
+    }
+    pub fn GSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
+    }
+    pub fn OMGetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetRenderTargets(@as(*const ID3D10Device, @ptrCast(self)), NumViews, ppRenderTargetViews, ppDepthStencilView);
+    }
+    pub fn OMGetBlendState(self: *const ID3D10Device, ppBlendState: ?*?*ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetBlendState(@as(*const ID3D10Device, @ptrCast(self)), ppBlendState, BlendFactor, pSampleMask);
+    }
+    pub fn OMGetDepthStencilState(self: *const ID3D10Device, ppDepthStencilState: ?*?*ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), ppDepthStencilState, pStencilRef);
+    }
+    pub fn SOGetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SOGetTargets(@as(*const ID3D10Device, @ptrCast(self)), NumBuffers, ppSOTargets, pOffsets);
+    }
+    pub fn RSGetState(self: *const ID3D10Device, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetState(@as(*const ID3D10Device, @ptrCast(self)), ppRasterizerState);
+    }
+    pub fn RSGetViewports(self: *const ID3D10Device, NumViewports: ?*u32, pViewports: ?[*]D3D10_VIEWPORT) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetViewports(@as(*const ID3D10Device, @ptrCast(self)), NumViewports, pViewports);
+    }
+    pub fn RSGetScissorRects(self: *const ID3D10Device, NumRects: ?*u32, pRects: ?[*]RECT) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetScissorRects(@as(*const ID3D10Device, @ptrCast(self)), NumRects, pRects);
+    }
+    pub fn GetDeviceRemovedReason(self: *const ID3D10Device) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn SetExceptionMode(self: *const ID3D10Device, RaiseFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetExceptionMode(@as(*const ID3D10Device, @ptrCast(self)), RaiseFlags);
+    }
+    pub fn GetExceptionMode(self: *const ID3D10Device) callconv(.Inline) u32 {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetExceptionMode(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn GetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D10Device, @ptrCast(self)), guid, pDataSize, pData);
+    }
+    pub fn SetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D10Device, @ptrCast(self)), guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D10Device, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D10Device, @ptrCast(self)), guid, pData);
+    }
+    pub fn ClearState(self: *const ID3D10Device) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn Flush(self: *const ID3D10Device) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).Flush(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn CreateBuffer(self: *const ID3D10Device, pDesc: ?*const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateBuffer(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppBuffer);
+    }
+    pub fn CreateTexture1D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE1D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D10Texture1D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture1D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture1D);
+    }
+    pub fn CreateTexture2D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE2D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D10Texture2D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture2D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture2D);
+    }
+    pub fn CreateTexture3D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE3D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D10Texture3D) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture3D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture3D);
+    }
+    pub fn CreateShaderResourceView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateShaderResourceView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppSRView);
+    }
+    pub fn CreateRenderTargetView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateRenderTargetView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppRTView);
+    }
+    pub fn CreateDepthStencilView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppDepthStencilView);
+    }
+    pub fn CreateInputLayout(self: *const ID3D10Device, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateInputLayout(@as(*const ID3D10Device, @ptrCast(self)), pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
+    }
+    pub fn CreateVertexShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateVertexShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppVertexShader);
+    }
+    pub fn CreateGeometryShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateGeometryShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppGeometryShader);
+    }
+    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateGeometryShaderWithStreamOutput(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, OutputStreamStride, ppGeometryShader);
+    }
+    pub fn CreatePixelShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreatePixelShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppPixelShader);
+    }
+    pub fn CreateBlendState(self: *const ID3D10Device, pBlendStateDesc: ?*const D3D10_BLEND_DESC, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateBlendState(@as(*const ID3D10Device, @ptrCast(self)), pBlendStateDesc, ppBlendState);
+    }
+    pub fn CreateDepthStencilState(self: *const ID3D10Device, pDepthStencilDesc: ?*const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilDesc, ppDepthStencilState);
+    }
+    pub fn CreateRasterizerState(self: *const ID3D10Device, pRasterizerDesc: ?*const D3D10_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateRasterizerState(@as(*const ID3D10Device, @ptrCast(self)), pRasterizerDesc, ppRasterizerState);
+    }
+    pub fn CreateSamplerState(self: *const ID3D10Device, pSamplerDesc: ?*const D3D10_SAMPLER_DESC, ppSamplerState: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateSamplerState(@as(*const ID3D10Device, @ptrCast(self)), pSamplerDesc, ppSamplerState);
+    }
+    pub fn CreateQuery(self: *const ID3D10Device, pQueryDesc: ?*const D3D10_QUERY_DESC, ppQuery: ?*?*ID3D10Query) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const ID3D10Device, @ptrCast(self)), pQueryDesc, ppQuery);
+    }
+    pub fn CreatePredicate(self: *const ID3D10Device, pPredicateDesc: ?*const D3D10_QUERY_DESC, ppPredicate: ?*?*ID3D10Predicate) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreatePredicate(@as(*const ID3D10Device, @ptrCast(self)), pPredicateDesc, ppPredicate);
+    }
+    pub fn CreateCounter(self: *const ID3D10Device, pCounterDesc: ?*const D3D10_COUNTER_DESC, ppCounter: ?*?*ID3D10Counter) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateCounter(@as(*const ID3D10Device, @ptrCast(self)), pCounterDesc, ppCounter);
+    }
+    pub fn CheckFormatSupport(self: *const ID3D10Device, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckFormatSupport(@as(*const ID3D10Device, @ptrCast(self)), Format, pFormatSupport);
+    }
+    pub fn CheckMultisampleQualityLevels(self: *const ID3D10Device, Format: DXGI_FORMAT, SampleCount: u32, pNumQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckMultisampleQualityLevels(@as(*const ID3D10Device, @ptrCast(self)), Format, SampleCount, pNumQualityLevels);
+    }
+    pub fn CheckCounterInfo(self: *const ID3D10Device, pCounterInfo: ?*D3D10_COUNTER_INFO) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckCounterInfo(@as(*const ID3D10Device, @ptrCast(self)), pCounterInfo);
+    }
+    pub fn CheckCounter(self: *const ID3D10Device, pDesc: ?*const D3D10_COUNTER_DESC, pType: ?*D3D10_COUNTER_TYPE, pActiveCounters: ?*u32, szName: ?[*:0]u8, pNameLength: ?*u32, szUnits: ?[*:0]u8, pUnitsLength: ?*u32, szDescription: ?[*:0]u8, pDescriptionLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckCounter(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
+    }
+    pub fn GetCreationFlags(self: *const ID3D10Device) callconv(.Inline) u32 {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const ID3D10Device, @ptrCast(self)));
+    }
+    pub fn OpenSharedResource(self: *const ID3D10Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OpenSharedResource(@as(*const ID3D10Device, @ptrCast(self)), hResource, ReturnedInterface, ppResource);
+    }
+    pub fn SetTextFilterSize(self: *const ID3D10Device, Width: u32, Height: u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetTextFilterSize(@as(*const ID3D10Device, @ptrCast(self)), Width, Height);
+    }
+    pub fn GetTextFilterSize(self: *const ID3D10Device, pWidth: ?*u32, pHeight: ?*u32) callconv(.Inline) void {
+        return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetTextFilterSize(@as(*const ID3D10Device, @ptrCast(self)), pWidth, pHeight);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -2717,7 +3101,19 @@ pub const ID3D10Multithread = extern union {
             return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID3D10Multithread, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Enter(self: *const ID3D10Multithread) callconv(.Inline) void {
+        return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).Enter(@as(*const ID3D10Multithread, @ptrCast(self)));
+    }
+    pub fn Leave(self: *const ID3D10Multithread) callconv(.Inline) void {
+        return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID3D10Multithread, @ptrCast(self)));
+    }
+    pub fn SetMultithreadProtected(self: *const ID3D10Multithread, bMTProtect: BOOL) callconv(.Inline) BOOL {
+        return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).SetMultithreadProtected(@as(*const ID3D10Multithread, @ptrCast(self)), bMTProtect);
+    }
+    pub fn GetMultithreadProtected(self: *const ID3D10Multithread) callconv(.Inline) BOOL {
+        return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID3D10Multithread, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_CREATE_DEVICE_FLAG = enum(i32) {
@@ -2806,7 +3202,28 @@ pub const ID3D10Debug = extern union {
             return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).Validate(@as(*const ID3D10Debug, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetFeatureMask(self: *const ID3D10Debug, Mask: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D10Debug, @ptrCast(self)), Mask);
+    }
+    pub fn GetFeatureMask(self: *const ID3D10Debug) callconv(.Inline) u32 {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D10Debug, @ptrCast(self)));
+    }
+    pub fn SetPresentPerRenderOpDelay(self: *const ID3D10Debug, Milliseconds: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetPresentPerRenderOpDelay(@as(*const ID3D10Debug, @ptrCast(self)), Milliseconds);
+    }
+    pub fn GetPresentPerRenderOpDelay(self: *const ID3D10Debug) callconv(.Inline) u32 {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetPresentPerRenderOpDelay(@as(*const ID3D10Debug, @ptrCast(self)));
+    }
+    pub fn SetSwapChain(self: *const ID3D10Debug, pSwapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ID3D10Debug, @ptrCast(self)), pSwapChain);
+    }
+    pub fn GetSwapChain(self: *const ID3D10Debug, ppSwapChain: ?*?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetSwapChain(@as(*const ID3D10Debug, @ptrCast(self)), ppSwapChain);
+    }
+    pub fn Validate(self: *const ID3D10Debug) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).Validate(@as(*const ID3D10Debug, @ptrCast(self)));
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -2836,7 +3253,13 @@ pub const ID3D10SwitchToRef = extern union {
             return @as(*const ID3D10SwitchToRef.VTable, @ptrCast(self.vtable)).GetUseRef(@as(*const ID3D10SwitchToRef, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetUseRef(self: *const ID3D10SwitchToRef, UseRef: BOOL) callconv(.Inline) BOOL {
+        return @as(*const ID3D10SwitchToRef.VTable, @ptrCast(self.vtable)).SetUseRef(@as(*const ID3D10SwitchToRef, @ptrCast(self)), UseRef);
+    }
+    pub fn GetUseRef(self: *const ID3D10SwitchToRef) callconv(.Inline) BOOL {
+        return @as(*const ID3D10SwitchToRef.VTable, @ptrCast(self.vtable)).GetUseRef(@as(*const ID3D10SwitchToRef, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_MESSAGE_CATEGORY = enum(i32) {
@@ -4204,7 +4627,112 @@ pub const ID3D10InfoQueue = extern union {
             return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D10InfoQueue, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMessageCountLimit(self: *const ID3D10InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)), MessageCountLimit);
+    }
+    pub fn ClearStoredMessages(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetMessage(self: *const ID3D10InfoQueue, MessageIndex: u64, pMessage: ?*D3D10_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), MessageIndex, pMessage, pMessageByteLength);
+    }
+    pub fn GetNumMessagesAllowedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumMessagesDeniedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumStoredMessages(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumStoredMessagesAllowedByRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddStorageFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn GetStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
+    }
+    pub fn ClearStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushEmptyStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushCopyOfStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn PopStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetStorageFilterStackSize(self: *const ID3D10InfoQueue) callconv(.Inline) u32 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddRetrievalFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn GetRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
+    }
+    pub fn ClearRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushEmptyRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushCopyOfRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn PushRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
+    }
+    pub fn PopRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn GetRetrievalFilterStackSize(self: *const ID3D10InfoQueue) callconv(.Inline) u32 {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
+    pub fn AddMessage(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, Severity: D3D10_MESSAGE_SEVERITY, ID: D3D10_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category, Severity, ID, pDescription);
+    }
+    pub fn AddApplicationMessage(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity, pDescription);
+    }
+    pub fn SetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category, bEnable);
+    }
+    pub fn SetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity, bEnable);
+    }
+    pub fn SetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const ID3D10InfoQueue, @ptrCast(self)), ID, bEnable);
+    }
+    pub fn GetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category);
+    }
+    pub fn GetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity);
+    }
+    pub fn GetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID) callconv(.Inline) BOOL {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const ID3D10InfoQueue, @ptrCast(self)), ID);
+    }
+    pub fn SetMuteDebugOutput(self: *const ID3D10InfoQueue, bMute: BOOL) callconv(.Inline) void {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const ID3D10InfoQueue, @ptrCast(self)), bMute);
+    }
+    pub fn GetMuteDebugOutput(self: *const ID3D10InfoQueue) callconv(.Inline) BOOL {
+        return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D10InfoQueue, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_DRIVER_TYPE = enum(i32) {
@@ -4339,7 +4867,18 @@ pub const ID3D10ShaderReflectionType = extern union {
             return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), pDesc);
+    }
+    pub fn GetMemberTypeByIndex(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+        return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Index);
+    }
+    pub fn GetMemberTypeByName(self: *const ID3D10ShaderReflectionType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+        return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Name);
+    }
+    pub fn GetMemberTypeName(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.Inline) ?PSTR {
+        return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Index);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -4366,7 +4905,12 @@ pub const ID3D10ShaderReflectionVariable = extern union {
             return @as(*const ID3D10ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10ShaderReflectionVariable, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionVariable, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionVariable, @ptrCast(self)), pDesc);
+    }
+    pub fn GetType(self: *const ID3D10ShaderReflectionVariable) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+        return @as(*const ID3D10ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10ShaderReflectionVariable, @ptrCast(self)));
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -4402,7 +4946,15 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern union {
             return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionConstantBuffer, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), pDesc);
+    }
+    pub fn GetVariableByIndex(self: *const ID3D10ShaderReflectionConstantBuffer, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+        return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), Index);
+    }
+    pub fn GetVariableByName(self: *const ID3D10ShaderReflectionConstantBuffer, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+        return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -4468,7 +5020,25 @@ pub const ID3D10ShaderReflection = extern union {
             return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderReflection, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), pDesc);
+    }
+    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10ShaderReflection, @ptrCast(self)), Index);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10ShaderReflection, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ResourceIndex, pDesc);
+    }
+    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
+    }
 };
 
 pub const D3D10_DEVICE_STATE_TYPES = enum(i32) {
@@ -4590,7 +5160,19 @@ pub const ID3D10StateBlock = extern union {
             return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10StateBlock, @ptrCast(self)), ppDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Capture(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).Capture(@as(*const ID3D10StateBlock, @ptrCast(self)));
+    }
+    pub fn Apply(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).Apply(@as(*const ID3D10StateBlock, @ptrCast(self)));
+    }
+    pub fn ReleaseAllDeviceObjects(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).ReleaseAllDeviceObjects(@as(*const ID3D10StateBlock, @ptrCast(self)));
+    }
+    pub fn GetDevice(self: *const ID3D10StateBlock, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10StateBlock, @ptrCast(self)), ppDevice);
+    }
 };
 
 pub const D3D10_EFFECT_TYPE_DESC = extern struct {
@@ -4670,7 +5252,27 @@ pub const ID3D10EffectType = extern union {
             return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberSemantic(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsValid(self: *const ID3D10EffectType) callconv(.Inline) BOOL {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectType, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const ID3D10EffectType, pDesc: ?*D3D10_EFFECT_TYPE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectType, @ptrCast(self)), pDesc);
+    }
+    pub fn GetMemberTypeByIndex(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?*ID3D10EffectType {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
+    }
+    pub fn GetMemberTypeByName(self: *const ID3D10EffectType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D10EffectType, @ptrCast(self)), Name);
+    }
+    pub fn GetMemberTypeBySemantic(self: *const ID3D10EffectType, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeBySemantic(@as(*const ID3D10EffectType, @ptrCast(self)), Semantic);
+    }
+    pub fn GetMemberName(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?PSTR {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberName(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
+    }
+    pub fn GetMemberSemantic(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?PSTR {
+        return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberSemantic(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
+    }
 };
 
 pub const D3D10_EFFECT_VARIABLE_DESC = extern struct {
@@ -4881,7 +5483,81 @@ pub const ID3D10EffectVariable = extern union {
             return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetRawValue(@as(*const ID3D10EffectVariable, @ptrCast(self)), pData, Offset, ByteCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsValid(self: *const ID3D10EffectVariable) callconv(.Inline) BOOL {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn GetType(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectType {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const ID3D10EffectVariable, pDesc: ?*D3D10_EFFECT_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectVariable, @ptrCast(self)), pDesc);
+    }
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
+    }
+    pub fn GetAnnotationByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectVariable, @ptrCast(self)), Name);
+    }
+    pub fn GetMemberByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberByIndex(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
+    }
+    pub fn GetMemberByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberByName(@as(*const ID3D10EffectVariable, @ptrCast(self)), Name);
+    }
+    pub fn GetMemberBySemantic(self: *const ID3D10EffectVariable, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberBySemantic(@as(*const ID3D10EffectVariable, @ptrCast(self)), Semantic);
+    }
+    pub fn GetElement(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetElement(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
+    }
+    pub fn GetParentConstantBuffer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetParentConstantBuffer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsScalar(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectScalarVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsScalar(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsVector(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectVectorVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsVector(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsMatrix(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectMatrixVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsMatrix(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsString(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectStringVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsString(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsShaderResource(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectShaderResourceVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsShaderResource(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsRenderTargetView(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectRenderTargetViewVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsRenderTargetView(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsDepthStencilView(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectDepthStencilViewVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsDepthStencilView(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsConstantBuffer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsConstantBuffer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsShader(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectShaderVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsShader(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsBlend(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectBlendVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsBlend(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsDepthStencil(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectDepthStencilVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsDepthStencil(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsRasterizer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectRasterizerVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsRasterizer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn AsSampler(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectSamplerVariable {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsSampler(@as(*const ID3D10EffectVariable, @ptrCast(self)));
+    }
+    pub fn SetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).SetRawValue(@as(*const ID3D10EffectVariable, @ptrCast(self)), pData, Offset, ByteCount);
+    }
+    pub fn GetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetRawValue(@as(*const ID3D10EffectVariable, @ptrCast(self)), pData, Offset, ByteCount);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5004,7 +5680,43 @@ pub const ID3D10EffectScalarVariable = extern union {
             return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetBoolArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetFloat(self: *const ID3D10EffectScalarVariable, Value: f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetFloat(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
+    }
+    pub fn GetFloat(self: *const ID3D10EffectScalarVariable, pValue: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetFloat(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
+    }
+    pub fn SetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetFloatArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetFloatArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn SetInt(self: *const ID3D10EffectScalarVariable, Value: i32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetInt(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
+    }
+    pub fn GetInt(self: *const ID3D10EffectScalarVariable, pValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetInt(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
+    }
+    pub fn SetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetIntArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetIntArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn SetBool(self: *const ID3D10EffectScalarVariable, Value: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetBool(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
+    }
+    pub fn GetBool(self: *const ID3D10EffectScalarVariable, pValue: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetBool(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
+    }
+    pub fn SetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetBoolArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetBoolArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5127,7 +5839,43 @@ pub const ID3D10EffectVectorVariable = extern union {
             return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetFloatVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetBoolVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn SetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetIntVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn SetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetFloatVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn GetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetBoolVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn GetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetIntVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn GetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetFloatVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
+    }
+    pub fn SetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetBoolVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn SetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetIntVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn SetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetFloatVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetBoolVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetIntVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetFloatVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5214,7 +5962,31 @@ pub const ID3D10EffectMatrixVariable = extern union {
             return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixTransposeArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
+    }
+    pub fn GetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrix(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
+    }
+    pub fn SetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn SetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixTranspose(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
+    }
+    pub fn GetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixTranspose(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
+    }
+    pub fn SetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixTransposeArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
+    }
+    pub fn GetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixTransposeArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5247,7 +6019,13 @@ pub const ID3D10EffectStringVariable = extern union {
             return @as(*const ID3D10EffectStringVariable.VTable, @ptrCast(self.vtable)).GetStringArray(@as(*const ID3D10EffectStringVariable, @ptrCast(self)), ppStrings, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectStringVariable.VTable, @ptrCast(self.vtable)).GetString(@as(*const ID3D10EffectStringVariable, @ptrCast(self)), ppString);
+    }
+    pub fn GetStringArray(self: *const ID3D10EffectStringVariable, ppStrings: [*]?PSTR, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectStringVariable.VTable, @ptrCast(self.vtable)).GetStringArray(@as(*const ID3D10EffectStringVariable, @ptrCast(self)), ppStrings, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5298,7 +6076,19 @@ pub const ID3D10EffectShaderResourceVariable = extern union {
             return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).GetResourceArray(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResources, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetResource(self: *const ID3D10EffectShaderResourceVariable, pResource: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).SetResource(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), pResource);
+    }
+    pub fn GetResource(self: *const ID3D10EffectShaderResourceVariable, ppResource: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResource);
+    }
+    pub fn SetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).SetResourceArray(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
+    pub fn GetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).GetResourceArray(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5349,7 +6139,19 @@ pub const ID3D10EffectRenderTargetViewVariable = extern union {
             return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).GetRenderTargetArray(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResources, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, pResource: ?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).SetRenderTarget(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), pResource);
+    }
+    pub fn GetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, ppResource: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).GetRenderTarget(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResource);
+    }
+    pub fn SetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).SetRenderTargetArray(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
+    pub fn GetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).GetRenderTargetArray(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5400,7 +6202,19 @@ pub const ID3D10EffectDepthStencilViewVariable = extern union {
             return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).GetDepthStencilArray(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResources, Offset, Count);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, pResource: ?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).SetDepthStencil(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), pResource);
+    }
+    pub fn GetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, ppResource: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).GetDepthStencil(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResource);
+    }
+    pub fn SetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).SetDepthStencilArray(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
+    pub fn GetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).GetDepthStencilArray(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResources, Offset, Count);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5447,7 +6261,19 @@ pub const ID3D10EffectConstantBuffer = extern union {
             return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).GetTextureBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), ppTextureBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn SetConstantBuffer(self: *const ID3D10EffectConstantBuffer, pConstantBuffer: ?*ID3D10Buffer) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).SetConstantBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), pConstantBuffer);
+    }
+    pub fn GetConstantBuffer(self: *const ID3D10EffectConstantBuffer, ppConstantBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).GetConstantBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), ppConstantBuffer);
+    }
+    pub fn SetTextureBuffer(self: *const ID3D10EffectConstantBuffer, pTextureBuffer: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).SetTextureBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), pTextureBuffer);
+    }
+    pub fn GetTextureBuffer(self: *const ID3D10EffectConstantBuffer, ppTextureBuffer: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).GetTextureBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), ppTextureBuffer);
+    }
 };
 
 pub const D3D10_EFFECT_SHADER_DESC = extern struct {
@@ -5528,7 +6354,25 @@ pub const ID3D10EffectShaderVariable = extern union {
             return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetOutputSignatureElementDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, Element, pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetShaderDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, pDesc: ?*D3D10_EFFECT_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetShaderDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, pDesc);
+    }
+    pub fn GetVertexShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppVS: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetVertexShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppVS);
+    }
+    pub fn GetGeometryShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppGS: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetGeometryShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppGS);
+    }
+    pub fn GetPixelShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppPS: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetPixelShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppPS);
+    }
+    pub fn GetInputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetInputSignatureElementDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, Element, pDesc);
+    }
+    pub fn GetOutputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetOutputSignatureElementDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, Element, pDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5561,7 +6405,13 @@ pub const ID3D10EffectBlendVariable = extern union {
             return @as(*const ID3D10EffectBlendVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectBlendVariable, @ptrCast(self)), Index, pBlendDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetBlendState(self: *const ID3D10EffectBlendVariable, Index: u32, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectBlendVariable.VTable, @ptrCast(self.vtable)).GetBlendState(@as(*const ID3D10EffectBlendVariable, @ptrCast(self)), Index, ppBlendState);
+    }
+    pub fn GetBackingStore(self: *const ID3D10EffectBlendVariable, Index: u32, pBlendDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectBlendVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectBlendVariable, @ptrCast(self)), Index, pBlendDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5594,7 +6444,13 @@ pub const ID3D10EffectDepthStencilVariable = extern union {
             return @as(*const ID3D10EffectDepthStencilVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectDepthStencilVariable, @ptrCast(self)), Index, pDepthStencilDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetDepthStencilState(self: *const ID3D10EffectDepthStencilVariable, Index: u32, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilVariable.VTable, @ptrCast(self.vtable)).GetDepthStencilState(@as(*const ID3D10EffectDepthStencilVariable, @ptrCast(self)), Index, ppDepthStencilState);
+    }
+    pub fn GetBackingStore(self: *const ID3D10EffectDepthStencilVariable, Index: u32, pDepthStencilDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectDepthStencilVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectDepthStencilVariable, @ptrCast(self)), Index, pDepthStencilDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5627,7 +6483,13 @@ pub const ID3D10EffectRasterizerVariable = extern union {
             return @as(*const ID3D10EffectRasterizerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectRasterizerVariable, @ptrCast(self)), Index, pRasterizerDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetRasterizerState(self: *const ID3D10EffectRasterizerVariable, Index: u32, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRasterizerVariable.VTable, @ptrCast(self.vtable)).GetRasterizerState(@as(*const ID3D10EffectRasterizerVariable, @ptrCast(self)), Index, ppRasterizerState);
+    }
+    pub fn GetBackingStore(self: *const ID3D10EffectRasterizerVariable, Index: u32, pRasterizerDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectRasterizerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectRasterizerVariable, @ptrCast(self)), Index, pRasterizerDesc);
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5660,7 +6522,13 @@ pub const ID3D10EffectSamplerVariable = extern union {
             return @as(*const ID3D10EffectSamplerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectSamplerVariable, @ptrCast(self)), Index, pSamplerDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
+    pub fn GetSampler(self: *const ID3D10EffectSamplerVariable, Index: u32, ppSampler: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectSamplerVariable.VTable, @ptrCast(self.vtable)).GetSampler(@as(*const ID3D10EffectSamplerVariable, @ptrCast(self)), Index, ppSampler);
+    }
+    pub fn GetBackingStore(self: *const ID3D10EffectSamplerVariable, Index: u32, pSamplerDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectSamplerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectSamplerVariable, @ptrCast(self)), Index, pSamplerDesc);
+    }
 };
 
 pub const D3D10_PASS_DESC = extern struct {
@@ -5758,7 +6626,33 @@ pub const ID3D10EffectPass = extern union {
             return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectPass, @ptrCast(self)), pStateBlockMask);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsValid(self: *const ID3D10EffectPass) callconv(.Inline) BOOL {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectPass, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
+    }
+    pub fn GetVertexShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetVertexShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
+    }
+    pub fn GetGeometryShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetGeometryShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
+    }
+    pub fn GetPixelShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetPixelShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
+    }
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectPass, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectPass, @ptrCast(self)), Index);
+    }
+    pub fn GetAnnotationByName(self: *const ID3D10EffectPass, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectPass, @ptrCast(self)), Name);
+    }
+    pub fn Apply(self: *const ID3D10EffectPass, Flags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).Apply(@as(*const ID3D10EffectPass, @ptrCast(self)), Flags);
+    }
+    pub fn ComputeStateBlockMask(self: *const ID3D10EffectPass, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectPass, @ptrCast(self)), pStateBlockMask);
+    }
 };
 
 pub const D3D10_TECHNIQUE_DESC = extern struct {
@@ -5831,7 +6725,27 @@ pub const ID3D10EffectTechnique = extern union {
             return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectTechnique, @ptrCast(self)), pStateBlockMask);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsValid(self: *const ID3D10EffectTechnique) callconv(.Inline) BOOL {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectTechnique, @ptrCast(self)));
+    }
+    pub fn GetDesc(self: *const ID3D10EffectTechnique, pDesc: ?*D3D10_TECHNIQUE_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectTechnique, @ptrCast(self)), pDesc);
+    }
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Index);
+    }
+    pub fn GetAnnotationByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Name);
+    }
+    pub fn GetPassByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.Inline) ?*ID3D10EffectPass {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetPassByIndex(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Index);
+    }
+    pub fn GetPassByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectPass {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetPassByName(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Name);
+    }
+    pub fn ComputeStateBlockMask(self: *const ID3D10EffectTechnique, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectTechnique, @ptrCast(self)), pStateBlockMask);
+    }
 };
 
 pub const D3D10_EFFECT_DESC = extern struct {
@@ -5955,7 +6869,46 @@ pub const ID3D10Effect = extern union {
             return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsOptimized(@as(*const ID3D10Effect, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsValid(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10Effect, @ptrCast(self)));
+    }
+    pub fn IsPool(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsPool(@as(*const ID3D10Effect, @ptrCast(self)));
+    }
+    pub fn GetDevice(self: *const ID3D10Effect, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10Effect, @ptrCast(self)), ppDevice);
+    }
+    pub fn GetDesc(self: *const ID3D10Effect, pDesc: ?*D3D10_EFFECT_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Effect, @ptrCast(self)), pDesc);
+    }
+    pub fn GetConstantBufferByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
+    }
+    pub fn GetVariableByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
+    }
+    pub fn GetVariableByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
+    }
+    pub fn GetVariableBySemantic(self: *const ID3D10Effect, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableBySemantic(@as(*const ID3D10Effect, @ptrCast(self)), Semantic);
+    }
+    pub fn GetTechniqueByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectTechnique {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetTechniqueByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
+    }
+    pub fn GetTechniqueByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectTechnique {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetTechniqueByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
+    }
+    pub fn Optimize(self: *const ID3D10Effect) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).Optimize(@as(*const ID3D10Effect, @ptrCast(self)));
+    }
+    pub fn IsOptimized(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+        return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsOptimized(@as(*const ID3D10Effect, @ptrCast(self)));
+    }
 };
 
 // This COM type is Agile, not sure what that means
@@ -5977,7 +6930,10 @@ pub const ID3D10EffectPool = extern union {
             return @as(*const ID3D10EffectPool.VTable, @ptrCast(self.vtable)).AsEffect(@as(*const ID3D10EffectPool, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AsEffect(self: *const ID3D10EffectPool) callconv(.Inline) ?*ID3D10Effect {
+        return @as(*const ID3D10EffectPool.VTable, @ptrCast(self.vtable)).AsEffect(@as(*const ID3D10EffectPool, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_FEATURE_LEVEL1 = enum(i32) {
@@ -6030,7 +6986,10 @@ pub const ID3D10BlendState1 = extern union {
             return @as(*const ID3D10BlendState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10BlendState1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10BlendState.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D10BlendState1, pDesc: ?*D3D10_BLEND_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D10BlendState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10BlendState1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_TEXCUBE_ARRAY_SRV1 = extern struct {
@@ -6077,7 +7036,10 @@ pub const ID3D10ShaderResourceView1 = extern union {
             return @as(*const ID3D10ShaderResourceView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10ShaderResourceView1, @ptrCast(self)), pDesc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10ShaderResourceView.MethodMixin(@This());
+    pub fn GetDesc1(self: *const ID3D10ShaderResourceView1, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1) callconv(.Inline) void {
+        return @as(*const ID3D10ShaderResourceView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10ShaderResourceView1, @ptrCast(self)), pDesc);
+    }
 };
 
 pub const D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS = enum(i32) {
@@ -6125,7 +7087,16 @@ pub const ID3D10Device1 = extern union {
             return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).GetFeatureLevel(@as(*const ID3D10Device1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ID3D10Device.MethodMixin(@This());
+    pub fn CreateShaderResourceView1(self: *const ID3D10Device1, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).CreateShaderResourceView1(@as(*const ID3D10Device1, @ptrCast(self)), pResource, pDesc, ppSRView);
+    }
+    pub fn CreateBlendState1(self: *const ID3D10Device1, pBlendStateDesc: ?*const D3D10_BLEND_DESC1, ppBlendState: ?*?*ID3D10BlendState1) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).CreateBlendState1(@as(*const ID3D10Device1, @ptrCast(self)), pBlendStateDesc, ppBlendState);
+    }
+    pub fn GetFeatureLevel(self: *const ID3D10Device1) callconv(.Inline) D3D10_FEATURE_LEVEL1 {
+        return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).GetFeatureLevel(@as(*const ID3D10Device1, @ptrCast(self)));
+    }
 };
 
 pub const D3D10_SHADER_DEBUG_REGTYPE = enum(i32) {
@@ -6439,7 +7410,52 @@ pub const ID3D10ShaderReflection1 = extern union {
             return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pbSampleFrequency);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDesc(self: *const ID3D10ShaderReflection1, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pDesc);
+    }
+    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection1, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Index);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection1, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ResourceIndex, pDesc);
+    }
+    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ParameterIndex, pDesc);
+    }
+    pub fn GetVariableByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name);
+    }
+    pub fn GetResourceBindingDescByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name, pDesc);
+    }
+    pub fn GetMovInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetMovInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
+    }
+    pub fn GetMovcInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetMovcInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
+    }
+    pub fn GetConversionInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConversionInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
+    }
+    pub fn GetBitwiseInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetBitwiseInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
+    }
+    pub fn GetGSInputPrimitive(self: *const ID3D10ShaderReflection1, pPrim: ?*D3D_PRIMITIVE) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetGSInputPrimitive(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pPrim);
+    }
+    pub fn IsLevel9Shader(self: *const ID3D10ShaderReflection1, pbLevel9Shader: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).IsLevel9Shader(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pbLevel9Shader);
+    }
+    pub fn IsSampleFrequencyShader(self: *const ID3D10ShaderReflection1, pbSampleFrequency: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pbSampleFrequency);
+    }
 };
 
 pub const PFN_D3D10_CREATE_DEVICE1 = *const fn(

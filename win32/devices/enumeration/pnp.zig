@@ -179,7 +179,22 @@ pub const IUPnPDeviceFinder = extern union {
             return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByUDN(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrUDN, pDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn FindByType(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, pDevices: ?*?*IUPnPDevices) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByType(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, pDevices);
+    }
+    pub fn CreateAsyncFind(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, punkDeviceFinderCallback: ?*IUnknown, plFindData: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CreateAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
+    }
+    pub fn StartAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).StartAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
+    }
+    pub fn CancelAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CancelAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
+    }
+    pub fn FindByUDN(self: *const IUPnPDeviceFinder, bstrUDN: ?BSTR, pDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByUDN(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrUDN, pDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -210,7 +225,13 @@ pub const IUPnPAddressFamilyControl = extern union {
             return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).GetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), pdwFlags);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAddressFamily(self: *const IUPnPAddressFamilyControl, dwFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), dwFlags);
+    }
+    pub fn GetAddressFamily(self: *const IUPnPAddressFamilyControl, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).GetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), pdwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -233,7 +254,10 @@ pub const IUPnPHttpHeaderControl = extern union {
             return @as(*const IUPnPHttpHeaderControl.VTable, @ptrCast(self.vtable)).AddRequestHeaders(@as(*const IUPnPHttpHeaderControl, @ptrCast(self)), bstrHttpHeaders);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddRequestHeaders(self: *const IUPnPHttpHeaderControl, bstrHttpHeaders: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPHttpHeaderControl.VTable, @ptrCast(self.vtable)).AddRequestHeaders(@as(*const IUPnPHttpHeaderControl, @ptrCast(self)), bstrHttpHeaders);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -274,7 +298,16 @@ pub const IUPnPDeviceFinderCallback = extern union {
             return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeviceAdded(self: *const IUPnPDeviceFinderCallback, lFindData: i32, pDevice: ?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceAdded(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, pDevice);
+    }
+    pub fn DeviceRemoved(self: *const IUPnPDeviceFinderCallback, lFindData: i32, bstrUDN: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceRemoved(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, bstrUDN);
+    }
+    pub fn SearchComplete(self: *const IUPnPDeviceFinderCallback, lFindData: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -316,7 +349,16 @@ pub const IUPnPServices = extern union {
             return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPServices, @ptrCast(self)), bstrServiceId, ppService);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IUPnPServices, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPServices, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IUPnPServices, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPServices, @ptrCast(self)), ppunk);
+    }
+    pub fn get_Item(self: *const IUPnPServices, bstrServiceId: ?BSTR, ppService: ?*?*IUPnPService) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPServices, @ptrCast(self)), bstrServiceId, ppService);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -386,7 +428,25 @@ pub const IUPnPService = extern union {
             return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_LastTransportStatus(@as(*const IUPnPService, @ptrCast(self)), plValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn QueryStateVariable(self: *const IUPnPService, bstrVariableName: ?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).QueryStateVariable(@as(*const IUPnPService, @ptrCast(self)), bstrVariableName, pValue);
+    }
+    pub fn InvokeAction(self: *const IUPnPService, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).InvokeAction(@as(*const IUPnPService, @ptrCast(self)), bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
+    }
+    pub fn get_ServiceTypeIdentifier(self: *const IUPnPService, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_ServiceTypeIdentifier(@as(*const IUPnPService, @ptrCast(self)), pVal);
+    }
+    pub fn AddCallback(self: *const IUPnPService, pUnkCallback: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).AddCallback(@as(*const IUPnPService, @ptrCast(self)), pUnkCallback);
+    }
+    pub fn get_Id(self: *const IUPnPService, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IUPnPService, @ptrCast(self)), pbstrId);
+    }
+    pub fn get_LastTransportStatus(self: *const IUPnPService, plValue: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_LastTransportStatus(@as(*const IUPnPService, @ptrCast(self)), plValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -409,7 +469,10 @@ pub const IUPnPAsyncResult = extern union {
             return @as(*const IUPnPAsyncResult.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IUPnPAsyncResult, @ptrCast(self)), ullRequestID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AsyncOperationComplete(self: *const IUPnPAsyncResult, ullRequestID: u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPAsyncResult.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IUPnPAsyncResult, @ptrCast(self)), ullRequestID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -508,7 +571,34 @@ pub const IUPnPServiceAsync = extern union {
             return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).CancelAsyncOperation(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn BeginInvokeAction(self: *const IUPnPServiceAsync, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
+    }
+    pub fn EndInvokeAction(self: *const IUPnPServiceAsync, ullRequestID: u64, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pvOutActionArgs, pvRetVal);
+    }
+    pub fn BeginQueryStateVariable(self: *const IUPnPServiceAsync, bstrVariableName: ?BSTR, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrVariableName, pAsyncResult, pullRequestID);
+    }
+    pub fn EndQueryStateVariable(self: *const IUPnPServiceAsync, ullRequestID: u64, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pValue);
+    }
+    pub fn BeginSubscribeToEvents(self: *const IUPnPServiceAsync, pUnkCallback: ?*IUnknown, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), pUnkCallback, pAsyncResult, pullRequestID);
+    }
+    pub fn EndSubscribeToEvents(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
+    }
+    pub fn BeginSCPDDownload(self: *const IUPnPServiceAsync, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), pAsyncResult, pullRequestID);
+    }
+    pub fn EndSCPDDownload(self: *const IUPnPServiceAsync, ullRequestID: u64, pbstrSCPDDoc: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pbstrSCPDDoc);
+    }
+    pub fn CancelAsyncOperation(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).CancelAsyncOperation(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -541,7 +631,13 @@ pub const IUPnPServiceCallback = extern union {
             return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).ServiceInstanceDied(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn StateVariableChanged(self: *const IUPnPServiceCallback, pus: ?*IUPnPService, pcwszStateVarName: ?[*:0]const u16, vaValue: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).StateVariableChanged(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus, pcwszStateVarName, vaValue);
+    }
+    pub fn ServiceInstanceDied(self: *const IUPnPServiceCallback, pus: ?*IUPnPService) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).ServiceInstanceDied(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -564,7 +660,10 @@ pub const IUPnPServiceEnumProperty = extern union {
             return @as(*const IUPnPServiceEnumProperty.VTable, @ptrCast(self.vtable)).SetServiceEnumProperty(@as(*const IUPnPServiceEnumProperty, @ptrCast(self)), dwMask);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetServiceEnumProperty(self: *const IUPnPServiceEnumProperty, dwMask: u32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceEnumProperty.VTable, @ptrCast(self.vtable)).SetServiceEnumProperty(@as(*const IUPnPServiceEnumProperty, @ptrCast(self)), dwMask);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -595,7 +694,13 @@ pub const IUPnPServiceDocumentAccess = extern union {
             return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDoc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDocumentURL(self: *const IUPnPServiceDocumentAccess, pbstrDocUrl: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDocUrl);
+    }
+    pub fn GetDocument(self: *const IUPnPServiceDocumentAccess, pbstrDoc: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDoc);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -637,7 +742,16 @@ pub const IUPnPDevices = extern union {
             return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPDevices, @ptrCast(self)), bstrUDN, ppDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Count(self: *const IUPnPDevices, plCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPDevices, @ptrCast(self)), plCount);
+    }
+    pub fn get__NewEnum(self: *const IUPnPDevices, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPDevices, @ptrCast(self)), ppunk);
+    }
+    pub fn get_Item(self: *const IUPnPDevices, bstrUDN: ?BSTR, ppDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPDevices, @ptrCast(self)), bstrUDN, ppDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -826,7 +940,64 @@ pub const IUPnPDevice = extern union {
             return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUPnPDevice, @ptrCast(self)), ppusServices);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_IsRootDevice(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_IsRootDevice(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
+    }
+    pub fn get_RootDevice(self: *const IUPnPDevice, ppudRootDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_RootDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudRootDevice);
+    }
+    pub fn get_ParentDevice(self: *const IUPnPDevice, ppudDeviceParent: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ParentDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudDeviceParent);
+    }
+    pub fn get_HasChildren(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_HasChildren(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
+    }
+    pub fn get_Children(self: *const IUPnPDevice, ppudChildren: ?*?*IUPnPDevices) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Children(@as(*const IUPnPDevice, @ptrCast(self)), ppudChildren);
+    }
+    pub fn get_UniqueDeviceName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UniqueDeviceName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_FriendlyName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_Type(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_PresentationURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_PresentationURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_ManufacturerName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_ManufacturerURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_ModelName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_ModelNumber(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_Description(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_ModelURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_UPC(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UPC(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn get_SerialNumber(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+    }
+    pub fn IconURL(self: *const IUPnPDevice, bstrEncodingFormat: ?BSTR, lSizeX: i32, lSizeY: i32, lBitDepth: i32, pbstrIconURL: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).IconURL(@as(*const IUPnPDevice, @ptrCast(self)), bstrEncodingFormat, lSizeX, lSizeY, lBitDepth, pbstrIconURL);
+    }
+    pub fn get_Services(self: *const IUPnPDevice, ppusServices: ?*?*IUPnPServices) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUPnPDevice, @ptrCast(self)), ppusServices);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -849,7 +1020,10 @@ pub const IUPnPDeviceDocumentAccess = extern union {
             return @as(*const IUPnPDeviceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPDeviceDocumentAccess, @ptrCast(self)), pbstrDocument);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDocumentURL(self: *const IUPnPDeviceDocumentAccess, pbstrDocument: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPDeviceDocumentAccess, @ptrCast(self)), pbstrDocument);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -872,7 +1046,10 @@ pub const IUPnPDeviceDocumentAccessEx = extern union {
             return @as(*const IUPnPDeviceDocumentAccessEx.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPDeviceDocumentAccessEx, @ptrCast(self)), pbstrDocument);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDocument(self: *const IUPnPDeviceDocumentAccessEx, pbstrDocument: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceDocumentAccessEx.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPDeviceDocumentAccessEx, @ptrCast(self)), pbstrDocument);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -946,7 +1123,28 @@ pub const IUPnPDescriptionDocument = extern union {
             return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).DeviceByUDN(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUDN, ppudDevice);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ReadyState(self: *const IUPnPDescriptionDocument, plReadyState: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_ReadyState(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), plReadyState);
+    }
+    pub fn Load(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Load(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl);
+    }
+    pub fn LoadAsync(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR, punkCallback: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).LoadAsync(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl, punkCallback);
+    }
+    pub fn get_LoadResult(self: *const IUPnPDescriptionDocument, phrError: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_LoadResult(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), phrError);
+    }
+    pub fn Abort(self: *const IUPnPDescriptionDocument) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Abort(@as(*const IUPnPDescriptionDocument, @ptrCast(self)));
+    }
+    pub fn RootDevice(self: *const IUPnPDescriptionDocument, ppudRootDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).RootDevice(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), ppudRootDevice);
+    }
+    pub fn DeviceByUDN(self: *const IUPnPDescriptionDocument, bstrUDN: ?BSTR, ppudDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).DeviceByUDN(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUDN, ppudDevice);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -971,7 +1169,10 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern union {
             return @as(*const IUPnPDeviceFinderAddCallbackWithInterface.VTable, @ptrCast(self.vtable)).DeviceAddedWithInterface(@as(*const IUPnPDeviceFinderAddCallbackWithInterface, @ptrCast(self)), lFindData, pDevice, pguidInterface);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DeviceAddedWithInterface(self: *const IUPnPDeviceFinderAddCallbackWithInterface, lFindData: i32, pDevice: ?*IUPnPDevice, pguidInterface: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceFinderAddCallbackWithInterface.VTable, @ptrCast(self.vtable)).DeviceAddedWithInterface(@as(*const IUPnPDeviceFinderAddCallbackWithInterface, @ptrCast(self)), lFindData, pDevice, pguidInterface);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -994,7 +1195,10 @@ pub const IUPnPDescriptionDocumentCallback = extern union {
             return @as(*const IUPnPDescriptionDocumentCallback.VTable, @ptrCast(self.vtable)).LoadComplete(@as(*const IUPnPDescriptionDocumentCallback, @ptrCast(self)), hrLoadResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn LoadComplete(self: *const IUPnPDescriptionDocumentCallback, hrLoadResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDescriptionDocumentCallback.VTable, @ptrCast(self.vtable)).LoadComplete(@as(*const IUPnPDescriptionDocumentCallback, @ptrCast(self)), hrLoadResult);
+    }
 };
 
 const CLSID_UPnPRegistrar_Value = Guid.initString("204810b9-73b2-11d4-bf42-00b0d0118b56");
@@ -1032,7 +1236,13 @@ pub const IUPnPEventSink = extern union {
             return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChangedSafe(@as(*const IUPnPEventSink, @ptrCast(self)), varsadispidChanges);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStateChanged(self: *const IUPnPEventSink, cChanges: u32, rgdispidChanges: [*]i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const IUPnPEventSink, @ptrCast(self)), cChanges, rgdispidChanges);
+    }
+    pub fn OnStateChangedSafe(self: *const IUPnPEventSink, varsadispidChanges: VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChangedSafe(@as(*const IUPnPEventSink, @ptrCast(self)), varsadispidChanges);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1063,7 +1273,13 @@ pub const IUPnPEventSource = extern union {
             return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Advise(self: *const IUPnPEventSource, pesSubscriber: ?*IUPnPEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Advise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
+    }
+    pub fn Unadvise(self: *const IUPnPEventSource, pesSubscriber: ?*IUPnPEventSink) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1143,7 +1359,25 @@ pub const IUPnPRegistrar = extern union {
             return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RegisterDevice(self: *const IUPnPRegistrar, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+    }
+    pub fn RegisterRunningDevice(self: *const IUPnPRegistrar, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterRunningDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+    }
+    pub fn RegisterDeviceProvider(self: *const IUPnPRegistrar, bstrProviderName: ?BSTR, bstrProgIDProviderClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName, bstrProgIDProviderClass, bstrInitString, bstrContainerId);
+    }
+    pub fn GetUniqueDeviceName(self: *const IUPnPRegistrar, bstrDeviceIdentifier: ?BSTR, bstrTemplateUDN: ?BSTR, pbstrUDN: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).GetUniqueDeviceName(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrTemplateUDN, pbstrUDN);
+    }
+    pub fn UnregisterDevice(self: *const IUPnPRegistrar, bstrDeviceIdentifier: ?BSTR, fPermanent: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, fPermanent);
+    }
+    pub fn UnregisterDeviceProvider(self: *const IUPnPRegistrar, bstrProviderName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1185,7 +1419,13 @@ pub const IUPnPReregistrar = extern union {
             return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterRunningDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReregisterDevice(self: *const IUPnPReregistrar, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime);
+    }
+    pub fn ReregisterRunningDevice(self: *const IUPnPReregistrar, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterRunningDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1220,7 +1460,13 @@ pub const IUPnPDeviceControl = extern union {
             return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).GetServiceObject(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrUDN, bstrServiceId, ppdispService);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IUPnPDeviceControl, bstrXMLDesc: ?BSTR, bstrDeviceIdentifier: ?BSTR, bstrInitString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
+    }
+    pub fn GetServiceObject(self: *const IUPnPDeviceControl, bstrUDN: ?BSTR, bstrServiceId: ?BSTR, ppdispService: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).GetServiceObject(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrUDN, bstrServiceId, ppdispService);
+    }
 };
 
 const IID_IUPnPDeviceControlHttpHeaders_Value = Guid.initString("204810bb-73b2-11d4-bf42-00b0d0118b56");
@@ -1242,7 +1488,10 @@ pub const IUPnPDeviceControlHttpHeaders = extern union {
             return @as(*const IUPnPDeviceControlHttpHeaders.VTable, @ptrCast(self.vtable)).GetAdditionalResponseHeaders(@as(*const IUPnPDeviceControlHttpHeaders, @ptrCast(self)), bstrHttpResponseHeaders);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAdditionalResponseHeaders(self: *const IUPnPDeviceControlHttpHeaders, bstrHttpResponseHeaders: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceControlHttpHeaders.VTable, @ptrCast(self.vtable)).GetAdditionalResponseHeaders(@as(*const IUPnPDeviceControlHttpHeaders, @ptrCast(self)), bstrHttpResponseHeaders);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1272,7 +1521,13 @@ pub const IUPnPDeviceProvider = extern union {
             return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Stop(@as(*const IUPnPDeviceProvider, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Start(self: *const IUPnPDeviceProvider, bstrInitString: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Start(@as(*const IUPnPDeviceProvider, @ptrCast(self)), bstrInitString);
+    }
+    pub fn Stop(self: *const IUPnPDeviceProvider) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Stop(@as(*const IUPnPDeviceProvider, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1314,7 +1569,16 @@ pub const IUPnPRemoteEndpointInfo = extern union {
             return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetGuidValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pguidValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDwordValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pdwValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetDwordValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pdwValue);
+    }
+    pub fn GetStringValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pbstrValue);
+    }
+    pub fn GetGuidValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pguidValue: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetGuidValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pguidValue);
+    }
 };
 
 

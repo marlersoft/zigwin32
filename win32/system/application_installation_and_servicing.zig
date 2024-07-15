@@ -794,7 +794,28 @@ pub const IValidate = extern union {
             return @as(*const IValidate.VTable, @ptrCast(self.vtable)).Validate(@as(*const IValidate, @ptrCast(self)), wzICEs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OpenDatabase(self: *const IValidate, szDatabase: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).OpenDatabase(@as(*const IValidate, @ptrCast(self)), szDatabase);
+    }
+    pub fn OpenCUB(self: *const IValidate, szCUBFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).OpenCUB(@as(*const IValidate, @ptrCast(self)), szCUBFile);
+    }
+    pub fn CloseDatabase(self: *const IValidate) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).CloseDatabase(@as(*const IValidate, @ptrCast(self)));
+    }
+    pub fn CloseCUB(self: *const IValidate) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).CloseCUB(@as(*const IValidate, @ptrCast(self)));
+    }
+    pub fn SetDisplay(self: *const IValidate, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).SetDisplay(@as(*const IValidate, @ptrCast(self)), pDisplayFunction, pContext);
+    }
+    pub fn SetStatus(self: *const IValidate, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IValidate, @ptrCast(self)), pStatusFunction, pContext);
+    }
+    pub fn Validate(self: *const IValidate, wzICEs: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IValidate.VTable, @ptrCast(self.vtable)).Validate(@as(*const IValidate, @ptrCast(self)), wzICEs);
+    }
 };
 
 const CLSID_MsmMerge_Value = Guid.initString("0adda830-2c26-11d2-ad65-00a0c9af11a6");
@@ -863,7 +884,19 @@ pub const IEnumMsmString = extern union {
             return @as(*const IEnumMsmString.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmString, @ptrCast(self)), pemsmStrings);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumMsmString, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmString.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumMsmString, @ptrCast(self)), cFetch, rgbstrStrings, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumMsmString, cSkip: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmString.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumMsmString, @ptrCast(self)), cSkip);
+    }
+    pub fn Reset(self: *const IEnumMsmString) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmString.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumMsmString, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumMsmString, pemsmStrings: ?*?*IEnumMsmString) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmString.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmString, @ptrCast(self)), pemsmStrings);
+    }
 };
 
 const IID_IMsmStrings_Value = Guid.initString("0adda827-2c26-11d2-ad65-00a0c9af11a6");
@@ -904,7 +937,16 @@ pub const IMsmStrings = extern union {
             return @as(*const IMsmStrings.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmStrings, @ptrCast(self)), NewEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IMsmStrings, Item: i32, Return: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmStrings.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IMsmStrings, @ptrCast(self)), Item, Return);
+    }
+    pub fn get_Count(self: *const IMsmStrings, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMsmStrings.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMsmStrings, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IMsmStrings, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMsmStrings.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmStrings, @ptrCast(self)), NewEnum);
+    }
 };
 
 const IID_IMsmError_Value = Guid.initString("0adda828-2c26-11d2-ad65-00a0c9af11a6");
@@ -981,7 +1023,28 @@ pub const IMsmError = extern union {
             return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_ModuleKeys(@as(*const IMsmError, @ptrCast(self)), ErrorKeys);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Type(self: *const IMsmError, ErrorType: ?*msmErrorType) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IMsmError, @ptrCast(self)), ErrorType);
+    }
+    pub fn get_Path(self: *const IMsmError, ErrorPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IMsmError, @ptrCast(self)), ErrorPath);
+    }
+    pub fn get_Language(self: *const IMsmError, ErrorLanguage: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_Language(@as(*const IMsmError, @ptrCast(self)), ErrorLanguage);
+    }
+    pub fn get_DatabaseTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_DatabaseTable(@as(*const IMsmError, @ptrCast(self)), ErrorTable);
+    }
+    pub fn get_DatabaseKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_DatabaseKeys(@as(*const IMsmError, @ptrCast(self)), ErrorKeys);
+    }
+    pub fn get_ModuleTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_ModuleTable(@as(*const IMsmError, @ptrCast(self)), ErrorTable);
+    }
+    pub fn get_ModuleKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+        return @as(*const IMsmError.VTable, @ptrCast(self.vtable)).get_ModuleKeys(@as(*const IMsmError, @ptrCast(self)), ErrorKeys);
+    }
 };
 
 const IID_IEnumMsmError_Value = Guid.initString("0adda829-2c26-11d2-ad65-00a0c9af11a6");
@@ -1028,7 +1091,19 @@ pub const IEnumMsmError = extern union {
             return @as(*const IEnumMsmError.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmError, @ptrCast(self)), pemsmErrors);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumMsmError, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmError.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumMsmError, @ptrCast(self)), cFetch, rgmsmErrors, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumMsmError, cSkip: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmError.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumMsmError, @ptrCast(self)), cSkip);
+    }
+    pub fn Reset(self: *const IEnumMsmError) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmError.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumMsmError, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumMsmError, pemsmErrors: ?*?*IEnumMsmError) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmError.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmError, @ptrCast(self)), pemsmErrors);
+    }
 };
 
 const IID_IMsmErrors_Value = Guid.initString("0adda82a-2c26-11d2-ad65-00a0c9af11a6");
@@ -1069,7 +1144,16 @@ pub const IMsmErrors = extern union {
             return @as(*const IMsmErrors.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmErrors, @ptrCast(self)), NewEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IMsmErrors, Item: i32, Return: ?*?*IMsmError) callconv(.Inline) HRESULT {
+        return @as(*const IMsmErrors.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IMsmErrors, @ptrCast(self)), Item, Return);
+    }
+    pub fn get_Count(self: *const IMsmErrors, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMsmErrors.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMsmErrors, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IMsmErrors, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMsmErrors.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmErrors, @ptrCast(self)), NewEnum);
+    }
 };
 
 const IID_IMsmDependency_Value = Guid.initString("0adda82b-2c26-11d2-ad65-00a0c9af11a6");
@@ -1110,7 +1194,16 @@ pub const IMsmDependency = extern union {
             return @as(*const IMsmDependency.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IMsmDependency, @ptrCast(self)), Version);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Module(self: *const IMsmDependency, Module: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependency.VTable, @ptrCast(self.vtable)).get_Module(@as(*const IMsmDependency, @ptrCast(self)), Module);
+    }
+    pub fn get_Language(self: *const IMsmDependency, Language: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependency.VTable, @ptrCast(self.vtable)).get_Language(@as(*const IMsmDependency, @ptrCast(self)), Language);
+    }
+    pub fn get_Version(self: *const IMsmDependency, Version: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependency.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IMsmDependency, @ptrCast(self)), Version);
+    }
 };
 
 const IID_IEnumMsmDependency_Value = Guid.initString("0adda82c-2c26-11d2-ad65-00a0c9af11a6");
@@ -1157,7 +1250,19 @@ pub const IEnumMsmDependency = extern union {
             return @as(*const IEnumMsmDependency.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmDependency, @ptrCast(self)), pemsmDependencies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumMsmDependency, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmDependency.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumMsmDependency, @ptrCast(self)), cFetch, rgmsmDependencies, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumMsmDependency, cSkip: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmDependency.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumMsmDependency, @ptrCast(self)), cSkip);
+    }
+    pub fn Reset(self: *const IEnumMsmDependency) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmDependency.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumMsmDependency, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumMsmDependency, pemsmDependencies: ?*?*IEnumMsmDependency) callconv(.Inline) HRESULT {
+        return @as(*const IEnumMsmDependency.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMsmDependency, @ptrCast(self)), pemsmDependencies);
+    }
 };
 
 const IID_IMsmDependencies_Value = Guid.initString("0adda82d-2c26-11d2-ad65-00a0c9af11a6");
@@ -1198,7 +1303,16 @@ pub const IMsmDependencies = extern union {
             return @as(*const IMsmDependencies.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmDependencies, @ptrCast(self)), NewEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Item(self: *const IMsmDependencies, Item: i32, Return: ?*?*IMsmDependency) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependencies.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IMsmDependencies, @ptrCast(self)), Item, Return);
+    }
+    pub fn get_Count(self: *const IMsmDependencies, Count: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependencies.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMsmDependencies, @ptrCast(self)), Count);
+    }
+    pub fn get__NewEnum(self: *const IMsmDependencies, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IMsmDependencies.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IMsmDependencies, @ptrCast(self)), NewEnum);
+    }
 };
 
 const IID_IMsmMerge_Value = Guid.initString("0adda82e-2c26-11d2-ad65-00a0c9af11a6");
@@ -1318,7 +1432,46 @@ pub const IMsmMerge = extern union {
             return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).ExtractFiles(@as(*const IMsmMerge, @ptrCast(self)), Path);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn OpenDatabase(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).OpenDatabase(@as(*const IMsmMerge, @ptrCast(self)), Path);
+    }
+    pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).OpenModule(@as(*const IMsmMerge, @ptrCast(self)), Path, Language);
+    }
+    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).CloseDatabase(@as(*const IMsmMerge, @ptrCast(self)), Commit);
+    }
+    pub fn CloseModule(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).CloseModule(@as(*const IMsmMerge, @ptrCast(self)));
+    }
+    pub fn OpenLog(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).OpenLog(@as(*const IMsmMerge, @ptrCast(self)), Path);
+    }
+    pub fn CloseLog(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).CloseLog(@as(*const IMsmMerge, @ptrCast(self)));
+    }
+    pub fn Log(self: *const IMsmMerge, Message: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).Log(@as(*const IMsmMerge, @ptrCast(self)), Message);
+    }
+    pub fn get_Errors(self: *const IMsmMerge, Errors: ?*?*IMsmErrors) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).get_Errors(@as(*const IMsmMerge, @ptrCast(self)), Errors);
+    }
+    pub fn get_Dependencies(self: *const IMsmMerge, Dependencies: ?*?*IMsmDependencies) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).get_Dependencies(@as(*const IMsmMerge, @ptrCast(self)), Dependencies);
+    }
+    pub fn Merge(self: *const IMsmMerge, Feature: ?BSTR, RedirectDir: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).Merge(@as(*const IMsmMerge, @ptrCast(self)), Feature, RedirectDir);
+    }
+    pub fn Connect(self: *const IMsmMerge, Feature: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).Connect(@as(*const IMsmMerge, @ptrCast(self)), Feature);
+    }
+    pub fn ExtractCAB(self: *const IMsmMerge, FileName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).ExtractCAB(@as(*const IMsmMerge, @ptrCast(self)), FileName);
+    }
+    pub fn ExtractFiles(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IMsmMerge.VTable, @ptrCast(self.vtable)).ExtractFiles(@as(*const IMsmMerge, @ptrCast(self)), Path);
+    }
 };
 
 const IID_IMsmGetFiles_Value = Guid.initString("7041ae26-2d78-11d2-888a-00a0c981b015");
@@ -1341,7 +1494,10 @@ pub const IMsmGetFiles = extern union {
             return @as(*const IMsmGetFiles.VTable, @ptrCast(self.vtable)).get_ModuleFiles(@as(*const IMsmGetFiles, @ptrCast(self)), Files);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_ModuleFiles(self: *const IMsmGetFiles, Files: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+        return @as(*const IMsmGetFiles.VTable, @ptrCast(self.vtable)).get_ModuleFiles(@as(*const IMsmGetFiles, @ptrCast(self)), Files);
+    }
 };
 
 pub const PMSIHANDLE = extern struct {
@@ -2208,7 +2364,34 @@ pub const IAssemblyName = extern union {
             return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).Clone(@as(*const IAssemblyName, @ptrCast(self)), pName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAssemblyName, @ptrCast(self)), PropertyId, pvProperty, cbProperty);
+    }
+    pub fn GetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAssemblyName, @ptrCast(self)), PropertyId, pvProperty, pcbProperty);
+    }
+    pub fn Finalize(self: *const IAssemblyName) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).Finalize(@as(*const IAssemblyName, @ptrCast(self)));
+    }
+    pub fn GetDisplayName(self: *const IAssemblyName, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IAssemblyName, @ptrCast(self)), szDisplayName, pccDisplayName, dwDisplayFlags);
+    }
+    pub fn Reserved(self: *const IAssemblyName, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).Reserved(@as(*const IAssemblyName, @ptrCast(self)), refIID, pUnkReserved1, pUnkReserved2, szReserved, llReserved, pvReserved, cbReserved, ppReserved);
+    }
+    pub fn GetName(self: *const IAssemblyName, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).GetName(@as(*const IAssemblyName, @ptrCast(self)), lpcwBuffer, pwzName);
+    }
+    pub fn GetVersion(self: *const IAssemblyName, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IAssemblyName, @ptrCast(self)), pdwVersionHi, pdwVersionLow);
+    }
+    pub fn IsEqual(self: *const IAssemblyName, pName: ?*IAssemblyName, dwCmpFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IAssemblyName, @ptrCast(self)), pName, dwCmpFlags);
+    }
+    pub fn Clone(self: *const IAssemblyName, pName: ?*?*IAssemblyName) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyName.VTable, @ptrCast(self.vtable)).Clone(@as(*const IAssemblyName, @ptrCast(self)), pName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2252,7 +2435,16 @@ pub const IAssemblyCacheItem = extern union {
             return @as(*const IAssemblyCacheItem.VTable, @ptrCast(self.vtable)).AbortItem(@as(*const IAssemblyCacheItem, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateStream(self: *const IAssemblyCacheItem, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCacheItem.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const IAssemblyCacheItem, @ptrCast(self)), dwFlags, pszStreamName, dwFormat, dwFormatFlags, ppIStream, puliMaxSize);
+    }
+    pub fn Commit(self: *const IAssemblyCacheItem, dwFlags: u32, pulDisposition: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCacheItem.VTable, @ptrCast(self.vtable)).Commit(@as(*const IAssemblyCacheItem, @ptrCast(self)), dwFlags, pulDisposition);
+    }
+    pub fn AbortItem(self: *const IAssemblyCacheItem) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCacheItem.VTable, @ptrCast(self.vtable)).AbortItem(@as(*const IAssemblyCacheItem, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2317,7 +2509,22 @@ pub const IAssemblyCache = extern union {
             return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).InstallAssembly(@as(*const IAssemblyCache, @ptrCast(self)), dwFlags, pszManifestFilePath, pRefData);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn UninstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).UninstallAssembly(@as(*const IAssemblyCache, @ptrCast(self)), dwFlags, pszAssemblyName, pRefData, pulDisposition);
+    }
+    pub fn QueryAssemblyInfo(self: *const IAssemblyCache, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).QueryAssemblyInfo(@as(*const IAssemblyCache, @ptrCast(self)), dwFlags, pszAssemblyName, pAsmInfo);
+    }
+    pub fn CreateAssemblyCacheItem(self: *const IAssemblyCache, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).CreateAssemblyCacheItem(@as(*const IAssemblyCache, @ptrCast(self)), dwFlags, pvReserved, ppAsmItem, pszAssemblyName);
+    }
+    pub fn Reserved(self: *const IAssemblyCache, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).Reserved(@as(*const IAssemblyCache, @ptrCast(self)), ppUnk);
+    }
+    pub fn InstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) callconv(.Inline) HRESULT {
+        return @as(*const IAssemblyCache.VTable, @ptrCast(self.vtable)).InstallAssembly(@as(*const IAssemblyCache, @ptrCast(self)), dwFlags, pszManifestFilePath, pRefData);
+    }
 };
 
 pub const CREATE_ASM_NAME_OBJ_FLAGS = enum(i32) {
@@ -3763,7 +3970,172 @@ pub const IPMApplicationInfo = extern union {
             return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_Title(@as(*const IPMApplicationInfo, @ptrCast(self)), AppTitle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMApplicationInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMApplicationInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_InstanceID(self: *const IPMApplicationInfo, pInstanceID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_InstanceID(@as(*const IPMApplicationInfo, @ptrCast(self)), pInstanceID);
+    }
+    pub fn get_OfferID(self: *const IPMApplicationInfo, pOfferID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_OfferID(@as(*const IPMApplicationInfo, @ptrCast(self)), pOfferID);
+    }
+    pub fn get_DefaultTask(self: *const IPMApplicationInfo, pDefaultTask: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_DefaultTask(@as(*const IPMApplicationInfo, @ptrCast(self)), pDefaultTask);
+    }
+    pub fn get_AppTitle(self: *const IPMApplicationInfo, pAppTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppTitle(@as(*const IPMApplicationInfo, @ptrCast(self)), pAppTitle);
+    }
+    pub fn get_IconPath(self: *const IPMApplicationInfo, pAppIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IconPath(@as(*const IPMApplicationInfo, @ptrCast(self)), pAppIconPath);
+    }
+    pub fn get_NotificationState(self: *const IPMApplicationInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_NotificationState(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsNotified);
+    }
+    pub fn get_AppInstallType(self: *const IPMApplicationInfo, pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppInstallType(@as(*const IPMApplicationInfo, @ptrCast(self)), pAppInstallType);
+    }
+    pub fn get_State(self: *const IPMApplicationInfo, pState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_State(@as(*const IPMApplicationInfo, @ptrCast(self)), pState);
+    }
+    pub fn get_IsRevoked(self: *const IPMApplicationInfo, pIsRevoked: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsRevoked(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsRevoked);
+    }
+    pub fn get_UpdateAvailable(self: *const IPMApplicationInfo, pIsUpdateAvailable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_UpdateAvailable(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsUpdateAvailable);
+    }
+    pub fn get_InstallDate(self: *const IPMApplicationInfo, pInstallDate: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_InstallDate(@as(*const IPMApplicationInfo, @ptrCast(self)), pInstallDate);
+    }
+    pub fn get_IsUninstallable(self: *const IPMApplicationInfo, pIsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsUninstallable(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsUninstallable);
+    }
+    pub fn get_IsThemable(self: *const IPMApplicationInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsThemable(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsThemable);
+    }
+    pub fn get_IsTrial(self: *const IPMApplicationInfo, pIsTrial: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsTrial(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsTrial);
+    }
+    pub fn get_InstallPath(self: *const IPMApplicationInfo, pInstallPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_InstallPath(@as(*const IPMApplicationInfo, @ptrCast(self)), pInstallPath);
+    }
+    pub fn get_DataRoot(self: *const IPMApplicationInfo, pDataRoot: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_DataRoot(@as(*const IPMApplicationInfo, @ptrCast(self)), pDataRoot);
+    }
+    pub fn get_Genre(self: *const IPMApplicationInfo, pGenre: ?*PM_APP_GENRE) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_Genre(@as(*const IPMApplicationInfo, @ptrCast(self)), pGenre);
+    }
+    pub fn get_Publisher(self: *const IPMApplicationInfo, pPublisher: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_Publisher(@as(*const IPMApplicationInfo, @ptrCast(self)), pPublisher);
+    }
+    pub fn get_Author(self: *const IPMApplicationInfo, pAuthor: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_Author(@as(*const IPMApplicationInfo, @ptrCast(self)), pAuthor);
+    }
+    pub fn get_Description(self: *const IPMApplicationInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IPMApplicationInfo, @ptrCast(self)), pDescription);
+    }
+    pub fn get_Version(self: *const IPMApplicationInfo, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IPMApplicationInfo, @ptrCast(self)), pVersion);
+    }
+    pub fn get_InvocationInfo(self: *const IPMApplicationInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMApplicationInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
+    pub fn get_AppPlatMajorVersion(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppPlatMajorVersion(@as(*const IPMApplicationInfo, @ptrCast(self)), pMajorVer);
+    }
+    pub fn get_AppPlatMinorVersion(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppPlatMinorVersion(@as(*const IPMApplicationInfo, @ptrCast(self)), pMinorVer);
+    }
+    pub fn get_PublisherID(self: *const IPMApplicationInfo, pPublisherID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IPMApplicationInfo, @ptrCast(self)), pPublisherID);
+    }
+    pub fn get_IsMultiCore(self: *const IPMApplicationInfo, pIsMultiCore: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsMultiCore(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsMultiCore);
+    }
+    pub fn get_SID(self: *const IPMApplicationInfo, pSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_SID(@as(*const IPMApplicationInfo, @ptrCast(self)), pSID);
+    }
+    pub fn get_AppPlatMajorVersionLightUp(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppPlatMajorVersionLightUp(@as(*const IPMApplicationInfo, @ptrCast(self)), pMajorVer);
+    }
+    pub fn get_AppPlatMinorVersionLightUp(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_AppPlatMinorVersionLightUp(@as(*const IPMApplicationInfo, @ptrCast(self)), pMinorVer);
+    }
+    pub fn set_UpdateAvailable(self: *const IPMApplicationInfo, IsUpdateAvailable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_UpdateAvailable(@as(*const IPMApplicationInfo, @ptrCast(self)), IsUpdateAvailable);
+    }
+    pub fn set_NotificationState(self: *const IPMApplicationInfo, IsNotified: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_NotificationState(@as(*const IPMApplicationInfo, @ptrCast(self)), IsNotified);
+    }
+    pub fn set_IconPath(self: *const IPMApplicationInfo, AppIconPath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_IconPath(@as(*const IPMApplicationInfo, @ptrCast(self)), AppIconPath);
+    }
+    pub fn set_UninstallableState(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_UninstallableState(@as(*const IPMApplicationInfo, @ptrCast(self)), IsUninstallable);
+    }
+    pub fn get_IsPinableOnKidZone(self: *const IPMApplicationInfo, pIsPinable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsPinableOnKidZone(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsPinable);
+    }
+    pub fn get_IsOriginallyPreInstalled(self: *const IPMApplicationInfo, pIsPreinstalled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsOriginallyPreInstalled(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsPreinstalled);
+    }
+    pub fn get_IsInstallOnSD(self: *const IPMApplicationInfo, pIsInstallOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsInstallOnSD(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsInstallOnSD);
+    }
+    pub fn get_IsOptoutOnSD(self: *const IPMApplicationInfo, pIsOptoutOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsOptoutOnSD(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsOptoutOnSD);
+    }
+    pub fn get_IsOptoutBackupRestore(self: *const IPMApplicationInfo, pIsOptoutBackupRestore: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsOptoutBackupRestore(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsOptoutBackupRestore);
+    }
+    pub fn set_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_EnterpriseDisabled(@as(*const IPMApplicationInfo, @ptrCast(self)), IsDisabled);
+    }
+    pub fn set_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_EnterpriseUninstallable(@as(*const IPMApplicationInfo, @ptrCast(self)), IsUninstallable);
+    }
+    pub fn get_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_EnterpriseDisabled(@as(*const IPMApplicationInfo, @ptrCast(self)), IsDisabled);
+    }
+    pub fn get_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_EnterpriseUninstallable(@as(*const IPMApplicationInfo, @ptrCast(self)), IsUninstallable);
+    }
+    pub fn get_IsVisibleOnAppList(self: *const IPMApplicationInfo, pIsVisible: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsVisibleOnAppList(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsVisible);
+    }
+    pub fn get_IsInboxApp(self: *const IPMApplicationInfo, pIsInboxApp: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsInboxApp(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsInboxApp);
+    }
+    pub fn get_StorageID(self: *const IPMApplicationInfo, pStorageID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_StorageID(@as(*const IPMApplicationInfo, @ptrCast(self)), pStorageID);
+    }
+    pub fn get_StartAppBlob(self: *const IPMApplicationInfo, pBlob: ?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_StartAppBlob(@as(*const IPMApplicationInfo, @ptrCast(self)), pBlob);
+    }
+    pub fn get_IsMovable(self: *const IPMApplicationInfo, pIsMovable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsMovable(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsMovable);
+    }
+    pub fn get_DeploymentAppEnumerationHubFilter(self: *const IPMApplicationInfo, HubType: ?*PM_TILE_HUBTYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_DeploymentAppEnumerationHubFilter(@as(*const IPMApplicationInfo, @ptrCast(self)), HubType);
+    }
+    pub fn get_ModifiedDate(self: *const IPMApplicationInfo, pModifiedDate: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_ModifiedDate(@as(*const IPMApplicationInfo, @ptrCast(self)), pModifiedDate);
+    }
+    pub fn get_IsOriginallyRestored(self: *const IPMApplicationInfo, pIsRestored: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsOriginallyRestored(@as(*const IPMApplicationInfo, @ptrCast(self)), pIsRestored);
+    }
+    pub fn get_ShouldDeferMdilBind(self: *const IPMApplicationInfo, pfDeferMdilBind: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_ShouldDeferMdilBind(@as(*const IPMApplicationInfo, @ptrCast(self)), pfDeferMdilBind);
+    }
+    pub fn get_IsFullyPreInstall(self: *const IPMApplicationInfo, pfIsFullyPreInstall: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).get_IsFullyPreInstall(@as(*const IPMApplicationInfo, @ptrCast(self)), pfIsFullyPreInstall);
+    }
+    pub fn set_IsMdilMaintenanceNeeded(self: *const IPMApplicationInfo, fIsMdilMaintenanceNeeded: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_IsMdilMaintenanceNeeded(@as(*const IPMApplicationInfo, @ptrCast(self)), fIsMdilMaintenanceNeeded);
+    }
+    pub fn set_Title(self: *const IPMApplicationInfo, AppTitle: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfo.VTable, @ptrCast(self.vtable)).set_Title(@as(*const IPMApplicationInfo, @ptrCast(self)), AppTitle);
+    }
 };
 
 const IID_IPMTilePropertyInfo_Value = Guid.initString("6c2b8017-1efa-42a7-86c0-6d4b640bf528");
@@ -3803,7 +4175,16 @@ pub const IPMTilePropertyInfo = extern union {
             return @as(*const IPMTilePropertyInfo.VTable, @ptrCast(self.vtable)).set_Property(@as(*const IPMTilePropertyInfo, @ptrCast(self)), PropValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_PropertyID(self: *const IPMTilePropertyInfo, pPropID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMTilePropertyInfo.VTable, @ptrCast(self.vtable)).get_PropertyID(@as(*const IPMTilePropertyInfo, @ptrCast(self)), pPropID);
+    }
+    pub fn get_PropertyValue(self: *const IPMTilePropertyInfo, pPropValue: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTilePropertyInfo.VTable, @ptrCast(self.vtable)).get_PropertyValue(@as(*const IPMTilePropertyInfo, @ptrCast(self)), pPropValue);
+    }
+    pub fn set_Property(self: *const IPMTilePropertyInfo, PropValue: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTilePropertyInfo.VTable, @ptrCast(self.vtable)).set_Property(@as(*const IPMTilePropertyInfo, @ptrCast(self)), PropValue);
+    }
 };
 
 const IID_IPMTilePropertyEnumerator_Value = Guid.initString("cc4cd629-9047-4250-aac8-930e47812421");
@@ -3826,7 +4207,10 @@ pub const IPMTilePropertyEnumerator = extern union {
             return @as(*const IPMTilePropertyEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTilePropertyEnumerator, @ptrCast(self)), ppPropInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMTilePropertyEnumerator, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMTilePropertyEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTilePropertyEnumerator, @ptrCast(self)), ppPropInfo);
+    }
 };
 
 const IID_IPMTileInfo_Value = Guid.initString("d1604833-2b08-4001-82cd-183ad734f752");
@@ -4053,7 +4437,79 @@ pub const IPMTileInfo = extern union {
             return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_IsAutoRestoreDisabled(@as(*const IPMTileInfo, @ptrCast(self)), AutoRestoreDisabled);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMTileInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMTileInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_TileID(self: *const IPMTileInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_TileID(@as(*const IPMTileInfo, @ptrCast(self)), pTileID);
+    }
+    pub fn get_TemplateType(self: *const IPMTileInfo, pTemplateType: ?*TILE_TEMPLATE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_TemplateType(@as(*const IPMTileInfo, @ptrCast(self)), pTemplateType);
+    }
+    pub fn get_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPinned: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_HubPinnedState(@as(*const IPMTileInfo, @ptrCast(self)), HubType, pPinned);
+    }
+    pub fn get_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPosition: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_HubPosition(@as(*const IPMTileInfo, @ptrCast(self)), HubType, pPosition);
+    }
+    pub fn get_IsNotified(self: *const IPMTileInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_IsNotified(@as(*const IPMTileInfo, @ptrCast(self)), pIsNotified);
+    }
+    pub fn get_IsDefault(self: *const IPMTileInfo, pIsDefault: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_IsDefault(@as(*const IPMTileInfo, @ptrCast(self)), pIsDefault);
+    }
+    pub fn get_TaskID(self: *const IPMTileInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_TaskID(@as(*const IPMTileInfo, @ptrCast(self)), pTaskID);
+    }
+    pub fn get_TileType(self: *const IPMTileInfo, pStartTileType: ?*PM_STARTTILE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_TileType(@as(*const IPMTileInfo, @ptrCast(self)), pStartTileType);
+    }
+    pub fn get_IsThemable(self: *const IPMTileInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_IsThemable(@as(*const IPMTileInfo, @ptrCast(self)), pIsThemable);
+    }
+    pub fn get_PropertyById(self: *const IPMTileInfo, PropID: u32, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_PropertyById(@as(*const IPMTileInfo, @ptrCast(self)), PropID, ppPropInfo);
+    }
+    pub fn get_InvocationInfo(self: *const IPMTileInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMTileInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
+    pub fn get_PropertyEnum(self: *const IPMTileInfo, ppTilePropEnum: ?*?*IPMTilePropertyEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_PropertyEnum(@as(*const IPMTileInfo, @ptrCast(self)), ppTilePropEnum);
+    }
+    pub fn get_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pSize: ?*PM_TILE_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_HubTileSize(@as(*const IPMTileInfo, @ptrCast(self)), HubType, pSize);
+    }
+    pub fn set_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Position: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_HubPosition(@as(*const IPMTileInfo, @ptrCast(self)), HubType, Position);
+    }
+    pub fn set_NotifiedState(self: *const IPMTileInfo, Notified: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_NotifiedState(@as(*const IPMTileInfo, @ptrCast(self)), Notified);
+    }
+    pub fn set_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Pinned: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_HubPinnedState(@as(*const IPMTileInfo, @ptrCast(self)), HubType, Pinned);
+    }
+    pub fn set_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Size: PM_TILE_SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_HubTileSize(@as(*const IPMTileInfo, @ptrCast(self)), HubType, Size);
+    }
+    pub fn set_InvocationInfo(self: *const IPMTileInfo, TaskName: ?BSTR, TaskParameters: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_InvocationInfo(@as(*const IPMTileInfo, @ptrCast(self)), TaskName, TaskParameters);
+    }
+    pub fn get_StartTileBlob(self: *const IPMTileInfo, pBlob: ?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_StartTileBlob(@as(*const IPMTileInfo, @ptrCast(self)), pBlob);
+    }
+    pub fn get_IsRestoring(self: *const IPMTileInfo, pIsRestoring: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_IsRestoring(@as(*const IPMTileInfo, @ptrCast(self)), pIsRestoring);
+    }
+    pub fn get_IsAutoRestoreDisabled(self: *const IPMTileInfo, pIsAutoRestoreDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).get_IsAutoRestoreDisabled(@as(*const IPMTileInfo, @ptrCast(self)), pIsAutoRestoreDisabled);
+    }
+    pub fn set_IsRestoring(self: *const IPMTileInfo, Restoring: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_IsRestoring(@as(*const IPMTileInfo, @ptrCast(self)), Restoring);
+    }
+    pub fn set_IsAutoRestoreDisabled(self: *const IPMTileInfo, AutoRestoreDisabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfo.VTable, @ptrCast(self.vtable)).set_IsAutoRestoreDisabled(@as(*const IPMTileInfo, @ptrCast(self)), AutoRestoreDisabled);
+    }
 };
 
 const IID_IPMTileInfoEnumerator_Value = Guid.initString("ded83065-e462-4b2c-acb5-e39cea61c874");
@@ -4076,7 +4532,10 @@ pub const IPMTileInfoEnumerator = extern union {
             return @as(*const IPMTileInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTileInfoEnumerator, @ptrCast(self)), ppTileInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMTileInfoEnumerator, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMTileInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTileInfoEnumerator, @ptrCast(self)), ppTileInfo);
+    }
 };
 
 const IID_IPMApplicationInfoEnumerator_Value = Guid.initString("0ec42a96-4d46-4dc6-a3d9-a7acaac0f5fa");
@@ -4099,7 +4558,10 @@ pub const IPMApplicationInfoEnumerator = extern union {
             return @as(*const IPMApplicationInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMApplicationInfoEnumerator, @ptrCast(self)), ppAppInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMApplicationInfoEnumerator, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMApplicationInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMApplicationInfoEnumerator, @ptrCast(self)), ppAppInfo);
+    }
 };
 
 const IID_IPMLiveTileJobInfo_Value = Guid.initString("6009a81f-4710-4697-b5f6-2208f6057b8e");
@@ -4320,7 +4782,79 @@ pub const IPMLiveTileJobInfo = extern union {
             return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_DownloadState(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulDownloadState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMLiveTileJobInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_TileID(self: *const IPMLiveTileJobInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_TileID(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pTileID);
+    }
+    pub fn get_NextSchedule(self: *const IPMLiveTileJobInfo, pNextSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_NextSchedule(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pNextSchedule);
+    }
+    pub fn set_NextSchedule(self: *const IPMLiveTileJobInfo, ftNextSchedule: FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_NextSchedule(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ftNextSchedule);
+    }
+    pub fn get_StartSchedule(self: *const IPMLiveTileJobInfo, pStartSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_StartSchedule(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pStartSchedule);
+    }
+    pub fn set_StartSchedule(self: *const IPMLiveTileJobInfo, ftStartSchedule: FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_StartSchedule(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ftStartSchedule);
+    }
+    pub fn get_IntervalDuration(self: *const IPMLiveTileJobInfo, pIntervalDuration: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_IntervalDuration(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pIntervalDuration);
+    }
+    pub fn set_IntervalDuration(self: *const IPMLiveTileJobInfo, ulIntervalDuration: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_IntervalDuration(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulIntervalDuration);
+    }
+    pub fn get_RunForever(self: *const IPMLiveTileJobInfo, IsRunForever: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_RunForever(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), IsRunForever);
+    }
+    pub fn set_RunForever(self: *const IPMLiveTileJobInfo, fRunForever: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_RunForever(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), fRunForever);
+    }
+    pub fn get_MaxRunCount(self: *const IPMLiveTileJobInfo, pMaxRunCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_MaxRunCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pMaxRunCount);
+    }
+    pub fn set_MaxRunCount(self: *const IPMLiveTileJobInfo, ulMaxRunCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_MaxRunCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulMaxRunCount);
+    }
+    pub fn get_RunCount(self: *const IPMLiveTileJobInfo, pRunCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_RunCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pRunCount);
+    }
+    pub fn set_RunCount(self: *const IPMLiveTileJobInfo, ulRunCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_RunCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulRunCount);
+    }
+    pub fn get_RecurrenceType(self: *const IPMLiveTileJobInfo, pRecurrenceType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_RecurrenceType(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pRecurrenceType);
+    }
+    pub fn set_RecurrenceType(self: *const IPMLiveTileJobInfo, ulRecurrenceType: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_RecurrenceType(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulRecurrenceType);
+    }
+    pub fn get_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*]?*u8, pcbTileXml: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_TileXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pTileXml, pcbTileXml);
+    }
+    pub fn set_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*:0]u8, cbTileXml: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_TileXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pTileXml, cbTileXml);
+    }
+    pub fn get_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_UrlXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pUrlXML, pcbUrlXML);
+    }
+    pub fn set_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*:0]u8, cbUrlXML: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_UrlXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pUrlXML, cbUrlXML);
+    }
+    pub fn get_AttemptCount(self: *const IPMLiveTileJobInfo, pAttemptCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_AttemptCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pAttemptCount);
+    }
+    pub fn set_AttemptCount(self: *const IPMLiveTileJobInfo, ulAttemptCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_AttemptCount(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulAttemptCount);
+    }
+    pub fn get_DownloadState(self: *const IPMLiveTileJobInfo, pDownloadState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_DownloadState(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pDownloadState);
+    }
+    pub fn set_DownloadState(self: *const IPMLiveTileJobInfo, ulDownloadState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_DownloadState(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulDownloadState);
+    }
 };
 
 const IID_IPMLiveTileJobInfoEnumerator_Value = Guid.initString("bc042582-9415-4f36-9f99-06f104c07c03");
@@ -4343,7 +4877,10 @@ pub const IPMLiveTileJobInfoEnumerator = extern union {
             return @as(*const IPMLiveTileJobInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMLiveTileJobInfoEnumerator, @ptrCast(self)), ppLiveTileJobInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMLiveTileJobInfoEnumerator, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMLiveTileJobInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMLiveTileJobInfoEnumerator, @ptrCast(self)), ppLiveTileJobInfo);
+    }
 };
 
 const IID_IPMDeploymentManager_Value = Guid.initString("35f785fa-1979-4a8b-bc8f-fd70eb0d1544");
@@ -4674,7 +5211,112 @@ pub const IPMDeploymentManager = extern union {
             return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).FixJunctionsForAppsOnSDCard(@as(*const IPMDeploymentManager, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReportDownloadBegin(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReportDownloadBegin(@as(*const IPMDeploymentManager, @ptrCast(self)), productID);
+    }
+    pub fn ReportDownloadProgress(self: *const IPMDeploymentManager, productID: Guid, usProgress: u16) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReportDownloadProgress(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, usProgress);
+    }
+    pub fn ReportDownloadComplete(self: *const IPMDeploymentManager, productID: Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReportDownloadComplete(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, hrResult);
+    }
+    pub fn BeginInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginInstall(@as(*const IPMDeploymentManager, @ptrCast(self)), pInstallInfo);
+    }
+    pub fn BeginUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUpdate(@as(*const IPMDeploymentManager, @ptrCast(self)), pUpdateInfo);
+    }
+    pub fn BeginDeployPackage(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginDeployPackage(@as(*const IPMDeploymentManager, @ptrCast(self)), pInstallInfo);
+    }
+    pub fn BeginUpdateDeployedPackageLegacy(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO_LEGACY) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUpdateDeployedPackageLegacy(@as(*const IPMDeploymentManager, @ptrCast(self)), pUpdateInfo);
+    }
+    pub fn BeginUninstall(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUninstall(@as(*const IPMDeploymentManager, @ptrCast(self)), productID);
+    }
+    pub fn BeginEnterpriseAppInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginEnterpriseAppInstall(@as(*const IPMDeploymentManager, @ptrCast(self)), pInstallInfo);
+    }
+    pub fn BeginEnterpriseAppUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginEnterpriseAppUpdate(@as(*const IPMDeploymentManager, @ptrCast(self)), pUpdateInfo);
+    }
+    pub fn BeginUpdateLicense(self: *const IPMDeploymentManager, productID: Guid, offerID: Guid, pbLicense: [*:0]u8, cbLicense: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUpdateLicense(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, offerID, pbLicense, cbLicense);
+    }
+    pub fn GetLicenseChallenge(self: *const IPMDeploymentManager, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallenge(@as(*const IPMDeploymentManager, @ptrCast(self)), PackagePath, ppbChallenge, pcbChallenge, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
+    }
+    pub fn GetLicenseChallengeByProductID(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallengeByProductID(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, ppbChallenge, pcbLicense);
+    }
+    pub fn GetLicenseChallengeByProductID2(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallengeByProductID2(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, ppbChallenge, pcbLicense, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
+    }
+    pub fn RevokeLicense(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).RevokeLicense(@as(*const IPMDeploymentManager, @ptrCast(self)), productID);
+    }
+    pub fn RebindMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, FileNames: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).RebindMdilBinaries(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, FileNames);
+    }
+    pub fn RebindAllMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, InstanceID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).RebindAllMdilBinaries(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, InstanceID);
+    }
+    pub fn RegenerateXbf(self: *const IPMDeploymentManager, ProductID: Guid, AssemblyPaths: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).RegenerateXbf(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, AssemblyPaths);
+    }
+    pub fn GenerateXbfForCurrentLocale(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GenerateXbfForCurrentLocale(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID);
+    }
+    pub fn BeginProvision(self: *const IPMDeploymentManager, ProductID: Guid, XMLpath: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginProvision(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, XMLpath);
+    }
+    pub fn BeginDeprovision(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginDeprovision(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID);
+    }
+    pub fn ReindexSQLCEDatabases(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReindexSQLCEDatabases(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID);
+    }
+    pub fn SetApplicationsNeedMaintenance(self: *const IPMDeploymentManager, RequiredMaintenanceOperations: u32, pcApplications: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).SetApplicationsNeedMaintenance(@as(*const IPMDeploymentManager, @ptrCast(self)), RequiredMaintenanceOperations, pcApplications);
+    }
+    pub fn UpdateChamberProfile(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).UpdateChamberProfile(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID);
+    }
+    pub fn EnterprisePolicyIsApplicationAllowed(self: *const IPMDeploymentManager, productId: Guid, publisherName: ?[*:0]const u16, pIsAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).EnterprisePolicyIsApplicationAllowed(@as(*const IPMDeploymentManager, @ptrCast(self)), productId, publisherName, pIsAllowed);
+    }
+    pub fn BeginUpdateDeployedPackage(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUpdateDeployedPackage(@as(*const IPMDeploymentManager, @ptrCast(self)), pUpdateInfo);
+    }
+    pub fn ReportRestoreCancelled(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReportRestoreCancelled(@as(*const IPMDeploymentManager, @ptrCast(self)), productID);
+    }
+    pub fn ResolveResourceString(self: *const IPMDeploymentManager, resourceString: ?[*:0]const u16, pResolvedResourceString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ResolveResourceString(@as(*const IPMDeploymentManager, @ptrCast(self)), resourceString, pResolvedResourceString);
+    }
+    pub fn UpdateCapabilitiesForModernApps(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).UpdateCapabilitiesForModernApps(@as(*const IPMDeploymentManager, @ptrCast(self)));
+    }
+    pub fn ReportDownloadStatusUpdate(self: *const IPMDeploymentManager, productId: Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).ReportDownloadStatusUpdate(@as(*const IPMDeploymentManager, @ptrCast(self)), productId);
+    }
+    pub fn BeginUninstallWithOptions(self: *const IPMDeploymentManager, productID: Guid, removalOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUninstallWithOptions(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, removalOptions);
+    }
+    pub fn BindDeferredMdilBinaries(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BindDeferredMdilBinaries(@as(*const IPMDeploymentManager, @ptrCast(self)));
+    }
+    pub fn GenerateXamlLightupXbfForCurrentLocale(self: *const IPMDeploymentManager, PackageFamilyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GenerateXamlLightupXbfForCurrentLocale(@as(*const IPMDeploymentManager, @ptrCast(self)), PackageFamilyName);
+    }
+    pub fn AddLicenseForAppx(self: *const IPMDeploymentManager, productID: Guid, pbLicense: [*:0]u8, cbLicense: u32, pbPlayReadyHeader: ?[*:0]u8, cbPlayReadyHeader: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).AddLicenseForAppx(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, pbLicense, cbLicense, pbPlayReadyHeader, cbPlayReadyHeader);
+    }
+    pub fn FixJunctionsForAppsOnSDCard(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+        return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).FixJunctionsForAppsOnSDCard(@as(*const IPMDeploymentManager, @ptrCast(self)));
+    }
 };
 
 const IID_IPMEnumerationManager_Value = Guid.initString("698d57c2-292d-4cf3-b73c-d95a6922ed9a");
@@ -4859,7 +5501,61 @@ pub const IPMEnumerationManager = extern union {
             return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_StartAppEnumeratorBlob(@as(*const IPMEnumerationManager, @ptrCast(self)), Filter, pcApps, ppAppBlobs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AllApplications(self: *const IPMEnumerationManager, ppAppEnum: ?*?*IPMApplicationInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllApplications(@as(*const IPMEnumerationManager, @ptrCast(self)), ppAppEnum, Filter);
+    }
+    pub fn get_AllTiles(self: *const IPMEnumerationManager, ppTileEnum: ?*?*IPMTileInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllTiles(@as(*const IPMEnumerationManager, @ptrCast(self)), ppTileEnum, Filter);
+    }
+    pub fn get_AllTasks(self: *const IPMEnumerationManager, ppTaskEnum: ?*?*IPMTaskInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllTasks(@as(*const IPMEnumerationManager, @ptrCast(self)), ppTaskEnum, Filter);
+    }
+    pub fn get_AllExtensions(self: *const IPMEnumerationManager, ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllExtensions(@as(*const IPMEnumerationManager, @ptrCast(self)), ppExtensionEnum, Filter);
+    }
+    pub fn get_AllBackgroundServiceAgents(self: *const IPMEnumerationManager, ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllBackgroundServiceAgents(@as(*const IPMEnumerationManager, @ptrCast(self)), ppBSAEnum, Filter);
+    }
+    pub fn get_AllBackgroundWorkers(self: *const IPMEnumerationManager, ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllBackgroundWorkers(@as(*const IPMEnumerationManager, @ptrCast(self)), ppBSWEnum, Filter);
+    }
+    pub fn get_ApplicationInfo(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_ApplicationInfo(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, ppAppInfo);
+    }
+    pub fn get_TileInfo(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_TileInfo(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, TileID, ppTileInfo);
+    }
+    pub fn get_TaskInfo(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?BSTR, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_TaskInfo(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, TaskID, ppTaskInfo);
+    }
+    pub fn get_TaskInfoEx(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?[*:0]const u16, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_TaskInfoEx(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, TaskID, ppTaskInfo);
+    }
+    pub fn get_BackgroundServiceAgentInfo(self: *const IPMEnumerationManager, BSAID: u32, ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_BackgroundServiceAgentInfo(@as(*const IPMEnumerationManager, @ptrCast(self)), BSAID, ppTaskInfo);
+    }
+    pub fn get_AllLiveTileJobs(self: *const IPMEnumerationManager, ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_AllLiveTileJobs(@as(*const IPMEnumerationManager, @ptrCast(self)), ppLiveTileJobEnum);
+    }
+    pub fn get_LiveTileJob(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_LiveTileJob(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, TileID, RecurrenceType, ppLiveTileJobInfo);
+    }
+    pub fn get_ApplicationInfoExternal(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_ApplicationInfoExternal(@as(*const IPMEnumerationManager, @ptrCast(self)), ProductID, ppAppInfo);
+    }
+    pub fn get_FileHandlerGenericLogo(self: *const IPMEnumerationManager, FileType: ?BSTR, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_FileHandlerGenericLogo(@as(*const IPMEnumerationManager, @ptrCast(self)), FileType, LogoSize, pLogo);
+    }
+    pub fn get_ApplicationInfoFromAccessClaims(self: *const IPMEnumerationManager, SysAppID0: ?BSTR, SysAppID1: ?BSTR, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_ApplicationInfoFromAccessClaims(@as(*const IPMEnumerationManager, @ptrCast(self)), SysAppID0, SysAppID1, ppAppInfo);
+    }
+    pub fn get_StartTileEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_StartTileEnumeratorBlob(@as(*const IPMEnumerationManager, @ptrCast(self)), Filter, pcTiles, ppTileBlobs);
+    }
+    pub fn get_StartAppEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+        return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_StartAppEnumeratorBlob(@as(*const IPMEnumerationManager, @ptrCast(self)), Filter, pcApps, ppAppBlobs);
+    }
 };
 
 const IID_IPMTaskInfo_Value = Guid.initString("bf1d8c33-1bf5-4ee0-b549-6b9dd3834942");
@@ -5062,7 +5758,70 @@ pub const IPMTaskInfo = extern union {
             return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_IsOptedForExtendedMem(@as(*const IPMTaskInfo, @ptrCast(self)), pIsOptedIn);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMTaskInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMTaskInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_TaskID(self: *const IPMTaskInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_TaskID(@as(*const IPMTaskInfo, @ptrCast(self)), pTaskID);
+    }
+    pub fn get_NavigationPage(self: *const IPMTaskInfo, pNavigationPage: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_NavigationPage(@as(*const IPMTaskInfo, @ptrCast(self)), pNavigationPage);
+    }
+    pub fn get_TaskTransition(self: *const IPMTaskInfo, pTaskTransition: ?*PM_TASK_TRANSITION) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_TaskTransition(@as(*const IPMTaskInfo, @ptrCast(self)), pTaskTransition);
+    }
+    pub fn get_RuntimeType(self: *const IPMTaskInfo, pRuntimetype: ?*PACKMAN_RUNTIME) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_RuntimeType(@as(*const IPMTaskInfo, @ptrCast(self)), pRuntimetype);
+    }
+    pub fn get_ActivationPolicy(self: *const IPMTaskInfo, pActivationPolicy: ?*PM_ACTIVATION_POLICY) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_ActivationPolicy(@as(*const IPMTaskInfo, @ptrCast(self)), pActivationPolicy);
+    }
+    pub fn get_TaskType(self: *const IPMTaskInfo, pTaskType: ?*PM_TASK_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_TaskType(@as(*const IPMTaskInfo, @ptrCast(self)), pTaskType);
+    }
+    pub fn get_InvocationInfo(self: *const IPMTaskInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMTaskInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
+    pub fn get_ImagePath(self: *const IPMTaskInfo, pImagePath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_ImagePath(@as(*const IPMTaskInfo, @ptrCast(self)), pImagePath);
+    }
+    pub fn get_ImageParams(self: *const IPMTaskInfo, pImageParams: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_ImageParams(@as(*const IPMTaskInfo, @ptrCast(self)), pImageParams);
+    }
+    pub fn get_InstallRootFolder(self: *const IPMTaskInfo, pInstallRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_InstallRootFolder(@as(*const IPMTaskInfo, @ptrCast(self)), pInstallRootFolder);
+    }
+    pub fn get_DataRootFolder(self: *const IPMTaskInfo, pDataRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_DataRootFolder(@as(*const IPMTaskInfo, @ptrCast(self)), pDataRootFolder);
+    }
+    pub fn get_IsSingleInstanceHost(self: *const IPMTaskInfo, pIsSingleInstanceHost: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_IsSingleInstanceHost(@as(*const IPMTaskInfo, @ptrCast(self)), pIsSingleInstanceHost);
+    }
+    pub fn get_IsInteropEnabled(self: *const IPMTaskInfo, pIsInteropEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_IsInteropEnabled(@as(*const IPMTaskInfo, @ptrCast(self)), pIsInteropEnabled);
+    }
+    pub fn get_ApplicationState(self: *const IPMTaskInfo, pApplicationState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_ApplicationState(@as(*const IPMTaskInfo, @ptrCast(self)), pApplicationState);
+    }
+    pub fn get_InstallType(self: *const IPMTaskInfo, pInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_InstallType(@as(*const IPMTaskInfo, @ptrCast(self)), pInstallType);
+    }
+    pub fn get_Version(self: *const IPMTaskInfo, pTargetMajorVersion: ?*u8, pTargetMinorVersion: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IPMTaskInfo, @ptrCast(self)), pTargetMajorVersion, pTargetMinorVersion);
+    }
+    pub fn get_BitsPerPixel(self: *const IPMTaskInfo, pBitsPerPixel: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_BitsPerPixel(@as(*const IPMTaskInfo, @ptrCast(self)), pBitsPerPixel);
+    }
+    pub fn get_SuppressesDehydration(self: *const IPMTaskInfo, pSuppressesDehydration: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_SuppressesDehydration(@as(*const IPMTaskInfo, @ptrCast(self)), pSuppressesDehydration);
+    }
+    pub fn get_BackgroundExecutionAbilities(self: *const IPMTaskInfo, pBackgroundExecutionAbilities: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_BackgroundExecutionAbilities(@as(*const IPMTaskInfo, @ptrCast(self)), pBackgroundExecutionAbilities);
+    }
+    pub fn get_IsOptedForExtendedMem(self: *const IPMTaskInfo, pIsOptedIn: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfo.VTable, @ptrCast(self.vtable)).get_IsOptedForExtendedMem(@as(*const IPMTaskInfo, @ptrCast(self)), pIsOptedIn);
+    }
 };
 
 const IID_IPMTaskInfoEnumerator_Value = Guid.initString("0630b0f8-0bbc-4821-be74-c7995166ed2a");
@@ -5085,7 +5844,10 @@ pub const IPMTaskInfoEnumerator = extern union {
             return @as(*const IPMTaskInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTaskInfoEnumerator, @ptrCast(self)), ppTaskInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMTaskInfoEnumerator, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMTaskInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMTaskInfoEnumerator, @ptrCast(self)), ppTaskInfo);
+    }
 };
 
 const IID_IPMExtensionInfo_Value = Guid.initString("49acde79-9788-4d0a-8aa0-1746afdb9e9d");
@@ -5153,7 +5915,25 @@ pub const IPMExtensionInfo = extern union {
             return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionInfo, @ptrCast(self)), pImageUrn, pParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_SupplierPID(self: *const IPMExtensionInfo, pSupplierPID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_SupplierPID(@as(*const IPMExtensionInfo, @ptrCast(self)), pSupplierPID);
+    }
+    pub fn get_SupplierTaskID(self: *const IPMExtensionInfo, pSupplierTID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_SupplierTaskID(@as(*const IPMExtensionInfo, @ptrCast(self)), pSupplierTID);
+    }
+    pub fn get_Title(self: *const IPMExtensionInfo, pTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IPMExtensionInfo, @ptrCast(self)), pTitle);
+    }
+    pub fn get_IconPath(self: *const IPMExtensionInfo, pIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_IconPath(@as(*const IPMExtensionInfo, @ptrCast(self)), pIconPath);
+    }
+    pub fn get_ExtraFile(self: *const IPMExtensionInfo, pFilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_ExtraFile(@as(*const IPMExtensionInfo, @ptrCast(self)), pFilePath);
+    }
+    pub fn get_InvocationInfo(self: *const IPMExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
 };
 
 const IID_IPMExtensionFileExtensionInfo_Value = Guid.initString("6b87cb6c-0b88-4989-a4ec-033714f710d4");
@@ -5230,7 +6010,28 @@ pub const IPMExtensionFileExtensionInfo = extern union {
             return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pcbTypes, ppTypes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Name(self: *const IPMExtensionFileExtensionInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pName);
+    }
+    pub fn get_DisplayName(self: *const IPMExtensionFileExtensionInfo, pDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pDisplayName);
+    }
+    pub fn get_Logo(self: *const IPMExtensionFileExtensionInfo, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_Logo(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), LogoSize, pLogo);
+    }
+    pub fn get_ContentType(self: *const IPMExtensionFileExtensionInfo, FileType: ?BSTR, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_ContentType(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), FileType, pContentType);
+    }
+    pub fn get_FileType(self: *const IPMExtensionFileExtensionInfo, ContentType: ?BSTR, pFileType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_FileType(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), ContentType, pFileType);
+    }
+    pub fn get_InvocationInfo(self: *const IPMExtensionFileExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileExtensionInfo, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pcbTypes, ppTypes);
+    }
 };
 
 const IID_IPMExtensionProtocolInfo_Value = Guid.initString("1e3fa036-51eb-4453-baff-b8d8e4b46c8e");
@@ -5262,7 +6063,13 @@ pub const IPMExtensionProtocolInfo = extern union {
             return @as(*const IPMExtensionProtocolInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionProtocolInfo, @ptrCast(self)), pImageUrn, pParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Protocol(self: *const IPMExtensionProtocolInfo, pProtocol: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionProtocolInfo.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const IPMExtensionProtocolInfo, @ptrCast(self)), pProtocol);
+    }
+    pub fn get_InvocationInfo(self: *const IPMExtensionProtocolInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionProtocolInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionProtocolInfo, @ptrCast(self)), pImageUrn, pParameters);
+    }
 };
 
 const IID_IPMExtensionShareTargetInfo_Value = Guid.initString("5471f48b-c65c-4656-8c70-242e31195fea");
@@ -5303,7 +6110,16 @@ pub const IPMExtensionShareTargetInfo = extern union {
             return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pSupportsAllTypes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AllFileTypes(self: *const IPMExtensionShareTargetInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pcTypes, ppTypes);
+    }
+    pub fn get_AllDataFormats(self: *const IPMExtensionShareTargetInfo, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_AllDataFormats(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pcDataFormats, ppDataFormats);
+    }
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionShareTargetInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pSupportsAllTypes);
+    }
 };
 
 const IID_IPMExtensionContractInfo_Value = Guid.initString("e5666373-7ba1-467c-b819-b175db1c295b");
@@ -5326,7 +6142,10 @@ pub const IPMExtensionContractInfo = extern union {
             return @as(*const IPMExtensionContractInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionContractInfo, @ptrCast(self)), pAUMID, pArgs);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_InvocationInfo(self: *const IPMExtensionContractInfo, pAUMID: ?*?BSTR, pArgs: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionContractInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionContractInfo, @ptrCast(self)), pAUMID, pArgs);
+    }
 };
 
 const IID_IPMExtensionFileOpenPickerInfo_Value = Guid.initString("6dc91d25-9606-420c-9a78-e034a3418345");
@@ -5358,7 +6177,13 @@ pub const IPMExtensionFileOpenPickerInfo = extern union {
             return @as(*const IPMExtensionFileOpenPickerInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionFileOpenPickerInfo, @ptrCast(self)), pSupportsAllTypes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileOpenPickerInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileOpenPickerInfo, @ptrCast(self)), pcTypes, ppTypes);
+    }
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileOpenPickerInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionFileOpenPickerInfo, @ptrCast(self)), pSupportsAllTypes);
+    }
 };
 
 const IID_IPMExtensionFileSavePickerInfo_Value = Guid.initString("38005cba-f81a-493e-a0f8-922c8680da43");
@@ -5390,7 +6215,13 @@ pub const IPMExtensionFileSavePickerInfo = extern union {
             return @as(*const IPMExtensionFileSavePickerInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionFileSavePickerInfo, @ptrCast(self)), pSupportsAllTypes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileSavePickerInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileSavePickerInfo, @ptrCast(self)), pcTypes, ppTypes);
+    }
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionFileSavePickerInfo.VTable, @ptrCast(self.vtable)).get_SupportsAllFileTypes(@as(*const IPMExtensionFileSavePickerInfo, @ptrCast(self)), pSupportsAllTypes);
+    }
 };
 
 const IID_IPMExtensionCachedFileUpdaterInfo_Value = Guid.initString("e2d77509-4e58-4ba9-af7e-b642e370e1b0");
@@ -5413,7 +6244,10 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern union {
             return @as(*const IPMExtensionCachedFileUpdaterInfo.VTable, @ptrCast(self.vtable)).get_SupportsUpdates(@as(*const IPMExtensionCachedFileUpdaterInfo, @ptrCast(self)), pSupportsUpdates);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_SupportsUpdates(self: *const IPMExtensionCachedFileUpdaterInfo, pSupportsUpdates: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionCachedFileUpdaterInfo.VTable, @ptrCast(self.vtable)).get_SupportsUpdates(@as(*const IPMExtensionCachedFileUpdaterInfo, @ptrCast(self)), pSupportsUpdates);
+    }
 };
 
 const IID_IPMExtensionInfoEnumerator_Value = Guid.initString("403b9e82-1171-4573-8e6f-6f33f39b83dd");
@@ -5436,7 +6270,10 @@ pub const IPMExtensionInfoEnumerator = extern union {
             return @as(*const IPMExtensionInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMExtensionInfoEnumerator, @ptrCast(self)), ppExtensionInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMExtensionInfoEnumerator, ppExtensionInfo: ?*?*IPMExtensionInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMExtensionInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMExtensionInfoEnumerator, @ptrCast(self)), ppExtensionInfo);
+    }
 };
 
 const IID_IPMBackgroundServiceAgentInfo_Value = Guid.initString("3a8b46da-928c-4879-998c-09dc96f3d490");
@@ -5574,7 +6411,49 @@ pub const IPMBackgroundServiceAgentInfo = extern union {
             return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).set_IsScheduleAllowed(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), IsScheduleAllowed);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMBackgroundServiceAgentInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_TaskID(self: *const IPMBackgroundServiceAgentInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_TaskID(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pTaskID);
+    }
+    pub fn get_BSAID(self: *const IPMBackgroundServiceAgentInfo, pBSAID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_BSAID(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pBSAID);
+    }
+    pub fn get_BGSpecifier(self: *const IPMBackgroundServiceAgentInfo, pBGSpecifier: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_BGSpecifier(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pBGSpecifier);
+    }
+    pub fn get_BGName(self: *const IPMBackgroundServiceAgentInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_BGName(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pBGName);
+    }
+    pub fn get_BGSource(self: *const IPMBackgroundServiceAgentInfo, pBGSource: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_BGSource(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pBGSource);
+    }
+    pub fn get_BGType(self: *const IPMBackgroundServiceAgentInfo, pBGType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_BGType(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pBGType);
+    }
+    pub fn get_IsPeriodic(self: *const IPMBackgroundServiceAgentInfo, pIsPeriodic: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_IsPeriodic(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pIsPeriodic);
+    }
+    pub fn get_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, pIsScheduled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_IsScheduled(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pIsScheduled);
+    }
+    pub fn get_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, pIsScheduleAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_IsScheduleAllowed(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pIsScheduleAllowed);
+    }
+    pub fn get_Description(self: *const IPMBackgroundServiceAgentInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pDescription);
+    }
+    pub fn get_IsLaunchOnBoot(self: *const IPMBackgroundServiceAgentInfo, pLaunchOnBoot: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).get_IsLaunchOnBoot(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), pLaunchOnBoot);
+    }
+    pub fn set_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, IsScheduled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).set_IsScheduled(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), IsScheduled);
+    }
+    pub fn set_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, IsScheduleAllowed: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfo.VTable, @ptrCast(self.vtable)).set_IsScheduleAllowed(@as(*const IPMBackgroundServiceAgentInfo, @ptrCast(self)), IsScheduleAllowed);
+    }
 };
 
 const IID_IPMBackgroundWorkerInfo_Value = Guid.initString("7dd4531b-d3bf-4b6b-94f3-69c098b1497d");
@@ -5642,7 +6521,25 @@ pub const IPMBackgroundWorkerInfo = extern union {
             return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_IsBootWorker(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pIsBootWorker);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_ProductID(self: *const IPMBackgroundWorkerInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_ProductID(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pProductID);
+    }
+    pub fn get_TaskID(self: *const IPMBackgroundWorkerInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_TaskID(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pTaskID);
+    }
+    pub fn get_BGName(self: *const IPMBackgroundWorkerInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_BGName(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pBGName);
+    }
+    pub fn get_MaxStartupLatency(self: *const IPMBackgroundWorkerInfo, pMaxStartupLatency: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_MaxStartupLatency(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pMaxStartupLatency);
+    }
+    pub fn get_ExpectedRuntime(self: *const IPMBackgroundWorkerInfo, pExpectedRuntime: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_ExpectedRuntime(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pExpectedRuntime);
+    }
+    pub fn get_IsBootWorker(self: *const IPMBackgroundWorkerInfo, pIsBootWorker: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfo.VTable, @ptrCast(self.vtable)).get_IsBootWorker(@as(*const IPMBackgroundWorkerInfo, @ptrCast(self)), pIsBootWorker);
+    }
 };
 
 const IID_IPMBackgroundServiceAgentInfoEnumerator_Value = Guid.initString("18eb2072-ab56-43b3-872c-beafb7a6b391");
@@ -5665,7 +6562,10 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern union {
             return @as(*const IPMBackgroundServiceAgentInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMBackgroundServiceAgentInfoEnumerator, @ptrCast(self)), ppBSAInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMBackgroundServiceAgentInfoEnumerator, ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundServiceAgentInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMBackgroundServiceAgentInfoEnumerator, @ptrCast(self)), ppBSAInfo);
+    }
 };
 
 const IID_IPMBackgroundWorkerInfoEnumerator_Value = Guid.initString("87f479f8-90d8-4ec7-92b9-72787e2f636b");
@@ -5688,7 +6588,10 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern union {
             return @as(*const IPMBackgroundWorkerInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMBackgroundWorkerInfoEnumerator, @ptrCast(self)), ppBWInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Next(self: *const IPMBackgroundWorkerInfoEnumerator, ppBWInfo: ?*?*IPMBackgroundWorkerInfo) callconv(.Inline) HRESULT {
+        return @as(*const IPMBackgroundWorkerInfoEnumerator.VTable, @ptrCast(self.vtable)).get_Next(@as(*const IPMBackgroundWorkerInfoEnumerator, @ptrCast(self)), ppBWInfo);
+    }
 };
 
 pub const PPATCH_PROGRESS_CALLBACK = *const fn(

@@ -48,7 +48,16 @@ pub const IWICImageEncoder = extern union {
             return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteThumbnail(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pEncoder, pImageParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn WriteFrame(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteFrame(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pFrameEncode, pImageParameters);
+    }
+    pub fn WriteFrameThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteFrameThumbnail(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pFrameEncode, pImageParameters);
+    }
+    pub fn WriteThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteThumbnail(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pEncoder, pImageParameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -72,7 +81,10 @@ pub const IWICImagingFactory2 = extern union {
             return @as(*const IWICImagingFactory2.VTable, @ptrCast(self.vtable)).CreateImageEncoder(@as(*const IWICImagingFactory2, @ptrCast(self)), pD2DDevice, ppWICImageEncoder);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWICImagingFactory.MethodMixin(@This());
+    pub fn CreateImageEncoder(self: *const IWICImagingFactory2, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) callconv(.Inline) HRESULT {
+        return @as(*const IWICImagingFactory2.VTable, @ptrCast(self.vtable)).CreateImageEncoder(@as(*const IWICImagingFactory2, @ptrCast(self)), pD2DDevice, ppWICImageEncoder);
+    }
 };
 
 

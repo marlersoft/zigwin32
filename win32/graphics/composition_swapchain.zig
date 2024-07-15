@@ -55,7 +55,13 @@ pub const IPresentationBuffer = extern union {
             return @as(*const IPresentationBuffer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IPresentationBuffer, @ptrCast(self)), isAvailable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAvailableEvent(self: *const IPresentationBuffer, availableEventHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationBuffer.VTable, @ptrCast(self.vtable)).GetAvailableEvent(@as(*const IPresentationBuffer, @ptrCast(self)), availableEventHandle);
+    }
+    pub fn IsAvailable(self: *const IPresentationBuffer, isAvailable: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationBuffer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IPresentationBuffer, @ptrCast(self)), isAvailable);
+    }
 };
 
 const IID_IPresentationContent_Value = Guid.initString("5668bb79-3d8e-415c-b215-f38020f2d252");
@@ -77,7 +83,10 @@ pub const IPresentationContent = extern union {
             return @as(*const IPresentationContent.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IPresentationContent, @ptrCast(self)), tag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetTag(self: *const IPresentationContent, tag: usize) callconv(.Inline) void {
+        return @as(*const IPresentationContent.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IPresentationContent, @ptrCast(self)), tag);
+    }
 };
 
 const IID_IPresentationSurface_Value = Guid.initString("956710fb-ea40-4eba-a3eb-4375a0eb4edc");
@@ -158,7 +167,31 @@ pub const IPresentationSurface = extern union {
             return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetLetterboxingMargins(@as(*const IPresentationSurface, @ptrCast(self)), leftLetterboxSize, topLetterboxSize, rightLetterboxSize, bottomLetterboxSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPresentationContent.MethodMixin(@This());
+    pub fn SetBuffer(self: *const IPresentationSurface, presentationBuffer: ?*IPresentationBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetBuffer(@as(*const IPresentationSurface, @ptrCast(self)), presentationBuffer);
+    }
+    pub fn SetColorSpace(self: *const IPresentationSurface, colorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetColorSpace(@as(*const IPresentationSurface, @ptrCast(self)), colorSpace);
+    }
+    pub fn SetAlphaMode(self: *const IPresentationSurface, alphaMode: DXGI_ALPHA_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetAlphaMode(@as(*const IPresentationSurface, @ptrCast(self)), alphaMode);
+    }
+    pub fn SetSourceRect(self: *const IPresentationSurface, sourceRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetSourceRect(@as(*const IPresentationSurface, @ptrCast(self)), sourceRect);
+    }
+    pub fn SetTransform(self: *const IPresentationSurface, transform: ?*PresentationTransform) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IPresentationSurface, @ptrCast(self)), transform);
+    }
+    pub fn RestrictToOutput(self: *const IPresentationSurface, output: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).RestrictToOutput(@as(*const IPresentationSurface, @ptrCast(self)), output);
+    }
+    pub fn SetDisableReadback(self: *const IPresentationSurface, value: u8) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetDisableReadback(@as(*const IPresentationSurface, @ptrCast(self)), value);
+    }
+    pub fn SetLetterboxingMargins(self: *const IPresentationSurface, leftLetterboxSize: f32, topLetterboxSize: f32, rightLetterboxSize: f32, bottomLetterboxSize: f32) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetLetterboxingMargins(@as(*const IPresentationSurface, @ptrCast(self)), leftLetterboxSize, topLetterboxSize, rightLetterboxSize, bottomLetterboxSize);
+    }
 };
 
 const IID_IPresentStatistics_Value = Guid.initString("b44b8bda-7282-495d-9dd7-ceadd8b4bb86");
@@ -186,7 +219,13 @@ pub const IPresentStatistics = extern union {
             return @as(*const IPresentStatistics.VTable, @ptrCast(self.vtable)).GetKind(@as(*const IPresentStatistics, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPresentId(self: *const IPresentStatistics) callconv(.Inline) u64 {
+        return @as(*const IPresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentId(@as(*const IPresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetKind(self: *const IPresentStatistics) callconv(.Inline) PresentStatisticsKind {
+        return @as(*const IPresentStatistics.VTable, @ptrCast(self.vtable)).GetKind(@as(*const IPresentStatistics, @ptrCast(self)));
+    }
 };
 
 const IID_IPresentationManager_Value = Guid.initString("fb562f82-6292-470a-88b1-843661e7f20c");
@@ -307,7 +346,46 @@ pub const IPresentationManager = extern union {
             return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetNextPresentStatistics(@as(*const IPresentationManager, @ptrCast(self)), nextPresentStatistics);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddBufferFromResource(self: *const IPresentationManager, resource: ?*IUnknown, presentationBuffer: ?*?*IPresentationBuffer) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).AddBufferFromResource(@as(*const IPresentationManager, @ptrCast(self)), resource, presentationBuffer);
+    }
+    pub fn CreatePresentationSurface(self: *const IPresentationManager, compositionSurfaceHandle: ?HANDLE, presentationSurface: ?*?*IPresentationSurface) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).CreatePresentationSurface(@as(*const IPresentationManager, @ptrCast(self)), compositionSurfaceHandle, presentationSurface);
+    }
+    pub fn GetNextPresentId(self: *const IPresentationManager) callconv(.Inline) u64 {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetNextPresentId(@as(*const IPresentationManager, @ptrCast(self)));
+    }
+    pub fn SetTargetTime(self: *const IPresentationManager, targetTime: SystemInterruptTime) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).SetTargetTime(@as(*const IPresentationManager, @ptrCast(self)), targetTime);
+    }
+    pub fn SetPreferredPresentDuration(self: *const IPresentationManager, preferredDuration: SystemInterruptTime, deviationTolerance: SystemInterruptTime) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).SetPreferredPresentDuration(@as(*const IPresentationManager, @ptrCast(self)), preferredDuration, deviationTolerance);
+    }
+    pub fn ForceVSyncInterrupt(self: *const IPresentationManager, forceVsyncInterrupt: u8) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).ForceVSyncInterrupt(@as(*const IPresentationManager, @ptrCast(self)), forceVsyncInterrupt);
+    }
+    pub fn Present(self: *const IPresentationManager) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).Present(@as(*const IPresentationManager, @ptrCast(self)));
+    }
+    pub fn GetPresentRetiringFence(self: *const IPresentationManager, riid: ?*const Guid, fence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetPresentRetiringFence(@as(*const IPresentationManager, @ptrCast(self)), riid, fence);
+    }
+    pub fn CancelPresentsFrom(self: *const IPresentationManager, presentIdToCancelFrom: u64) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).CancelPresentsFrom(@as(*const IPresentationManager, @ptrCast(self)), presentIdToCancelFrom);
+    }
+    pub fn GetLostEvent(self: *const IPresentationManager, lostEventHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetLostEvent(@as(*const IPresentationManager, @ptrCast(self)), lostEventHandle);
+    }
+    pub fn GetPresentStatisticsAvailableEvent(self: *const IPresentationManager, presentStatisticsAvailableEventHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetPresentStatisticsAvailableEvent(@as(*const IPresentationManager, @ptrCast(self)), presentStatisticsAvailableEventHandle);
+    }
+    pub fn EnablePresentStatisticsKind(self: *const IPresentationManager, presentStatisticsKind: PresentStatisticsKind, enabled: u8) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).EnablePresentStatisticsKind(@as(*const IPresentationManager, @ptrCast(self)), presentStatisticsKind, enabled);
+    }
+    pub fn GetNextPresentStatistics(self: *const IPresentationManager, nextPresentStatistics: ?*?*IPresentStatistics) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetNextPresentStatistics(@as(*const IPresentationManager, @ptrCast(self)), nextPresentStatistics);
+    }
 };
 
 const IID_IPresentationFactory_Value = Guid.initString("8fb37b58-1d74-4f64-a49c-1f97a80a2ec0");
@@ -343,7 +421,16 @@ pub const IPresentationFactory = extern union {
             return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).CreatePresentationManager(@as(*const IPresentationFactory, @ptrCast(self)), ppPresentationManager);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsPresentationSupported(self: *const IPresentationFactory) callconv(.Inline) u8 {
+        return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).IsPresentationSupported(@as(*const IPresentationFactory, @ptrCast(self)));
+    }
+    pub fn IsPresentationSupportedWithIndependentFlip(self: *const IPresentationFactory) callconv(.Inline) u8 {
+        return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).IsPresentationSupportedWithIndependentFlip(@as(*const IPresentationFactory, @ptrCast(self)));
+    }
+    pub fn CreatePresentationManager(self: *const IPresentationFactory, ppPresentationManager: ?*?*IPresentationManager) callconv(.Inline) HRESULT {
+        return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).CreatePresentationManager(@as(*const IPresentationFactory, @ptrCast(self)), ppPresentationManager);
+    }
 };
 
 pub const PresentStatus = enum(i32) {
@@ -380,7 +467,13 @@ pub const IPresentStatusPresentStatistics = extern union {
             return @as(*const IPresentStatusPresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentStatus(@as(*const IPresentStatusPresentStatistics, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPresentStatistics.MethodMixin(@This());
+    pub fn GetCompositionFrameId(self: *const IPresentStatusPresentStatistics) callconv(.Inline) u64 {
+        return @as(*const IPresentStatusPresentStatistics.VTable, @ptrCast(self.vtable)).GetCompositionFrameId(@as(*const IPresentStatusPresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetPresentStatus(self: *const IPresentStatusPresentStatistics) callconv(.Inline) PresentStatus {
+        return @as(*const IPresentStatusPresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentStatus(@as(*const IPresentStatusPresentStatistics, @ptrCast(self)));
+    }
 };
 
 pub const CompositionFrameInstanceKind = enum(i32) {
@@ -437,7 +530,16 @@ pub const ICompositionFramePresentStatistics = extern union {
             return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetDisplayInstanceArray(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)), displayInstanceArrayCount, displayInstanceArray);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPresentStatistics.MethodMixin(@This());
+    pub fn GetContentTag(self: *const ICompositionFramePresentStatistics) callconv(.Inline) usize {
+        return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetContentTag(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetCompositionFrameId(self: *const ICompositionFramePresentStatistics) callconv(.Inline) u64 {
+        return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetCompositionFrameId(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetDisplayInstanceArray(self: *const ICompositionFramePresentStatistics, displayInstanceArrayCount: ?*u32, displayInstanceArray: ?*const ?*CompositionFrameDisplayInstance) callconv(.Inline) void {
+        return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetDisplayInstanceArray(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)), displayInstanceArrayCount, displayInstanceArray);
+    }
 };
 
 const IID_IIndependentFlipFramePresentStatistics_Value = Guid.initString("8c93be27-ad94-4da0-8fd4-2413132d124e");
@@ -486,7 +588,22 @@ pub const IIndependentFlipFramePresentStatistics = extern union {
             return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentDuration(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPresentStatistics.MethodMixin(@This());
+    pub fn GetOutputAdapterLUID(self: *const IIndependentFlipFramePresentStatistics) callconv(.Inline) LUID {
+        return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetOutputAdapterLUID(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetOutputVidPnSourceId(self: *const IIndependentFlipFramePresentStatistics) callconv(.Inline) u32 {
+        return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetOutputVidPnSourceId(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetContentTag(self: *const IIndependentFlipFramePresentStatistics) callconv(.Inline) usize {
+        return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetContentTag(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetDisplayedTime(self: *const IIndependentFlipFramePresentStatistics) callconv(.Inline) SystemInterruptTime {
+        return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetDisplayedTime(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
+    }
+    pub fn GetPresentDuration(self: *const IIndependentFlipFramePresentStatistics) callconv(.Inline) SystemInterruptTime {
+        return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentDuration(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
+    }
 };
 
 

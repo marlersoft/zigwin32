@@ -27,7 +27,10 @@ pub const ISoftwareBitmapNative = extern union {
             return @as(*const ISoftwareBitmapNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISoftwareBitmapNative, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn GetData(self: *const ISoftwareBitmapNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISoftwareBitmapNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISoftwareBitmapNative, @ptrCast(self)), riid, ppv);
+    }
 };
 
 const IID_ISoftwareBitmapNativeFactory_Value = Guid.initString("c3c181ec-2914-4791-af02-02d224a10b43");
@@ -67,7 +70,13 @@ pub const ISoftwareBitmapNativeFactory = extern union {
             return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMF2DBuffer2(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn CreateFromWICBitmap(self: *const ISoftwareBitmapNativeFactory, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromWICBitmap(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
+    }
+    pub fn CreateFromMF2DBuffer2(self: *const ISoftwareBitmapNativeFactory, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMF2DBuffer2(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
+    }
 };
 
 

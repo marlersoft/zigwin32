@@ -28,7 +28,10 @@ pub const IAudioFrameNative = extern union {
             return @as(*const IAudioFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IAudioFrameNative, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn GetData(self: *const IAudioFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IAudioFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IAudioFrameNative, @ptrCast(self)), riid, ppv);
+    }
 };
 
 const IID_IVideoFrameNative_Value = Guid.initString("26ba702b-314a-4620-aaf6-7a51aa58fa18");
@@ -60,7 +63,13 @@ pub const IVideoFrameNative = extern union {
             return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn GetData(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
+    }
+    pub fn GetDevice(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
+    }
 };
 
 const IID_IAudioFrameNativeFactory_Value = Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
@@ -85,7 +94,10 @@ pub const IAudioFrameNativeFactory = extern union {
             return @as(*const IAudioFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IAudioFrameNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IAudioFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IAudioFrameNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
+    }
 };
 
 const IID_IVideoFrameNativeFactory_Value = Guid.initString("69e3693e-8e1e-4e63-ac4c-7fdc21d9731d");
@@ -115,7 +127,10 @@ pub const IVideoFrameNativeFactory = extern union {
             return @as(*const IVideoFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IVideoFrameNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IInspectable.MethodMixin(@This());
+    pub fn CreateFromMFSample(self: *const IVideoFrameNativeFactory, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IVideoFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IVideoFrameNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
+    }
 };
 
 

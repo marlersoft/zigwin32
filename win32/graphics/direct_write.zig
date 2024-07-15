@@ -348,7 +348,10 @@ pub const IDWriteFontFileLoader = extern union {
             return @as(*const IDWriteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateStreamFromKey(@as(*const IDWriteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateStreamFromKey(self: *const IDWriteFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteFontFileStream) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateStreamFromKey(@as(*const IDWriteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
+    }
 };
 
 const IID_IDWriteLocalFontFileLoader_Value = Guid.initString("b2d9f3ec-c9fe-4a11-a2ec-d86208f7c0a2");
@@ -396,7 +399,16 @@ pub const IDWriteLocalFontFileLoader = extern union {
             return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetLastWriteTimeFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, lastWriteTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    pub fn GetFilePathLengthFromKey(self: *const IDWriteLocalFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, filePathLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetFilePathLengthFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, filePathLength);
+    }
+    pub fn GetFilePathFromKey(self: *const IDWriteLocalFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, filePath: [*:0]u16, filePathSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetFilePathFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, filePath, filePathSize);
+    }
+    pub fn GetLastWriteTimeFromKey(self: *const IDWriteLocalFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, lastWriteTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetLastWriteTimeFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, lastWriteTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -446,7 +458,19 @@ pub const IDWriteFontFileStream = extern union {
             return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).GetLastWriteTime(@as(*const IDWriteFontFileStream, @ptrCast(self)), lastWriteTime);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReadFileFragment(self: *const IDWriteFontFileStream, fragmentStart: ?*const ?*anyopaque, fileOffset: u64, fragmentSize: u64, fragmentContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).ReadFileFragment(@as(*const IDWriteFontFileStream, @ptrCast(self)), fragmentStart, fileOffset, fragmentSize, fragmentContext);
+    }
+    pub fn ReleaseFileFragment(self: *const IDWriteFontFileStream, fragmentContext: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).ReleaseFileFragment(@as(*const IDWriteFontFileStream, @ptrCast(self)), fragmentContext);
+    }
+    pub fn GetFileSize(self: *const IDWriteFontFileStream, fileSize: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IDWriteFontFileStream, @ptrCast(self)), fileSize);
+    }
+    pub fn GetLastWriteTime(self: *const IDWriteFontFileStream, lastWriteTime: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).GetLastWriteTime(@as(*const IDWriteFontFileStream, @ptrCast(self)), lastWriteTime);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -489,7 +513,16 @@ pub const IDWriteFontFile = extern union {
             return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).Analyze(@as(*const IDWriteFontFile, @ptrCast(self)), isSupportedFontType, fontFileType, fontFaceType, numberOfFaces);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetReferenceKey(self: *const IDWriteFontFile, fontFileReferenceKey: ?*const ?*anyopaque, fontFileReferenceKeySize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).GetReferenceKey(@as(*const IDWriteFontFile, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize);
+    }
+    pub fn GetLoader(self: *const IDWriteFontFile, fontFileLoader: ?*?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).GetLoader(@as(*const IDWriteFontFile, @ptrCast(self)), fontFileLoader);
+    }
+    pub fn Analyze(self: *const IDWriteFontFile, isSupportedFontType: ?*BOOL, fontFileType: ?*DWRITE_FONT_FILE_TYPE, fontFaceType: ?*DWRITE_FONT_FACE_TYPE, numberOfFaces: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).Analyze(@as(*const IDWriteFontFile, @ptrCast(self)), isSupportedFontType, fontFileType, fontFaceType, numberOfFaces);
+    }
 };
 
 pub const DWRITE_PIXEL_GEOMETRY = enum(i32) {
@@ -582,7 +615,22 @@ pub const IDWriteRenderingParams = extern union {
             return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetRenderingMode(@as(*const IDWriteRenderingParams, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetGamma(self: *const IDWriteRenderingParams) callconv(.Inline) f32 {
+        return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetGamma(@as(*const IDWriteRenderingParams, @ptrCast(self)));
+    }
+    pub fn GetEnhancedContrast(self: *const IDWriteRenderingParams) callconv(.Inline) f32 {
+        return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetEnhancedContrast(@as(*const IDWriteRenderingParams, @ptrCast(self)));
+    }
+    pub fn GetClearTypeLevel(self: *const IDWriteRenderingParams) callconv(.Inline) f32 {
+        return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetClearTypeLevel(@as(*const IDWriteRenderingParams, @ptrCast(self)));
+    }
+    pub fn GetPixelGeometry(self: *const IDWriteRenderingParams) callconv(.Inline) DWRITE_PIXEL_GEOMETRY {
+        return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetPixelGeometry(@as(*const IDWriteRenderingParams, @ptrCast(self)));
+    }
+    pub fn GetRenderingMode(self: *const IDWriteRenderingParams) callconv(.Inline) DWRITE_RENDERING_MODE {
+        return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetRenderingMode(@as(*const IDWriteRenderingParams, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -743,7 +791,52 @@ pub const IDWriteFontFace = extern union {
             return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, transform, useGdiNatural, glyphIndices, glyphCount, glyphMetrics, isSideways);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetType(self: *const IDWriteFontFace) callconv(.Inline) DWRITE_FONT_FACE_TYPE {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDWriteFontFace, @ptrCast(self)));
+    }
+    pub fn GetFiles(self: *const IDWriteFontFace, numberOfFiles: ?*u32, fontFiles: ?[*]?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetFiles(@as(*const IDWriteFontFace, @ptrCast(self)), numberOfFiles, fontFiles);
+    }
+    pub fn GetIndex(self: *const IDWriteFontFace) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IDWriteFontFace, @ptrCast(self)));
+    }
+    pub fn GetSimulations(self: *const IDWriteFontFace) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFontFace, @ptrCast(self)));
+    }
+    pub fn IsSymbolFont(self: *const IDWriteFontFace) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).IsSymbolFont(@as(*const IDWriteFontFace, @ptrCast(self)));
+    }
+    pub fn GetMetrics(self: *const IDWriteFontFace, fontFaceMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), fontFaceMetrics);
+    }
+    pub fn GetGlyphCount(self: *const IDWriteFontFace) callconv(.Inline) u16 {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphCount(@as(*const IDWriteFontFace, @ptrCast(self)));
+    }
+    pub fn GetDesignGlyphMetrics(self: *const IDWriteFontFace, glyphIndices: [*:0]const u16, glyphCount: u32, glyphMetrics: [*]DWRITE_GLYPH_METRICS, isSideways: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetDesignGlyphMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), glyphIndices, glyphCount, glyphMetrics, isSideways);
+    }
+    pub fn GetGlyphIndices(self: *const IDWriteFontFace, codePoints: [*]const u32, codePointCount: u32, glyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IDWriteFontFace, @ptrCast(self)), codePoints, codePointCount, glyphIndices);
+    }
+    pub fn TryGetFontTable(self: *const IDWriteFontFace, openTypeTableTag: u32, tableData: ?*const ?*anyopaque, tableSize: ?*u32, tableContext: ?*?*anyopaque, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).TryGetFontTable(@as(*const IDWriteFontFace, @ptrCast(self)), openTypeTableTag, tableData, tableSize, tableContext, exists);
+    }
+    pub fn ReleaseFontTable(self: *const IDWriteFontFace, tableContext: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).ReleaseFontTable(@as(*const IDWriteFontFace, @ptrCast(self)), tableContext);
+    }
+    pub fn GetGlyphRunOutline(self: *const IDWriteFontFace, emSize: f32, glyphIndices: [*:0]const u16, glyphAdvances: ?[*]const f32, glyphOffsets: ?[*]const DWRITE_GLYPH_OFFSET, glyphCount: u32, isSideways: BOOL, isRightToLeft: BOOL, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphRunOutline(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, glyphIndices, glyphAdvances, glyphOffsets, glyphCount, isSideways, isRightToLeft, geometrySink);
+    }
+    pub fn GetRecommendedRenderingMode(self: *const IDWriteFontFace, emSize: f32, pixelsPerDip: f32, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, measuringMode, renderingParams, renderingMode);
+    }
+    pub fn GetGdiCompatibleMetrics(self: *const IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, fontFaceMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGdiCompatibleMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, transform, fontFaceMetrics);
+    }
+    pub fn GetGdiCompatibleGlyphMetrics(self: *const IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, glyphIndices: [*:0]const u16, glyphCount: u32, glyphMetrics: [*]DWRITE_GLYPH_METRICS, isSideways: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, transform, useGdiNatural, glyphIndices, glyphCount, glyphMetrics, isSideways);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -770,7 +863,10 @@ pub const IDWriteFontCollectionLoader = extern union {
             return @as(*const IDWriteFontCollectionLoader.VTable, @ptrCast(self.vtable)).CreateEnumeratorFromKey(@as(*const IDWriteFontCollectionLoader, @ptrCast(self)), factory, collectionKey, collectionKeySize, fontFileEnumerator);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateEnumeratorFromKey(self: *const IDWriteFontCollectionLoader, factory: ?*IDWriteFactory, collectionKey: ?*const anyopaque, collectionKeySize: u32, fontFileEnumerator: ?*?*IDWriteFontFileEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollectionLoader.VTable, @ptrCast(self.vtable)).CreateEnumeratorFromKey(@as(*const IDWriteFontCollectionLoader, @ptrCast(self)), factory, collectionKey, collectionKeySize, fontFileEnumerator);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -801,7 +897,13 @@ pub const IDWriteFontFileEnumerator = extern union {
             return @as(*const IDWriteFontFileEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentFontFile(@as(*const IDWriteFontFileEnumerator, @ptrCast(self)), fontFile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IDWriteFontFileEnumerator, hasCurrentFile: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IDWriteFontFileEnumerator, @ptrCast(self)), hasCurrentFile);
+    }
+    pub fn GetCurrentFontFile(self: *const IDWriteFontFileEnumerator, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFileEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentFontFile(@as(*const IDWriteFontFileEnumerator, @ptrCast(self)), fontFile);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -871,7 +973,25 @@ pub const IDWriteLocalizedStrings = extern union {
             return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, stringBuffer, size);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IDWriteLocalizedStrings) callconv(.Inline) u32 {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IDWriteLocalizedStrings, @ptrCast(self)));
+    }
+    pub fn FindLocaleName(self: *const IDWriteLocalizedStrings, localeName: ?[*:0]const u16, index: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).FindLocaleName(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), localeName, index, exists);
+    }
+    pub fn GetLocaleNameLength(self: *const IDWriteLocalizedStrings, index: u32, length: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, length);
+    }
+    pub fn GetLocaleName(self: *const IDWriteLocalizedStrings, index: u32, localeName: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, localeName, size);
+    }
+    pub fn GetStringLength(self: *const IDWriteLocalizedStrings, index: u32, length: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, length);
+    }
+    pub fn GetString(self: *const IDWriteLocalizedStrings, index: u32, stringBuffer: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, stringBuffer, size);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -921,7 +1041,19 @@ pub const IDWriteFontCollection = extern union {
             return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFromFontFace(@as(*const IDWriteFontCollection, @ptrCast(self)), fontFace, font);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontFamilyCount(self: *const IDWriteFontCollection) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFamilyCount(@as(*const IDWriteFontCollection, @ptrCast(self)));
+    }
+    pub fn GetFontFamily(self: *const IDWriteFontCollection, index: u32, fontFamily: ?*?*IDWriteFontFamily) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection, @ptrCast(self)), index, fontFamily);
+    }
+    pub fn FindFamilyName(self: *const IDWriteFontCollection, familyName: ?[*:0]const u16, index: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).FindFamilyName(@as(*const IDWriteFontCollection, @ptrCast(self)), familyName, index, exists);
+    }
+    pub fn GetFontFromFontFace(self: *const IDWriteFontCollection, fontFace: ?*IDWriteFontFace, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFromFontFace(@as(*const IDWriteFontCollection, @ptrCast(self)), fontFace, font);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -960,7 +1092,16 @@ pub const IDWriteFontList = extern union {
             return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontList, @ptrCast(self)), index, font);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontCollection(self: *const IDWriteFontList, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteFontList, @ptrCast(self)), fontCollection);
+    }
+    pub fn GetFontCount(self: *const IDWriteFontList) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFontCount(@as(*const IDWriteFontList, @ptrCast(self)));
+    }
+    pub fn GetFont(self: *const IDWriteFontList, index: u32, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontList, @ptrCast(self)), index, font);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1005,7 +1146,16 @@ pub const IDWriteFontFamily = extern union {
             return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontFamily, @ptrCast(self)), weight, stretch, style, matchingFonts);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontList.MethodMixin(@This());
+    pub fn GetFamilyNames(self: *const IDWriteFontFamily, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFamily, @ptrCast(self)), names);
+    }
+    pub fn GetFirstMatchingFont(self: *const IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFont: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetFirstMatchingFont(@as(*const IDWriteFontFamily, @ptrCast(self)), weight, stretch, style, matchingFont);
+    }
+    pub fn GetMatchingFonts(self: *const IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFonts: ?*?*IDWriteFontList) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontFamily, @ptrCast(self)), weight, stretch, style, matchingFonts);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1106,7 +1256,40 @@ pub const IDWriteFont = extern union {
             return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFont, @ptrCast(self)), fontFace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontFamily(self: *const IDWriteFont, fontFamily: ?*?*IDWriteFontFamily) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFont, @ptrCast(self)), fontFamily);
+    }
+    pub fn GetWeight(self: *const IDWriteFont) callconv(.Inline) DWRITE_FONT_WEIGHT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetWeight(@as(*const IDWriteFont, @ptrCast(self)));
+    }
+    pub fn GetStretch(self: *const IDWriteFont) callconv(.Inline) DWRITE_FONT_STRETCH {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetStretch(@as(*const IDWriteFont, @ptrCast(self)));
+    }
+    pub fn GetStyle(self: *const IDWriteFont) callconv(.Inline) DWRITE_FONT_STYLE {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IDWriteFont, @ptrCast(self)));
+    }
+    pub fn IsSymbolFont(self: *const IDWriteFont) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).IsSymbolFont(@as(*const IDWriteFont, @ptrCast(self)));
+    }
+    pub fn GetFaceNames(self: *const IDWriteFont, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFont, @ptrCast(self)), names);
+    }
+    pub fn GetInformationalStrings(self: *const IDWriteFont, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?*?*IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetInformationalStrings(@as(*const IDWriteFont, @ptrCast(self)), informationalStringID, informationalStrings, exists);
+    }
+    pub fn GetSimulations(self: *const IDWriteFont) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFont, @ptrCast(self)));
+    }
+    pub fn GetMetrics(self: *const IDWriteFont, fontMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) void {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFont, @ptrCast(self)), fontMetrics);
+    }
+    pub fn HasCharacter(self: *const IDWriteFont, unicodeValue: u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFont, @ptrCast(self)), unicodeValue, exists);
+    }
+    pub fn CreateFontFace(self: *const IDWriteFont, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFont, @ptrCast(self)), fontFace);
+    }
 };
 
 pub const DWRITE_READING_DIRECTION = enum(i32) {
@@ -1576,7 +1759,82 @@ pub const IDWriteTextFormat = extern union {
             return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextFormat, @ptrCast(self)), localeName, nameSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetTextAlignment(self: *const IDWriteTextFormat, textAlignment: DWRITE_TEXT_ALIGNMENT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetTextAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)), textAlignment);
+    }
+    pub fn SetParagraphAlignment(self: *const IDWriteTextFormat, paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetParagraphAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)), paragraphAlignment);
+    }
+    pub fn SetWordWrapping(self: *const IDWriteTextFormat, wordWrapping: DWRITE_WORD_WRAPPING) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetWordWrapping(@as(*const IDWriteTextFormat, @ptrCast(self)), wordWrapping);
+    }
+    pub fn SetReadingDirection(self: *const IDWriteTextFormat, readingDirection: DWRITE_READING_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetReadingDirection(@as(*const IDWriteTextFormat, @ptrCast(self)), readingDirection);
+    }
+    pub fn SetFlowDirection(self: *const IDWriteTextFormat, flowDirection: DWRITE_FLOW_DIRECTION) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetFlowDirection(@as(*const IDWriteTextFormat, @ptrCast(self)), flowDirection);
+    }
+    pub fn SetIncrementalTabStop(self: *const IDWriteTextFormat, incrementalTabStop: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetIncrementalTabStop(@as(*const IDWriteTextFormat, @ptrCast(self)), incrementalTabStop);
+    }
+    pub fn SetTrimming(self: *const IDWriteTextFormat, trimmingOptions: ?*const DWRITE_TRIMMING, trimmingSign: ?*IDWriteInlineObject) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetTrimming(@as(*const IDWriteTextFormat, @ptrCast(self)), trimmingOptions, trimmingSign);
+    }
+    pub fn SetLineSpacing(self: *const IDWriteTextFormat, lineSpacingMethod: DWRITE_LINE_SPACING_METHOD, lineSpacing: f32, baseline: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextFormat, @ptrCast(self)), lineSpacingMethod, lineSpacing, baseline);
+    }
+    pub fn GetTextAlignment(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_TEXT_ALIGNMENT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetTextAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetParagraphAlignment(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_PARAGRAPH_ALIGNMENT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetParagraphAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetWordWrapping(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_WORD_WRAPPING {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetWordWrapping(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetReadingDirection(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_READING_DIRECTION {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetReadingDirection(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetFlowDirection(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_FLOW_DIRECTION {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFlowDirection(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetIncrementalTabStop(self: *const IDWriteTextFormat) callconv(.Inline) f32 {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetIncrementalTabStop(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetTrimming(self: *const IDWriteTextFormat, trimmingOptions: ?*DWRITE_TRIMMING, trimmingSign: ?*?*IDWriteInlineObject) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetTrimming(@as(*const IDWriteTextFormat, @ptrCast(self)), trimmingOptions, trimmingSign);
+    }
+    pub fn GetLineSpacing(self: *const IDWriteTextFormat, lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD, lineSpacing: ?*f32, baseline: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextFormat, @ptrCast(self)), lineSpacingMethod, lineSpacing, baseline);
+    }
+    pub fn GetFontCollection(self: *const IDWriteTextFormat, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteTextFormat, @ptrCast(self)), fontCollection);
+    }
+    pub fn GetFontFamilyNameLength(self: *const IDWriteTextFormat) callconv(.Inline) u32 {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontFamilyNameLength(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetFontFamilyName(self: *const IDWriteTextFormat, fontFamilyName: [*:0]u16, nameSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontFamilyName(@as(*const IDWriteTextFormat, @ptrCast(self)), fontFamilyName, nameSize);
+    }
+    pub fn GetFontWeight(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_FONT_WEIGHT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontWeight(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetFontStyle(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_FONT_STYLE {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetFontStretch(self: *const IDWriteTextFormat) callconv(.Inline) DWRITE_FONT_STRETCH {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontStretch(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetFontSize(self: *const IDWriteTextFormat) callconv(.Inline) f32 {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetLocaleNameLength(self: *const IDWriteTextFormat) callconv(.Inline) u32 {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteTextFormat, @ptrCast(self)));
+    }
+    pub fn GetLocaleName(self: *const IDWriteTextFormat, localeName: [*:0]u16, nameSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextFormat, @ptrCast(self)), localeName, nameSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1615,7 +1873,16 @@ pub const IDWriteTypography = extern union {
             return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).GetFontFeature(@as(*const IDWriteTypography, @ptrCast(self)), fontFeatureIndex, fontFeature);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddFontFeature(self: *const IDWriteTypography, fontFeature: DWRITE_FONT_FEATURE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).AddFontFeature(@as(*const IDWriteTypography, @ptrCast(self)), fontFeature);
+    }
+    pub fn GetFontFeatureCount(self: *const IDWriteTypography) callconv(.Inline) u32 {
+        return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).GetFontFeatureCount(@as(*const IDWriteTypography, @ptrCast(self)));
+    }
+    pub fn GetFontFeature(self: *const IDWriteTypography, fontFeatureIndex: u32, fontFeature: ?*DWRITE_FONT_FEATURE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).GetFontFeature(@as(*const IDWriteTypography, @ptrCast(self)), fontFeatureIndex, fontFeature);
+    }
 };
 
 pub const DWRITE_SCRIPT_SHAPES = packed struct(u32) {
@@ -1699,7 +1966,7 @@ pub const IDWriteNumberSubstitution = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 pub const DWRITE_SHAPING_TEXT_PROPERTIES = extern struct {
@@ -1769,7 +2036,22 @@ pub const IDWriteTextAnalysisSource = extern union {
             return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetNumberSubstitution(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textLength, numberSubstitution);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetTextAtPosition(self: *const IDWriteTextAnalysisSource, textPosition: u32, textString: ?*const ?*u16, textLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetTextAtPosition(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textString, textLength);
+    }
+    pub fn GetTextBeforePosition(self: *const IDWriteTextAnalysisSource, textPosition: u32, textString: ?*const ?*u16, textLength: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetTextBeforePosition(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textString, textLength);
+    }
+    pub fn GetParagraphReadingDirection(self: *const IDWriteTextAnalysisSource) callconv(.Inline) DWRITE_READING_DIRECTION {
+        return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetParagraphReadingDirection(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)));
+    }
+    pub fn GetLocaleName(self: *const IDWriteTextAnalysisSource, textPosition: u32, textLength: ?*u32, localeName: ?*const ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textLength, localeName);
+    }
+    pub fn GetNumberSubstitution(self: *const IDWriteTextAnalysisSource, textPosition: u32, textLength: ?*u32, numberSubstitution: ?*?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetNumberSubstitution(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textLength, numberSubstitution);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1825,7 +2107,19 @@ pub const IDWriteTextAnalysisSink = extern union {
             return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetNumberSubstitution(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, numberSubstitution);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetScriptAnalysis(self: *const IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetScriptAnalysis(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, scriptAnalysis);
+    }
+    pub fn SetLineBreakpoints(self: *const IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetLineBreakpoints(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, lineBreakpoints);
+    }
+    pub fn SetBidiLevel(self: *const IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, explicitLevel: u8, resolvedLevel: u8) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetBidiLevel(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, explicitLevel, resolvedLevel);
+    }
+    pub fn SetNumberSubstitution(self: *const IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, numberSubstitution: ?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetNumberSubstitution(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, numberSubstitution);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1961,7 +2255,28 @@ pub const IDWriteTextAnalyzer = extern union {
             return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphPlacements(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, clusterMap, textProps, textLength, glyphIndices, glyphProps, glyphCount, fontFace, fontEmSize, pixelsPerDip, transform, useGdiNatural, isSideways, isRightToLeft, scriptAnalysis, localeName, features, featureRangeLengths, featureRanges, glyphAdvances, glyphOffsets);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AnalyzeScript(self: *const IDWriteTextAnalyzer, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeScript(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
+    }
+    pub fn AnalyzeBidi(self: *const IDWriteTextAnalyzer, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeBidi(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
+    }
+    pub fn AnalyzeNumberSubstitution(self: *const IDWriteTextAnalyzer, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeNumberSubstitution(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
+    }
+    pub fn AnalyzeLineBreakpoints(self: *const IDWriteTextAnalyzer, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeLineBreakpoints(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
+    }
+    pub fn GetGlyphs(self: *const IDWriteTextAnalyzer, textString: [*:0]const u16, textLength: u32, fontFace: ?*IDWriteFontFace, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, numberSubstitution: ?*IDWriteNumberSubstitution, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, maxGlyphCount: u32, clusterMap: [*:0]u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, glyphIndices: [*:0]u16, glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGlyphs(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, textLength, fontFace, isSideways, isRightToLeft, scriptAnalysis, localeName, numberSubstitution, features, featureRangeLengths, featureRanges, maxGlyphCount, clusterMap, textProps, glyphIndices, glyphProps, actualGlyphCount);
+    }
+    pub fn GetGlyphPlacements(self: *const IDWriteTextAnalyzer, textString: [*:0]const u16, clusterMap: [*:0]const u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: [*:0]const u16, glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ?*IDWriteFontFace, fontEmSize: f32, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, glyphAdvances: [*]f32, glyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGlyphPlacements(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, clusterMap, textProps, textLength, glyphIndices, glyphProps, glyphCount, fontFace, fontEmSize, isSideways, isRightToLeft, scriptAnalysis, localeName, features, featureRangeLengths, featureRanges, glyphAdvances, glyphOffsets);
+    }
+    pub fn GetGdiCompatibleGlyphPlacements(self: *const IDWriteTextAnalyzer, textString: [*:0]const u16, clusterMap: [*:0]const u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: [*:0]const u16, glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ?*IDWriteFontFace, fontEmSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, glyphAdvances: [*]f32, glyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphPlacements(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, clusterMap, textProps, textLength, glyphIndices, glyphProps, glyphCount, fontFace, fontEmSize, pixelsPerDip, transform, useGdiNatural, isSideways, isRightToLeft, scriptAnalysis, localeName, features, featureRangeLengths, featureRanges, glyphAdvances, glyphOffsets);
+    }
 };
 
 pub const DWRITE_GLYPH_RUN = extern struct {
@@ -2108,7 +2423,19 @@ pub const IDWriteInlineObject = extern union {
             return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetBreakConditions(@as(*const IDWriteInlineObject, @ptrCast(self)), breakConditionBefore, breakConditionAfter);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Draw(self: *const IDWriteInlineObject, clientDrawingContext: ?*anyopaque, renderer: ?*IDWriteTextRenderer, originX: f32, originY: f32, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDWriteInlineObject, @ptrCast(self)), clientDrawingContext, renderer, originX, originY, isSideways, isRightToLeft, clientDrawingEffect);
+    }
+    pub fn GetMetrics(self: *const IDWriteInlineObject, metrics: ?*DWRITE_INLINE_OBJECT_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteInlineObject, @ptrCast(self)), metrics);
+    }
+    pub fn GetOverhangMetrics(self: *const IDWriteInlineObject, overhangs: ?*DWRITE_OVERHANG_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetOverhangMetrics(@as(*const IDWriteInlineObject, @ptrCast(self)), overhangs);
+    }
+    pub fn GetBreakConditions(self: *const IDWriteInlineObject, breakConditionBefore: ?*DWRITE_BREAK_CONDITION, breakConditionAfter: ?*DWRITE_BREAK_CONDITION) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetBreakConditions(@as(*const IDWriteInlineObject, @ptrCast(self)), breakConditionBefore, breakConditionAfter);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2150,7 +2477,16 @@ pub const IDWritePixelSnapping = extern union {
             return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).GetPixelsPerDip(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, pixelsPerDip);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsPixelSnappingDisabled(self: *const IDWritePixelSnapping, clientDrawingContext: ?*anyopaque, isDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).IsPixelSnappingDisabled(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, isDisabled);
+    }
+    pub fn GetCurrentTransform(self: *const IDWritePixelSnapping, clientDrawingContext: ?*anyopaque, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).GetCurrentTransform(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, transform);
+    }
+    pub fn GetPixelsPerDip(self: *const IDWritePixelSnapping, clientDrawingContext: ?*anyopaque, pixelsPerDip: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).GetPixelsPerDip(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, pixelsPerDip);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2217,7 +2553,19 @@ pub const IDWriteTextRenderer = extern union {
             return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, originX, originY, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWritePixelSnapping.MethodMixin(@This());
+    pub fn DrawGlyphRun(self: *const IDWriteTextRenderer, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
+    }
+    pub fn DrawUnderline(self: *const IDWriteTextRenderer, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, underline: ?*const DWRITE_UNDERLINE, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawUnderline(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, underline, clientDrawingEffect);
+    }
+    pub fn DrawStrikethrough(self: *const IDWriteTextRenderer, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, strikethrough: ?*const DWRITE_STRIKETHROUGH, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawStrikethrough(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, strikethrough, clientDrawingEffect);
+    }
+    pub fn DrawInlineObject(self: *const IDWriteTextRenderer, clientDrawingContext: ?*anyopaque, originX: f32, originY: f32, inlineObject: ?*IDWriteInlineObject, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, originX, originY, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2605,7 +2953,124 @@ pub const IDWriteTextLayout = extern union {
             return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestTextRange(@as(*const IDWriteTextLayout, @ptrCast(self)), textPosition, textLength, originX, originY, hitTestMetrics, maxHitTestMetricsCount, actualHitTestMetricsCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextFormat.MethodMixin(@This());
+    pub fn SetMaxWidth(self: *const IDWriteTextLayout, maxWidth: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetMaxWidth(@as(*const IDWriteTextLayout, @ptrCast(self)), maxWidth);
+    }
+    pub fn SetMaxHeight(self: *const IDWriteTextLayout, maxHeight: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetMaxHeight(@as(*const IDWriteTextLayout, @ptrCast(self)), maxHeight);
+    }
+    pub fn SetFontCollection(self: *const IDWriteTextLayout, fontCollection: ?*IDWriteFontCollection, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontCollection(@as(*const IDWriteTextLayout, @ptrCast(self)), fontCollection, textRange);
+    }
+    pub fn SetFontFamilyName(self: *const IDWriteTextLayout, fontFamilyName: ?[*:0]const u16, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontFamilyName(@as(*const IDWriteTextLayout, @ptrCast(self)), fontFamilyName, textRange);
+    }
+    pub fn SetFontWeight(self: *const IDWriteTextLayout, fontWeight: DWRITE_FONT_WEIGHT, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontWeight(@as(*const IDWriteTextLayout, @ptrCast(self)), fontWeight, textRange);
+    }
+    pub fn SetFontStyle(self: *const IDWriteTextLayout, fontStyle: DWRITE_FONT_STYLE, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontStyle(@as(*const IDWriteTextLayout, @ptrCast(self)), fontStyle, textRange);
+    }
+    pub fn SetFontStretch(self: *const IDWriteTextLayout, fontStretch: DWRITE_FONT_STRETCH, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontStretch(@as(*const IDWriteTextLayout, @ptrCast(self)), fontStretch, textRange);
+    }
+    pub fn SetFontSize(self: *const IDWriteTextLayout, fontSize: f32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontSize(@as(*const IDWriteTextLayout, @ptrCast(self)), fontSize, textRange);
+    }
+    pub fn SetUnderline(self: *const IDWriteTextLayout, hasUnderline: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetUnderline(@as(*const IDWriteTextLayout, @ptrCast(self)), hasUnderline, textRange);
+    }
+    pub fn SetStrikethrough(self: *const IDWriteTextLayout, hasStrikethrough: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetStrikethrough(@as(*const IDWriteTextLayout, @ptrCast(self)), hasStrikethrough, textRange);
+    }
+    pub fn SetDrawingEffect(self: *const IDWriteTextLayout, drawingEffect: ?*IUnknown, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetDrawingEffect(@as(*const IDWriteTextLayout, @ptrCast(self)), drawingEffect, textRange);
+    }
+    pub fn SetInlineObject(self: *const IDWriteTextLayout, inlineObject: ?*IDWriteInlineObject, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetInlineObject(@as(*const IDWriteTextLayout, @ptrCast(self)), inlineObject, textRange);
+    }
+    pub fn SetTypography(self: *const IDWriteTextLayout, typography: ?*IDWriteTypography, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetTypography(@as(*const IDWriteTextLayout, @ptrCast(self)), typography, textRange);
+    }
+    pub fn SetLocaleName(self: *const IDWriteTextLayout, localeName: ?[*:0]const u16, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetLocaleName(@as(*const IDWriteTextLayout, @ptrCast(self)), localeName, textRange);
+    }
+    pub fn GetMaxWidth(self: *const IDWriteTextLayout) callconv(.Inline) f32 {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMaxWidth(@as(*const IDWriteTextLayout, @ptrCast(self)));
+    }
+    pub fn GetMaxHeight(self: *const IDWriteTextLayout) callconv(.Inline) f32 {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMaxHeight(@as(*const IDWriteTextLayout, @ptrCast(self)));
+    }
+    pub fn GetFontCollection(self: *const IDWriteTextLayout, currentPosition: u32, fontCollection: ?*?*IDWriteFontCollection, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontCollection, textRange);
+    }
+    pub fn GetFontFamilyNameLength(self: *const IDWriteTextLayout, currentPosition: u32, nameLength: ?*u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontFamilyNameLength(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, nameLength, textRange);
+    }
+    pub fn GetFontFamilyName(self: *const IDWriteTextLayout, currentPosition: u32, fontFamilyName: [*:0]u16, nameSize: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontFamilyName(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontFamilyName, nameSize, textRange);
+    }
+    pub fn GetFontWeight(self: *const IDWriteTextLayout, currentPosition: u32, fontWeight: ?*DWRITE_FONT_WEIGHT, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontWeight(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontWeight, textRange);
+    }
+    pub fn GetFontStyle(self: *const IDWriteTextLayout, currentPosition: u32, fontStyle: ?*DWRITE_FONT_STYLE, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontStyle, textRange);
+    }
+    pub fn GetFontStretch(self: *const IDWriteTextLayout, currentPosition: u32, fontStretch: ?*DWRITE_FONT_STRETCH, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontStretch(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontStretch, textRange);
+    }
+    pub fn GetFontSize(self: *const IDWriteTextLayout, currentPosition: u32, fontSize: ?*f32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontSize, textRange);
+    }
+    pub fn GetUnderline(self: *const IDWriteTextLayout, currentPosition: u32, hasUnderline: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetUnderline(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, hasUnderline, textRange);
+    }
+    pub fn GetStrikethrough(self: *const IDWriteTextLayout, currentPosition: u32, hasStrikethrough: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetStrikethrough(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, hasStrikethrough, textRange);
+    }
+    pub fn GetDrawingEffect(self: *const IDWriteTextLayout, currentPosition: u32, drawingEffect: ?*?*IUnknown, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetDrawingEffect(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, drawingEffect, textRange);
+    }
+    pub fn GetInlineObject(self: *const IDWriteTextLayout, currentPosition: u32, inlineObject: ?*?*IDWriteInlineObject, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetInlineObject(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, inlineObject, textRange);
+    }
+    pub fn GetTypography(self: *const IDWriteTextLayout, currentPosition: u32, typography: ?*?*IDWriteTypography, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetTypography(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, typography, textRange);
+    }
+    pub fn GetLocaleNameLength(self: *const IDWriteTextLayout, currentPosition: u32, nameLength: ?*u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, nameLength, textRange);
+    }
+    pub fn GetLocaleName(self: *const IDWriteTextLayout, currentPosition: u32, localeName: [*:0]u16, nameSize: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, localeName, nameSize, textRange);
+    }
+    pub fn Draw(self: *const IDWriteTextLayout, clientDrawingContext: ?*anyopaque, renderer: ?*IDWriteTextRenderer, originX: f32, originY: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDWriteTextLayout, @ptrCast(self)), clientDrawingContext, renderer, originX, originY);
+    }
+    pub fn GetLineMetrics(self: *const IDWriteTextLayout, lineMetrics: ?[*]DWRITE_LINE_METRICS, maxLineCount: u32, actualLineCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLineMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), lineMetrics, maxLineCount, actualLineCount);
+    }
+    pub fn GetMetrics(self: *const IDWriteTextLayout, textMetrics: ?*DWRITE_TEXT_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), textMetrics);
+    }
+    pub fn GetOverhangMetrics(self: *const IDWriteTextLayout, overhangs: ?*DWRITE_OVERHANG_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetOverhangMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), overhangs);
+    }
+    pub fn GetClusterMetrics(self: *const IDWriteTextLayout, clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS, maxClusterCount: u32, actualClusterCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetClusterMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), clusterMetrics, maxClusterCount, actualClusterCount);
+    }
+    pub fn DetermineMinWidth(self: *const IDWriteTextLayout, minWidth: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).DetermineMinWidth(@as(*const IDWriteTextLayout, @ptrCast(self)), minWidth);
+    }
+    pub fn HitTestPoint(self: *const IDWriteTextLayout, pointX: f32, pointY: f32, isTrailingHit: ?*BOOL, isInside: ?*BOOL, hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestPoint(@as(*const IDWriteTextLayout, @ptrCast(self)), pointX, pointY, isTrailingHit, isInside, hitTestMetrics);
+    }
+    pub fn HitTestTextPosition(self: *const IDWriteTextLayout, textPosition: u32, isTrailingHit: BOOL, pointX: ?*f32, pointY: ?*f32, hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestTextPosition(@as(*const IDWriteTextLayout, @ptrCast(self)), textPosition, isTrailingHit, pointX, pointY, hitTestMetrics);
+    }
+    pub fn HitTestTextRange(self: *const IDWriteTextLayout, textPosition: u32, textLength: u32, originX: f32, originY: f32, hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS, maxHitTestMetricsCount: u32, actualHitTestMetricsCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestTextRange(@as(*const IDWriteTextLayout, @ptrCast(self)), textPosition, textLength, originX, originY, hitTestMetrics, maxHitTestMetricsCount, actualHitTestMetricsCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2689,7 +3154,31 @@ pub const IDWriteBitmapRenderTarget = extern union {
             return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).Resize(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), width, height);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DrawGlyphRun(self: *const IDWriteBitmapRenderTarget, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, renderingParams: ?*IDWriteRenderingParams, textColor: u32, blackBoxRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), baselineOriginX, baselineOriginY, measuringMode, glyphRun, renderingParams, textColor, blackBoxRect);
+    }
+    pub fn GetMemoryDC(self: *const IDWriteBitmapRenderTarget) callconv(.Inline) ?HDC {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetMemoryDC(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)));
+    }
+    pub fn GetPixelsPerDip(self: *const IDWriteBitmapRenderTarget) callconv(.Inline) f32 {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetPixelsPerDip(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)));
+    }
+    pub fn SetPixelsPerDip(self: *const IDWriteBitmapRenderTarget, pixelsPerDip: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).SetPixelsPerDip(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), pixelsPerDip);
+    }
+    pub fn GetCurrentTransform(self: *const IDWriteBitmapRenderTarget, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetCurrentTransform(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), transform);
+    }
+    pub fn SetCurrentTransform(self: *const IDWriteBitmapRenderTarget, transform: ?*const DWRITE_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).SetCurrentTransform(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), transform);
+    }
+    pub fn GetSize(self: *const IDWriteBitmapRenderTarget, size: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), size);
+    }
+    pub fn Resize(self: *const IDWriteBitmapRenderTarget, width: u32, height: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).Resize(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), width, height);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2752,7 +3241,22 @@ pub const IDWriteGdiInterop = extern union {
             return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateBitmapRenderTarget(@as(*const IDWriteGdiInterop, @ptrCast(self)), hdc, width, height, renderTarget);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateFontFromLOGFONT(self: *const IDWriteGdiInterop, logFont: ?*const LOGFONTW, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateFontFromLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), logFont, font);
+    }
+    pub fn ConvertFontToLOGFONT(self: *const IDWriteGdiInterop, font: ?*IDWriteFont, logFont: ?*LOGFONTW, isSystemFont: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).ConvertFontToLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), font, logFont, isSystemFont);
+    }
+    pub fn ConvertFontFaceToLOGFONT(self: *const IDWriteGdiInterop, font: ?*IDWriteFontFace, logFont: ?*LOGFONTW) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).ConvertFontFaceToLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), font, logFont);
+    }
+    pub fn CreateFontFaceFromHdc(self: *const IDWriteGdiInterop, hdc: ?HDC, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateFontFaceFromHdc(@as(*const IDWriteGdiInterop, @ptrCast(self)), hdc, fontFace);
+    }
+    pub fn CreateBitmapRenderTarget(self: *const IDWriteGdiInterop, hdc: ?HDC, width: u32, height: u32, renderTarget: ?*?*IDWriteBitmapRenderTarget) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateBitmapRenderTarget(@as(*const IDWriteGdiInterop, @ptrCast(self)), hdc, width, height, renderTarget);
+    }
 };
 
 pub const DWRITE_TEXTURE_TYPE = enum(i32) {
@@ -2806,7 +3310,16 @@ pub const IDWriteGlyphRunAnalysis = extern union {
             return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).GetAlphaBlendParams(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), renderingParams, blendGamma, blendEnhancedContrast, blendClearTypeLevel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetAlphaTextureBounds(self: *const IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).GetAlphaTextureBounds(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), textureType, textureBounds);
+    }
+    pub fn CreateAlphaTexture(self: *const IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ?*const RECT, alphaValues: ?*u8, bufferSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).CreateAlphaTexture(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), textureType, textureBounds, alphaValues, bufferSize);
+    }
+    pub fn GetAlphaBlendParams(self: *const IDWriteGlyphRunAnalysis, renderingParams: ?*IDWriteRenderingParams, blendGamma: ?*f32, blendEnhancedContrast: ?*f32, blendClearTypeLevel: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).GetAlphaBlendParams(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), renderingParams, blendGamma, blendEnhancedContrast, blendClearTypeLevel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3042,7 +3555,70 @@ pub const IDWriteFactory = extern union {
             return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory, @ptrCast(self)), glyphRun, pixelsPerDip, transform, renderingMode, measuringMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetSystemFontCollection(self: *const IDWriteFactory, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory, @ptrCast(self)), fontCollection, checkForUpdates);
+    }
+    pub fn CreateCustomFontCollection(self: *const IDWriteFactory, collectionLoader: ?*IDWriteFontCollectionLoader, collectionKey: ?*const anyopaque, collectionKeySize: u32, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomFontCollection(@as(*const IDWriteFactory, @ptrCast(self)), collectionLoader, collectionKey, collectionKeySize, fontCollection);
+    }
+    pub fn RegisterFontCollectionLoader(self: *const IDWriteFactory, fontCollectionLoader: ?*IDWriteFontCollectionLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).RegisterFontCollectionLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontCollectionLoader);
+    }
+    pub fn UnregisterFontCollectionLoader(self: *const IDWriteFactory, fontCollectionLoader: ?*IDWriteFontCollectionLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).UnregisterFontCollectionLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontCollectionLoader);
+    }
+    pub fn CreateFontFileReference(self: *const IDWriteFactory, filePath: ?[*:0]const u16, lastWriteTime: ?*const FILETIME, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateFontFileReference(@as(*const IDWriteFactory, @ptrCast(self)), filePath, lastWriteTime, fontFile);
+    }
+    pub fn CreateCustomFontFileReference(self: *const IDWriteFactory, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileLoader: ?*IDWriteFontFileLoader, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomFontFileReference(@as(*const IDWriteFactory, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileLoader, fontFile);
+    }
+    pub fn CreateFontFace(self: *const IDWriteFactory, fontFaceType: DWRITE_FONT_FACE_TYPE, numberOfFiles: u32, fontFiles: [*]?*IDWriteFontFile, faceIndex: u32, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFactory, @ptrCast(self)), fontFaceType, numberOfFiles, fontFiles, faceIndex, fontFaceSimulationFlags, fontFace);
+    }
+    pub fn CreateRenderingParams(self: *const IDWriteFactory, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), renderingParams);
+    }
+    pub fn CreateMonitorRenderingParams(self: *const IDWriteFactory, monitor: ?HMONITOR, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateMonitorRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), monitor, renderingParams);
+    }
+    pub fn CreateCustomRenderingParams(self: *const IDWriteFactory, gamma: f32, enhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), gamma, enhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, renderingParams);
+    }
+    pub fn RegisterFontFileLoader(self: *const IDWriteFactory, fontFileLoader: ?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).RegisterFontFileLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontFileLoader);
+    }
+    pub fn UnregisterFontFileLoader(self: *const IDWriteFactory, fontFileLoader: ?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).UnregisterFontFileLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontFileLoader);
+    }
+    pub fn CreateTextFormat(self: *const IDWriteFactory, fontFamilyName: ?[*:0]const u16, fontCollection: ?*IDWriteFontCollection, fontWeight: DWRITE_FONT_WEIGHT, fontStyle: DWRITE_FONT_STYLE, fontStretch: DWRITE_FONT_STRETCH, fontSize: f32, localeName: ?[*:0]const u16, textFormat: ?*?*IDWriteTextFormat) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextFormat(@as(*const IDWriteFactory, @ptrCast(self)), fontFamilyName, fontCollection, fontWeight, fontStyle, fontStretch, fontSize, localeName, textFormat);
+    }
+    pub fn CreateTypography(self: *const IDWriteFactory, typography: ?*?*IDWriteTypography) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTypography(@as(*const IDWriteFactory, @ptrCast(self)), typography);
+    }
+    pub fn GetGdiInterop(self: *const IDWriteFactory, gdiInterop: ?*?*IDWriteGdiInterop) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).GetGdiInterop(@as(*const IDWriteFactory, @ptrCast(self)), gdiInterop);
+    }
+    pub fn CreateTextLayout(self: *const IDWriteFactory, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, maxWidth: f32, maxHeight: f32, textLayout: ?*?*IDWriteTextLayout) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextLayout(@as(*const IDWriteFactory, @ptrCast(self)), string, stringLength, textFormat, maxWidth, maxHeight, textLayout);
+    }
+    pub fn CreateGdiCompatibleTextLayout(self: *const IDWriteFactory, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutWidth: f32, layoutHeight: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, textLayout: ?*?*IDWriteTextLayout) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateGdiCompatibleTextLayout(@as(*const IDWriteFactory, @ptrCast(self)), string, stringLength, textFormat, layoutWidth, layoutHeight, pixelsPerDip, transform, useGdiNatural, textLayout);
+    }
+    pub fn CreateEllipsisTrimmingSign(self: *const IDWriteFactory, textFormat: ?*IDWriteTextFormat, trimmingSign: ?*?*IDWriteInlineObject) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateEllipsisTrimmingSign(@as(*const IDWriteFactory, @ptrCast(self)), textFormat, trimmingSign);
+    }
+    pub fn CreateTextAnalyzer(self: *const IDWriteFactory, textAnalyzer: ?*?*IDWriteTextAnalyzer) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextAnalyzer(@as(*const IDWriteFactory, @ptrCast(self)), textAnalyzer);
+    }
+    pub fn CreateNumberSubstitution(self: *const IDWriteFactory, substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD, localeName: ?[*:0]const u16, ignoreUserOverride: BOOL, numberSubstitution: ?*?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateNumberSubstitution(@as(*const IDWriteFactory, @ptrCast(self)), substitutionMethod, localeName, ignoreUserOverride, numberSubstitution);
+    }
+    pub fn CreateGlyphRunAnalysis(self: *const IDWriteFactory, glyphRun: ?*const DWRITE_GLYPH_RUN, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory, @ptrCast(self)), glyphRun, pixelsPerDip, transform, renderingMode, measuringMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
+    }
 };
 
 pub const DWRITE_PANOSE_FAMILY = enum(i32) {
@@ -3867,7 +4443,13 @@ pub const IDWriteFactory1 = extern union {
             return @as(*const IDWriteFactory1.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory1, @ptrCast(self)), gamma, enhancedContrast, enhancedContrastGrayscale, clearTypeLevel, pixelGeometry, renderingMode, renderingParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory.MethodMixin(@This());
+    pub fn GetEudcFontCollection(self: *const IDWriteFactory1, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory1.VTable, @ptrCast(self.vtable)).GetEudcFontCollection(@as(*const IDWriteFactory1, @ptrCast(self)), fontCollection, checkForUpdates);
+    }
+    pub fn CreateCustomRenderingParams(self: *const IDWriteFactory1, gamma: f32, enhancedContrast: f32, enhancedContrastGrayscale: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ?*?*IDWriteRenderingParams1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory1.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory1, @ptrCast(self)), gamma, enhancedContrast, enhancedContrastGrayscale, clearTypeLevel, pixelGeometry, renderingMode, renderingParams);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4001,7 +4583,43 @@ pub const IDWriteFontFace1 = extern union {
             return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).HasVerticalGlyphVariants(@as(*const IDWriteFontFace1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace.MethodMixin(@This());
+    pub fn GetMetrics(self: *const IDWriteFontFace1, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), fontMetrics);
+    }
+    pub fn GetGdiCompatibleMetrics(self: *const IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetGdiCompatibleMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), emSize, pixelsPerDip, transform, fontMetrics);
+    }
+    pub fn GetCaretMetrics(self: *const IDWriteFontFace1, caretMetrics: ?*DWRITE_CARET_METRICS) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetCaretMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), caretMetrics);
+    }
+    pub fn GetUnicodeRanges(self: *const IDWriteFontFace1, maxRangeCount: u32, unicodeRanges: ?[*]DWRITE_UNICODE_RANGE, actualRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetUnicodeRanges(@as(*const IDWriteFontFace1, @ptrCast(self)), maxRangeCount, unicodeRanges, actualRangeCount);
+    }
+    pub fn IsMonospacedFont(self: *const IDWriteFontFace1) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).IsMonospacedFont(@as(*const IDWriteFontFace1, @ptrCast(self)));
+    }
+    pub fn GetDesignGlyphAdvances(self: *const IDWriteFontFace1, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvances: [*]i32, isSideways: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetDesignGlyphAdvances(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, glyphIndices, glyphAdvances, isSideways);
+    }
+    pub fn GetGdiCompatibleGlyphAdvances(self: *const IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, isSideways: BOOL, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvances: [*]i32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphAdvances(@as(*const IDWriteFontFace1, @ptrCast(self)), emSize, pixelsPerDip, transform, useGdiNatural, isSideways, glyphCount, glyphIndices, glyphAdvances);
+    }
+    pub fn GetKerningPairAdjustments(self: *const IDWriteFontFace1, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvanceAdjustments: [*]i32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetKerningPairAdjustments(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, glyphIndices, glyphAdvanceAdjustments);
+    }
+    pub fn HasKerningPairs(self: *const IDWriteFontFace1) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).HasKerningPairs(@as(*const IDWriteFontFace1, @ptrCast(self)));
+    }
+    pub fn GetRecommendedRenderingMode(self: *const IDWriteFontFace1, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingMode: ?*DWRITE_RENDERING_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace1, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingMode);
+    }
+    pub fn GetVerticalGlyphVariants(self: *const IDWriteFontFace1, glyphCount: u32, nominalGlyphIndices: [*:0]const u16, verticalGlyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphVariants(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, nominalGlyphIndices, verticalGlyphIndices);
+    }
+    pub fn HasVerticalGlyphVariants(self: *const IDWriteFontFace1) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).HasVerticalGlyphVariants(@as(*const IDWriteFontFace1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4049,7 +4667,19 @@ pub const IDWriteFont1 = extern union {
             return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).IsMonospacedFont(@as(*const IDWriteFont1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFont.MethodMixin(@This());
+    pub fn GetMetrics(self: *const IDWriteFont1, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
+        return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFont1, @ptrCast(self)), fontMetrics);
+    }
+    pub fn GetPanose(self: *const IDWriteFont1, panose: ?*DWRITE_PANOSE) callconv(.Inline) void {
+        return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetPanose(@as(*const IDWriteFont1, @ptrCast(self)), panose);
+    }
+    pub fn GetUnicodeRanges(self: *const IDWriteFont1, maxRangeCount: u32, unicodeRanges: ?[*]DWRITE_UNICODE_RANGE, actualRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetUnicodeRanges(@as(*const IDWriteFont1, @ptrCast(self)), maxRangeCount, unicodeRanges, actualRangeCount);
+    }
+    pub fn IsMonospacedFont(self: *const IDWriteFont1) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).IsMonospacedFont(@as(*const IDWriteFont1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4071,7 +4701,10 @@ pub const IDWriteRenderingParams1 = extern union {
             return @as(*const IDWriteRenderingParams1.VTable, @ptrCast(self.vtable)).GetGrayscaleEnhancedContrast(@as(*const IDWriteRenderingParams1, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteRenderingParams.MethodMixin(@This());
+    pub fn GetGrayscaleEnhancedContrast(self: *const IDWriteRenderingParams1) callconv(.Inline) f32 {
+        return @as(*const IDWriteRenderingParams1.VTable, @ptrCast(self.vtable)).GetGrayscaleEnhancedContrast(@as(*const IDWriteRenderingParams1, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4216,7 +4849,34 @@ pub const IDWriteTextAnalyzer1 = extern union {
             return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetJustifiedGlyphs(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, fontEmSize, scriptAnalysis, textLength, glyphCount, maxGlyphCount, clusterMap, glyphIndices, glyphAdvances, justifiedGlyphAdvances, justifiedGlyphOffsets, glyphProperties, actualGlyphCount, modifiedClusterMap, modifiedGlyphIndices, modifiedGlyphAdvances, modifiedGlyphOffsets);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextAnalyzer.MethodMixin(@This());
+    pub fn ApplyCharacterSpacing(self: *const IDWriteTextAnalyzer1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textLength: u32, glyphCount: u32, clusterMap: [*:0]const u16, glyphAdvances: [*]const f32, glyphOffsets: [*]const DWRITE_GLYPH_OFFSET, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, modifiedGlyphAdvances: [*]f32, modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).ApplyCharacterSpacing(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), leadingSpacing, trailingSpacing, minimumAdvanceWidth, textLength, glyphCount, clusterMap, glyphAdvances, glyphOffsets, glyphProperties, modifiedGlyphAdvances, modifiedGlyphOffsets);
+    }
+    pub fn GetBaseline(self: *const IDWriteTextAnalyzer1, fontFace: ?*IDWriteFontFace, baseline: DWRITE_BASELINE, isVertical: BOOL, isSimulationAllowed: BOOL, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, baselineCoordinate: ?*i32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetBaseline(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, baseline, isVertical, isSimulationAllowed, scriptAnalysis, localeName, baselineCoordinate, exists);
+    }
+    pub fn AnalyzeVerticalGlyphOrientation(self: *const IDWriteTextAnalyzer1, analysisSource: ?*IDWriteTextAnalysisSource1, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).AnalyzeVerticalGlyphOrientation(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
+    }
+    pub fn GetGlyphOrientationTransform(self: *const IDWriteTextAnalyzer1, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: BOOL, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetGlyphOrientationTransform(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), glyphOrientationAngle, isSideways, transform);
+    }
+    pub fn GetScriptProperties(self: *const IDWriteTextAnalyzer1, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetScriptProperties(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), scriptAnalysis, scriptProperties);
+    }
+    pub fn GetTextComplexity(self: *const IDWriteTextAnalyzer1, textString: [*:0]const u16, textLength: u32, fontFace: ?*IDWriteFontFace, isTextSimple: ?*BOOL, textLengthRead: ?*u32, glyphIndices: ?[*:0]u16) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetTextComplexity(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), textString, textLength, fontFace, isTextSimple, textLengthRead, glyphIndices);
+    }
+    pub fn GetJustificationOpportunities(self: *const IDWriteTextAnalyzer1, fontFace: ?*IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, textString: [*:0]const u16, clusterMap: [*:0]const u16, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetJustificationOpportunities(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, fontEmSize, scriptAnalysis, textLength, glyphCount, textString, clusterMap, glyphProperties, justificationOpportunities);
+    }
+    pub fn JustifyGlyphAdvances(self: *const IDWriteTextAnalyzer1, lineWidth: f32, glyphCount: u32, justificationOpportunities: [*]const DWRITE_JUSTIFICATION_OPPORTUNITY, glyphAdvances: [*]const f32, glyphOffsets: [*]const DWRITE_GLYPH_OFFSET, justifiedGlyphAdvances: [*]f32, justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).JustifyGlyphAdvances(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), lineWidth, glyphCount, justificationOpportunities, glyphAdvances, glyphOffsets, justifiedGlyphAdvances, justifiedGlyphOffsets);
+    }
+    pub fn GetJustifiedGlyphs(self: *const IDWriteTextAnalyzer1, fontFace: ?*IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, maxGlyphCount: u32, clusterMap: ?[*:0]const u16, glyphIndices: [*:0]const u16, glyphAdvances: [*]const f32, justifiedGlyphAdvances: [*]const f32, justifiedGlyphOffsets: [*]const DWRITE_GLYPH_OFFSET, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ?*u32, modifiedClusterMap: ?[*:0]u16, modifiedGlyphIndices: [*:0]u16, modifiedGlyphAdvances: [*]f32, modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetJustifiedGlyphs(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, fontEmSize, scriptAnalysis, textLength, glyphCount, maxGlyphCount, clusterMap, glyphIndices, glyphAdvances, justifiedGlyphAdvances, justifiedGlyphOffsets, glyphProperties, actualGlyphCount, modifiedClusterMap, modifiedGlyphIndices, modifiedGlyphAdvances, modifiedGlyphOffsets);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4242,7 +4902,10 @@ pub const IDWriteTextAnalysisSource1 = extern union {
             return @as(*const IDWriteTextAnalysisSource1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextAnalysisSource1, @ptrCast(self)), textPosition, textLength, glyphOrientation, bidiLevel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextAnalysisSource.MethodMixin(@This());
+    pub fn GetVerticalGlyphOrientation(self: *const IDWriteTextAnalysisSource1, textPosition: u32, textLength: ?*u32, glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION, bidiLevel: ?*u8) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSource1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextAnalysisSource1, @ptrCast(self)), textPosition, textLength, glyphOrientation, bidiLevel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4270,7 +4933,10 @@ pub const IDWriteTextAnalysisSink1 = extern union {
             return @as(*const IDWriteTextAnalysisSink1.VTable, @ptrCast(self.vtable)).SetGlyphOrientation(@as(*const IDWriteTextAnalysisSink1, @ptrCast(self)), textPosition, textLength, glyphOrientationAngle, adjustedBidiLevel, isSideways, isRightToLeft);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextAnalysisSink.MethodMixin(@This());
+    pub fn SetGlyphOrientation(self: *const IDWriteTextAnalysisSink1, textPosition: u32, textLength: u32, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, adjustedBidiLevel: u8, isSideways: BOOL, isRightToLeft: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalysisSink1.VTable, @ptrCast(self.vtable)).SetGlyphOrientation(@as(*const IDWriteTextAnalysisSink1, @ptrCast(self)), textPosition, textLength, glyphOrientationAngle, adjustedBidiLevel, isSideways, isRightToLeft);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4327,7 +4993,19 @@ pub const IDWriteTextLayout1 = extern union {
             return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).GetCharacterSpacing(@as(*const IDWriteTextLayout1, @ptrCast(self)), currentPosition, leadingSpacing, trailingSpacing, minimumAdvanceWidth, textRange);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextLayout.MethodMixin(@This());
+    pub fn SetPairKerning(self: *const IDWriteTextLayout1, isPairKerningEnabled: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).SetPairKerning(@as(*const IDWriteTextLayout1, @ptrCast(self)), isPairKerningEnabled, textRange);
+    }
+    pub fn GetPairKerning(self: *const IDWriteTextLayout1, currentPosition: u32, isPairKerningEnabled: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).GetPairKerning(@as(*const IDWriteTextLayout1, @ptrCast(self)), currentPosition, isPairKerningEnabled, textRange);
+    }
+    pub fn SetCharacterSpacing(self: *const IDWriteTextLayout1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).SetCharacterSpacing(@as(*const IDWriteTextLayout1, @ptrCast(self)), leadingSpacing, trailingSpacing, minimumAdvanceWidth, textRange);
+    }
+    pub fn GetCharacterSpacing(self: *const IDWriteTextLayout1, currentPosition: u32, leadingSpacing: ?*f32, trailingSpacing: ?*f32, minimumAdvanceWidth: ?*f32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).GetCharacterSpacing(@as(*const IDWriteTextLayout1, @ptrCast(self)), currentPosition, leadingSpacing, trailingSpacing, minimumAdvanceWidth, textRange);
+    }
 };
 
 pub const DWRITE_TEXT_ANTIALIAS_MODE = enum(i32) {
@@ -4364,7 +5042,13 @@ pub const IDWriteBitmapRenderTarget1 = extern union {
             return @as(*const IDWriteBitmapRenderTarget1.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const IDWriteBitmapRenderTarget1, @ptrCast(self)), antialiasMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteBitmapRenderTarget.MethodMixin(@This());
+    pub fn GetTextAntialiasMode(self: *const IDWriteBitmapRenderTarget1) callconv(.Inline) DWRITE_TEXT_ANTIALIAS_MODE {
+        return @as(*const IDWriteBitmapRenderTarget1.VTable, @ptrCast(self.vtable)).GetTextAntialiasMode(@as(*const IDWriteBitmapRenderTarget1, @ptrCast(self)));
+    }
+    pub fn SetTextAntialiasMode(self: *const IDWriteBitmapRenderTarget1, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteBitmapRenderTarget1.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const IDWriteBitmapRenderTarget1, @ptrCast(self)), antialiasMode);
+    }
 };
 
 pub const DWRITE_OPTICAL_ALIGNMENT = enum(i32) {
@@ -4456,7 +5140,19 @@ pub const IDWriteTextRenderer1 = extern union {
             return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, originX, originY, orientationAngle, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextRenderer.MethodMixin(@This());
+    pub fn DrawGlyphRun(self: *const IDWriteTextRenderer1, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
+    }
+    pub fn DrawUnderline(self: *const IDWriteTextRenderer1, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, underline: ?*const DWRITE_UNDERLINE, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawUnderline(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, underline, clientDrawingEffect);
+    }
+    pub fn DrawStrikethrough(self: *const IDWriteTextRenderer1, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, strikethrough: ?*const DWRITE_STRIKETHROUGH, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawStrikethrough(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, strikethrough, clientDrawingEffect);
+    }
+    pub fn DrawInlineObject(self: *const IDWriteTextRenderer1, clientDrawingContext: ?*anyopaque, originX: f32, originY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, inlineObject: ?*IDWriteInlineObject, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, originX, originY, orientationAngle, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4532,7 +5228,31 @@ pub const IDWriteTextFormat1 = extern union {
             return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextFormat1, @ptrCast(self)), fontFallback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextFormat.MethodMixin(@This());
+    pub fn SetVerticalGlyphOrientation(self: *const IDWriteTextFormat1, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetVerticalGlyphOrientation(@as(*const IDWriteTextFormat1, @ptrCast(self)), glyphOrientation);
+    }
+    pub fn GetVerticalGlyphOrientation(self: *const IDWriteTextFormat1) callconv(.Inline) DWRITE_VERTICAL_GLYPH_ORIENTATION {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextFormat1, @ptrCast(self)));
+    }
+    pub fn SetLastLineWrapping(self: *const IDWriteTextFormat1, isLastLineWrappingEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetLastLineWrapping(@as(*const IDWriteTextFormat1, @ptrCast(self)), isLastLineWrappingEnabled);
+    }
+    pub fn GetLastLineWrapping(self: *const IDWriteTextFormat1) callconv(.Inline) BOOL {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetLastLineWrapping(@as(*const IDWriteTextFormat1, @ptrCast(self)));
+    }
+    pub fn SetOpticalAlignment(self: *const IDWriteTextFormat1, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetOpticalAlignment(@as(*const IDWriteTextFormat1, @ptrCast(self)), opticalAlignment);
+    }
+    pub fn GetOpticalAlignment(self: *const IDWriteTextFormat1) callconv(.Inline) DWRITE_OPTICAL_ALIGNMENT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetOpticalAlignment(@as(*const IDWriteTextFormat1, @ptrCast(self)));
+    }
+    pub fn SetFontFallback(self: *const IDWriteTextFormat1, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetFontFallback(@as(*const IDWriteTextFormat1, @ptrCast(self)), fontFallback);
+    }
+    pub fn GetFontFallback(self: *const IDWriteTextFormat1, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextFormat1, @ptrCast(self)), fontFallback);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4616,7 +5336,34 @@ pub const IDWriteTextLayout2 = extern union {
             return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextLayout2, @ptrCast(self)), fontFallback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextLayout1.MethodMixin(@This());
+    pub fn GetMetrics(self: *const IDWriteTextLayout2, textMetrics: ?*DWRITE_TEXT_METRICS1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteTextLayout2, @ptrCast(self)), textMetrics);
+    }
+    pub fn SetVerticalGlyphOrientation(self: *const IDWriteTextLayout2, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetVerticalGlyphOrientation(@as(*const IDWriteTextLayout2, @ptrCast(self)), glyphOrientation);
+    }
+    pub fn GetVerticalGlyphOrientation(self: *const IDWriteTextLayout2) callconv(.Inline) DWRITE_VERTICAL_GLYPH_ORIENTATION {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextLayout2, @ptrCast(self)));
+    }
+    pub fn SetLastLineWrapping(self: *const IDWriteTextLayout2, isLastLineWrappingEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetLastLineWrapping(@as(*const IDWriteTextLayout2, @ptrCast(self)), isLastLineWrappingEnabled);
+    }
+    pub fn GetLastLineWrapping(self: *const IDWriteTextLayout2) callconv(.Inline) BOOL {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetLastLineWrapping(@as(*const IDWriteTextLayout2, @ptrCast(self)));
+    }
+    pub fn SetOpticalAlignment(self: *const IDWriteTextLayout2, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetOpticalAlignment(@as(*const IDWriteTextLayout2, @ptrCast(self)), opticalAlignment);
+    }
+    pub fn GetOpticalAlignment(self: *const IDWriteTextLayout2) callconv(.Inline) DWRITE_OPTICAL_ALIGNMENT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetOpticalAlignment(@as(*const IDWriteTextLayout2, @ptrCast(self)));
+    }
+    pub fn SetFontFallback(self: *const IDWriteTextLayout2, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetFontFallback(@as(*const IDWriteTextLayout2, @ptrCast(self)), fontFallback);
+    }
+    pub fn GetFontFallback(self: *const IDWriteTextLayout2, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextLayout2, @ptrCast(self)), fontFallback);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4670,7 +5417,16 @@ pub const IDWriteTextAnalyzer2 = extern union {
             return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).CheckTypographicFeature(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), fontFace, scriptAnalysis, localeName, featureTag, glyphCount, glyphIndices, featureApplies);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextAnalyzer1.MethodMixin(@This());
+    pub fn GetGlyphOrientationTransform(self: *const IDWriteTextAnalyzer2, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: BOOL, originX: f32, originY: f32, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).GetGlyphOrientationTransform(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), glyphOrientationAngle, isSideways, originX, originY, transform);
+    }
+    pub fn GetTypographicFeatures(self: *const IDWriteTextAnalyzer2, fontFace: ?*IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, maxTagCount: u32, actualTagCount: ?*u32, tags: [*]DWRITE_FONT_FEATURE_TAG) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).GetTypographicFeatures(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), fontFace, scriptAnalysis, localeName, maxTagCount, actualTagCount, tags);
+    }
+    pub fn CheckTypographicFeature(self: *const IDWriteTextAnalyzer2, fontFace: ?*IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, featureTag: DWRITE_FONT_FEATURE_TAG, glyphCount: u32, glyphIndices: [*:0]const u16, featureApplies: [*:0]u8) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).CheckTypographicFeature(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), fontFace, scriptAnalysis, localeName, featureTag, glyphCount, glyphIndices, featureApplies);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4703,7 +5459,10 @@ pub const IDWriteFontFallback = extern union {
             return @as(*const IDWriteFontFallback.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, baseWeight, baseStyle, baseStretch, mappedLength, mappedFont, scale);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MapCharacters(self: *const IDWriteFontFallback, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ?*u32, mappedFont: ?*?*IDWriteFont, scale: ?*f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFallback.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, baseWeight, baseStyle, baseStretch, mappedLength, mappedFont, scale);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4749,7 +5508,16 @@ pub const IDWriteFontFallbackBuilder = extern union {
             return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).CreateFontFallback(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), fontFallback);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddMapping(self: *const IDWriteFontFallbackBuilder, ranges: [*]const DWRITE_UNICODE_RANGE, rangesCount: u32, targetFamilyNames: [*]const ?*const u16, targetFamilyNamesCount: u32, fontCollection: ?*IDWriteFontCollection, localeName: ?[*:0]const u16, baseFamilyName: ?[*:0]const u16, scale: f32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).AddMapping(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), ranges, rangesCount, targetFamilyNames, targetFamilyNamesCount, fontCollection, localeName, baseFamilyName, scale);
+    }
+    pub fn AddMappings(self: *const IDWriteFontFallbackBuilder, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).AddMappings(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), fontFallback);
+    }
+    pub fn CreateFontFallback(self: *const IDWriteFontFallbackBuilder, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).CreateFontFallback(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), fontFallback);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4771,7 +5539,10 @@ pub const IDWriteFont2 = extern union {
             return @as(*const IDWriteFont2.VTable, @ptrCast(self.vtable)).IsColorFont(@as(*const IDWriteFont2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFont1.MethodMixin(@This());
+    pub fn IsColorFont(self: *const IDWriteFont2) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFont2.VTable, @ptrCast(self.vtable)).IsColorFont(@as(*const IDWriteFont2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4835,7 +5606,22 @@ pub const IDWriteFontFace2 = extern union {
             return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace2, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingParams, renderingMode, gridFitMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace1.MethodMixin(@This());
+    pub fn IsColorFont(self: *const IDWriteFontFace2) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).IsColorFont(@as(*const IDWriteFontFace2, @ptrCast(self)));
+    }
+    pub fn GetColorPaletteCount(self: *const IDWriteFontFace2) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetColorPaletteCount(@as(*const IDWriteFontFace2, @ptrCast(self)));
+    }
+    pub fn GetPaletteEntryCount(self: *const IDWriteFontFace2) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetPaletteEntryCount(@as(*const IDWriteFontFace2, @ptrCast(self)));
+    }
+    pub fn GetPaletteEntries(self: *const IDWriteFontFace2, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]DWRITE_COLOR_F) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetPaletteEntries(@as(*const IDWriteFontFace2, @ptrCast(self)), colorPaletteIndex, firstEntryIndex, entryCount, paletteEntries);
+    }
+    pub fn GetRecommendedRenderingMode(self: *const IDWriteFontFace2, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE, gridFitMode: ?*DWRITE_GRID_FIT_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace2, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingParams, renderingMode, gridFitMode);
+    }
 };
 
 pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
@@ -4875,7 +5661,13 @@ pub const IDWriteColorGlyphRunEnumerator = extern union {
             return @as(*const IDWriteColorGlyphRunEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator, @ptrCast(self)), colorGlyphRun);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn MoveNext(self: *const IDWriteColorGlyphRunEnumerator, hasRun: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteColorGlyphRunEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IDWriteColorGlyphRunEnumerator, @ptrCast(self)), hasRun);
+    }
+    pub fn GetCurrentRun(self: *const IDWriteColorGlyphRunEnumerator, colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteColorGlyphRunEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator, @ptrCast(self)), colorGlyphRun);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4897,7 +5689,10 @@ pub const IDWriteRenderingParams2 = extern union {
             return @as(*const IDWriteRenderingParams2.VTable, @ptrCast(self.vtable)).GetGridFitMode(@as(*const IDWriteRenderingParams2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteRenderingParams1.MethodMixin(@This());
+    pub fn GetGridFitMode(self: *const IDWriteRenderingParams2) callconv(.Inline) DWRITE_GRID_FIT_MODE {
+        return @as(*const IDWriteRenderingParams2.VTable, @ptrCast(self.vtable)).GetGridFitMode(@as(*const IDWriteRenderingParams2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -4974,7 +5769,22 @@ pub const IDWriteFactory2 = extern union {
             return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory2, @ptrCast(self)), glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory1.MethodMixin(@This());
+    pub fn GetSystemFontFallback(self: *const IDWriteFactory2, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).GetSystemFontFallback(@as(*const IDWriteFactory2, @ptrCast(self)), fontFallback);
+    }
+    pub fn CreateFontFallbackBuilder(self: *const IDWriteFactory2, fontFallbackBuilder: ?*?*IDWriteFontFallbackBuilder) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateFontFallbackBuilder(@as(*const IDWriteFactory2, @ptrCast(self)), fontFallbackBuilder);
+    }
+    pub fn TranslateColorGlyphRun(self: *const IDWriteFactory2, baselineOriginX: f32, baselineOriginY: f32, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, measuringMode: DWRITE_MEASURING_MODE, worldToDeviceTransform: ?*const DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ?*?*IDWriteColorGlyphRunEnumerator) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).TranslateColorGlyphRun(@as(*const IDWriteFactory2, @ptrCast(self)), baselineOriginX, baselineOriginY, glyphRun, glyphRunDescription, measuringMode, worldToDeviceTransform, colorPaletteIndex, colorLayers);
+    }
+    pub fn CreateCustomRenderingParams(self: *const IDWriteFactory2, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ?*?*IDWriteRenderingParams2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory2, @ptrCast(self)), gamma, enhancedContrast, grayscaleEnhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, gridFitMode, renderingParams);
+    }
+    pub fn CreateGlyphRunAnalysis(self: *const IDWriteFactory2, glyphRun: ?*const DWRITE_GLYPH_RUN, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory2, @ptrCast(self)), glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
+    }
 };
 
 pub const DWRITE_FONT_PROPERTY_ID = enum(i32) {
@@ -5071,7 +5881,10 @@ pub const IDWriteRenderingParams3 = extern union {
             return @as(*const IDWriteRenderingParams3.VTable, @ptrCast(self.vtable)).GetRenderingMode1(@as(*const IDWriteRenderingParams3, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteRenderingParams2.MethodMixin(@This());
+    pub fn GetRenderingMode1(self: *const IDWriteRenderingParams3) callconv(.Inline) DWRITE_RENDERING_MODE1 {
+        return @as(*const IDWriteRenderingParams3.VTable, @ptrCast(self.vtable)).GetRenderingMode1(@as(*const IDWriteRenderingParams3, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5183,7 +5996,34 @@ pub const IDWriteFactory3 = extern union {
             return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetFontDownloadQueue(@as(*const IDWriteFactory3, @ptrCast(self)), fontDownloadQueue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory2.MethodMixin(@This());
+    pub fn CreateGlyphRunAnalysis(self: *const IDWriteFactory3, glyphRun: ?*const DWRITE_GLYPH_RUN, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE1, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory3, @ptrCast(self)), glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
+    }
+    pub fn CreateCustomRenderingParams(self: *const IDWriteFactory3, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE1, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ?*?*IDWriteRenderingParams3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory3, @ptrCast(self)), gamma, enhancedContrast, grayscaleEnhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, gridFitMode, renderingParams);
+    }
+    pub fn CreateFontFaceReference(self: *const IDWriteFactory3, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory3, @ptrCast(self)), fontFile, faceIndex, fontSimulations, fontFaceReference);
+    }
+    pub fn CreateFontFaceReference1(self: *const IDWriteFactory3, filePath: ?[*:0]const u16, lastWriteTime: ?*const FILETIME, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory3, @ptrCast(self)), filePath, lastWriteTime, faceIndex, fontSimulations, fontFaceReference);
+    }
+    pub fn GetSystemFontSet(self: *const IDWriteFactory3, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory3, @ptrCast(self)), fontSet);
+    }
+    pub fn CreateFontSetBuilder(self: *const IDWriteFactory3, fontSetBuilder: ?*?*IDWriteFontSetBuilder) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory3, @ptrCast(self)), fontSetBuilder);
+    }
+    pub fn CreateFontCollectionFromFontSet(self: *const IDWriteFactory3, fontSet: ?*IDWriteFontSet, fontCollection: ?*?*IDWriteFontCollection1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontCollectionFromFontSet(@as(*const IDWriteFactory3, @ptrCast(self)), fontSet, fontCollection);
+    }
+    pub fn GetSystemFontCollection(self: *const IDWriteFactory3, includeDownloadableFonts: BOOL, fontCollection: ?*?*IDWriteFontCollection1, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory3, @ptrCast(self)), includeDownloadableFonts, fontCollection, checkForUpdates);
+    }
+    pub fn GetFontDownloadQueue(self: *const IDWriteFactory3, fontDownloadQueue: ?*?*IDWriteFontDownloadQueue) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetFontDownloadQueue(@as(*const IDWriteFactory3, @ptrCast(self)), fontDownloadQueue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5295,7 +6135,37 @@ pub const IDWriteFontSet = extern union {
             return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet, @ptrCast(self)), properties, propertyCount, filteredSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontCount(self: *const IDWriteFontSet) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetFontCount(@as(*const IDWriteFontSet, @ptrCast(self)));
+    }
+    pub fn GetFontFaceReference(self: *const IDWriteFontSet, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontSet, @ptrCast(self)), listIndex, fontFaceReference);
+    }
+    pub fn FindFontFaceReference(self: *const IDWriteFontSet, fontFaceReference: ?*IDWriteFontFaceReference, listIndex: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).FindFontFaceReference(@as(*const IDWriteFontSet, @ptrCast(self)), fontFaceReference, listIndex, exists);
+    }
+    pub fn FindFontFace(self: *const IDWriteFontSet, fontFace: ?*IDWriteFontFace, listIndex: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).FindFontFace(@as(*const IDWriteFontSet, @ptrCast(self)), fontFace, listIndex, exists);
+    }
+    pub fn GetPropertyValues(self: *const IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, values: ?*?*IDWriteStringList) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), propertyID, values);
+    }
+    pub fn GetPropertyValues1(self: *const IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, preferredLocaleNames: ?[*:0]const u16, values: ?*?*IDWriteStringList) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), propertyID, preferredLocaleNames, values);
+    }
+    pub fn GetPropertyValues2(self: *const IDWriteFontSet, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ?*BOOL, values: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), listIndex, propertyId, exists, values);
+    }
+    pub fn GetPropertyOccurrenceCount(self: *const IDWriteFontSet, property: ?*const DWRITE_FONT_PROPERTY, propertyOccurrenceCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyOccurrenceCount(@as(*const IDWriteFontSet, @ptrCast(self)), property, propertyOccurrenceCount);
+    }
+    pub fn GetMatchingFonts(self: *const IDWriteFontSet, familyName: ?[*:0]const u16, fontWeight: DWRITE_FONT_WEIGHT, fontStretch: DWRITE_FONT_STRETCH, fontStyle: DWRITE_FONT_STYLE, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet, @ptrCast(self)), familyName, fontWeight, fontStretch, fontStyle, filteredSet);
+    }
+    pub fn GetMatchingFonts1(self: *const IDWriteFontSet, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet, @ptrCast(self)), properties, propertyCount, filteredSet);
+    }
 };
 
 const IID_IDWriteFontSetBuilder_Value = Guid.initString("2f642afe-9c68-4f40-b8be-457401afcb3d");
@@ -5343,7 +6213,19 @@ pub const IDWriteFontSetBuilder = extern union {
             return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).CreateFontSet(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddFontFaceReference(self: *const IDWriteFontSetBuilder, fontFaceReference: ?*IDWriteFontFaceReference, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontFaceReference(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontFaceReference, properties, propertyCount);
+    }
+    pub fn AddFontFaceReference1(self: *const IDWriteFontSetBuilder, fontFaceReference: ?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontFaceReference(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontFaceReference);
+    }
+    pub fn AddFontSet(self: *const IDWriteFontSetBuilder, fontSet: ?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontSet(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontSet);
+    }
+    pub fn CreateFontSet(self: *const IDWriteFontSetBuilder, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).CreateFontSet(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontSet);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5375,7 +6257,13 @@ pub const IDWriteFontCollection1 = extern union {
             return @as(*const IDWriteFontCollection1.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection1, @ptrCast(self)), index, fontFamily);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontCollection.MethodMixin(@This());
+    pub fn GetFontSet(self: *const IDWriteFontCollection1, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection1.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontCollection1, @ptrCast(self)), fontSet);
+    }
+    pub fn GetFontFamily(self: *const IDWriteFontCollection1, index: u32, fontFamily: ?*?*IDWriteFontFamily1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection1.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection1, @ptrCast(self)), index, fontFamily);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5416,7 +6304,16 @@ pub const IDWriteFontFamily1 = extern union {
             return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex, fontFaceReference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFamily.MethodMixin(@This());
+    pub fn GetFontLocality(self: *const IDWriteFontFamily1, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex);
+    }
+    pub fn GetFont(self: *const IDWriteFontFamily1, listIndex: u32, font: ?*?*IDWriteFont3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex, font);
+    }
+    pub fn GetFontFaceReference(self: *const IDWriteFontFamily1, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex, fontFaceReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5457,7 +6354,16 @@ pub const IDWriteFontList1 = extern union {
             return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex, fontFaceReference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontList.MethodMixin(@This());
+    pub fn GetFontLocality(self: *const IDWriteFontList1, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex);
+    }
+    pub fn GetFont(self: *const IDWriteFontList1, listIndex: u32, font: ?*?*IDWriteFont3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex, font);
+    }
+    pub fn GetFontFaceReference(self: *const IDWriteFontList1, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex, fontFaceReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5582,7 +6488,49 @@ pub const IDWriteFontFaceReference = extern union {
             return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueFileFragmentDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fileOffset, fragmentSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateFontFace(self: *const IDWriteFontFaceReference, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFace);
+    }
+    pub fn CreateFontFaceWithSimulations(self: *const IDWriteFontFaceReference, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).CreateFontFaceWithSimulations(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFaceSimulationFlags, fontFace);
+    }
+    pub fn Equals(self: *const IDWriteFontFaceReference, fontFaceReference: ?*IDWriteFontFaceReference) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFaceReference);
+    }
+    pub fn GetFontFaceIndex(self: *const IDWriteFontFaceReference) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn GetSimulations(self: *const IDWriteFontFaceReference) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn GetFontFile(self: *const IDWriteFontFaceReference, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFontFile(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFile);
+    }
+    pub fn GetLocalFileSize(self: *const IDWriteFontFaceReference) callconv(.Inline) u64 {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetLocalFileSize(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn GetFileSize(self: *const IDWriteFontFaceReference) callconv(.Inline) u64 {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn GetFileTime(self: *const IDWriteFontFaceReference, lastWriteTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFileTime(@as(*const IDWriteFontFaceReference, @ptrCast(self)), lastWriteTime);
+    }
+    pub fn GetLocality(self: *const IDWriteFontFaceReference) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn EnqueueFontDownloadRequest(self: *const IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueFontDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
+    }
+    pub fn EnqueueCharacterDownloadRequest(self: *const IDWriteFontFaceReference, characters: [*:0]const u16, characterCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueCharacterDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), characters, characterCount);
+    }
+    pub fn EnqueueGlyphDownloadRequest(self: *const IDWriteFontFaceReference, glyphIndices: [*:0]const u16, glyphCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueGlyphDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), glyphIndices, glyphCount);
+    }
+    pub fn EnqueueFileFragmentDownloadRequest(self: *const IDWriteFontFaceReference, fileOffset: u64, fragmentSize: u64) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueFileFragmentDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fileOffset, fragmentSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5636,7 +6584,22 @@ pub const IDWriteFont3 = extern union {
             return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteFont3, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFont2.MethodMixin(@This());
+    pub fn CreateFontFace(self: *const IDWriteFont3, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFont3, @ptrCast(self)), fontFace);
+    }
+    pub fn Equals(self: *const IDWriteFont3, font: ?*IDWriteFont) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFont3, @ptrCast(self)), font);
+    }
+    pub fn GetFontFaceReference(self: *const IDWriteFont3, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFont3, @ptrCast(self)), fontFaceReference);
+    }
+    pub fn HasCharacter(self: *const IDWriteFont3, unicodeValue: u32) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFont3, @ptrCast(self)), unicodeValue);
+    }
+    pub fn GetLocality(self: *const IDWriteFont3) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteFont3, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -5777,7 +6740,49 @@ pub const IDWriteFontFace3 = extern union {
             return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).AreGlyphsLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), glyphIndices, glyphCount, enqueueIfNotLocal, isLocal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace2.MethodMixin(@This());
+    pub fn GetFontFaceReference(self: *const IDWriteFontFace3, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontFace3, @ptrCast(self)), fontFaceReference);
+    }
+    pub fn GetPanose(self: *const IDWriteFontFace3, panose: ?*DWRITE_PANOSE) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetPanose(@as(*const IDWriteFontFace3, @ptrCast(self)), panose);
+    }
+    pub fn GetWeight(self: *const IDWriteFontFace3) callconv(.Inline) DWRITE_FONT_WEIGHT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetWeight(@as(*const IDWriteFontFace3, @ptrCast(self)));
+    }
+    pub fn GetStretch(self: *const IDWriteFontFace3) callconv(.Inline) DWRITE_FONT_STRETCH {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetStretch(@as(*const IDWriteFontFace3, @ptrCast(self)));
+    }
+    pub fn GetStyle(self: *const IDWriteFontFace3) callconv(.Inline) DWRITE_FONT_STYLE {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IDWriteFontFace3, @ptrCast(self)));
+    }
+    pub fn GetFamilyNames(self: *const IDWriteFontFace3, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFace3, @ptrCast(self)), names);
+    }
+    pub fn GetFaceNames(self: *const IDWriteFontFace3, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFontFace3, @ptrCast(self)), names);
+    }
+    pub fn GetInformationalStrings(self: *const IDWriteFontFace3, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?*?*IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetInformationalStrings(@as(*const IDWriteFontFace3, @ptrCast(self)), informationalStringID, informationalStrings, exists);
+    }
+    pub fn HasCharacter(self: *const IDWriteFontFace3, unicodeValue: u32) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFontFace3, @ptrCast(self)), unicodeValue);
+    }
+    pub fn GetRecommendedRenderingMode(self: *const IDWriteFontFace3, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE1, gridFitMode: ?*DWRITE_GRID_FIT_MODE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace3, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingParams, renderingMode, gridFitMode);
+    }
+    pub fn IsCharacterLocal(self: *const IDWriteFontFace3, unicodeValue: u32) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).IsCharacterLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), unicodeValue);
+    }
+    pub fn IsGlyphLocal(self: *const IDWriteFontFace3, glyphId: u16) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).IsGlyphLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), glyphId);
+    }
+    pub fn AreCharactersLocal(self: *const IDWriteFontFace3, characters: [*:0]const u16, characterCount: u32, enqueueIfNotLocal: BOOL, isLocal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).AreCharactersLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), characters, characterCount, enqueueIfNotLocal, isLocal);
+    }
+    pub fn AreGlyphsLocal(self: *const IDWriteFontFace3, glyphIndices: [*:0]const u16, glyphCount: u32, enqueueIfNotLocal: BOOL, isLocal: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).AreGlyphsLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), glyphIndices, glyphCount, enqueueIfNotLocal, isLocal);
+    }
 };
 
 const IID_IDWriteStringList_Value = Guid.initString("cfee3140-1157-47ca-8b85-31bfcf3f2d0e");
@@ -5836,7 +6841,22 @@ pub const IDWriteStringList = extern union {
             return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCount(self: *const IDWriteStringList) callconv(.Inline) u32 {
+        return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IDWriteStringList, @ptrCast(self)));
+    }
+    pub fn GetLocaleNameLength(self: *const IDWriteStringList, listIndex: u32, length: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, length);
+    }
+    pub fn GetLocaleName(self: *const IDWriteStringList, listIndex: u32, localeName: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, localeName, size);
+    }
+    pub fn GetStringLength(self: *const IDWriteStringList, listIndex: u32, length: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, length);
+    }
+    pub fn GetString(self: *const IDWriteStringList, listIndex: u32, stringBuffer: [*:0]u16, stringBufferSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5861,7 +6881,10 @@ pub const IDWriteFontDownloadListener = extern union {
             return @as(*const IDWriteFontDownloadListener.VTable, @ptrCast(self.vtable)).DownloadCompleted(@as(*const IDWriteFontDownloadListener, @ptrCast(self)), downloadQueue, context, downloadResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DownloadCompleted(self: *const IDWriteFontDownloadListener, downloadQueue: ?*IDWriteFontDownloadQueue, context: ?*IUnknown, downloadResult: HRESULT) callconv(.Inline) void {
+        return @as(*const IDWriteFontDownloadListener.VTable, @ptrCast(self.vtable)).DownloadCompleted(@as(*const IDWriteFontDownloadListener, @ptrCast(self)), downloadQueue, context, downloadResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5922,7 +6945,25 @@ pub const IDWriteFontDownloadQueue = extern union {
             return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).GetGenerationCount(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddListener(self: *const IDWriteFontDownloadQueue, listener: ?*IDWriteFontDownloadListener, token: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).AddListener(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), listener, token);
+    }
+    pub fn RemoveListener(self: *const IDWriteFontDownloadQueue, token: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).RemoveListener(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), token);
+    }
+    pub fn IsEmpty(self: *const IDWriteFontDownloadQueue) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).IsEmpty(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
+    }
+    pub fn BeginDownload(self: *const IDWriteFontDownloadQueue, context: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), context);
+    }
+    pub fn CancelDownload(self: *const IDWriteFontDownloadQueue) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).CancelDownload(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
+    }
+    pub fn GetGenerationCount(self: *const IDWriteFontDownloadQueue) callconv(.Inline) u64 {
+        return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).GetGenerationCount(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
+    }
 };
 
 const IID_IDWriteGdiInterop1_Value = Guid.initString("4556be70-3abd-4f70-90be-421780a6f515");
@@ -5974,7 +7015,19 @@ pub const IDWriteGdiInterop1 = extern union {
             return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetMatchingFontsByLOGFONT(@as(*const IDWriteGdiInterop1, @ptrCast(self)), logFont, fontSet, filteredSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteGdiInterop.MethodMixin(@This());
+    pub fn CreateFontFromLOGFONT(self: *const IDWriteGdiInterop1, logFont: ?*const LOGFONTW, fontCollection: ?*IDWriteFontCollection, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).CreateFontFromLOGFONT(@as(*const IDWriteGdiInterop1, @ptrCast(self)), logFont, fontCollection, font);
+    }
+    pub fn GetFontSignature(self: *const IDWriteGdiInterop1, fontFace: ?*IDWriteFontFace, fontSignature: ?*FONTSIGNATURE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetFontSignature(@as(*const IDWriteGdiInterop1, @ptrCast(self)), fontFace, fontSignature);
+    }
+    pub fn GetFontSignature1(self: *const IDWriteGdiInterop1, font: ?*IDWriteFont, fontSignature: ?*FONTSIGNATURE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetFontSignature(@as(*const IDWriteGdiInterop1, @ptrCast(self)), font, fontSignature);
+    }
+    pub fn GetMatchingFontsByLOGFONT(self: *const IDWriteGdiInterop1, logFont: ?*const LOGFONTA, fontSet: ?*IDWriteFontSet, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetMatchingFontsByLOGFONT(@as(*const IDWriteGdiInterop1, @ptrCast(self)), logFont, fontSet, filteredSet);
+    }
 };
 
 pub const DWRITE_LINE_METRICS1 = extern struct {
@@ -6028,7 +7081,13 @@ pub const IDWriteTextFormat2 = extern union {
             return @as(*const IDWriteTextFormat2.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextFormat2, @ptrCast(self)), lineSpacingOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextFormat1.MethodMixin(@This());
+    pub fn SetLineSpacing(self: *const IDWriteTextFormat2, lineSpacingOptions: ?*const DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat2.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextFormat2, @ptrCast(self)), lineSpacingOptions);
+    }
+    pub fn GetLineSpacing(self: *const IDWriteTextFormat2, lineSpacingOptions: ?*DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat2.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextFormat2, @ptrCast(self)), lineSpacingOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -6076,7 +7135,19 @@ pub const IDWriteTextLayout3 = extern union {
             return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).GetLineMetrics(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineMetrics, maxLineCount, actualLineCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextLayout2.MethodMixin(@This());
+    pub fn InvalidateLayout(self: *const IDWriteTextLayout3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).InvalidateLayout(@as(*const IDWriteTextLayout3, @ptrCast(self)));
+    }
+    pub fn SetLineSpacing(self: *const IDWriteTextLayout3, lineSpacingOptions: ?*const DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineSpacingOptions);
+    }
+    pub fn GetLineSpacing(self: *const IDWriteTextLayout3, lineSpacingOptions: ?*DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineSpacingOptions);
+    }
+    pub fn GetLineMetrics(self: *const IDWriteTextLayout3, lineMetrics: ?[*]DWRITE_LINE_METRICS1, maxLineCount: u32, actualLineCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).GetLineMetrics(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineMetrics, maxLineCount, actualLineCount);
+    }
 };
 
 pub const DWRITE_COLOR_GLYPH_RUN1 = extern struct {
@@ -6116,7 +7187,10 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern union {
             return @as(*const IDWriteColorGlyphRunEnumerator1.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator1, @ptrCast(self)), colorGlyphRun);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteColorGlyphRunEnumerator.MethodMixin(@This());
+    pub fn GetCurrentRun(self: *const IDWriteColorGlyphRunEnumerator1, colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteColorGlyphRunEnumerator1.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator1, @ptrCast(self)), colorGlyphRun);
+    }
 };
 
 const IID_IDWriteFontFace4_Value = Guid.initString("27f2a904-4eb8-441d-9678-0563f53e3e2f");
@@ -6168,7 +7242,19 @@ pub const IDWriteFontFace4 = extern union {
             return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).ReleaseGlyphImageData(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphDataContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace3.MethodMixin(@This());
+    pub fn GetGlyphImageFormats(self: *const IDWriteFontFace4, glyphId: u16, pixelsPerEmFirst: u32, pixelsPerEmLast: u32, glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageFormats(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphId, pixelsPerEmFirst, pixelsPerEmLast, glyphImageFormats);
+    }
+    pub fn GetGlyphImageFormats1(self: *const IDWriteFontFace4) callconv(.Inline) DWRITE_GLYPH_IMAGE_FORMATS {
+        return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageFormats(@as(*const IDWriteFontFace4, @ptrCast(self)));
+    }
+    pub fn GetGlyphImageData(self: *const IDWriteFontFace4, glyphId: u16, pixelsPerEm: u32, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphData: ?*DWRITE_GLYPH_IMAGE_DATA, glyphDataContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageData(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphId, pixelsPerEm, glyphImageFormat, glyphData, glyphDataContext);
+    }
+    pub fn ReleaseGlyphImageData(self: *const IDWriteFontFace4, glyphDataContext: ?*anyopaque) callconv(.Inline) void {
+        return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).ReleaseGlyphImageData(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphDataContext);
+    }
 };
 
 const IID_IDWriteFactory4_Value = Guid.initString("4b0b5bd3-0797-4549-8ac5-fe915cc53856");
@@ -6219,7 +7305,16 @@ pub const IDWriteFactory4 = extern union {
             return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).ComputeGlyphOrigins(@as(*const IDWriteFactory4, @ptrCast(self)), glyphRun, measuringMode, baselineOrigin, worldAndDpiTransform, glyphOrigins);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory3.MethodMixin(@This());
+    pub fn TranslateColorGlyphRun(self: *const IDWriteFactory4, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS, measuringMode: DWRITE_MEASURING_MODE, worldAndDpiTransform: ?*const DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).TranslateColorGlyphRun(@as(*const IDWriteFactory4, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, desiredGlyphImageFormats, measuringMode, worldAndDpiTransform, colorPaletteIndex, colorLayers);
+    }
+    pub fn ComputeGlyphOrigins(self: *const IDWriteFactory4, glyphRun: ?*const DWRITE_GLYPH_RUN, baselineOrigin: D2D_POINT_2F, glyphOrigins: ?*D2D_POINT_2F) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).ComputeGlyphOrigins(@as(*const IDWriteFactory4, @ptrCast(self)), glyphRun, baselineOrigin, glyphOrigins);
+    }
+    pub fn ComputeGlyphOrigins1(self: *const IDWriteFactory4, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, baselineOrigin: D2D_POINT_2F, worldAndDpiTransform: ?*const DWRITE_MATRIX, glyphOrigins: ?*D2D_POINT_2F) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).ComputeGlyphOrigins(@as(*const IDWriteFactory4, @ptrCast(self)), glyphRun, measuringMode, baselineOrigin, worldAndDpiTransform, glyphOrigins);
+    }
 };
 
 const IID_IDWriteFontSetBuilder1_Value = Guid.initString("3ff7715f-3cdc-4dc6-9b72-ec5621dccafd");
@@ -6241,7 +7336,10 @@ pub const IDWriteFontSetBuilder1 = extern union {
             return @as(*const IDWriteFontSetBuilder1.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder1, @ptrCast(self)), fontFile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontSetBuilder.MethodMixin(@This());
+    pub fn AddFontFile(self: *const IDWriteFontSetBuilder1, fontFile: ?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder1.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder1, @ptrCast(self)), fontFile);
+    }
 };
 
 const IID_IDWriteAsyncResult_Value = Guid.initString("ce25f8fd-863b-4d13-9651-c1f88dc73fe2");
@@ -6269,7 +7367,13 @@ pub const IDWriteAsyncResult = extern union {
             return @as(*const IDWriteAsyncResult.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IDWriteAsyncResult, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWaitHandle(self: *const IDWriteAsyncResult) callconv(.Inline) ?HANDLE {
+        return @as(*const IDWriteAsyncResult.VTable, @ptrCast(self.vtable)).GetWaitHandle(@as(*const IDWriteAsyncResult, @ptrCast(self)));
+    }
+    pub fn GetResult(self: *const IDWriteAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteAsyncResult.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IDWriteAsyncResult, @ptrCast(self)));
+    }
 };
 
 pub const DWRITE_FILE_FRAGMENT = extern struct {
@@ -6325,7 +7429,19 @@ pub const IDWriteRemoteFontFileStream = extern union {
             return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), downloadOperationID, fileFragments, fragmentCount, asyncResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFileStream.MethodMixin(@This());
+    pub fn GetLocalFileSize(self: *const IDWriteRemoteFontFileStream, localFileSize: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetLocalFileSize(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), localFileSize);
+    }
+    pub fn GetFileFragmentLocality(self: *const IDWriteRemoteFontFileStream, fileOffset: u64, fragmentSize: u64, isLocal: ?*BOOL, partialSize: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetFileFragmentLocality(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), fileOffset, fragmentSize, isLocal, partialSize);
+    }
+    pub fn GetLocality(self: *const IDWriteRemoteFontFileStream) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)));
+    }
+    pub fn BeginDownload(self: *const IDWriteRemoteFontFileStream, downloadOperationID: ?*const Guid, fileFragments: [*]const DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: ?*?*IDWriteAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), downloadOperationID, fileFragments, fragmentCount, asyncResult);
+    }
 };
 
 pub const DWRITE_CONTAINER_TYPE = enum(i32) {
@@ -6381,7 +7497,16 @@ pub const IDWriteRemoteFontFileLoader = extern union {
             return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateFontFileReferenceFromUrl(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), factory, baseUrl, fontFileUrl, fontFile);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    pub fn CreateRemoteStreamFromKey(self: *const IDWriteRemoteFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteRemoteFontFileStream) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateRemoteStreamFromKey(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
+    }
+    pub fn GetLocalityFromKey(self: *const IDWriteRemoteFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, locality: ?*DWRITE_LOCALITY) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).GetLocalityFromKey(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, locality);
+    }
+    pub fn CreateFontFileReferenceFromUrl(self: *const IDWriteRemoteFontFileLoader, factory: ?*IDWriteFactory, baseUrl: ?[*:0]const u16, fontFileUrl: ?[*:0]const u16, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateFontFileReferenceFromUrl(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), factory, baseUrl, fontFileUrl, fontFile);
+    }
 };
 
 const IID_IDWriteInMemoryFontFileLoader_Value = Guid.initString("dc102f47-a12d-4b1c-822d-9e117e33043f");
@@ -6415,7 +7540,13 @@ pub const IDWriteInMemoryFontFileLoader = extern union {
             return @as(*const IDWriteInMemoryFontFileLoader.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IDWriteInMemoryFontFileLoader, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    pub fn CreateInMemoryFontFileReference(self: *const IDWriteInMemoryFontFileLoader, factory: ?*IDWriteFactory, fontData: ?*const anyopaque, fontDataSize: u32, ownerObject: ?*IUnknown, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteInMemoryFontFileLoader.VTable, @ptrCast(self.vtable)).CreateInMemoryFontFileReference(@as(*const IDWriteInMemoryFontFileLoader, @ptrCast(self)), factory, fontData, fontDataSize, ownerObject, fontFile);
+    }
+    pub fn GetFileCount(self: *const IDWriteInMemoryFontFileLoader) callconv(.Inline) u32 {
+        return @as(*const IDWriteInMemoryFontFileLoader.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IDWriteInMemoryFontFileLoader, @ptrCast(self)));
+    }
 };
 
 const IID_IDWriteFactory5_Value = Guid.initString("958db99a-be2a-4f09-af7d-65189803d1d3");
@@ -6477,7 +7608,22 @@ pub const IDWriteFactory5 = extern union {
             return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).UnpackFontFile(@as(*const IDWriteFactory5, @ptrCast(self)), containerType, fileData, fileDataSize, unpackedFontStream);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory4.MethodMixin(@This());
+    pub fn CreateFontSetBuilder(self: *const IDWriteFactory5, fontSetBuilder: ?*?*IDWriteFontSetBuilder1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory5, @ptrCast(self)), fontSetBuilder);
+    }
+    pub fn CreateInMemoryFontFileLoader(self: *const IDWriteFactory5, newLoader: ?*?*IDWriteInMemoryFontFileLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateInMemoryFontFileLoader(@as(*const IDWriteFactory5, @ptrCast(self)), newLoader);
+    }
+    pub fn CreateHttpFontFileLoader(self: *const IDWriteFactory5, referrerUrl: ?[*:0]const u16, extraHeaders: ?[*:0]const u16, newLoader: ?*?*IDWriteRemoteFontFileLoader) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateHttpFontFileLoader(@as(*const IDWriteFactory5, @ptrCast(self)), referrerUrl, extraHeaders, newLoader);
+    }
+    pub fn AnalyzeContainerType(self: *const IDWriteFactory5, fileData: ?*const anyopaque, fileDataSize: u32) callconv(.Inline) DWRITE_CONTAINER_TYPE {
+        return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).AnalyzeContainerType(@as(*const IDWriteFactory5, @ptrCast(self)), fileData, fileDataSize);
+    }
+    pub fn UnpackFontFile(self: *const IDWriteFactory5, containerType: DWRITE_CONTAINER_TYPE, fileData: ?*const anyopaque, fileDataSize: u32, unpackedFontStream: ?*?*IDWriteFontFileStream) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).UnpackFontFile(@as(*const IDWriteFactory5, @ptrCast(self)), containerType, fileData, fileDataSize, unpackedFontStream);
+    }
 };
 
 pub const DWRITE_FONT_AXIS_VALUE = extern struct {
@@ -6658,7 +7804,28 @@ pub const IDWriteFactory6 = extern union {
             return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateTextFormat(@as(*const IDWriteFactory6, @ptrCast(self)), fontFamilyName, fontCollection, fontAxisValues, fontAxisValueCount, fontSize, localeName, textFormat);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory5.MethodMixin(@This());
+    pub fn CreateFontFaceReference(self: *const IDWriteFactory6, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory6, @ptrCast(self)), fontFile, faceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
+    }
+    pub fn CreateFontResource(self: *const IDWriteFactory6, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IDWriteFactory6, @ptrCast(self)), fontFile, faceIndex, fontResource);
+    }
+    pub fn GetSystemFontSet(self: *const IDWriteFactory6, includeDownloadableFonts: BOOL, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory6, @ptrCast(self)), includeDownloadableFonts, fontSet);
+    }
+    pub fn GetSystemFontCollection(self: *const IDWriteFactory6, includeDownloadableFonts: BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory6, @ptrCast(self)), includeDownloadableFonts, fontFamilyModel, fontCollection);
+    }
+    pub fn CreateFontCollectionFromFontSet(self: *const IDWriteFactory6, fontSet: ?*IDWriteFontSet, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontCollectionFromFontSet(@as(*const IDWriteFactory6, @ptrCast(self)), fontSet, fontFamilyModel, fontCollection);
+    }
+    pub fn CreateFontSetBuilder(self: *const IDWriteFactory6, fontSetBuilder: ?*?*IDWriteFontSetBuilder2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory6, @ptrCast(self)), fontSetBuilder);
+    }
+    pub fn CreateTextFormat(self: *const IDWriteFactory6, fontFamilyName: ?[*:0]const u16, fontCollection: ?*IDWriteFontCollection, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontSize: f32, localeName: ?[*:0]const u16, textFormat: ?*?*IDWriteTextFormat3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateTextFormat(@as(*const IDWriteFactory6, @ptrCast(self)), fontFamilyName, fontCollection, fontAxisValues, fontAxisValueCount, fontSize, localeName, textFormat);
+    }
 };
 
 const IID_IDWriteFontFace5_Value = Guid.initString("98eff3a5-b667-479a-b145-e2fa5b9fdc29");
@@ -6711,7 +7878,22 @@ pub const IDWriteFontFace5 = extern union {
             return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFontFace5, @ptrCast(self)), fontFace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace4.MethodMixin(@This());
+    pub fn GetFontAxisValueCount(self: *const IDWriteFontFace5) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteFontFace5, @ptrCast(self)));
+    }
+    pub fn GetFontAxisValues(self: *const IDWriteFontFace5, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteFontFace5, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
+    }
+    pub fn HasVariations(self: *const IDWriteFontFace5) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).HasVariations(@as(*const IDWriteFontFace5, @ptrCast(self)));
+    }
+    pub fn GetFontResource(self: *const IDWriteFontFace5, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontResource(@as(*const IDWriteFontFace5, @ptrCast(self)), fontResource);
+    }
+    pub fn Equals(self: *const IDWriteFontFace5, fontFace: ?*IDWriteFontFace) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFontFace5, @ptrCast(self)), fontFace);
+    }
 };
 
 const IID_IDWriteFontResource_Value = Guid.initString("1f803a76-6871-48e8-987f-b975551c50f2");
@@ -6830,7 +8012,43 @@ pub const IDWriteFontResource = extern union {
             return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFontResource, @ptrCast(self)), fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetFontFile(self: *const IDWriteFontResource, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontFile(@as(*const IDWriteFontResource, @ptrCast(self)), fontFile);
+    }
+    pub fn GetFontFaceIndex(self: *const IDWriteFontResource) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IDWriteFontResource, @ptrCast(self)));
+    }
+    pub fn GetFontAxisCount(self: *const IDWriteFontResource) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisCount(@as(*const IDWriteFontResource, @ptrCast(self)));
+    }
+    pub fn GetDefaultFontAxisValues(self: *const IDWriteFontResource, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetDefaultFontAxisValues(@as(*const IDWriteFontResource, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
+    }
+    pub fn GetFontAxisRanges(self: *const IDWriteFontResource, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontResource, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount);
+    }
+    pub fn GetFontAxisAttributes(self: *const IDWriteFontResource, axisIndex: u32) callconv(.Inline) DWRITE_FONT_AXIS_ATTRIBUTES {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisAttributes(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex);
+    }
+    pub fn GetAxisNames(self: *const IDWriteFontResource, axisIndex: u32, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisNames(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex, names);
+    }
+    pub fn GetAxisValueNameCount(self: *const IDWriteFontResource, axisIndex: u32) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisValueNameCount(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex);
+    }
+    pub fn GetAxisValueNames(self: *const IDWriteFontResource, axisIndex: u32, axisValueIndex: u32, fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisValueNames(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex, axisValueIndex, fontAxisRange, names);
+    }
+    pub fn HasVariations(self: *const IDWriteFontResource) callconv(.Inline) BOOL {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).HasVariations(@as(*const IDWriteFontResource, @ptrCast(self)));
+    }
+    pub fn CreateFontFace(self: *const IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontResource, @ptrCast(self)), fontSimulations, fontAxisValues, fontAxisValueCount, fontFace);
+    }
+    pub fn CreateFontFaceReference(self: *const IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFontResource, @ptrCast(self)), fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
+    }
 };
 
 const IID_IDWriteFontFaceReference1_Value = Guid.initString("c081fe77-2fd1-41ac-a5a3-34983c4ba61a");
@@ -6868,7 +8086,16 @@ pub const IDWriteFontFaceReference1 = extern union {
             return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteFontFaceReference1, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFaceReference.MethodMixin(@This());
+    pub fn CreateFontFace(self: *const IDWriteFontFaceReference1, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontFaceReference1, @ptrCast(self)), fontFace);
+    }
+    pub fn GetFontAxisValueCount(self: *const IDWriteFontFaceReference1) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteFontFaceReference1, @ptrCast(self)));
+    }
+    pub fn GetFontAxisValues(self: *const IDWriteFontFaceReference1, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteFontFaceReference1, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
+    }
 };
 
 const IID_IDWriteFontSetBuilder2_Value = Guid.initString("ee5ba612-b131-463c-8f4f-3189b9401e45");
@@ -6906,7 +8133,13 @@ pub const IDWriteFontSetBuilder2 = extern union {
             return @as(*const IDWriteFontSetBuilder2.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder2, @ptrCast(self)), filePath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontSetBuilder1.MethodMixin(@This());
+    pub fn AddFont(self: *const IDWriteFontSetBuilder2, fontFile: ?*IDWriteFontFile, fontFaceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder2.VTable, @ptrCast(self.vtable)).AddFont(@as(*const IDWriteFontSetBuilder2, @ptrCast(self)), fontFile, fontFaceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontAxisRanges, fontAxisRangeCount, properties, propertyCount);
+    }
+    pub fn AddFontFile(self: *const IDWriteFontSetBuilder2, filePath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSetBuilder2.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder2, @ptrCast(self)), filePath);
+    }
 };
 
 const IID_IDWriteFontSet1_Value = Guid.initString("7e9fda85-6c92-4053-bc47-7ae3530db4d3");
@@ -7053,7 +8286,46 @@ pub const IDWriteFontSet1 = extern union {
             return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontSet.MethodMixin(@This());
+    pub fn GetMatchingFonts(self: *const IDWriteFontSet1, fontProperty: ?*const DWRITE_FONT_PROPERTY, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), fontProperty, fontAxisValues, fontAxisValueCount, matchingFonts);
+    }
+    pub fn GetFirstFontResources(self: *const IDWriteFontSet1, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFirstFontResources(@as(*const IDWriteFontSet1, @ptrCast(self)), filteredFontSet);
+    }
+    pub fn GetFilteredFonts(self: *const IDWriteFontSet1, indices: [*]const u32, indexCount: u32, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), indices, indexCount, filteredFontSet);
+    }
+    pub fn GetFilteredFonts1(self: *const IDWriteFontSet1, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: BOOL, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount, selectAnyRange, filteredFontSet);
+    }
+    pub fn GetFilteredFonts2(self: *const IDWriteFontSet1, properties: ?[*]const DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: BOOL, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), properties, propertyCount, selectAnyProperty, filteredFontSet);
+    }
+    pub fn GetFilteredFontIndices(self: *const IDWriteFontSet1, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: BOOL, indices: [*]u32, maxIndexCount: u32, actualIndexCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFontIndices(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount, selectAnyRange, indices, maxIndexCount, actualIndexCount);
+    }
+    pub fn GetFilteredFontIndices1(self: *const IDWriteFontSet1, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: BOOL, indices: [*]u32, maxIndexCount: u32, actualIndexCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFontIndices(@as(*const IDWriteFontSet1, @ptrCast(self)), properties, propertyCount, selectAnyProperty, indices, maxIndexCount, actualIndexCount);
+    }
+    pub fn GetFontAxisRanges(self: *const IDWriteFontSet1, listIndex: u32, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontAxisRanges, maxFontAxisRangeCount, actualFontAxisRangeCount);
+    }
+    pub fn GetFontAxisRanges1(self: *const IDWriteFontSet1, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, maxFontAxisRangeCount, actualFontAxisRangeCount);
+    }
+    pub fn GetFontFaceReference(self: *const IDWriteFontSet1, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontFaceReference);
+    }
+    pub fn CreateFontResource(self: *const IDWriteFontSet1, listIndex: u32, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontResource);
+    }
+    pub fn CreateFontFace(self: *const IDWriteFontSet1, listIndex: u32, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontFace);
+    }
+    pub fn GetFontLocality(self: *const IDWriteFontSet1, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
+        return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex);
+    }
 };
 
 const IID_IDWriteFontList2_Value = Guid.initString("c0763a34-77af-445a-b735-08c37b0a5bf5");
@@ -7075,7 +8347,10 @@ pub const IDWriteFontList2 = extern union {
             return @as(*const IDWriteFontList2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontList2, @ptrCast(self)), fontSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontList1.MethodMixin(@This());
+    pub fn GetFontSet(self: *const IDWriteFontList2, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontList2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontList2, @ptrCast(self)), fontSet);
+    }
 };
 
 const IID_IDWriteFontFamily2_Value = Guid.initString("3ed49e77-a398-4261-b9cf-c126c2131ef3");
@@ -7107,7 +8382,13 @@ pub const IDWriteFontFamily2 = extern union {
             return @as(*const IDWriteFontFamily2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontFamily2, @ptrCast(self)), fontSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFamily1.MethodMixin(@This());
+    pub fn GetMatchingFonts(self: *const IDWriteFontFamily2, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontList2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily2.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontFamily2, @ptrCast(self)), fontAxisValues, fontAxisValueCount, matchingFonts);
+    }
+    pub fn GetFontSet(self: *const IDWriteFontFamily2, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFamily2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontFamily2, @ptrCast(self)), fontSet);
+    }
 };
 
 const IID_IDWriteFontCollection2_Value = Guid.initString("514039c6-4617-4064-bf8b-92ea83e506e0");
@@ -7156,7 +8437,19 @@ pub const IDWriteFontCollection2 = extern union {
             return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontCollection2, @ptrCast(self)), fontSet);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontCollection1.MethodMixin(@This());
+    pub fn GetFontFamily(self: *const IDWriteFontCollection2, index: u32, fontFamily: ?*?*IDWriteFontFamily2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection2, @ptrCast(self)), index, fontFamily);
+    }
+    pub fn GetMatchingFonts(self: *const IDWriteFontCollection2, familyName: ?[*:0]const u16, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontList: ?*?*IDWriteFontList2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontCollection2, @ptrCast(self)), familyName, fontAxisValues, fontAxisValueCount, fontList);
+    }
+    pub fn GetFontFamilyModel(self: *const IDWriteFontCollection2) callconv(.Inline) DWRITE_FONT_FAMILY_MODEL {
+        return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontFamilyModel(@as(*const IDWriteFontCollection2, @ptrCast(self)));
+    }
+    pub fn GetFontSet(self: *const IDWriteFontCollection2, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontCollection2, @ptrCast(self)), fontSet);
+    }
 };
 
 const IID_IDWriteTextLayout4_Value = Guid.initString("05a9bf42-223f-4441-b5fb-8263685f55e9");
@@ -7214,7 +8507,22 @@ pub const IDWriteTextLayout4 = extern union {
             return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextLayout4, @ptrCast(self)), automaticFontAxes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextLayout3.MethodMixin(@This());
+    pub fn SetFontAxisValues(self: *const IDWriteTextLayout4, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).SetFontAxisValues(@as(*const IDWriteTextLayout4, @ptrCast(self)), fontAxisValues, fontAxisValueCount, textRange);
+    }
+    pub fn GetFontAxisValueCount(self: *const IDWriteTextLayout4, currentPosition: u32) callconv(.Inline) u32 {
+        return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteTextLayout4, @ptrCast(self)), currentPosition);
+    }
+    pub fn GetFontAxisValues(self: *const IDWriteTextLayout4, currentPosition: u32, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteTextLayout4, @ptrCast(self)), currentPosition, fontAxisValues, fontAxisValueCount, textRange);
+    }
+    pub fn GetAutomaticFontAxes(self: *const IDWriteTextLayout4) callconv(.Inline) DWRITE_AUTOMATIC_FONT_AXES {
+        return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetAutomaticFontAxes(@as(*const IDWriteTextLayout4, @ptrCast(self)));
+    }
+    pub fn SetAutomaticFontAxes(self: *const IDWriteTextLayout4, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextLayout4, @ptrCast(self)), automaticFontAxes);
+    }
 };
 
 const IID_IDWriteTextFormat3_Value = Guid.initString("6d3b5641-e550-430d-a85b-b7bf48a93427");
@@ -7268,7 +8576,22 @@ pub const IDWriteTextFormat3 = extern union {
             return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextFormat3, @ptrCast(self)), automaticFontAxes);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteTextFormat2.MethodMixin(@This());
+    pub fn SetFontAxisValues(self: *const IDWriteTextFormat3, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).SetFontAxisValues(@as(*const IDWriteTextFormat3, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
+    }
+    pub fn GetFontAxisValueCount(self: *const IDWriteTextFormat3) callconv(.Inline) u32 {
+        return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteTextFormat3, @ptrCast(self)));
+    }
+    pub fn GetFontAxisValues(self: *const IDWriteTextFormat3, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteTextFormat3, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
+    }
+    pub fn GetAutomaticFontAxes(self: *const IDWriteTextFormat3) callconv(.Inline) DWRITE_AUTOMATIC_FONT_AXES {
+        return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetAutomaticFontAxes(@as(*const IDWriteTextFormat3, @ptrCast(self)));
+    }
+    pub fn SetAutomaticFontAxes(self: *const IDWriteTextFormat3, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextFormat3, @ptrCast(self)), automaticFontAxes);
+    }
 };
 
 const IID_IDWriteFontFallback1_Value = Guid.initString("2397599d-dd0d-4681-bd6a-f4f31eaade77");
@@ -7299,7 +8622,10 @@ pub const IDWriteFontFallback1 = extern union {
             return @as(*const IDWriteFontFallback1.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback1, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, fontAxisValues, fontAxisValueCount, mappedLength, scale, mappedFontFace);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFallback.MethodMixin(@This());
+    pub fn MapCharacters(self: *const IDWriteFontFallback1, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, mappedLength: ?*u32, scale: ?*f32, mappedFontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFallback1.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback1, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, fontAxisValues, fontAxisValueCount, mappedLength, scale, mappedFontFace);
+    }
 };
 
 const IID_IDWriteFontSet2_Value = Guid.initString("dc7ead19-e54c-43af-b2da-4e2b79ba3f7f");
@@ -7320,7 +8646,10 @@ pub const IDWriteFontSet2 = extern union {
             return @as(*const IDWriteFontSet2.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontSet2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontSet1.MethodMixin(@This());
+    pub fn GetExpirationEvent(self: *const IDWriteFontSet2) callconv(.Inline) ?HANDLE {
+        return @as(*const IDWriteFontSet2.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontSet2, @ptrCast(self)));
+    }
 };
 
 const IID_IDWriteFontCollection3_Value = Guid.initString("a4d055a6-f9e3-4e25-93b7-9e309f3af8e9");
@@ -7341,7 +8670,10 @@ pub const IDWriteFontCollection3 = extern union {
             return @as(*const IDWriteFontCollection3.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontCollection3, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontCollection2.MethodMixin(@This());
+    pub fn GetExpirationEvent(self: *const IDWriteFontCollection3) callconv(.Inline) ?HANDLE {
+        return @as(*const IDWriteFontCollection3.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontCollection3, @ptrCast(self)));
+    }
 };
 
 const IID_IDWriteFactory7_Value = Guid.initString("35d0e0b3-9076-4d2e-a016-a91b568a06b4");
@@ -7374,7 +8706,13 @@ pub const IDWriteFactory7 = extern union {
             return @as(*const IDWriteFactory7.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory7, @ptrCast(self)), includeDownloadableFonts, fontFamilyModel, fontCollection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFactory6.MethodMixin(@This());
+    pub fn GetSystemFontSet(self: *const IDWriteFactory7, includeDownloadableFonts: BOOL, fontSet: ?*?*IDWriteFontSet2) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory7.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory7, @ptrCast(self)), includeDownloadableFonts, fontSet);
+    }
+    pub fn GetSystemFontCollection(self: *const IDWriteFactory7, includeDownloadableFonts: BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection3) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFactory7.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory7, @ptrCast(self)), includeDownloadableFonts, fontFamilyModel, fontCollection);
+    }
 };
 
 pub const DWRITE_FONT_SOURCE_TYPE = enum(i32) {
@@ -7427,7 +8765,16 @@ pub const IDWriteFontSet3 = extern union {
             return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceName(@as(*const IDWriteFontSet3, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontSet2.MethodMixin(@This());
+    pub fn GetFontSourceType(self: *const IDWriteFontSet3, fontIndex: u32) callconv(.Inline) DWRITE_FONT_SOURCE_TYPE {
+        return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceType(@as(*const IDWriteFontSet3, @ptrCast(self)), fontIndex);
+    }
+    pub fn GetFontSourceNameLength(self: *const IDWriteFontSet3, listIndex: u32) callconv(.Inline) u32 {
+        return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceNameLength(@as(*const IDWriteFontSet3, @ptrCast(self)), listIndex);
+    }
+    pub fn GetFontSourceName(self: *const IDWriteFontSet3, listIndex: u32, stringBuffer: [*:0]u16, stringBufferSize: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceName(@as(*const IDWriteFontSet3, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
+    }
 };
 
 const IID_IDWriteFontFace6_Value = Guid.initString("c4b1fe1b-6e84-47d5-b54c-a597981b06ad");
@@ -7459,7 +8806,13 @@ pub const IDWriteFontFace6 = extern union {
             return @as(*const IDWriteFontFace6.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFontFace6, @ptrCast(self)), fontFamilyModel, names);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDWriteFontFace5.MethodMixin(@This());
+    pub fn GetFamilyNames(self: *const IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace6.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFace6, @ptrCast(self)), fontFamilyModel, names);
+    }
+    pub fn GetFaceNames(self: *const IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
+        return @as(*const IDWriteFontFace6.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFontFace6, @ptrCast(self)), fontFamilyModel, names);
+    }
 };
 
 

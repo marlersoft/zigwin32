@@ -1379,7 +1379,76 @@ pub const ICreateTypeInfo = extern union {
             return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).LayOut(@as(*const ICreateTypeInfo, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetGuid(self: *const ICreateTypeInfo, guid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetGuid(@as(*const ICreateTypeInfo, @ptrCast(self)), guid);
+    }
+    pub fn SetTypeFlags(self: *const ICreateTypeInfo, uTypeFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeFlags(@as(*const ICreateTypeInfo, @ptrCast(self)), uTypeFlags);
+    }
+    pub fn SetDocString(self: *const ICreateTypeInfo, pStrDoc: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), pStrDoc);
+    }
+    pub fn SetHelpContext(self: *const ICreateTypeInfo, dwHelpContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), dwHelpContext);
+    }
+    pub fn SetVersion(self: *const ICreateTypeInfo, wMajorVerNum: u16, wMinorVerNum: u16) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const ICreateTypeInfo, @ptrCast(self)), wMajorVerNum, wMinorVerNum);
+    }
+    pub fn AddRefTypeInfo(self: *const ICreateTypeInfo, pTInfo: ?*ITypeInfo, phRefType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddRefTypeInfo(@as(*const ICreateTypeInfo, @ptrCast(self)), pTInfo, phRefType);
+    }
+    pub fn AddFuncDesc(self: *const ICreateTypeInfo, index: u32, pFuncDesc: ?*FUNCDESC) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddFuncDesc(@as(*const ICreateTypeInfo, @ptrCast(self)), index, pFuncDesc);
+    }
+    pub fn AddImplType(self: *const ICreateTypeInfo, index: u32, hRefType: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddImplType(@as(*const ICreateTypeInfo, @ptrCast(self)), index, hRefType);
+    }
+    pub fn SetImplTypeFlags(self: *const ICreateTypeInfo, index: u32, implTypeFlags: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetImplTypeFlags(@as(*const ICreateTypeInfo, @ptrCast(self)), index, implTypeFlags);
+    }
+    pub fn SetAlignment(self: *const ICreateTypeInfo, cbAlignment: u16) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetAlignment(@as(*const ICreateTypeInfo, @ptrCast(self)), cbAlignment);
+    }
+    pub fn SetSchema(self: *const ICreateTypeInfo, pStrSchema: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetSchema(@as(*const ICreateTypeInfo, @ptrCast(self)), pStrSchema);
+    }
+    pub fn AddVarDesc(self: *const ICreateTypeInfo, index: u32, pVarDesc: ?*VARDESC) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddVarDesc(@as(*const ICreateTypeInfo, @ptrCast(self)), index, pVarDesc);
+    }
+    pub fn SetFuncAndParamNames(self: *const ICreateTypeInfo, index: u32, rgszNames: [*]?PWSTR, cNames: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncAndParamNames(@as(*const ICreateTypeInfo, @ptrCast(self)), index, rgszNames, cNames);
+    }
+    pub fn SetVarName(self: *const ICreateTypeInfo, index: u32, szName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarName(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szName);
+    }
+    pub fn SetTypeDescAlias(self: *const ICreateTypeInfo, pTDescAlias: ?*TYPEDESC) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeDescAlias(@as(*const ICreateTypeInfo, @ptrCast(self)), pTDescAlias);
+    }
+    pub fn DefineFuncAsDllEntry(self: *const ICreateTypeInfo, index: u32, szDllName: ?PWSTR, szProcName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).DefineFuncAsDllEntry(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDllName, szProcName);
+    }
+    pub fn SetFuncDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDocString);
+    }
+    pub fn SetVarDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDocString);
+    }
+    pub fn SetFuncHelpContext(self: *const ICreateTypeInfo, index: u32, dwHelpContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), index, dwHelpContext);
+    }
+    pub fn SetVarHelpContext(self: *const ICreateTypeInfo, index: u32, dwHelpContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), index, dwHelpContext);
+    }
+    pub fn SetMops(self: *const ICreateTypeInfo, index: u32, bstrMops: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetMops(@as(*const ICreateTypeInfo, @ptrCast(self)), index, bstrMops);
+    }
+    pub fn SetTypeIdldesc(self: *const ICreateTypeInfo, pIdlDesc: ?*IDLDESC) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeIdldesc(@as(*const ICreateTypeInfo, @ptrCast(self)), pIdlDesc);
+    }
+    pub fn LayOut(self: *const ICreateTypeInfo) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).LayOut(@as(*const ICreateTypeInfo, @ptrCast(self)));
+    }
 };
 
 const IID_ICreateTypeInfo2_Value = Guid.initString("0002040e-0000-0000-c000-000000000046");
@@ -1525,7 +1594,52 @@ pub const ICreateTypeInfo2 = extern union {
             return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetName(@as(*const ICreateTypeInfo2, @ptrCast(self)), szName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICreateTypeInfo.MethodMixin(@This());
+    pub fn DeleteFuncDesc(self: *const ICreateTypeInfo2, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteFuncDesc(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
+    }
+    pub fn DeleteFuncDescByMemId(self: *const ICreateTypeInfo2, memid: i32, invKind: INVOKEKIND) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteFuncDescByMemId(@as(*const ICreateTypeInfo2, @ptrCast(self)), memid, invKind);
+    }
+    pub fn DeleteVarDesc(self: *const ICreateTypeInfo2, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteVarDesc(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
+    }
+    pub fn DeleteVarDescByMemId(self: *const ICreateTypeInfo2, memid: i32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteVarDescByMemId(@as(*const ICreateTypeInfo2, @ptrCast(self)), memid);
+    }
+    pub fn DeleteImplType(self: *const ICreateTypeInfo2, index: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteImplType(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
+    }
+    pub fn SetCustData(self: *const ICreateTypeInfo2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), guid, pVarVal);
+    }
+    pub fn SetFuncCustData(self: *const ICreateTypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetFuncCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
+    }
+    pub fn SetParamCustData(self: *const ICreateTypeInfo2, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetParamCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), indexFunc, indexParam, guid, pVarVal);
+    }
+    pub fn SetVarCustData(self: *const ICreateTypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetVarCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
+    }
+    pub fn SetImplTypeCustData(self: *const ICreateTypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetImplTypeCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
+    }
+    pub fn SetHelpStringContext(self: *const ICreateTypeInfo2, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), dwHelpStringContext);
+    }
+    pub fn SetFuncHelpStringContext(self: *const ICreateTypeInfo2, index: u32, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetFuncHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, dwHelpStringContext);
+    }
+    pub fn SetVarHelpStringContext(self: *const ICreateTypeInfo2, index: u32, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetVarHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, dwHelpStringContext);
+    }
+    pub fn Invalidate(self: *const ICreateTypeInfo2) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const ICreateTypeInfo2, @ptrCast(self)));
+    }
+    pub fn SetName(self: *const ICreateTypeInfo2, szName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetName(@as(*const ICreateTypeInfo2, @ptrCast(self)), szName);
+    }
 };
 
 const IID_ICreateTypeLib_Value = Guid.initString("00020406-0000-0000-c000-000000000046");
@@ -1621,7 +1735,37 @@ pub const ICreateTypeLib = extern union {
             return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SaveAllChanges(@as(*const ICreateTypeLib, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateTypeInfo(self: *const ICreateTypeLib, szName: ?PWSTR, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).CreateTypeInfo(@as(*const ICreateTypeLib, @ptrCast(self)), szName, tkind, ppCTInfo);
+    }
+    pub fn SetName(self: *const ICreateTypeLib, szName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetName(@as(*const ICreateTypeLib, @ptrCast(self)), szName);
+    }
+    pub fn SetVersion(self: *const ICreateTypeLib, wMajorVerNum: u16, wMinorVerNum: u16) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const ICreateTypeLib, @ptrCast(self)), wMajorVerNum, wMinorVerNum);
+    }
+    pub fn SetGuid(self: *const ICreateTypeLib, guid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetGuid(@as(*const ICreateTypeLib, @ptrCast(self)), guid);
+    }
+    pub fn SetDocString(self: *const ICreateTypeLib, szDoc: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetDocString(@as(*const ICreateTypeLib, @ptrCast(self)), szDoc);
+    }
+    pub fn SetHelpFileName(self: *const ICreateTypeLib, szHelpFileName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetHelpFileName(@as(*const ICreateTypeLib, @ptrCast(self)), szHelpFileName);
+    }
+    pub fn SetHelpContext(self: *const ICreateTypeLib, dwHelpContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateTypeLib, @ptrCast(self)), dwHelpContext);
+    }
+    pub fn SetLcid(self: *const ICreateTypeLib, lcid: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetLcid(@as(*const ICreateTypeLib, @ptrCast(self)), lcid);
+    }
+    pub fn SetLibFlags(self: *const ICreateTypeLib, uLibFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetLibFlags(@as(*const ICreateTypeLib, @ptrCast(self)), uLibFlags);
+    }
+    pub fn SaveAllChanges(self: *const ICreateTypeLib) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SaveAllChanges(@as(*const ICreateTypeLib, @ptrCast(self)));
+    }
 };
 
 const IID_ICreateTypeLib2_Value = Guid.initString("0002040f-0000-0000-c000-000000000046");
@@ -1668,7 +1812,19 @@ pub const ICreateTypeLib2 = extern union {
             return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetHelpStringDll(@as(*const ICreateTypeLib2, @ptrCast(self)), szFileName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ICreateTypeLib.MethodMixin(@This());
+    pub fn DeleteTypeInfo(self: *const ICreateTypeLib2, szName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).DeleteTypeInfo(@as(*const ICreateTypeLib2, @ptrCast(self)), szName);
+    }
+    pub fn SetCustData(self: *const ICreateTypeLib2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetCustData(@as(*const ICreateTypeLib2, @ptrCast(self)), guid, pVarVal);
+    }
+    pub fn SetHelpStringContext(self: *const ICreateTypeLib2, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetHelpStringContext(@as(*const ICreateTypeLib2, @ptrCast(self)), dwHelpStringContext);
+    }
+    pub fn SetHelpStringDll(self: *const ICreateTypeLib2, szFileName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetHelpStringDll(@as(*const ICreateTypeLib2, @ptrCast(self)), szFileName);
+    }
 };
 
 const IID_IEnumVARIANT_Value = Guid.initString("00020404-0000-0000-c000-000000000046");
@@ -1715,7 +1871,19 @@ pub const IEnumVARIANT = extern union {
             return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumVARIANT, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumVARIANT, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumVARIANT, @ptrCast(self)), celt, rgVar, pCeltFetched);
+    }
+    pub fn Skip(self: *const IEnumVARIANT, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumVARIANT, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumVARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumVARIANT, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumVARIANT, ppEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumVARIANT, @ptrCast(self)), ppEnum);
+    }
 };
 
 pub const LIBFLAGS = enum(i32) {
@@ -1780,7 +1948,13 @@ pub const ITypeChangeEvents = extern union {
             return @as(*const ITypeChangeEvents.VTable, @ptrCast(self.vtable)).AfterTypeChange(@as(*const ITypeChangeEvents, @ptrCast(self)), changeKind, pTInfoAfter, pStrName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RequestTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?PWSTR, pfCancel: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const ITypeChangeEvents.VTable, @ptrCast(self.vtable)).RequestTypeChange(@as(*const ITypeChangeEvents, @ptrCast(self)), changeKind, pTInfoBefore, pStrName, pfCancel);
+    }
+    pub fn AfterTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoAfter: ?*ITypeInfo, pStrName: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ITypeChangeEvents.VTable, @ptrCast(self.vtable)).AfterTypeChange(@as(*const ITypeChangeEvents, @ptrCast(self)), changeKind, pTInfoAfter, pStrName);
+    }
 };
 
 const IID_ICreateErrorInfo_Value = Guid.initString("22f03340-547d-101b-8e65-08002b2bd119");
@@ -1834,7 +2008,22 @@ pub const ICreateErrorInfo = extern union {
             return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateErrorInfo, @ptrCast(self)), dwHelpContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetGUID(self: *const ICreateErrorInfo, rguid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetGUID(@as(*const ICreateErrorInfo, @ptrCast(self)), rguid);
+    }
+    pub fn SetSource(self: *const ICreateErrorInfo, szSource: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetSource(@as(*const ICreateErrorInfo, @ptrCast(self)), szSource);
+    }
+    pub fn SetDescription(self: *const ICreateErrorInfo, szDescription: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ICreateErrorInfo, @ptrCast(self)), szDescription);
+    }
+    pub fn SetHelpFile(self: *const ICreateErrorInfo, szHelpFile: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetHelpFile(@as(*const ICreateErrorInfo, @ptrCast(self)), szHelpFile);
+    }
+    pub fn SetHelpContext(self: *const ICreateErrorInfo, dwHelpContext: u32) callconv(.Inline) HRESULT {
+        return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateErrorInfo, @ptrCast(self)), dwHelpContext);
+    }
 };
 
 const IID_ITypeFactory_Value = Guid.initString("0000002e-0000-0000-c000-000000000046");
@@ -1858,7 +2047,10 @@ pub const ITypeFactory = extern union {
             return @as(*const ITypeFactory.VTable, @ptrCast(self.vtable)).CreateFromTypeInfo(@as(*const ITypeFactory, @ptrCast(self)), pTypeInfo, riid, ppv);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateFromTypeInfo(self: *const ITypeFactory, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ITypeFactory.VTable, @ptrCast(self.vtable)).CreateFromTypeInfo(@as(*const ITypeFactory, @ptrCast(self)), pTypeInfo, riid, ppv);
+    }
 };
 
 const IID_ITypeMarshal_Value = Guid.initString("0000002d-0000-0000-c000-000000000046");
@@ -1917,7 +2109,19 @@ pub const ITypeMarshal = extern union {
             return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Free(@as(*const ITypeMarshal, @ptrCast(self)), pvType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Size(self: *const ITypeMarshal, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, pSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Size(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwDestContext, pvDestContext, pSize);
+    }
+    pub fn Marshal(self: *const ITypeMarshal, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, cbBufferLength: u32, pBuffer: ?*u8, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Marshal(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwDestContext, pvDestContext, cbBufferLength, pBuffer, pcbWritten);
+    }
+    pub fn Unmarshal(self: *const ITypeMarshal, pvType: ?*anyopaque, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwFlags, cbBufferLength, pBuffer, pcbRead);
+    }
+    pub fn Free(self: *const ITypeMarshal, pvType: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Free(@as(*const ITypeMarshal, @ptrCast(self)), pvType);
+    }
 };
 
 const IID_IRecordInfo_Value = Guid.initString("0000002f-0000-0000-c000-000000000046");
@@ -2072,7 +2276,55 @@ pub const IRecordInfo = extern union {
             return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordDestroy(@as(*const IRecordInfo, @ptrCast(self)), pvRecord);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RecordInit(self: *const IRecordInfo, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordInit(@as(*const IRecordInfo, @ptrCast(self)), pvNew);
+    }
+    pub fn RecordClear(self: *const IRecordInfo, pvExisting: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordClear(@as(*const IRecordInfo, @ptrCast(self)), pvExisting);
+    }
+    pub fn RecordCopy(self: *const IRecordInfo, pvExisting: ?*anyopaque, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCopy(@as(*const IRecordInfo, @ptrCast(self)), pvExisting, pvNew);
+    }
+    pub fn GetGuid(self: *const IRecordInfo, pguid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetGuid(@as(*const IRecordInfo, @ptrCast(self)), pguid);
+    }
+    pub fn GetName(self: *const IRecordInfo, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetName(@as(*const IRecordInfo, @ptrCast(self)), pbstrName);
+    }
+    pub fn GetSize(self: *const IRecordInfo, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IRecordInfo, @ptrCast(self)), pcbSize);
+    }
+    pub fn GetTypeInfo(self: *const IRecordInfo, ppTypeInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IRecordInfo, @ptrCast(self)), ppTypeInfo);
+    }
+    pub fn GetField(self: *const IRecordInfo, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetField(@as(*const IRecordInfo, @ptrCast(self)), pvData, szFieldName, pvarField);
+    }
+    pub fn GetFieldNoCopy(self: *const IRecordInfo, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT, ppvDataCArray: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetFieldNoCopy(@as(*const IRecordInfo, @ptrCast(self)), pvData, szFieldName, pvarField, ppvDataCArray);
+    }
+    pub fn PutField(self: *const IRecordInfo, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).PutField(@as(*const IRecordInfo, @ptrCast(self)), wFlags, pvData, szFieldName, pvarField);
+    }
+    pub fn PutFieldNoCopy(self: *const IRecordInfo, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).PutFieldNoCopy(@as(*const IRecordInfo, @ptrCast(self)), wFlags, pvData, szFieldName, pvarField);
+    }
+    pub fn GetFieldNames(self: *const IRecordInfo, pcNames: ?*u32, rgBstrNames: [*]?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetFieldNames(@as(*const IRecordInfo, @ptrCast(self)), pcNames, rgBstrNames);
+    }
+    pub fn IsMatchingType(self: *const IRecordInfo, pRecordInfo: ?*IRecordInfo) callconv(.Inline) BOOL {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).IsMatchingType(@as(*const IRecordInfo, @ptrCast(self)), pRecordInfo);
+    }
+    pub fn RecordCreate(self: *const IRecordInfo) callconv(.Inline) ?*anyopaque {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCreate(@as(*const IRecordInfo, @ptrCast(self)));
+    }
+    pub fn RecordCreateCopy(self: *const IRecordInfo, pvSource: ?*anyopaque, ppvDest: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCreateCopy(@as(*const IRecordInfo, @ptrCast(self)), pvSource, ppvDest);
+    }
+    pub fn RecordDestroy(self: *const IRecordInfo, pvRecord: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordDestroy(@as(*const IRecordInfo, @ptrCast(self)), pvRecord);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2134,7 +2386,25 @@ pub const IOleAdviseHolder = extern union {
             return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnClose(@as(*const IOleAdviseHolder, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Advise(self: *const IOleAdviseHolder, pAdvise: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).Advise(@as(*const IOleAdviseHolder, @ptrCast(self)), pAdvise, pdwConnection);
+    }
+    pub fn Unadvise(self: *const IOleAdviseHolder, dwConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IOleAdviseHolder, @ptrCast(self)), dwConnection);
+    }
+    pub fn EnumAdvise(self: *const IOleAdviseHolder, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).EnumAdvise(@as(*const IOleAdviseHolder, @ptrCast(self)), ppenumAdvise);
+    }
+    pub fn SendOnRename(self: *const IOleAdviseHolder, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnRename(@as(*const IOleAdviseHolder, @ptrCast(self)), pmk);
+    }
+    pub fn SendOnSave(self: *const IOleAdviseHolder) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnSave(@as(*const IOleAdviseHolder, @ptrCast(self)));
+    }
+    pub fn SendOnClose(self: *const IOleAdviseHolder) callconv(.Inline) HRESULT {
+        return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnClose(@as(*const IOleAdviseHolder, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2193,7 +2463,22 @@ pub const IOleCache = extern union {
             return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).SetData(@as(*const IOleCache, @ptrCast(self)), pformatetc, pmedium, fRelease);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Cache(self: *const IOleCache, pformatetc: ?*FORMATETC, advf: u32, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).Cache(@as(*const IOleCache, @ptrCast(self)), pformatetc, advf, pdwConnection);
+    }
+    pub fn Uncache(self: *const IOleCache, dwConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).Uncache(@as(*const IOleCache, @ptrCast(self)), dwConnection);
+    }
+    pub fn EnumCache(self: *const IOleCache, ppenumSTATDATA: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).EnumCache(@as(*const IOleCache, @ptrCast(self)), ppenumSTATDATA);
+    }
+    pub fn InitCache(self: *const IOleCache, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).InitCache(@as(*const IOleCache, @ptrCast(self)), pDataObject);
+    }
+    pub fn SetData(self: *const IOleCache, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM, fRelease: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).SetData(@as(*const IOleCache, @ptrCast(self)), pformatetc, pmedium, fRelease);
+    }
 };
 
 pub const DISCARDCACHE = enum(i32) {
@@ -2233,7 +2518,13 @@ pub const IOleCache2 = extern union {
             return @as(*const IOleCache2.VTable, @ptrCast(self.vtable)).DiscardCache(@as(*const IOleCache2, @ptrCast(self)), dwDiscardOptions);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleCache.MethodMixin(@This());
+    pub fn UpdateCache(self: *const IOleCache2, pDataObject: ?*IDataObject, grfUpdf: UPDFCACHE_FLAGS, pReserved: ?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache2.VTable, @ptrCast(self.vtable)).UpdateCache(@as(*const IOleCache2, @ptrCast(self)), pDataObject, grfUpdf, pReserved);
+    }
+    pub fn DiscardCache(self: *const IOleCache2, dwDiscardOptions: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleCache2.VTable, @ptrCast(self.vtable)).DiscardCache(@as(*const IOleCache2, @ptrCast(self)), dwDiscardOptions);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2263,7 +2554,13 @@ pub const IOleCacheControl = extern union {
             return @as(*const IOleCacheControl.VTable, @ptrCast(self.vtable)).OnStop(@as(*const IOleCacheControl, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnRun(self: *const IOleCacheControl, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleCacheControl.VTable, @ptrCast(self.vtable)).OnRun(@as(*const IOleCacheControl, @ptrCast(self)), pDataObject);
+    }
+    pub fn OnStop(self: *const IOleCacheControl) callconv(.Inline) HRESULT {
+        return @as(*const IOleCacheControl.VTable, @ptrCast(self.vtable)).OnStop(@as(*const IOleCacheControl, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2289,7 +2586,10 @@ pub const IParseDisplayName = extern union {
             return @as(*const IParseDisplayName.VTable, @ptrCast(self.vtable)).ParseDisplayName(@as(*const IParseDisplayName, @ptrCast(self)), pbc, pszDisplayName, pchEaten, ppmkOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ParseDisplayName(self: *const IParseDisplayName, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IParseDisplayName.VTable, @ptrCast(self.vtable)).ParseDisplayName(@as(*const IParseDisplayName, @ptrCast(self)), pbc, pszDisplayName, pchEaten, ppmkOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2321,7 +2621,13 @@ pub const IOleContainer = extern union {
             return @as(*const IOleContainer.VTable, @ptrCast(self.vtable)).LockContainer(@as(*const IOleContainer, @ptrCast(self)), fLock);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IParseDisplayName.MethodMixin(@This());
+    pub fn EnumObjects(self: *const IOleContainer, grfFlags: u32, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IOleContainer.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IOleContainer, @ptrCast(self)), grfFlags, ppenum);
+    }
+    pub fn LockContainer(self: *const IOleContainer, fLock: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleContainer.VTable, @ptrCast(self.vtable)).LockContainer(@as(*const IOleContainer, @ptrCast(self)), fLock);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2383,7 +2689,25 @@ pub const IOleClientSite = extern union {
             return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).RequestNewObjectLayout(@as(*const IOleClientSite, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SaveObject(self: *const IOleClientSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).SaveObject(@as(*const IOleClientSite, @ptrCast(self)));
+    }
+    pub fn GetMoniker(self: *const IOleClientSite, dwAssign: u32, dwWhichMoniker: u32, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IOleClientSite, @ptrCast(self)), dwAssign, dwWhichMoniker, ppmk);
+    }
+    pub fn GetContainer(self: *const IOleClientSite, ppContainer: ?*?*IOleContainer) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IOleClientSite, @ptrCast(self)), ppContainer);
+    }
+    pub fn ShowObject(self: *const IOleClientSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).ShowObject(@as(*const IOleClientSite, @ptrCast(self)));
+    }
+    pub fn OnShowWindow(self: *const IOleClientSite, fShow: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).OnShowWindow(@as(*const IOleClientSite, @ptrCast(self)), fShow);
+    }
+    pub fn RequestNewObjectLayout(self: *const IOleClientSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).RequestNewObjectLayout(@as(*const IOleClientSite, @ptrCast(self)));
+    }
 };
 
 pub const OLEGETMONIKER = enum(i32) {
@@ -2645,7 +2969,70 @@ pub const IOleObject = extern union {
             return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetColorScheme(@as(*const IOleObject, @ptrCast(self)), pLogpal);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetClientSite(self: *const IOleObject, pClientSite: ?*IOleClientSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetClientSite(@as(*const IOleObject, @ptrCast(self)), pClientSite);
+    }
+    pub fn GetClientSite(self: *const IOleObject, ppClientSite: ?*?*IOleClientSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetClientSite(@as(*const IOleObject, @ptrCast(self)), ppClientSite);
+    }
+    pub fn SetHostNames(self: *const IOleObject, szContainerApp: ?[*:0]const u16, szContainerObj: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetHostNames(@as(*const IOleObject, @ptrCast(self)), szContainerApp, szContainerObj);
+    }
+    pub fn Close(self: *const IOleObject, dwSaveOption: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleObject, @ptrCast(self)), dwSaveOption);
+    }
+    pub fn SetMoniker(self: *const IOleObject, dwWhichMoniker: u32, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetMoniker(@as(*const IOleObject, @ptrCast(self)), dwWhichMoniker, pmk);
+    }
+    pub fn GetMoniker(self: *const IOleObject, dwAssign: u32, dwWhichMoniker: u32, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IOleObject, @ptrCast(self)), dwAssign, dwWhichMoniker, ppmk);
+    }
+    pub fn InitFromData(self: *const IOleObject, pDataObject: ?*IDataObject, fCreation: BOOL, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).InitFromData(@as(*const IOleObject, @ptrCast(self)), pDataObject, fCreation, dwReserved);
+    }
+    pub fn GetClipboardData(self: *const IOleObject, dwReserved: u32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetClipboardData(@as(*const IOleObject, @ptrCast(self)), dwReserved, ppDataObject);
+    }
+    pub fn DoVerb(self: *const IOleObject, iVerb: i32, lpmsg: ?*MSG, pActiveSite: ?*IOleClientSite, lindex: i32, hwndParent: ?HWND, lprcPosRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).DoVerb(@as(*const IOleObject, @ptrCast(self)), iVerb, lpmsg, pActiveSite, lindex, hwndParent, lprcPosRect);
+    }
+    pub fn EnumVerbs(self: *const IOleObject, ppEnumOleVerb: ?*?*IEnumOLEVERB) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).EnumVerbs(@as(*const IOleObject, @ptrCast(self)), ppEnumOleVerb);
+    }
+    pub fn Update(self: *const IOleObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Update(@as(*const IOleObject, @ptrCast(self)));
+    }
+    pub fn IsUpToDate(self: *const IOleObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).IsUpToDate(@as(*const IOleObject, @ptrCast(self)));
+    }
+    pub fn GetUserClassID(self: *const IOleObject, pClsid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetUserClassID(@as(*const IOleObject, @ptrCast(self)), pClsid);
+    }
+    pub fn GetUserType(self: *const IOleObject, dwFormOfType: u32, pszUserType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetUserType(@as(*const IOleObject, @ptrCast(self)), dwFormOfType, pszUserType);
+    }
+    pub fn SetExtent(self: *const IOleObject, dwDrawAspect: u32, psizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetExtent(@as(*const IOleObject, @ptrCast(self)), dwDrawAspect, psizel);
+    }
+    pub fn GetExtent(self: *const IOleObject, dwDrawAspect: u32, psizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IOleObject, @ptrCast(self)), dwDrawAspect, psizel);
+    }
+    pub fn Advise(self: *const IOleObject, pAdvSink: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Advise(@as(*const IOleObject, @ptrCast(self)), pAdvSink, pdwConnection);
+    }
+    pub fn Unadvise(self: *const IOleObject, dwConnection: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IOleObject, @ptrCast(self)), dwConnection);
+    }
+    pub fn EnumAdvise(self: *const IOleObject, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).EnumAdvise(@as(*const IOleObject, @ptrCast(self)), ppenumAdvise);
+    }
+    pub fn GetMiscStatus(self: *const IOleObject, dwAspect: u32, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetMiscStatus(@as(*const IOleObject, @ptrCast(self)), dwAspect, pdwStatus);
+    }
+    pub fn SetColorScheme(self: *const IOleObject, pLogpal: ?*LOGPALETTE) callconv(.Inline) HRESULT {
+        return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetColorScheme(@as(*const IOleObject, @ptrCast(self)), pLogpal);
+    }
 };
 
 pub const OLERENDER = enum(i32) {
@@ -2698,7 +3085,13 @@ pub const IOleWindow = extern union {
             return @as(*const IOleWindow.VTable, @ptrCast(self.vtable)).ContextSensitiveHelp(@as(*const IOleWindow, @ptrCast(self)), fEnterMode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetWindow(self: *const IOleWindow, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IOleWindow.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IOleWindow, @ptrCast(self)), phwnd);
+    }
+    pub fn ContextSensitiveHelp(self: *const IOleWindow, fEnterMode: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleWindow.VTable, @ptrCast(self.vtable)).ContextSensitiveHelp(@as(*const IOleWindow, @ptrCast(self)), fEnterMode);
+    }
 };
 
 pub const OLEUPDATE = enum(i32) {
@@ -2813,7 +3206,40 @@ pub const IOleLink = extern union {
             return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).Update(@as(*const IOleLink, @ptrCast(self)), pbc);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetUpdateOptions(self: *const IOleLink, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetUpdateOptions(@as(*const IOleLink, @ptrCast(self)), dwUpdateOpt);
+    }
+    pub fn GetUpdateOptions(self: *const IOleLink, pdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetUpdateOptions(@as(*const IOleLink, @ptrCast(self)), pdwUpdateOpt);
+    }
+    pub fn SetSourceMoniker(self: *const IOleLink, pmk: ?*IMoniker, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetSourceMoniker(@as(*const IOleLink, @ptrCast(self)), pmk, rclsid);
+    }
+    pub fn GetSourceMoniker(self: *const IOleLink, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetSourceMoniker(@as(*const IOleLink, @ptrCast(self)), ppmk);
+    }
+    pub fn SetSourceDisplayName(self: *const IOleLink, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetSourceDisplayName(@as(*const IOleLink, @ptrCast(self)), pszStatusText);
+    }
+    pub fn GetSourceDisplayName(self: *const IOleLink, ppszDisplayName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetSourceDisplayName(@as(*const IOleLink, @ptrCast(self)), ppszDisplayName);
+    }
+    pub fn BindToSource(self: *const IOleLink, bindflags: u32, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).BindToSource(@as(*const IOleLink, @ptrCast(self)), bindflags, pbc);
+    }
+    pub fn BindIfRunning(self: *const IOleLink) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).BindIfRunning(@as(*const IOleLink, @ptrCast(self)));
+    }
+    pub fn GetBoundSource(self: *const IOleLink, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetBoundSource(@as(*const IOleLink, @ptrCast(self)), ppunk);
+    }
+    pub fn UnbindSource(self: *const IOleLink) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).UnbindSource(@as(*const IOleLink, @ptrCast(self)));
+    }
+    pub fn Update(self: *const IOleLink, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+        return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).Update(@as(*const IOleLink, @ptrCast(self)), pbc);
+    }
 };
 
 pub const BINDSPEED = enum(i32) {
@@ -2881,7 +3307,16 @@ pub const IOleItemContainer = extern union {
             return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).IsRunning(@as(*const IOleItemContainer, @ptrCast(self)), pszItem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleContainer.MethodMixin(@This());
+    pub fn GetObject(self: *const IOleItemContainer, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IOleItemContainer, @ptrCast(self)), pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
+    }
+    pub fn GetObjectStorage(self: *const IOleItemContainer, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).GetObjectStorage(@as(*const IOleItemContainer, @ptrCast(self)), pszItem, pbc, riid, ppvStorage);
+    }
+    pub fn IsRunning(self: *const IOleItemContainer, pszItem: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).IsRunning(@as(*const IOleItemContainer, @ptrCast(self)), pszItem);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2929,7 +3364,19 @@ pub const IOleInPlaceUIWindow = extern union {
             return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).SetActiveObject(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pActiveObject, pszObjName);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleWindow.MethodMixin(@This());
+    pub fn GetBorder(self: *const IOleInPlaceUIWindow, lprectBorder: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).GetBorder(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), lprectBorder);
+    }
+    pub fn RequestBorderSpace(self: *const IOleInPlaceUIWindow, pborderwidths: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).RequestBorderSpace(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pborderwidths);
+    }
+    pub fn SetBorderSpace(self: *const IOleInPlaceUIWindow, pborderwidths: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).SetBorderSpace(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pborderwidths);
+    }
+    pub fn SetActiveObject(self: *const IOleInPlaceUIWindow, pActiveObject: ?*IOleInPlaceActiveObject, pszObjName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).SetActiveObject(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pActiveObject, pszObjName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2986,7 +3433,22 @@ pub const IOleInPlaceActiveObject = extern union {
             return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleWindow.MethodMixin(@This());
+    pub fn TranslateAccelerator(self: *const IOleInPlaceActiveObject, lpmsg: ?*MSG) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), lpmsg);
+    }
+    pub fn OnFrameWindowActivate(self: *const IOleInPlaceActiveObject, fActivate: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).OnFrameWindowActivate(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fActivate);
+    }
+    pub fn OnDocWindowActivate(self: *const IOleInPlaceActiveObject, fActivate: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).OnDocWindowActivate(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fActivate);
+    }
+    pub fn ResizeBorder(self: *const IOleInPlaceActiveObject, prcBorder: ?*RECT, pUIWindow: ?*IOleInPlaceUIWindow, fFrameWindow: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).ResizeBorder(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), prcBorder, pUIWindow, fFrameWindow);
+    }
+    pub fn EnableModeless(self: *const IOleInPlaceActiveObject, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fEnable);
+    }
 };
 
 pub const OIFI = extern struct {
@@ -3065,7 +3527,25 @@ pub const IOleInPlaceFrame = extern union {
             return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleInPlaceFrame, @ptrCast(self)), lpmsg, wID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleInPlaceUIWindow.MethodMixin(@This());
+    pub fn InsertMenus(self: *const IOleInPlaceFrame, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).InsertMenus(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared, lpMenuWidths);
+    }
+    pub fn SetMenu(self: *const IOleInPlaceFrame, hmenuShared: ?HMENU, holemenu: isize, hwndActiveObject: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).SetMenu(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared, holemenu, hwndActiveObject);
+    }
+    pub fn RemoveMenus(self: *const IOleInPlaceFrame, hmenuShared: ?HMENU) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).RemoveMenus(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared);
+    }
+    pub fn SetStatusText(self: *const IOleInPlaceFrame, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).SetStatusText(@as(*const IOleInPlaceFrame, @ptrCast(self)), pszStatusText);
+    }
+    pub fn EnableModeless(self: *const IOleInPlaceFrame, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IOleInPlaceFrame, @ptrCast(self)), fEnable);
+    }
+    pub fn TranslateAccelerator(self: *const IOleInPlaceFrame, lpmsg: ?*MSG, wID: u16) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleInPlaceFrame, @ptrCast(self)), lpmsg, wID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3110,7 +3590,19 @@ pub const IOleInPlaceObject = extern union {
             return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).ReactivateAndUndo(@as(*const IOleInPlaceObject, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleWindow.MethodMixin(@This());
+    pub fn InPlaceDeactivate(self: *const IOleInPlaceObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).InPlaceDeactivate(@as(*const IOleInPlaceObject, @ptrCast(self)));
+    }
+    pub fn UIDeactivate(self: *const IOleInPlaceObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).UIDeactivate(@as(*const IOleInPlaceObject, @ptrCast(self)));
+    }
+    pub fn SetObjectRects(self: *const IOleInPlaceObject, lprcPosRect: ?*RECT, lprcClipRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).SetObjectRects(@as(*const IOleInPlaceObject, @ptrCast(self)), lprcPosRect, lprcClipRect);
+    }
+    pub fn ReactivateAndUndo(self: *const IOleInPlaceObject) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).ReactivateAndUndo(@as(*const IOleInPlaceObject, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3203,7 +3695,37 @@ pub const IOleInPlaceSite = extern union {
             return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnPosRectChange(@as(*const IOleInPlaceSite, @ptrCast(self)), lprcPosRect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleWindow.MethodMixin(@This());
+    pub fn CanInPlaceActivate(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).CanInPlaceActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn OnInPlaceActivate(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnInPlaceActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn OnUIActivate(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnUIActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn GetWindowContext(self: *const IOleInPlaceSite, ppFrame: ?*?*IOleInPlaceFrame, ppDoc: ?*?*IOleInPlaceUIWindow, lprcPosRect: ?*RECT, lprcClipRect: ?*RECT, lpFrameInfo: ?*OIFI) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).GetWindowContext(@as(*const IOleInPlaceSite, @ptrCast(self)), ppFrame, ppDoc, lprcPosRect, lprcClipRect, lpFrameInfo);
+    }
+    pub fn Scroll(self: *const IOleInPlaceSite, scrollExtant: SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IOleInPlaceSite, @ptrCast(self)), scrollExtant);
+    }
+    pub fn OnUIDeactivate(self: *const IOleInPlaceSite, fUndoable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnUIDeactivate(@as(*const IOleInPlaceSite, @ptrCast(self)), fUndoable);
+    }
+    pub fn OnInPlaceDeactivate(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnInPlaceDeactivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn DiscardUndoState(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).DiscardUndoState(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn DeactivateAndUndo(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).DeactivateAndUndo(@as(*const IOleInPlaceSite, @ptrCast(self)));
+    }
+    pub fn OnPosRectChange(self: *const IOleInPlaceSite, lprcPosRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnPosRectChange(@as(*const IOleInPlaceSite, @ptrCast(self)), lprcPosRect);
+    }
 };
 
 const IID_IContinue_Value = Guid.initString("0000012a-0000-0000-c000-000000000046");
@@ -3224,7 +3746,10 @@ pub const IContinue = extern union {
             return @as(*const IContinue.VTable, @ptrCast(self.vtable)).FContinue(@as(*const IContinue, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FContinue(self: *const IContinue) callconv(.Inline) HRESULT {
+        return @as(*const IContinue.VTable, @ptrCast(self.vtable)).FContinue(@as(*const IContinue, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3308,7 +3833,25 @@ pub const IViewObject = extern union {
             return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).GetAdvise(@as(*const IViewObject, @ptrCast(self)), pAspects, pAdvf, ppAdvSink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Draw(self: *const IViewObject, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcTargetDev: ?HDC, hdcDraw: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, pfnContinue: isize, dwContinue: usize) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Draw(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hdcTargetDev, hdcDraw, lprcBounds, lprcWBounds, pfnContinue, dwContinue);
+    }
+    pub fn GetColorSet(self: *const IViewObject, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, ppColorSet: ?*?*LOGPALETTE) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).GetColorSet(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hicTargetDev, ppColorSet);
+    }
+    pub fn Freeze(self: *const IViewObject, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, pdwFreeze: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Freeze(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, pdwFreeze);
+    }
+    pub fn Unfreeze(self: *const IViewObject, dwFreeze: u32) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Unfreeze(@as(*const IViewObject, @ptrCast(self)), dwFreeze);
+    }
+    pub fn SetAdvise(self: *const IViewObject, aspects: u32, advf: u32, pAdvSink: ?*IAdviseSink) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).SetAdvise(@as(*const IViewObject, @ptrCast(self)), aspects, advf, pAdvSink);
+    }
+    pub fn GetAdvise(self: *const IViewObject, pAspects: ?*u32, pAdvf: ?*u32, ppAdvSink: ?*?*IAdviseSink) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).GetAdvise(@as(*const IViewObject, @ptrCast(self)), pAspects, pAdvf, ppAdvSink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3334,7 +3877,10 @@ pub const IViewObject2 = extern union {
             return @as(*const IViewObject2.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IViewObject2, @ptrCast(self)), dwDrawAspect, lindex, ptd, lpsizel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IViewObject.MethodMixin(@This());
+    pub fn GetExtent(self: *const IViewObject2, dwDrawAspect: u32, lindex: i32, ptd: ?*DVTARGETDEVICE, lpsizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IViewObject2.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IViewObject2, @ptrCast(self)), dwDrawAspect, lindex, ptd, lpsizel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3366,7 +3912,13 @@ pub const IDropSource = extern union {
             return @as(*const IDropSource.VTable, @ptrCast(self.vtable)).GiveFeedback(@as(*const IDropSource, @ptrCast(self)), dwEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryContinueDrag(self: *const IDropSource, fEscapePressed: BOOL, grfKeyState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDropSource.VTable, @ptrCast(self.vtable)).QueryContinueDrag(@as(*const IDropSource, @ptrCast(self)), fEscapePressed, grfKeyState);
+    }
+    pub fn GiveFeedback(self: *const IDropSource, dwEffect: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDropSource.VTable, @ptrCast(self.vtable)).GiveFeedback(@as(*const IDropSource, @ptrCast(self)), dwEffect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3420,7 +3972,19 @@ pub const IDropTarget = extern union {
             return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).Drop(@as(*const IDropTarget, @ptrCast(self)), pDataObj, grfKeyState, pt, pdwEffect);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DragEnter(self: *const IDropTarget, pDataObj: ?*IDataObject, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragEnter(@as(*const IDropTarget, @ptrCast(self)), pDataObj, grfKeyState, pt, pdwEffect);
+    }
+    pub fn DragOver(self: *const IDropTarget, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragOver(@as(*const IDropTarget, @ptrCast(self)), grfKeyState, pt, pdwEffect);
+    }
+    pub fn DragLeave(self: *const IDropTarget) callconv(.Inline) HRESULT {
+        return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragLeave(@as(*const IDropTarget, @ptrCast(self)));
+    }
+    pub fn Drop(self: *const IDropTarget, pDataObj: ?*IDataObject, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).Drop(@as(*const IDropTarget, @ptrCast(self)), pDataObj, grfKeyState, pt, pdwEffect);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3450,7 +4014,13 @@ pub const IDropSourceNotify = extern union {
             return @as(*const IDropSourceNotify.VTable, @ptrCast(self.vtable)).DragLeaveTarget(@as(*const IDropSourceNotify, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DragEnterTarget(self: *const IDropSourceNotify, hwndTarget: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IDropSourceNotify.VTable, @ptrCast(self.vtable)).DragEnterTarget(@as(*const IDropSourceNotify, @ptrCast(self)), hwndTarget);
+    }
+    pub fn DragLeaveTarget(self: *const IDropSourceNotify) callconv(.Inline) HRESULT {
+        return @as(*const IDropSourceNotify.VTable, @ptrCast(self.vtable)).DragLeaveTarget(@as(*const IDropSourceNotify, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -3481,7 +4051,13 @@ pub const IEnterpriseDropTarget = extern union {
             return @as(*const IEnterpriseDropTarget.VTable, @ptrCast(self.vtable)).IsEvaluatingEdpPolicy(@as(*const IEnterpriseDropTarget, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDropSourceEnterpriseId(self: *const IEnterpriseDropTarget, identity: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IEnterpriseDropTarget.VTable, @ptrCast(self.vtable)).SetDropSourceEnterpriseId(@as(*const IEnterpriseDropTarget, @ptrCast(self)), identity);
+    }
+    pub fn IsEvaluatingEdpPolicy(self: *const IEnterpriseDropTarget, value: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEnterpriseDropTarget.VTable, @ptrCast(self.vtable)).IsEvaluatingEdpPolicy(@as(*const IEnterpriseDropTarget, @ptrCast(self)), value);
+    }
 };
 
 pub const OLEVERB = extern struct {
@@ -3543,7 +4119,19 @@ pub const IEnumOLEVERB = extern union {
             return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOLEVERB, @ptrCast(self)), ppenum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumOLEVERB, celt: u32, rgelt: [*]OLEVERB, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOLEVERB, @ptrCast(self)), celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumOLEVERB, celt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOLEVERB, @ptrCast(self)), celt);
+    }
+    pub fn Reset(self: *const IEnumOLEVERB) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOLEVERB, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumOLEVERB, ppenum: ?*?*IEnumOLEVERB) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOLEVERB, @ptrCast(self)), ppenum);
+    }
 };
 
 pub const NUMPARSE = extern struct {
@@ -3661,7 +4249,16 @@ pub const IClassFactory2 = extern union {
             return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).CreateInstanceLic(@as(*const IClassFactory2, @ptrCast(self)), pUnkOuter, pUnkReserved, riid, bstrKey, ppvObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IClassFactory.MethodMixin(@This());
+    pub fn GetLicInfo(self: *const IClassFactory2, pLicInfo: ?*LICINFO) callconv(.Inline) HRESULT {
+        return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).GetLicInfo(@as(*const IClassFactory2, @ptrCast(self)), pLicInfo);
+    }
+    pub fn RequestLicKey(self: *const IClassFactory2, dwReserved: u32, pBstrKey: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).RequestLicKey(@as(*const IClassFactory2, @ptrCast(self)), dwReserved, pBstrKey);
+    }
+    pub fn CreateInstanceLic(self: *const IClassFactory2, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).CreateInstanceLic(@as(*const IClassFactory2, @ptrCast(self)), pUnkOuter, pUnkReserved, riid, bstrKey, ppvObj);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3684,7 +4281,10 @@ pub const IProvideClassInfo = extern union {
             return @as(*const IProvideClassInfo.VTable, @ptrCast(self.vtable)).GetClassInfo(@as(*const IProvideClassInfo, @ptrCast(self)), ppTI);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClassInfo(self: *const IProvideClassInfo, ppTI: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+        return @as(*const IProvideClassInfo.VTable, @ptrCast(self.vtable)).GetClassInfo(@as(*const IProvideClassInfo, @ptrCast(self)), ppTI);
+    }
 };
 
 pub const GUIDKIND = enum(i32) {
@@ -3713,7 +4313,10 @@ pub const IProvideClassInfo2 = extern union {
             return @as(*const IProvideClassInfo2.VTable, @ptrCast(self.vtable)).GetGUID(@as(*const IProvideClassInfo2, @ptrCast(self)), dwGuidKind, pGUID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IProvideClassInfo.MethodMixin(@This());
+    pub fn GetGUID(self: *const IProvideClassInfo2, dwGuidKind: u32, pGUID: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IProvideClassInfo2.VTable, @ptrCast(self.vtable)).GetGUID(@as(*const IProvideClassInfo2, @ptrCast(self)), dwGuidKind, pGUID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3750,7 +4353,13 @@ pub const IProvideMultipleClassInfo = extern union {
             return @as(*const IProvideMultipleClassInfo.VTable, @ptrCast(self.vtable)).GetInfoOfIndex(@as(*const IProvideMultipleClassInfo, @ptrCast(self)), iti, dwFlags, pptiCoClass, pdwTIFlags, pcdispidReserved, piidPrimary, piidSource);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IProvideClassInfo2.MethodMixin(@This());
+    pub fn GetMultiTypeInfoCount(self: *const IProvideMultipleClassInfo, pcti: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IProvideMultipleClassInfo.VTable, @ptrCast(self.vtable)).GetMultiTypeInfoCount(@as(*const IProvideMultipleClassInfo, @ptrCast(self)), pcti);
+    }
+    pub fn GetInfoOfIndex(self: *const IProvideMultipleClassInfo, iti: u32, dwFlags: MULTICLASSINFO_FLAGS, pptiCoClass: ?*?*ITypeInfo, pdwTIFlags: ?*u32, pcdispidReserved: ?*u32, piidPrimary: ?*Guid, piidSource: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IProvideMultipleClassInfo.VTable, @ptrCast(self.vtable)).GetInfoOfIndex(@as(*const IProvideMultipleClassInfo, @ptrCast(self)), iti, dwFlags, pptiCoClass, pdwTIFlags, pcdispidReserved, piidPrimary, piidSource);
+    }
 };
 
 pub const CONTROLINFO = extern struct {
@@ -3811,7 +4420,19 @@ pub const IOleControl = extern union {
             return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).FreezeEvents(@as(*const IOleControl, @ptrCast(self)), bFreeze);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetControlInfo(self: *const IOleControl, pCI: ?*CONTROLINFO) callconv(.Inline) HRESULT {
+        return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).GetControlInfo(@as(*const IOleControl, @ptrCast(self)), pCI);
+    }
+    pub fn OnMnemonic(self: *const IOleControl, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+        return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).OnMnemonic(@as(*const IOleControl, @ptrCast(self)), pMsg);
+    }
+    pub fn OnAmbientPropertyChange(self: *const IOleControl, dispID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).OnAmbientPropertyChange(@as(*const IOleControl, @ptrCast(self)), dispID);
+    }
+    pub fn FreezeEvents(self: *const IOleControl, bFreeze: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).FreezeEvents(@as(*const IOleControl, @ptrCast(self)), bFreeze);
+    }
 };
 
 pub const POINTF = extern struct {
@@ -3901,7 +4522,28 @@ pub const IOleControlSite = extern union {
             return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).ShowPropertyFrame(@as(*const IOleControlSite, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnControlInfoChanged(self: *const IOleControlSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).OnControlInfoChanged(@as(*const IOleControlSite, @ptrCast(self)));
+    }
+    pub fn LockInPlaceActive(self: *const IOleControlSite, fLock: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).LockInPlaceActive(@as(*const IOleControlSite, @ptrCast(self)), fLock);
+    }
+    pub fn GetExtendedControl(self: *const IOleControlSite, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).GetExtendedControl(@as(*const IOleControlSite, @ptrCast(self)), ppDisp);
+    }
+    pub fn TransformCoords(self: *const IOleControlSite, pPtlHimetric: ?*POINTL, pPtfContainer: ?*POINTF, dwFlags: XFORMCOORDS) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).TransformCoords(@as(*const IOleControlSite, @ptrCast(self)), pPtlHimetric, pPtfContainer, dwFlags);
+    }
+    pub fn TranslateAccelerator(self: *const IOleControlSite, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleControlSite, @ptrCast(self)), pMsg, grfModifiers);
+    }
+    pub fn OnFocus(self: *const IOleControlSite, fGotFocus: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).OnFocus(@as(*const IOleControlSite, @ptrCast(self)), fGotFocus);
+    }
+    pub fn ShowPropertyFrame(self: *const IOleControlSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).ShowPropertyFrame(@as(*const IOleControlSite, @ptrCast(self)));
+    }
 };
 
 pub const PROPPAGEINFO = extern struct {
@@ -4013,7 +4655,40 @@ pub const IPropertyPage = extern union {
             return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPage, @ptrCast(self)), pMsg);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetPageSite(self: *const IPropertyPage, pPageSite: ?*IPropertyPageSite) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).SetPageSite(@as(*const IPropertyPage, @ptrCast(self)), pPageSite);
+    }
+    pub fn Activate(self: *const IPropertyPage, hWndParent: ?HWND, pRect: ?*RECT, bModal: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Activate(@as(*const IPropertyPage, @ptrCast(self)), hWndParent, pRect, bModal);
+    }
+    pub fn Deactivate(self: *const IPropertyPage) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IPropertyPage, @ptrCast(self)));
+    }
+    pub fn GetPageInfo(self: *const IPropertyPage, pPageInfo: ?*PROPPAGEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).GetPageInfo(@as(*const IPropertyPage, @ptrCast(self)), pPageInfo);
+    }
+    pub fn SetObjects(self: *const IPropertyPage, cObjects: u32, ppUnk: [*]?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).SetObjects(@as(*const IPropertyPage, @ptrCast(self)), cObjects, ppUnk);
+    }
+    pub fn Show(self: *const IPropertyPage, nCmdShow: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Show(@as(*const IPropertyPage, @ptrCast(self)), nCmdShow);
+    }
+    pub fn Move(self: *const IPropertyPage, pRect: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Move(@as(*const IPropertyPage, @ptrCast(self)), pRect);
+    }
+    pub fn IsPageDirty(self: *const IPropertyPage) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).IsPageDirty(@as(*const IPropertyPage, @ptrCast(self)));
+    }
+    pub fn Apply(self: *const IPropertyPage) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Apply(@as(*const IPropertyPage, @ptrCast(self)));
+    }
+    pub fn Help(self: *const IPropertyPage, pszHelpDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Help(@as(*const IPropertyPage, @ptrCast(self)), pszHelpDir);
+    }
+    pub fn TranslateAccelerator(self: *const IPropertyPage, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPage, @ptrCast(self)), pMsg);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4036,7 +4711,10 @@ pub const IPropertyPage2 = extern union {
             return @as(*const IPropertyPage2.VTable, @ptrCast(self.vtable)).EditProperty(@as(*const IPropertyPage2, @ptrCast(self)), dispID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPropertyPage.MethodMixin(@This());
+    pub fn EditProperty(self: *const IPropertyPage2, dispID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPage2.VTable, @ptrCast(self.vtable)).EditProperty(@as(*const IPropertyPage2, @ptrCast(self)), dispID);
+    }
 };
 
 pub const PROPPAGESTATUS = enum(i32) {
@@ -4092,7 +4770,19 @@ pub const IPropertyPageSite = extern union {
             return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPageSite, @ptrCast(self)), pMsg);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnStatusChange(self: *const IPropertyPageSite, dwFlags: PROPPAGESTATUS) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).OnStatusChange(@as(*const IPropertyPageSite, @ptrCast(self)), dwFlags);
+    }
+    pub fn GetLocaleID(self: *const IPropertyPageSite, pLocaleID: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).GetLocaleID(@as(*const IPropertyPageSite, @ptrCast(self)), pLocaleID);
+    }
+    pub fn GetPageContainer(self: *const IPropertyPageSite, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).GetPageContainer(@as(*const IPropertyPageSite, @ptrCast(self)), ppUnk);
+    }
+    pub fn TranslateAccelerator(self: *const IPropertyPageSite, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPageSite, @ptrCast(self)), pMsg);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4123,7 +4813,13 @@ pub const IPropertyNotifySink = extern union {
             return @as(*const IPropertyNotifySink.VTable, @ptrCast(self.vtable)).OnRequestEdit(@as(*const IPropertyNotifySink, @ptrCast(self)), dispID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnChanged(self: *const IPropertyNotifySink, dispID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyNotifySink.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IPropertyNotifySink, @ptrCast(self)), dispID);
+    }
+    pub fn OnRequestEdit(self: *const IPropertyNotifySink, dispID: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPropertyNotifySink.VTable, @ptrCast(self.vtable)).OnRequestEdit(@as(*const IPropertyNotifySink, @ptrCast(self)), dispID);
+    }
 };
 
 pub const CAUUID = extern struct {
@@ -4151,7 +4847,10 @@ pub const ISpecifyPropertyPages = extern union {
             return @as(*const ISpecifyPropertyPages.VTable, @ptrCast(self.vtable)).GetPages(@as(*const ISpecifyPropertyPages, @ptrCast(self)), pPages);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetPages(self: *const ISpecifyPropertyPages, pPages: ?*CAUUID) callconv(.Inline) HRESULT {
+        return @as(*const ISpecifyPropertyPages.VTable, @ptrCast(self.vtable)).GetPages(@as(*const ISpecifyPropertyPages, @ptrCast(self)), pPages);
+    }
 };
 
 const IID_IPersistPropertyBag_Value = Guid.initString("37d84f60-42cb-11ce-8135-00aa004bb851");
@@ -4191,7 +4890,16 @@ pub const IPersistPropertyBag = extern union {
             return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistPropertyBag, @ptrCast(self)), pPropBag, fClearDirty, fSaveAllProperties);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPersist.MethodMixin(@This());
+    pub fn InitNew(self: *const IPersistPropertyBag) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IPersistPropertyBag, @ptrCast(self)));
+    }
+    pub fn Load(self: *const IPersistPropertyBag, pPropBag: ?*IPropertyBag, pErrorLog: ?*IErrorLog) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistPropertyBag, @ptrCast(self)), pPropBag, pErrorLog);
+    }
+    pub fn Save(self: *const IPersistPropertyBag, pPropBag: ?*IPropertyBag, fClearDirty: BOOL, fSaveAllProperties: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistPropertyBag, @ptrCast(self)), pPropBag, fClearDirty, fSaveAllProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4232,7 +4940,13 @@ pub const ISimpleFrameSite = extern union {
             return @as(*const ISimpleFrameSite.VTable, @ptrCast(self.vtable)).PostMessageFilter(@as(*const ISimpleFrameSite, @ptrCast(self)), hWnd, msg, wp, lp, plResult, dwCookie);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn PreMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleFrameSite.VTable, @ptrCast(self.vtable)).PreMessageFilter(@as(*const ISimpleFrameSite, @ptrCast(self)), hWnd, msg, wp, lp, plResult, pdwCookie);
+    }
+    pub fn PostMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, dwCookie: u32) callconv(.Inline) HRESULT {
+        return @as(*const ISimpleFrameSite.VTable, @ptrCast(self.vtable)).PostMessageFilter(@as(*const ISimpleFrameSite, @ptrCast(self)), hWnd, msg, wp, lp, plResult, dwCookie);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4457,7 +5171,79 @@ pub const IFont = extern union {
             return @as(*const IFont.VTable, @ptrCast(self.vtable)).SetHdc(@as(*const IFont, @ptrCast(self)), hDC);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Name(self: *const IFont, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFont, @ptrCast(self)), pName);
+    }
+    pub fn put_Name(self: *const IFont, name: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFont, @ptrCast(self)), name);
+    }
+    pub fn get_Size(self: *const IFont, pSize: ?*CY) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFont, @ptrCast(self)), pSize);
+    }
+    pub fn put_Size(self: *const IFont, size: CY) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Size(@as(*const IFont, @ptrCast(self)), size);
+    }
+    pub fn get_Bold(self: *const IFont, pBold: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Bold(@as(*const IFont, @ptrCast(self)), pBold);
+    }
+    pub fn put_Bold(self: *const IFont, bold: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Bold(@as(*const IFont, @ptrCast(self)), bold);
+    }
+    pub fn get_Italic(self: *const IFont, pItalic: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Italic(@as(*const IFont, @ptrCast(self)), pItalic);
+    }
+    pub fn put_Italic(self: *const IFont, italic: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Italic(@as(*const IFont, @ptrCast(self)), italic);
+    }
+    pub fn get_Underline(self: *const IFont, pUnderline: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Underline(@as(*const IFont, @ptrCast(self)), pUnderline);
+    }
+    pub fn put_Underline(self: *const IFont, underline: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Underline(@as(*const IFont, @ptrCast(self)), underline);
+    }
+    pub fn get_Strikethrough(self: *const IFont, pStrikethrough: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Strikethrough(@as(*const IFont, @ptrCast(self)), pStrikethrough);
+    }
+    pub fn put_Strikethrough(self: *const IFont, strikethrough: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Strikethrough(@as(*const IFont, @ptrCast(self)), strikethrough);
+    }
+    pub fn get_Weight(self: *const IFont, pWeight: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Weight(@as(*const IFont, @ptrCast(self)), pWeight);
+    }
+    pub fn put_Weight(self: *const IFont, weight: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Weight(@as(*const IFont, @ptrCast(self)), weight);
+    }
+    pub fn get_Charset(self: *const IFont, pCharset: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Charset(@as(*const IFont, @ptrCast(self)), pCharset);
+    }
+    pub fn put_Charset(self: *const IFont, charset: i16) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Charset(@as(*const IFont, @ptrCast(self)), charset);
+    }
+    pub fn get_hFont(self: *const IFont, phFont: ?*?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_hFont(@as(*const IFont, @ptrCast(self)), phFont);
+    }
+    pub fn Clone(self: *const IFont, ppFont: ?*?*IFont) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).Clone(@as(*const IFont, @ptrCast(self)), ppFont);
+    }
+    pub fn IsEqual(self: *const IFont, pFontOther: ?*IFont) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IFont, @ptrCast(self)), pFontOther);
+    }
+    pub fn SetRatio(self: *const IFont, cyLogical: i32, cyHimetric: i32) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).SetRatio(@as(*const IFont, @ptrCast(self)), cyLogical, cyHimetric);
+    }
+    pub fn QueryTextMetrics(self: *const IFont, pTM: ?*TEXTMETRICW) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).QueryTextMetrics(@as(*const IFont, @ptrCast(self)), pTM);
+    }
+    pub fn AddRefHfont(self: *const IFont, hFont: ?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).AddRefHfont(@as(*const IFont, @ptrCast(self)), hFont);
+    }
+    pub fn ReleaseHfont(self: *const IFont, hFont: ?HFONT) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).ReleaseHfont(@as(*const IFont, @ptrCast(self)), hFont);
+    }
+    pub fn SetHdc(self: *const IFont, hDC: ?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IFont.VTable, @ptrCast(self.vtable)).SetHdc(@as(*const IFont, @ptrCast(self)), hDC);
+    }
 };
 
 pub const PictureAttributes = enum(i32) {
@@ -4612,7 +5398,49 @@ pub const IPicture = extern union {
             return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture, @ptrCast(self)), pDwAttr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Handle(self: *const IPicture, pHandle: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPicture, @ptrCast(self)), pHandle);
+    }
+    pub fn get_hPal(self: *const IPicture, phPal: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_hPal(@as(*const IPicture, @ptrCast(self)), phPal);
+    }
+    pub fn get_Type(self: *const IPicture, pType: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPicture, @ptrCast(self)), pType);
+    }
+    pub fn get_Width(self: *const IPicture, pWidth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IPicture, @ptrCast(self)), pWidth);
+    }
+    pub fn get_Height(self: *const IPicture, pHeight: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IPicture, @ptrCast(self)), pHeight);
+    }
+    pub fn Render(self: *const IPicture, hDC: ?HDC, x: i32, y: i32, cx: i32, cy: i32, xSrc: i32, ySrc: i32, cxSrc: i32, cySrc: i32, pRcWBounds: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).Render(@as(*const IPicture, @ptrCast(self)), hDC, x, y, cx, cy, xSrc, ySrc, cxSrc, cySrc, pRcWBounds);
+    }
+    pub fn set_hPal(self: *const IPicture, hPal: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).set_hPal(@as(*const IPicture, @ptrCast(self)), hPal);
+    }
+    pub fn get_CurDC(self: *const IPicture, phDC: ?*?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_CurDC(@as(*const IPicture, @ptrCast(self)), phDC);
+    }
+    pub fn SelectPicture(self: *const IPicture, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).SelectPicture(@as(*const IPicture, @ptrCast(self)), hDCIn, phDCOut, phBmpOut);
+    }
+    pub fn get_KeepOriginalFormat(self: *const IPicture, pKeep: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_KeepOriginalFormat(@as(*const IPicture, @ptrCast(self)), pKeep);
+    }
+    pub fn put_KeepOriginalFormat(self: *const IPicture, keep: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).put_KeepOriginalFormat(@as(*const IPicture, @ptrCast(self)), keep);
+    }
+    pub fn PictureChanged(self: *const IPicture) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).PictureChanged(@as(*const IPicture, @ptrCast(self)));
+    }
+    pub fn SaveAsFile(self: *const IPicture, pStream: ?*IStream, fSaveMemCopy: BOOL, pCbSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).SaveAsFile(@as(*const IPicture, @ptrCast(self)), pStream, fSaveMemCopy, pCbSize);
+    }
+    pub fn get_Attributes(self: *const IPicture, pDwAttr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture, @ptrCast(self)), pDwAttr);
+    }
 };
 
 const IID_IPicture2_Value = Guid.initString("f5185dd8-2012-4b0b-aad9-f052c6bd482b");
@@ -4759,7 +5587,49 @@ pub const IPicture2 = extern union {
             return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture2, @ptrCast(self)), pDwAttr);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn get_Handle(self: *const IPicture2, pHandle: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPicture2, @ptrCast(self)), pHandle);
+    }
+    pub fn get_hPal(self: *const IPicture2, phPal: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_hPal(@as(*const IPicture2, @ptrCast(self)), phPal);
+    }
+    pub fn get_Type(self: *const IPicture2, pType: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPicture2, @ptrCast(self)), pType);
+    }
+    pub fn get_Width(self: *const IPicture2, pWidth: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IPicture2, @ptrCast(self)), pWidth);
+    }
+    pub fn get_Height(self: *const IPicture2, pHeight: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IPicture2, @ptrCast(self)), pHeight);
+    }
+    pub fn Render(self: *const IPicture2, hDC: ?HDC, x: i32, y: i32, cx: i32, cy: i32, xSrc: i32, ySrc: i32, cxSrc: i32, cySrc: i32, pRcWBounds: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).Render(@as(*const IPicture2, @ptrCast(self)), hDC, x, y, cx, cy, xSrc, ySrc, cxSrc, cySrc, pRcWBounds);
+    }
+    pub fn set_hPal(self: *const IPicture2, hPal: usize) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).set_hPal(@as(*const IPicture2, @ptrCast(self)), hPal);
+    }
+    pub fn get_CurDC(self: *const IPicture2, phDC: ?*?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_CurDC(@as(*const IPicture2, @ptrCast(self)), phDC);
+    }
+    pub fn SelectPicture(self: *const IPicture2, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).SelectPicture(@as(*const IPicture2, @ptrCast(self)), hDCIn, phDCOut, phBmpOut);
+    }
+    pub fn get_KeepOriginalFormat(self: *const IPicture2, pKeep: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_KeepOriginalFormat(@as(*const IPicture2, @ptrCast(self)), pKeep);
+    }
+    pub fn put_KeepOriginalFormat(self: *const IPicture2, keep: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).put_KeepOriginalFormat(@as(*const IPicture2, @ptrCast(self)), keep);
+    }
+    pub fn PictureChanged(self: *const IPicture2) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).PictureChanged(@as(*const IPicture2, @ptrCast(self)));
+    }
+    pub fn SaveAsFile(self: *const IPicture2, pStream: ?*IStream, fSaveMemCopy: BOOL, pCbSize: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).SaveAsFile(@as(*const IPicture2, @ptrCast(self)), pStream, fSaveMemCopy, pCbSize);
+    }
+    pub fn get_Attributes(self: *const IPicture2, pDwAttr: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture2, @ptrCast(self)), pDwAttr);
+    }
 };
 
 const IID_IFontEventsDisp_Value = Guid.initString("4ef6100a-af88-11d0-9846-00c04fc29993");
@@ -4773,7 +5643,7 @@ pub const IFontEventsDisp = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4788,7 +5658,7 @@ pub const IFontDisp = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4803,7 +5673,7 @@ pub const IPictureDisp = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4837,7 +5707,13 @@ pub const IOleInPlaceObjectWindowless = extern union {
             return @as(*const IOleInPlaceObjectWindowless.VTable, @ptrCast(self.vtable)).GetDropTarget(@as(*const IOleInPlaceObjectWindowless, @ptrCast(self)), ppDropTarget);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleInPlaceObject.MethodMixin(@This());
+    pub fn OnWindowMessage(self: *const IOleInPlaceObjectWindowless, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObjectWindowless.VTable, @ptrCast(self.vtable)).OnWindowMessage(@as(*const IOleInPlaceObjectWindowless, @ptrCast(self)), msg, wParam, lParam, plResult);
+    }
+    pub fn GetDropTarget(self: *const IOleInPlaceObjectWindowless, ppDropTarget: ?*?*IDropTarget) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceObjectWindowless.VTable, @ptrCast(self.vtable)).GetDropTarget(@as(*const IOleInPlaceObjectWindowless, @ptrCast(self)), ppDropTarget);
+    }
 };
 
 pub const ACTIVATEFLAGS = enum(i32) {
@@ -4881,7 +5757,16 @@ pub const IOleInPlaceSiteEx = extern union {
             return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).RequestUIActivate(@as(*const IOleInPlaceSiteEx, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleInPlaceSite.MethodMixin(@This());
+    pub fn OnInPlaceActivateEx(self: *const IOleInPlaceSiteEx, pfNoRedraw: ?*BOOL, dwFlags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).OnInPlaceActivateEx(@as(*const IOleInPlaceSiteEx, @ptrCast(self)), pfNoRedraw, dwFlags);
+    }
+    pub fn OnInPlaceDeactivateEx(self: *const IOleInPlaceSiteEx, fNoRedraw: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).OnInPlaceDeactivateEx(@as(*const IOleInPlaceSiteEx, @ptrCast(self)), fNoRedraw);
+    }
+    pub fn RequestUIActivate(self: *const IOleInPlaceSiteEx) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).RequestUIActivate(@as(*const IOleInPlaceSiteEx, @ptrCast(self)));
+    }
 };
 
 pub const OLEDCFLAGS = enum(i32) {
@@ -5008,7 +5893,43 @@ pub const IOleInPlaceSiteWindowless = extern union {
             return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).OnDefWindowMessage(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), msg, wParam, lParam, plResult);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleInPlaceSiteEx.MethodMixin(@This());
+    pub fn CanWindowlessActivate(self: *const IOleInPlaceSiteWindowless) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).CanWindowlessActivate(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
+    }
+    pub fn GetCapture(self: *const IOleInPlaceSiteWindowless) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetCapture(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
+    }
+    pub fn SetCapture(self: *const IOleInPlaceSiteWindowless, fCapture: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).SetCapture(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), fCapture);
+    }
+    pub fn GetFocus(self: *const IOleInPlaceSiteWindowless) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetFocus(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
+    }
+    pub fn SetFocus(self: *const IOleInPlaceSiteWindowless, fFocus: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), fFocus);
+    }
+    pub fn GetDC(self: *const IOleInPlaceSiteWindowless, pRect: ?*RECT, grfFlags: u32, phDC: ?*?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), pRect, grfFlags, phDC);
+    }
+    pub fn ReleaseDC(self: *const IOleInPlaceSiteWindowless, hDC: ?HDC) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), hDC);
+    }
+    pub fn InvalidateRect(self: *const IOleInPlaceSiteWindowless, pRect: ?*RECT, fErase: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).InvalidateRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), pRect, fErase);
+    }
+    pub fn InvalidateRgn(self: *const IOleInPlaceSiteWindowless, hRGN: ?HRGN, fErase: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).InvalidateRgn(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), hRGN, fErase);
+    }
+    pub fn ScrollRect(self: *const IOleInPlaceSiteWindowless, dx: i32, dy: i32, pRectScroll: ?*RECT, pRectClip: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).ScrollRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), dx, dy, pRectScroll, pRectClip);
+    }
+    pub fn AdjustRect(self: *const IOleInPlaceSiteWindowless, prc: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).AdjustRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), prc);
+    }
+    pub fn OnDefWindowMessage(self: *const IOleInPlaceSiteWindowless, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).OnDefWindowMessage(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), msg, wParam, lParam, plResult);
+    }
 };
 
 pub const VIEWSTATUS = enum(i32) {
@@ -5133,7 +6054,22 @@ pub const IViewObjectEx = extern union {
             return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetNaturalExtent(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, lindex, ptd, hicTargetDev, pExtentInfo, pSizel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IViewObject2.MethodMixin(@This());
+    pub fn GetRect(self: *const IViewObjectEx, dwAspect: u32, pRect: ?*RECTL) callconv(.Inline) HRESULT {
+        return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetRect(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRect);
+    }
+    pub fn GetViewStatus(self: *const IViewObjectEx, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetViewStatus(@as(*const IViewObjectEx, @ptrCast(self)), pdwStatus);
+    }
+    pub fn QueryHitPoint(self: *const IViewObjectEx, dwAspect: u32, pRectBounds: ?*RECT, ptlLoc: POINT, lCloseHint: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).QueryHitPoint(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRectBounds, ptlLoc, lCloseHint, pHitResult);
+    }
+    pub fn QueryHitRect(self: *const IViewObjectEx, dwAspect: u32, pRectBounds: ?*RECT, pRectLoc: ?*RECT, lCloseHint: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).QueryHitRect(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRectBounds, pRectLoc, lCloseHint, pHitResult);
+    }
+    pub fn GetNaturalExtent(self: *const IViewObjectEx, dwAspect: DVASPECT, lindex: i32, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, pExtentInfo: ?*ExtentInfo, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetNaturalExtent(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, lindex, ptd, hicTargetDev, pExtentInfo, pSizel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5180,7 +6116,19 @@ pub const IOleUndoUnit = extern union {
             return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).OnNextAdd(@as(*const IOleUndoUnit, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Do(self: *const IOleUndoUnit, pUndoManager: ?*IOleUndoManager) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).Do(@as(*const IOleUndoUnit, @ptrCast(self)), pUndoManager);
+    }
+    pub fn GetDescription(self: *const IOleUndoUnit, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IOleUndoUnit, @ptrCast(self)), pBstr);
+    }
+    pub fn GetUnitType(self: *const IOleUndoUnit, pClsid: ?*Guid, plID: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).GetUnitType(@as(*const IOleUndoUnit, @ptrCast(self)), pClsid, plID);
+    }
+    pub fn OnNextAdd(self: *const IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).OnNextAdd(@as(*const IOleUndoUnit, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5236,7 +6184,22 @@ pub const IOleParentUndoUnit = extern union {
             return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).GetParentState(@as(*const IOleParentUndoUnit, @ptrCast(self)), pdwState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleUndoUnit.MethodMixin(@This());
+    pub fn Open(self: *const IOleParentUndoUnit, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleParentUndoUnit, @ptrCast(self)), pPUU);
+    }
+    pub fn Close(self: *const IOleParentUndoUnit, pPUU: ?*IOleParentUndoUnit, fCommit: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleParentUndoUnit, @ptrCast(self)), pPUU, fCommit);
+    }
+    pub fn Add(self: *const IOleParentUndoUnit, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Add(@as(*const IOleParentUndoUnit, @ptrCast(self)), pUU);
+    }
+    pub fn FindUnit(self: *const IOleParentUndoUnit, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).FindUnit(@as(*const IOleParentUndoUnit, @ptrCast(self)), pUU);
+    }
+    pub fn GetParentState(self: *const IOleParentUndoUnit, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).GetParentState(@as(*const IOleParentUndoUnit, @ptrCast(self)), pdwState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5284,7 +6247,19 @@ pub const IEnumOleUndoUnits = extern union {
             return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleUndoUnits, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumOleUndoUnits, cElt: u32, rgElt: [*]?*IOleUndoUnit, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOleUndoUnits, @ptrCast(self)), cElt, rgElt, pcEltFetched);
+    }
+    pub fn Skip(self: *const IEnumOleUndoUnits, cElt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOleUndoUnits, @ptrCast(self)), cElt);
+    }
+    pub fn Reset(self: *const IEnumOleUndoUnits) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOleUndoUnits, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumOleUndoUnits, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleUndoUnits, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5396,7 +6371,43 @@ pub const IOleUndoManager = extern union {
             return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Enable(@as(*const IOleUndoManager, @ptrCast(self)), fEnable);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Open(self: *const IOleUndoManager, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleUndoManager, @ptrCast(self)), pPUU);
+    }
+    pub fn Close(self: *const IOleUndoManager, pPUU: ?*IOleParentUndoUnit, fCommit: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleUndoManager, @ptrCast(self)), pPUU, fCommit);
+    }
+    pub fn Add(self: *const IOleUndoManager, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Add(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
+    }
+    pub fn GetOpenParentState(self: *const IOleUndoManager, pdwState: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetOpenParentState(@as(*const IOleUndoManager, @ptrCast(self)), pdwState);
+    }
+    pub fn DiscardFrom(self: *const IOleUndoManager, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).DiscardFrom(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
+    }
+    pub fn UndoTo(self: *const IOleUndoManager, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).UndoTo(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
+    }
+    pub fn RedoTo(self: *const IOleUndoManager, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).RedoTo(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
+    }
+    pub fn EnumUndoable(self: *const IOleUndoManager, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).EnumUndoable(@as(*const IOleUndoManager, @ptrCast(self)), ppEnum);
+    }
+    pub fn EnumRedoable(self: *const IOleUndoManager, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).EnumRedoable(@as(*const IOleUndoManager, @ptrCast(self)), ppEnum);
+    }
+    pub fn GetLastUndoDescription(self: *const IOleUndoManager, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetLastUndoDescription(@as(*const IOleUndoManager, @ptrCast(self)), pBstr);
+    }
+    pub fn GetLastRedoDescription(self: *const IOleUndoManager, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetLastRedoDescription(@as(*const IOleUndoManager, @ptrCast(self)), pBstr);
+    }
+    pub fn Enable(self: *const IOleUndoManager, fEnable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Enable(@as(*const IOleUndoManager, @ptrCast(self)), fEnable);
+    }
 };
 
 pub const POINTERINACTIVE = enum(i32) {
@@ -5451,7 +6462,16 @@ pub const IPointerInactive = extern union {
             return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).OnInactiveSetCursor(@as(*const IPointerInactive, @ptrCast(self)), pRectBounds, x, y, dwMouseMsg, fSetAlways);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetActivationPolicy(self: *const IPointerInactive, pdwPolicy: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).GetActivationPolicy(@as(*const IPointerInactive, @ptrCast(self)), pdwPolicy);
+    }
+    pub fn OnInactiveMouseMove(self: *const IPointerInactive, pRectBounds: ?*RECT, x: i32, y: i32, grfKeyState: u32) callconv(.Inline) HRESULT {
+        return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).OnInactiveMouseMove(@as(*const IPointerInactive, @ptrCast(self)), pRectBounds, x, y, grfKeyState);
+    }
+    pub fn OnInactiveSetCursor(self: *const IPointerInactive, pRectBounds: ?*RECT, x: i32, y: i32, dwMouseMsg: u32, fSetAlways: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).OnInactiveSetCursor(@as(*const IPointerInactive, @ptrCast(self)), pRectBounds, x, y, dwMouseMsg, fSetAlways);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5483,7 +6503,13 @@ pub const IObjectWithSite = extern union {
             return @as(*const IObjectWithSite.VTable, @ptrCast(self.vtable)).GetSite(@as(*const IObjectWithSite, @ptrCast(self)), riid, ppvSite);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSite(self: *const IObjectWithSite, pUnkSite: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IObjectWithSite.VTable, @ptrCast(self.vtable)).SetSite(@as(*const IObjectWithSite, @ptrCast(self)), pUnkSite);
+    }
+    pub fn GetSite(self: *const IObjectWithSite, riid: ?*const Guid, ppvSite: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IObjectWithSite.VTable, @ptrCast(self.vtable)).GetSite(@as(*const IObjectWithSite, @ptrCast(self)), riid, ppvSite);
+    }
 };
 
 pub const CALPOLESTR = extern struct {
@@ -5546,7 +6572,19 @@ pub const IPerPropertyBrowsing = extern union {
             return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetPredefinedValue(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, dwCookie, pVarOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetDisplayString(self: *const IPerPropertyBrowsing, dispID: i32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetDisplayString(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pBstr);
+    }
+    pub fn MapPropertyToPage(self: *const IPerPropertyBrowsing, dispID: i32, pClsid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).MapPropertyToPage(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pClsid);
+    }
+    pub fn GetPredefinedStrings(self: *const IPerPropertyBrowsing, dispID: i32, pCaStringsOut: ?*CALPOLESTR, pCaCookiesOut: ?*CADWORD) callconv(.Inline) HRESULT {
+        return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetPredefinedStrings(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pCaStringsOut, pCaCookiesOut);
+    }
+    pub fn GetPredefinedValue(self: *const IPerPropertyBrowsing, dispID: i32, dwCookie: u32, pVarOut: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetPredefinedValue(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, dwCookie, pVarOut);
+    }
 };
 
 pub const PROPBAG2_TYPE = enum(i32) {
@@ -5610,7 +6648,19 @@ pub const IPersistPropertyBag2 = extern union {
             return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IPersistPropertyBag2, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IPersist.MethodMixin(@This());
+    pub fn InitNew(self: *const IPersistPropertyBag2) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IPersistPropertyBag2, @ptrCast(self)));
+    }
+    pub fn Load(self: *const IPersistPropertyBag2, pPropBag: ?*IPropertyBag2, pErrLog: ?*IErrorLog) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistPropertyBag2, @ptrCast(self)), pPropBag, pErrLog);
+    }
+    pub fn Save(self: *const IPersistPropertyBag2, pPropBag: ?*IPropertyBag2, fClearDirty: BOOL, fSaveAllProperties: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistPropertyBag2, @ptrCast(self)), pPropBag, fClearDirty, fSaveAllProperties);
+    }
+    pub fn IsDirty(self: *const IPersistPropertyBag2) callconv(.Inline) HRESULT {
+        return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IPersistPropertyBag2, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5633,7 +6683,10 @@ pub const IAdviseSinkEx = extern union {
             return @as(*const IAdviseSinkEx.VTable, @ptrCast(self.vtable)).OnViewStatusChange(@as(*const IAdviseSinkEx, @ptrCast(self)), dwViewStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IAdviseSink.MethodMixin(@This());
+    pub fn OnViewStatusChange(self: *const IAdviseSinkEx, dwViewStatus: u32) callconv(.Inline) void {
+        return @as(*const IAdviseSinkEx.VTable, @ptrCast(self.vtable)).OnViewStatusChange(@as(*const IAdviseSinkEx, @ptrCast(self)), dwViewStatus);
+    }
 };
 
 pub const QACONTAINERFLAGS = enum(i32) {
@@ -5720,7 +6773,16 @@ pub const IQuickActivate = extern union {
             return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).GetContentExtent(@as(*const IQuickActivate, @ptrCast(self)), pSizel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QuickActivate(self: *const IQuickActivate, pQaContainer: ?*QACONTAINER, pQaControl: ?*QACONTROL) callconv(.Inline) HRESULT {
+        return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).QuickActivate(@as(*const IQuickActivate, @ptrCast(self)), pQaContainer, pQaControl);
+    }
+    pub fn SetContentExtent(self: *const IQuickActivate, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).SetContentExtent(@as(*const IQuickActivate, @ptrCast(self)), pSizel);
+    }
+    pub fn GetContentExtent(self: *const IQuickActivate, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
+        return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).GetContentExtent(@as(*const IQuickActivate, @ptrCast(self)), pSizel);
+    }
 };
 
 pub const OCPFIPARAMS = extern struct {
@@ -5800,7 +6862,10 @@ pub const IVBGetControl = extern union {
             return @as(*const IVBGetControl.VTable, @ptrCast(self.vtable)).EnumControls(@as(*const IVBGetControl, @ptrCast(self)), dwOleContF, dwWhich, ppenumUnk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn EnumControls(self: *const IVBGetControl, dwOleContF: OLECONTF, dwWhich: ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IVBGetControl.VTable, @ptrCast(self.vtable)).EnumControls(@as(*const IVBGetControl, @ptrCast(self)), dwOleContF, dwWhich, ppenumUnk);
+    }
 };
 
 const IID_IGetOleObject_Value = Guid.initString("8a701da0-4feb-101b-a82e-08002b2b2337");
@@ -5823,7 +6888,10 @@ pub const IGetOleObject = extern union {
             return @as(*const IGetOleObject.VTable, @ptrCast(self.vtable)).GetOleObject(@as(*const IGetOleObject, @ptrCast(self)), riid, ppvObj);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetOleObject(self: *const IGetOleObject, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IGetOleObject.VTable, @ptrCast(self.vtable)).GetOleObject(@as(*const IGetOleObject, @ptrCast(self)), riid, ppvObj);
+    }
 };
 
 const IID_IVBFormat_Value = Guid.initString("9849fd60-3768-101b-8d72-ae6164ffe3cf");
@@ -5852,7 +6920,10 @@ pub const IVBFormat = extern union {
             return @as(*const IVBFormat.VTable, @ptrCast(self.vtable)).Format(@as(*const IVBFormat, @ptrCast(self)), vData, bstrFormat, lpBuffer, cb, lcid, sFirstDayOfWeek, sFirstWeekOfYear, rcb);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Format(self: *const IVBFormat, vData: ?*VARIANT, bstrFormat: ?BSTR, lpBuffer: ?*anyopaque, cb: u16, lcid: i32, sFirstDayOfWeek: i16, sFirstWeekOfYear: u16, rcb: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IVBFormat.VTable, @ptrCast(self.vtable)).Format(@as(*const IVBFormat, @ptrCast(self)), vData, bstrFormat, lpBuffer, cb, lcid, sFirstDayOfWeek, sFirstWeekOfYear, rcb);
+    }
 };
 
 const IID_IGetVBAObject_Value = Guid.initString("91733a60-3f4c-101b-a3f6-00aa0034e4e9");
@@ -5876,7 +6947,10 @@ pub const IGetVBAObject = extern union {
             return @as(*const IGetVBAObject.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IGetVBAObject, @ptrCast(self)), riid, ppvObj, dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObject(self: *const IGetVBAObject, riid: ?*const Guid, ppvObj: ?*?*anyopaque, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IGetVBAObject.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IGetVBAObject, @ptrCast(self)), riid, ppvObj, dwReserved);
+    }
 };
 
 pub const DOCMISC = enum(i32) {
@@ -5930,7 +7004,16 @@ pub const IOleDocument = extern union {
             return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).EnumViews(@as(*const IOleDocument, @ptrCast(self)), ppEnum, ppView);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateView(self: *const IOleDocument, pIPSite: ?*IOleInPlaceSite, pstm: ?*IStream, dwReserved: u32, ppView: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).CreateView(@as(*const IOleDocument, @ptrCast(self)), pIPSite, pstm, dwReserved, ppView);
+    }
+    pub fn GetDocMiscStatus(self: *const IOleDocument, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).GetDocMiscStatus(@as(*const IOleDocument, @ptrCast(self)), pdwStatus);
+    }
+    pub fn EnumViews(self: *const IOleDocument, ppEnum: ?*?*IEnumOleDocumentViews, ppView: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).EnumViews(@as(*const IOleDocument, @ptrCast(self)), ppEnum, ppView);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5953,7 +7036,10 @@ pub const IOleDocumentSite = extern union {
             return @as(*const IOleDocumentSite.VTable, @ptrCast(self.vtable)).ActivateMe(@as(*const IOleDocumentSite, @ptrCast(self)), pViewToActivate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ActivateMe(self: *const IOleDocumentSite, pViewToActivate: ?*IOleDocumentView) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentSite.VTable, @ptrCast(self.vtable)).ActivateMe(@as(*const IOleDocumentSite, @ptrCast(self)), pViewToActivate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6075,7 +7161,46 @@ pub const IOleDocumentView = extern union {
             return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOleDocumentView, @ptrCast(self)), pIPSiteNew, ppViewNew);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInPlaceSite(self: *const IOleDocumentView, pIPSite: ?*IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetInPlaceSite(@as(*const IOleDocumentView, @ptrCast(self)), pIPSite);
+    }
+    pub fn GetInPlaceSite(self: *const IOleDocumentView, ppIPSite: ?*?*IOleInPlaceSite) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetInPlaceSite(@as(*const IOleDocumentView, @ptrCast(self)), ppIPSite);
+    }
+    pub fn GetDocument(self: *const IOleDocumentView, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IOleDocumentView, @ptrCast(self)), ppunk);
+    }
+    pub fn SetRect(self: *const IOleDocumentView, prcView: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetRect(@as(*const IOleDocumentView, @ptrCast(self)), prcView);
+    }
+    pub fn GetRect(self: *const IOleDocumentView, prcView: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetRect(@as(*const IOleDocumentView, @ptrCast(self)), prcView);
+    }
+    pub fn SetRectComplex(self: *const IOleDocumentView, prcView: ?*RECT, prcHScroll: ?*RECT, prcVScroll: ?*RECT, prcSizeBox: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetRectComplex(@as(*const IOleDocumentView, @ptrCast(self)), prcView, prcHScroll, prcVScroll, prcSizeBox);
+    }
+    pub fn Show(self: *const IOleDocumentView, fShow: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Show(@as(*const IOleDocumentView, @ptrCast(self)), fShow);
+    }
+    pub fn UIActivate(self: *const IOleDocumentView, fUIActivate: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).UIActivate(@as(*const IOleDocumentView, @ptrCast(self)), fUIActivate);
+    }
+    pub fn Open(self: *const IOleDocumentView) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleDocumentView, @ptrCast(self)));
+    }
+    pub fn CloseView(self: *const IOleDocumentView, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).CloseView(@as(*const IOleDocumentView, @ptrCast(self)), dwReserved);
+    }
+    pub fn SaveViewState(self: *const IOleDocumentView, pstm: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SaveViewState(@as(*const IOleDocumentView, @ptrCast(self)), pstm);
+    }
+    pub fn ApplyViewState(self: *const IOleDocumentView, pstm: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).ApplyViewState(@as(*const IOleDocumentView, @ptrCast(self)), pstm);
+    }
+    pub fn Clone(self: *const IOleDocumentView, pIPSiteNew: ?*IOleInPlaceSite, ppViewNew: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
+        return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOleDocumentView, @ptrCast(self)), pIPSiteNew, ppViewNew);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6123,7 +7248,19 @@ pub const IEnumOleDocumentViews = extern union {
             return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleDocumentViews, @ptrCast(self)), ppEnum);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Next(self: *const IEnumOleDocumentViews, cViews: u32, rgpView: ?*?*IOleDocumentView, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOleDocumentViews, @ptrCast(self)), cViews, rgpView, pcFetched);
+    }
+    pub fn Skip(self: *const IEnumOleDocumentViews, cViews: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOleDocumentViews, @ptrCast(self)), cViews);
+    }
+    pub fn Reset(self: *const IEnumOleDocumentViews) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOleDocumentViews, @ptrCast(self)));
+    }
+    pub fn Clone(self: *const IEnumOleDocumentViews, ppEnum: ?*?*IEnumOleDocumentViews) callconv(.Inline) HRESULT {
+        return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleDocumentViews, @ptrCast(self)), ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6155,7 +7292,13 @@ pub const IContinueCallback = extern union {
             return @as(*const IContinueCallback.VTable, @ptrCast(self.vtable)).FContinuePrinting(@as(*const IContinueCallback, @ptrCast(self)), nCntPrinted, nCurPage, pwszPrintStatus);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FContinue(self: *const IContinueCallback) callconv(.Inline) HRESULT {
+        return @as(*const IContinueCallback.VTable, @ptrCast(self.vtable)).FContinue(@as(*const IContinueCallback, @ptrCast(self)));
+    }
+    pub fn FContinuePrinting(self: *const IContinueCallback, nCntPrinted: i32, nCurPage: i32, pwszPrintStatus: ?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IContinueCallback.VTable, @ptrCast(self.vtable)).FContinuePrinting(@as(*const IContinueCallback, @ptrCast(self)), nCntPrinted, nCurPage, pwszPrintStatus);
+    }
 };
 
 pub const PRINTFLAG = packed struct(u32) {
@@ -6257,7 +7400,16 @@ pub const IPrint = extern union {
             return @as(*const IPrint.VTable, @ptrCast(self.vtable)).Print(@as(*const IPrint, @ptrCast(self)), grfFlags, pptd, ppPageSet, pstgmOptions, pcallback, nFirstPage, pcPagesPrinted, pnLastPage);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetInitialPageNum(self: *const IPrint, nFirstPage: i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrint.VTable, @ptrCast(self.vtable)).SetInitialPageNum(@as(*const IPrint, @ptrCast(self)), nFirstPage);
+    }
+    pub fn GetPageInfo(self: *const IPrint, pnFirstPage: ?*i32, pcPages: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrint.VTable, @ptrCast(self.vtable)).GetPageInfo(@as(*const IPrint, @ptrCast(self)), pnFirstPage, pcPages);
+    }
+    pub fn Print(self: *const IPrint, grfFlags: u32, pptd: ?*?*DVTARGETDEVICE, ppPageSet: ?*?*PAGESET, pstgmOptions: ?*STGMEDIUM, pcallback: ?*IContinueCallback, nFirstPage: i32, pcPagesPrinted: ?*i32, pnLastPage: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IPrint.VTable, @ptrCast(self.vtable)).Print(@as(*const IPrint, @ptrCast(self)), grfFlags, pptd, ppPageSet, pstgmOptions, pcallback, nFirstPage, pcPagesPrinted, pnLastPage);
+    }
 };
 
 pub const OLECMDF = enum(i32) {
@@ -6536,7 +7688,13 @@ pub const IOleCommandTarget = extern union {
             return @as(*const IOleCommandTarget.VTable, @ptrCast(self.vtable)).Exec(@as(*const IOleCommandTarget, @ptrCast(self)), pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryStatus(self: *const IOleCommandTarget, pguidCmdGroup: ?*const Guid, cCmds: u32, prgCmds: ?*OLECMD, pCmdText: ?*OLECMDTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IOleCommandTarget.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IOleCommandTarget, @ptrCast(self)), pguidCmdGroup, cCmds, prgCmds, pCmdText);
+    }
+    pub fn Exec(self: *const IOleCommandTarget, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvaIn: ?*VARIANT, pvaOut: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IOleCommandTarget.VTable, @ptrCast(self.vtable)).Exec(@as(*const IOleCommandTarget, @ptrCast(self)), pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
+    }
 };
 
 pub const OLECMDID_REFRESHFLAG = enum(i32) {
@@ -6737,7 +7895,10 @@ pub const IZoomEvents = extern union {
             return @as(*const IZoomEvents.VTable, @ptrCast(self.vtable)).OnZoomPercentChanged(@as(*const IZoomEvents, @ptrCast(self)), ulZoomPercent);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn OnZoomPercentChanged(self: *const IZoomEvents, ulZoomPercent: u32) callconv(.Inline) HRESULT {
+        return @as(*const IZoomEvents.VTable, @ptrCast(self.vtable)).OnZoomPercentChanged(@as(*const IZoomEvents, @ptrCast(self)), ulZoomPercent);
+    }
 };
 
 const IID_IProtectFocus_Value = Guid.initString("d81f90a3-8156-44f7-ad28-5abb87003274");
@@ -6759,7 +7920,10 @@ pub const IProtectFocus = extern union {
             return @as(*const IProtectFocus.VTable, @ptrCast(self.vtable)).AllowFocusChange(@as(*const IProtectFocus, @ptrCast(self)), pfAllow);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AllowFocusChange(self: *const IProtectFocus, pfAllow: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IProtectFocus.VTable, @ptrCast(self.vtable)).AllowFocusChange(@as(*const IProtectFocus, @ptrCast(self)), pfAllow);
+    }
 };
 
 const IID_IProtectedModeMenuServices_Value = Guid.initString("73c105ee-9dff-4a07-b83c-7eff290c266e");
@@ -6801,7 +7965,16 @@ pub const IProtectedModeMenuServices = extern union {
             return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).LoadMenuID(@as(*const IProtectedModeMenuServices, @ptrCast(self)), pszModuleName, wResourceID, phMenu);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateMenu(self: *const IProtectedModeMenuServices, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
+        return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).CreateMenu(@as(*const IProtectedModeMenuServices, @ptrCast(self)), phMenu);
+    }
+    pub fn LoadMenu(self: *const IProtectedModeMenuServices, pszModuleName: ?[*:0]const u16, pszMenuName: ?[*:0]const u16, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
+        return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).LoadMenu(@as(*const IProtectedModeMenuServices, @ptrCast(self)), pszModuleName, pszMenuName, phMenu);
+    }
+    pub fn LoadMenuID(self: *const IProtectedModeMenuServices, pszModuleName: ?[*:0]const u16, wResourceID: u16, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
+        return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).LoadMenuID(@as(*const IProtectedModeMenuServices, @ptrCast(self)), pszModuleName, wResourceID, phMenu);
+    }
 };
 
 pub const LPFNOLEUIHOOK = *const fn(
@@ -7038,7 +8211,31 @@ pub const IOleUILinkContainerW = extern union {
             return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNextLink(self: *const IOleUILinkContainerW, dwLink: u32) callconv(.Inline) u32 {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetNextLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
+    }
+    pub fn SetLinkUpdateOptions(self: *const IOleUILinkContainerW, dwLink: u32, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).SetLinkUpdateOptions(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, dwUpdateOpt);
+    }
+    pub fn GetLinkUpdateOptions(self: *const IOleUILinkContainerW, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetLinkUpdateOptions(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lpdwUpdateOpt);
+    }
+    pub fn SetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lpszDisplayName: ?PWSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).SetLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
+    }
+    pub fn GetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lplpszDisplayName: ?*?PWSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PWSTR, lplpszShortLinkType: ?*?PWSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
+    }
+    pub fn OpenLinkSource(self: *const IOleUILinkContainerW, dwLink: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).OpenLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
+    }
+    pub fn UpdateLink(self: *const IOleUILinkContainerW, dwLink: u32, fErrorMessage: BOOL, fReserved: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).UpdateLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, fErrorMessage, fReserved);
+    }
+    pub fn CancelLink(self: *const IOleUILinkContainerW, dwLink: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7129,7 +8326,31 @@ pub const IOleUILinkContainerA = extern union {
             return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetNextLink(self: *const IOleUILinkContainerA, dwLink: u32) callconv(.Inline) u32 {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetNextLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
+    }
+    pub fn SetLinkUpdateOptions(self: *const IOleUILinkContainerA, dwLink: u32, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).SetLinkUpdateOptions(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, dwUpdateOpt);
+    }
+    pub fn GetLinkUpdateOptions(self: *const IOleUILinkContainerA, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetLinkUpdateOptions(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lpdwUpdateOpt);
+    }
+    pub fn SetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lpszDisplayName: ?PSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).SetLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
+    }
+    pub fn GetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lplpszDisplayName: ?*?PSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PSTR, lplpszShortLinkType: ?*?PSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
+    }
+    pub fn OpenLinkSource(self: *const IOleUILinkContainerA, dwLink: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).OpenLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
+    }
+    pub fn UpdateLink(self: *const IOleUILinkContainerA, dwLink: u32, fErrorMessage: BOOL, fReserved: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).UpdateLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, fErrorMessage, fReserved);
+    }
+    pub fn CancelLink(self: *const IOleUILinkContainerA, dwLink: u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
+    }
 };
 
 pub const OLEUIEDITLINKSW = extern struct {
@@ -7376,7 +8597,22 @@ pub const IOleUIObjInfoW = extern union {
             return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObjectInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PWSTR, lplpszType: ?*?PWSTR, lplpszShortType: ?*?PWSTR, lplpszLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
+    }
+    pub fn GetConvertInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetConvertInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, lpClassID, lpwFormat, lpConvertDefaultClassID, lplpClsidExclude, lpcClsidExclude);
+    }
+    pub fn ConvertObject(self: *const IOleUIObjInfoW, dwObject: u32, clsidNew: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).ConvertObject(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, clsidNew);
+    }
+    pub fn GetViewInfo(self: *const IOleUIObjInfoW, dwObject: u32, phMetaPict: ?*isize, pdvAspect: ?*u32, pnCurrentScale: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetViewInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, phMetaPict, pdvAspect, pnCurrentScale);
+    }
+    pub fn SetViewInfo(self: *const IOleUIObjInfoW, dwObject: u32, hMetaPict: isize, dvAspect: u32, nCurrentScale: i32, bRelativeToOrig: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7447,7 +8683,22 @@ pub const IOleUIObjInfoA = extern union {
             return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetObjectInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PSTR, lplpszType: ?*?PSTR, lplpszShortType: ?*?PSTR, lplpszLocation: ?*?PSTR) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
+    }
+    pub fn GetConvertInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetConvertInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, lpClassID, lpwFormat, lpConvertDefaultClassID, lplpClsidExclude, lpcClsidExclude);
+    }
+    pub fn ConvertObject(self: *const IOleUIObjInfoA, dwObject: u32, clsidNew: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).ConvertObject(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, clsidNew);
+    }
+    pub fn GetViewInfo(self: *const IOleUIObjInfoA, dwObject: u32, phMetaPict: ?*isize, pdvAspect: ?*u32, pnCurrentScale: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetViewInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, phMetaPict, pdvAspect, pnCurrentScale);
+    }
+    pub fn SetViewInfo(self: *const IOleUIObjInfoA, dwObject: u32, hMetaPict: isize, dvAspect: u32, nCurrentScale: i32, bRelativeToOrig: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7469,7 +8720,10 @@ pub const IOleUILinkInfoW = extern union {
             return @as(*const IOleUILinkInfoW.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoW, @ptrCast(self)), dwLink, lpLastUpdate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleUILinkContainerW.MethodMixin(@This());
+    pub fn GetLastUpdate(self: *const IOleUILinkInfoW, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkInfoW.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoW, @ptrCast(self)), dwLink, lpLastUpdate);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7491,7 +8745,10 @@ pub const IOleUILinkInfoA = extern union {
             return @as(*const IOleUILinkInfoA.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoA, @ptrCast(self)), dwLink, lpLastUpdate);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IOleUILinkContainerA.MethodMixin(@This());
+    pub fn GetLastUpdate(self: *const IOleUILinkInfoA, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
+        return @as(*const IOleUILinkInfoA.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoA, @ptrCast(self)), dwLink, lpLastUpdate);
+    }
 };
 
 pub const OLEUIGNRLPROPSW = extern struct {
@@ -7673,7 +8930,31 @@ pub const IDispatchEx = extern union {
             return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetNameSpaceParent(@as(*const IDispatchEx, @ptrCast(self)), ppunk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn GetDispID(self: *const IDispatchEx, bstrName: ?BSTR, grfdex: u32, pid: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetDispID(@as(*const IDispatchEx, @ptrCast(self)), bstrName, grfdex, pid);
+    }
+    pub fn InvokeEx(self: *const IDispatchEx, id: i32, lcid: u32, wFlags: u16, pdp: ?*DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO, pspCaller: ?*IServiceProvider) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).InvokeEx(@as(*const IDispatchEx, @ptrCast(self)), id, lcid, wFlags, pdp, pvarRes, pei, pspCaller);
+    }
+    pub fn DeleteMemberByName(self: *const IDispatchEx, bstrName: ?BSTR, grfdex: u32) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).DeleteMemberByName(@as(*const IDispatchEx, @ptrCast(self)), bstrName, grfdex);
+    }
+    pub fn DeleteMemberByDispID(self: *const IDispatchEx, id: i32) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).DeleteMemberByDispID(@as(*const IDispatchEx, @ptrCast(self)), id);
+    }
+    pub fn GetMemberProperties(self: *const IDispatchEx, id: i32, grfdexFetch: u32, pgrfdex: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetMemberProperties(@as(*const IDispatchEx, @ptrCast(self)), id, grfdexFetch, pgrfdex);
+    }
+    pub fn GetMemberName(self: *const IDispatchEx, id: i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetMemberName(@as(*const IDispatchEx, @ptrCast(self)), id, pbstrName);
+    }
+    pub fn GetNextDispID(self: *const IDispatchEx, grfdex: u32, id: i32, pid: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetNextDispID(@as(*const IDispatchEx, @ptrCast(self)), grfdex, id, pid);
+    }
+    pub fn GetNameSpaceParent(self: *const IDispatchEx, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetNameSpaceParent(@as(*const IDispatchEx, @ptrCast(self)), ppunk);
+    }
 };
 
 const IID_IDispError_Value = Guid.initString("a6ef9861-c720-11d0-9337-00a0c90dcaa9");
@@ -7737,7 +9018,25 @@ pub const IDispError = extern union {
             return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IDispError, @ptrCast(self)), pbstrDescription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn QueryErrorInfo(self: *const IDispError, guidErrorType: Guid, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).QueryErrorInfo(@as(*const IDispError, @ptrCast(self)), guidErrorType, ppde);
+    }
+    pub fn GetNext(self: *const IDispError, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetNext(@as(*const IDispError, @ptrCast(self)), ppde);
+    }
+    pub fn GetHresult(self: *const IDispError, phr: ?*HRESULT) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetHresult(@as(*const IDispError, @ptrCast(self)), phr);
+    }
+    pub fn GetSource(self: *const IDispError, pbstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IDispError, @ptrCast(self)), pbstrSource);
+    }
+    pub fn GetHelpInfo(self: *const IDispError, pbstrFileName: ?*?BSTR, pdwContext: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetHelpInfo(@as(*const IDispError, @ptrCast(self)), pbstrFileName, pdwContext);
+    }
+    pub fn GetDescription(self: *const IDispError, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IDispError, @ptrCast(self)), pbstrDescription);
+    }
 };
 
 const IID_IVariantChangeType_Value = Guid.initString("a6ef9862-c720-11d0-9337-00a0c90dcaa9");
@@ -7762,7 +9061,10 @@ pub const IVariantChangeType = extern union {
             return @as(*const IVariantChangeType.VTable, @ptrCast(self.vtable)).ChangeType(@as(*const IVariantChangeType, @ptrCast(self)), pvarDst, pvarSrc, lcid, vtNew);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ChangeType(self: *const IVariantChangeType, pvarDst: ?*VARIANT, pvarSrc: ?*VARIANT, lcid: u32, vtNew: u16) callconv(.Inline) HRESULT {
+        return @as(*const IVariantChangeType.VTable, @ptrCast(self.vtable)).ChangeType(@as(*const IVariantChangeType, @ptrCast(self)), pvarDst, pvarSrc, lcid, vtNew);
+    }
 };
 
 const IID_IObjectIdentity_Value = Guid.initString("ca04b7e6-0d21-11d1-8cc5-00c04fc2b085");
@@ -7784,7 +9086,10 @@ pub const IObjectIdentity = extern union {
             return @as(*const IObjectIdentity.VTable, @ptrCast(self.vtable)).IsEqualObject(@as(*const IObjectIdentity, @ptrCast(self)), punk);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsEqualObject(self: *const IObjectIdentity, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IObjectIdentity.VTable, @ptrCast(self.vtable)).IsEqualObject(@as(*const IObjectIdentity, @ptrCast(self)), punk);
+    }
 };
 
 const IID_ICanHandleException_Value = Guid.initString("c5598e60-b307-11d1-b27d-006008c3fbfb");
@@ -7807,7 +9112,10 @@ pub const ICanHandleException = extern union {
             return @as(*const ICanHandleException.VTable, @ptrCast(self.vtable)).CanHandleException(@as(*const ICanHandleException, @ptrCast(self)), pExcepInfo, pvar);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CanHandleException(self: *const ICanHandleException, pExcepInfo: ?*EXCEPINFO, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const ICanHandleException.VTable, @ptrCast(self.vtable)).CanHandleException(@as(*const ICanHandleException, @ptrCast(self)), pExcepInfo, pvar);
+    }
 };
 
 const IID_IProvideRuntimeContext_Value = Guid.initString("10e2414a-ec59-49d2-bc51-5add2c36febc");
@@ -7830,7 +9138,10 @@ pub const IProvideRuntimeContext = extern union {
             return @as(*const IProvideRuntimeContext.VTable, @ptrCast(self.vtable)).GetCurrentSourceContext(@as(*const IProvideRuntimeContext, @ptrCast(self)), pdwContext, pfExecutingGlobalCode);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetCurrentSourceContext(self: *const IProvideRuntimeContext, pdwContext: ?*usize, pfExecutingGlobalCode: ?*i16) callconv(.Inline) HRESULT {
+        return @as(*const IProvideRuntimeContext.VTable, @ptrCast(self.vtable)).GetCurrentSourceContext(@as(*const IProvideRuntimeContext, @ptrCast(self)), pdwContext, pfExecutingGlobalCode);
+    }
 };
 
 

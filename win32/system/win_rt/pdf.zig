@@ -51,7 +51,13 @@ pub const IPdfRendererNative = extern union {
             return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToDeviceContext(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pD2DDeviceContext, pRenderParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn RenderPageToSurface(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
+        return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToSurface(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pSurface, offset, pRenderParams);
+    }
+    pub fn RenderPageToDeviceContext(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
+        return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToDeviceContext(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pD2DDeviceContext, pRenderParams);
+    }
 };
 
 

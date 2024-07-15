@@ -43,7 +43,16 @@ pub const ISurfaceImageSourceNative = extern union {
             return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDevice(self: *const ISurfaceImageSourceNative, device: ?*IDXGIDevice) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), device);
+    }
+    pub fn BeginDraw(self: *const ISurfaceImageSourceNative, updateRect: RECT, surface: ?*?*IDXGISurface, offset: ?*POINT) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), updateRect, surface, offset);
+    }
+    pub fn EndDraw(self: *const ISurfaceImageSourceNative) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)));
+    }
 };
 
 const IID_IVirtualSurfaceUpdatesCallbackNative_Value = Guid.initString("dbf2e947-8e6c-4254-9eee-7738f71386c9");
@@ -64,7 +73,10 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern union {
             return @as(*const IVirtualSurfaceUpdatesCallbackNative.VTable, @ptrCast(self.vtable)).UpdatesNeeded(@as(*const IVirtualSurfaceUpdatesCallbackNative, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn UpdatesNeeded(self: *const IVirtualSurfaceUpdatesCallbackNative) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceUpdatesCallbackNative.VTable, @ptrCast(self.vtable)).UpdatesNeeded(@as(*const IVirtualSurfaceUpdatesCallbackNative, @ptrCast(self)));
+    }
 };
 
 const IID_IVirtualSurfaceImageSourceNative_Value = Guid.initString("e9550983-360b-4f53-b391-afd695078691");
@@ -128,7 +140,25 @@ pub const IVirtualSurfaceImageSourceNative = extern union {
             return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Resize(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), newWidth, newHeight);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISurfaceImageSourceNative.MethodMixin(@This());
+    pub fn Invalidate(self: *const IVirtualSurfaceImageSourceNative, updateRect: RECT) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updateRect);
+    }
+    pub fn GetUpdateRectCount(self: *const IVirtualSurfaceImageSourceNative, count: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRectCount(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), count);
+    }
+    pub fn GetUpdateRects(self: *const IVirtualSurfaceImageSourceNative, updates: [*]RECT, count: u32) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRects(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updates, count);
+    }
+    pub fn GetVisibleBounds(self: *const IVirtualSurfaceImageSourceNative, bounds: ?*RECT) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetVisibleBounds(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), bounds);
+    }
+    pub fn RegisterForUpdatesNeeded(self: *const IVirtualSurfaceImageSourceNative, callback: ?*IVirtualSurfaceUpdatesCallbackNative) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).RegisterForUpdatesNeeded(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), callback);
+    }
+    pub fn Resize(self: *const IVirtualSurfaceImageSourceNative, newWidth: i32, newHeight: i32) callconv(.Inline) HRESULT {
+        return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Resize(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), newWidth, newHeight);
+    }
 };
 
 const IID_ISwapChainBackgroundPanelNative_Value = Guid.initString("43bebd4e-add5-4035-8f85-5608d08e9dc9");
@@ -150,7 +180,10 @@ pub const ISwapChainBackgroundPanelNative = extern union {
             return @as(*const ISwapChainBackgroundPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainBackgroundPanelNative, @ptrCast(self)), swapChain);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSwapChain(self: *const ISwapChainBackgroundPanelNative, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ISwapChainBackgroundPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainBackgroundPanelNative, @ptrCast(self)), swapChain);
+    }
 };
 
 const IID_ISurfaceImageSourceManagerNative_Value = Guid.initString("4c8798b7-1d88-4a0f-b59b-b93f600de8c8");
@@ -172,7 +205,10 @@ pub const ISurfaceImageSourceManagerNative = extern union {
             return @as(*const ISurfaceImageSourceManagerNative.VTable, @ptrCast(self.vtable)).FlushAllSurfacesWithDevice(@as(*const ISurfaceImageSourceManagerNative, @ptrCast(self)), device);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FlushAllSurfacesWithDevice(self: *const ISurfaceImageSourceManagerNative, device: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceManagerNative.VTable, @ptrCast(self.vtable)).FlushAllSurfacesWithDevice(@as(*const ISurfaceImageSourceManagerNative, @ptrCast(self)), device);
+    }
 };
 
 const IID_ISurfaceImageSourceNativeWithD2D_Value = Guid.initString("54298223-41e1-4a41-9c08-02e8256864a1");
@@ -226,7 +262,22 @@ pub const ISurfaceImageSourceNativeWithD2D = extern union {
             return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetDevice(self: *const ISurfaceImageSourceNativeWithD2D, device: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), device);
+    }
+    pub fn BeginDraw(self: *const ISurfaceImageSourceNativeWithD2D, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), updateRect, iid, updateObject, offset);
+    }
+    pub fn EndDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
+    }
+    pub fn SuspendDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
+    }
+    pub fn ResumeDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
+    }
 };
 
 const IID_ISwapChainPanelNative_Value = Guid.initString("f92f19d2-3ade-45a6-a20c-f6f1ea90554b");
@@ -248,7 +299,10 @@ pub const ISwapChainPanelNative = extern union {
             return @as(*const ISwapChainPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainPanelNative, @ptrCast(self)), swapChain);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetSwapChain(self: *const ISwapChainPanelNative, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return @as(*const ISwapChainPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainPanelNative, @ptrCast(self)), swapChain);
+    }
 };
 
 const IID_ISwapChainPanelNative2_Value = Guid.initString("d5a2f60c-37b2-44a2-937b-8d8eb9726821");
@@ -270,7 +324,10 @@ pub const ISwapChainPanelNative2 = extern union {
             return @as(*const ISwapChainPanelNative2.VTable, @ptrCast(self.vtable)).SetSwapChainHandle(@as(*const ISwapChainPanelNative2, @ptrCast(self)), swapChainHandle);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace ISwapChainPanelNative.MethodMixin(@This());
+    pub fn SetSwapChainHandle(self: *const ISwapChainPanelNative2, swapChainHandle: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const ISwapChainPanelNative2.VTable, @ptrCast(self.vtable)).SetSwapChainHandle(@as(*const ISwapChainPanelNative2, @ptrCast(self)), swapChainHandle);
+    }
 };
 
 const IID_IDesktopWindowXamlSourceNative_Value = Guid.initString("3cbcf1bf-2f76-4e9c-96ab-e84b37972554");
@@ -301,7 +358,13 @@ pub const IDesktopWindowXamlSourceNative = extern union {
             return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), hWnd);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AttachToWindow(self: *const IDesktopWindowXamlSourceNative, parentWnd: ?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).AttachToWindow(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), parentWnd);
+    }
+    pub fn get_WindowHandle(self: *const IDesktopWindowXamlSourceNative, hWnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), hWnd);
+    }
 };
 
 const IID_IDesktopWindowXamlSourceNative2_Value = Guid.initString("e3dcd8c7-3057-4692-99c3-7b7720afda31");
@@ -324,7 +387,10 @@ pub const IDesktopWindowXamlSourceNative2 = extern union {
             return @as(*const IDesktopWindowXamlSourceNative2.VTable, @ptrCast(self.vtable)).PreTranslateMessage(@as(*const IDesktopWindowXamlSourceNative2, @ptrCast(self)), message, result);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDesktopWindowXamlSourceNative.MethodMixin(@This());
+    pub fn PreTranslateMessage(self: *const IDesktopWindowXamlSourceNative2, message: ?*const MSG, result: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IDesktopWindowXamlSourceNative2.VTable, @ptrCast(self.vtable)).PreTranslateMessage(@as(*const IDesktopWindowXamlSourceNative2, @ptrCast(self)), message, result);
+    }
 };
 
 const IID_IReferenceTrackerTarget_Value = Guid.initString("64bd43f8-bfee-4ec4-b7eb-2935158dae21");
@@ -366,7 +432,19 @@ pub const IReferenceTrackerTarget = extern union {
             return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Unpeg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddRefFromReferenceTracker(self: *const IReferenceTrackerTarget) callconv(.Inline) u32 {
+        return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).AddRefFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
+    }
+    pub fn ReleaseFromReferenceTracker(self: *const IReferenceTrackerTarget) callconv(.Inline) u32 {
+        return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).ReleaseFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
+    }
+    pub fn Peg(self: *const IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Peg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
+    }
+    pub fn Unpeg(self: *const IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Unpeg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
+    }
 };
 
 const IID_IReferenceTracker_Value = Guid.initString("11d3b13a-180e-4789-a8be-7712882893e6");
@@ -431,7 +509,28 @@ pub const IReferenceTracker = extern union {
             return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).PegFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ConnectFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ConnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
+    }
+    pub fn DisconnectFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).DisconnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
+    }
+    pub fn FindTrackerTargets(self: *const IReferenceTracker, callback: ?*IFindReferenceTargetsCallback) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).FindTrackerTargets(@as(*const IReferenceTracker, @ptrCast(self)), callback);
+    }
+    pub fn GetReferenceTrackerManager(self: *const IReferenceTracker, value: ?*?*IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).GetReferenceTrackerManager(@as(*const IReferenceTracker, @ptrCast(self)), value);
+    }
+    pub fn AddRefFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).AddRefFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
+    }
+    pub fn ReleaseFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ReleaseFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
+    }
+    pub fn PegFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).PegFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
+    }
 };
 
 const IID_IReferenceTrackerManager_Value = Guid.initString("3cf184b4-7ccb-4dda-8455-7e6ce99a3298");
@@ -475,7 +574,19 @@ pub const IReferenceTrackerManager = extern union {
             return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).SetReferenceTrackerHost(@as(*const IReferenceTrackerManager, @ptrCast(self)), value);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ReferenceTrackingStarted(self: *const IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingStarted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
+    }
+    pub fn FindTrackerTargetsCompleted(self: *const IReferenceTrackerManager, findFailed: u8) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).FindTrackerTargetsCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)), findFailed);
+    }
+    pub fn ReferenceTrackingCompleted(self: *const IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
+    }
+    pub fn SetReferenceTrackerHost(self: *const IReferenceTrackerManager, value: ?*IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).SetReferenceTrackerHost(@as(*const IReferenceTrackerManager, @ptrCast(self)), value);
+    }
 };
 
 const IID_IFindReferenceTargetsCallback_Value = Guid.initString("04b3486c-4687-4229-8d14-505ab584dd88");
@@ -497,7 +608,10 @@ pub const IFindReferenceTargetsCallback = extern union {
             return @as(*const IFindReferenceTargetsCallback.VTable, @ptrCast(self.vtable)).FoundTrackerTarget(@as(*const IFindReferenceTargetsCallback, @ptrCast(self)), target);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn FoundTrackerTarget(self: *const IFindReferenceTargetsCallback, target: ?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return @as(*const IFindReferenceTargetsCallback.VTable, @ptrCast(self.vtable)).FoundTrackerTarget(@as(*const IFindReferenceTargetsCallback, @ptrCast(self)), target);
+    }
 };
 
 pub const XAML_REFERENCETRACKER_DISCONNECT = enum(i32) {
@@ -565,7 +679,25 @@ pub const IReferenceTrackerHost = extern union {
             return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).RemoveMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn DisconnectUnusedReferenceSources(self: *const IReferenceTrackerHost, options: XAML_REFERENCETRACKER_DISCONNECT) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).DisconnectUnusedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)), options);
+    }
+    pub fn ReleaseDisconnectedReferenceSources(self: *const IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).ReleaseDisconnectedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)));
+    }
+    pub fn NotifyEndOfReferenceTrackingOnThread(self: *const IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).NotifyEndOfReferenceTrackingOnThread(@as(*const IReferenceTrackerHost, @ptrCast(self)));
+    }
+    pub fn GetTrackerTarget(self: *const IReferenceTrackerHost, unknown: ?*IUnknown, newReference: ?*?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).GetTrackerTarget(@as(*const IReferenceTrackerHost, @ptrCast(self)), unknown, newReference);
+    }
+    pub fn AddMemoryPressure(self: *const IReferenceTrackerHost, bytesAllocated: u64) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).AddMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
+    }
+    pub fn RemoveMemoryPressure(self: *const IReferenceTrackerHost, bytesAllocated: u64) callconv(.Inline) HRESULT {
+        return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).RemoveMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
+    }
 };
 
 const IID_IReferenceTrackerExtension_Value = Guid.initString("4e897caa-59d5-4613-8f8c-f7ebd1f399b0");
@@ -579,7 +711,7 @@ pub const IReferenceTrackerExtension = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 pub const TrackerHandle__ = extern struct {
@@ -631,7 +763,19 @@ pub const ITrackerOwner = extern union {
             return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).TryGetSafeTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, returnValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn CreateTrackerHandle(self: *const ITrackerOwner, returnValue: ?*?*TrackerHandle__) callconv(.Inline) HRESULT {
+        return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).CreateTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), returnValue);
+    }
+    pub fn DeleteTrackerHandle(self: *const ITrackerOwner, handle: ?*TrackerHandle__) callconv(.Inline) HRESULT {
+        return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).DeleteTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), handle);
+    }
+    pub fn SetTrackerValue(self: *const ITrackerOwner, handle: ?*TrackerHandle__, value: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).SetTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, value);
+    }
+    pub fn TryGetSafeTrackerValue(self: *const ITrackerOwner, handle: ?*TrackerHandle__, returnValue: ?*?*IUnknown) callconv(.Inline) u8 {
+        return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).TryGetSafeTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, returnValue);
+    }
 };
 
 

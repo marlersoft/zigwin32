@@ -119,7 +119,13 @@ pub const IWSDAddress = extern union {
             return @as(*const IWSDAddress.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const IWSDAddress, @ptrCast(self)), pszBuffer);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Serialize(self: *const IWSDAddress, pszBuffer: [*:0]u16, cchLength: u32, fSafe: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAddress.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IWSDAddress, @ptrCast(self)), pszBuffer, cchLength, fSafe);
+    }
+    pub fn Deserialize(self: *const IWSDAddress, pszBuffer: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAddress.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const IWSDAddress, @ptrCast(self)), pszBuffer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -175,7 +181,22 @@ pub const IWSDTransportAddress = extern union {
             return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).SetTransportAddress(@as(*const IWSDTransportAddress, @ptrCast(self)), pszAddress);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDAddress.MethodMixin(@This());
+    pub fn GetPort(self: *const IWSDTransportAddress, pwPort: ?*u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetPort(@as(*const IWSDTransportAddress, @ptrCast(self)), pwPort);
+    }
+    pub fn SetPort(self: *const IWSDTransportAddress, wPort: u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).SetPort(@as(*const IWSDTransportAddress, @ptrCast(self)), wPort);
+    }
+    pub fn GetTransportAddress(self: *const IWSDTransportAddress, ppszAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetTransportAddress(@as(*const IWSDTransportAddress, @ptrCast(self)), ppszAddress);
+    }
+    pub fn GetTransportAddressEx(self: *const IWSDTransportAddress, fSafe: BOOL, ppszAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetTransportAddressEx(@as(*const IWSDTransportAddress, @ptrCast(self)), fSafe, ppszAddress);
+    }
+    pub fn SetTransportAddress(self: *const IWSDTransportAddress, pszAddress: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).SetTransportAddress(@as(*const IWSDTransportAddress, @ptrCast(self)), pszAddress);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -230,7 +251,22 @@ pub const IWSDMessageParameters = extern union {
             return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetLowerParameters(@as(*const IWSDMessageParameters, @ptrCast(self)), ppTxParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetLocalAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetLocalAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), ppAddress);
+    }
+    pub fn SetLocalAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).SetLocalAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), pAddress);
+    }
+    pub fn GetRemoteAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetRemoteAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), ppAddress);
+    }
+    pub fn SetRemoteAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).SetRemoteAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), pAddress);
+    }
+    pub fn GetLowerParameters(self: *const IWSDMessageParameters, ppTxParams: ?*?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetLowerParameters(@as(*const IWSDMessageParameters, @ptrCast(self)), ppTxParams);
+    }
 };
 
 pub const WSDUdpRetransmitParams = extern struct {
@@ -269,7 +305,13 @@ pub const IWSDUdpMessageParameters = extern union {
             return @as(*const IWSDUdpMessageParameters.VTable, @ptrCast(self.vtable)).GetRetransmitParams(@as(*const IWSDUdpMessageParameters, @ptrCast(self)), pParams);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDMessageParameters.MethodMixin(@This());
+    pub fn SetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*const WSDUdpRetransmitParams) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpMessageParameters.VTable, @ptrCast(self.vtable)).SetRetransmitParams(@as(*const IWSDUdpMessageParameters, @ptrCast(self)), pParams);
+    }
+    pub fn GetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*WSDUdpRetransmitParams) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpMessageParameters.VTable, @ptrCast(self.vtable)).GetRetransmitParams(@as(*const IWSDUdpMessageParameters, @ptrCast(self)), pParams);
+    }
 };
 
 pub const WSDUdpMessageType = enum(i32) {
@@ -370,7 +412,37 @@ pub const IWSDUdpAddress = extern union {
             return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetAlias(@as(*const IWSDUdpAddress, @ptrCast(self)), pAlias);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDTransportAddress.MethodMixin(@This());
+    pub fn SetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*const SOCKADDR_STORAGE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetSockaddr(@as(*const IWSDUdpAddress, @ptrCast(self)), pSockAddr);
+    }
+    pub fn GetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*SOCKADDR_STORAGE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetSockaddr(@as(*const IWSDUdpAddress, @ptrCast(self)), pSockAddr);
+    }
+    pub fn SetExclusive(self: *const IWSDUdpAddress, fExclusive: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetExclusive(@as(*const IWSDUdpAddress, @ptrCast(self)), fExclusive);
+    }
+    pub fn GetExclusive(self: *const IWSDUdpAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetExclusive(@as(*const IWSDUdpAddress, @ptrCast(self)));
+    }
+    pub fn SetMessageType(self: *const IWSDUdpAddress, messageType: WSDUdpMessageType) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetMessageType(@as(*const IWSDUdpAddress, @ptrCast(self)), messageType);
+    }
+    pub fn GetMessageType(self: *const IWSDUdpAddress, pMessageType: ?*WSDUdpMessageType) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetMessageType(@as(*const IWSDUdpAddress, @ptrCast(self)), pMessageType);
+    }
+    pub fn SetTTL(self: *const IWSDUdpAddress, dwTTL: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetTTL(@as(*const IWSDUdpAddress, @ptrCast(self)), dwTTL);
+    }
+    pub fn GetTTL(self: *const IWSDUdpAddress, pdwTTL: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetTTL(@as(*const IWSDUdpAddress, @ptrCast(self)), pdwTTL);
+    }
+    pub fn SetAlias(self: *const IWSDUdpAddress, pAlias: ?*const Guid) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetAlias(@as(*const IWSDUdpAddress, @ptrCast(self)), pAlias);
+    }
+    pub fn GetAlias(self: *const IWSDUdpAddress, pAlias: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetAlias(@as(*const IWSDUdpAddress, @ptrCast(self)), pAlias);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -456,7 +528,34 @@ pub const IWSDHttpMessageParameters = extern union {
             return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWSDHttpMessageParameters, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDMessageParameters.MethodMixin(@This());
+    pub fn SetInboundHttpHeaders(self: *const IWSDHttpMessageParameters, pszHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetInboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszHeaders);
+    }
+    pub fn GetInboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetInboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszHeaders);
+    }
+    pub fn SetOutboundHttpHeaders(self: *const IWSDHttpMessageParameters, pszHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetOutboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszHeaders);
+    }
+    pub fn GetOutboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetOutboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszHeaders);
+    }
+    pub fn SetID(self: *const IWSDHttpMessageParameters, pszId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetID(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszId);
+    }
+    pub fn GetID(self: *const IWSDHttpMessageParameters, ppszId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetID(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszId);
+    }
+    pub fn SetContext(self: *const IWSDHttpMessageParameters, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pContext);
+    }
+    pub fn GetContext(self: *const IWSDHttpMessageParameters, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppContext);
+    }
+    pub fn Clear(self: *const IWSDHttpMessageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWSDHttpMessageParameters, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -502,7 +601,19 @@ pub const IWSDHttpAddress = extern union {
             return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IWSDHttpAddress, @ptrCast(self)), pszPath);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDTransportAddress.MethodMixin(@This());
+    pub fn GetSecure(self: *const IWSDHttpAddress) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).GetSecure(@as(*const IWSDHttpAddress, @ptrCast(self)));
+    }
+    pub fn SetSecure(self: *const IWSDHttpAddress, fSecure: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).SetSecure(@as(*const IWSDHttpAddress, @ptrCast(self)), fSecure);
+    }
+    pub fn GetPath(self: *const IWSDHttpAddress, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IWSDHttpAddress, @ptrCast(self)), ppszPath);
+    }
+    pub fn SetPath(self: *const IWSDHttpAddress, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IWSDHttpAddress, @ptrCast(self)), pszPath);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -533,7 +644,13 @@ pub const IWSDSSLClientCertificate = extern union {
             return @as(*const IWSDSSLClientCertificate.VTable, @ptrCast(self.vtable)).GetMappedAccessToken(@as(*const IWSDSSLClientCertificate, @ptrCast(self)), phToken);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClientCertificate(self: *const IWSDSSLClientCertificate, ppCertContext: ?*?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSSLClientCertificate.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IWSDSSLClientCertificate, @ptrCast(self)), ppCertContext);
+    }
+    pub fn GetMappedAccessToken(self: *const IWSDSSLClientCertificate, phToken: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSSLClientCertificate.VTable, @ptrCast(self.vtable)).GetMappedAccessToken(@as(*const IWSDSSLClientCertificate, @ptrCast(self)), phToken);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -564,7 +681,13 @@ pub const IWSDHttpAuthParameters = extern union {
             return @as(*const IWSDHttpAuthParameters.VTable, @ptrCast(self.vtable)).GetAuthType(@as(*const IWSDHttpAuthParameters, @ptrCast(self)), pAuthType);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetClientAccessToken(self: *const IWSDHttpAuthParameters, phToken: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAuthParameters.VTable, @ptrCast(self.vtable)).GetClientAccessToken(@as(*const IWSDHttpAuthParameters, @ptrCast(self)), phToken);
+    }
+    pub fn GetAuthType(self: *const IWSDHttpAuthParameters, pAuthType: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDHttpAuthParameters.VTable, @ptrCast(self.vtable)).GetAuthType(@as(*const IWSDHttpAuthParameters, @ptrCast(self)), pAuthType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -625,7 +748,22 @@ pub const IWSDSignatureProperty = extern union {
             return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetSignedInfoHash(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignedInfoHash, pdwHashSize);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn IsMessageSigned(self: *const IWSDSignatureProperty, pbSigned: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).IsMessageSigned(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSigned);
+    }
+    pub fn IsMessageSignatureTrusted(self: *const IWSDSignatureProperty, pbSignatureTrusted: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).IsMessageSignatureTrusted(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignatureTrusted);
+    }
+    pub fn GetKeyInfo(self: *const IWSDSignatureProperty, pbKeyInfo: ?*u8, pdwKeyInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetKeyInfo(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbKeyInfo, pdwKeyInfoSize);
+    }
+    pub fn GetSignature(self: *const IWSDSignatureProperty, pbSignature: ?*u8, pdwSignatureSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignature, pdwSignatureSize);
+    }
+    pub fn GetSignedInfoHash(self: *const IWSDSignatureProperty, pbSignedInfoHash: ?*u8, pdwHashSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetSignedInfoHash(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignedInfoHash, pdwHashSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -640,7 +778,7 @@ pub const IWSDAttachment = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -679,7 +817,16 @@ pub const IWSDOutboundAttachment = extern union {
             return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWSDOutboundAttachment, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDAttachment.MethodMixin(@This());
+    pub fn Write(self: *const IWSDOutboundAttachment, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Write(@as(*const IWSDOutboundAttachment, @ptrCast(self)), pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
+    }
+    pub fn Close(self: *const IWSDOutboundAttachment) callconv(.Inline) HRESULT {
+        return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Close(@as(*const IWSDOutboundAttachment, @ptrCast(self)));
+    }
+    pub fn Abort(self: *const IWSDOutboundAttachment) callconv(.Inline) HRESULT {
+        return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWSDOutboundAttachment, @ptrCast(self)));
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -711,7 +858,13 @@ pub const IWSDInboundAttachment = extern union {
             return @as(*const IWSDInboundAttachment.VTable, @ptrCast(self.vtable)).Close(@as(*const IWSDInboundAttachment, @ptrCast(self)));
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDAttachment.MethodMixin(@This());
+    pub fn Read(self: *const IWSDInboundAttachment, pBuffer: [*:0]u8, dwBytesToRead: u32, pdwNumberOfBytesRead: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDInboundAttachment.VTable, @ptrCast(self.vtable)).Read(@as(*const IWSDInboundAttachment, @ptrCast(self)), pBuffer, dwBytesToRead, pdwNumberOfBytesRead);
+    }
+    pub fn Close(self: *const IWSDInboundAttachment) callconv(.Inline) HRESULT {
+        return @as(*const IWSDInboundAttachment.VTable, @ptrCast(self.vtable)).Close(@as(*const IWSDInboundAttachment, @ptrCast(self)));
+    }
 };
 
 pub const WSD_DATETIME = extern struct {
@@ -889,7 +1042,19 @@ pub const IWSDXMLContext = extern union {
             return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).SetTypes(@as(*const IWSDXMLContext, @ptrCast(self)), pTypes, dwTypesCount, bLayerNumber);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AddNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).AddNamespace(@as(*const IWSDXMLContext, @ptrCast(self)), pszUri, pszSuggestedPrefix, ppNamespace);
+    }
+    pub fn AddNameToNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.Inline) HRESULT {
+        return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).AddNameToNamespace(@as(*const IWSDXMLContext, @ptrCast(self)), pszUri, pszName, ppName);
+    }
+    pub fn SetNamespaces(self: *const IWSDXMLContext, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) callconv(.Inline) HRESULT {
+        return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).SetNamespaces(@as(*const IWSDXMLContext, @ptrCast(self)), pNamespaces, wNamespacesCount, bLayerNumber);
+    }
+    pub fn SetTypes(self: *const IWSDXMLContext, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) callconv(.Inline) HRESULT {
+        return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).SetTypes(@as(*const IWSDXMLContext, @ptrCast(self)), pTypes, dwTypesCount, bLayerNumber);
+    }
 };
 
 pub const WSDXML_NAMESPACE = extern struct {
@@ -1384,7 +1549,28 @@ pub const IWSDiscoveryProvider = extern union {
             return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryProvider, @ptrCast(self)), ppContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAddressFamily(self: *const IWSDiscoveryProvider, dwAddressFamily: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IWSDiscoveryProvider, @ptrCast(self)), dwAddressFamily);
+    }
+    pub fn Attach(self: *const IWSDiscoveryProvider, pSink: ?*IWSDiscoveryProviderNotify) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).Attach(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pSink);
+    }
+    pub fn Detach(self: *const IWSDiscoveryProvider) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).Detach(@as(*const IWSDiscoveryProvider, @ptrCast(self)));
+    }
+    pub fn SearchById(self: *const IWSDiscoveryProvider, pszId: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchById(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pszId, pszTag);
+    }
+    pub fn SearchByAddress(self: *const IWSDiscoveryProvider, pszAddress: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchByAddress(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pszAddress, pszTag);
+    }
+    pub fn SearchByType(self: *const IWSDiscoveryProvider, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pszMatchBy: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchByType(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pTypesList, pScopesList, pszMatchBy, pszTag);
+    }
+    pub fn GetXMLContext(self: *const IWSDiscoveryProvider, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryProvider, @ptrCast(self)), ppContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1432,7 +1618,19 @@ pub const IWSDiscoveryProviderNotify = extern union {
             return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pszTag);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Add(self: *const IWSDiscoveryProviderNotify, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).Add(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pService);
+    }
+    pub fn Remove(self: *const IWSDiscoveryProviderNotify, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).Remove(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pService);
+    }
+    pub fn SearchFailed(self: *const IWSDiscoveryProviderNotify, hr: HRESULT, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).SearchFailed(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), hr, pszTag);
+    }
+    pub fn SearchComplete(self: *const IWSDiscoveryProviderNotify, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pszTag);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1536,7 +1734,40 @@ pub const IWSDiscoveredService = extern union {
             return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IWSDiscoveredService, @ptrCast(self)), pullInstanceId);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetEndpointReference(self: *const IWSDiscoveredService, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetEndpointReference(@as(*const IWSDiscoveredService, @ptrCast(self)), ppEndpointReference);
+    }
+    pub fn GetTypes(self: *const IWSDiscoveredService, ppTypesList: ?*?*WSD_NAME_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetTypes(@as(*const IWSDiscoveredService, @ptrCast(self)), ppTypesList);
+    }
+    pub fn GetScopes(self: *const IWSDiscoveredService, ppScopesList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetScopes(@as(*const IWSDiscoveredService, @ptrCast(self)), ppScopesList);
+    }
+    pub fn GetXAddrs(self: *const IWSDiscoveredService, ppXAddrsList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetXAddrs(@as(*const IWSDiscoveredService, @ptrCast(self)), ppXAddrsList);
+    }
+    pub fn GetMetadataVersion(self: *const IWSDiscoveredService, pullMetadataVersion: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetMetadataVersion(@as(*const IWSDiscoveredService, @ptrCast(self)), pullMetadataVersion);
+    }
+    pub fn GetExtendedDiscoXML(self: *const IWSDiscoveredService, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetExtendedDiscoXML(@as(*const IWSDiscoveredService, @ptrCast(self)), ppHeaderAny, ppBodyAny);
+    }
+    pub fn GetProbeResolveTag(self: *const IWSDiscoveredService, ppszTag: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetProbeResolveTag(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszTag);
+    }
+    pub fn GetRemoteTransportAddress(self: *const IWSDiscoveredService, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetRemoteTransportAddress(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszRemoteTransportAddress);
+    }
+    pub fn GetLocalTransportAddress(self: *const IWSDiscoveredService, ppszLocalTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetLocalTransportAddress(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszLocalTransportAddress);
+    }
+    pub fn GetLocalInterfaceGUID(self: *const IWSDiscoveredService, pGuid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetLocalInterfaceGUID(@as(*const IWSDiscoveredService, @ptrCast(self)), pGuid);
+    }
+    pub fn GetInstanceId(self: *const IWSDiscoveredService, pullInstanceId: ?*u64) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IWSDiscoveredService, @ptrCast(self)), pullInstanceId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1724,7 +1955,46 @@ pub const IWSDiscoveryPublisher = extern union {
             return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), ppContext);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetAddressFamily(self: *const IWSDiscoveryPublisher, dwAddressFamily: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), dwAddressFamily);
+    }
+    pub fn RegisterNotificationSink(self: *const IWSDiscoveryPublisher, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).RegisterNotificationSink(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pSink);
+    }
+    pub fn UnRegisterNotificationSink(self: *const IWSDiscoveryPublisher, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnRegisterNotificationSink(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pSink);
+    }
+    pub fn Publish(self: *const IWSDiscoveryPublisher, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).Publish(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+    }
+    pub fn UnPublish(self: *const IWSDiscoveryPublisher, pszId: ?[*:0]const u16, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnPublish(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullInstanceId, ullMessageNumber, pszSessionId, pAny);
+    }
+    pub fn MatchProbe(self: *const IWSDiscoveryPublisher, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchProbe(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+    }
+    pub fn MatchResolve(self: *const IWSDiscoveryPublisher, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchResolve(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+    }
+    pub fn PublishEx(self: *const IWSDiscoveryPublisher, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).PublishEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+    }
+    pub fn MatchProbeEx(self: *const IWSDiscoveryPublisher, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchProbeEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+    }
+    pub fn MatchResolveEx(self: *const IWSDiscoveryPublisher, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchResolveEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+    }
+    pub fn RegisterScopeMatchingRule(self: *const IWSDiscoveryPublisher, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).RegisterScopeMatchingRule(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pScopeMatchingRule);
+    }
+    pub fn UnRegisterScopeMatchingRule(self: *const IWSDiscoveryPublisher, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnRegisterScopeMatchingRule(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pScopeMatchingRule);
+    }
+    pub fn GetXMLContext(self: *const IWSDiscoveryPublisher, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), ppContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1757,7 +2027,13 @@ pub const IWSDiscoveryPublisherNotify = extern union {
             return @as(*const IWSDiscoveryPublisherNotify.VTable, @ptrCast(self.vtable)).ResolveHandler(@as(*const IWSDiscoveryPublisherNotify, @ptrCast(self)), pSoap, pMessageParameters);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ProbeHandler(self: *const IWSDiscoveryPublisherNotify, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisherNotify.VTable, @ptrCast(self.vtable)).ProbeHandler(@as(*const IWSDiscoveryPublisherNotify, @ptrCast(self)), pSoap, pMessageParameters);
+    }
+    pub fn ResolveHandler(self: *const IWSDiscoveryPublisherNotify, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWSDiscoveryPublisherNotify.VTable, @ptrCast(self.vtable)).ResolveHandler(@as(*const IWSDiscoveryPublisherNotify, @ptrCast(self)), pSoap, pMessageParameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1790,7 +2066,13 @@ pub const IWSDScopeMatchingRule = extern union {
             return @as(*const IWSDScopeMatchingRule.VTable, @ptrCast(self.vtable)).MatchScopes(@as(*const IWSDScopeMatchingRule, @ptrCast(self)), pszScope1, pszScope2, pfMatch);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetScopeRule(self: *const IWSDScopeMatchingRule, ppszScopeMatchingRule: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDScopeMatchingRule.VTable, @ptrCast(self.vtable)).GetScopeRule(@as(*const IWSDScopeMatchingRule, @ptrCast(self)), ppszScopeMatchingRule);
+    }
+    pub fn MatchScopes(self: *const IWSDScopeMatchingRule, pszScope1: ?[*:0]const u16, pszScope2: ?[*:0]const u16, pfMatch: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDScopeMatchingRule.VTable, @ptrCast(self.vtable)).MatchScopes(@as(*const IWSDScopeMatchingRule, @ptrCast(self)), pszScope1, pszScope2, pfMatch);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1868,7 +2150,28 @@ pub const IWSDEndpointProxy = extern union {
             return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).GetFaultInfo(@as(*const IWSDEndpointProxy, @ptrCast(self)), ppFault);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SendOneWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendOneWayRequest(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation);
+    }
+    pub fn SendTwoWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendTwoWayRequest(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation, pResponseContext);
+    }
+    pub fn SendTwoWayRequestAsync(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendTwoWayRequestAsync(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation, pAsyncState, pCallback, pResult);
+    }
+    pub fn AbortAsyncOperation(self: *const IWSDEndpointProxy, pAsyncResult: ?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).AbortAsyncOperation(@as(*const IWSDEndpointProxy, @ptrCast(self)), pAsyncResult);
+    }
+    pub fn ProcessFault(self: *const IWSDEndpointProxy, pFault: ?*const WSD_SOAP_FAULT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).ProcessFault(@as(*const IWSDEndpointProxy, @ptrCast(self)), pFault);
+    }
+    pub fn GetErrorInfo(self: *const IWSDEndpointProxy, ppszErrorInfo: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).GetErrorInfo(@as(*const IWSDEndpointProxy, @ptrCast(self)), ppszErrorInfo);
+    }
+    pub fn GetFaultInfo(self: *const IWSDEndpointProxy, ppFault: ?*?*WSD_SOAP_FAULT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).GetFaultInfo(@as(*const IWSDEndpointProxy, @ptrCast(self)), ppFault);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1891,7 +2194,10 @@ pub const IWSDMetadataExchange = extern union {
             return @as(*const IWSDMetadataExchange.VTable, @ptrCast(self.vtable)).GetMetadata(@as(*const IWSDMetadataExchange, @ptrCast(self)), MetadataOut);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetMetadata(self: *const IWSDMetadataExchange, MetadataOut: ?*?*WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDMetadataExchange.VTable, @ptrCast(self.vtable)).GetMetadata(@as(*const IWSDMetadataExchange, @ptrCast(self)), MetadataOut);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1966,7 +2272,28 @@ pub const IWSDServiceProxy = extern union {
             return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDServiceProxy, @ptrCast(self)), ppProxy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDMetadataExchange.MethodMixin(@This());
+    pub fn BeginGetMetadata(self: *const IWSDServiceProxy, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).BeginGetMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), ppResult);
+    }
+    pub fn EndGetMetadata(self: *const IWSDServiceProxy, pResult: ?*IWSDAsyncResult, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).EndGetMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), pResult, ppMetadata);
+    }
+    pub fn GetServiceMetadata(self: *const IWSDServiceProxy, ppServiceMetadata: ?*?*WSD_SERVICE_METADATA) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).GetServiceMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), ppServiceMetadata);
+    }
+    pub fn SubscribeToOperation(self: *const IWSDServiceProxy, pOperation: ?*const WSD_OPERATION, pUnknown: ?*IUnknown, pAny: ?*const WSDXML_ELEMENT, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).SubscribeToOperation(@as(*const IWSDServiceProxy, @ptrCast(self)), pOperation, pUnknown, pAny, ppAny);
+    }
+    pub fn UnsubscribeToOperation(self: *const IWSDServiceProxy, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).UnsubscribeToOperation(@as(*const IWSDServiceProxy, @ptrCast(self)), pOperation);
+    }
+    pub fn SetEventingStatusCallback(self: *const IWSDServiceProxy, pStatus: ?*IWSDEventingStatus) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).SetEventingStatusCallback(@as(*const IWSDServiceProxy, @ptrCast(self)), pStatus);
+    }
+    pub fn GetEndpointProxy(self: *const IWSDServiceProxy, ppProxy: ?*?*IWSDEndpointProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDServiceProxy, @ptrCast(self)), ppProxy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2131,7 +2458,43 @@ pub const IWSDServiceProxyEventing = extern union {
             return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndGetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IWSDServiceProxy.MethodMixin(@This());
+    pub fn SubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).SubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pUnknown, pExpires, pAny, ppExpires, ppAny);
+    }
+    pub fn BeginSubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginSubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pUnknown, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
+    }
+    pub fn EndSubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndSubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+    }
+    pub fn UnsubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).UnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny);
+    }
+    pub fn BeginUnsubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginUnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
+    }
+    pub fn EndUnsubscribeToMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndUnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult);
+    }
+    pub fn RenewMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).RenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pExpires, pAny, ppExpires, ppAny);
+    }
+    pub fn BeginRenewMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginRenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
+    }
+    pub fn EndRenewMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndRenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+    }
+    pub fn GetStatusForMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).GetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, ppExpires, ppAny);
+    }
+    pub fn BeginGetStatusForMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginGetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
+    }
+    pub fn EndGetStatusForMultipleOperations(self: *const IWSDServiceProxyEventing, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndGetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2232,7 +2595,37 @@ pub const IWSDDeviceProxy = extern union {
             return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppProxy);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Init(self: *const IWSDDeviceProxy, pszDeviceId: ?[*:0]const u16, pDeviceAddress: ?*IWSDAddress, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, pSponsor: ?*IWSDDeviceProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).Init(@as(*const IWSDDeviceProxy, @ptrCast(self)), pszDeviceId, pDeviceAddress, pszLocalId, pContext, pSponsor);
+    }
+    pub fn BeginGetMetadata(self: *const IWSDDeviceProxy, ppResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).BeginGetMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppResult);
+    }
+    pub fn EndGetMetadata(self: *const IWSDDeviceProxy, pResult: ?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).EndGetMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), pResult);
+    }
+    pub fn GetHostMetadata(self: *const IWSDDeviceProxy, ppHostMetadata: ?*?*WSD_HOST_METADATA) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetHostMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppHostMetadata);
+    }
+    pub fn GetThisModelMetadata(self: *const IWSDDeviceProxy, ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetThisModelMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppManufacturerMetadata);
+    }
+    pub fn GetThisDeviceMetadata(self: *const IWSDDeviceProxy, ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetThisDeviceMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppThisDeviceMetadata);
+    }
+    pub fn GetAllMetadata(self: *const IWSDDeviceProxy, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetAllMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppMetadata);
+    }
+    pub fn GetServiceProxyById(self: *const IWSDDeviceProxy, pszServiceId: ?[*:0]const u16, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetServiceProxyById(@as(*const IWSDDeviceProxy, @ptrCast(self)), pszServiceId, ppServiceProxy);
+    }
+    pub fn GetServiceProxyByType(self: *const IWSDDeviceProxy, pType: ?*const WSDXML_NAME, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetServiceProxyByType(@as(*const IWSDDeviceProxy, @ptrCast(self)), pType, ppServiceProxy);
+    }
+    pub fn GetEndpointProxy(self: *const IWSDDeviceProxy, ppProxy: ?*?*IWSDEndpointProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppProxy);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2302,7 +2695,28 @@ pub const IWSDAsyncResult = extern union {
             return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDAsyncResult, @ptrCast(self)), ppEndpoint);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetCallback(self: *const IWSDAsyncResult, pCallback: ?*IWSDAsyncCallback, pAsyncState: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IWSDAsyncResult, @ptrCast(self)), pCallback, pAsyncState);
+    }
+    pub fn SetWaitHandle(self: *const IWSDAsyncResult, hWaitHandle: ?HANDLE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).SetWaitHandle(@as(*const IWSDAsyncResult, @ptrCast(self)), hWaitHandle);
+    }
+    pub fn HasCompleted(self: *const IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).HasCompleted(@as(*const IWSDAsyncResult, @ptrCast(self)));
+    }
+    pub fn GetAsyncState(self: *const IWSDAsyncResult, ppAsyncState: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetAsyncState(@as(*const IWSDAsyncResult, @ptrCast(self)), ppAsyncState);
+    }
+    pub fn Abort(self: *const IWSDAsyncResult) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWSDAsyncResult, @ptrCast(self)));
+    }
+    pub fn GetEvent(self: *const IWSDAsyncResult, pEvent: ?*WSD_EVENT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IWSDAsyncResult, @ptrCast(self)), pEvent);
+    }
+    pub fn GetEndpointProxy(self: *const IWSDAsyncResult, ppEndpoint: ?*?*IWSDEndpointProxy) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDAsyncResult, @ptrCast(self)), ppEndpoint);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2326,7 +2740,10 @@ pub const IWSDAsyncCallback = extern union {
             return @as(*const IWSDAsyncCallback.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IWSDAsyncCallback, @ptrCast(self)), pAsyncResult, pAsyncState);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn AsyncOperationComplete(self: *const IWSDAsyncCallback, pAsyncResult: ?*IWSDAsyncResult, pAsyncState: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDAsyncCallback.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IWSDAsyncCallback, @ptrCast(self)), pAsyncResult, pAsyncState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2366,7 +2783,16 @@ pub const IWSDEventingStatus = extern union {
             return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionEnded(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SubscriptionRenewed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.Inline) void {
+        return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionRenewed(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction);
+    }
+    pub fn SubscriptionRenewalFailed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16, hr: HRESULT) callconv(.Inline) void {
+        return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionRenewalFailed(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction, hr);
+    }
+    pub fn SubscriptionEnded(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.Inline) void {
+        return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionEnded(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2492,7 +2918,43 @@ pub const IWSDDeviceHost = extern union {
             return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SignalEvent(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pBody, pOperation);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Init(self: *const IWSDDeviceHost, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Init(@as(*const IWSDDeviceHost, @ptrCast(self)), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
+    }
+    pub fn Start(self: *const IWSDDeviceHost, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Start(@as(*const IWSDDeviceHost, @ptrCast(self)), ullInstanceId, pScopeList, pNotificationSink);
+    }
+    pub fn Stop(self: *const IWSDDeviceHost) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWSDDeviceHost, @ptrCast(self)));
+    }
+    pub fn Terminate(self: *const IWSDDeviceHost) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWSDDeviceHost, @ptrCast(self)));
+    }
+    pub fn RegisterPortType(self: *const IWSDDeviceHost, pPortType: ?*const WSD_PORT_TYPE) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RegisterPortType(@as(*const IWSDDeviceHost, @ptrCast(self)), pPortType);
+    }
+    pub fn SetMetadata(self: *const IWSDDeviceHost, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SetMetadata(@as(*const IWSDDeviceHost, @ptrCast(self)), pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
+    }
+    pub fn RegisterService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RegisterService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pService);
+    }
+    pub fn RetireService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RetireService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId);
+    }
+    pub fn AddDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).AddDynamicService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
+    }
+    pub fn RemoveDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RemoveDynamicService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId);
+    }
+    pub fn SetServiceDiscoverable(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SetServiceDiscoverable(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, fDiscoverable);
+    }
+    pub fn SignalEvent(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SignalEvent(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pBody, pOperation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2516,7 +2978,10 @@ pub const IWSDDeviceHostNotify = extern union {
             return @as(*const IWSDDeviceHostNotify.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWSDDeviceHostNotify, @ptrCast(self)), pszServiceId, ppService);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetService(self: *const IWSDDeviceHostNotify, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IWSDDeviceHostNotify.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWSDDeviceHostNotify, @ptrCast(self)), pszServiceId, ppService);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2551,7 +3016,13 @@ pub const IWSDServiceMessaging = extern union {
             return @as(*const IWSDServiceMessaging.VTable, @ptrCast(self.vtable)).FaultRequest(@as(*const IWSDServiceMessaging, @ptrCast(self)), pRequestHeader, pMessageParameters, pFault);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SendResponse(self: *const IWSDServiceMessaging, pBody: ?*anyopaque, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceMessaging.VTable, @ptrCast(self.vtable)).SendResponse(@as(*const IWSDServiceMessaging, @ptrCast(self)), pBody, pOperation, pMessageParameters);
+    }
+    pub fn FaultRequest(self: *const IWSDServiceMessaging, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) callconv(.Inline) HRESULT {
+        return @as(*const IWSDServiceMessaging.VTable, @ptrCast(self.vtable)).FaultRequest(@as(*const IWSDServiceMessaging, @ptrCast(self)), pRequestHeader, pMessageParameters, pFault);
+    }
 };
 
 

@@ -83,7 +83,25 @@ pub const IMarshal = extern union {
             return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).DisconnectObject(@as(*const IMarshal, @ptrCast(self)), dwReserved);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn GetUnmarshalClass(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetUnmarshalClass(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
+    }
+    pub fn GetMarshalSizeMax(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
+    }
+    pub fn MarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).MarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
+    }
+    pub fn UnmarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, ppv);
+    }
+    pub fn ReleaseMarshalData(self: *const IMarshal, pStm: ?*IStream) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const IMarshal, @ptrCast(self)), pStm);
+    }
+    pub fn DisconnectObject(self: *const IMarshal, dwReserved: u32) callconv(.Inline) HRESULT {
+        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).DisconnectObject(@as(*const IMarshal, @ptrCast(self)), dwReserved);
+    }
 };
 
 const IID_IMarshal2_Value = Guid.initString("000001cf-0000-0000-c000-000000000046");
@@ -97,7 +115,7 @@ pub const IMarshal2 = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMarshal.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IMarshal.MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -121,7 +139,10 @@ pub const IMarshalingStream = extern union {
             return @as(*const IMarshalingStream.VTable, @ptrCast(self.vtable)).GetMarshalingContextAttribute(@as(*const IMarshalingStream, @ptrCast(self)), attribute, pAttributeValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IStream.MethodMixin(@This());
+    pub fn GetMarshalingContextAttribute(self: *const IMarshalingStream, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.Inline) HRESULT {
+        return @as(*const IMarshalingStream.VTable, @ptrCast(self.vtable)).GetMarshalingContextAttribute(@as(*const IMarshalingStream, @ptrCast(self)), attribute, pAttributeValue);
+    }
 };
 
 pub const STDMSHLFLAGS = enum(i32) {

@@ -94,7 +94,25 @@ pub const IEventSystem = extern union {
             return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).RemoveS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn Query(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32, ppInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Query(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex, ppInterface);
+    }
+    pub fn Store(self: *const IEventSystem, ProgID: ?BSTR, pInterface: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Store(@as(*const IEventSystem, @ptrCast(self)), ProgID, pInterface);
+    }
+    pub fn Remove(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex);
+    }
+    pub fn get_EventObjectChangeEventClassID(self: *const IEventSystem, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).get_EventObjectChangeEventClassID(@as(*const IEventSystem, @ptrCast(self)), pbstrEventClassID);
+    }
+    pub fn QueryS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, ppInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).QueryS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, ppInterface);
+    }
+    pub fn RemoveS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).RemoveS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -233,7 +251,49 @@ pub const IEventPublisher = extern union {
             return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultPropertyCollection(@as(*const IEventPublisher, @ptrCast(self)), collection);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_PublisherID(self: *const IEventPublisher, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherID);
+    }
+    pub fn put_PublisherID(self: *const IEventPublisher, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherID);
+    }
+    pub fn get_PublisherName(self: *const IEventPublisher, pbstrPublisherName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherName);
+    }
+    pub fn put_PublisherName(self: *const IEventPublisher, bstrPublisherName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherName);
+    }
+    pub fn get_PublisherType(self: *const IEventPublisher, pbstrPublisherType: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherType);
+    }
+    pub fn put_PublisherType(self: *const IEventPublisher, bstrPublisherType: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherType);
+    }
+    pub fn get_OwnerSID(self: *const IEventPublisher, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), pbstrOwnerSID);
+    }
+    pub fn put_OwnerSID(self: *const IEventPublisher, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), bstrOwnerSID);
+    }
+    pub fn get_Description(self: *const IEventPublisher, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventPublisher, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IEventPublisher, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventPublisher, @ptrCast(self)), bstrDescription);
+    }
+    pub fn GetDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn PutDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).PutDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn RemoveDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).RemoveDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName);
+    }
+    pub fn GetDefaultPropertyCollection(self: *const IEventPublisher, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultPropertyCollection(@as(*const IEventPublisher, @ptrCast(self)), collection);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -374,7 +434,49 @@ pub const IEventClass = extern union {
             return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_TypeLib(@as(*const IEventClass, @ptrCast(self)), bstrTypeLib);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_EventClassID(self: *const IEventClass, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassID);
+    }
+    pub fn put_EventClassID(self: *const IEventClass, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventClass, @ptrCast(self)), bstrEventClassID);
+    }
+    pub fn get_EventClassName(self: *const IEventClass, pbstrEventClassName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassName(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassName);
+    }
+    pub fn put_EventClassName(self: *const IEventClass, bstrEventClassName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassName(@as(*const IEventClass, @ptrCast(self)), bstrEventClassName);
+    }
+    pub fn get_OwnerSID(self: *const IEventClass, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventClass, @ptrCast(self)), pbstrOwnerSID);
+    }
+    pub fn put_OwnerSID(self: *const IEventClass, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventClass, @ptrCast(self)), bstrOwnerSID);
+    }
+    pub fn get_FiringInterfaceID(self: *const IEventClass, pbstrFiringInterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), pbstrFiringInterfaceID);
+    }
+    pub fn put_FiringInterfaceID(self: *const IEventClass, bstrFiringInterfaceID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), bstrFiringInterfaceID);
+    }
+    pub fn get_Description(self: *const IEventClass, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventClass, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IEventClass, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventClass, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_CustomConfigCLSID(self: *const IEventClass, pbstrCustomConfigCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), pbstrCustomConfigCLSID);
+    }
+    pub fn put_CustomConfigCLSID(self: *const IEventClass, bstrCustomConfigCLSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), bstrCustomConfigCLSID);
+    }
+    pub fn get_TypeLib(self: *const IEventClass, pbstrTypeLib: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_TypeLib(@as(*const IEventClass, @ptrCast(self)), pbstrTypeLib);
+    }
+    pub fn put_TypeLib(self: *const IEventClass, bstrTypeLib: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_TypeLib(@as(*const IEventClass, @ptrCast(self)), bstrTypeLib);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -461,7 +563,31 @@ pub const IEventClass2 = extern union {
             return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), fFireInParallel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IEventClass.MethodMixin(@This());
+    pub fn get_PublisherID(self: *const IEventClass2, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventClass2, @ptrCast(self)), pbstrPublisherID);
+    }
+    pub fn put_PublisherID(self: *const IEventClass2, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventClass2, @ptrCast(self)), bstrPublisherID);
+    }
+    pub fn get_MultiInterfacePublisherFilterCLSID(self: *const IEventClass2, pbstrPubFilCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), pbstrPubFilCLSID);
+    }
+    pub fn put_MultiInterfacePublisherFilterCLSID(self: *const IEventClass2, bstrPubFilCLSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), bstrPubFilCLSID);
+    }
+    pub fn get_AllowInprocActivation(self: *const IEventClass2, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), pfAllowInprocActivation);
+    }
+    pub fn put_AllowInprocActivation(self: *const IEventClass2, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), fAllowInprocActivation);
+    }
+    pub fn get_FireInParallel(self: *const IEventClass2, pfFireInParallel: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), pfFireInParallel);
+    }
+    pub fn put_FireInParallel(self: *const IEventClass2, fFireInParallel: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), fFireInParallel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -778,7 +904,109 @@ pub const IEventSubscription = extern union {
             return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), bstrInterfaceID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_SubscriptionID(self: *const IEventSubscription, pbstrSubscriptionID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionID);
+    }
+    pub fn put_SubscriptionID(self: *const IEventSubscription, bstrSubscriptionID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionID);
+    }
+    pub fn get_SubscriptionName(self: *const IEventSubscription, pbstrSubscriptionName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionName);
+    }
+    pub fn put_SubscriptionName(self: *const IEventSubscription, bstrSubscriptionName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionName);
+    }
+    pub fn get_PublisherID(self: *const IEventSubscription, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), pbstrPublisherID);
+    }
+    pub fn put_PublisherID(self: *const IEventSubscription, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), bstrPublisherID);
+    }
+    pub fn get_EventClassID(self: *const IEventSubscription, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), pbstrEventClassID);
+    }
+    pub fn put_EventClassID(self: *const IEventSubscription, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), bstrEventClassID);
+    }
+    pub fn get_MethodName(self: *const IEventSubscription, pbstrMethodName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MethodName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMethodName);
+    }
+    pub fn put_MethodName(self: *const IEventSubscription, bstrMethodName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MethodName(@as(*const IEventSubscription, @ptrCast(self)), bstrMethodName);
+    }
+    pub fn get_SubscriberCLSID(self: *const IEventSubscription, pbstrSubscriberCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriberCLSID);
+    }
+    pub fn put_SubscriberCLSID(self: *const IEventSubscription, bstrSubscriberCLSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriberCLSID);
+    }
+    pub fn get_SubscriberInterface(self: *const IEventSubscription, ppSubscriberInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), ppSubscriberInterface);
+    }
+    pub fn put_SubscriberInterface(self: *const IEventSubscription, pSubscriberInterface: ?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), pSubscriberInterface);
+    }
+    pub fn get_PerUser(self: *const IEventSubscription, pfPerUser: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IEventSubscription, @ptrCast(self)), pfPerUser);
+    }
+    pub fn put_PerUser(self: *const IEventSubscription, fPerUser: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PerUser(@as(*const IEventSubscription, @ptrCast(self)), fPerUser);
+    }
+    pub fn get_OwnerSID(self: *const IEventSubscription, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrOwnerSID);
+    }
+    pub fn put_OwnerSID(self: *const IEventSubscription, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), bstrOwnerSID);
+    }
+    pub fn get_Enabled(self: *const IEventSubscription, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IEventSubscription, @ptrCast(self)), pfEnabled);
+    }
+    pub fn put_Enabled(self: *const IEventSubscription, fEnabled: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IEventSubscription, @ptrCast(self)), fEnabled);
+    }
+    pub fn get_Description(self: *const IEventSubscription, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventSubscription, @ptrCast(self)), pbstrDescription);
+    }
+    pub fn put_Description(self: *const IEventSubscription, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventSubscription, @ptrCast(self)), bstrDescription);
+    }
+    pub fn get_MachineName(self: *const IEventSubscription, pbstrMachineName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MachineName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMachineName);
+    }
+    pub fn put_MachineName(self: *const IEventSubscription, bstrMachineName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MachineName(@as(*const IEventSubscription, @ptrCast(self)), bstrMachineName);
+    }
+    pub fn GetPublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn PutPublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn RemovePublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemovePublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
+    }
+    pub fn GetPublisherPropertyCollection(self: *const IEventSubscription, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
+    }
+    pub fn GetSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn PutSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+    }
+    pub fn RemoveSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemoveSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
+    }
+    pub fn GetSubscriberPropertyCollection(self: *const IEventSubscription, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
+    }
+    pub fn get_InterfaceID(self: *const IEventSubscription, pbstrInterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), pbstrInterfaceID);
+    }
+    pub fn put_InterfaceID(self: *const IEventSubscription, bstrInterfaceID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), bstrInterfaceID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -801,7 +1029,10 @@ pub const IFiringControl = extern union {
             return @as(*const IFiringControl.VTable, @ptrCast(self.vtable)).FireSubscription(@as(*const IFiringControl, @ptrCast(self)), subscription);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn FireSubscription(self: *const IFiringControl, subscription: ?*IEventSubscription) callconv(.Inline) HRESULT {
+        return @as(*const IFiringControl.VTable, @ptrCast(self.vtable)).FireSubscription(@as(*const IFiringControl, @ptrCast(self)), subscription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -834,7 +1065,13 @@ pub const IPublisherFilter = extern union {
             return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IPublisherFilter, @ptrCast(self)), methodName, firingControl);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IPublisherFilter, methodName: ?BSTR, dispUserDefined: ?*IDispatch) callconv(.Inline) HRESULT {
+        return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPublisherFilter, @ptrCast(self)), methodName, dispUserDefined);
+    }
+    pub fn PrepareToFire(self: *const IPublisherFilter, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.Inline) HRESULT {
+        return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IPublisherFilter, @ptrCast(self)), methodName, firingControl);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -867,7 +1104,13 @@ pub const IMultiInterfacePublisherFilter = extern union {
             return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), iid, methodName, firingControl);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Initialize(self: *const IMultiInterfacePublisherFilter, pEIC: ?*IMultiInterfaceEventControl) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), pEIC);
+    }
+    pub fn PrepareToFire(self: *const IMultiInterfacePublisherFilter, iid: ?*const Guid, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), iid, methodName, firingControl);
+    }
 };
 
 pub const EOC_ChangeType = enum(i32) {
@@ -918,7 +1161,16 @@ pub const IEventObjectChange = extern union {
             return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedPublisher(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrPublisherID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ChangedSubscription(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrSubscriptionID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrSubscriptionID);
+    }
+    pub fn ChangedEventClass(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrEventClassID);
+    }
+    pub fn ChangedPublisher(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedPublisher(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrPublisherID);
+    }
 };
 
 pub const COMEVENTSYSCHANGEINFO = extern struct {
@@ -958,7 +1210,13 @@ pub const IEventObjectChange2 = extern union {
             return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn ChangedSubscription(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
+    }
+    pub fn ChangedEventClass(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1006,7 +1264,19 @@ pub const IEnumEventObject = extern union {
             return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumEventObject, @ptrCast(self)), cSkipElem);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn Clone(self: *const IEnumEventObject, ppInterface: ?*?*IEnumEventObject) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumEventObject, @ptrCast(self)), ppInterface);
+    }
+    pub fn Next(self: *const IEnumEventObject, cReqElem: u32, ppInterface: [*]?*IUnknown, cRetElem: ?*u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumEventObject, @ptrCast(self)), cReqElem, ppInterface, cRetElem);
+    }
+    pub fn Reset(self: *const IEnumEventObject) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumEventObject, @ptrCast(self)));
+    }
+    pub fn Skip(self: *const IEnumEventObject, cSkipElem: u32) callconv(.Inline) HRESULT {
+        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumEventObject, @ptrCast(self)), cSkipElem);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1074,7 +1344,25 @@ pub const IEventObjectCollection = extern union {
             return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventObjectCollection, @ptrCast(self)), objectID);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get__NewEnum(self: *const IEventObjectCollection, ppUnkEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppUnkEnum);
+    }
+    pub fn get_Item(self: *const IEventObjectCollection, objectID: ?BSTR, pItem: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IEventObjectCollection, @ptrCast(self)), objectID, pItem);
+    }
+    pub fn get_NewEnum(self: *const IEventObjectCollection, ppEnum: ?*?*IEnumEventObject) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppEnum);
+    }
+    pub fn get_Count(self: *const IEventObjectCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IEventObjectCollection, @ptrCast(self)), pCount);
+    }
+    pub fn Add(self: *const IEventObjectCollection, item: ?*VARIANT, objectID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IEventObjectCollection, @ptrCast(self)), item, objectID);
+    }
+    pub fn Remove(self: *const IEventObjectCollection, objectID: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventObjectCollection, @ptrCast(self)), objectID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1125,7 +1413,19 @@ pub const IEventProperty = extern union {
             return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn get_Name(self: *const IEventProperty, propertyName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
+    }
+    pub fn put_Name(self: *const IEventProperty, propertyName: ?BSTR) callconv(.Inline) HRESULT {
+        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
+    }
+    pub fn get_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
+    }
+    pub fn put_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1188,7 +1488,22 @@ pub const IEventControl = extern union {
             return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IEventControl, @ptrCast(self)), methodName, criteria, errorIndex);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IDispatch.MethodMixin(@This());
+    pub fn SetPublisherFilter(self: *const IEventControl, methodName: ?BSTR, pPublisherFilter: ?*IPublisherFilter) callconv(.Inline) HRESULT {
+        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetPublisherFilter(@as(*const IEventControl, @ptrCast(self)), methodName, pPublisherFilter);
+    }
+    pub fn get_AllowInprocActivation(self: *const IEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), pfAllowInprocActivation);
+    }
+    pub fn put_AllowInprocActivation(self: *const IEventControl, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), fAllowInprocActivation);
+    }
+    pub fn GetSubscriptions(self: *const IEventControl, methodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IEventControl, @ptrCast(self)), methodName, optionalCriteria, optionalErrorIndex, ppCollection);
+    }
+    pub fn SetDefaultQuery(self: *const IEventControl, methodName: ?BSTR, criteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IEventControl, @ptrCast(self)), methodName, criteria, errorIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1270,7 +1585,28 @@ pub const IMultiInterfaceEventControl = extern union {
             return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fFireInParallel);
         }
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
+    pub fn SetMultiInterfacePublisherFilter(self: *const IMultiInterfaceEventControl, classFilter: ?*IMultiInterfacePublisherFilter) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetMultiInterfacePublisherFilter(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), classFilter);
+    }
+    pub fn GetSubscriptions(self: *const IMultiInterfaceEventControl, eventIID: ?*const Guid, bstrMethodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, optionalCriteria, optionalErrorIndex, ppCollection);
+    }
+    pub fn SetDefaultQuery(self: *const IMultiInterfaceEventControl, eventIID: ?*const Guid, bstrMethodName: ?BSTR, bstrCriteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, bstrCriteria, errorIndex);
+    }
+    pub fn get_AllowInprocActivation(self: *const IMultiInterfaceEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfAllowInprocActivation);
+    }
+    pub fn put_AllowInprocActivation(self: *const IMultiInterfaceEventControl, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fAllowInprocActivation);
+    }
+    pub fn get_FireInParallel(self: *const IMultiInterfaceEventControl, pfFireInParallel: ?*BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfFireInParallel);
+    }
+    pub fn put_FireInParallel(self: *const IMultiInterfaceEventControl, fFireInParallel: BOOL) callconv(.Inline) HRESULT {
+        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fFireInParallel);
+    }
 };
 
 const IID_IDontSupportEventSubscription_Value = Guid.initString("784121f1-62a6-4b89-855f-d65f296de83a");
@@ -1284,7 +1620,7 @@ pub const IDontSupportEventSubscription = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
-    pub usingnamespace MethodMixin(@This());
+    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 
