@@ -1671,64 +1671,64 @@ pub const IDirectDraw = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compact(self: *const IDirectDraw) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw, @ptrCast(self)));
+        return self.vtable.Compact(self);
     }
     pub fn CreateClipper(self: *const IDirectDraw, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateClipper(self, param0, param1, param2);
     }
     pub fn CreatePalette(self: *const IDirectDraw, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
     pub fn CreateSurface(self: *const IDirectDraw, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateSurface(self, param0, param1, param2);
     }
     pub fn DuplicateSurface(self: *const IDirectDraw, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
+        return self.vtable.DuplicateSurface(self, param0, param1);
     }
     pub fn EnumDisplayModes(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
     pub fn EnumSurfaces(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
     pub fn FlipToGDISurface(self: *const IDirectDraw) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw, @ptrCast(self)));
+        return self.vtable.FlipToGDISurface(self);
     }
     pub fn GetCaps(self: *const IDirectDraw, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
+        return self.vtable.GetCaps(self, param0, param1);
     }
     pub fn GetDisplayMode(self: *const IDirectDraw, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.GetDisplayMode(self, param0);
     }
     pub fn GetFourCCCodes(self: *const IDirectDraw, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
+        return self.vtable.GetFourCCCodes(self, param0, param1);
     }
     pub fn GetGDISurface(self: *const IDirectDraw, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.GetGDISurface(self, param0);
     }
     pub fn GetMonitorFrequency(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.GetMonitorFrequency(self, param0);
     }
     pub fn GetScanLine(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.GetScanLine(self, param0);
     }
     pub fn GetVerticalBlankStatus(self: *const IDirectDraw, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.GetVerticalBlankStatus(self, param0);
     }
     pub fn Initialize(self: *const IDirectDraw, param0: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw, @ptrCast(self)), param0);
+        return self.vtable.Initialize(self, param0);
     }
     pub fn RestoreDisplayMode(self: *const IDirectDraw) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw, @ptrCast(self)));
+        return self.vtable.RestoreDisplayMode(self);
     }
     pub fn SetCooperativeLevel(self: *const IDirectDraw, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
+        return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
     pub fn SetDisplayMode(self: *const IDirectDraw, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.SetDisplayMode(self, param0, param1, param2);
     }
     pub fn WaitForVerticalBlank(self: *const IDirectDraw, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
+        return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
 };
 
@@ -1934,67 +1934,67 @@ pub const IDirectDraw2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compact(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw2, @ptrCast(self)));
+        return self.vtable.Compact(self);
     }
     pub fn CreateClipper(self: *const IDirectDraw2, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateClipper(self, param0, param1, param2);
     }
     pub fn CreatePalette(self: *const IDirectDraw2, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
     pub fn CreateSurface(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateSurface(self, param0, param1, param2);
     }
     pub fn DuplicateSurface(self: *const IDirectDraw2, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
+        return self.vtable.DuplicateSurface(self, param0, param1);
     }
     pub fn EnumDisplayModes(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
     pub fn EnumSurfaces(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
     pub fn FlipToGDISurface(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw2, @ptrCast(self)));
+        return self.vtable.FlipToGDISurface(self);
     }
     pub fn GetCaps(self: *const IDirectDraw2, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
+        return self.vtable.GetCaps(self, param0, param1);
     }
     pub fn GetDisplayMode(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.GetDisplayMode(self, param0);
     }
     pub fn GetFourCCCodes(self: *const IDirectDraw2, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
+        return self.vtable.GetFourCCCodes(self, param0, param1);
     }
     pub fn GetGDISurface(self: *const IDirectDraw2, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.GetGDISurface(self, param0);
     }
     pub fn GetMonitorFrequency(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.GetMonitorFrequency(self, param0);
     }
     pub fn GetScanLine(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.GetScanLine(self, param0);
     }
     pub fn GetVerticalBlankStatus(self: *const IDirectDraw2, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.GetVerticalBlankStatus(self, param0);
     }
     pub fn Initialize(self: *const IDirectDraw2, param0: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw2, @ptrCast(self)), param0);
+        return self.vtable.Initialize(self, param0);
     }
     pub fn RestoreDisplayMode(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)));
+        return self.vtable.RestoreDisplayMode(self);
     }
     pub fn SetCooperativeLevel(self: *const IDirectDraw2, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
+        return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
     pub fn SetDisplayMode(self: *const IDirectDraw2, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
     pub fn WaitForVerticalBlank(self: *const IDirectDraw2, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
+        return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
     pub fn GetAvailableVidMem(self: *const IDirectDraw2, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
 };
 
@@ -2232,79 +2232,79 @@ pub const IDirectDraw4 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compact(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw4, @ptrCast(self)));
+        return self.vtable.Compact(self);
     }
     pub fn CreateClipper(self: *const IDirectDraw4, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateClipper(self, param0, param1, param2);
     }
     pub fn CreatePalette(self: *const IDirectDraw4, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
     pub fn CreateSurface(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateSurface(self, param0, param1, param2);
     }
     pub fn DuplicateSurface(self: *const IDirectDraw4, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.DuplicateSurface(self, param0, param1);
     }
     pub fn EnumDisplayModes(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
     pub fn EnumSurfaces(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
     pub fn FlipToGDISurface(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw4, @ptrCast(self)));
+        return self.vtable.FlipToGDISurface(self);
     }
     pub fn GetCaps(self: *const IDirectDraw4, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetCaps(self, param0, param1);
     }
     pub fn GetDisplayMode(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.GetDisplayMode(self, param0);
     }
     pub fn GetFourCCCodes(self: *const IDirectDraw4, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetFourCCCodes(self, param0, param1);
     }
     pub fn GetGDISurface(self: *const IDirectDraw4, param0: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.GetGDISurface(self, param0);
     }
     pub fn GetMonitorFrequency(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.GetMonitorFrequency(self, param0);
     }
     pub fn GetScanLine(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.GetScanLine(self, param0);
     }
     pub fn GetVerticalBlankStatus(self: *const IDirectDraw4, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.GetVerticalBlankStatus(self, param0);
     }
     pub fn Initialize(self: *const IDirectDraw4, param0: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw4, @ptrCast(self)), param0);
+        return self.vtable.Initialize(self, param0);
     }
     pub fn RestoreDisplayMode(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)));
+        return self.vtable.RestoreDisplayMode(self);
     }
     pub fn SetCooperativeLevel(self: *const IDirectDraw4, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
     pub fn SetDisplayMode(self: *const IDirectDraw4, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
     pub fn WaitForVerticalBlank(self: *const IDirectDraw4, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
     pub fn GetAvailableVidMem(self: *const IDirectDraw4, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
     pub fn GetSurfaceFromDC(self: *const IDirectDraw4, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetSurfaceFromDC(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
     pub fn RestoreAllSurfaces(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).RestoreAllSurfaces(@as(*const IDirectDraw4, @ptrCast(self)));
+        return self.vtable.RestoreAllSurfaces(self);
     }
     pub fn TestCooperativeLevel(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirectDraw4, @ptrCast(self)));
+        return self.vtable.TestCooperativeLevel(self);
     }
     pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetDeviceIdentifier(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
 };
 
@@ -2561,85 +2561,85 @@ pub const IDirectDraw7 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compact(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw7, @ptrCast(self)));
+        return self.vtable.Compact(self);
     }
     pub fn CreateClipper(self: *const IDirectDraw7, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateClipper(self, param0, param1, param2);
     }
     pub fn CreatePalette(self: *const IDirectDraw7, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
     pub fn CreateSurface(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.CreateSurface(self, param0, param1, param2);
     }
     pub fn DuplicateSurface(self: *const IDirectDraw7, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.DuplicateSurface(self, param0, param1);
     }
     pub fn EnumDisplayModes(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
     pub fn EnumSurfaces(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
     pub fn FlipToGDISurface(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw7, @ptrCast(self)));
+        return self.vtable.FlipToGDISurface(self);
     }
     pub fn GetCaps(self: *const IDirectDraw7, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetCaps(self, param0, param1);
     }
     pub fn GetDisplayMode(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.GetDisplayMode(self, param0);
     }
     pub fn GetFourCCCodes(self: *const IDirectDraw7, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetFourCCCodes(self, param0, param1);
     }
     pub fn GetGDISurface(self: *const IDirectDraw7, param0: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.GetGDISurface(self, param0);
     }
     pub fn GetMonitorFrequency(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.GetMonitorFrequency(self, param0);
     }
     pub fn GetScanLine(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.GetScanLine(self, param0);
     }
     pub fn GetVerticalBlankStatus(self: *const IDirectDraw7, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.GetVerticalBlankStatus(self, param0);
     }
     pub fn Initialize(self: *const IDirectDraw7, param0: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw7, @ptrCast(self)), param0);
+        return self.vtable.Initialize(self, param0);
     }
     pub fn RestoreDisplayMode(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)));
+        return self.vtable.RestoreDisplayMode(self);
     }
     pub fn SetCooperativeLevel(self: *const IDirectDraw7, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
     pub fn SetDisplayMode(self: *const IDirectDraw7, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
     pub fn WaitForVerticalBlank(self: *const IDirectDraw7, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
     pub fn GetAvailableVidMem(self: *const IDirectDraw7, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
     pub fn GetSurfaceFromDC(self: *const IDirectDraw7, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetSurfaceFromDC(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
     pub fn RestoreAllSurfaces(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).RestoreAllSurfaces(@as(*const IDirectDraw7, @ptrCast(self)));
+        return self.vtable.RestoreAllSurfaces(self);
     }
     pub fn TestCooperativeLevel(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirectDraw7, @ptrCast(self)));
+        return self.vtable.TestCooperativeLevel(self);
     }
     pub fn GetDeviceIdentifier(self: *const IDirectDraw7, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetDeviceIdentifier(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
     pub fn StartModeTest(self: *const IDirectDraw7, param0: ?*SIZE, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).StartModeTest(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.StartModeTest(self, param0, param1, param2);
     }
     pub fn EvaluateMode(self: *const IDirectDraw7, param0: u32, param1: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EvaluateMode(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
+        return self.vtable.EvaluateMode(self, param0, param1);
     }
 };
 
@@ -2696,16 +2696,16 @@ pub const IDirectDrawPalette = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawPalette, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).GetEntries(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.GetEntries(self, param0, param1, param2, param3);
     }
     pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.Initialize(self, param0, param1, param2);
     }
     pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).SetEntries(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.SetEntries(self, param0, param1, param2, param3);
     }
 };
 
@@ -2775,22 +2775,22 @@ pub const IDirectDrawClipper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClipList(self: *const IDirectDrawClipper, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).GetClipList(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetClipList(self, param0, param1, param2);
     }
     pub fn GetHWnd(self: *const IDirectDrawClipper, param0: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).GetHWnd(@as(*const IDirectDrawClipper, @ptrCast(self)), param0);
+        return self.vtable.GetHWnd(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawClipper, param0: ?*IDirectDraw, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsClipListChanged(self: *const IDirectDrawClipper, param0: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).IsClipListChanged(@as(*const IDirectDrawClipper, @ptrCast(self)), param0);
+        return self.vtable.IsClipListChanged(self, param0);
     }
     pub fn SetClipList(self: *const IDirectDrawClipper, param0: ?*RGNDATA, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).SetClipList(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
+        return self.vtable.SetClipList(self, param0, param1);
     }
     pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).SetHWnd(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
+        return self.vtable.SetHWnd(self, param0, param1);
     }
 };
 
@@ -3098,103 +3098,103 @@ pub const IDirectDrawSurface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAttachedSurface(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.AddAttachedSurface(self, param0);
     }
     pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.AddOverlayDirtyRect(self, param0);
     }
     pub fn Blt(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
     pub fn BltBatch(self: *const IDirectDrawSurface, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.BltBatch(self, param0, param1, param2);
     }
     pub fn BltFast(self: *const IDirectDrawSurface, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
     pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
     pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
     pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
     pub fn Flip(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetAttachedSurface(self: *const IDirectDrawSurface, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.GetAttachedSurface(self, param0, param1);
     }
     pub fn GetBltStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetBltStatus(self, param0);
     }
     pub fn GetCaps(self: *const IDirectDrawSurface, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetClipper(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetClipper(self, param0);
     }
     pub fn GetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.GetColorKey(self, param0, param1);
     }
     pub fn GetDC(self: *const IDirectDrawSurface, param0: ?*?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetDC(self, param0);
     }
     pub fn GetFlipStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetFlipStatus(self, param0);
     }
     pub fn GetOverlayPosition(self: *const IDirectDrawSurface, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.GetOverlayPosition(self, param0, param1);
     }
     pub fn GetPalette(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetPalette(self, param0);
     }
     pub fn GetPixelFormat(self: *const IDirectDrawSurface, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetPixelFormat(self, param0);
     }
     pub fn GetSurfaceDesc(self: *const IDirectDrawSurface, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.GetSurfaceDesc(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawSurface, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsLost(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface, @ptrCast(self)));
+        return self.vtable.IsLost(self);
     }
     pub fn Lock(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.Lock(self, param0, param1, param2, param3);
     }
     pub fn ReleaseDC(self: *const IDirectDrawSurface, param0: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.ReleaseDC(self, param0);
     }
     pub fn Restore(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn SetClipper(self: *const IDirectDrawSurface, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.SetClipper(self, param0);
     }
     pub fn SetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.SetColorKey(self, param0, param1);
     }
     pub fn SetOverlayPosition(self: *const IDirectDrawSurface, param0: i32, param1: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.SetOverlayPosition(self, param0, param1);
     }
     pub fn SetPalette(self: *const IDirectDrawSurface, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.SetPalette(self, param0);
     }
     pub fn Unlock(self: *const IDirectDrawSurface, param0: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.Unlock(self, param0);
     }
     pub fn UpdateOverlay(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
     pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
+        return self.vtable.UpdateOverlayDisplay(self, param0);
     }
     pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
+        return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
 };
 
@@ -3526,112 +3526,112 @@ pub const IDirectDrawSurface2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.AddAttachedSurface(self, param0);
     }
     pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface2, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.AddOverlayDirtyRect(self, param0);
     }
     pub fn Blt(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
     pub fn BltBatch(self: *const IDirectDrawSurface2, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.BltBatch(self, param0, param1, param2);
     }
     pub fn BltFast(self: *const IDirectDrawSurface2, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
     pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
     pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface2, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
     pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface2, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
     pub fn Flip(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.GetAttachedSurface(self, param0, param1);
     }
     pub fn GetBltStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetBltStatus(self, param0);
     }
     pub fn GetCaps(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetClipper(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetClipper(self, param0);
     }
     pub fn GetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.GetColorKey(self, param0, param1);
     }
     pub fn GetDC(self: *const IDirectDrawSurface2, param0: ?*?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetDC(self, param0);
     }
     pub fn GetFlipStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetFlipStatus(self, param0);
     }
     pub fn GetOverlayPosition(self: *const IDirectDrawSurface2, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.GetOverlayPosition(self, param0, param1);
     }
     pub fn GetPalette(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetPalette(self, param0);
     }
     pub fn GetPixelFormat(self: *const IDirectDrawSurface2, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetPixelFormat(self, param0);
     }
     pub fn GetSurfaceDesc(self: *const IDirectDrawSurface2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetSurfaceDesc(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawSurface2, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsLost(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface2, @ptrCast(self)));
+        return self.vtable.IsLost(self);
     }
     pub fn Lock(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.Lock(self, param0, param1, param2, param3);
     }
     pub fn ReleaseDC(self: *const IDirectDrawSurface2, param0: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.ReleaseDC(self, param0);
     }
     pub fn Restore(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface2, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn SetClipper(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.SetClipper(self, param0);
     }
     pub fn SetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.SetColorKey(self, param0, param1);
     }
     pub fn SetOverlayPosition(self: *const IDirectDrawSurface2, param0: i32, param1: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.SetOverlayPosition(self, param0, param1);
     }
     pub fn SetPalette(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.SetPalette(self, param0);
     }
     pub fn Unlock(self: *const IDirectDrawSurface2, param0: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.Unlock(self, param0);
     }
     pub fn UpdateOverlay(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
     pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.UpdateOverlayDisplay(self, param0);
     }
     pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
+        return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
     pub fn GetDDInterface(self: *const IDirectDrawSurface2, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.GetDDInterface(self, param0);
     }
     pub fn PageLock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.PageLock(self, param0);
     }
     pub fn PageUnlock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
+        return self.vtable.PageUnlock(self, param0);
     }
 };
 
@@ -3972,115 +3972,115 @@ pub const IDirectDrawSurface3 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.AddAttachedSurface(self, param0);
     }
     pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface3, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.AddOverlayDirtyRect(self, param0);
     }
     pub fn Blt(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
     pub fn BltBatch(self: *const IDirectDrawSurface3, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.BltBatch(self, param0, param1, param2);
     }
     pub fn BltFast(self: *const IDirectDrawSurface3, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
     pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
     pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface3, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
     pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface3, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
     pub fn Flip(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.GetAttachedSurface(self, param0, param1);
     }
     pub fn GetBltStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetBltStatus(self, param0);
     }
     pub fn GetCaps(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetClipper(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetClipper(self, param0);
     }
     pub fn GetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.GetColorKey(self, param0, param1);
     }
     pub fn GetDC(self: *const IDirectDrawSurface3, param0: ?*?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetDC(self, param0);
     }
     pub fn GetFlipStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetFlipStatus(self, param0);
     }
     pub fn GetOverlayPosition(self: *const IDirectDrawSurface3, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.GetOverlayPosition(self, param0, param1);
     }
     pub fn GetPalette(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetPalette(self, param0);
     }
     pub fn GetPixelFormat(self: *const IDirectDrawSurface3, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetPixelFormat(self, param0);
     }
     pub fn GetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetSurfaceDesc(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawSurface3, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsLost(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface3, @ptrCast(self)));
+        return self.vtable.IsLost(self);
     }
     pub fn Lock(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.Lock(self, param0, param1, param2, param3);
     }
     pub fn ReleaseDC(self: *const IDirectDrawSurface3, param0: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.ReleaseDC(self, param0);
     }
     pub fn Restore(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface3, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn SetClipper(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.SetClipper(self, param0);
     }
     pub fn SetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.SetColorKey(self, param0, param1);
     }
     pub fn SetOverlayPosition(self: *const IDirectDrawSurface3, param0: i32, param1: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.SetOverlayPosition(self, param0, param1);
     }
     pub fn SetPalette(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.SetPalette(self, param0);
     }
     pub fn Unlock(self: *const IDirectDrawSurface3, param0: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.Unlock(self, param0);
     }
     pub fn UpdateOverlay(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
     pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.UpdateOverlayDisplay(self, param0);
     }
     pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
     pub fn GetDDInterface(self: *const IDirectDrawSurface3, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.GetDDInterface(self, param0);
     }
     pub fn PageLock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.PageLock(self, param0);
     }
     pub fn PageUnlock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
+        return self.vtable.PageUnlock(self, param0);
     }
     pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
+        return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
 };
 
@@ -4465,130 +4465,130 @@ pub const IDirectDrawSurface4 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.AddAttachedSurface(self, param0);
     }
     pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.AddOverlayDirtyRect(self, param0);
     }
     pub fn Blt(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
     pub fn BltBatch(self: *const IDirectDrawSurface4, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.BltBatch(self, param0, param1, param2);
     }
     pub fn BltFast(self: *const IDirectDrawSurface4, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
     pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
     pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface4, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
     pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface4, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
     pub fn Flip(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetAttachedSurface(self, param0, param1);
     }
     pub fn GetBltStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetBltStatus(self, param0);
     }
     pub fn GetCaps(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetClipper(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetClipper(self, param0);
     }
     pub fn GetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetColorKey(self, param0, param1);
     }
     pub fn GetDC(self: *const IDirectDrawSurface4, param0: ?*?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetDC(self, param0);
     }
     pub fn GetFlipStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetFlipStatus(self, param0);
     }
     pub fn GetOverlayPosition(self: *const IDirectDrawSurface4, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.GetOverlayPosition(self, param0, param1);
     }
     pub fn GetPalette(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetPalette(self, param0);
     }
     pub fn GetPixelFormat(self: *const IDirectDrawSurface4, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetPixelFormat(self, param0);
     }
     pub fn GetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetSurfaceDesc(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawSurface4, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsLost(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface4, @ptrCast(self)));
+        return self.vtable.IsLost(self);
     }
     pub fn Lock(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.Lock(self, param0, param1, param2, param3);
     }
     pub fn ReleaseDC(self: *const IDirectDrawSurface4, param0: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.ReleaseDC(self, param0);
     }
     pub fn Restore(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface4, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn SetClipper(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.SetClipper(self, param0);
     }
     pub fn SetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.SetColorKey(self, param0, param1);
     }
     pub fn SetOverlayPosition(self: *const IDirectDrawSurface4, param0: i32, param1: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.SetOverlayPosition(self, param0, param1);
     }
     pub fn SetPalette(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.SetPalette(self, param0);
     }
     pub fn Unlock(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.Unlock(self, param0);
     }
     pub fn UpdateOverlay(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
     pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.UpdateOverlayDisplay(self, param0);
     }
     pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
     pub fn GetDDInterface(self: *const IDirectDrawSurface4, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetDDInterface(self, param0);
     }
     pub fn PageLock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.PageLock(self, param0);
     }
     pub fn PageUnlock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.PageUnlock(self, param0);
     }
     pub fn SetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
+        return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
     pub fn SetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
     pub fn GetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
     pub fn FreePrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.FreePrivateData(self, param0);
     }
     pub fn GetUniquenessValue(self: *const IDirectDrawSurface4, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetUniquenessValue(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
+        return self.vtable.GetUniquenessValue(self, param0);
     }
     pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).ChangeUniquenessValue(@as(*const IDirectDrawSurface4, @ptrCast(self)));
+        return self.vtable.ChangeUniquenessValue(self);
     }
 };
 
@@ -5005,142 +5005,142 @@ pub const IDirectDrawSurface7 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.AddAttachedSurface(self, param0);
     }
     pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.AddOverlayDirtyRect(self, param0);
     }
     pub fn Blt(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
     pub fn BltBatch(self: *const IDirectDrawSurface7, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.BltBatch(self, param0, param1, param2);
     }
     pub fn BltFast(self: *const IDirectDrawSurface7, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
     pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
     pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface7, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
     pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface7, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
     pub fn Flip(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetAttachedSurface(self, param0, param1);
     }
     pub fn GetBltStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetBltStatus(self, param0);
     }
     pub fn GetCaps(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetClipper(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetClipper(self, param0);
     }
     pub fn GetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetColorKey(self, param0, param1);
     }
     pub fn GetDC(self: *const IDirectDrawSurface7, param0: ?*?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetDC(self, param0);
     }
     pub fn GetFlipStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetFlipStatus(self, param0);
     }
     pub fn GetOverlayPosition(self: *const IDirectDrawSurface7, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.GetOverlayPosition(self, param0, param1);
     }
     pub fn GetPalette(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetPalette(self, param0);
     }
     pub fn GetPixelFormat(self: *const IDirectDrawSurface7, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetPixelFormat(self, param0);
     }
     pub fn GetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetSurfaceDesc(self, param0);
     }
     pub fn Initialize(self: *const IDirectDrawSurface7, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.Initialize(self, param0, param1);
     }
     pub fn IsLost(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface7, @ptrCast(self)));
+        return self.vtable.IsLost(self);
     }
     pub fn Lock(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.Lock(self, param0, param1, param2, param3);
     }
     pub fn ReleaseDC(self: *const IDirectDrawSurface7, param0: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.ReleaseDC(self, param0);
     }
     pub fn Restore(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface7, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn SetClipper(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.SetClipper(self, param0);
     }
     pub fn SetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.SetColorKey(self, param0, param1);
     }
     pub fn SetOverlayPosition(self: *const IDirectDrawSurface7, param0: i32, param1: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.SetOverlayPosition(self, param0, param1);
     }
     pub fn SetPalette(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.SetPalette(self, param0);
     }
     pub fn Unlock(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.Unlock(self, param0);
     }
     pub fn UpdateOverlay(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
     pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.UpdateOverlayDisplay(self, param0);
     }
     pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
     pub fn GetDDInterface(self: *const IDirectDrawSurface7, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetDDInterface(self, param0);
     }
     pub fn PageLock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.PageLock(self, param0);
     }
     pub fn PageUnlock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.PageUnlock(self, param0);
     }
     pub fn SetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
+        return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
     pub fn SetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
     pub fn GetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
     pub fn FreePrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.FreePrivateData(self, param0);
     }
     pub fn GetUniquenessValue(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetUniquenessValue(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetUniquenessValue(self, param0);
     }
     pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).ChangeUniquenessValue(@as(*const IDirectDrawSurface7, @ptrCast(self)));
+        return self.vtable.ChangeUniquenessValue(self);
     }
     pub fn SetPriority(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.SetPriority(self, param0);
     }
     pub fn GetPriority(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetPriority(self, param0);
     }
     pub fn SetLOD(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetLOD(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.SetLOD(self, param0);
     }
     pub fn GetLOD(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetLOD(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
+        return self.vtable.GetLOD(self, param0);
     }
 };
 
@@ -5173,10 +5173,10 @@ pub const IDirectDrawColorControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawColorControl.VTable, @ptrCast(self.vtable)).GetColorControls(@as(*const IDirectDrawColorControl, @ptrCast(self)), param0);
+        return self.vtable.GetColorControls(self, param0);
     }
     pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawColorControl.VTable, @ptrCast(self.vtable)).SetColorControls(@as(*const IDirectDrawColorControl, @ptrCast(self)), param0);
+        return self.vtable.SetColorControls(self, param0);
     }
 };
 
@@ -5211,10 +5211,10 @@ pub const IDirectDrawGammaControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawGammaControl.VTable, @ptrCast(self.vtable)).GetGammaRamp(@as(*const IDirectDrawGammaControl, @ptrCast(self)), param0, param1);
+        return self.vtable.GetGammaRamp(self, param0, param1);
     }
     pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawGammaControl.VTable, @ptrCast(self.vtable)).SetGammaRamp(@as(*const IDirectDrawGammaControl, @ptrCast(self)), param0, param1);
+        return self.vtable.SetGammaRamp(self, param0, param1);
     }
 };
 
@@ -5373,16 +5373,16 @@ pub const IDDVideoPortContainer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).CreateVideoPort(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.CreateVideoPort(self, param0, param1, param2, param3);
     }
     pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.Inline) HRESULT {
-        return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).EnumVideoPorts(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1, param2, param3);
+        return self.vtable.EnumVideoPorts(self, param0, param1, param2, param3);
     }
     pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.Inline) HRESULT {
-        return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).GetVideoPortConnectInfo(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, pcInfo, param2);
+        return self.vtable.GetVideoPortConnectInfo(self, param0, pcInfo, param2);
     }
     pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).QueryVideoPortStatus(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1);
+        return self.vtable.QueryVideoPortStatus(self, param0, param1);
     }
 };
 
@@ -5523,46 +5523,46 @@ pub const IDirectDrawVideoPort = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Flip(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1);
+        return self.vtable.Flip(self, param0, param1);
     }
     pub fn GetBandwidthInfo(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetBandwidthInfo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1, param2, param3, param4);
+        return self.vtable.GetBandwidthInfo(self, param0, param1, param2, param3, param4);
     }
     pub fn GetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetColorControls(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.GetColorControls(self, param0);
     }
     pub fn GetInputFormats(self: *const IDirectDrawVideoPort, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetInputFormats(@as(*const IDirectDrawVideoPort, @ptrCast(self)), lpNumFormats, param1, param2);
+        return self.vtable.GetInputFormats(self, lpNumFormats, param1, param2);
     }
     pub fn GetOutputFormats(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetOutputFormats(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, lpNumFormats, param2, param3);
+        return self.vtable.GetOutputFormats(self, param0, lpNumFormats, param2, param3);
     }
     pub fn GetFieldPolarity(self: *const IDirectDrawVideoPort, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetFieldPolarity(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.GetFieldPolarity(self, param0);
     }
     pub fn GetVideoLine(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetVideoLine(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.GetVideoLine(self, param0);
     }
     pub fn GetVideoSignalStatus(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetVideoSignalStatus(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.GetVideoSignalStatus(self, param0);
     }
     pub fn SetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).SetColorControls(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.SetColorControls(self, param0);
     }
     pub fn SetTargetSurface(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).SetTargetSurface(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1);
+        return self.vtable.SetTargetSurface(self, param0, param1);
     }
     pub fn StartVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).StartVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.StartVideo(self, param0);
     }
     pub fn StopVideo(self: *const IDirectDrawVideoPort) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).StopVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)));
+        return self.vtable.StopVideo(self);
     }
     pub fn UpdateVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
+        return self.vtable.UpdateVideo(self, param0);
     }
     pub fn WaitForSync(self: *const IDirectDrawVideoPort, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).WaitForSync(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1, param2);
+        return self.vtable.WaitForSync(self, param0, param1, param2);
     }
 };
 
@@ -5596,10 +5596,10 @@ pub const IDirectDrawVideoPortNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AcquireNotification(self: *const IDirectDrawVideoPortNotify, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPortNotify.VTable, @ptrCast(self.vtable)).AcquireNotification(@as(*const IDirectDrawVideoPortNotify, @ptrCast(self)), param0, param1);
+        return self.vtable.AcquireNotification(self, param0, param1);
     }
     pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawVideoPortNotify.VTable, @ptrCast(self.vtable)).ReleaseNotification(@as(*const IDirectDrawVideoPortNotify, @ptrCast(self)), param0);
+        return self.vtable.ReleaseNotification(self, param0);
     }
 };
 
@@ -5727,13 +5727,13 @@ pub const IDirectDrawKernel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawKernel, @ptrCast(self)), param0);
+        return self.vtable.GetCaps(self, param0);
     }
     pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).GetKernelHandle(@as(*const IDirectDrawKernel, @ptrCast(self)), param0);
+        return self.vtable.GetKernelHandle(self, param0);
     }
     pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).ReleaseKernelHandle(@as(*const IDirectDrawKernel, @ptrCast(self)));
+        return self.vtable.ReleaseKernelHandle(self);
     }
 };
 
@@ -5765,10 +5765,10 @@ pub const IDirectDrawSurfaceKernel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurfaceKernel.VTable, @ptrCast(self.vtable)).GetKernelHandle(@as(*const IDirectDrawSurfaceKernel, @ptrCast(self)), param0);
+        return self.vtable.GetKernelHandle(self, param0);
     }
     pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.Inline) HRESULT {
-        return @as(*const IDirectDrawSurfaceKernel.VTable, @ptrCast(self.vtable)).ReleaseKernelHandle(@as(*const IDirectDrawSurfaceKernel, @ptrCast(self)));
+        return self.vtable.ReleaseKernelHandle(self);
     }
 };
 

@@ -1137,16 +1137,16 @@ pub const IWSMan = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn CreateSession(self: *const IWSMan, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IWSMan, @ptrCast(self)), connection, flags, connectionOptions, session);
+        return self.vtable.CreateSession(self, connection, flags, connectionOptions, session);
     }
     pub fn CreateConnectionOptions(self: *const IWSMan, connectionOptions: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).CreateConnectionOptions(@as(*const IWSMan, @ptrCast(self)), connectionOptions);
+        return self.vtable.CreateConnectionOptions(self, connectionOptions);
     }
     pub fn get_CommandLine(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).get_CommandLine(@as(*const IWSMan, @ptrCast(self)), value);
+        return self.vtable.get_CommandLine(self, value);
     }
     pub fn get_Error(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSMan, @ptrCast(self)), value);
+        return self.vtable.get_Error(self, value);
     }
 };
 
@@ -1326,64 +1326,64 @@ pub const IWSManEx = extern union {
     };}
     pub usingnamespace IWSMan.MethodMixin(@This());
     pub fn CreateResourceLocator(self: *const IWSManEx, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).CreateResourceLocator(@as(*const IWSManEx, @ptrCast(self)), strResourceLocator, newResourceLocator);
+        return self.vtable.CreateResourceLocator(self, strResourceLocator, newResourceLocator);
     }
     pub fn SessionFlagUTF8(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUTF8(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUTF8(self, flags);
     }
     pub fn SessionFlagCredUsernamePassword(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagCredUsernamePassword(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagCredUsernamePassword(self, flags);
     }
     pub fn SessionFlagSkipCACheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagSkipCACheck(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagSkipCACheck(self, flags);
     }
     pub fn SessionFlagSkipCNCheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagSkipCNCheck(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagSkipCNCheck(self, flags);
     }
     pub fn SessionFlagUseDigest(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseDigest(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseDigest(self, flags);
     }
     pub fn SessionFlagUseNegotiate(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseNegotiate(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseNegotiate(self, flags);
     }
     pub fn SessionFlagUseBasic(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseBasic(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseBasic(self, flags);
     }
     pub fn SessionFlagUseKerberos(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseKerberos(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseKerberos(self, flags);
     }
     pub fn SessionFlagNoEncryption(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagNoEncryption(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagNoEncryption(self, flags);
     }
     pub fn SessionFlagEnableSPNServerPort(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagEnableSPNServerPort(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagEnableSPNServerPort(self, flags);
     }
     pub fn SessionFlagUseNoAuthentication(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseNoAuthentication(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseNoAuthentication(self, flags);
     }
     pub fn EnumerationFlagNonXmlText(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagNonXmlText(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagNonXmlText(self, flags);
     }
     pub fn EnumerationFlagReturnEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnEPR(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagReturnEPR(self, flags);
     }
     pub fn EnumerationFlagReturnObjectAndEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnObjectAndEPR(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagReturnObjectAndEPR(self, flags);
     }
     pub fn GetErrorMessage(self: *const IWSManEx, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).GetErrorMessage(@as(*const IWSManEx, @ptrCast(self)), errorNumber, errorMessage);
+        return self.vtable.GetErrorMessage(self, errorNumber, errorMessage);
     }
     pub fn EnumerationFlagHierarchyDeep(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyDeep(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagHierarchyDeep(self, flags);
     }
     pub fn EnumerationFlagHierarchyShallow(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyShallow(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagHierarchyShallow(self, flags);
     }
     pub fn EnumerationFlagHierarchyDeepBasePropsOnly(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyDeepBasePropsOnly(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagHierarchyDeepBasePropsOnly(self, flags);
     }
     pub fn EnumerationFlagReturnObject(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnObject(@as(*const IWSManEx, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagReturnObject(self, flags);
     }
 };
 
@@ -1409,7 +1409,7 @@ pub const IWSManEx2 = extern union {
     };}
     pub usingnamespace IWSManEx.MethodMixin(@This());
     pub fn SessionFlagUseClientCertificate(self: *const IWSManEx2, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx2.VTable, @ptrCast(self.vtable)).SessionFlagUseClientCertificate(@as(*const IWSManEx2, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseClientCertificate(self, flags);
     }
 };
 
@@ -1483,25 +1483,25 @@ pub const IWSManEx3 = extern union {
     };}
     pub usingnamespace IWSManEx2.MethodMixin(@This());
     pub fn SessionFlagUTF16(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUTF16(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUTF16(self, flags);
     }
     pub fn SessionFlagUseCredSsp(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUseCredSsp(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseCredSsp(self, flags);
     }
     pub fn EnumerationFlagAssociationInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).EnumerationFlagAssociationInstance(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagAssociationInstance(self, flags);
     }
     pub fn EnumerationFlagAssociatedInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).EnumerationFlagAssociatedInstance(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.EnumerationFlagAssociatedInstance(self, flags);
     }
     pub fn SessionFlagSkipRevocationCheck(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagSkipRevocationCheck(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagSkipRevocationCheck(self, flags);
     }
     pub fn SessionFlagAllowNegotiateImplicitCredentials(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagAllowNegotiateImplicitCredentials(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagAllowNegotiateImplicitCredentials(self, flags);
     }
     pub fn SessionFlagUseSsl(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUseSsl(@as(*const IWSManEx3, @ptrCast(self)), flags);
+        return self.vtable.SessionFlagUseSsl(self, flags);
     }
 };
 
@@ -1546,13 +1546,13 @@ pub const IWSManConnectionOptions = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_UserName(self: *const IWSManConnectionOptions, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IWSManConnectionOptions, @ptrCast(self)), name);
+        return self.vtable.get_UserName(self, name);
     }
     pub fn put_UserName(self: *const IWSManConnectionOptions, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).put_UserName(@as(*const IWSManConnectionOptions, @ptrCast(self)), name);
+        return self.vtable.put_UserName(self, name);
     }
     pub fn put_Password(self: *const IWSManConnectionOptions, password: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).put_Password(@as(*const IWSManConnectionOptions, @ptrCast(self)), password);
+        return self.vtable.put_Password(self, password);
     }
 };
 
@@ -1588,10 +1588,10 @@ pub const IWSManConnectionOptionsEx = extern union {
     };}
     pub usingnamespace IWSManConnectionOptions.MethodMixin(@This());
     pub fn get_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx.VTable, @ptrCast(self.vtable)).get_CertificateThumbprint(@as(*const IWSManConnectionOptionsEx, @ptrCast(self)), thumbprint);
+        return self.vtable.get_CertificateThumbprint(self, thumbprint);
     }
     pub fn put_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx.VTable, @ptrCast(self.vtable)).put_CertificateThumbprint(@as(*const IWSManConnectionOptionsEx, @ptrCast(self)), thumbprint);
+        return self.vtable.put_CertificateThumbprint(self, thumbprint);
     }
 };
 
@@ -1676,28 +1676,28 @@ pub const IWSManConnectionOptionsEx2 = extern union {
     };}
     pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(@This());
     pub fn SetProxy(self: *const IWSManConnectionOptionsEx2, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).SetProxy(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), accessType, authenticationMechanism, userName, password);
+        return self.vtable.SetProxy(self, accessType, authenticationMechanism, userName, password);
     }
     pub fn ProxyIEConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyIEConfig(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyIEConfig(self, value);
     }
     pub fn ProxyWinHttpConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyWinHttpConfig(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyWinHttpConfig(self, value);
     }
     pub fn ProxyAutoDetect(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAutoDetect(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyAutoDetect(self, value);
     }
     pub fn ProxyNoProxyServer(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyNoProxyServer(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyNoProxyServer(self, value);
     }
     pub fn ProxyAuthenticationUseNegotiate(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseNegotiate(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyAuthenticationUseNegotiate(self, value);
     }
     pub fn ProxyAuthenticationUseBasic(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseBasic(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyAuthenticationUseBasic(self, value);
     }
     pub fn ProxyAuthenticationUseDigest(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseDigest(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
+        return self.vtable.ProxyAuthenticationUseDigest(self, value);
     }
 };
 
@@ -1834,40 +1834,40 @@ pub const IWSManSession = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Get(self: *const IWSManSession, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Get(@as(*const IWSManSession, @ptrCast(self)), resourceUri, flags, resource);
+        return self.vtable.Get(self, resourceUri, flags, resource);
     }
     pub fn Put(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Put(@as(*const IWSManSession, @ptrCast(self)), resourceUri, resource, flags, resultResource);
+        return self.vtable.Put(self, resourceUri, resource, flags, resultResource);
     }
     pub fn Create(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Create(@as(*const IWSManSession, @ptrCast(self)), resourceUri, resource, flags, newUri);
+        return self.vtable.Create(self, resourceUri, resource, flags, newUri);
     }
     pub fn Delete(self: *const IWSManSession, resourceUri: VARIANT, flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWSManSession, @ptrCast(self)), resourceUri, flags);
+        return self.vtable.Delete(self, resourceUri, flags);
     }
     pub fn Invoke(self: *const IWSManSession, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IWSManSession, @ptrCast(self)), actionUri, resourceUri, parameters, flags, result);
+        return self.vtable.Invoke(self, actionUri, resourceUri, parameters, flags, result);
     }
     pub fn Enumerate(self: *const IWSManSession, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Enumerate(@as(*const IWSManSession, @ptrCast(self)), resourceUri, filter, dialect, flags, resultSet);
+        return self.vtable.Enumerate(self, resourceUri, filter, dialect, flags, resultSet);
     }
     pub fn Identify(self: *const IWSManSession, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Identify(@as(*const IWSManSession, @ptrCast(self)), flags, result);
+        return self.vtable.Identify(self, flags, result);
     }
     pub fn get_Error(self: *const IWSManSession, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManSession, @ptrCast(self)), value);
+        return self.vtable.get_Error(self, value);
     }
     pub fn get_BatchItems(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_BatchItems(@as(*const IWSManSession, @ptrCast(self)), value);
+        return self.vtable.get_BatchItems(self, value);
     }
     pub fn put_BatchItems(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).put_BatchItems(@as(*const IWSManSession, @ptrCast(self)), value);
+        return self.vtable.put_BatchItems(self, value);
     }
     pub fn get_Timeout(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_Timeout(@as(*const IWSManSession, @ptrCast(self)), value);
+        return self.vtable.get_Timeout(self, value);
     }
     pub fn put_Timeout(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).put_Timeout(@as(*const IWSManSession, @ptrCast(self)), value);
+        return self.vtable.put_Timeout(self, value);
     }
 };
 
@@ -1911,13 +1911,13 @@ pub const IWSManEnumerator = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).ReadItem(@as(*const IWSManEnumerator, @ptrCast(self)), resource);
+        return self.vtable.ReadItem(self, resource);
     }
     pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).get_AtEndOfStream(@as(*const IWSManEnumerator, @ptrCast(self)), eos);
+        return self.vtable.get_AtEndOfStream(self, eos);
     }
     pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManEnumerator, @ptrCast(self)), value);
+        return self.vtable.get_Error(self, value);
     }
 };
 
@@ -2049,43 +2049,43 @@ pub const IWSManResourceLocator = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_ResourceURI(self: *const IWSManResourceLocator, uri: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_ResourceURI(@as(*const IWSManResourceLocator, @ptrCast(self)), uri);
+        return self.vtable.put_ResourceURI(self, uri);
     }
     pub fn get_ResourceURI(self: *const IWSManResourceLocator, uri: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_ResourceURI(@as(*const IWSManResourceLocator, @ptrCast(self)), uri);
+        return self.vtable.get_ResourceURI(self, uri);
     }
     pub fn AddSelector(self: *const IWSManResourceLocator, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).AddSelector(@as(*const IWSManResourceLocator, @ptrCast(self)), resourceSelName, selValue);
+        return self.vtable.AddSelector(self, resourceSelName, selValue);
     }
     pub fn ClearSelectors(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).ClearSelectors(@as(*const IWSManResourceLocator, @ptrCast(self)));
+        return self.vtable.ClearSelectors(self);
     }
     pub fn get_FragmentPath(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_FragmentPath(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
+        return self.vtable.get_FragmentPath(self, text);
     }
     pub fn put_FragmentPath(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_FragmentPath(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
+        return self.vtable.put_FragmentPath(self, text);
     }
     pub fn get_FragmentDialect(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_FragmentDialect(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
+        return self.vtable.get_FragmentDialect(self, text);
     }
     pub fn put_FragmentDialect(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_FragmentDialect(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
+        return self.vtable.put_FragmentDialect(self, text);
     }
     pub fn AddOption(self: *const IWSManResourceLocator, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).AddOption(@as(*const IWSManResourceLocator, @ptrCast(self)), OptionName, OptionValue, mustComply);
+        return self.vtable.AddOption(self, OptionName, OptionValue, mustComply);
     }
     pub fn put_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_MustUnderstandOptions(@as(*const IWSManResourceLocator, @ptrCast(self)), mustUnderstand);
+        return self.vtable.put_MustUnderstandOptions(self, mustUnderstand);
     }
     pub fn get_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_MustUnderstandOptions(@as(*const IWSManResourceLocator, @ptrCast(self)), mustUnderstand);
+        return self.vtable.get_MustUnderstandOptions(self, mustUnderstand);
     }
     pub fn ClearOptions(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).ClearOptions(@as(*const IWSManResourceLocator, @ptrCast(self)));
+        return self.vtable.ClearOptions(self);
     }
     pub fn get_Error(self: *const IWSManResourceLocator, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManResourceLocator, @ptrCast(self)), value);
+        return self.vtable.get_Error(self, value);
     }
 };
 
@@ -2127,7 +2127,7 @@ pub const IWSManInternal = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn ConfigSDDL(self: *const IWSManInternal, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSManInternal.VTable, @ptrCast(self.vtable)).ConfigSDDL(@as(*const IWSManInternal, @ptrCast(self)), session, resourceUri, flags, resource);
+        return self.vtable.ConfigSDDL(self, session, resourceUri, flags, resource);
     }
 };
 

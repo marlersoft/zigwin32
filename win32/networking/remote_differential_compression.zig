@@ -240,16 +240,16 @@ pub const IRdcGeneratorParameters = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGeneratorParametersType(self: *const IRdcGeneratorParameters, parametersType: ?*GeneratorParametersType) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetGeneratorParametersType(@as(*const IRdcGeneratorParameters, @ptrCast(self)), parametersType);
+        return self.vtable.GetGeneratorParametersType(self, parametersType);
     }
     pub fn GetParametersVersion(self: *const IRdcGeneratorParameters, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetParametersVersion(@as(*const IRdcGeneratorParameters, @ptrCast(self)), currentVersion, minimumCompatibleAppVersion);
+        return self.vtable.GetParametersVersion(self, currentVersion, minimumCompatibleAppVersion);
     }
     pub fn GetSerializeSize(self: *const IRdcGeneratorParameters, size: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetSerializeSize(@as(*const IRdcGeneratorParameters, @ptrCast(self)), size);
+        return self.vtable.GetSerializeSize(self, size);
     }
     pub fn Serialize(self: *const IRdcGeneratorParameters, size: u32, parametersBlob: ?*u8, bytesWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IRdcGeneratorParameters, @ptrCast(self)), size, parametersBlob, bytesWritten);
+        return self.vtable.Serialize(self, size, parametersBlob, bytesWritten);
     }
 };
 
@@ -299,16 +299,16 @@ pub const IRdcGeneratorFilterMaxParameters = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).GetHorizonSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), horizonSize);
+        return self.vtable.GetHorizonSize(self, horizonSize);
     }
     pub fn SetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).SetHorizonSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), horizonSize);
+        return self.vtable.SetHorizonSize(self, horizonSize);
     }
     pub fn GetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).GetHashWindowSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), hashWindowSize);
+        return self.vtable.GetHashWindowSize(self, hashWindowSize);
     }
     pub fn SetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).SetHashWindowSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), hashWindowSize);
+        return self.vtable.SetHashWindowSize(self, hashWindowSize);
     }
 };
 
@@ -348,10 +348,10 @@ pub const IRdcGenerator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGeneratorParameters(self: *const IRdcGenerator, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGenerator.VTable, @ptrCast(self.vtable)).GetGeneratorParameters(@as(*const IRdcGenerator, @ptrCast(self)), level, iGeneratorParameters);
+        return self.vtable.GetGeneratorParameters(self, level, iGeneratorParameters);
     }
     pub fn Process(self: *const IRdcGenerator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, depth: u32, outputBuffers: [*]?*RdcBufferPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-        return @as(*const IRdcGenerator.VTable, @ptrCast(self.vtable)).Process(@as(*const IRdcGenerator, @ptrCast(self)), endOfInput, endOfOutput, inputBuffer, depth, outputBuffers, rdc_ErrorCode);
+        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, depth, outputBuffers, rdc_ErrorCode);
     }
 };
 
@@ -397,13 +397,13 @@ pub const IRdcFileReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFileSize(self: *const IRdcFileReader, fileSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IRdcFileReader, @ptrCast(self)), fileSize);
+        return self.vtable.GetFileSize(self, fileSize);
     }
     pub fn Read(self: *const IRdcFileReader, offsetFileStart: u64, bytesToRead: u32, bytesActuallyRead: ?*u32, buffer: ?*u8, eof: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).Read(@as(*const IRdcFileReader, @ptrCast(self)), offsetFileStart, bytesToRead, bytesActuallyRead, buffer, eof);
+        return self.vtable.Read(self, offsetFileStart, bytesToRead, bytesActuallyRead, buffer, eof);
     }
     pub fn GetFilePosition(self: *const IRdcFileReader, offsetFromStart: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).GetFilePosition(@as(*const IRdcFileReader, @ptrCast(self)), offsetFromStart);
+        return self.vtable.GetFilePosition(self, offsetFromStart);
     }
 };
 
@@ -445,13 +445,13 @@ pub const IRdcFileWriter = extern union {
     };}
     pub usingnamespace IRdcFileReader.MethodMixin(@This());
     pub fn Write(self: *const IRdcFileWriter, offsetFileStart: u64, bytesToWrite: u32, buffer: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).Write(@as(*const IRdcFileWriter, @ptrCast(self)), offsetFileStart, bytesToWrite, buffer);
+        return self.vtable.Write(self, offsetFileStart, bytesToWrite, buffer);
     }
     pub fn Truncate(self: *const IRdcFileWriter) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).Truncate(@as(*const IRdcFileWriter, @ptrCast(self)));
+        return self.vtable.Truncate(self);
     }
     pub fn DeleteOnClose(self: *const IRdcFileWriter) callconv(.Inline) HRESULT {
-        return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).DeleteOnClose(@as(*const IRdcFileWriter, @ptrCast(self)));
+        return self.vtable.DeleteOnClose(self);
     }
 };
 
@@ -486,10 +486,10 @@ pub const IRdcSignatureReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReadHeader(self: *const IRdcSignatureReader, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-        return @as(*const IRdcSignatureReader.VTable, @ptrCast(self.vtable)).ReadHeader(@as(*const IRdcSignatureReader, @ptrCast(self)), rdc_ErrorCode);
+        return self.vtable.ReadHeader(self, rdc_ErrorCode);
     }
     pub fn ReadSignatures(self: *const IRdcSignatureReader, rdcSignaturePointer: ?*RdcSignaturePointer, endOfOutput: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRdcSignatureReader.VTable, @ptrCast(self.vtable)).ReadSignatures(@as(*const IRdcSignatureReader, @ptrCast(self)), rdcSignaturePointer, endOfOutput);
+        return self.vtable.ReadSignatures(self, rdcSignaturePointer, endOfOutput);
     }
 };
 
@@ -519,7 +519,7 @@ pub const IRdcComparator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Process(self: *const IRdcComparator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, outputBuffer: ?*RdcNeedPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-        return @as(*const IRdcComparator.VTable, @ptrCast(self.vtable)).Process(@as(*const IRdcComparator, @ptrCast(self)), endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
+        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
     }
 };
 
@@ -604,25 +604,25 @@ pub const IRdcLibrary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ComputeDefaultRecursionDepth(self: *const IRdcLibrary, fileSize: u64, depth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).ComputeDefaultRecursionDepth(@as(*const IRdcLibrary, @ptrCast(self)), fileSize, depth);
+        return self.vtable.ComputeDefaultRecursionDepth(self, fileSize, depth);
     }
     pub fn CreateGeneratorParameters(self: *const IRdcLibrary, parametersType: GeneratorParametersType, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateGeneratorParameters(@as(*const IRdcLibrary, @ptrCast(self)), parametersType, level, iGeneratorParameters);
+        return self.vtable.CreateGeneratorParameters(self, parametersType, level, iGeneratorParameters);
     }
     pub fn OpenGeneratorParameters(self: *const IRdcLibrary, size: u32, parametersBlob: ?*const u8, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).OpenGeneratorParameters(@as(*const IRdcLibrary, @ptrCast(self)), size, parametersBlob, iGeneratorParameters);
+        return self.vtable.OpenGeneratorParameters(self, size, parametersBlob, iGeneratorParameters);
     }
     pub fn CreateGenerator(self: *const IRdcLibrary, depth: u32, iGeneratorParametersArray: [*]?*IRdcGeneratorParameters, iGenerator: ?*?*IRdcGenerator) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateGenerator(@as(*const IRdcLibrary, @ptrCast(self)), depth, iGeneratorParametersArray, iGenerator);
+        return self.vtable.CreateGenerator(self, depth, iGeneratorParametersArray, iGenerator);
     }
     pub fn CreateComparator(self: *const IRdcLibrary, iSeedSignaturesFile: ?*IRdcFileReader, comparatorBufferSize: u32, iComparator: ?*?*IRdcComparator) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateComparator(@as(*const IRdcLibrary, @ptrCast(self)), iSeedSignaturesFile, comparatorBufferSize, iComparator);
+        return self.vtable.CreateComparator(self, iSeedSignaturesFile, comparatorBufferSize, iComparator);
     }
     pub fn CreateSignatureReader(self: *const IRdcLibrary, iFileReader: ?*IRdcFileReader, iSignatureReader: ?*?*IRdcSignatureReader) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateSignatureReader(@as(*const IRdcLibrary, @ptrCast(self)), iFileReader, iSignatureReader);
+        return self.vtable.CreateSignatureReader(self, iFileReader, iSignatureReader);
     }
     pub fn GetRDCVersion(self: *const IRdcLibrary, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).GetRDCVersion(@as(*const IRdcLibrary, @ptrCast(self)), currentVersion, minimumCompatibleAppVersion);
+        return self.vtable.GetRDCVersion(self, currentVersion, minimumCompatibleAppVersion);
     }
 };
 
@@ -648,7 +648,7 @@ pub const ISimilarityReportProgress = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReportProgress(self: *const ISimilarityReportProgress, percentCompleted: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityReportProgress.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const ISimilarityReportProgress, @ptrCast(self)), percentCompleted);
+        return self.vtable.ReportProgress(self, percentCompleted);
     }
 };
 
@@ -677,7 +677,7 @@ pub const ISimilarityTableDumpState = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextData(self: *const ISimilarityTableDumpState, resultsSize: u32, resultsUsed: ?*u32, eof: ?*BOOL, results: ?*SimilarityDumpData) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTableDumpState.VTable, @ptrCast(self.vtable)).GetNextData(@as(*const ISimilarityTableDumpState, @ptrCast(self)), resultsSize, resultsUsed, eof, results);
+        return self.vtable.GetNextData(self, resultsSize, resultsUsed, eof, results);
     }
 };
 
@@ -729,16 +729,16 @@ pub const ISimilarityTraitsMappedView = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Flush(self: *const ISimilarityTraitsMappedView) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Flush(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
     pub fn Unmap(self: *const ISimilarityTraitsMappedView) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)));
+        return self.vtable.Unmap(self);
     }
     pub fn Get(self: *const ISimilarityTraitsMappedView, index: u64, dirty: BOOL, numElements: u32, viewInfo: ?*SimilarityMappedViewInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Get(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)), index, dirty, numElements, viewInfo);
+        return self.vtable.Get(self, index, dirty, numElements, viewInfo);
     }
     pub fn GetView(self: *const ISimilarityTraitsMappedView, mappedPageBegin: ?*const ?*u8, mappedPageEnd: ?*const ?*u8) callconv(.Inline) void {
-        return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).GetView(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)), mappedPageBegin, mappedPageEnd);
+        return self.vtable.GetView(self, mappedPageBegin, mappedPageEnd);
     }
 };
 
@@ -819,25 +819,25 @@ pub const ISimilarityTraitsMapping = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CloseMapping(self: *const ISimilarityTraitsMapping) callconv(.Inline) void {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).CloseMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)));
+        return self.vtable.CloseMapping(self);
     }
     pub fn SetFileSize(self: *const ISimilarityTraitsMapping, fileSize: u64) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).SetFileSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), fileSize);
+        return self.vtable.SetFileSize(self, fileSize);
     }
     pub fn GetFileSize(self: *const ISimilarityTraitsMapping, fileSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), fileSize);
+        return self.vtable.GetFileSize(self, fileSize);
     }
     pub fn OpenMapping(self: *const ISimilarityTraitsMapping, accessMode: RdcMappingAccessMode, begin: u64, end: u64, actualEnd: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).OpenMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), accessMode, begin, end, actualEnd);
+        return self.vtable.OpenMapping(self, accessMode, begin, end, actualEnd);
     }
     pub fn ResizeMapping(self: *const ISimilarityTraitsMapping, accessMode: RdcMappingAccessMode, begin: u64, end: u64, actualEnd: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).ResizeMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), accessMode, begin, end, actualEnd);
+        return self.vtable.ResizeMapping(self, accessMode, begin, end, actualEnd);
     }
     pub fn GetPageSize(self: *const ISimilarityTraitsMapping, pageSize: ?*u32) callconv(.Inline) void {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).GetPageSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), pageSize);
+        return self.vtable.GetPageSize(self, pageSize);
     }
     pub fn CreateView(self: *const ISimilarityTraitsMapping, minimumMappedPages: u32, accessMode: RdcMappingAccessMode, mappedView: ?*?*ISimilarityTraitsMappedView) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).CreateView(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), minimumMappedPages, accessMode, mappedView);
+        return self.vtable.CreateView(self, minimumMappedPages, accessMode, mappedView);
     }
 };
 
@@ -921,25 +921,25 @@ pub const ISimilarityTraitsTable = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarityTraitsTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarityTraitsTable, @ptrCast(self)), path, truncate, securityDescriptor, isNew);
+        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarityTraitsTable, mapping: ?*ISimilarityTraitsMapping, truncate: BOOL, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarityTraitsTable, @ptrCast(self)), mapping, truncate, isNew);
+        return self.vtable.CreateTableIndirect(self, mapping, truncate, isNew);
     }
     pub fn CloseTable(self: *const ISimilarityTraitsTable, isValid: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarityTraitsTable, @ptrCast(self)), isValid);
+        return self.vtable.CloseTable(self, isValid);
     }
     pub fn Append(self: *const ISimilarityTraitsTable, data: ?*SimilarityData, fileIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarityTraitsTable, @ptrCast(self)), data, fileIndex);
+        return self.vtable.Append(self, data, fileIndex);
     }
     pub fn FindSimilarFileIndex(self: *const ISimilarityTraitsTable, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, findSimilarFileIndexResults: ?*FindSimilarFileIndexResults, resultsSize: u32, resultsUsed: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).FindSimilarFileIndex(@as(*const ISimilarityTraitsTable, @ptrCast(self)), similarityData, numberOfMatchesRequired, findSimilarFileIndexResults, resultsSize, resultsUsed);
+        return self.vtable.FindSimilarFileIndex(self, similarityData, numberOfMatchesRequired, findSimilarFileIndexResults, resultsSize, resultsUsed);
     }
     pub fn BeginDump(self: *const ISimilarityTraitsTable, similarityTableDumpState: ?*?*ISimilarityTableDumpState) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).BeginDump(@as(*const ISimilarityTraitsTable, @ptrCast(self)), similarityTableDumpState);
+        return self.vtable.BeginDump(self, similarityTableDumpState);
     }
     pub fn GetLastIndex(self: *const ISimilarityTraitsTable, fileIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).GetLastIndex(@as(*const ISimilarityTraitsTable, @ptrCast(self)), fileIndex);
+        return self.vtable.GetLastIndex(self, fileIndex);
     }
 };
 
@@ -1022,25 +1022,25 @@ pub const ISimilarityFileIdTable = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarityFileIdTable, @ptrCast(self)), path, truncate, securityDescriptor, recordSize, isNew);
+        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarityFileIdTable, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarityFileIdTable, @ptrCast(self)), fileIdFile, truncate, recordSize, isNew);
+        return self.vtable.CreateTableIndirect(self, fileIdFile, truncate, recordSize, isNew);
     }
     pub fn CloseTable(self: *const ISimilarityFileIdTable, isValid: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarityFileIdTable, @ptrCast(self)), isValid);
+        return self.vtable.CloseTable(self, isValid);
     }
     pub fn Append(self: *const ISimilarityFileIdTable, similarityFileId: ?*SimilarityFileId, similarityFileIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileId, similarityFileIndex);
+        return self.vtable.Append(self, similarityFileId, similarityFileIndex);
     }
     pub fn Lookup(self: *const ISimilarityFileIdTable, similarityFileIndex: u32, similarityFileId: ?*SimilarityFileId) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Lookup(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileIndex, similarityFileId);
+        return self.vtable.Lookup(self, similarityFileIndex, similarityFileId);
     }
     pub fn Invalidate(self: *const ISimilarityFileIdTable, similarityFileIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileIndex);
+        return self.vtable.Invalidate(self, similarityFileIndex);
     }
     pub fn GetRecordCount(self: *const ISimilarityFileIdTable, recordCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const ISimilarityFileIdTable, @ptrCast(self)), recordCount);
+        return self.vtable.GetRecordCount(self, recordCount);
     }
 };
 
@@ -1073,10 +1073,10 @@ pub const IRdcSimilarityGenerator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableSimilarity(self: *const IRdcSimilarityGenerator) callconv(.Inline) HRESULT {
-        return @as(*const IRdcSimilarityGenerator.VTable, @ptrCast(self.vtable)).EnableSimilarity(@as(*const IRdcSimilarityGenerator, @ptrCast(self)));
+        return self.vtable.EnableSimilarity(self);
     }
     pub fn Results(self: *const IRdcSimilarityGenerator, similarityData: ?*SimilarityData) callconv(.Inline) HRESULT {
-        return @as(*const IRdcSimilarityGenerator.VTable, @ptrCast(self.vtable)).Results(@as(*const IRdcSimilarityGenerator, @ptrCast(self)), similarityData);
+        return self.vtable.Results(self, similarityData);
     }
 };
 
@@ -1111,10 +1111,10 @@ pub const IFindSimilarResults = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSize(self: *const IFindSimilarResults, size: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFindSimilarResults.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IFindSimilarResults, @ptrCast(self)), size);
+        return self.vtable.GetSize(self, size);
     }
     pub fn GetNextFileId(self: *const IFindSimilarResults, numTraitsMatched: ?*u32, similarityFileId: ?*SimilarityFileId) callconv(.Inline) HRESULT {
-        return @as(*const IFindSimilarResults.VTable, @ptrCast(self.vtable)).GetNextFileId(@as(*const IFindSimilarResults, @ptrCast(self)), numTraitsMatched, similarityFileId);
+        return self.vtable.GetNextFileId(self, numTraitsMatched, similarityFileId);
     }
 };
 
@@ -1201,25 +1201,25 @@ pub const ISimilarity = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarity, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarity, @ptrCast(self)), path, truncate, securityDescriptor, recordSize, isNew);
+        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarity, mapping: ?*ISimilarityTraitsMapping, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarity, @ptrCast(self)), mapping, fileIdFile, truncate, recordSize, isNew);
+        return self.vtable.CreateTableIndirect(self, mapping, fileIdFile, truncate, recordSize, isNew);
     }
     pub fn CloseTable(self: *const ISimilarity, isValid: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarity, @ptrCast(self)), isValid);
+        return self.vtable.CloseTable(self, isValid);
     }
     pub fn Append(self: *const ISimilarity, similarityFileId: ?*SimilarityFileId, similarityData: ?*SimilarityData) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarity, @ptrCast(self)), similarityFileId, similarityData);
+        return self.vtable.Append(self, similarityFileId, similarityData);
     }
     pub fn FindSimilarFileId(self: *const ISimilarity, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, resultsSize: u32, findSimilarResults: ?*?*IFindSimilarResults) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).FindSimilarFileId(@as(*const ISimilarity, @ptrCast(self)), similarityData, numberOfMatchesRequired, resultsSize, findSimilarResults);
+        return self.vtable.FindSimilarFileId(self, similarityData, numberOfMatchesRequired, resultsSize, findSimilarResults);
     }
     pub fn CopyAndSwap(self: *const ISimilarity, newSimilarityTables: ?*ISimilarity, reportProgress: ?*ISimilarityReportProgress) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CopyAndSwap(@as(*const ISimilarity, @ptrCast(self)), newSimilarityTables, reportProgress);
+        return self.vtable.CopyAndSwap(self, newSimilarityTables, reportProgress);
     }
     pub fn GetRecordCount(self: *const ISimilarity, recordCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const ISimilarity, @ptrCast(self)), recordCount);
+        return self.vtable.GetRecordCount(self, recordCount);
     }
 };
 

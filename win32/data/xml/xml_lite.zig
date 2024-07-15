@@ -493,73 +493,73 @@ pub const IXmlReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInput(self: *const IXmlReader, pInput: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetInput(@as(*const IXmlReader, @ptrCast(self)), pInput);
+        return self.vtable.SetInput(self, pInput);
     }
     pub fn GetProperty(self: *const IXmlReader, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, ppValue);
+        return self.vtable.GetProperty(self, nProperty, ppValue);
     }
     pub fn SetProperty(self: *const IXmlReader, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, pValue);
+        return self.vtable.SetProperty(self, nProperty, pValue);
     }
     pub fn Read(self: *const IXmlReader, pNodeType: ?*XmlNodeType) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).Read(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
+        return self.vtable.Read(self, pNodeType);
     }
     pub fn GetNodeType(self: *const IXmlReader, pNodeType: ?*XmlNodeType) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNodeType(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
+        return self.vtable.GetNodeType(self, pNodeType);
     }
     pub fn MoveToFirstAttribute(self: *const IXmlReader) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToFirstAttribute(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.MoveToFirstAttribute(self);
     }
     pub fn MoveToNextAttribute(self: *const IXmlReader) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToNextAttribute(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.MoveToNextAttribute(self);
     }
     pub fn MoveToAttributeByName(self: *const IXmlReader, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToAttributeByName(@as(*const IXmlReader, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
+        return self.vtable.MoveToAttributeByName(self, pwszLocalName, pwszNamespaceUri);
     }
     pub fn MoveToElement(self: *const IXmlReader) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToElement(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.MoveToElement(self);
     }
     pub fn GetQualifiedName(self: *const IXmlReader, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetQualifiedName(@as(*const IXmlReader, @ptrCast(self)), ppwszQualifiedName, pcwchQualifiedName);
+        return self.vtable.GetQualifiedName(self, ppwszQualifiedName, pcwchQualifiedName);
     }
     pub fn GetNamespaceUri(self: *const IXmlReader, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNamespaceUri(@as(*const IXmlReader, @ptrCast(self)), ppwszNamespaceUri, pcwchNamespaceUri);
+        return self.vtable.GetNamespaceUri(self, ppwszNamespaceUri, pcwchNamespaceUri);
     }
     pub fn GetLocalName(self: *const IXmlReader, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IXmlReader, @ptrCast(self)), ppwszLocalName, pcwchLocalName);
+        return self.vtable.GetLocalName(self, ppwszLocalName, pcwchLocalName);
     }
     pub fn GetPrefix(self: *const IXmlReader, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetPrefix(@as(*const IXmlReader, @ptrCast(self)), ppwszPrefix, pcwchPrefix);
+        return self.vtable.GetPrefix(self, ppwszPrefix, pcwchPrefix);
     }
     pub fn GetValue(self: *const IXmlReader, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IXmlReader, @ptrCast(self)), ppwszValue, pcwchValue);
+        return self.vtable.GetValue(self, ppwszValue, pcwchValue);
     }
     pub fn ReadValueChunk(self: *const IXmlReader, pwchBuffer: [*:0]u16, cwchChunkSize: u32, pcwchRead: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).ReadValueChunk(@as(*const IXmlReader, @ptrCast(self)), pwchBuffer, cwchChunkSize, pcwchRead);
+        return self.vtable.ReadValueChunk(self, pwchBuffer, cwchChunkSize, pcwchRead);
     }
     pub fn GetBaseUri(self: *const IXmlReader, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetBaseUri(@as(*const IXmlReader, @ptrCast(self)), ppwszBaseUri, pcwchBaseUri);
+        return self.vtable.GetBaseUri(self, ppwszBaseUri, pcwchBaseUri);
     }
     pub fn IsDefault(self: *const IXmlReader) callconv(.Inline) BOOL {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsDefault(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.IsDefault(self);
     }
     pub fn IsEmptyElement(self: *const IXmlReader) callconv(.Inline) BOOL {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEmptyElement(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.IsEmptyElement(self);
     }
     pub fn GetLineNumber(self: *const IXmlReader, pnLineNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLineNumber(@as(*const IXmlReader, @ptrCast(self)), pnLineNumber);
+        return self.vtable.GetLineNumber(self, pnLineNumber);
     }
     pub fn GetLinePosition(self: *const IXmlReader, pnLinePosition: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLinePosition(@as(*const IXmlReader, @ptrCast(self)), pnLinePosition);
+        return self.vtable.GetLinePosition(self, pnLinePosition);
     }
     pub fn GetAttributeCount(self: *const IXmlReader, pnAttributeCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetAttributeCount(@as(*const IXmlReader, @ptrCast(self)), pnAttributeCount);
+        return self.vtable.GetAttributeCount(self, pnAttributeCount);
     }
     pub fn GetDepth(self: *const IXmlReader, pnDepth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetDepth(@as(*const IXmlReader, @ptrCast(self)), pnDepth);
+        return self.vtable.GetDepth(self, pnDepth);
     }
     pub fn IsEOF(self: *const IXmlReader) callconv(.Inline) BOOL {
-        return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEOF(@as(*const IXmlReader, @ptrCast(self)));
+        return self.vtable.IsEOF(self);
     }
 };
 
@@ -587,7 +587,7 @@ pub const IXmlResolver = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResolveUri(self: *const IXmlResolver, pwszBaseUri: ?[*:0]const u16, pwszPublicIdentifier: ?[*:0]const u16, pwszSystemIdentifier: ?[*:0]const u16, ppResolvedInput: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IXmlResolver.VTable, @ptrCast(self.vtable)).ResolveUri(@as(*const IXmlResolver, @ptrCast(self)), pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
+        return self.vtable.ResolveUri(self, pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
     }
 };
 
@@ -853,91 +853,91 @@ pub const IXmlWriter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOutput(self: *const IXmlWriter, pOutput: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriter, @ptrCast(self)), pOutput);
+        return self.vtable.SetOutput(self, pOutput);
     }
     pub fn GetProperty(self: *const IXmlWriter, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, ppValue);
+        return self.vtable.GetProperty(self, nProperty, ppValue);
     }
     pub fn SetProperty(self: *const IXmlWriter, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, pValue);
+        return self.vtable.SetProperty(self, nProperty, pValue);
     }
     pub fn WriteAttributes(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteAttributes(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteAttributeString(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+        return self.vtable.WriteAttributeString(self, pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
     }
     pub fn WriteCData(self: *const IXmlWriter, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
+        return self.vtable.WriteCData(self, pwszText);
     }
     pub fn WriteCharEntity(self: *const IXmlWriter, wch: u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wch);
+        return self.vtable.WriteCharEntity(self, wch);
     }
     pub fn WriteChars(self: *const IXmlWriter, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
+        return self.vtable.WriteChars(self, pwch, cwch);
     }
     pub fn WriteComment(self: *const IXmlWriter, pwszComment: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriter, @ptrCast(self)), pwszComment);
+        return self.vtable.WriteComment(self, pwszComment);
     }
     pub fn WriteDocType(self: *const IXmlWriter, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+        return self.vtable.WriteDocType(self, pwszName, pwszPublicId, pwszSystemId, pwszSubset);
     }
     pub fn WriteElementString(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+        return self.vtable.WriteElementString(self, pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
     }
     pub fn WriteEndDocument(self: *const IXmlWriter) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriter, @ptrCast(self)));
+        return self.vtable.WriteEndDocument(self);
     }
     pub fn WriteEndElement(self: *const IXmlWriter) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriter, @ptrCast(self)));
+        return self.vtable.WriteEndElement(self);
     }
     pub fn WriteEntityRef(self: *const IXmlWriter, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
+        return self.vtable.WriteEntityRef(self, pwszName);
     }
     pub fn WriteFullEndElement(self: *const IXmlWriter) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriter, @ptrCast(self)));
+        return self.vtable.WriteFullEndElement(self);
     }
     pub fn WriteName(self: *const IXmlWriter, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
+        return self.vtable.WriteName(self, pwszName);
     }
     pub fn WriteNmToken(self: *const IXmlWriter, pwszNmToken: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriter, @ptrCast(self)), pwszNmToken);
+        return self.vtable.WriteNmToken(self, pwszNmToken);
     }
     pub fn WriteNode(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteNode(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteNodeShallow(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteNodeShallow(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteProcessingInstruction(self: *const IXmlWriter, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszText);
+        return self.vtable.WriteProcessingInstruction(self, pwszName, pwszText);
     }
     pub fn WriteQualifiedName(self: *const IXmlWriter, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteQualifiedName(@as(*const IXmlWriter, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
+        return self.vtable.WriteQualifiedName(self, pwszLocalName, pwszNamespaceUri);
     }
     pub fn WriteRaw(self: *const IXmlWriter, pwszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriter, @ptrCast(self)), pwszData);
+        return self.vtable.WriteRaw(self, pwszData);
     }
     pub fn WriteRawChars(self: *const IXmlWriter, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
+        return self.vtable.WriteRawChars(self, pwch, cwch);
     }
     pub fn WriteStartDocument(self: *const IXmlWriter, standalone: XmlStandalone) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriter, @ptrCast(self)), standalone);
+        return self.vtable.WriteStartDocument(self, standalone);
     }
     pub fn WriteStartElement(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri);
+        return self.vtable.WriteStartElement(self, pwszPrefix, pwszLocalName, pwszNamespaceUri);
     }
     pub fn WriteString(self: *const IXmlWriter, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
+        return self.vtable.WriteString(self, pwszText);
     }
     pub fn WriteSurrogateCharEntity(self: *const IXmlWriter, wchLow: u16, wchHigh: u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wchLow, wchHigh);
+        return self.vtable.WriteSurrogateCharEntity(self, wchLow, wchHigh);
     }
     pub fn WriteWhitespace(self: *const IXmlWriter, pwszWhitespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriter, @ptrCast(self)), pwszWhitespace);
+        return self.vtable.WriteWhitespace(self, pwszWhitespace);
     }
     pub fn Flush(self: *const IXmlWriter) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriter, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 
@@ -1196,88 +1196,88 @@ pub const IXmlWriterLite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOutput(self: *const IXmlWriterLite, pOutput: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriterLite, @ptrCast(self)), pOutput);
+        return self.vtable.SetOutput(self, pOutput);
     }
     pub fn GetProperty(self: *const IXmlWriterLite, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, ppValue);
+        return self.vtable.GetProperty(self, nProperty, ppValue);
     }
     pub fn SetProperty(self: *const IXmlWriterLite, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, pValue);
+        return self.vtable.SetProperty(self, nProperty, pValue);
     }
     pub fn WriteAttributes(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteAttributes(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteAttributeString(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16, cwszValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue, cwszValue);
+        return self.vtable.WriteAttributeString(self, pwszQName, cwszQName, pwszValue, cwszValue);
     }
     pub fn WriteCData(self: *const IXmlWriterLite, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
+        return self.vtable.WriteCData(self, pwszText);
     }
     pub fn WriteCharEntity(self: *const IXmlWriterLite, wch: u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wch);
+        return self.vtable.WriteCharEntity(self, wch);
     }
     pub fn WriteChars(self: *const IXmlWriterLite, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
+        return self.vtable.WriteChars(self, pwch, cwch);
     }
     pub fn WriteComment(self: *const IXmlWriterLite, pwszComment: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriterLite, @ptrCast(self)), pwszComment);
+        return self.vtable.WriteComment(self, pwszComment);
     }
     pub fn WriteDocType(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+        return self.vtable.WriteDocType(self, pwszName, pwszPublicId, pwszSystemId, pwszSubset);
     }
     pub fn WriteElementString(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue);
+        return self.vtable.WriteElementString(self, pwszQName, cwszQName, pwszValue);
     }
     pub fn WriteEndDocument(self: *const IXmlWriterLite) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriterLite, @ptrCast(self)));
+        return self.vtable.WriteEndDocument(self);
     }
     pub fn WriteEndElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
+        return self.vtable.WriteEndElement(self, pwszQName, cwszQName);
     }
     pub fn WriteEntityRef(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
+        return self.vtable.WriteEntityRef(self, pwszName);
     }
     pub fn WriteFullEndElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
+        return self.vtable.WriteFullEndElement(self, pwszQName, cwszQName);
     }
     pub fn WriteName(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
+        return self.vtable.WriteName(self, pwszName);
     }
     pub fn WriteNmToken(self: *const IXmlWriterLite, pwszNmToken: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriterLite, @ptrCast(self)), pwszNmToken);
+        return self.vtable.WriteNmToken(self, pwszNmToken);
     }
     pub fn WriteNode(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteNode(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteNodeShallow(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
+        return self.vtable.WriteNodeShallow(self, pReader, fWriteDefaultAttributes);
     }
     pub fn WriteProcessingInstruction(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszText);
+        return self.vtable.WriteProcessingInstruction(self, pwszName, pwszText);
     }
     pub fn WriteRaw(self: *const IXmlWriterLite, pwszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriterLite, @ptrCast(self)), pwszData);
+        return self.vtable.WriteRaw(self, pwszData);
     }
     pub fn WriteRawChars(self: *const IXmlWriterLite, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
+        return self.vtable.WriteRawChars(self, pwch, cwch);
     }
     pub fn WriteStartDocument(self: *const IXmlWriterLite, standalone: XmlStandalone) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriterLite, @ptrCast(self)), standalone);
+        return self.vtable.WriteStartDocument(self, standalone);
     }
     pub fn WriteStartElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
+        return self.vtable.WriteStartElement(self, pwszQName, cwszQName);
     }
     pub fn WriteString(self: *const IXmlWriterLite, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
+        return self.vtable.WriteString(self, pwszText);
     }
     pub fn WriteSurrogateCharEntity(self: *const IXmlWriterLite, wchLow: u16, wchHigh: u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wchLow, wchHigh);
+        return self.vtable.WriteSurrogateCharEntity(self, wchLow, wchHigh);
     }
     pub fn WriteWhitespace(self: *const IXmlWriterLite, pwszWhitespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriterLite, @ptrCast(self)), pwszWhitespace);
+        return self.vtable.WriteWhitespace(self, pwszWhitespace);
     }
     pub fn Flush(self: *const IXmlWriterLite) callconv(.Inline) HRESULT {
-        return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriterLite, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 

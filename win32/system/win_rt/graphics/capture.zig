@@ -39,10 +39,10 @@ pub const IGraphicsCaptureItemInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateForWindow(self: *const IGraphicsCaptureItemInterop, window: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), window, riid, result);
+        return self.vtable.CreateForWindow(self, window, riid, result);
     }
     pub fn CreateForMonitor(self: *const IGraphicsCaptureItemInterop, monitor: ?HMONITOR, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForMonitor(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), monitor, riid, result);
+        return self.vtable.CreateForMonitor(self, monitor, riid, result);
     }
 };
 

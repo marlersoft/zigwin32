@@ -67,19 +67,19 @@ pub const IHolographicCameraInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateDirect3D12BackBufferResource(self: *const IHolographicCameraInterop, pDevice: ?*ID3D12Device, pTexture2DDesc: ?*D3D12_RESOURCE_DESC, ppCreatedTexture2DResource: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraInterop.VTable, @ptrCast(self.vtable)).CreateDirect3D12BackBufferResource(@as(*const IHolographicCameraInterop, @ptrCast(self)), pDevice, pTexture2DDesc, ppCreatedTexture2DResource);
+        return self.vtable.CreateDirect3D12BackBufferResource(self, pDevice, pTexture2DDesc, ppCreatedTexture2DResource);
     }
     pub fn CreateDirect3D12HardwareProtectedBackBufferResource(self: *const IHolographicCameraInterop, pDevice: ?*ID3D12Device, pTexture2DDesc: ?*D3D12_RESOURCE_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, ppCreatedTexture2DResource: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraInterop.VTable, @ptrCast(self.vtable)).CreateDirect3D12HardwareProtectedBackBufferResource(@as(*const IHolographicCameraInterop, @ptrCast(self)), pDevice, pTexture2DDesc, pProtectedResourceSession, ppCreatedTexture2DResource);
+        return self.vtable.CreateDirect3D12HardwareProtectedBackBufferResource(self, pDevice, pTexture2DDesc, pProtectedResourceSession, ppCreatedTexture2DResource);
     }
     pub fn AcquireDirect3D12BufferResource(self: *const IHolographicCameraInterop, pResourceToAcquire: ?*ID3D12Resource, pCommandQueue: ?*ID3D12CommandQueue) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraInterop.VTable, @ptrCast(self.vtable)).AcquireDirect3D12BufferResource(@as(*const IHolographicCameraInterop, @ptrCast(self)), pResourceToAcquire, pCommandQueue);
+        return self.vtable.AcquireDirect3D12BufferResource(self, pResourceToAcquire, pCommandQueue);
     }
     pub fn AcquireDirect3D12BufferResourceWithTimeout(self: *const IHolographicCameraInterop, pResourceToAcquire: ?*ID3D12Resource, pCommandQueue: ?*ID3D12CommandQueue, duration: u64) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraInterop.VTable, @ptrCast(self.vtable)).AcquireDirect3D12BufferResourceWithTimeout(@as(*const IHolographicCameraInterop, @ptrCast(self)), pResourceToAcquire, pCommandQueue, duration);
+        return self.vtable.AcquireDirect3D12BufferResourceWithTimeout(self, pResourceToAcquire, pCommandQueue, duration);
     }
     pub fn UnacquireDirect3D12BufferResource(self: *const IHolographicCameraInterop, pResourceToUnacquire: ?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraInterop.VTable, @ptrCast(self.vtable)).UnacquireDirect3D12BufferResource(@as(*const IHolographicCameraInterop, @ptrCast(self)), pResourceToUnacquire);
+        return self.vtable.UnacquireDirect3D12BufferResource(self, pResourceToUnacquire);
     }
 };
 
@@ -119,10 +119,10 @@ pub const IHolographicCameraRenderingParametersInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CommitDirect3D12Resource(self: *const IHolographicCameraRenderingParametersInterop, pColorResourceToCommit: ?*ID3D12Resource, pColorResourceFence: ?*ID3D12Fence, colorResourceFenceSignalValue: u64) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraRenderingParametersInterop.VTable, @ptrCast(self.vtable)).CommitDirect3D12Resource(@as(*const IHolographicCameraRenderingParametersInterop, @ptrCast(self)), pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue);
+        return self.vtable.CommitDirect3D12Resource(self, pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue);
     }
     pub fn CommitDirect3D12ResourceWithDepthData(self: *const IHolographicCameraRenderingParametersInterop, pColorResourceToCommit: ?*ID3D12Resource, pColorResourceFence: ?*ID3D12Fence, colorResourceFenceSignalValue: u64, pDepthResourceToCommit: ?*ID3D12Resource, pDepthResourceFence: ?*ID3D12Fence, depthResourceFenceSignalValue: u64) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicCameraRenderingParametersInterop.VTable, @ptrCast(self.vtable)).CommitDirect3D12ResourceWithDepthData(@as(*const IHolographicCameraRenderingParametersInterop, @ptrCast(self)), pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue, pDepthResourceToCommit, pDepthResourceFence, depthResourceFenceSignalValue);
+        return self.vtable.CommitDirect3D12ResourceWithDepthData(self, pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue, pDepthResourceToCommit, pDepthResourceFence, depthResourceFenceSignalValue);
     }
 };
 
@@ -187,19 +187,19 @@ pub const IHolographicQuadLayerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateDirect3D12ContentBufferResource(self: *const IHolographicQuadLayerInterop, pDevice: ?*ID3D12Device, pTexture2DDesc: ?*D3D12_RESOURCE_DESC, ppTexture2DResource: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerInterop.VTable, @ptrCast(self.vtable)).CreateDirect3D12ContentBufferResource(@as(*const IHolographicQuadLayerInterop, @ptrCast(self)), pDevice, pTexture2DDesc, ppTexture2DResource);
+        return self.vtable.CreateDirect3D12ContentBufferResource(self, pDevice, pTexture2DDesc, ppTexture2DResource);
     }
     pub fn CreateDirect3D12HardwareProtectedContentBufferResource(self: *const IHolographicQuadLayerInterop, pDevice: ?*ID3D12Device, pTexture2DDesc: ?*D3D12_RESOURCE_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, ppCreatedTexture2DResource: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerInterop.VTable, @ptrCast(self.vtable)).CreateDirect3D12HardwareProtectedContentBufferResource(@as(*const IHolographicQuadLayerInterop, @ptrCast(self)), pDevice, pTexture2DDesc, pProtectedResourceSession, ppCreatedTexture2DResource);
+        return self.vtable.CreateDirect3D12HardwareProtectedContentBufferResource(self, pDevice, pTexture2DDesc, pProtectedResourceSession, ppCreatedTexture2DResource);
     }
     pub fn AcquireDirect3D12BufferResource(self: *const IHolographicQuadLayerInterop, pResourceToAcquire: ?*ID3D12Resource, pCommandQueue: ?*ID3D12CommandQueue) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerInterop.VTable, @ptrCast(self.vtable)).AcquireDirect3D12BufferResource(@as(*const IHolographicQuadLayerInterop, @ptrCast(self)), pResourceToAcquire, pCommandQueue);
+        return self.vtable.AcquireDirect3D12BufferResource(self, pResourceToAcquire, pCommandQueue);
     }
     pub fn AcquireDirect3D12BufferResourceWithTimeout(self: *const IHolographicQuadLayerInterop, pResourceToAcquire: ?*ID3D12Resource, pCommandQueue: ?*ID3D12CommandQueue, duration: u64) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerInterop.VTable, @ptrCast(self.vtable)).AcquireDirect3D12BufferResourceWithTimeout(@as(*const IHolographicQuadLayerInterop, @ptrCast(self)), pResourceToAcquire, pCommandQueue, duration);
+        return self.vtable.AcquireDirect3D12BufferResourceWithTimeout(self, pResourceToAcquire, pCommandQueue, duration);
     }
     pub fn UnacquireDirect3D12BufferResource(self: *const IHolographicQuadLayerInterop, pResourceToUnacquire: ?*ID3D12Resource) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerInterop.VTable, @ptrCast(self.vtable)).UnacquireDirect3D12BufferResource(@as(*const IHolographicQuadLayerInterop, @ptrCast(self)), pResourceToUnacquire);
+        return self.vtable.UnacquireDirect3D12BufferResource(self, pResourceToUnacquire);
     }
 };
 
@@ -226,7 +226,7 @@ pub const IHolographicQuadLayerUpdateParametersInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CommitDirect3D12Resource(self: *const IHolographicQuadLayerUpdateParametersInterop, pColorResourceToCommit: ?*ID3D12Resource, pColorResourceFence: ?*ID3D12Fence, colorResourceFenceSignalValue: u64) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicQuadLayerUpdateParametersInterop.VTable, @ptrCast(self.vtable)).CommitDirect3D12Resource(@as(*const IHolographicQuadLayerUpdateParametersInterop, @ptrCast(self)), pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue);
+        return self.vtable.CommitDirect3D12Resource(self, pColorResourceToCommit, pColorResourceFence, colorResourceFenceSignalValue);
     }
 };
 

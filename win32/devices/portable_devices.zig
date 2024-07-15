@@ -1673,16 +1673,16 @@ pub const IWpdSerializer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIPortableDeviceValuesFromBuffer(self: *const IWpdSerializer, pBuffer: [*:0]u8, dwInputBufferLength: u32, ppParams: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IWpdSerializer.VTable, @ptrCast(self.vtable)).GetIPortableDeviceValuesFromBuffer(@as(*const IWpdSerializer, @ptrCast(self)), pBuffer, dwInputBufferLength, ppParams);
+        return self.vtable.GetIPortableDeviceValuesFromBuffer(self, pBuffer, dwInputBufferLength, ppParams);
     }
     pub fn WriteIPortableDeviceValuesToBuffer(self: *const IWpdSerializer, dwOutputBufferLength: u32, pResults: ?*IPortableDeviceValues, pBuffer: [*:0]u8, pdwBytesWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWpdSerializer.VTable, @ptrCast(self.vtable)).WriteIPortableDeviceValuesToBuffer(@as(*const IWpdSerializer, @ptrCast(self)), dwOutputBufferLength, pResults, pBuffer, pdwBytesWritten);
+        return self.vtable.WriteIPortableDeviceValuesToBuffer(self, dwOutputBufferLength, pResults, pBuffer, pdwBytesWritten);
     }
     pub fn GetBufferFromIPortableDeviceValues(self: *const IWpdSerializer, pSource: ?*IPortableDeviceValues, ppBuffer: [*]?*u8, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWpdSerializer.VTable, @ptrCast(self.vtable)).GetBufferFromIPortableDeviceValues(@as(*const IWpdSerializer, @ptrCast(self)), pSource, ppBuffer, pdwBufferSize);
+        return self.vtable.GetBufferFromIPortableDeviceValues(self, pSource, ppBuffer, pdwBufferSize);
     }
     pub fn GetSerializedSize(self: *const IWpdSerializer, pSource: ?*IPortableDeviceValues, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWpdSerializer.VTable, @ptrCast(self.vtable)).GetSerializedSize(@as(*const IWpdSerializer, @ptrCast(self)), pSource, pdwSize);
+        return self.vtable.GetSerializedSize(self, pSource, pdwSize);
     }
 };
 
@@ -2056,124 +2056,124 @@ pub const IPortableDeviceValues = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPortableDeviceValues, pcelt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPortableDeviceValues, @ptrCast(self)), pcelt);
+        return self.vtable.GetCount(self, pcelt);
     }
     pub fn GetAt(self: *const IPortableDeviceValues, index: u32, pKey: ?*PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPortableDeviceValues, @ptrCast(self)), index, pKey, pValue);
+        return self.vtable.GetAt(self, index, pKey, pValue);
     }
     pub fn SetValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetValue(self, key, pValue);
     }
     pub fn GetValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetValue(self, key, pValue);
     }
     pub fn SetStringValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetStringValue(self, key, Value);
     }
     pub fn GetStringValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetStringValue(self, key, pValue);
     }
     pub fn SetUnsignedIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetUnsignedIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetUnsignedIntegerValue(self, key, Value);
     }
     pub fn GetUnsignedIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetUnsignedIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetUnsignedIntegerValue(self, key, pValue);
     }
     pub fn SetSignedIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetSignedIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetSignedIntegerValue(self, key, Value);
     }
     pub fn GetSignedIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetSignedIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetSignedIntegerValue(self, key, pValue);
     }
     pub fn SetUnsignedLargeIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: u64) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetUnsignedLargeIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetUnsignedLargeIntegerValue(self, key, Value);
     }
     pub fn GetUnsignedLargeIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetUnsignedLargeIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetUnsignedLargeIntegerValue(self, key, pValue);
     }
     pub fn SetSignedLargeIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: i64) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetSignedLargeIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetSignedLargeIntegerValue(self, key, Value);
     }
     pub fn GetSignedLargeIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetSignedLargeIntegerValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetSignedLargeIntegerValue(self, key, pValue);
     }
     pub fn SetFloatValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetFloatValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetFloatValue(self, key, Value);
     }
     pub fn GetFloatValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetFloatValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetFloatValue(self, key, pValue);
     }
     pub fn SetErrorValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetErrorValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetErrorValue(self, key, Value);
     }
     pub fn GetErrorValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetErrorValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetErrorValue(self, key, pValue);
     }
     pub fn SetKeyValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetKeyValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetKeyValue(self, key, Value);
     }
     pub fn GetKeyValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetKeyValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetKeyValue(self, key, pValue);
     }
     pub fn SetBoolValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetBoolValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetBoolValue(self, key, Value);
     }
     pub fn GetBoolValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetBoolValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetBoolValue(self, key, pValue);
     }
     pub fn SetIUnknownValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetIUnknownValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetIUnknownValue(self, key, pValue);
     }
     pub fn GetIUnknownValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetIUnknownValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue);
+        return self.vtable.GetIUnknownValue(self, key, ppValue);
     }
     pub fn SetGuidValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetGuidValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, Value);
+        return self.vtable.SetGuidValue(self, key, Value);
     }
     pub fn GetGuidValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetGuidValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.GetGuidValue(self, key, pValue);
     }
     pub fn SetBufferValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: [*:0]u8, cbValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetBufferValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue, cbValue);
+        return self.vtable.SetBufferValue(self, key, pValue, cbValue);
     }
     pub fn GetBufferValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: [*]?*u8, pcbValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetBufferValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue, pcbValue);
+        return self.vtable.GetBufferValue(self, key, ppValue, pcbValue);
     }
     pub fn SetIPortableDeviceValuesValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetIPortableDeviceValuesValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetIPortableDeviceValuesValue(self, key, pValue);
     }
     pub fn GetIPortableDeviceValuesValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetIPortableDeviceValuesValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue);
+        return self.vtable.GetIPortableDeviceValuesValue(self, key, ppValue);
     }
     pub fn SetIPortableDevicePropVariantCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetIPortableDevicePropVariantCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetIPortableDevicePropVariantCollectionValue(self, key, pValue);
     }
     pub fn GetIPortableDevicePropVariantCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetIPortableDevicePropVariantCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue);
+        return self.vtable.GetIPortableDevicePropVariantCollectionValue(self, key, ppValue);
     }
     pub fn SetIPortableDeviceKeyCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetIPortableDeviceKeyCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetIPortableDeviceKeyCollectionValue(self, key, pValue);
     }
     pub fn GetIPortableDeviceKeyCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetIPortableDeviceKeyCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue);
+        return self.vtable.GetIPortableDeviceKeyCollectionValue(self, key, ppValue);
     }
     pub fn SetIPortableDeviceValuesCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).SetIPortableDeviceValuesCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, pValue);
+        return self.vtable.SetIPortableDeviceValuesCollectionValue(self, key, pValue);
     }
     pub fn GetIPortableDeviceValuesCollectionValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).GetIPortableDeviceValuesCollectionValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key, ppValue);
+        return self.vtable.GetIPortableDeviceValuesCollectionValue(self, key, ppValue);
     }
     pub fn RemoveValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).RemoveValue(@as(*const IPortableDeviceValues, @ptrCast(self)), key);
+        return self.vtable.RemoveValue(self, key);
     }
     pub fn CopyValuesFromPropertyStore(self: *const IPortableDeviceValues, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).CopyValuesFromPropertyStore(@as(*const IPortableDeviceValues, @ptrCast(self)), pStore);
+        return self.vtable.CopyValuesFromPropertyStore(self, pStore);
     }
     pub fn CopyValuesToPropertyStore(self: *const IPortableDeviceValues, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).CopyValuesToPropertyStore(@as(*const IPortableDeviceValues, @ptrCast(self)), pStore);
+        return self.vtable.CopyValuesToPropertyStore(self, pStore);
     }
     pub fn Clear(self: *const IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValues.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPortableDeviceValues, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -2230,19 +2230,19 @@ pub const IPortableDeviceKeyCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPortableDeviceKeyCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceKeyCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPortableDeviceKeyCollection, @ptrCast(self)), pcElems);
+        return self.vtable.GetCount(self, pcElems);
     }
     pub fn GetAt(self: *const IPortableDeviceKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceKeyCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPortableDeviceKeyCollection, @ptrCast(self)), dwIndex, pKey);
+        return self.vtable.GetAt(self, dwIndex, pKey);
     }
     pub fn Add(self: *const IPortableDeviceKeyCollection, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceKeyCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IPortableDeviceKeyCollection, @ptrCast(self)), Key);
+        return self.vtable.Add(self, Key);
     }
     pub fn Clear(self: *const IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceKeyCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPortableDeviceKeyCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn RemoveAt(self: *const IPortableDeviceKeyCollection, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceKeyCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IPortableDeviceKeyCollection, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 
@@ -2315,25 +2315,25 @@ pub const IPortableDevicePropVariantCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPortableDevicePropVariantCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), pcElems);
+        return self.vtable.GetCount(self, pcElems);
     }
     pub fn GetAt(self: *const IPortableDevicePropVariantCollection, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), dwIndex, pValue);
+        return self.vtable.GetAt(self, dwIndex, pValue);
     }
     pub fn Add(self: *const IPortableDevicePropVariantCollection, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), pValue);
+        return self.vtable.Add(self, pValue);
     }
     pub fn GetType(self: *const IPortableDevicePropVariantCollection, pvt: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).GetType(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), pvt);
+        return self.vtable.GetType(self, pvt);
     }
     pub fn ChangeType(self: *const IPortableDevicePropVariantCollection, vt: u16) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).ChangeType(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), vt);
+        return self.vtable.ChangeType(self, vt);
     }
     pub fn Clear(self: *const IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn RemoveAt(self: *const IPortableDevicePropVariantCollection, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropVariantCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IPortableDevicePropVariantCollection, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 
@@ -2390,19 +2390,19 @@ pub const IPortableDeviceValuesCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPortableDeviceValuesCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValuesCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPortableDeviceValuesCollection, @ptrCast(self)), pcElems);
+        return self.vtable.GetCount(self, pcElems);
     }
     pub fn GetAt(self: *const IPortableDeviceValuesCollection, dwIndex: u32, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValuesCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPortableDeviceValuesCollection, @ptrCast(self)), dwIndex, ppValues);
+        return self.vtable.GetAt(self, dwIndex, ppValues);
     }
     pub fn Add(self: *const IPortableDeviceValuesCollection, pValues: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValuesCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IPortableDeviceValuesCollection, @ptrCast(self)), pValues);
+        return self.vtable.Add(self, pValues);
     }
     pub fn Clear(self: *const IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValuesCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPortableDeviceValuesCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn RemoveAt(self: *const IPortableDeviceValuesCollection, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceValuesCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IPortableDeviceValuesCollection, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 
@@ -2507,25 +2507,25 @@ pub const IPortableDeviceManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetDevices(@as(*const IPortableDeviceManager, @ptrCast(self)), pPnPDeviceIDs, pcPnPDeviceIDs);
+        return self.vtable.GetDevices(self, pPnPDeviceIDs, pcPnPDeviceIDs);
     }
     pub fn RefreshDeviceList(self: *const IPortableDeviceManager) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).RefreshDeviceList(@as(*const IPortableDeviceManager, @ptrCast(self)));
+        return self.vtable.RefreshDeviceList(self);
     }
     pub fn GetDeviceFriendlyName(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?PWSTR, pcchDeviceFriendlyName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetDeviceFriendlyName(@as(*const IPortableDeviceManager, @ptrCast(self)), pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
+        return self.vtable.GetDeviceFriendlyName(self, pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
     }
     pub fn GetDeviceDescription(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?PWSTR, pcchDeviceDescription: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetDeviceDescription(@as(*const IPortableDeviceManager, @ptrCast(self)), pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
+        return self.vtable.GetDeviceDescription(self, pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
     }
     pub fn GetDeviceManufacturer(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?PWSTR, pcchDeviceManufacturer: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetDeviceManufacturer(@as(*const IPortableDeviceManager, @ptrCast(self)), pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
+        return self.vtable.GetDeviceManufacturer(self, pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
     }
     pub fn GetDeviceProperty(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pszDevicePropertyName: ?[*:0]const u16, pData: ?*u8, pcbData: ?*u32, pdwType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetDeviceProperty(@as(*const IPortableDeviceManager, @ptrCast(self)), pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
+        return self.vtable.GetDeviceProperty(self, pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
     }
     pub fn GetPrivateDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceManager.VTable, @ptrCast(self.vtable)).GetPrivateDevices(@as(*const IPortableDeviceManager, @ptrCast(self)), pPnPDeviceIDs, pcPnPDeviceIDs);
+        return self.vtable.GetPrivateDevices(self, pPnPDeviceIDs, pcPnPDeviceIDs);
     }
 };
 
@@ -2618,31 +2618,31 @@ pub const IPortableDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IPortableDevice, pszPnPDeviceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Open(@as(*const IPortableDevice, @ptrCast(self)), pszPnPDeviceID, pClientInfo);
+        return self.vtable.Open(self, pszPnPDeviceID, pClientInfo);
     }
     pub fn SendCommand(self: *const IPortableDevice, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).SendCommand(@as(*const IPortableDevice, @ptrCast(self)), dwFlags, pParameters, ppResults);
+        return self.vtable.SendCommand(self, dwFlags, pParameters, ppResults);
     }
     pub fn Content(self: *const IPortableDevice, ppContent: ?*?*IPortableDeviceContent) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Content(@as(*const IPortableDevice, @ptrCast(self)), ppContent);
+        return self.vtable.Content(self, ppContent);
     }
     pub fn Capabilities(self: *const IPortableDevice, ppCapabilities: ?*?*IPortableDeviceCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Capabilities(@as(*const IPortableDevice, @ptrCast(self)), ppCapabilities);
+        return self.vtable.Capabilities(self, ppCapabilities);
     }
     pub fn Cancel(self: *const IPortableDevice) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDevice, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Close(self: *const IPortableDevice) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Close(@as(*const IPortableDevice, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Advise(self: *const IPortableDevice, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Advise(@as(*const IPortableDevice, @ptrCast(self)), dwFlags, pCallback, pParameters, ppszCookie);
+        return self.vtable.Advise(self, dwFlags, pCallback, pParameters, ppszCookie);
     }
     pub fn Unadvise(self: *const IPortableDevice, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IPortableDevice, @ptrCast(self)), pszCookie);
+        return self.vtable.Unadvise(self, pszCookie);
     }
     pub fn GetPnPDeviceID(self: *const IPortableDevice, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevice.VTable, @ptrCast(self.vtable)).GetPnPDeviceID(@as(*const IPortableDevice, @ptrCast(self)), ppszPnPDeviceID);
+        return self.vtable.GetPnPDeviceID(self, ppszPnPDeviceID);
     }
 };
 
@@ -2752,34 +2752,34 @@ pub const IPortableDeviceContent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumObjects(self: *const IPortableDeviceContent, dwFlags: u32, pszParentObjectID: ?[*:0]const u16, pFilter: ?*IPortableDeviceValues, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IPortableDeviceContent, @ptrCast(self)), dwFlags, pszParentObjectID, pFilter, ppEnum);
+        return self.vtable.EnumObjects(self, dwFlags, pszParentObjectID, pFilter, ppEnum);
     }
     pub fn Properties(self: *const IPortableDeviceContent, ppProperties: ?*?*IPortableDeviceProperties) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Properties(@as(*const IPortableDeviceContent, @ptrCast(self)), ppProperties);
+        return self.vtable.Properties(self, ppProperties);
     }
     pub fn Transfer(self: *const IPortableDeviceContent, ppResources: ?*?*IPortableDeviceResources) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Transfer(@as(*const IPortableDeviceContent, @ptrCast(self)), ppResources);
+        return self.vtable.Transfer(self, ppResources);
     }
     pub fn CreateObjectWithPropertiesOnly(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).CreateObjectWithPropertiesOnly(@as(*const IPortableDeviceContent, @ptrCast(self)), pValues, ppszObjectID);
+        return self.vtable.CreateObjectWithPropertiesOnly(self, pValues, ppszObjectID);
     }
     pub fn CreateObjectWithPropertiesAndData(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).CreateObjectWithPropertiesAndData(@as(*const IPortableDeviceContent, @ptrCast(self)), pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
+        return self.vtable.CreateObjectWithPropertiesAndData(self, pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
     }
     pub fn Delete(self: *const IPortableDeviceContent, dwOptions: u32, pObjectIDs: ?*IPortableDevicePropVariantCollection, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Delete(@as(*const IPortableDeviceContent, @ptrCast(self)), dwOptions, pObjectIDs, ppResults);
+        return self.vtable.Delete(self, dwOptions, pObjectIDs, ppResults);
     }
     pub fn GetObjectIDsFromPersistentUniqueIDs(self: *const IPortableDeviceContent, pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).GetObjectIDsFromPersistentUniqueIDs(@as(*const IPortableDeviceContent, @ptrCast(self)), pPersistentUniqueIDs, ppObjectIDs);
+        return self.vtable.GetObjectIDsFromPersistentUniqueIDs(self, pPersistentUniqueIDs, ppObjectIDs);
     }
     pub fn Cancel(self: *const IPortableDeviceContent) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceContent, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Move(self: *const IPortableDeviceContent, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Move(@as(*const IPortableDeviceContent, @ptrCast(self)), pObjectIDs, pszDestinationFolderObjectID, ppResults);
+        return self.vtable.Move(self, pObjectIDs, pszDestinationFolderObjectID, ppResults);
     }
     pub fn Copy(self: *const IPortableDeviceContent, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent.VTable, @ptrCast(self.vtable)).Copy(@as(*const IPortableDeviceContent, @ptrCast(self)), pObjectIDs, pszDestinationFolderObjectID, ppResults);
+        return self.vtable.Copy(self, pObjectIDs, pszDestinationFolderObjectID, ppResults);
     }
 };
 
@@ -2808,7 +2808,7 @@ pub const IPortableDeviceContent2 = extern union {
     };}
     pub usingnamespace IPortableDeviceContent.MethodMixin(@This());
     pub fn UpdateObjectWithPropertiesAndData(self: *const IPortableDeviceContent2, pszObjectID: ?[*:0]const u16, pProperties: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceContent2.VTable, @ptrCast(self.vtable)).UpdateObjectWithPropertiesAndData(@as(*const IPortableDeviceContent2, @ptrCast(self)), pszObjectID, pProperties, ppData, pdwOptimalWriteBufferSize);
+        return self.vtable.UpdateObjectWithPropertiesAndData(self, pszObjectID, pProperties, ppData, pdwOptimalWriteBufferSize);
     }
 };
 
@@ -2865,19 +2865,19 @@ pub const IEnumPortableDeviceObjectIDs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPortableDeviceObjectIDs, cObjects: u32, pObjIDs: [*]?PWSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceObjectIDs.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPortableDeviceObjectIDs, @ptrCast(self)), cObjects, pObjIDs, pcFetched);
+        return self.vtable.Next(self, cObjects, pObjIDs, pcFetched);
     }
     pub fn Skip(self: *const IEnumPortableDeviceObjectIDs, cObjects: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceObjectIDs.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumPortableDeviceObjectIDs, @ptrCast(self)), cObjects);
+        return self.vtable.Skip(self, cObjects);
     }
     pub fn Reset(self: *const IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceObjectIDs.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPortableDeviceObjectIDs, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumPortableDeviceObjectIDs, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceObjectIDs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumPortableDeviceObjectIDs, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
     pub fn Cancel(self: *const IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceObjectIDs.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IEnumPortableDeviceObjectIDs, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -2949,22 +2949,22 @@ pub const IPortableDeviceProperties = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedProperties(self: *const IPortableDeviceProperties, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).GetSupportedProperties(@as(*const IPortableDeviceProperties, @ptrCast(self)), pszObjectID, ppKeys);
+        return self.vtable.GetSupportedProperties(self, pszObjectID, ppKeys);
     }
     pub fn GetPropertyAttributes(self: *const IPortableDeviceProperties, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).GetPropertyAttributes(@as(*const IPortableDeviceProperties, @ptrCast(self)), pszObjectID, Key, ppAttributes);
+        return self.vtable.GetPropertyAttributes(self, pszObjectID, Key, ppAttributes);
     }
     pub fn GetValues(self: *const IPortableDeviceProperties, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).GetValues(@as(*const IPortableDeviceProperties, @ptrCast(self)), pszObjectID, pKeys, ppValues);
+        return self.vtable.GetValues(self, pszObjectID, pKeys, ppValues);
     }
     pub fn SetValues(self: *const IPortableDeviceProperties, pszObjectID: ?[*:0]const u16, pValues: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).SetValues(@as(*const IPortableDeviceProperties, @ptrCast(self)), pszObjectID, pValues, ppResults);
+        return self.vtable.SetValues(self, pszObjectID, pValues, ppResults);
     }
     pub fn Delete(self: *const IPortableDeviceProperties, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).Delete(@as(*const IPortableDeviceProperties, @ptrCast(self)), pszObjectID, pKeys);
+        return self.vtable.Delete(self, pszObjectID, pKeys);
     }
     pub fn Cancel(self: *const IPortableDeviceProperties) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceProperties.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceProperties, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -3039,22 +3039,22 @@ pub const IPortableDeviceResources = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedResources(self: *const IPortableDeviceResources, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).GetSupportedResources(@as(*const IPortableDeviceResources, @ptrCast(self)), pszObjectID, ppKeys);
+        return self.vtable.GetSupportedResources(self, pszObjectID, ppKeys);
     }
     pub fn GetResourceAttributes(self: *const IPortableDeviceResources, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppResourceAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).GetResourceAttributes(@as(*const IPortableDeviceResources, @ptrCast(self)), pszObjectID, Key, ppResourceAttributes);
+        return self.vtable.GetResourceAttributes(self, pszObjectID, Key, ppResourceAttributes);
     }
     pub fn GetStream(self: *const IPortableDeviceResources, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, dwMode: u32, pdwOptimalBufferSize: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IPortableDeviceResources, @ptrCast(self)), pszObjectID, Key, dwMode, pdwOptimalBufferSize, ppStream);
+        return self.vtable.GetStream(self, pszObjectID, Key, dwMode, pdwOptimalBufferSize, ppStream);
     }
     pub fn Delete(self: *const IPortableDeviceResources, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).Delete(@as(*const IPortableDeviceResources, @ptrCast(self)), pszObjectID, pKeys);
+        return self.vtable.Delete(self, pszObjectID, pKeys);
     }
     pub fn Cancel(self: *const IPortableDeviceResources) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceResources, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn CreateResource(self: *const IPortableDeviceResources, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceResources.VTable, @ptrCast(self.vtable)).CreateResource(@as(*const IPortableDeviceResources, @ptrCast(self)), pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
+        return self.vtable.CreateResource(self, pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
     }
 };
 
@@ -3166,37 +3166,37 @@ pub const IPortableDeviceCapabilities = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedCommands(self: *const IPortableDeviceCapabilities, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedCommands(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), ppCommands);
+        return self.vtable.GetSupportedCommands(self, ppCommands);
     }
     pub fn GetCommandOptions(self: *const IPortableDeviceCapabilities, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetCommandOptions(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Command, ppOptions);
+        return self.vtable.GetCommandOptions(self, Command, ppOptions);
     }
     pub fn GetFunctionalCategories(self: *const IPortableDeviceCapabilities, ppCategories: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetFunctionalCategories(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), ppCategories);
+        return self.vtable.GetFunctionalCategories(self, ppCategories);
     }
     pub fn GetFunctionalObjects(self: *const IPortableDeviceCapabilities, Category: ?*const Guid, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetFunctionalObjects(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Category, ppObjectIDs);
+        return self.vtable.GetFunctionalObjects(self, Category, ppObjectIDs);
     }
     pub fn GetSupportedContentTypes(self: *const IPortableDeviceCapabilities, Category: ?*const Guid, ppContentTypes: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedContentTypes(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Category, ppContentTypes);
+        return self.vtable.GetSupportedContentTypes(self, Category, ppContentTypes);
     }
     pub fn GetSupportedFormats(self: *const IPortableDeviceCapabilities, ContentType: ?*const Guid, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedFormats(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), ContentType, ppFormats);
+        return self.vtable.GetSupportedFormats(self, ContentType, ppFormats);
     }
     pub fn GetSupportedFormatProperties(self: *const IPortableDeviceCapabilities, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedFormatProperties(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Format, ppKeys);
+        return self.vtable.GetSupportedFormatProperties(self, Format, ppKeys);
     }
     pub fn GetFixedPropertyAttributes(self: *const IPortableDeviceCapabilities, Format: ?*const Guid, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetFixedPropertyAttributes(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Format, Key, ppAttributes);
+        return self.vtable.GetFixedPropertyAttributes(self, Format, Key, ppAttributes);
     }
     pub fn Cancel(self: *const IPortableDeviceCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceCapabilities, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn GetSupportedEvents(self: *const IPortableDeviceCapabilities, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedEvents(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), ppEvents);
+        return self.vtable.GetSupportedEvents(self, ppEvents);
     }
     pub fn GetEventOptions(self: *const IPortableDeviceCapabilities, Event: ?*const Guid, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceCapabilities.VTable, @ptrCast(self.vtable)).GetEventOptions(@as(*const IPortableDeviceCapabilities, @ptrCast(self)), Event, ppOptions);
+        return self.vtable.GetEventOptions(self, Event, ppOptions);
     }
 };
 
@@ -3221,7 +3221,7 @@ pub const IPortableDeviceEventCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEvent(self: *const IPortableDeviceEventCallback, pEventParameters: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IPortableDeviceEventCallback, @ptrCast(self)), pEventParameters);
+        return self.vtable.OnEvent(self, pEventParameters);
     }
 };
 
@@ -3253,10 +3253,10 @@ pub const IPortableDeviceDataStream = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn GetObjectID(self: *const IPortableDeviceDataStream, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceDataStream.VTable, @ptrCast(self.vtable)).GetObjectID(@as(*const IPortableDeviceDataStream, @ptrCast(self)), ppszObjectID);
+        return self.vtable.GetObjectID(self, ppszObjectID);
     }
     pub fn Cancel(self: *const IPortableDeviceDataStream) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceDataStream.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceDataStream, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -3292,10 +3292,10 @@ pub const IPortableDeviceUnitsStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SeekInUnits(self: *const IPortableDeviceUnitsStream, dlibMove: LARGE_INTEGER, units: WPD_STREAM_UNITS, dwOrigin: u32, plibNewPosition: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceUnitsStream.VTable, @ptrCast(self.vtable)).SeekInUnits(@as(*const IPortableDeviceUnitsStream, @ptrCast(self)), dlibMove, units, dwOrigin, plibNewPosition);
+        return self.vtable.SeekInUnits(self, dlibMove, units, dwOrigin, plibNewPosition);
     }
     pub fn Cancel(self: *const IPortableDeviceUnitsStream) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceUnitsStream.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceUnitsStream, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -3362,19 +3362,19 @@ pub const IPortableDevicePropertiesBulk = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueueGetValuesByObjectList(self: *const IPortableDevicePropertiesBulk, pObjectIDs: ?*IPortableDevicePropVariantCollection, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulk.VTable, @ptrCast(self.vtable)).QueueGetValuesByObjectList(@as(*const IPortableDevicePropertiesBulk, @ptrCast(self)), pObjectIDs, pKeys, pCallback, pContext);
+        return self.vtable.QueueGetValuesByObjectList(self, pObjectIDs, pKeys, pCallback, pContext);
     }
     pub fn QueueGetValuesByObjectFormat(self: *const IPortableDevicePropertiesBulk, pguidObjectFormat: ?*const Guid, pszParentObjectID: ?[*:0]const u16, dwDepth: u32, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulk.VTable, @ptrCast(self.vtable)).QueueGetValuesByObjectFormat(@as(*const IPortableDevicePropertiesBulk, @ptrCast(self)), pguidObjectFormat, pszParentObjectID, dwDepth, pKeys, pCallback, pContext);
+        return self.vtable.QueueGetValuesByObjectFormat(self, pguidObjectFormat, pszParentObjectID, dwDepth, pKeys, pCallback, pContext);
     }
     pub fn QueueSetValuesByObjectList(self: *const IPortableDevicePropertiesBulk, pObjectValues: ?*IPortableDeviceValuesCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulk.VTable, @ptrCast(self.vtable)).QueueSetValuesByObjectList(@as(*const IPortableDevicePropertiesBulk, @ptrCast(self)), pObjectValues, pCallback, pContext);
+        return self.vtable.QueueSetValuesByObjectList(self, pObjectValues, pCallback, pContext);
     }
     pub fn Start(self: *const IPortableDevicePropertiesBulk, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulk.VTable, @ptrCast(self.vtable)).Start(@as(*const IPortableDevicePropertiesBulk, @ptrCast(self)), pContext);
+        return self.vtable.Start(self, pContext);
     }
     pub fn Cancel(self: *const IPortableDevicePropertiesBulk, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulk.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDevicePropertiesBulk, @ptrCast(self)), pContext);
+        return self.vtable.Cancel(self, pContext);
     }
 };
 
@@ -3417,13 +3417,13 @@ pub const IPortableDevicePropertiesBulkCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStart(self: *const IPortableDevicePropertiesBulkCallback, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulkCallback.VTable, @ptrCast(self.vtable)).OnStart(@as(*const IPortableDevicePropertiesBulkCallback, @ptrCast(self)), pContext);
+        return self.vtable.OnStart(self, pContext);
     }
     pub fn OnProgress(self: *const IPortableDevicePropertiesBulkCallback, pContext: ?*const Guid, pResults: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulkCallback.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const IPortableDevicePropertiesBulkCallback, @ptrCast(self)), pContext, pResults);
+        return self.vtable.OnProgress(self, pContext, pResults);
     }
     pub fn OnEnd(self: *const IPortableDevicePropertiesBulkCallback, pContext: ?*const Guid, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDevicePropertiesBulkCallback.VTable, @ptrCast(self.vtable)).OnEnd(@as(*const IPortableDevicePropertiesBulkCallback, @ptrCast(self)), pContext, hrStatus);
+        return self.vtable.OnEnd(self, pContext, hrStatus);
     }
 };
 
@@ -3461,10 +3461,10 @@ pub const IPortableDeviceServiceManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceServices(self: *const IPortableDeviceServiceManager, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?PWSTR, pcServices: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceManager.VTable, @ptrCast(self.vtable)).GetDeviceServices(@as(*const IPortableDeviceServiceManager, @ptrCast(self)), pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
+        return self.vtable.GetDeviceServices(self, pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
     }
     pub fn GetDeviceForService(self: *const IPortableDeviceServiceManager, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceManager.VTable, @ptrCast(self.vtable)).GetDeviceForService(@as(*const IPortableDeviceServiceManager, @ptrCast(self)), pszPnPServiceID, ppszPnPDeviceID);
+        return self.vtable.GetDeviceForService(self, pszPnPServiceID, ppszPnPDeviceID);
     }
 };
 
@@ -3574,37 +3574,37 @@ pub const IPortableDeviceService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IPortableDeviceService, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Open(@as(*const IPortableDeviceService, @ptrCast(self)), pszPnPServiceID, pClientInfo);
+        return self.vtable.Open(self, pszPnPServiceID, pClientInfo);
     }
     pub fn Capabilities(self: *const IPortableDeviceService, ppCapabilities: ?*?*IPortableDeviceServiceCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Capabilities(@as(*const IPortableDeviceService, @ptrCast(self)), ppCapabilities);
+        return self.vtable.Capabilities(self, ppCapabilities);
     }
     pub fn Content(self: *const IPortableDeviceService, ppContent: ?*?*IPortableDeviceContent2) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Content(@as(*const IPortableDeviceService, @ptrCast(self)), ppContent);
+        return self.vtable.Content(self, ppContent);
     }
     pub fn Methods(self: *const IPortableDeviceService, ppMethods: ?*?*IPortableDeviceServiceMethods) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Methods(@as(*const IPortableDeviceService, @ptrCast(self)), ppMethods);
+        return self.vtable.Methods(self, ppMethods);
     }
     pub fn Cancel(self: *const IPortableDeviceService) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceService, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Close(self: *const IPortableDeviceService) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Close(@as(*const IPortableDeviceService, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetServiceObjectID(self: *const IPortableDeviceService, ppszServiceObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).GetServiceObjectID(@as(*const IPortableDeviceService, @ptrCast(self)), ppszServiceObjectID);
+        return self.vtable.GetServiceObjectID(self, ppszServiceObjectID);
     }
     pub fn GetPnPServiceID(self: *const IPortableDeviceService, ppszPnPServiceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).GetPnPServiceID(@as(*const IPortableDeviceService, @ptrCast(self)), ppszPnPServiceID);
+        return self.vtable.GetPnPServiceID(self, ppszPnPServiceID);
     }
     pub fn Advise(self: *const IPortableDeviceService, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Advise(@as(*const IPortableDeviceService, @ptrCast(self)), dwFlags, pCallback, pParameters, ppszCookie);
+        return self.vtable.Advise(self, dwFlags, pCallback, pParameters, ppszCookie);
     }
     pub fn Unadvise(self: *const IPortableDeviceService, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IPortableDeviceService, @ptrCast(self)), pszCookie);
+        return self.vtable.Unadvise(self, pszCookie);
     }
     pub fn SendCommand(self: *const IPortableDeviceService, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceService.VTable, @ptrCast(self.vtable)).SendCommand(@as(*const IPortableDeviceService, @ptrCast(self)), dwFlags, pParameters, ppResults);
+        return self.vtable.SendCommand(self, dwFlags, pParameters, ppResults);
     }
 };
 
@@ -3763,52 +3763,52 @@ pub const IPortableDeviceServiceCapabilities = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedMethods(self: *const IPortableDeviceServiceCapabilities, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedMethods(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), ppMethods);
+        return self.vtable.GetSupportedMethods(self, ppMethods);
     }
     pub fn GetSupportedMethodsByFormat(self: *const IPortableDeviceServiceCapabilities, Format: ?*const Guid, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedMethodsByFormat(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Format, ppMethods);
+        return self.vtable.GetSupportedMethodsByFormat(self, Format, ppMethods);
     }
     pub fn GetMethodAttributes(self: *const IPortableDeviceServiceCapabilities, Method: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetMethodAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Method, ppAttributes);
+        return self.vtable.GetMethodAttributes(self, Method, ppAttributes);
     }
     pub fn GetMethodParameterAttributes(self: *const IPortableDeviceServiceCapabilities, Method: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetMethodParameterAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Method, Parameter, ppAttributes);
+        return self.vtable.GetMethodParameterAttributes(self, Method, Parameter, ppAttributes);
     }
     pub fn GetSupportedFormats(self: *const IPortableDeviceServiceCapabilities, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedFormats(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), ppFormats);
+        return self.vtable.GetSupportedFormats(self, ppFormats);
     }
     pub fn GetFormatAttributes(self: *const IPortableDeviceServiceCapabilities, Format: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetFormatAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Format, ppAttributes);
+        return self.vtable.GetFormatAttributes(self, Format, ppAttributes);
     }
     pub fn GetSupportedFormatProperties(self: *const IPortableDeviceServiceCapabilities, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedFormatProperties(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Format, ppKeys);
+        return self.vtable.GetSupportedFormatProperties(self, Format, ppKeys);
     }
     pub fn GetFormatPropertyAttributes(self: *const IPortableDeviceServiceCapabilities, Format: ?*const Guid, Property: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetFormatPropertyAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Format, Property, ppAttributes);
+        return self.vtable.GetFormatPropertyAttributes(self, Format, Property, ppAttributes);
     }
     pub fn GetSupportedEvents(self: *const IPortableDeviceServiceCapabilities, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedEvents(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), ppEvents);
+        return self.vtable.GetSupportedEvents(self, ppEvents);
     }
     pub fn GetEventAttributes(self: *const IPortableDeviceServiceCapabilities, Event: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetEventAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Event, ppAttributes);
+        return self.vtable.GetEventAttributes(self, Event, ppAttributes);
     }
     pub fn GetEventParameterAttributes(self: *const IPortableDeviceServiceCapabilities, Event: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetEventParameterAttributes(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Event, Parameter, ppAttributes);
+        return self.vtable.GetEventParameterAttributes(self, Event, Parameter, ppAttributes);
     }
     pub fn GetInheritedServices(self: *const IPortableDeviceServiceCapabilities, dwInheritanceType: u32, ppServices: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetInheritedServices(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), dwInheritanceType, ppServices);
+        return self.vtable.GetInheritedServices(self, dwInheritanceType, ppServices);
     }
     pub fn GetFormatRenderingProfiles(self: *const IPortableDeviceServiceCapabilities, Format: ?*const Guid, ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetFormatRenderingProfiles(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Format, ppRenderingProfiles);
+        return self.vtable.GetFormatRenderingProfiles(self, Format, ppRenderingProfiles);
     }
     pub fn GetSupportedCommands(self: *const IPortableDeviceServiceCapabilities, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetSupportedCommands(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), ppCommands);
+        return self.vtable.GetSupportedCommands(self, ppCommands);
     }
     pub fn GetCommandOptions(self: *const IPortableDeviceServiceCapabilities, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).GetCommandOptions(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)), Command, ppOptions);
+        return self.vtable.GetCommandOptions(self, Command, ppOptions);
     }
     pub fn Cancel(self: *const IPortableDeviceServiceCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceCapabilities.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceServiceCapabilities, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -3854,13 +3854,13 @@ pub const IPortableDeviceServiceMethods = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IPortableDeviceServiceMethods, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceMethods.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IPortableDeviceServiceMethods, @ptrCast(self)), Method, pParameters, ppResults);
+        return self.vtable.Invoke(self, Method, pParameters, ppResults);
     }
     pub fn InvokeAsync(self: *const IPortableDeviceServiceMethods, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceMethods.VTable, @ptrCast(self.vtable)).InvokeAsync(@as(*const IPortableDeviceServiceMethods, @ptrCast(self)), Method, pParameters, pCallback);
+        return self.vtable.InvokeAsync(self, Method, pParameters, pCallback);
     }
     pub fn Cancel(self: *const IPortableDeviceServiceMethods, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceMethods.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceServiceMethods, @ptrCast(self)), pCallback);
+        return self.vtable.Cancel(self, pCallback);
     }
 };
 
@@ -3887,7 +3887,7 @@ pub const IPortableDeviceServiceMethodCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnComplete(self: *const IPortableDeviceServiceMethodCallback, hrStatus: HRESULT, pResults: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceMethodCallback.VTable, @ptrCast(self.vtable)).OnComplete(@as(*const IPortableDeviceServiceMethodCallback, @ptrCast(self)), hrStatus, pResults);
+        return self.vtable.OnComplete(self, hrStatus, pResults);
     }
 };
 
@@ -3921,10 +3921,10 @@ pub const IPortableDeviceServiceActivation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OpenAsync(self: *const IPortableDeviceServiceActivation, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceOpenCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceActivation.VTable, @ptrCast(self.vtable)).OpenAsync(@as(*const IPortableDeviceServiceActivation, @ptrCast(self)), pszPnPServiceID, pClientInfo, pCallback);
+        return self.vtable.OpenAsync(self, pszPnPServiceID, pClientInfo, pCallback);
     }
     pub fn CancelOpenAsync(self: *const IPortableDeviceServiceActivation) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceActivation.VTable, @ptrCast(self.vtable)).CancelOpenAsync(@as(*const IPortableDeviceServiceActivation, @ptrCast(self)));
+        return self.vtable.CancelOpenAsync(self);
     }
 };
 
@@ -3949,7 +3949,7 @@ pub const IPortableDeviceServiceOpenCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnComplete(self: *const IPortableDeviceServiceOpenCallback, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceServiceOpenCallback.VTable, @ptrCast(self.vtable)).OnComplete(@as(*const IPortableDeviceServiceOpenCallback, @ptrCast(self)), hrStatus);
+        return self.vtable.OnComplete(self, hrStatus);
     }
 };
 
@@ -3976,7 +3976,7 @@ pub const IPortableDeviceDispatchFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceDispatch(self: *const IPortableDeviceDispatchFactory, pszPnPDeviceID: ?[*:0]const u16, ppDeviceDispatch: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceDispatchFactory.VTable, @ptrCast(self.vtable)).GetDeviceDispatch(@as(*const IPortableDeviceDispatchFactory, @ptrCast(self)), pszPnPDeviceID, ppDeviceDispatch);
+        return self.vtable.GetDeviceDispatch(self, pszPnPDeviceID, ppDeviceDispatch);
     }
 };
 
@@ -4013,10 +4013,10 @@ pub const IPortableDeviceWebControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetDeviceFromId(self: *const IPortableDeviceWebControl, deviceId: ?BSTR, ppDevice: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceWebControl.VTable, @ptrCast(self.vtable)).GetDeviceFromId(@as(*const IPortableDeviceWebControl, @ptrCast(self)), deviceId, ppDevice);
+        return self.vtable.GetDeviceFromId(self, deviceId, ppDevice);
     }
     pub fn GetDeviceFromIdAsync(self: *const IPortableDeviceWebControl, deviceId: ?BSTR, pCompletionHandler: ?*IDispatch, pErrorHandler: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceWebControl.VTable, @ptrCast(self.vtable)).GetDeviceFromIdAsync(@as(*const IPortableDeviceWebControl, @ptrCast(self)), deviceId, pCompletionHandler, pErrorHandler);
+        return self.vtable.GetDeviceFromIdAsync(self, deviceId, pCompletionHandler, pErrorHandler);
     }
 };
 
@@ -4069,16 +4069,16 @@ pub const IEnumPortableDeviceConnectors = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPortableDeviceConnectors, cRequested: u32, pConnectors: [*]?*IPortableDeviceConnector, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceConnectors.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPortableDeviceConnectors, @ptrCast(self)), cRequested, pConnectors, pcFetched);
+        return self.vtable.Next(self, cRequested, pConnectors, pcFetched);
     }
     pub fn Skip(self: *const IEnumPortableDeviceConnectors, cConnectors: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceConnectors.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumPortableDeviceConnectors, @ptrCast(self)), cConnectors);
+        return self.vtable.Skip(self, cConnectors);
     }
     pub fn Reset(self: *const IEnumPortableDeviceConnectors) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceConnectors.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPortableDeviceConnectors, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumPortableDeviceConnectors, ppEnum: ?*?*IEnumPortableDeviceConnectors) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPortableDeviceConnectors.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumPortableDeviceConnectors, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4150,22 +4150,22 @@ pub const IPortableDeviceConnector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Connect(self: *const IPortableDeviceConnector, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).Connect(@as(*const IPortableDeviceConnector, @ptrCast(self)), pCallback);
+        return self.vtable.Connect(self, pCallback);
     }
     pub fn Disconnect(self: *const IPortableDeviceConnector, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IPortableDeviceConnector, @ptrCast(self)), pCallback);
+        return self.vtable.Disconnect(self, pCallback);
     }
     pub fn Cancel(self: *const IPortableDeviceConnector, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPortableDeviceConnector, @ptrCast(self)), pCallback);
+        return self.vtable.Cancel(self, pCallback);
     }
     pub fn GetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*u32, ppData: [*]?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IPortableDeviceConnector, @ptrCast(self)), pPropertyKey, pPropertyType, ppData, pcbData);
+        return self.vtable.GetProperty(self, pPropertyKey, pPropertyType, ppData, pcbData);
     }
     pub fn SetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IPortableDeviceConnector, @ptrCast(self)), pPropertyKey, PropertyType, pData, cbData);
+        return self.vtable.SetProperty(self, pPropertyKey, PropertyType, pData, cbData);
     }
     pub fn GetPnPID(self: *const IPortableDeviceConnector, ppwszPnPID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPortableDeviceConnector.VTable, @ptrCast(self.vtable)).GetPnPID(@as(*const IPortableDeviceConnector, @ptrCast(self)), ppwszPnPID);
+        return self.vtable.GetPnPID(self, ppwszPnPID);
     }
 };
 
@@ -4190,7 +4190,7 @@ pub const IConnectionRequestCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnComplete(self: *const IConnectionRequestCallback, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IConnectionRequestCallback.VTable, @ptrCast(self.vtable)).OnComplete(@as(*const IConnectionRequestCallback, @ptrCast(self)), hrStatus);
+        return self.vtable.OnComplete(self, hrStatus);
     }
 };
 
@@ -4250,10 +4250,10 @@ pub const IMediaRadioManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRadioInstances(self: *const IMediaRadioManager, ppCollection: ?*?*IRadioInstanceCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMediaRadioManager.VTable, @ptrCast(self.vtable)).GetRadioInstances(@as(*const IMediaRadioManager, @ptrCast(self)), ppCollection);
+        return self.vtable.GetRadioInstances(self, ppCollection);
     }
     pub fn OnSystemRadioStateChange(self: *const IMediaRadioManager, sysRadioState: SYSTEM_RADIO_STATE, uTimeoutSec: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMediaRadioManager.VTable, @ptrCast(self.vtable)).OnSystemRadioStateChange(@as(*const IMediaRadioManager, @ptrCast(self)), sysRadioState, uTimeoutSec);
+        return self.vtable.OnSystemRadioStateChange(self, sysRadioState, uTimeoutSec);
     }
 };
 
@@ -4287,10 +4287,10 @@ pub const IRadioInstanceCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IRadioInstanceCollection, pcInstance: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstanceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IRadioInstanceCollection, @ptrCast(self)), pcInstance);
+        return self.vtable.GetCount(self, pcInstance);
     }
     pub fn GetAt(self: *const IRadioInstanceCollection, uIndex: u32, ppRadioInstance: ?*?*IRadioInstance) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstanceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IRadioInstanceCollection, @ptrCast(self)), uIndex, ppRadioInstance);
+        return self.vtable.GetAt(self, uIndex, ppRadioInstance);
     }
 };
 
@@ -4363,25 +4363,25 @@ pub const IRadioInstance = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRadioManagerSignature(self: *const IRadioInstance, pguidSignature: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).GetRadioManagerSignature(@as(*const IRadioInstance, @ptrCast(self)), pguidSignature);
+        return self.vtable.GetRadioManagerSignature(self, pguidSignature);
     }
     pub fn GetInstanceSignature(self: *const IRadioInstance, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).GetInstanceSignature(@as(*const IRadioInstance, @ptrCast(self)), pbstrId);
+        return self.vtable.GetInstanceSignature(self, pbstrId);
     }
     pub fn GetFriendlyName(self: *const IRadioInstance, lcid: u32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IRadioInstance, @ptrCast(self)), lcid, pbstrName);
+        return self.vtable.GetFriendlyName(self, lcid, pbstrName);
     }
     pub fn GetRadioState(self: *const IRadioInstance, pRadioState: ?*DEVICE_RADIO_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).GetRadioState(@as(*const IRadioInstance, @ptrCast(self)), pRadioState);
+        return self.vtable.GetRadioState(self, pRadioState);
     }
     pub fn SetRadioState(self: *const IRadioInstance, radioState: DEVICE_RADIO_STATE, uTimeoutSec: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).SetRadioState(@as(*const IRadioInstance, @ptrCast(self)), radioState, uTimeoutSec);
+        return self.vtable.SetRadioState(self, radioState, uTimeoutSec);
     }
     pub fn IsMultiComm(self: *const IRadioInstance) callconv(.Inline) BOOL {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).IsMultiComm(@as(*const IRadioInstance, @ptrCast(self)));
+        return self.vtable.IsMultiComm(self);
     }
     pub fn IsAssociatingDevice(self: *const IRadioInstance) callconv(.Inline) BOOL {
-        return @as(*const IRadioInstance.VTable, @ptrCast(self.vtable)).IsAssociatingDevice(@as(*const IRadioInstance, @ptrCast(self)));
+        return self.vtable.IsAssociatingDevice(self);
     }
 };
 
@@ -4423,13 +4423,13 @@ pub const IMediaRadioManagerNotifySink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInstanceAdd(self: *const IMediaRadioManagerNotifySink, pRadioInstance: ?*IRadioInstance) callconv(.Inline) HRESULT {
-        return @as(*const IMediaRadioManagerNotifySink.VTable, @ptrCast(self.vtable)).OnInstanceAdd(@as(*const IMediaRadioManagerNotifySink, @ptrCast(self)), pRadioInstance);
+        return self.vtable.OnInstanceAdd(self, pRadioInstance);
     }
     pub fn OnInstanceRemove(self: *const IMediaRadioManagerNotifySink, bstrRadioInstanceId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMediaRadioManagerNotifySink.VTable, @ptrCast(self.vtable)).OnInstanceRemove(@as(*const IMediaRadioManagerNotifySink, @ptrCast(self)), bstrRadioInstanceId);
+        return self.vtable.OnInstanceRemove(self, bstrRadioInstanceId);
     }
     pub fn OnInstanceRadioChange(self: *const IMediaRadioManagerNotifySink, bstrRadioInstanceId: ?BSTR, radioState: DEVICE_RADIO_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMediaRadioManagerNotifySink.VTable, @ptrCast(self.vtable)).OnInstanceRadioChange(@as(*const IMediaRadioManagerNotifySink, @ptrCast(self)), bstrRadioInstanceId, radioState);
+        return self.vtable.OnInstanceRadioChange(self, bstrRadioInstanceId, radioState);
     }
 };
 

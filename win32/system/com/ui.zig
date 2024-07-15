@@ -40,10 +40,10 @@ pub const IThumbnailExtractor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ExtractThumbnail(self: *const IThumbnailExtractor, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).ExtractThumbnail(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
+        return self.vtable.ExtractThumbnail(self, pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
     }
     pub fn OnFileUpdated(self: *const IThumbnailExtractor, pStg: ?*IStorage) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).OnFileUpdated(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg);
+        return self.vtable.OnFileUpdated(self, pStg);
     }
 };
 
@@ -69,7 +69,7 @@ pub const IDummyHICONIncluder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) callconv(.Inline) HRESULT {
-        return @as(*const IDummyHICONIncluder.VTable, @ptrCast(self.vtable)).Dummy(@as(*const IDummyHICONIncluder, @ptrCast(self)), h1, h2);
+        return self.vtable.Dummy(self, h1, h2);
     }
 };
 

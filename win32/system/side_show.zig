@@ -76,10 +76,10 @@ pub const ISideShowSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterContent(self: *const ISideShowSession, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowSession.VTable, @ptrCast(self.vtable)).RegisterContent(@as(*const ISideShowSession, @ptrCast(self)), in_applicationId, in_endpointId, out_ppIContent);
+        return self.vtable.RegisterContent(self, in_applicationId, in_endpointId, out_ppIContent);
     }
     pub fn RegisterNotifications(self: *const ISideShowSession, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowSession.VTable, @ptrCast(self.vtable)).RegisterNotifications(@as(*const ISideShowSession, @ptrCast(self)), in_applicationId, out_ppINotification);
+        return self.vtable.RegisterNotifications(self, in_applicationId, out_ppINotification);
     }
 };
 
@@ -119,13 +119,13 @@ pub const ISideShowNotificationManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Show(self: *const ISideShowNotificationManager, in_pINotification: ?*ISideShowNotification) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).Show(@as(*const ISideShowNotificationManager, @ptrCast(self)), in_pINotification);
+        return self.vtable.Show(self, in_pINotification);
     }
     pub fn Revoke(self: *const ISideShowNotificationManager, in_notificationId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).Revoke(@as(*const ISideShowNotificationManager, @ptrCast(self)), in_notificationId);
+        return self.vtable.Revoke(self, in_notificationId);
     }
     pub fn RevokeAll(self: *const ISideShowNotificationManager) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).RevokeAll(@as(*const ISideShowNotificationManager, @ptrCast(self)));
+        return self.vtable.RevokeAll(self);
     }
 };
 
@@ -232,34 +232,34 @@ pub const ISideShowNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_NotificationId(self: *const ISideShowNotification, out_pNotificationId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_NotificationId(@as(*const ISideShowNotification, @ptrCast(self)), out_pNotificationId);
+        return self.vtable.get_NotificationId(self, out_pNotificationId);
     }
     pub fn put_NotificationId(self: *const ISideShowNotification, in_notificationId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_NotificationId(@as(*const ISideShowNotification, @ptrCast(self)), in_notificationId);
+        return self.vtable.put_NotificationId(self, in_notificationId);
     }
     pub fn get_Title(self: *const ISideShowNotification, out_ppwszTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Title(@as(*const ISideShowNotification, @ptrCast(self)), out_ppwszTitle);
+        return self.vtable.get_Title(self, out_ppwszTitle);
     }
     pub fn put_Title(self: *const ISideShowNotification, in_pwszTitle: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Title(@as(*const ISideShowNotification, @ptrCast(self)), in_pwszTitle);
+        return self.vtable.put_Title(self, in_pwszTitle);
     }
     pub fn get_Message(self: *const ISideShowNotification, out_ppwszMessage: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Message(@as(*const ISideShowNotification, @ptrCast(self)), out_ppwszMessage);
+        return self.vtable.get_Message(self, out_ppwszMessage);
     }
     pub fn put_Message(self: *const ISideShowNotification, in_pwszMessage: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Message(@as(*const ISideShowNotification, @ptrCast(self)), in_pwszMessage);
+        return self.vtable.put_Message(self, in_pwszMessage);
     }
     pub fn get_Image(self: *const ISideShowNotification, out_phIcon: ?*?HICON) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Image(@as(*const ISideShowNotification, @ptrCast(self)), out_phIcon);
+        return self.vtable.get_Image(self, out_phIcon);
     }
     pub fn put_Image(self: *const ISideShowNotification, in_hIcon: ?HICON) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Image(@as(*const ISideShowNotification, @ptrCast(self)), in_hIcon);
+        return self.vtable.put_Image(self, in_hIcon);
     }
     pub fn get_ExpirationTime(self: *const ISideShowNotification, out_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_ExpirationTime(@as(*const ISideShowNotification, @ptrCast(self)), out_pTime);
+        return self.vtable.get_ExpirationTime(self, out_pTime);
     }
     pub fn put_ExpirationTime(self: *const ISideShowNotification, in_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_ExpirationTime(@as(*const ISideShowNotification, @ptrCast(self)), in_pTime);
+        return self.vtable.put_ExpirationTime(self, in_pTime);
     }
 };
 
@@ -315,19 +315,19 @@ pub const ISideShowContentManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Add(self: *const ISideShowContentManager, in_pIContent: ?*ISideShowContent) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowContentManager, @ptrCast(self)), in_pIContent);
+        return self.vtable.Add(self, in_pIContent);
     }
     pub fn Remove(self: *const ISideShowContentManager, in_contentId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISideShowContentManager, @ptrCast(self)), in_contentId);
+        return self.vtable.Remove(self, in_contentId);
     }
     pub fn RemoveAll(self: *const ISideShowContentManager) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const ISideShowContentManager, @ptrCast(self)));
+        return self.vtable.RemoveAll(self);
     }
     pub fn SetEventSink(self: *const ISideShowContentManager, in_pIEvents: ?*ISideShowEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISideShowContentManager, @ptrCast(self)), in_pIEvents);
+        return self.vtable.SetEventSink(self, in_pIEvents);
     }
     pub fn GetDeviceCapabilities(self: *const ISideShowContentManager, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).GetDeviceCapabilities(@as(*const ISideShowContentManager, @ptrCast(self)), out_ppCollection);
+        return self.vtable.GetDeviceCapabilities(self, out_ppCollection);
     }
 };
 
@@ -372,13 +372,13 @@ pub const ISideShowContent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetContent(self: *const ISideShowContent, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).GetContent(@as(*const ISideShowContent, @ptrCast(self)), in_pICapabilities, out_pdwSize, out_ppbData);
+        return self.vtable.GetContent(self, in_pICapabilities, out_pdwSize, out_ppbData);
     }
     pub fn get_ContentId(self: *const ISideShowContent, out_pcontentId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).get_ContentId(@as(*const ISideShowContent, @ptrCast(self)), out_pcontentId);
+        return self.vtable.get_ContentId(self, out_pcontentId);
     }
     pub fn get_DifferentiateContent(self: *const ISideShowContent, out_pfDifferentiateContent: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).get_DifferentiateContent(@as(*const ISideShowContent, @ptrCast(self)), out_pfDifferentiateContent);
+        return self.vtable.get_DifferentiateContent(self, out_pfDifferentiateContent);
     }
 };
 
@@ -431,16 +431,16 @@ pub const ISideShowEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ContentMissing(self: *const ISideShowEvents, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).ContentMissing(@as(*const ISideShowEvents, @ptrCast(self)), in_contentId, out_ppIContent);
+        return self.vtable.ContentMissing(self, in_contentId, out_ppIContent);
     }
     pub fn ApplicationEvent(self: *const ISideShowEvents, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).ApplicationEvent(@as(*const ISideShowEvents, @ptrCast(self)), in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
+        return self.vtable.ApplicationEvent(self, in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
     }
     pub fn DeviceAdded(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).DeviceAdded(@as(*const ISideShowEvents, @ptrCast(self)), in_pIDevice);
+        return self.vtable.DeviceAdded(self, in_pIDevice);
     }
     pub fn DeviceRemoved(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).DeviceRemoved(@as(*const ISideShowEvents, @ptrCast(self)), in_pIDevice);
+        return self.vtable.DeviceRemoved(self, in_pIDevice);
     }
 };
 
@@ -466,7 +466,7 @@ pub const ISideShowCapabilities = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapability(self: *const ISideShowCapabilities, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowCapabilities.VTable, @ptrCast(self.vtable)).GetCapability(@as(*const ISideShowCapabilities, @ptrCast(self)), in_keyCapability, inout_pValue);
+        return self.vtable.GetCapability(self, in_keyCapability, inout_pValue);
     }
 };
 
@@ -500,10 +500,10 @@ pub const ISideShowCapabilitiesCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const ISideShowCapabilitiesCollection, out_pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowCapabilitiesCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowCapabilitiesCollection, @ptrCast(self)), out_pdwCount);
+        return self.vtable.GetCount(self, out_pdwCount);
     }
     pub fn GetAt(self: *const ISideShowCapabilitiesCollection, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowCapabilitiesCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowCapabilitiesCollection, @ptrCast(self)), in_dwIndex, out_ppCapabilities);
+        return self.vtable.GetAt(self, in_dwIndex, out_ppCapabilities);
     }
 };
 
@@ -529,7 +529,7 @@ pub const ISideShowBulkCapabilities = extern union {
     };}
     pub usingnamespace ISideShowCapabilities.MethodMixin(@This());
     pub fn GetCapabilities(self: *const ISideShowBulkCapabilities, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowBulkCapabilities.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const ISideShowBulkCapabilities, @ptrCast(self)), in_keyCollection, inout_pValues);
+        return self.vtable.GetCapabilities(self, in_keyCollection, inout_pValues);
     }
 };
 
@@ -586,19 +586,19 @@ pub const ISideShowKeyCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Add(self: *const ISideShowKeyCollection, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowKeyCollection, @ptrCast(self)), Key);
+        return self.vtable.Add(self, Key);
     }
     pub fn Clear(self: *const ISideShowKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISideShowKeyCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn GetAt(self: *const ISideShowKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowKeyCollection, @ptrCast(self)), dwIndex, pKey);
+        return self.vtable.GetAt(self, dwIndex, pKey);
     }
     pub fn GetCount(self: *const ISideShowKeyCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowKeyCollection, @ptrCast(self)), pcElems);
+        return self.vtable.GetCount(self, pcElems);
     }
     pub fn RemoveAt(self: *const ISideShowKeyCollection, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const ISideShowKeyCollection, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 
@@ -655,19 +655,19 @@ pub const ISideShowPropVariantCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Add(self: *const ISideShowPropVariantCollection, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), pValue);
+        return self.vtable.Add(self, pValue);
     }
     pub fn Clear(self: *const ISideShowPropVariantCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISideShowPropVariantCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn GetAt(self: *const ISideShowPropVariantCollection, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), dwIndex, pValue);
+        return self.vtable.GetAt(self, dwIndex, pValue);
     }
     pub fn GetCount(self: *const ISideShowPropVariantCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), pcElems);
+        return self.vtable.GetCount(self, pcElems);
     }
     pub fn RemoveAt(self: *const ISideShowPropVariantCollection, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 

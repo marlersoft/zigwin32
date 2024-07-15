@@ -1157,31 +1157,31 @@ pub const ISdoMachine = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Attach(self: *const ISdoMachine, bstrComputerName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).Attach(@as(*const ISdoMachine, @ptrCast(self)), bstrComputerName);
+        return self.vtable.Attach(self, bstrComputerName);
     }
     pub fn GetDictionarySDO(self: *const ISdoMachine, ppDictionarySDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetDictionarySDO(@as(*const ISdoMachine, @ptrCast(self)), ppDictionarySDO);
+        return self.vtable.GetDictionarySDO(self, ppDictionarySDO);
     }
     pub fn GetServiceSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrServiceName: ?BSTR, ppServiceSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetServiceSDO(@as(*const ISdoMachine, @ptrCast(self)), eDataStore, bstrServiceName, ppServiceSDO);
+        return self.vtable.GetServiceSDO(self, eDataStore, bstrServiceName, ppServiceSDO);
     }
     pub fn GetUserSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrUserName: ?BSTR, ppUserSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetUserSDO(@as(*const ISdoMachine, @ptrCast(self)), eDataStore, bstrUserName, ppUserSDO);
+        return self.vtable.GetUserSDO(self, eDataStore, bstrUserName, ppUserSDO);
     }
     pub fn GetOSType(self: *const ISdoMachine, eOSType: ?*IASOSTYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetOSType(@as(*const ISdoMachine, @ptrCast(self)), eOSType);
+        return self.vtable.GetOSType(self, eOSType);
     }
     pub fn GetDomainType(self: *const ISdoMachine, eDomainType: ?*IASDOMAINTYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const ISdoMachine, @ptrCast(self)), eDomainType);
+        return self.vtable.GetDomainType(self, eDomainType);
     }
     pub fn IsDirectoryAvailable(self: *const ISdoMachine, boolDirectoryAvailable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).IsDirectoryAvailable(@as(*const ISdoMachine, @ptrCast(self)), boolDirectoryAvailable);
+        return self.vtable.IsDirectoryAvailable(self, boolDirectoryAvailable);
     }
     pub fn GetAttachedComputer(self: *const ISdoMachine, bstrComputerName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetAttachedComputer(@as(*const ISdoMachine, @ptrCast(self)), bstrComputerName);
+        return self.vtable.GetAttachedComputer(self, bstrComputerName);
     }
     pub fn GetSDOSchema(self: *const ISdoMachine, ppSDOSchema: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetSDOSchema(@as(*const ISdoMachine, @ptrCast(self)), ppSDOSchema);
+        return self.vtable.GetSDOSchema(self, ppSDOSchema);
     }
 };
 
@@ -1241,19 +1241,19 @@ pub const ISdoMachine2 = extern union {
     };}
     pub usingnamespace ISdoMachine.MethodMixin(@This());
     pub fn GetTemplatesSDO(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppTemplatesSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).GetTemplatesSDO(@as(*const ISdoMachine2, @ptrCast(self)), bstrServiceName, ppTemplatesSDO);
+        return self.vtable.GetTemplatesSDO(self, bstrServiceName, ppTemplatesSDO);
     }
     pub fn EnableTemplates(self: *const ISdoMachine2) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).EnableTemplates(@as(*const ISdoMachine2, @ptrCast(self)));
+        return self.vtable.EnableTemplates(self);
     }
     pub fn SyncConfigAgainstTemplates(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).SyncConfigAgainstTemplates(@as(*const ISdoMachine2, @ptrCast(self)), bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
+        return self.vtable.SyncConfigAgainstTemplates(self, bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
     }
     pub fn ImportRemoteTemplates(self: *const ISdoMachine2, pLocalTemplatesRoot: ?*IUnknown, bstrRemoteMachineName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).ImportRemoteTemplates(@as(*const ISdoMachine2, @ptrCast(self)), pLocalTemplatesRoot, bstrRemoteMachineName);
+        return self.vtable.ImportRemoteTemplates(self, pLocalTemplatesRoot, bstrRemoteMachineName);
     }
     pub fn Reload(self: *const ISdoMachine2) callconv(.Inline) HRESULT {
-        return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).Reload(@as(*const ISdoMachine2, @ptrCast(self)));
+        return self.vtable.Reload(self);
     }
 };
 
@@ -1300,16 +1300,16 @@ pub const ISdoServiceControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn StartService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
-        return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).StartService(@as(*const ISdoServiceControl, @ptrCast(self)));
+        return self.vtable.StartService(self);
     }
     pub fn StopService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
-        return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).StopService(@as(*const ISdoServiceControl, @ptrCast(self)));
+        return self.vtable.StopService(self);
     }
     pub fn GetServiceStatus(self: *const ISdoServiceControl, status: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).GetServiceStatus(@as(*const ISdoServiceControl, @ptrCast(self)), status);
+        return self.vtable.GetServiceStatus(self, status);
     }
     pub fn ResetService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
-        return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).ResetService(@as(*const ISdoServiceControl, @ptrCast(self)));
+        return self.vtable.ResetService(self);
     }
 };
 
@@ -1385,25 +1385,25 @@ pub const ISdo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetPropertyInfo(self: *const ISdo, Id: i32, ppPropertyInfo: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).GetPropertyInfo(@as(*const ISdo, @ptrCast(self)), Id, ppPropertyInfo);
+        return self.vtable.GetPropertyInfo(self, Id, ppPropertyInfo);
     }
     pub fn GetProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ISdo, @ptrCast(self)), Id, pValue);
+        return self.vtable.GetProperty(self, Id, pValue);
     }
     pub fn PutProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const ISdo, @ptrCast(self)), Id, pValue);
+        return self.vtable.PutProperty(self, Id, pValue);
     }
     pub fn ResetProperty(self: *const ISdo, Id: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).ResetProperty(@as(*const ISdo, @ptrCast(self)), Id);
+        return self.vtable.ResetProperty(self, Id);
     }
     pub fn Apply(self: *const ISdo) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).Apply(@as(*const ISdo, @ptrCast(self)));
+        return self.vtable.Apply(self);
     }
     pub fn Restore(self: *const ISdo) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).Restore(@as(*const ISdo, @ptrCast(self)));
+        return self.vtable.Restore(self);
     }
     pub fn get__NewEnum(self: *const ISdo, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdo.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISdo, @ptrCast(self)), ppEnumVARIANT);
+        return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
 
@@ -1488,28 +1488,28 @@ pub const ISdoCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISdoCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISdoCollection, @ptrCast(self)), pCount);
+        return self.vtable.get_Count(self, pCount);
     }
     pub fn Add(self: *const ISdoCollection, bstrName: ?BSTR, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISdoCollection, @ptrCast(self)), bstrName, ppItem);
+        return self.vtable.Add(self, bstrName, ppItem);
     }
     pub fn Remove(self: *const ISdoCollection, pItem: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISdoCollection, @ptrCast(self)), pItem);
+        return self.vtable.Remove(self, pItem);
     }
     pub fn RemoveAll(self: *const ISdoCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const ISdoCollection, @ptrCast(self)));
+        return self.vtable.RemoveAll(self);
     }
     pub fn Reload(self: *const ISdoCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Reload(@as(*const ISdoCollection, @ptrCast(self)));
+        return self.vtable.Reload(self);
     }
     pub fn IsNameUnique(self: *const ISdoCollection, bstrName: ?BSTR, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).IsNameUnique(@as(*const ISdoCollection, @ptrCast(self)), bstrName, pBool);
+        return self.vtable.IsNameUnique(self, bstrName, pBool);
     }
     pub fn Item(self: *const ISdoCollection, Name: ?*VARIANT, pItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const ISdoCollection, @ptrCast(self)), Name, pItem);
+        return self.vtable.Item(self, Name, pItem);
     }
     pub fn get__NewEnum(self: *const ISdoCollection, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISdoCollection, @ptrCast(self)), ppEnumVARIANT);
+        return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
 
@@ -1555,13 +1555,13 @@ pub const ITemplateSdo = extern union {
     };}
     pub usingnamespace ISdo.MethodMixin(@This());
     pub fn AddToCollection(self: *const ITemplateSdo, bstrName: ?BSTR, pCollection: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToCollection(@as(*const ITemplateSdo, @ptrCast(self)), bstrName, pCollection, ppItem);
+        return self.vtable.AddToCollection(self, bstrName, pCollection, ppItem);
     }
     pub fn AddToSdo(self: *const ITemplateSdo, bstrName: ?BSTR, pSdoTarget: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToSdo(@as(*const ITemplateSdo, @ptrCast(self)), bstrName, pSdoTarget, ppItem);
+        return self.vtable.AddToSdo(self, bstrName, pSdoTarget, ppItem);
     }
     pub fn AddToSdoAsProperty(self: *const ITemplateSdo, pSdoTarget: ?*IDispatch, id: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToSdoAsProperty(@as(*const ITemplateSdo, @ptrCast(self)), pSdoTarget, id);
+        return self.vtable.AddToSdoAsProperty(self, pSdoTarget, id);
     }
 };
 
@@ -1626,19 +1626,19 @@ pub const ISdoDictionaryOld = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EnumAttributes(self: *const ISdoDictionaryOld, Id: ?*VARIANT, pValues: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).EnumAttributes(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pValues);
+        return self.vtable.EnumAttributes(self, Id, pValues);
     }
     pub fn GetAttributeInfo(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pInfoIDs: ?*VARIANT, pInfoValues: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).GetAttributeInfo(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pInfoIDs, pInfoValues);
+        return self.vtable.GetAttributeInfo(self, Id, pInfoIDs, pInfoValues);
     }
     pub fn EnumAttributeValues(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pValueIds: ?*VARIANT, pValuesDesc: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).EnumAttributeValues(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pValueIds, pValuesDesc);
+        return self.vtable.EnumAttributeValues(self, Id, pValueIds, pValuesDesc);
     }
     pub fn CreateAttribute(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, ppAttributeObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).CreateAttribute(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, ppAttributeObject);
+        return self.vtable.CreateAttribute(self, Id, ppAttributeObject);
     }
     pub fn GetAttributeID(self: *const ISdoDictionaryOld, bstrAttributeName: ?BSTR, pId: ?*ATTRIBUTEID) callconv(.Inline) HRESULT {
-        return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).GetAttributeID(@as(*const ISdoDictionaryOld, @ptrCast(self)), bstrAttributeName, pId);
+        return self.vtable.GetAttributeID(self, bstrAttributeName, pId);
     }
 };
 

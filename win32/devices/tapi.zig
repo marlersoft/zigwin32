@@ -3265,52 +3265,52 @@ pub const ITTAPI = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Initialize(self: *const ITTAPI) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ITTAPI, @ptrCast(self)));
+        return self.vtable.Initialize(self);
     }
     pub fn Shutdown(self: *const ITTAPI) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const ITTAPI, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn get_Addresses(self: *const ITTAPI, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).get_Addresses(@as(*const ITTAPI, @ptrCast(self)), pVariant);
+        return self.vtable.get_Addresses(self, pVariant);
     }
     pub fn EnumerateAddresses(self: *const ITTAPI, ppEnumAddress: ?*?*IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).EnumerateAddresses(@as(*const ITTAPI, @ptrCast(self)), ppEnumAddress);
+        return self.vtable.EnumerateAddresses(self, ppEnumAddress);
     }
     pub fn RegisterCallNotifications(self: *const ITTAPI, pAddress: ?*ITAddress, fMonitor: i16, fOwner: i16, lMediaTypes: i32, lCallbackInstance: i32, plRegister: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).RegisterCallNotifications(@as(*const ITTAPI, @ptrCast(self)), pAddress, fMonitor, fOwner, lMediaTypes, lCallbackInstance, plRegister);
+        return self.vtable.RegisterCallNotifications(self, pAddress, fMonitor, fOwner, lMediaTypes, lCallbackInstance, plRegister);
     }
     pub fn UnregisterNotifications(self: *const ITTAPI, lRegister: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).UnregisterNotifications(@as(*const ITTAPI, @ptrCast(self)), lRegister);
+        return self.vtable.UnregisterNotifications(self, lRegister);
     }
     pub fn get_CallHubs(self: *const ITTAPI, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).get_CallHubs(@as(*const ITTAPI, @ptrCast(self)), pVariant);
+        return self.vtable.get_CallHubs(self, pVariant);
     }
     pub fn EnumerateCallHubs(self: *const ITTAPI, ppEnumCallHub: ?*?*IEnumCallHub) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).EnumerateCallHubs(@as(*const ITTAPI, @ptrCast(self)), ppEnumCallHub);
+        return self.vtable.EnumerateCallHubs(self, ppEnumCallHub);
     }
     pub fn SetCallHubTracking(self: *const ITTAPI, pAddresses: VARIANT, bTracking: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).SetCallHubTracking(@as(*const ITTAPI, @ptrCast(self)), pAddresses, bTracking);
+        return self.vtable.SetCallHubTracking(self, pAddresses, bTracking);
     }
     pub fn EnumeratePrivateTAPIObjects(self: *const ITTAPI, ppEnumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).EnumeratePrivateTAPIObjects(@as(*const ITTAPI, @ptrCast(self)), ppEnumUnknown);
+        return self.vtable.EnumeratePrivateTAPIObjects(self, ppEnumUnknown);
     }
     pub fn get_PrivateTAPIObjects(self: *const ITTAPI, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).get_PrivateTAPIObjects(@as(*const ITTAPI, @ptrCast(self)), pVariant);
+        return self.vtable.get_PrivateTAPIObjects(self, pVariant);
     }
     pub fn RegisterRequestRecipient(self: *const ITTAPI, lRegistrationInstance: i32, lRequestMode: i32, fEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).RegisterRequestRecipient(@as(*const ITTAPI, @ptrCast(self)), lRegistrationInstance, lRequestMode, fEnable);
+        return self.vtable.RegisterRequestRecipient(self, lRegistrationInstance, lRequestMode, fEnable);
     }
     pub fn SetAssistedTelephonyPriority(self: *const ITTAPI, pAppFilename: ?BSTR, fPriority: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).SetAssistedTelephonyPriority(@as(*const ITTAPI, @ptrCast(self)), pAppFilename, fPriority);
+        return self.vtable.SetAssistedTelephonyPriority(self, pAppFilename, fPriority);
     }
     pub fn SetApplicationPriority(self: *const ITTAPI, pAppFilename: ?BSTR, lMediaType: i32, fPriority: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).SetApplicationPriority(@as(*const ITTAPI, @ptrCast(self)), pAppFilename, lMediaType, fPriority);
+        return self.vtable.SetApplicationPriority(self, pAppFilename, lMediaType, fPriority);
     }
     pub fn put_EventFilter(self: *const ITTAPI, lFilterMask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).put_EventFilter(@as(*const ITTAPI, @ptrCast(self)), lFilterMask);
+        return self.vtable.put_EventFilter(self, lFilterMask);
     }
     pub fn get_EventFilter(self: *const ITTAPI, plFilterMask: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI.VTable, @ptrCast(self.vtable)).get_EventFilter(@as(*const ITTAPI, @ptrCast(self)), plFilterMask);
+        return self.vtable.get_EventFilter(self, plFilterMask);
     }
 };
 
@@ -3352,13 +3352,13 @@ pub const ITTAPI2 = extern union {
     };}
     pub usingnamespace ITTAPI.MethodMixin(@This());
     pub fn get_Phones(self: *const ITTAPI2, pPhones: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI2.VTable, @ptrCast(self.vtable)).get_Phones(@as(*const ITTAPI2, @ptrCast(self)), pPhones);
+        return self.vtable.get_Phones(self, pPhones);
     }
     pub fn EnumeratePhones(self: *const ITTAPI2, ppEnumPhone: ?*?*IEnumPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI2.VTable, @ptrCast(self.vtable)).EnumeratePhones(@as(*const ITTAPI2, @ptrCast(self)), ppEnumPhone);
+        return self.vtable.EnumeratePhones(self, ppEnumPhone);
     }
     pub fn CreateEmptyCollectionObject(self: *const ITTAPI2, ppCollection: ?*?*ITCollection2) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPI2.VTable, @ptrCast(self.vtable)).CreateEmptyCollectionObject(@as(*const ITTAPI2, @ptrCast(self)), ppCollection);
+        return self.vtable.CreateEmptyCollectionObject(self, ppCollection);
     }
 };
 
@@ -3393,10 +3393,10 @@ pub const ITMediaSupport = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MediaTypes(self: *const ITMediaSupport, plMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaSupport.VTable, @ptrCast(self.vtable)).get_MediaTypes(@as(*const ITMediaSupport, @ptrCast(self)), plMediaTypes);
+        return self.vtable.get_MediaTypes(self, plMediaTypes);
     }
     pub fn QueryMediaType(self: *const ITMediaSupport, lMediaType: i32, pfSupport: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaSupport.VTable, @ptrCast(self.vtable)).QueryMediaType(@as(*const ITMediaSupport, @ptrCast(self)), lMediaType, pfSupport);
+        return self.vtable.QueryMediaType(self, lMediaType, pfSupport);
     }
 };
 
@@ -3476,25 +3476,25 @@ pub const ITPluggableTerminalClassInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ITPluggableTerminalClassInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pName);
+        return self.vtable.get_Name(self, pName);
     }
     pub fn get_Company(self: *const ITPluggableTerminalClassInfo, pCompany: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_Company(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pCompany);
+        return self.vtable.get_Company(self, pCompany);
     }
     pub fn get_Version(self: *const ITPluggableTerminalClassInfo, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_Version(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pVersion);
+        return self.vtable.get_Version(self, pVersion);
     }
     pub fn get_TerminalClass(self: *const ITPluggableTerminalClassInfo, pTerminalClass: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_TerminalClass(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pTerminalClass);
+        return self.vtable.get_TerminalClass(self, pTerminalClass);
     }
     pub fn get_CLSID(self: *const ITPluggableTerminalClassInfo, pCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_CLSID(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pCLSID);
+        return self.vtable.get_CLSID(self, pCLSID);
     }
     pub fn get_Direction(self: *const ITPluggableTerminalClassInfo, pDirection: ?*TERMINAL_DIRECTION) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pDirection);
+        return self.vtable.get_Direction(self, pDirection);
     }
     pub fn get_MediaTypes(self: *const ITPluggableTerminalClassInfo, pMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).get_MediaTypes(@as(*const ITPluggableTerminalClassInfo, @ptrCast(self)), pMediaTypes);
+        return self.vtable.get_MediaTypes(self, pMediaTypes);
     }
 };
 
@@ -3529,10 +3529,10 @@ pub const ITPluggableTerminalSuperclassInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ITPluggableTerminalSuperclassInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalSuperclassInfo.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITPluggableTerminalSuperclassInfo, @ptrCast(self)), pName);
+        return self.vtable.get_Name(self, pName);
     }
     pub fn get_CLSID(self: *const ITPluggableTerminalSuperclassInfo, pCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalSuperclassInfo.VTable, @ptrCast(self.vtable)).get_CLSID(@as(*const ITPluggableTerminalSuperclassInfo, @ptrCast(self)), pCLSID);
+        return self.vtable.get_CLSID(self, pCLSID);
     }
 };
 
@@ -3604,22 +3604,22 @@ pub const ITTerminalSupport = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StaticTerminals(self: *const ITTerminalSupport, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).get_StaticTerminals(@as(*const ITTerminalSupport, @ptrCast(self)), pVariant);
+        return self.vtable.get_StaticTerminals(self, pVariant);
     }
     pub fn EnumerateStaticTerminals(self: *const ITTerminalSupport, ppTerminalEnumerator: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).EnumerateStaticTerminals(@as(*const ITTerminalSupport, @ptrCast(self)), ppTerminalEnumerator);
+        return self.vtable.EnumerateStaticTerminals(self, ppTerminalEnumerator);
     }
     pub fn get_DynamicTerminalClasses(self: *const ITTerminalSupport, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).get_DynamicTerminalClasses(@as(*const ITTerminalSupport, @ptrCast(self)), pVariant);
+        return self.vtable.get_DynamicTerminalClasses(self, pVariant);
     }
     pub fn EnumerateDynamicTerminalClasses(self: *const ITTerminalSupport, ppTerminalClassEnumerator: ?*?*IEnumTerminalClass) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).EnumerateDynamicTerminalClasses(@as(*const ITTerminalSupport, @ptrCast(self)), ppTerminalClassEnumerator);
+        return self.vtable.EnumerateDynamicTerminalClasses(self, ppTerminalClassEnumerator);
     }
     pub fn CreateTerminal(self: *const ITTerminalSupport, pTerminalClass: ?BSTR, lMediaType: i32, Direction: TERMINAL_DIRECTION, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).CreateTerminal(@as(*const ITTerminalSupport, @ptrCast(self)), pTerminalClass, lMediaType, Direction, ppTerminal);
+        return self.vtable.CreateTerminal(self, pTerminalClass, lMediaType, Direction, ppTerminal);
     }
     pub fn GetDefaultStaticTerminal(self: *const ITTerminalSupport, lMediaType: i32, Direction: TERMINAL_DIRECTION, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport.VTable, @ptrCast(self.vtable)).GetDefaultStaticTerminal(@as(*const ITTerminalSupport, @ptrCast(self)), lMediaType, Direction, ppTerminal);
+        return self.vtable.GetDefaultStaticTerminal(self, lMediaType, Direction, ppTerminal);
     }
 };
 
@@ -3673,16 +3673,16 @@ pub const ITTerminalSupport2 = extern union {
     };}
     pub usingnamespace ITTerminalSupport.MethodMixin(@This());
     pub fn get_PluggableSuperclasses(self: *const ITTerminalSupport2, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport2.VTable, @ptrCast(self.vtable)).get_PluggableSuperclasses(@as(*const ITTerminalSupport2, @ptrCast(self)), pVariant);
+        return self.vtable.get_PluggableSuperclasses(self, pVariant);
     }
     pub fn EnumeratePluggableSuperclasses(self: *const ITTerminalSupport2, ppSuperclassEnumerator: ?*?*IEnumPluggableSuperclassInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport2.VTable, @ptrCast(self.vtable)).EnumeratePluggableSuperclasses(@as(*const ITTerminalSupport2, @ptrCast(self)), ppSuperclassEnumerator);
+        return self.vtable.EnumeratePluggableSuperclasses(self, ppSuperclassEnumerator);
     }
     pub fn get_PluggableTerminalClasses(self: *const ITTerminalSupport2, bstrTerminalSuperclass: ?BSTR, lMediaType: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport2.VTable, @ptrCast(self.vtable)).get_PluggableTerminalClasses(@as(*const ITTerminalSupport2, @ptrCast(self)), bstrTerminalSuperclass, lMediaType, pVariant);
+        return self.vtable.get_PluggableTerminalClasses(self, bstrTerminalSuperclass, lMediaType, pVariant);
     }
     pub fn EnumeratePluggableTerminalClasses(self: *const ITTerminalSupport2, iidTerminalSuperclass: Guid, lMediaType: i32, ppClassEnumerator: ?*?*IEnumPluggableTerminalClassInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminalSupport2.VTable, @ptrCast(self.vtable)).EnumeratePluggableTerminalClasses(@as(*const ITTerminalSupport2, @ptrCast(self)), iidTerminalSuperclass, lMediaType, ppClassEnumerator);
+        return self.vtable.EnumeratePluggableTerminalClasses(self, iidTerminalSuperclass, lMediaType, ppClassEnumerator);
     }
 };
 
@@ -3834,49 +3834,49 @@ pub const ITAddress = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_State(self: *const ITAddress, pAddressState: ?*ADDRESS_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITAddress, @ptrCast(self)), pAddressState);
+        return self.vtable.get_State(self, pAddressState);
     }
     pub fn get_AddressName(self: *const ITAddress, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_AddressName(@as(*const ITAddress, @ptrCast(self)), ppName);
+        return self.vtable.get_AddressName(self, ppName);
     }
     pub fn get_ServiceProviderName(self: *const ITAddress, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_ServiceProviderName(@as(*const ITAddress, @ptrCast(self)), ppName);
+        return self.vtable.get_ServiceProviderName(self, ppName);
     }
     pub fn get_TAPIObject(self: *const ITAddress, ppTapiObject: ?*?*ITTAPI) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_TAPIObject(@as(*const ITAddress, @ptrCast(self)), ppTapiObject);
+        return self.vtable.get_TAPIObject(self, ppTapiObject);
     }
     pub fn CreateCall(self: *const ITAddress, pDestAddress: ?BSTR, lAddressType: i32, lMediaTypes: i32, ppCall: ?*?*ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).CreateCall(@as(*const ITAddress, @ptrCast(self)), pDestAddress, lAddressType, lMediaTypes, ppCall);
+        return self.vtable.CreateCall(self, pDestAddress, lAddressType, lMediaTypes, ppCall);
     }
     pub fn get_Calls(self: *const ITAddress, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_Calls(@as(*const ITAddress, @ptrCast(self)), pVariant);
+        return self.vtable.get_Calls(self, pVariant);
     }
     pub fn EnumerateCalls(self: *const ITAddress, ppCallEnum: ?*?*IEnumCall) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).EnumerateCalls(@as(*const ITAddress, @ptrCast(self)), ppCallEnum);
+        return self.vtable.EnumerateCalls(self, ppCallEnum);
     }
     pub fn get_DialableAddress(self: *const ITAddress, pDialableAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_DialableAddress(@as(*const ITAddress, @ptrCast(self)), pDialableAddress);
+        return self.vtable.get_DialableAddress(self, pDialableAddress);
     }
     pub fn CreateForwardInfoObject(self: *const ITAddress, ppForwardInfo: ?*?*ITForwardInformation) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).CreateForwardInfoObject(@as(*const ITAddress, @ptrCast(self)), ppForwardInfo);
+        return self.vtable.CreateForwardInfoObject(self, ppForwardInfo);
     }
     pub fn Forward(self: *const ITAddress, pForwardInfo: ?*ITForwardInformation, pCall: ?*ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).Forward(@as(*const ITAddress, @ptrCast(self)), pForwardInfo, pCall);
+        return self.vtable.Forward(self, pForwardInfo, pCall);
     }
     pub fn get_CurrentForwardInfo(self: *const ITAddress, ppForwardInfo: ?*?*ITForwardInformation) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_CurrentForwardInfo(@as(*const ITAddress, @ptrCast(self)), ppForwardInfo);
+        return self.vtable.get_CurrentForwardInfo(self, ppForwardInfo);
     }
     pub fn put_MessageWaiting(self: *const ITAddress, fMessageWaiting: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).put_MessageWaiting(@as(*const ITAddress, @ptrCast(self)), fMessageWaiting);
+        return self.vtable.put_MessageWaiting(self, fMessageWaiting);
     }
     pub fn get_MessageWaiting(self: *const ITAddress, pfMessageWaiting: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_MessageWaiting(@as(*const ITAddress, @ptrCast(self)), pfMessageWaiting);
+        return self.vtable.get_MessageWaiting(self, pfMessageWaiting);
     }
     pub fn put_DoNotDisturb(self: *const ITAddress, fDoNotDisturb: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).put_DoNotDisturb(@as(*const ITAddress, @ptrCast(self)), fDoNotDisturb);
+        return self.vtable.put_DoNotDisturb(self, fDoNotDisturb);
     }
     pub fn get_DoNotDisturb(self: *const ITAddress, pfDoNotDisturb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress.VTable, @ptrCast(self.vtable)).get_DoNotDisturb(@as(*const ITAddress, @ptrCast(self)), pfDoNotDisturb);
+        return self.vtable.get_DoNotDisturb(self, pfDoNotDisturb);
     }
 };
 
@@ -3985,34 +3985,34 @@ pub const ITAddress2 = extern union {
     };}
     pub usingnamespace ITAddress.MethodMixin(@This());
     pub fn get_Phones(self: *const ITAddress2, pPhones: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).get_Phones(@as(*const ITAddress2, @ptrCast(self)), pPhones);
+        return self.vtable.get_Phones(self, pPhones);
     }
     pub fn EnumeratePhones(self: *const ITAddress2, ppEnumPhone: ?*?*IEnumPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).EnumeratePhones(@as(*const ITAddress2, @ptrCast(self)), ppEnumPhone);
+        return self.vtable.EnumeratePhones(self, ppEnumPhone);
     }
     pub fn GetPhoneFromTerminal(self: *const ITAddress2, pTerminal: ?*ITTerminal, ppPhone: ?*?*ITPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).GetPhoneFromTerminal(@as(*const ITAddress2, @ptrCast(self)), pTerminal, ppPhone);
+        return self.vtable.GetPhoneFromTerminal(self, pTerminal, ppPhone);
     }
     pub fn get_PreferredPhones(self: *const ITAddress2, pPhones: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).get_PreferredPhones(@as(*const ITAddress2, @ptrCast(self)), pPhones);
+        return self.vtable.get_PreferredPhones(self, pPhones);
     }
     pub fn EnumeratePreferredPhones(self: *const ITAddress2, ppEnumPhone: ?*?*IEnumPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).EnumeratePreferredPhones(@as(*const ITAddress2, @ptrCast(self)), ppEnumPhone);
+        return self.vtable.EnumeratePreferredPhones(self, ppEnumPhone);
     }
     pub fn get_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).get_EventFilter(@as(*const ITAddress2, @ptrCast(self)), TapiEvent, lSubEvent, pEnable);
+        return self.vtable.get_EventFilter(self, TapiEvent, lSubEvent, pEnable);
     }
     pub fn put_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).put_EventFilter(@as(*const ITAddress2, @ptrCast(self)), TapiEvent, lSubEvent, bEnable);
+        return self.vtable.put_EventFilter(self, TapiEvent, lSubEvent, bEnable);
     }
     pub fn DeviceSpecific(self: *const ITAddress2, pCall: ?*ITCallInfo, pParams: ?*u8, dwSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).DeviceSpecific(@as(*const ITAddress2, @ptrCast(self)), pCall, pParams, dwSize);
+        return self.vtable.DeviceSpecific(self, pCall, pParams, dwSize);
     }
     pub fn DeviceSpecificVariant(self: *const ITAddress2, pCall: ?*ITCallInfo, varDevSpecificByteArray: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).DeviceSpecificVariant(@as(*const ITAddress2, @ptrCast(self)), pCall, varDevSpecificByteArray);
+        return self.vtable.DeviceSpecificVariant(self, pCall, varDevSpecificByteArray);
     }
     pub fn NegotiateExtVersion(self: *const ITAddress2, lLowVersion: i32, lHighVersion: i32, plExtVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddress2.VTable, @ptrCast(self.vtable)).NegotiateExtVersion(@as(*const ITAddress2, @ptrCast(self)), lLowVersion, lHighVersion, plExtVersion);
+        return self.vtable.NegotiateExtVersion(self, lLowVersion, lHighVersion, plExtVersion);
     }
 };
 
@@ -4098,28 +4098,28 @@ pub const ITAddressCapabilities = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AddressCapability(self: *const ITAddressCapabilities, AddressCap: ADDRESS_CAPABILITY, plCapability: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).get_AddressCapability(@as(*const ITAddressCapabilities, @ptrCast(self)), AddressCap, plCapability);
+        return self.vtable.get_AddressCapability(self, AddressCap, plCapability);
     }
     pub fn get_AddressCapabilityString(self: *const ITAddressCapabilities, AddressCapString: ADDRESS_CAPABILITY_STRING, ppCapabilityString: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).get_AddressCapabilityString(@as(*const ITAddressCapabilities, @ptrCast(self)), AddressCapString, ppCapabilityString);
+        return self.vtable.get_AddressCapabilityString(self, AddressCapString, ppCapabilityString);
     }
     pub fn get_CallTreatments(self: *const ITAddressCapabilities, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).get_CallTreatments(@as(*const ITAddressCapabilities, @ptrCast(self)), pVariant);
+        return self.vtable.get_CallTreatments(self, pVariant);
     }
     pub fn EnumerateCallTreatments(self: *const ITAddressCapabilities, ppEnumCallTreatment: ?*?*IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).EnumerateCallTreatments(@as(*const ITAddressCapabilities, @ptrCast(self)), ppEnumCallTreatment);
+        return self.vtable.EnumerateCallTreatments(self, ppEnumCallTreatment);
     }
     pub fn get_CompletionMessages(self: *const ITAddressCapabilities, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).get_CompletionMessages(@as(*const ITAddressCapabilities, @ptrCast(self)), pVariant);
+        return self.vtable.get_CompletionMessages(self, pVariant);
     }
     pub fn EnumerateCompletionMessages(self: *const ITAddressCapabilities, ppEnumCompletionMessage: ?*?*IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).EnumerateCompletionMessages(@as(*const ITAddressCapabilities, @ptrCast(self)), ppEnumCompletionMessage);
+        return self.vtable.EnumerateCompletionMessages(self, ppEnumCompletionMessage);
     }
     pub fn get_DeviceClasses(self: *const ITAddressCapabilities, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).get_DeviceClasses(@as(*const ITAddressCapabilities, @ptrCast(self)), pVariant);
+        return self.vtable.get_DeviceClasses(self, pVariant);
     }
     pub fn EnumerateDeviceClasses(self: *const ITAddressCapabilities, ppEnumDeviceClass: ?*?*IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressCapabilities.VTable, @ptrCast(self.vtable)).EnumerateDeviceClasses(@as(*const ITAddressCapabilities, @ptrCast(self)), ppEnumDeviceClass);
+        return self.vtable.EnumerateDeviceClasses(self, ppEnumDeviceClass);
     }
 };
 
@@ -4430,103 +4430,103 @@ pub const ITPhone = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Open(self: *const ITPhone, Privilege: PHONE_PRIVILEGE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).Open(@as(*const ITPhone, @ptrCast(self)), Privilege);
+        return self.vtable.Open(self, Privilege);
     }
     pub fn Close(self: *const ITPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).Close(@as(*const ITPhone, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn get_Addresses(self: *const ITPhone, pAddresses: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_Addresses(@as(*const ITPhone, @ptrCast(self)), pAddresses);
+        return self.vtable.get_Addresses(self, pAddresses);
     }
     pub fn EnumerateAddresses(self: *const ITPhone, ppEnumAddress: ?*?*IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).EnumerateAddresses(@as(*const ITPhone, @ptrCast(self)), ppEnumAddress);
+        return self.vtable.EnumerateAddresses(self, ppEnumAddress);
     }
     pub fn get_PhoneCapsLong(self: *const ITPhone, pclCap: PHONECAPS_LONG, plCapability: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_PhoneCapsLong(@as(*const ITPhone, @ptrCast(self)), pclCap, plCapability);
+        return self.vtable.get_PhoneCapsLong(self, pclCap, plCapability);
     }
     pub fn get_PhoneCapsString(self: *const ITPhone, pcsCap: PHONECAPS_STRING, ppCapability: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_PhoneCapsString(@as(*const ITPhone, @ptrCast(self)), pcsCap, ppCapability);
+        return self.vtable.get_PhoneCapsString(self, pcsCap, ppCapability);
     }
     pub fn get_Terminals(self: *const ITPhone, pAddress: ?*ITAddress, pTerminals: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_Terminals(@as(*const ITPhone, @ptrCast(self)), pAddress, pTerminals);
+        return self.vtable.get_Terminals(self, pAddress, pTerminals);
     }
     pub fn EnumerateTerminals(self: *const ITPhone, pAddress: ?*ITAddress, ppEnumTerminal: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).EnumerateTerminals(@as(*const ITPhone, @ptrCast(self)), pAddress, ppEnumTerminal);
+        return self.vtable.EnumerateTerminals(self, pAddress, ppEnumTerminal);
     }
     pub fn get_ButtonMode(self: *const ITPhone, lButtonID: i32, pButtonMode: ?*PHONE_BUTTON_MODE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_ButtonMode(@as(*const ITPhone, @ptrCast(self)), lButtonID, pButtonMode);
+        return self.vtable.get_ButtonMode(self, lButtonID, pButtonMode);
     }
     pub fn put_ButtonMode(self: *const ITPhone, lButtonID: i32, ButtonMode: PHONE_BUTTON_MODE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_ButtonMode(@as(*const ITPhone, @ptrCast(self)), lButtonID, ButtonMode);
+        return self.vtable.put_ButtonMode(self, lButtonID, ButtonMode);
     }
     pub fn get_ButtonFunction(self: *const ITPhone, lButtonID: i32, pButtonFunction: ?*PHONE_BUTTON_FUNCTION) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_ButtonFunction(@as(*const ITPhone, @ptrCast(self)), lButtonID, pButtonFunction);
+        return self.vtable.get_ButtonFunction(self, lButtonID, pButtonFunction);
     }
     pub fn put_ButtonFunction(self: *const ITPhone, lButtonID: i32, ButtonFunction: PHONE_BUTTON_FUNCTION) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_ButtonFunction(@as(*const ITPhone, @ptrCast(self)), lButtonID, ButtonFunction);
+        return self.vtable.put_ButtonFunction(self, lButtonID, ButtonFunction);
     }
     pub fn get_ButtonText(self: *const ITPhone, lButtonID: i32, ppButtonText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_ButtonText(@as(*const ITPhone, @ptrCast(self)), lButtonID, ppButtonText);
+        return self.vtable.get_ButtonText(self, lButtonID, ppButtonText);
     }
     pub fn put_ButtonText(self: *const ITPhone, lButtonID: i32, bstrButtonText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_ButtonText(@as(*const ITPhone, @ptrCast(self)), lButtonID, bstrButtonText);
+        return self.vtable.put_ButtonText(self, lButtonID, bstrButtonText);
     }
     pub fn get_ButtonState(self: *const ITPhone, lButtonID: i32, pButtonState: ?*PHONE_BUTTON_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_ButtonState(@as(*const ITPhone, @ptrCast(self)), lButtonID, pButtonState);
+        return self.vtable.get_ButtonState(self, lButtonID, pButtonState);
     }
     pub fn get_HookSwitchState(self: *const ITPhone, HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE, pHookSwitchState: ?*PHONE_HOOK_SWITCH_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_HookSwitchState(@as(*const ITPhone, @ptrCast(self)), HookSwitchDevice, pHookSwitchState);
+        return self.vtable.get_HookSwitchState(self, HookSwitchDevice, pHookSwitchState);
     }
     pub fn put_HookSwitchState(self: *const ITPhone, HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE, HookSwitchState: PHONE_HOOK_SWITCH_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_HookSwitchState(@as(*const ITPhone, @ptrCast(self)), HookSwitchDevice, HookSwitchState);
+        return self.vtable.put_HookSwitchState(self, HookSwitchDevice, HookSwitchState);
     }
     pub fn put_RingMode(self: *const ITPhone, lRingMode: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_RingMode(@as(*const ITPhone, @ptrCast(self)), lRingMode);
+        return self.vtable.put_RingMode(self, lRingMode);
     }
     pub fn get_RingMode(self: *const ITPhone, plRingMode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_RingMode(@as(*const ITPhone, @ptrCast(self)), plRingMode);
+        return self.vtable.get_RingMode(self, plRingMode);
     }
     pub fn put_RingVolume(self: *const ITPhone, lRingVolume: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_RingVolume(@as(*const ITPhone, @ptrCast(self)), lRingVolume);
+        return self.vtable.put_RingVolume(self, lRingVolume);
     }
     pub fn get_RingVolume(self: *const ITPhone, plRingVolume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_RingVolume(@as(*const ITPhone, @ptrCast(self)), plRingVolume);
+        return self.vtable.get_RingVolume(self, plRingVolume);
     }
     pub fn get_Privilege(self: *const ITPhone, pPrivilege: ?*PHONE_PRIVILEGE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_Privilege(@as(*const ITPhone, @ptrCast(self)), pPrivilege);
+        return self.vtable.get_Privilege(self, pPrivilege);
     }
     pub fn GetPhoneCapsBuffer(self: *const ITPhone, pcbCaps: PHONECAPS_BUFFER, pdwSize: ?*u32, ppPhoneCapsBuffer: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).GetPhoneCapsBuffer(@as(*const ITPhone, @ptrCast(self)), pcbCaps, pdwSize, ppPhoneCapsBuffer);
+        return self.vtable.GetPhoneCapsBuffer(self, pcbCaps, pdwSize, ppPhoneCapsBuffer);
     }
     pub fn get_PhoneCapsBuffer(self: *const ITPhone, pcbCaps: PHONECAPS_BUFFER, pVarBuffer: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_PhoneCapsBuffer(@as(*const ITPhone, @ptrCast(self)), pcbCaps, pVarBuffer);
+        return self.vtable.get_PhoneCapsBuffer(self, pcbCaps, pVarBuffer);
     }
     pub fn get_LampMode(self: *const ITPhone, lLampID: i32, pLampMode: ?*PHONE_LAMP_MODE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_LampMode(@as(*const ITPhone, @ptrCast(self)), lLampID, pLampMode);
+        return self.vtable.get_LampMode(self, lLampID, pLampMode);
     }
     pub fn put_LampMode(self: *const ITPhone, lLampID: i32, LampMode: PHONE_LAMP_MODE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).put_LampMode(@as(*const ITPhone, @ptrCast(self)), lLampID, LampMode);
+        return self.vtable.put_LampMode(self, lLampID, LampMode);
     }
     pub fn get_Display(self: *const ITPhone, pbstrDisplay: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_Display(@as(*const ITPhone, @ptrCast(self)), pbstrDisplay);
+        return self.vtable.get_Display(self, pbstrDisplay);
     }
     pub fn SetDisplay(self: *const ITPhone, lRow: i32, lColumn: i32, bstrDisplay: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).SetDisplay(@as(*const ITPhone, @ptrCast(self)), lRow, lColumn, bstrDisplay);
+        return self.vtable.SetDisplay(self, lRow, lColumn, bstrDisplay);
     }
     pub fn get_PreferredAddresses(self: *const ITPhone, pAddresses: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).get_PreferredAddresses(@as(*const ITPhone, @ptrCast(self)), pAddresses);
+        return self.vtable.get_PreferredAddresses(self, pAddresses);
     }
     pub fn EnumeratePreferredAddresses(self: *const ITPhone, ppEnumAddress: ?*?*IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).EnumeratePreferredAddresses(@as(*const ITPhone, @ptrCast(self)), ppEnumAddress);
+        return self.vtable.EnumeratePreferredAddresses(self, ppEnumAddress);
     }
     pub fn DeviceSpecific(self: *const ITPhone, pParams: ?*u8, dwSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).DeviceSpecific(@as(*const ITPhone, @ptrCast(self)), pParams, dwSize);
+        return self.vtable.DeviceSpecific(self, pParams, dwSize);
     }
     pub fn DeviceSpecificVariant(self: *const ITPhone, varDevSpecificByteArray: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).DeviceSpecificVariant(@as(*const ITPhone, @ptrCast(self)), varDevSpecificByteArray);
+        return self.vtable.DeviceSpecificVariant(self, varDevSpecificByteArray);
     }
     pub fn NegotiateExtVersion(self: *const ITPhone, lLowVersion: i32, lHighVersion: i32, plExtVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhone.VTable, @ptrCast(self.vtable)).NegotiateExtVersion(@as(*const ITPhone, @ptrCast(self)), lLowVersion, lHighVersion, plExtVersion);
+        return self.vtable.NegotiateExtVersion(self, lLowVersion, lHighVersion, plExtVersion);
     }
 };
 
@@ -4825,100 +4825,100 @@ pub const ITAutomatedPhoneControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn StartTone(self: *const ITAutomatedPhoneControl, Tone: PHONE_TONE, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).StartTone(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), Tone, lDuration);
+        return self.vtable.StartTone(self, Tone, lDuration);
     }
     pub fn StopTone(self: *const ITAutomatedPhoneControl) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).StopTone(@as(*const ITAutomatedPhoneControl, @ptrCast(self)));
+        return self.vtable.StopTone(self);
     }
     pub fn get_Tone(self: *const ITAutomatedPhoneControl, pTone: ?*PHONE_TONE) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_Tone(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pTone);
+        return self.vtable.get_Tone(self, pTone);
     }
     pub fn StartRinger(self: *const ITAutomatedPhoneControl, lRingMode: i32, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).StartRinger(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lRingMode, lDuration);
+        return self.vtable.StartRinger(self, lRingMode, lDuration);
     }
     pub fn StopRinger(self: *const ITAutomatedPhoneControl) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).StopRinger(@as(*const ITAutomatedPhoneControl, @ptrCast(self)));
+        return self.vtable.StopRinger(self);
     }
     pub fn get_Ringer(self: *const ITAutomatedPhoneControl, pfRinging: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_Ringer(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfRinging);
+        return self.vtable.get_Ringer(self, pfRinging);
     }
     pub fn put_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_PhoneHandlingEnabled(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_PhoneHandlingEnabled(self, fEnabled);
     }
     pub fn get_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_PhoneHandlingEnabled(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_PhoneHandlingEnabled(self, pfEnabled);
     }
     pub fn put_AutoEndOfNumberTimeout(self: *const ITAutomatedPhoneControl, lTimeout: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoEndOfNumberTimeout(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lTimeout);
+        return self.vtable.put_AutoEndOfNumberTimeout(self, lTimeout);
     }
     pub fn get_AutoEndOfNumberTimeout(self: *const ITAutomatedPhoneControl, plTimeout: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoEndOfNumberTimeout(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), plTimeout);
+        return self.vtable.get_AutoEndOfNumberTimeout(self, plTimeout);
     }
     pub fn put_AutoDialtone(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoDialtone(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_AutoDialtone(self, fEnabled);
     }
     pub fn get_AutoDialtone(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoDialtone(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_AutoDialtone(self, pfEnabled);
     }
     pub fn put_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoStopTonesOnOnHook(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_AutoStopTonesOnOnHook(self, fEnabled);
     }
     pub fn get_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoStopTonesOnOnHook(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_AutoStopTonesOnOnHook(self, pfEnabled);
     }
     pub fn put_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoStopRingOnOffHook(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_AutoStopRingOnOffHook(self, fEnabled);
     }
     pub fn get_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoStopRingOnOffHook(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_AutoStopRingOnOffHook(self, pfEnabled);
     }
     pub fn put_AutoKeypadTones(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoKeypadTones(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_AutoKeypadTones(self, fEnabled);
     }
     pub fn get_AutoKeypadTones(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoKeypadTones(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_AutoKeypadTones(self, pfEnabled);
     }
     pub fn put_AutoKeypadTonesMinimumDuration(self: *const ITAutomatedPhoneControl, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoKeypadTonesMinimumDuration(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lDuration);
+        return self.vtable.put_AutoKeypadTonesMinimumDuration(self, lDuration);
     }
     pub fn get_AutoKeypadTonesMinimumDuration(self: *const ITAutomatedPhoneControl, plDuration: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoKeypadTonesMinimumDuration(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), plDuration);
+        return self.vtable.get_AutoKeypadTonesMinimumDuration(self, plDuration);
     }
     pub fn put_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoVolumeControl(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.put_AutoVolumeControl(self, fEnabled);
     }
     pub fn get_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoVolumeControl(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), fEnabled);
+        return self.vtable.get_AutoVolumeControl(self, fEnabled);
     }
     pub fn put_AutoVolumeControlStep(self: *const ITAutomatedPhoneControl, lStepSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoVolumeControlStep(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lStepSize);
+        return self.vtable.put_AutoVolumeControlStep(self, lStepSize);
     }
     pub fn get_AutoVolumeControlStep(self: *const ITAutomatedPhoneControl, plStepSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoVolumeControlStep(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), plStepSize);
+        return self.vtable.get_AutoVolumeControlStep(self, plStepSize);
     }
     pub fn put_AutoVolumeControlRepeatDelay(self: *const ITAutomatedPhoneControl, lDelay: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoVolumeControlRepeatDelay(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lDelay);
+        return self.vtable.put_AutoVolumeControlRepeatDelay(self, lDelay);
     }
     pub fn get_AutoVolumeControlRepeatDelay(self: *const ITAutomatedPhoneControl, plDelay: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoVolumeControlRepeatDelay(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), plDelay);
+        return self.vtable.get_AutoVolumeControlRepeatDelay(self, plDelay);
     }
     pub fn put_AutoVolumeControlRepeatPeriod(self: *const ITAutomatedPhoneControl, lPeriod: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).put_AutoVolumeControlRepeatPeriod(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), lPeriod);
+        return self.vtable.put_AutoVolumeControlRepeatPeriod(self, lPeriod);
     }
     pub fn get_AutoVolumeControlRepeatPeriod(self: *const ITAutomatedPhoneControl, plPeriod: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_AutoVolumeControlRepeatPeriod(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), plPeriod);
+        return self.vtable.get_AutoVolumeControlRepeatPeriod(self, plPeriod);
     }
     pub fn SelectCall(self: *const ITAutomatedPhoneControl, pCall: ?*ITCallInfo, fSelectDefaultTerminals: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).SelectCall(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pCall, fSelectDefaultTerminals);
+        return self.vtable.SelectCall(self, pCall, fSelectDefaultTerminals);
     }
     pub fn UnselectCall(self: *const ITAutomatedPhoneControl, pCall: ?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).UnselectCall(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pCall);
+        return self.vtable.UnselectCall(self, pCall);
     }
     pub fn EnumerateSelectedCalls(self: *const ITAutomatedPhoneControl, ppCallEnum: ?*?*IEnumCall) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).EnumerateSelectedCalls(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), ppCallEnum);
+        return self.vtable.EnumerateSelectedCalls(self, ppCallEnum);
     }
     pub fn get_SelectedCalls(self: *const ITAutomatedPhoneControl, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAutomatedPhoneControl.VTable, @ptrCast(self.vtable)).get_SelectedCalls(@as(*const ITAutomatedPhoneControl, @ptrCast(self)), pVariant);
+        return self.vtable.get_SelectedCalls(self, pVariant);
     }
 };
 
@@ -5079,58 +5079,58 @@ pub const ITBasicCallControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Connect(self: *const ITBasicCallControl, fSync: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Connect(@as(*const ITBasicCallControl, @ptrCast(self)), fSync);
+        return self.vtable.Connect(self, fSync);
     }
     pub fn Answer(self: *const ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Answer(@as(*const ITBasicCallControl, @ptrCast(self)));
+        return self.vtable.Answer(self);
     }
     pub fn Disconnect(self: *const ITBasicCallControl, code: DISCONNECT_CODE) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const ITBasicCallControl, @ptrCast(self)), code);
+        return self.vtable.Disconnect(self, code);
     }
     pub fn Hold(self: *const ITBasicCallControl, fHold: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Hold(@as(*const ITBasicCallControl, @ptrCast(self)), fHold);
+        return self.vtable.Hold(self, fHold);
     }
     pub fn HandoffDirect(self: *const ITBasicCallControl, pApplicationName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).HandoffDirect(@as(*const ITBasicCallControl, @ptrCast(self)), pApplicationName);
+        return self.vtable.HandoffDirect(self, pApplicationName);
     }
     pub fn HandoffIndirect(self: *const ITBasicCallControl, lMediaType: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).HandoffIndirect(@as(*const ITBasicCallControl, @ptrCast(self)), lMediaType);
+        return self.vtable.HandoffIndirect(self, lMediaType);
     }
     pub fn Conference(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Conference(@as(*const ITBasicCallControl, @ptrCast(self)), pCall, fSync);
+        return self.vtable.Conference(self, pCall, fSync);
     }
     pub fn Transfer(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Transfer(@as(*const ITBasicCallControl, @ptrCast(self)), pCall, fSync);
+        return self.vtable.Transfer(self, pCall, fSync);
     }
     pub fn BlindTransfer(self: *const ITBasicCallControl, pDestAddress: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).BlindTransfer(@as(*const ITBasicCallControl, @ptrCast(self)), pDestAddress);
+        return self.vtable.BlindTransfer(self, pDestAddress);
     }
     pub fn SwapHold(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).SwapHold(@as(*const ITBasicCallControl, @ptrCast(self)), pCall);
+        return self.vtable.SwapHold(self, pCall);
     }
     pub fn ParkDirect(self: *const ITBasicCallControl, pParkAddress: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).ParkDirect(@as(*const ITBasicCallControl, @ptrCast(self)), pParkAddress);
+        return self.vtable.ParkDirect(self, pParkAddress);
     }
     pub fn ParkIndirect(self: *const ITBasicCallControl, ppNonDirAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).ParkIndirect(@as(*const ITBasicCallControl, @ptrCast(self)), ppNonDirAddress);
+        return self.vtable.ParkIndirect(self, ppNonDirAddress);
     }
     pub fn Unpark(self: *const ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Unpark(@as(*const ITBasicCallControl, @ptrCast(self)));
+        return self.vtable.Unpark(self);
     }
     pub fn SetQOS(self: *const ITBasicCallControl, lMediaType: i32, ServiceLevel: QOS_SERVICE_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).SetQOS(@as(*const ITBasicCallControl, @ptrCast(self)), lMediaType, ServiceLevel);
+        return self.vtable.SetQOS(self, lMediaType, ServiceLevel);
     }
     pub fn Pickup(self: *const ITBasicCallControl, pGroupID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Pickup(@as(*const ITBasicCallControl, @ptrCast(self)), pGroupID);
+        return self.vtable.Pickup(self, pGroupID);
     }
     pub fn Dial(self: *const ITBasicCallControl, pDestAddress: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Dial(@as(*const ITBasicCallControl, @ptrCast(self)), pDestAddress);
+        return self.vtable.Dial(self, pDestAddress);
     }
     pub fn Finish(self: *const ITBasicCallControl, finishMode: FINISH_MODE) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).Finish(@as(*const ITBasicCallControl, @ptrCast(self)), finishMode);
+        return self.vtable.Finish(self, finishMode);
     }
     pub fn RemoveFromConference(self: *const ITBasicCallControl) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl.VTable, @ptrCast(self.vtable)).RemoveFromConference(@as(*const ITBasicCallControl, @ptrCast(self)));
+        return self.vtable.RemoveFromConference(self);
     }
 };
 
@@ -5264,43 +5264,43 @@ pub const ITCallInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Address(self: *const ITCallInfo, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITCallInfo, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_CallState(self: *const ITCallInfo, pCallState: ?*CALL_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_CallState(@as(*const ITCallInfo, @ptrCast(self)), pCallState);
+        return self.vtable.get_CallState(self, pCallState);
     }
     pub fn get_Privilege(self: *const ITCallInfo, pPrivilege: ?*CALL_PRIVILEGE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_Privilege(@as(*const ITCallInfo, @ptrCast(self)), pPrivilege);
+        return self.vtable.get_Privilege(self, pPrivilege);
     }
     pub fn get_CallHub(self: *const ITCallInfo, ppCallHub: ?*?*ITCallHub) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_CallHub(@as(*const ITCallInfo, @ptrCast(self)), ppCallHub);
+        return self.vtable.get_CallHub(self, ppCallHub);
     }
     pub fn get_CallInfoLong(self: *const ITCallInfo, CallInfoLong: CALLINFO_LONG, plCallInfoLongVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_CallInfoLong(@as(*const ITCallInfo, @ptrCast(self)), CallInfoLong, plCallInfoLongVal);
+        return self.vtable.get_CallInfoLong(self, CallInfoLong, plCallInfoLongVal);
     }
     pub fn put_CallInfoLong(self: *const ITCallInfo, CallInfoLong: CALLINFO_LONG, lCallInfoLongVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).put_CallInfoLong(@as(*const ITCallInfo, @ptrCast(self)), CallInfoLong, lCallInfoLongVal);
+        return self.vtable.put_CallInfoLong(self, CallInfoLong, lCallInfoLongVal);
     }
     pub fn get_CallInfoString(self: *const ITCallInfo, CallInfoString: CALLINFO_STRING, ppCallInfoString: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_CallInfoString(@as(*const ITCallInfo, @ptrCast(self)), CallInfoString, ppCallInfoString);
+        return self.vtable.get_CallInfoString(self, CallInfoString, ppCallInfoString);
     }
     pub fn put_CallInfoString(self: *const ITCallInfo, CallInfoString: CALLINFO_STRING, pCallInfoString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).put_CallInfoString(@as(*const ITCallInfo, @ptrCast(self)), CallInfoString, pCallInfoString);
+        return self.vtable.put_CallInfoString(self, CallInfoString, pCallInfoString);
     }
     pub fn get_CallInfoBuffer(self: *const ITCallInfo, CallInfoBuffer: CALLINFO_BUFFER, ppCallInfoBuffer: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).get_CallInfoBuffer(@as(*const ITCallInfo, @ptrCast(self)), CallInfoBuffer, ppCallInfoBuffer);
+        return self.vtable.get_CallInfoBuffer(self, CallInfoBuffer, ppCallInfoBuffer);
     }
     pub fn put_CallInfoBuffer(self: *const ITCallInfo, CallInfoBuffer: CALLINFO_BUFFER, pCallInfoBuffer: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).put_CallInfoBuffer(@as(*const ITCallInfo, @ptrCast(self)), CallInfoBuffer, pCallInfoBuffer);
+        return self.vtable.put_CallInfoBuffer(self, CallInfoBuffer, pCallInfoBuffer);
     }
     pub fn GetCallInfoBuffer(self: *const ITCallInfo, CallInfoBuffer: CALLINFO_BUFFER, pdwSize: ?*u32, ppCallInfoBuffer: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).GetCallInfoBuffer(@as(*const ITCallInfo, @ptrCast(self)), CallInfoBuffer, pdwSize, ppCallInfoBuffer);
+        return self.vtable.GetCallInfoBuffer(self, CallInfoBuffer, pdwSize, ppCallInfoBuffer);
     }
     pub fn SetCallInfoBuffer(self: *const ITCallInfo, CallInfoBuffer: CALLINFO_BUFFER, dwSize: u32, pCallInfoBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).SetCallInfoBuffer(@as(*const ITCallInfo, @ptrCast(self)), CallInfoBuffer, dwSize, pCallInfoBuffer);
+        return self.vtable.SetCallInfoBuffer(self, CallInfoBuffer, dwSize, pCallInfoBuffer);
     }
     pub fn ReleaseUserUserInfo(self: *const ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo.VTable, @ptrCast(self.vtable)).ReleaseUserUserInfo(@as(*const ITCallInfo, @ptrCast(self)));
+        return self.vtable.ReleaseUserUserInfo(self);
     }
 };
 
@@ -5337,10 +5337,10 @@ pub const ITCallInfo2 = extern union {
     };}
     pub usingnamespace ITCallInfo.MethodMixin(@This());
     pub fn get_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo2.VTable, @ptrCast(self.vtable)).get_EventFilter(@as(*const ITCallInfo2, @ptrCast(self)), TapiEvent, lSubEvent, pEnable);
+        return self.vtable.get_EventFilter(self, TapiEvent, lSubEvent, pEnable);
     }
     pub fn put_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfo2.VTable, @ptrCast(self.vtable)).put_EventFilter(@as(*const ITCallInfo2, @ptrCast(self)), TapiEvent, lSubEvent, bEnable);
+        return self.vtable.put_EventFilter(self, TapiEvent, lSubEvent, bEnable);
     }
 };
 
@@ -5411,22 +5411,22 @@ pub const ITTerminal = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ITTerminal, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITTerminal, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
     pub fn get_State(self: *const ITTerminal, pTerminalState: ?*TERMINAL_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITTerminal, @ptrCast(self)), pTerminalState);
+        return self.vtable.get_State(self, pTerminalState);
     }
     pub fn get_TerminalType(self: *const ITTerminal, pType: ?*TERMINAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_TerminalType(@as(*const ITTerminal, @ptrCast(self)), pType);
+        return self.vtable.get_TerminalType(self, pType);
     }
     pub fn get_TerminalClass(self: *const ITTerminal, ppTerminalClass: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_TerminalClass(@as(*const ITTerminal, @ptrCast(self)), ppTerminalClass);
+        return self.vtable.get_TerminalClass(self, ppTerminalClass);
     }
     pub fn get_MediaType(self: *const ITTerminal, plMediaType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const ITTerminal, @ptrCast(self)), plMediaType);
+        return self.vtable.get_MediaType(self, plMediaType);
     }
     pub fn get_Direction(self: *const ITTerminal, pDirection: ?*TERMINAL_DIRECTION) callconv(.Inline) HRESULT {
-        return @as(*const ITTerminal.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const ITTerminal, @ptrCast(self)), pDirection);
+        return self.vtable.get_Direction(self, pDirection);
     }
 };
 
@@ -5496,22 +5496,22 @@ pub const ITMultiTrackTerminal = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_TrackTerminals(self: *const ITMultiTrackTerminal, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).get_TrackTerminals(@as(*const ITMultiTrackTerminal, @ptrCast(self)), pVariant);
+        return self.vtable.get_TrackTerminals(self, pVariant);
     }
     pub fn EnumerateTrackTerminals(self: *const ITMultiTrackTerminal, ppEnumTerminal: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).EnumerateTrackTerminals(@as(*const ITMultiTrackTerminal, @ptrCast(self)), ppEnumTerminal);
+        return self.vtable.EnumerateTrackTerminals(self, ppEnumTerminal);
     }
     pub fn CreateTrackTerminal(self: *const ITMultiTrackTerminal, MediaType: i32, TerminalDirection: TERMINAL_DIRECTION, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).CreateTrackTerminal(@as(*const ITMultiTrackTerminal, @ptrCast(self)), MediaType, TerminalDirection, ppTerminal);
+        return self.vtable.CreateTrackTerminal(self, MediaType, TerminalDirection, ppTerminal);
     }
     pub fn get_MediaTypesInUse(self: *const ITMultiTrackTerminal, plMediaTypesInUse: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).get_MediaTypesInUse(@as(*const ITMultiTrackTerminal, @ptrCast(self)), plMediaTypesInUse);
+        return self.vtable.get_MediaTypesInUse(self, plMediaTypesInUse);
     }
     pub fn get_DirectionsInUse(self: *const ITMultiTrackTerminal, plDirectionsInUsed: ?*TERMINAL_DIRECTION) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).get_DirectionsInUse(@as(*const ITMultiTrackTerminal, @ptrCast(self)), plDirectionsInUsed);
+        return self.vtable.get_DirectionsInUse(self, plDirectionsInUsed);
     }
     pub fn RemoveTrackTerminal(self: *const ITMultiTrackTerminal, pTrackTerminalToRemove: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITMultiTrackTerminal.VTable, @ptrCast(self.vtable)).RemoveTrackTerminal(@as(*const ITMultiTrackTerminal, @ptrCast(self)), pTrackTerminalToRemove);
+        return self.vtable.RemoveTrackTerminal(self, pTrackTerminalToRemove);
     }
 };
 
@@ -5604,22 +5604,22 @@ pub const ITFileTrack = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Format(self: *const ITFileTrack, ppmt: ?*?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).get_Format(@as(*const ITFileTrack, @ptrCast(self)), ppmt);
+        return self.vtable.get_Format(self, ppmt);
     }
     pub fn put_Format(self: *const ITFileTrack, pmt: ?*const AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).put_Format(@as(*const ITFileTrack, @ptrCast(self)), pmt);
+        return self.vtable.put_Format(self, pmt);
     }
     pub fn get_ControllingTerminal(self: *const ITFileTrack, ppControllingTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).get_ControllingTerminal(@as(*const ITFileTrack, @ptrCast(self)), ppControllingTerminal);
+        return self.vtable.get_ControllingTerminal(self, ppControllingTerminal);
     }
     pub fn get_AudioFormatForScripting(self: *const ITFileTrack, ppAudioFormat: ?*?*ITScriptableAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).get_AudioFormatForScripting(@as(*const ITFileTrack, @ptrCast(self)), ppAudioFormat);
+        return self.vtable.get_AudioFormatForScripting(self, ppAudioFormat);
     }
     pub fn put_AudioFormatForScripting(self: *const ITFileTrack, pAudioFormat: ?*ITScriptableAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).put_AudioFormatForScripting(@as(*const ITFileTrack, @ptrCast(self)), pAudioFormat);
+        return self.vtable.put_AudioFormatForScripting(self, pAudioFormat);
     }
     pub fn get_EmptyAudioFormatForScripting(self: *const ITFileTrack, ppAudioFormat: ?*?*ITScriptableAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTrack.VTable, @ptrCast(self.vtable)).get_EmptyAudioFormatForScripting(@as(*const ITFileTrack, @ptrCast(self)), ppAudioFormat);
+        return self.vtable.get_EmptyAudioFormatForScripting(self, ppAudioFormat);
     }
 };
 
@@ -5654,10 +5654,10 @@ pub const ITMediaPlayback = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_PlayList(self: *const ITMediaPlayback, PlayListVariant: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaPlayback.VTable, @ptrCast(self.vtable)).put_PlayList(@as(*const ITMediaPlayback, @ptrCast(self)), PlayListVariant);
+        return self.vtable.put_PlayList(self, PlayListVariant);
     }
     pub fn get_PlayList(self: *const ITMediaPlayback, pPlayListVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaPlayback.VTable, @ptrCast(self.vtable)).get_PlayList(@as(*const ITMediaPlayback, @ptrCast(self)), pPlayListVariant);
+        return self.vtable.get_PlayList(self, pPlayListVariant);
     }
 };
 
@@ -5692,10 +5692,10 @@ pub const ITMediaRecord = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_FileName(self: *const ITMediaRecord, bstrFileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaRecord.VTable, @ptrCast(self.vtable)).put_FileName(@as(*const ITMediaRecord, @ptrCast(self)), bstrFileName);
+        return self.vtable.put_FileName(self, bstrFileName);
     }
     pub fn get_FileName(self: *const ITMediaRecord, pbstrFileName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaRecord.VTable, @ptrCast(self.vtable)).get_FileName(@as(*const ITMediaRecord, @ptrCast(self)), pbstrFileName);
+        return self.vtable.get_FileName(self, pbstrFileName);
     }
 };
 
@@ -5742,16 +5742,16 @@ pub const ITMediaControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Start(self: *const ITMediaControl) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaControl.VTable, @ptrCast(self.vtable)).Start(@as(*const ITMediaControl, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn Stop(self: *const ITMediaControl) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaControl.VTable, @ptrCast(self.vtable)).Stop(@as(*const ITMediaControl, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Pause(self: *const ITMediaControl) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaControl.VTable, @ptrCast(self.vtable)).Pause(@as(*const ITMediaControl, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn get_MediaState(self: *const ITMediaControl, pTerminalMediaState: ?*TERMINAL_MEDIA_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITMediaControl.VTable, @ptrCast(self.vtable)).get_MediaState(@as(*const ITMediaControl, @ptrCast(self)), pTerminalMediaState);
+        return self.vtable.get_MediaState(self, pTerminalMediaState);
     }
 };
 
@@ -5804,16 +5804,16 @@ pub const ITBasicAudioTerminal = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_Volume(self: *const ITBasicAudioTerminal, lVolume: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicAudioTerminal.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ITBasicAudioTerminal, @ptrCast(self)), lVolume);
+        return self.vtable.put_Volume(self, lVolume);
     }
     pub fn get_Volume(self: *const ITBasicAudioTerminal, plVolume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicAudioTerminal.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ITBasicAudioTerminal, @ptrCast(self)), plVolume);
+        return self.vtable.get_Volume(self, plVolume);
     }
     pub fn put_Balance(self: *const ITBasicAudioTerminal, lBalance: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicAudioTerminal.VTable, @ptrCast(self.vtable)).put_Balance(@as(*const ITBasicAudioTerminal, @ptrCast(self)), lBalance);
+        return self.vtable.put_Balance(self, lBalance);
     }
     pub fn get_Balance(self: *const ITBasicAudioTerminal, plBalance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicAudioTerminal.VTable, @ptrCast(self.vtable)).get_Balance(@as(*const ITBasicAudioTerminal, @ptrCast(self)), plBalance);
+        return self.vtable.get_Balance(self, plBalance);
     }
 };
 
@@ -5839,7 +5839,7 @@ pub const ITStaticAudioTerminal = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_WaveId(self: *const ITStaticAudioTerminal, plWaveId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITStaticAudioTerminal.VTable, @ptrCast(self.vtable)).get_WaveId(@as(*const ITStaticAudioTerminal, @ptrCast(self)), plWaveId);
+        return self.vtable.get_WaveId(self, plWaveId);
     }
 };
 
@@ -5898,19 +5898,19 @@ pub const ITCallHub = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Clear(self: *const ITCallHub) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHub.VTable, @ptrCast(self.vtable)).Clear(@as(*const ITCallHub, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn EnumerateCalls(self: *const ITCallHub, ppEnumCall: ?*?*IEnumCall) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHub.VTable, @ptrCast(self.vtable)).EnumerateCalls(@as(*const ITCallHub, @ptrCast(self)), ppEnumCall);
+        return self.vtable.EnumerateCalls(self, ppEnumCall);
     }
     pub fn get_Calls(self: *const ITCallHub, pCalls: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHub.VTable, @ptrCast(self.vtable)).get_Calls(@as(*const ITCallHub, @ptrCast(self)), pCalls);
+        return self.vtable.get_Calls(self, pCalls);
     }
     pub fn get_NumCalls(self: *const ITCallHub, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHub.VTable, @ptrCast(self.vtable)).get_NumCalls(@as(*const ITCallHub, @ptrCast(self)), plCalls);
+        return self.vtable.get_NumCalls(self, plCalls);
     }
     pub fn get_State(self: *const ITCallHub, pState: ?*CALLHUB_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHub.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITCallHub, @ptrCast(self)), pState);
+        return self.vtable.get_State(self, pState);
     }
 };
 
@@ -5957,13 +5957,13 @@ pub const ITLegacyAddressMediaControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetID(self: *const ITLegacyAddressMediaControl, pDeviceClass: ?BSTR, pdwSize: ?*u32, ppDeviceID: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyAddressMediaControl.VTable, @ptrCast(self.vtable)).GetID(@as(*const ITLegacyAddressMediaControl, @ptrCast(self)), pDeviceClass, pdwSize, ppDeviceID);
+        return self.vtable.GetID(self, pDeviceClass, pdwSize, ppDeviceID);
     }
     pub fn GetDevConfig(self: *const ITLegacyAddressMediaControl, pDeviceClass: ?BSTR, pdwSize: ?*u32, ppDeviceConfig: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyAddressMediaControl.VTable, @ptrCast(self.vtable)).GetDevConfig(@as(*const ITLegacyAddressMediaControl, @ptrCast(self)), pDeviceClass, pdwSize, ppDeviceConfig);
+        return self.vtable.GetDevConfig(self, pDeviceClass, pdwSize, ppDeviceConfig);
     }
     pub fn SetDevConfig(self: *const ITLegacyAddressMediaControl, pDeviceClass: ?BSTR, dwSize: u32, pDeviceConfig: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyAddressMediaControl.VTable, @ptrCast(self.vtable)).SetDevConfig(@as(*const ITLegacyAddressMediaControl, @ptrCast(self)), pDeviceClass, dwSize, pDeviceConfig);
+        return self.vtable.SetDevConfig(self, pDeviceClass, dwSize, pDeviceConfig);
     }
 };
 
@@ -6025,19 +6025,19 @@ pub const ITPrivateEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Address(self: *const ITPrivateEvent, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITPrivateEvent.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITPrivateEvent, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_Call(self: *const ITPrivateEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITPrivateEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITPrivateEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_CallHub(self: *const ITPrivateEvent, ppCallHub: ?*?*ITCallHub) callconv(.Inline) HRESULT {
-        return @as(*const ITPrivateEvent.VTable, @ptrCast(self.vtable)).get_CallHub(@as(*const ITPrivateEvent, @ptrCast(self)), ppCallHub);
+        return self.vtable.get_CallHub(self, ppCallHub);
     }
     pub fn get_EventCode(self: *const ITPrivateEvent, plEventCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPrivateEvent.VTable, @ptrCast(self.vtable)).get_EventCode(@as(*const ITPrivateEvent, @ptrCast(self)), plEventCode);
+        return self.vtable.get_EventCode(self, plEventCode);
     }
     pub fn get_EventInterface(self: *const ITPrivateEvent, pEventInterface: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITPrivateEvent.VTable, @ptrCast(self.vtable)).get_EventInterface(@as(*const ITPrivateEvent, @ptrCast(self)), pEventInterface);
+        return self.vtable.get_EventInterface(self, pEventInterface);
     }
 };
 
@@ -6076,10 +6076,10 @@ pub const ITLegacyAddressMediaControl2 = extern union {
     };}
     pub usingnamespace ITLegacyAddressMediaControl.MethodMixin(@This());
     pub fn ConfigDialog(self: *const ITLegacyAddressMediaControl2, hwndOwner: ?HWND, pDeviceClass: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyAddressMediaControl2.VTable, @ptrCast(self.vtable)).ConfigDialog(@as(*const ITLegacyAddressMediaControl2, @ptrCast(self)), hwndOwner, pDeviceClass);
+        return self.vtable.ConfigDialog(self, hwndOwner, pDeviceClass);
     }
     pub fn ConfigDialogEdit(self: *const ITLegacyAddressMediaControl2, hwndOwner: ?HWND, pDeviceClass: ?BSTR, dwSizeIn: u32, pDeviceConfigIn: [*:0]u8, pdwSizeOut: ?*u32, ppDeviceConfigOut: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyAddressMediaControl2.VTable, @ptrCast(self.vtable)).ConfigDialogEdit(@as(*const ITLegacyAddressMediaControl2, @ptrCast(self)), hwndOwner, pDeviceClass, dwSizeIn, pDeviceConfigIn, pdwSizeOut, ppDeviceConfigOut);
+        return self.vtable.ConfigDialogEdit(self, hwndOwner, pDeviceClass, dwSizeIn, pDeviceConfigIn, pdwSizeOut, ppDeviceConfigOut);
     }
 };
 
@@ -6139,19 +6139,19 @@ pub const ITLegacyCallMediaControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn DetectDigits(self: *const ITLegacyCallMediaControl, DigitMode: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl.VTable, @ptrCast(self.vtable)).DetectDigits(@as(*const ITLegacyCallMediaControl, @ptrCast(self)), DigitMode);
+        return self.vtable.DetectDigits(self, DigitMode);
     }
     pub fn GenerateDigits(self: *const ITLegacyCallMediaControl, pDigits: ?BSTR, DigitMode: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl.VTable, @ptrCast(self.vtable)).GenerateDigits(@as(*const ITLegacyCallMediaControl, @ptrCast(self)), pDigits, DigitMode);
+        return self.vtable.GenerateDigits(self, pDigits, DigitMode);
     }
     pub fn GetID(self: *const ITLegacyCallMediaControl, pDeviceClass: ?BSTR, pdwSize: ?*u32, ppDeviceID: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl.VTable, @ptrCast(self.vtable)).GetID(@as(*const ITLegacyCallMediaControl, @ptrCast(self)), pDeviceClass, pdwSize, ppDeviceID);
+        return self.vtable.GetID(self, pDeviceClass, pdwSize, ppDeviceID);
     }
     pub fn SetMediaType(self: *const ITLegacyCallMediaControl, lMediaType: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const ITLegacyCallMediaControl, @ptrCast(self)), lMediaType);
+        return self.vtable.SetMediaType(self, lMediaType);
     }
     pub fn MonitorMedia(self: *const ITLegacyCallMediaControl, lMediaType: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl.VTable, @ptrCast(self.vtable)).MonitorMedia(@as(*const ITLegacyCallMediaControl, @ptrCast(self)), lMediaType);
+        return self.vtable.MonitorMedia(self, lMediaType);
     }
 };
 
@@ -6260,34 +6260,34 @@ pub const ITLegacyCallMediaControl2 = extern union {
     };}
     pub usingnamespace ITLegacyCallMediaControl.MethodMixin(@This());
     pub fn GenerateDigits2(self: *const ITLegacyCallMediaControl2, pDigits: ?BSTR, DigitMode: i32, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GenerateDigits2(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), pDigits, DigitMode, lDuration);
+        return self.vtable.GenerateDigits2(self, pDigits, DigitMode, lDuration);
     }
     pub fn GatherDigits(self: *const ITLegacyCallMediaControl2, DigitMode: i32, lNumDigits: i32, pTerminationDigits: ?BSTR, lFirstDigitTimeout: i32, lInterDigitTimeout: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GatherDigits(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), DigitMode, lNumDigits, pTerminationDigits, lFirstDigitTimeout, lInterDigitTimeout);
+        return self.vtable.GatherDigits(self, DigitMode, lNumDigits, pTerminationDigits, lFirstDigitTimeout, lInterDigitTimeout);
     }
     pub fn DetectTones(self: *const ITLegacyCallMediaControl2, pToneList: ?*TAPI_DETECTTONE, lNumTones: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).DetectTones(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), pToneList, lNumTones);
+        return self.vtable.DetectTones(self, pToneList, lNumTones);
     }
     pub fn DetectTonesByCollection(self: *const ITLegacyCallMediaControl2, pDetectToneCollection: ?*ITCollection2) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).DetectTonesByCollection(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), pDetectToneCollection);
+        return self.vtable.DetectTonesByCollection(self, pDetectToneCollection);
     }
     pub fn GenerateTone(self: *const ITLegacyCallMediaControl2, ToneMode: TAPI_TONEMODE, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GenerateTone(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), ToneMode, lDuration);
+        return self.vtable.GenerateTone(self, ToneMode, lDuration);
     }
     pub fn GenerateCustomTones(self: *const ITLegacyCallMediaControl2, pToneList: ?*TAPI_CUSTOMTONE, lNumTones: i32, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GenerateCustomTones(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), pToneList, lNumTones, lDuration);
+        return self.vtable.GenerateCustomTones(self, pToneList, lNumTones, lDuration);
     }
     pub fn GenerateCustomTonesByCollection(self: *const ITLegacyCallMediaControl2, pCustomToneCollection: ?*ITCollection2, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GenerateCustomTonesByCollection(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), pCustomToneCollection, lDuration);
+        return self.vtable.GenerateCustomTonesByCollection(self, pCustomToneCollection, lDuration);
     }
     pub fn CreateDetectToneObject(self: *const ITLegacyCallMediaControl2, ppDetectTone: ?*?*ITDetectTone) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).CreateDetectToneObject(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), ppDetectTone);
+        return self.vtable.CreateDetectToneObject(self, ppDetectTone);
     }
     pub fn CreateCustomToneObject(self: *const ITLegacyCallMediaControl2, ppCustomTone: ?*?*ITCustomTone) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).CreateCustomToneObject(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), ppCustomTone);
+        return self.vtable.CreateCustomToneObject(self, ppCustomTone);
     }
     pub fn GetIDAsVariant(self: *const ITLegacyCallMediaControl2, bstrDeviceClass: ?BSTR, pVarDeviceID: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyCallMediaControl2.VTable, @ptrCast(self.vtable)).GetIDAsVariant(@as(*const ITLegacyCallMediaControl2, @ptrCast(self)), bstrDeviceClass, pVarDeviceID);
+        return self.vtable.GetIDAsVariant(self, bstrDeviceClass, pVarDeviceID);
     }
 };
 
@@ -6358,22 +6358,22 @@ pub const ITDetectTone = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AppSpecific(self: *const ITDetectTone, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const ITDetectTone, @ptrCast(self)), plAppSpecific);
+        return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
     pub fn put_AppSpecific(self: *const ITDetectTone, lAppSpecific: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const ITDetectTone, @ptrCast(self)), lAppSpecific);
+        return self.vtable.put_AppSpecific(self, lAppSpecific);
     }
     pub fn get_Duration(self: *const ITDetectTone, plDuration: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).get_Duration(@as(*const ITDetectTone, @ptrCast(self)), plDuration);
+        return self.vtable.get_Duration(self, plDuration);
     }
     pub fn put_Duration(self: *const ITDetectTone, lDuration: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).put_Duration(@as(*const ITDetectTone, @ptrCast(self)), lDuration);
+        return self.vtable.put_Duration(self, lDuration);
     }
     pub fn get_Frequency(self: *const ITDetectTone, Index: i32, plFrequency: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).get_Frequency(@as(*const ITDetectTone, @ptrCast(self)), Index, plFrequency);
+        return self.vtable.get_Frequency(self, Index, plFrequency);
     }
     pub fn put_Frequency(self: *const ITDetectTone, Index: i32, lFrequency: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDetectTone.VTable, @ptrCast(self.vtable)).put_Frequency(@as(*const ITDetectTone, @ptrCast(self)), Index, lFrequency);
+        return self.vtable.put_Frequency(self, Index, lFrequency);
     }
 };
 
@@ -6462,28 +6462,28 @@ pub const ITCustomTone = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Frequency(self: *const ITCustomTone, plFrequency: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).get_Frequency(@as(*const ITCustomTone, @ptrCast(self)), plFrequency);
+        return self.vtable.get_Frequency(self, plFrequency);
     }
     pub fn put_Frequency(self: *const ITCustomTone, lFrequency: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).put_Frequency(@as(*const ITCustomTone, @ptrCast(self)), lFrequency);
+        return self.vtable.put_Frequency(self, lFrequency);
     }
     pub fn get_CadenceOn(self: *const ITCustomTone, plCadenceOn: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).get_CadenceOn(@as(*const ITCustomTone, @ptrCast(self)), plCadenceOn);
+        return self.vtable.get_CadenceOn(self, plCadenceOn);
     }
     pub fn put_CadenceOn(self: *const ITCustomTone, CadenceOn: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).put_CadenceOn(@as(*const ITCustomTone, @ptrCast(self)), CadenceOn);
+        return self.vtable.put_CadenceOn(self, CadenceOn);
     }
     pub fn get_CadenceOff(self: *const ITCustomTone, plCadenceOff: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).get_CadenceOff(@as(*const ITCustomTone, @ptrCast(self)), plCadenceOff);
+        return self.vtable.get_CadenceOff(self, plCadenceOff);
     }
     pub fn put_CadenceOff(self: *const ITCustomTone, lCadenceOff: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).put_CadenceOff(@as(*const ITCustomTone, @ptrCast(self)), lCadenceOff);
+        return self.vtable.put_CadenceOff(self, lCadenceOff);
     }
     pub fn get_Volume(self: *const ITCustomTone, plVolume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ITCustomTone, @ptrCast(self)), plVolume);
+        return self.vtable.get_Volume(self, plVolume);
     }
     pub fn put_Volume(self: *const ITCustomTone, lVolume: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCustomTone.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ITCustomTone, @ptrCast(self)), lVolume);
+        return self.vtable.put_Volume(self, lVolume);
     }
 };
 
@@ -6533,16 +6533,16 @@ pub const IEnumPhone = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPhone, celt: u32, ppElements: [*]?*ITPhone, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPhone.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPhone, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumPhone) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPhone.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPhone, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumPhone, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPhone.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumPhone, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumPhone, ppEnum: ?*?*IEnumPhone) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPhone.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumPhone, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6592,16 +6592,16 @@ pub const IEnumTerminal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumTerminal, celt: u32, ppElements: ?*?*ITTerminal, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminal.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumTerminal, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminal.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumTerminal, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumTerminal, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminal.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumTerminal, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumTerminal, ppEnum: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminal.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumTerminal, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6651,16 +6651,16 @@ pub const IEnumTerminalClass = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumTerminalClass, celt: u32, pElements: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminalClass.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumTerminalClass, @ptrCast(self)), celt, pElements, pceltFetched);
+        return self.vtable.Next(self, celt, pElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumTerminalClass) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminalClass.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumTerminalClass, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumTerminalClass, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminalClass.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumTerminalClass, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumTerminalClass, ppEnum: ?*?*IEnumTerminalClass) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTerminalClass.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumTerminalClass, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6710,16 +6710,16 @@ pub const IEnumCall = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumCall, celt: u32, ppElements: ?*?*ITCallInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCall.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCall, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumCall) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCall.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCall, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumCall, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCall.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCall, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumCall, ppEnum: ?*?*IEnumCall) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCall.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCall, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6769,16 +6769,16 @@ pub const IEnumAddress = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumAddress, celt: u32, ppElements: [*]?*ITAddress, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAddress.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumAddress, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAddress.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumAddress, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumAddress, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAddress.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumAddress, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumAddress, ppEnum: ?*?*IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAddress.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumAddress, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6828,16 +6828,16 @@ pub const IEnumCallHub = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumCallHub, celt: u32, ppElements: [*]?*ITCallHub, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallHub.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCallHub, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumCallHub) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallHub.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCallHub, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumCallHub, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallHub.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCallHub, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumCallHub, ppEnum: ?*?*IEnumCallHub) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallHub.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCallHub, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6887,16 +6887,16 @@ pub const IEnumBstr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBstr, celt: u32, ppStrings: [*]?BSTR, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBstr.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBstr, @ptrCast(self)), celt, ppStrings, pceltFetched);
+        return self.vtable.Next(self, celt, ppStrings, pceltFetched);
     }
     pub fn Reset(self: *const IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBstr.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBstr, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumBstr, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBstr.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBstr, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumBstr, ppEnum: ?*?*IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBstr.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBstr, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6946,16 +6946,16 @@ pub const IEnumPluggableTerminalClassInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPluggableTerminalClassInfo, celt: u32, ppElements: [*]?*ITPluggableTerminalClassInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPluggableTerminalClassInfo, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumPluggableTerminalClassInfo) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPluggableTerminalClassInfo, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumPluggableTerminalClassInfo, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumPluggableTerminalClassInfo, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumPluggableTerminalClassInfo, ppEnum: ?*?*IEnumPluggableTerminalClassInfo) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableTerminalClassInfo.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumPluggableTerminalClassInfo, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -7005,16 +7005,16 @@ pub const IEnumPluggableSuperclassInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPluggableSuperclassInfo, celt: u32, ppElements: [*]?*ITPluggableTerminalSuperclassInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableSuperclassInfo.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPluggableSuperclassInfo, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumPluggableSuperclassInfo) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableSuperclassInfo.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPluggableSuperclassInfo, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumPluggableSuperclassInfo, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableSuperclassInfo.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumPluggableSuperclassInfo, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumPluggableSuperclassInfo, ppEnum: ?*?*IEnumPluggableSuperclassInfo) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPluggableSuperclassInfo.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumPluggableSuperclassInfo, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -7112,31 +7112,31 @@ pub const ITPhoneEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Phone(self: *const ITPhoneEvent, ppPhone: ?*?*ITPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_Phone(@as(*const ITPhoneEvent, @ptrCast(self)), ppPhone);
+        return self.vtable.get_Phone(self, ppPhone);
     }
     pub fn get_Event(self: *const ITPhoneEvent, pEvent: ?*PHONE_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITPhoneEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
     pub fn get_ButtonState(self: *const ITPhoneEvent, pState: ?*PHONE_BUTTON_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_ButtonState(@as(*const ITPhoneEvent, @ptrCast(self)), pState);
+        return self.vtable.get_ButtonState(self, pState);
     }
     pub fn get_HookSwitchState(self: *const ITPhoneEvent, pState: ?*PHONE_HOOK_SWITCH_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_HookSwitchState(@as(*const ITPhoneEvent, @ptrCast(self)), pState);
+        return self.vtable.get_HookSwitchState(self, pState);
     }
     pub fn get_HookSwitchDevice(self: *const ITPhoneEvent, pDevice: ?*PHONE_HOOK_SWITCH_DEVICE) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_HookSwitchDevice(@as(*const ITPhoneEvent, @ptrCast(self)), pDevice);
+        return self.vtable.get_HookSwitchDevice(self, pDevice);
     }
     pub fn get_RingMode(self: *const ITPhoneEvent, plRingMode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_RingMode(@as(*const ITPhoneEvent, @ptrCast(self)), plRingMode);
+        return self.vtable.get_RingMode(self, plRingMode);
     }
     pub fn get_ButtonLampId(self: *const ITPhoneEvent, plButtonLampId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_ButtonLampId(@as(*const ITPhoneEvent, @ptrCast(self)), plButtonLampId);
+        return self.vtable.get_ButtonLampId(self, plButtonLampId);
     }
     pub fn get_NumberGathered(self: *const ITPhoneEvent, ppNumber: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_NumberGathered(@as(*const ITPhoneEvent, @ptrCast(self)), ppNumber);
+        return self.vtable.get_NumberGathered(self, ppNumber);
     }
     pub fn get_Call(self: *const ITPhoneEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITPhoneEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
 };
 
@@ -7189,16 +7189,16 @@ pub const ITCallStateEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITCallStateEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallStateEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITCallStateEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_State(self: *const ITCallStateEvent, pCallState: ?*CALL_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallStateEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITCallStateEvent, @ptrCast(self)), pCallState);
+        return self.vtable.get_State(self, pCallState);
     }
     pub fn get_Cause(self: *const ITCallStateEvent, pCEC: ?*CALL_STATE_EVENT_CAUSE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallStateEvent.VTable, @ptrCast(self.vtable)).get_Cause(@as(*const ITCallStateEvent, @ptrCast(self)), pCEC);
+        return self.vtable.get_Cause(self, pCEC);
     }
     pub fn get_CallbackInstance(self: *const ITCallStateEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallStateEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITCallStateEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7251,16 +7251,16 @@ pub const ITPhoneDeviceSpecificEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Phone(self: *const ITPhoneDeviceSpecificEvent, ppPhone: ?*?*ITPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_Phone(@as(*const ITPhoneDeviceSpecificEvent, @ptrCast(self)), ppPhone);
+        return self.vtable.get_Phone(self, ppPhone);
     }
     pub fn get_lParam1(self: *const ITPhoneDeviceSpecificEvent, pParam1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam1(@as(*const ITPhoneDeviceSpecificEvent, @ptrCast(self)), pParam1);
+        return self.vtable.get_lParam1(self, pParam1);
     }
     pub fn get_lParam2(self: *const ITPhoneDeviceSpecificEvent, pParam2: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam2(@as(*const ITPhoneDeviceSpecificEvent, @ptrCast(self)), pParam2);
+        return self.vtable.get_lParam2(self, pParam2);
     }
     pub fn get_lParam3(self: *const ITPhoneDeviceSpecificEvent, pParam3: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITPhoneDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam3(@as(*const ITPhoneDeviceSpecificEvent, @ptrCast(self)), pParam3);
+        return self.vtable.get_lParam3(self, pParam3);
     }
 };
 
@@ -7331,22 +7331,22 @@ pub const ITCallMediaEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITCallMediaEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITCallMediaEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_Event(self: *const ITCallMediaEvent, pCallMediaEvent: ?*CALL_MEDIA_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITCallMediaEvent, @ptrCast(self)), pCallMediaEvent);
+        return self.vtable.get_Event(self, pCallMediaEvent);
     }
     pub fn get_Error(self: *const ITCallMediaEvent, phrError: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Error(@as(*const ITCallMediaEvent, @ptrCast(self)), phrError);
+        return self.vtable.get_Error(self, phrError);
     }
     pub fn get_Terminal(self: *const ITCallMediaEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITCallMediaEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
     pub fn get_Stream(self: *const ITCallMediaEvent, ppStream: ?*?*ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Stream(@as(*const ITCallMediaEvent, @ptrCast(self)), ppStream);
+        return self.vtable.get_Stream(self, ppStream);
     }
     pub fn get_Cause(self: *const ITCallMediaEvent, pCause: ?*CALL_MEDIA_EVENT_CAUSE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallMediaEvent.VTable, @ptrCast(self.vtable)).get_Cause(@as(*const ITCallMediaEvent, @ptrCast(self)), pCause);
+        return self.vtable.get_Cause(self, pCause);
     }
 };
 
@@ -7408,19 +7408,19 @@ pub const ITDigitDetectionEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITDigitDetectionEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitDetectionEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITDigitDetectionEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_Digit(self: *const ITDigitDetectionEvent, pucDigit: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitDetectionEvent.VTable, @ptrCast(self.vtable)).get_Digit(@as(*const ITDigitDetectionEvent, @ptrCast(self)), pucDigit);
+        return self.vtable.get_Digit(self, pucDigit);
     }
     pub fn get_DigitMode(self: *const ITDigitDetectionEvent, pDigitMode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitDetectionEvent.VTable, @ptrCast(self.vtable)).get_DigitMode(@as(*const ITDigitDetectionEvent, @ptrCast(self)), pDigitMode);
+        return self.vtable.get_DigitMode(self, pDigitMode);
     }
     pub fn get_TickCount(self: *const ITDigitDetectionEvent, plTickCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitDetectionEvent.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ITDigitDetectionEvent, @ptrCast(self)), plTickCount);
+        return self.vtable.get_TickCount(self, plTickCount);
     }
     pub fn get_CallbackInstance(self: *const ITDigitDetectionEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitDetectionEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITDigitDetectionEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7473,16 +7473,16 @@ pub const ITDigitGenerationEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITDigitGenerationEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitGenerationEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITDigitGenerationEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_GenerationTermination(self: *const ITDigitGenerationEvent, plGenerationTermination: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitGenerationEvent.VTable, @ptrCast(self.vtable)).get_GenerationTermination(@as(*const ITDigitGenerationEvent, @ptrCast(self)), plGenerationTermination);
+        return self.vtable.get_GenerationTermination(self, plGenerationTermination);
     }
     pub fn get_TickCount(self: *const ITDigitGenerationEvent, plTickCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitGenerationEvent.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ITDigitGenerationEvent, @ptrCast(self)), plTickCount);
+        return self.vtable.get_TickCount(self, plTickCount);
     }
     pub fn get_CallbackInstance(self: *const ITDigitGenerationEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitGenerationEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITDigitGenerationEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7544,19 +7544,19 @@ pub const ITDigitsGatheredEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITDigitsGatheredEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitsGatheredEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITDigitsGatheredEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_Digits(self: *const ITDigitsGatheredEvent, ppDigits: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitsGatheredEvent.VTable, @ptrCast(self.vtable)).get_Digits(@as(*const ITDigitsGatheredEvent, @ptrCast(self)), ppDigits);
+        return self.vtable.get_Digits(self, ppDigits);
     }
     pub fn get_GatherTermination(self: *const ITDigitsGatheredEvent, pGatherTermination: ?*TAPI_GATHERTERM) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitsGatheredEvent.VTable, @ptrCast(self.vtable)).get_GatherTermination(@as(*const ITDigitsGatheredEvent, @ptrCast(self)), pGatherTermination);
+        return self.vtable.get_GatherTermination(self, pGatherTermination);
     }
     pub fn get_TickCount(self: *const ITDigitsGatheredEvent, plTickCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitsGatheredEvent.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ITDigitsGatheredEvent, @ptrCast(self)), plTickCount);
+        return self.vtable.get_TickCount(self, plTickCount);
     }
     pub fn get_CallbackInstance(self: *const ITDigitsGatheredEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDigitsGatheredEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITDigitsGatheredEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7609,16 +7609,16 @@ pub const ITToneDetectionEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITToneDetectionEvent, ppCallInfo: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITToneDetectionEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITToneDetectionEvent, @ptrCast(self)), ppCallInfo);
+        return self.vtable.get_Call(self, ppCallInfo);
     }
     pub fn get_AppSpecific(self: *const ITToneDetectionEvent, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITToneDetectionEvent.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const ITToneDetectionEvent, @ptrCast(self)), plAppSpecific);
+        return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
     pub fn get_TickCount(self: *const ITToneDetectionEvent, plTickCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITToneDetectionEvent.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ITToneDetectionEvent, @ptrCast(self)), plTickCount);
+        return self.vtable.get_TickCount(self, plTickCount);
     }
     pub fn get_CallbackInstance(self: *const ITToneDetectionEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITToneDetectionEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITToneDetectionEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7671,16 +7671,16 @@ pub const ITTAPIObjectEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_TAPIObject(self: *const ITTAPIObjectEvent, ppTAPIObject: ?*?*ITTAPI) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIObjectEvent.VTable, @ptrCast(self.vtable)).get_TAPIObject(@as(*const ITTAPIObjectEvent, @ptrCast(self)), ppTAPIObject);
+        return self.vtable.get_TAPIObject(self, ppTAPIObject);
     }
     pub fn get_Event(self: *const ITTAPIObjectEvent, pEvent: ?*TAPIOBJECT_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIObjectEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITTAPIObjectEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
     pub fn get_Address(self: *const ITTAPIObjectEvent, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIObjectEvent.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITTAPIObjectEvent, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_CallbackInstance(self: *const ITTAPIObjectEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIObjectEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITTAPIObjectEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -7706,7 +7706,7 @@ pub const ITTAPIObjectEvent2 = extern union {
     };}
     pub usingnamespace ITTAPIObjectEvent.MethodMixin(@This());
     pub fn get_Phone(self: *const ITTAPIObjectEvent2, ppPhone: ?*?*ITPhone) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIObjectEvent2.VTable, @ptrCast(self.vtable)).get_Phone(@as(*const ITTAPIObjectEvent2, @ptrCast(self)), ppPhone);
+        return self.vtable.get_Phone(self, ppPhone);
     }
 };
 
@@ -7732,7 +7732,7 @@ pub const ITTAPIEventNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Event(self: *const ITTAPIEventNotification, TapiEvent: TAPI_EVENT, pEvent: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPIEventNotification.VTable, @ptrCast(self.vtable)).Event(@as(*const ITTAPIEventNotification, @ptrCast(self)), TapiEvent, pEvent);
+        return self.vtable.Event(self, TapiEvent, pEvent);
     }
 };
 
@@ -7776,13 +7776,13 @@ pub const ITCallHubEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Event(self: *const ITCallHubEvent, pEvent: ?*CALLHUB_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHubEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITCallHubEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
     pub fn get_CallHub(self: *const ITCallHubEvent, ppCallHub: ?*?*ITCallHub) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHubEvent.VTable, @ptrCast(self.vtable)).get_CallHub(@as(*const ITCallHubEvent, @ptrCast(self)), ppCallHub);
+        return self.vtable.get_CallHub(self, ppCallHub);
     }
     pub fn get_Call(self: *const ITCallHubEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallHubEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITCallHubEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
 };
 
@@ -7826,13 +7826,13 @@ pub const ITAddressEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Address(self: *const ITAddressEvent, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressEvent.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITAddressEvent, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_Event(self: *const ITAddressEvent, pEvent: ?*ADDRESS_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITAddressEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
     pub fn get_Terminal(self: *const ITAddressEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITAddressEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
 };
 
@@ -7894,19 +7894,19 @@ pub const ITAddressDeviceSpecificEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Address(self: *const ITAddressDeviceSpecificEvent, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITAddressDeviceSpecificEvent, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_Call(self: *const ITAddressDeviceSpecificEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITAddressDeviceSpecificEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_lParam1(self: *const ITAddressDeviceSpecificEvent, pParam1: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam1(@as(*const ITAddressDeviceSpecificEvent, @ptrCast(self)), pParam1);
+        return self.vtable.get_lParam1(self, pParam1);
     }
     pub fn get_lParam2(self: *const ITAddressDeviceSpecificEvent, pParam2: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam2(@as(*const ITAddressDeviceSpecificEvent, @ptrCast(self)), pParam2);
+        return self.vtable.get_lParam2(self, pParam2);
     }
     pub fn get_lParam3(self: *const ITAddressDeviceSpecificEvent, pParam3: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressDeviceSpecificEvent.VTable, @ptrCast(self.vtable)).get_lParam3(@as(*const ITAddressDeviceSpecificEvent, @ptrCast(self)), pParam3);
+        return self.vtable.get_lParam3(self, pParam3);
     }
 };
 
@@ -7977,22 +7977,22 @@ pub const ITFileTerminalEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Terminal(self: *const ITFileTerminalEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITFileTerminalEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
     pub fn get_Track(self: *const ITFileTerminalEvent, ppTrackTerminal: ?*?*ITFileTrack) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_Track(@as(*const ITFileTerminalEvent, @ptrCast(self)), ppTrackTerminal);
+        return self.vtable.get_Track(self, ppTrackTerminal);
     }
     pub fn get_Call(self: *const ITFileTerminalEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITFileTerminalEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_State(self: *const ITFileTerminalEvent, pState: ?*TERMINAL_MEDIA_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITFileTerminalEvent, @ptrCast(self)), pState);
+        return self.vtable.get_State(self, pState);
     }
     pub fn get_Cause(self: *const ITFileTerminalEvent, pCause: ?*FT_STATE_EVENT_CAUSE) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_Cause(@as(*const ITFileTerminalEvent, @ptrCast(self)), pCause);
+        return self.vtable.get_Cause(self, pCause);
     }
     pub fn get_Error(self: *const ITFileTerminalEvent, phrErrorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITFileTerminalEvent.VTable, @ptrCast(self.vtable)).get_Error(@as(*const ITFileTerminalEvent, @ptrCast(self)), phrErrorCode);
+        return self.vtable.get_Error(self, phrErrorCode);
     }
 };
 
@@ -8036,13 +8036,13 @@ pub const ITTTSTerminalEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Terminal(self: *const ITTTSTerminalEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITTTSTerminalEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITTTSTerminalEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
     pub fn get_Call(self: *const ITTTSTerminalEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITTTSTerminalEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITTTSTerminalEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Error(self: *const ITTTSTerminalEvent, phrErrorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITTTSTerminalEvent.VTable, @ptrCast(self.vtable)).get_Error(@as(*const ITTTSTerminalEvent, @ptrCast(self)), phrErrorCode);
+        return self.vtable.get_Error(self, phrErrorCode);
     }
 };
 
@@ -8086,13 +8086,13 @@ pub const ITASRTerminalEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Terminal(self: *const ITASRTerminalEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITASRTerminalEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITASRTerminalEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
     pub fn get_Call(self: *const ITASRTerminalEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITASRTerminalEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITASRTerminalEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Error(self: *const ITASRTerminalEvent, phrErrorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITASRTerminalEvent.VTable, @ptrCast(self.vtable)).get_Error(@as(*const ITASRTerminalEvent, @ptrCast(self)), phrErrorCode);
+        return self.vtable.get_Error(self, phrErrorCode);
     }
 };
 
@@ -8136,13 +8136,13 @@ pub const ITToneTerminalEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Terminal(self: *const ITToneTerminalEvent, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITToneTerminalEvent.VTable, @ptrCast(self.vtable)).get_Terminal(@as(*const ITToneTerminalEvent, @ptrCast(self)), ppTerminal);
+        return self.vtable.get_Terminal(self, ppTerminal);
     }
     pub fn get_Call(self: *const ITToneTerminalEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITToneTerminalEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITToneTerminalEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Error(self: *const ITToneTerminalEvent, phrErrorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITToneTerminalEvent.VTable, @ptrCast(self.vtable)).get_Error(@as(*const ITToneTerminalEvent, @ptrCast(self)), phrErrorCode);
+        return self.vtable.get_Error(self, phrErrorCode);
     }
 };
 
@@ -8186,13 +8186,13 @@ pub const ITQOSEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITQOSEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITQOSEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITQOSEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Event(self: *const ITQOSEvent, pQosEvent: ?*QOS_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITQOSEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITQOSEvent, @ptrCast(self)), pQosEvent);
+        return self.vtable.get_Event(self, pQosEvent);
     }
     pub fn get_MediaType(self: *const ITQOSEvent, plMediaType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQOSEvent.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const ITQOSEvent, @ptrCast(self)), plMediaType);
+        return self.vtable.get_MediaType(self, plMediaType);
     }
 };
 
@@ -8236,13 +8236,13 @@ pub const ITCallInfoChangeEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITCallInfoChangeEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfoChangeEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITCallInfoChangeEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Cause(self: *const ITCallInfoChangeEvent, pCIC: ?*CALLINFOCHANGE_CAUSE) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfoChangeEvent.VTable, @ptrCast(self.vtable)).get_Cause(@as(*const ITCallInfoChangeEvent, @ptrCast(self)), pCIC);
+        return self.vtable.get_Cause(self, pCIC);
     }
     pub fn get_CallbackInstance(self: *const ITCallInfoChangeEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallInfoChangeEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITCallInfoChangeEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -8270,7 +8270,7 @@ pub const ITRequest = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn MakeCall(self: *const ITRequest, pDestAddress: ?BSTR, pAppName: ?BSTR, pCalledParty: ?BSTR, pComment: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITRequest.VTable, @ptrCast(self.vtable)).MakeCall(@as(*const ITRequest, @ptrCast(self)), pDestAddress, pAppName, pCalledParty, pComment);
+        return self.vtable.MakeCall(self, pDestAddress, pAppName, pCalledParty, pComment);
     }
 };
 
@@ -8341,22 +8341,22 @@ pub const ITRequestEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_RegistrationInstance(self: *const ITRequestEvent, plRegistrationInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_RegistrationInstance(@as(*const ITRequestEvent, @ptrCast(self)), plRegistrationInstance);
+        return self.vtable.get_RegistrationInstance(self, plRegistrationInstance);
     }
     pub fn get_RequestMode(self: *const ITRequestEvent, plRequestMode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_RequestMode(@as(*const ITRequestEvent, @ptrCast(self)), plRequestMode);
+        return self.vtable.get_RequestMode(self, plRequestMode);
     }
     pub fn get_DestAddress(self: *const ITRequestEvent, ppDestAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_DestAddress(@as(*const ITRequestEvent, @ptrCast(self)), ppDestAddress);
+        return self.vtable.get_DestAddress(self, ppDestAddress);
     }
     pub fn get_AppName(self: *const ITRequestEvent, ppAppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_AppName(@as(*const ITRequestEvent, @ptrCast(self)), ppAppName);
+        return self.vtable.get_AppName(self, ppAppName);
     }
     pub fn get_CalledParty(self: *const ITRequestEvent, ppCalledParty: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_CalledParty(@as(*const ITRequestEvent, @ptrCast(self)), ppCalledParty);
+        return self.vtable.get_CalledParty(self, ppCalledParty);
     }
     pub fn get_Comment(self: *const ITRequestEvent, ppComment: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITRequestEvent.VTable, @ptrCast(self.vtable)).get_Comment(@as(*const ITRequestEvent, @ptrCast(self)), ppComment);
+        return self.vtable.get_Comment(self, ppComment);
     }
 };
 
@@ -8400,13 +8400,13 @@ pub const ITCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ITCollection, lCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ITCollection, @ptrCast(self)), lCount);
+        return self.vtable.get_Count(self, lCount);
     }
     pub fn get_Item(self: *const ITCollection, Index: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ITCollection, @ptrCast(self)), Index, pVariant);
+        return self.vtable.get_Item(self, Index, pVariant);
     }
     pub fn get__NewEnum(self: *const ITCollection, ppNewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ITCollection, @ptrCast(self)), ppNewEnum);
+        return self.vtable.get__NewEnum(self, ppNewEnum);
     }
 };
 
@@ -8440,10 +8440,10 @@ pub const ITCollection2 = extern union {
     };}
     pub usingnamespace ITCollection.MethodMixin(@This());
     pub fn Add(self: *const ITCollection2, Index: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITCollection2.VTable, @ptrCast(self.vtable)).Add(@as(*const ITCollection2, @ptrCast(self)), Index, pVariant);
+        return self.vtable.Add(self, Index, pVariant);
     }
     pub fn Remove(self: *const ITCollection2, Index: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCollection2.VTable, @ptrCast(self.vtable)).Remove(@as(*const ITCollection2, @ptrCast(self)), Index);
+        return self.vtable.Remove(self, Index);
     }
 };
 
@@ -8523,25 +8523,25 @@ pub const ITForwardInformation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_NumRingsNoAnswer(self: *const ITForwardInformation, lNumRings: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).put_NumRingsNoAnswer(@as(*const ITForwardInformation, @ptrCast(self)), lNumRings);
+        return self.vtable.put_NumRingsNoAnswer(self, lNumRings);
     }
     pub fn get_NumRingsNoAnswer(self: *const ITForwardInformation, plNumRings: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).get_NumRingsNoAnswer(@as(*const ITForwardInformation, @ptrCast(self)), plNumRings);
+        return self.vtable.get_NumRingsNoAnswer(self, plNumRings);
     }
     pub fn SetForwardType(self: *const ITForwardInformation, ForwardType: i32, pDestAddress: ?BSTR, pCallerAddress: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).SetForwardType(@as(*const ITForwardInformation, @ptrCast(self)), ForwardType, pDestAddress, pCallerAddress);
+        return self.vtable.SetForwardType(self, ForwardType, pDestAddress, pCallerAddress);
     }
     pub fn get_ForwardTypeDestination(self: *const ITForwardInformation, ForwardType: i32, ppDestAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).get_ForwardTypeDestination(@as(*const ITForwardInformation, @ptrCast(self)), ForwardType, ppDestAddress);
+        return self.vtable.get_ForwardTypeDestination(self, ForwardType, ppDestAddress);
     }
     pub fn get_ForwardTypeCaller(self: *const ITForwardInformation, Forwardtype: i32, ppCallerAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).get_ForwardTypeCaller(@as(*const ITForwardInformation, @ptrCast(self)), Forwardtype, ppCallerAddress);
+        return self.vtable.get_ForwardTypeCaller(self, Forwardtype, ppCallerAddress);
     }
     pub fn GetForwardType(self: *const ITForwardInformation, ForwardType: i32, ppDestinationAddress: ?*?BSTR, ppCallerAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).GetForwardType(@as(*const ITForwardInformation, @ptrCast(self)), ForwardType, ppDestinationAddress, ppCallerAddress);
+        return self.vtable.GetForwardType(self, ForwardType, ppDestinationAddress, ppCallerAddress);
     }
     pub fn Clear(self: *const ITForwardInformation) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation.VTable, @ptrCast(self.vtable)).Clear(@as(*const ITForwardInformation, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -8600,16 +8600,16 @@ pub const ITForwardInformation2 = extern union {
     };}
     pub usingnamespace ITForwardInformation.MethodMixin(@This());
     pub fn SetForwardType2(self: *const ITForwardInformation2, ForwardType: i32, pDestAddress: ?BSTR, DestAddressType: i32, pCallerAddress: ?BSTR, CallerAddressType: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation2.VTable, @ptrCast(self.vtable)).SetForwardType2(@as(*const ITForwardInformation2, @ptrCast(self)), ForwardType, pDestAddress, DestAddressType, pCallerAddress, CallerAddressType);
+        return self.vtable.SetForwardType2(self, ForwardType, pDestAddress, DestAddressType, pCallerAddress, CallerAddressType);
     }
     pub fn GetForwardType2(self: *const ITForwardInformation2, ForwardType: i32, ppDestinationAddress: ?*?BSTR, pDestAddressType: ?*i32, ppCallerAddress: ?*?BSTR, pCallerAddressType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation2.VTable, @ptrCast(self.vtable)).GetForwardType2(@as(*const ITForwardInformation2, @ptrCast(self)), ForwardType, ppDestinationAddress, pDestAddressType, ppCallerAddress, pCallerAddressType);
+        return self.vtable.GetForwardType2(self, ForwardType, ppDestinationAddress, pDestAddressType, ppCallerAddress, pCallerAddressType);
     }
     pub fn get_ForwardTypeDestinationAddressType(self: *const ITForwardInformation2, ForwardType: i32, pDestAddressType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation2.VTable, @ptrCast(self.vtable)).get_ForwardTypeDestinationAddressType(@as(*const ITForwardInformation2, @ptrCast(self)), ForwardType, pDestAddressType);
+        return self.vtable.get_ForwardTypeDestinationAddressType(self, ForwardType, pDestAddressType);
     }
     pub fn get_ForwardTypeCallerAddressType(self: *const ITForwardInformation2, Forwardtype: i32, pCallerAddressType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITForwardInformation2.VTable, @ptrCast(self.vtable)).get_ForwardTypeCallerAddressType(@as(*const ITForwardInformation2, @ptrCast(self)), Forwardtype, pCallerAddressType);
+        return self.vtable.get_ForwardTypeCallerAddressType(self, Forwardtype, pCallerAddressType);
     }
 };
 
@@ -8680,22 +8680,22 @@ pub const ITAddressTranslation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn TranslateAddress(self: *const ITAddressTranslation, pAddressToTranslate: ?BSTR, lCard: i32, lTranslateOptions: i32, ppTranslated: ?*?*ITAddressTranslationInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).TranslateAddress(@as(*const ITAddressTranslation, @ptrCast(self)), pAddressToTranslate, lCard, lTranslateOptions, ppTranslated);
+        return self.vtable.TranslateAddress(self, pAddressToTranslate, lCard, lTranslateOptions, ppTranslated);
     }
     pub fn TranslateDialog(self: *const ITAddressTranslation, hwndOwner: isize, pAddressIn: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).TranslateDialog(@as(*const ITAddressTranslation, @ptrCast(self)), hwndOwner, pAddressIn);
+        return self.vtable.TranslateDialog(self, hwndOwner, pAddressIn);
     }
     pub fn EnumerateLocations(self: *const ITAddressTranslation, ppEnumLocation: ?*?*IEnumLocation) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).EnumerateLocations(@as(*const ITAddressTranslation, @ptrCast(self)), ppEnumLocation);
+        return self.vtable.EnumerateLocations(self, ppEnumLocation);
     }
     pub fn get_Locations(self: *const ITAddressTranslation, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).get_Locations(@as(*const ITAddressTranslation, @ptrCast(self)), pVariant);
+        return self.vtable.get_Locations(self, pVariant);
     }
     pub fn EnumerateCallingCards(self: *const ITAddressTranslation, ppEnumCallingCard: ?*?*IEnumCallingCard) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).EnumerateCallingCards(@as(*const ITAddressTranslation, @ptrCast(self)), ppEnumCallingCard);
+        return self.vtable.EnumerateCallingCards(self, ppEnumCallingCard);
     }
     pub fn get_CallingCards(self: *const ITAddressTranslation, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslation.VTable, @ptrCast(self.vtable)).get_CallingCards(@as(*const ITAddressTranslation, @ptrCast(self)), pVariant);
+        return self.vtable.get_CallingCards(self, pVariant);
     }
 };
 
@@ -8757,19 +8757,19 @@ pub const ITAddressTranslationInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DialableString(self: *const ITAddressTranslationInfo, ppDialableString: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslationInfo.VTable, @ptrCast(self.vtable)).get_DialableString(@as(*const ITAddressTranslationInfo, @ptrCast(self)), ppDialableString);
+        return self.vtable.get_DialableString(self, ppDialableString);
     }
     pub fn get_DisplayableString(self: *const ITAddressTranslationInfo, ppDisplayableString: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslationInfo.VTable, @ptrCast(self.vtable)).get_DisplayableString(@as(*const ITAddressTranslationInfo, @ptrCast(self)), ppDisplayableString);
+        return self.vtable.get_DisplayableString(self, ppDisplayableString);
     }
     pub fn get_CurrentCountryCode(self: *const ITAddressTranslationInfo, CountryCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslationInfo.VTable, @ptrCast(self.vtable)).get_CurrentCountryCode(@as(*const ITAddressTranslationInfo, @ptrCast(self)), CountryCode);
+        return self.vtable.get_CurrentCountryCode(self, CountryCode);
     }
     pub fn get_DestinationCountryCode(self: *const ITAddressTranslationInfo, CountryCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslationInfo.VTable, @ptrCast(self.vtable)).get_DestinationCountryCode(@as(*const ITAddressTranslationInfo, @ptrCast(self)), CountryCode);
+        return self.vtable.get_DestinationCountryCode(self, CountryCode);
     }
     pub fn get_TranslationResults(self: *const ITAddressTranslationInfo, plResults: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAddressTranslationInfo.VTable, @ptrCast(self.vtable)).get_TranslationResults(@as(*const ITAddressTranslationInfo, @ptrCast(self)), plResults);
+        return self.vtable.get_TranslationResults(self, plResults);
     }
 };
 
@@ -8885,37 +8885,37 @@ pub const ITLocationInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_PermanentLocationID(self: *const ITLocationInfo, plLocationID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_PermanentLocationID(@as(*const ITLocationInfo, @ptrCast(self)), plLocationID);
+        return self.vtable.get_PermanentLocationID(self, plLocationID);
     }
     pub fn get_CountryCode(self: *const ITLocationInfo, plCountryCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_CountryCode(@as(*const ITLocationInfo, @ptrCast(self)), plCountryCode);
+        return self.vtable.get_CountryCode(self, plCountryCode);
     }
     pub fn get_CountryID(self: *const ITLocationInfo, plCountryID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_CountryID(@as(*const ITLocationInfo, @ptrCast(self)), plCountryID);
+        return self.vtable.get_CountryID(self, plCountryID);
     }
     pub fn get_Options(self: *const ITLocationInfo, plOptions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_Options(@as(*const ITLocationInfo, @ptrCast(self)), plOptions);
+        return self.vtable.get_Options(self, plOptions);
     }
     pub fn get_PreferredCardID(self: *const ITLocationInfo, plCardID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_PreferredCardID(@as(*const ITLocationInfo, @ptrCast(self)), plCardID);
+        return self.vtable.get_PreferredCardID(self, plCardID);
     }
     pub fn get_LocationName(self: *const ITLocationInfo, ppLocationName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_LocationName(@as(*const ITLocationInfo, @ptrCast(self)), ppLocationName);
+        return self.vtable.get_LocationName(self, ppLocationName);
     }
     pub fn get_CityCode(self: *const ITLocationInfo, ppCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_CityCode(@as(*const ITLocationInfo, @ptrCast(self)), ppCode);
+        return self.vtable.get_CityCode(self, ppCode);
     }
     pub fn get_LocalAccessCode(self: *const ITLocationInfo, ppCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_LocalAccessCode(@as(*const ITLocationInfo, @ptrCast(self)), ppCode);
+        return self.vtable.get_LocalAccessCode(self, ppCode);
     }
     pub fn get_LongDistanceAccessCode(self: *const ITLocationInfo, ppCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_LongDistanceAccessCode(@as(*const ITLocationInfo, @ptrCast(self)), ppCode);
+        return self.vtable.get_LongDistanceAccessCode(self, ppCode);
     }
     pub fn get_TollPrefixList(self: *const ITLocationInfo, ppTollList: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_TollPrefixList(@as(*const ITLocationInfo, @ptrCast(self)), ppTollList);
+        return self.vtable.get_TollPrefixList(self, ppTollList);
     }
     pub fn get_CancelCallWaitingCode(self: *const ITLocationInfo, ppCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITLocationInfo.VTable, @ptrCast(self.vtable)).get_CancelCallWaitingCode(@as(*const ITLocationInfo, @ptrCast(self)), ppCode);
+        return self.vtable.get_CancelCallWaitingCode(self, ppCode);
     }
 };
 
@@ -8965,16 +8965,16 @@ pub const IEnumLocation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumLocation, celt: u32, ppElements: ?*?*ITLocationInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumLocation.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumLocation, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumLocation) callconv(.Inline) HRESULT {
-        return @as(*const IEnumLocation.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumLocation, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumLocation, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumLocation.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumLocation, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumLocation, ppEnum: ?*?*IEnumLocation) callconv(.Inline) HRESULT {
-        return @as(*const IEnumLocation.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumLocation, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -9054,25 +9054,25 @@ pub const ITCallingCard = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_PermanentCardID(self: *const ITCallingCard, plCardID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_PermanentCardID(@as(*const ITCallingCard, @ptrCast(self)), plCardID);
+        return self.vtable.get_PermanentCardID(self, plCardID);
     }
     pub fn get_NumberOfDigits(self: *const ITCallingCard, plDigits: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_NumberOfDigits(@as(*const ITCallingCard, @ptrCast(self)), plDigits);
+        return self.vtable.get_NumberOfDigits(self, plDigits);
     }
     pub fn get_Options(self: *const ITCallingCard, plOptions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_Options(@as(*const ITCallingCard, @ptrCast(self)), plOptions);
+        return self.vtable.get_Options(self, plOptions);
     }
     pub fn get_CardName(self: *const ITCallingCard, ppCardName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_CardName(@as(*const ITCallingCard, @ptrCast(self)), ppCardName);
+        return self.vtable.get_CardName(self, ppCardName);
     }
     pub fn get_SameAreaDialingRule(self: *const ITCallingCard, ppRule: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_SameAreaDialingRule(@as(*const ITCallingCard, @ptrCast(self)), ppRule);
+        return self.vtable.get_SameAreaDialingRule(self, ppRule);
     }
     pub fn get_LongDistanceDialingRule(self: *const ITCallingCard, ppRule: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_LongDistanceDialingRule(@as(*const ITCallingCard, @ptrCast(self)), ppRule);
+        return self.vtable.get_LongDistanceDialingRule(self, ppRule);
     }
     pub fn get_InternationalDialingRule(self: *const ITCallingCard, ppRule: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITCallingCard.VTable, @ptrCast(self.vtable)).get_InternationalDialingRule(@as(*const ITCallingCard, @ptrCast(self)), ppRule);
+        return self.vtable.get_InternationalDialingRule(self, ppRule);
     }
 };
 
@@ -9122,16 +9122,16 @@ pub const IEnumCallingCard = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumCallingCard, celt: u32, ppElements: ?*?*ITCallingCard, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallingCard.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCallingCard, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumCallingCard) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallingCard.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCallingCard, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumCallingCard, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallingCard.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCallingCard, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumCallingCard, ppEnum: ?*?*IEnumCallingCard) callconv(.Inline) HRESULT {
-        return @as(*const IEnumCallingCard.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCallingCard, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -9175,13 +9175,13 @@ pub const ITCallNotificationEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Call(self: *const ITCallNotificationEvent, ppCall: ?*?*ITCallInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITCallNotificationEvent.VTable, @ptrCast(self.vtable)).get_Call(@as(*const ITCallNotificationEvent, @ptrCast(self)), ppCall);
+        return self.vtable.get_Call(self, ppCall);
     }
     pub fn get_Event(self: *const ITCallNotificationEvent, pCallNotificationEvent: ?*CALL_NOTIFICATION_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITCallNotificationEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITCallNotificationEvent, @ptrCast(self)), pCallNotificationEvent);
+        return self.vtable.get_Event(self, pCallNotificationEvent);
     }
     pub fn get_CallbackInstance(self: *const ITCallNotificationEvent, plCallbackInstance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITCallNotificationEvent.VTable, @ptrCast(self.vtable)).get_CallbackInstance(@as(*const ITCallNotificationEvent, @ptrCast(self)), plCallbackInstance);
+        return self.vtable.get_CallbackInstance(self, plCallbackInstance);
     }
 };
 
@@ -9208,7 +9208,7 @@ pub const ITDispatchMapper = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn QueryDispatchInterface(self: *const ITDispatchMapper, pIID: ?BSTR, pInterfaceToMap: ?*IDispatch, ppReturnedInterface: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITDispatchMapper.VTable, @ptrCast(self.vtable)).QueryDispatchInterface(@as(*const ITDispatchMapper, @ptrCast(self)), pIID, pInterfaceToMap, ppReturnedInterface);
+        return self.vtable.QueryDispatchInterface(self, pIID, pInterfaceToMap, ppReturnedInterface);
     }
 };
 
@@ -9260,16 +9260,16 @@ pub const ITStreamControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn CreateStream(self: *const ITStreamControl, lMediaType: i32, td: TERMINAL_DIRECTION, ppStream: ?*?*ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStreamControl.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const ITStreamControl, @ptrCast(self)), lMediaType, td, ppStream);
+        return self.vtable.CreateStream(self, lMediaType, td, ppStream);
     }
     pub fn RemoveStream(self: *const ITStreamControl, pStream: ?*ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStreamControl.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const ITStreamControl, @ptrCast(self)), pStream);
+        return self.vtable.RemoveStream(self, pStream);
     }
     pub fn EnumerateStreams(self: *const ITStreamControl, ppEnumStream: ?*?*IEnumStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStreamControl.VTable, @ptrCast(self.vtable)).EnumerateStreams(@as(*const ITStreamControl, @ptrCast(self)), ppEnumStream);
+        return self.vtable.EnumerateStreams(self, ppEnumStream);
     }
     pub fn get_Streams(self: *const ITStreamControl, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITStreamControl.VTable, @ptrCast(self.vtable)).get_Streams(@as(*const ITStreamControl, @ptrCast(self)), pVariant);
+        return self.vtable.get_Streams(self, pVariant);
     }
 };
 
@@ -9367,34 +9367,34 @@ pub const ITStream = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MediaType(self: *const ITStream, plMediaType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const ITStream, @ptrCast(self)), plMediaType);
+        return self.vtable.get_MediaType(self, plMediaType);
     }
     pub fn get_Direction(self: *const ITStream, pTD: ?*TERMINAL_DIRECTION) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const ITStream, @ptrCast(self)), pTD);
+        return self.vtable.get_Direction(self, pTD);
     }
     pub fn get_Name(self: *const ITStream, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITStream, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
     pub fn StartStream(self: *const ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).StartStream(@as(*const ITStream, @ptrCast(self)));
+        return self.vtable.StartStream(self);
     }
     pub fn PauseStream(self: *const ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).PauseStream(@as(*const ITStream, @ptrCast(self)));
+        return self.vtable.PauseStream(self);
     }
     pub fn StopStream(self: *const ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).StopStream(@as(*const ITStream, @ptrCast(self)));
+        return self.vtable.StopStream(self);
     }
     pub fn SelectTerminal(self: *const ITStream, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).SelectTerminal(@as(*const ITStream, @ptrCast(self)), pTerminal);
+        return self.vtable.SelectTerminal(self, pTerminal);
     }
     pub fn UnselectTerminal(self: *const ITStream, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).UnselectTerminal(@as(*const ITStream, @ptrCast(self)), pTerminal);
+        return self.vtable.UnselectTerminal(self, pTerminal);
     }
     pub fn EnumerateTerminals(self: *const ITStream, ppEnumTerminal: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).EnumerateTerminals(@as(*const ITStream, @ptrCast(self)), ppEnumTerminal);
+        return self.vtable.EnumerateTerminals(self, ppEnumTerminal);
     }
     pub fn get_Terminals(self: *const ITStream, pTerminals: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITStream.VTable, @ptrCast(self.vtable)).get_Terminals(@as(*const ITStream, @ptrCast(self)), pTerminals);
+        return self.vtable.get_Terminals(self, pTerminals);
     }
 };
 
@@ -9444,16 +9444,16 @@ pub const IEnumStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumStream, celt: u32, ppElements: ?*?*ITStream, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumStream.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumStream, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumStream) callconv(.Inline) HRESULT {
-        return @as(*const IEnumStream.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumStream, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumStream, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumStream.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumStream, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumStream, ppEnum: ?*?*IEnumStream) callconv(.Inline) HRESULT {
-        return @as(*const IEnumStream.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumStream, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -9503,16 +9503,16 @@ pub const ITSubStreamControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn CreateSubStream(self: *const ITSubStreamControl, ppSubStream: ?*?*ITSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStreamControl.VTable, @ptrCast(self.vtable)).CreateSubStream(@as(*const ITSubStreamControl, @ptrCast(self)), ppSubStream);
+        return self.vtable.CreateSubStream(self, ppSubStream);
     }
     pub fn RemoveSubStream(self: *const ITSubStreamControl, pSubStream: ?*ITSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStreamControl.VTable, @ptrCast(self.vtable)).RemoveSubStream(@as(*const ITSubStreamControl, @ptrCast(self)), pSubStream);
+        return self.vtable.RemoveSubStream(self, pSubStream);
     }
     pub fn EnumerateSubStreams(self: *const ITSubStreamControl, ppEnumSubStream: ?*?*IEnumSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStreamControl.VTable, @ptrCast(self.vtable)).EnumerateSubStreams(@as(*const ITSubStreamControl, @ptrCast(self)), ppEnumSubStream);
+        return self.vtable.EnumerateSubStreams(self, ppEnumSubStream);
     }
     pub fn get_SubStreams(self: *const ITSubStreamControl, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStreamControl.VTable, @ptrCast(self.vtable)).get_SubStreams(@as(*const ITSubStreamControl, @ptrCast(self)), pVariant);
+        return self.vtable.get_SubStreams(self, pVariant);
     }
 };
 
@@ -9592,28 +9592,28 @@ pub const ITSubStream = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn StartSubStream(self: *const ITSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).StartSubStream(@as(*const ITSubStream, @ptrCast(self)));
+        return self.vtable.StartSubStream(self);
     }
     pub fn PauseSubStream(self: *const ITSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).PauseSubStream(@as(*const ITSubStream, @ptrCast(self)));
+        return self.vtable.PauseSubStream(self);
     }
     pub fn StopSubStream(self: *const ITSubStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).StopSubStream(@as(*const ITSubStream, @ptrCast(self)));
+        return self.vtable.StopSubStream(self);
     }
     pub fn SelectTerminal(self: *const ITSubStream, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).SelectTerminal(@as(*const ITSubStream, @ptrCast(self)), pTerminal);
+        return self.vtable.SelectTerminal(self, pTerminal);
     }
     pub fn UnselectTerminal(self: *const ITSubStream, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).UnselectTerminal(@as(*const ITSubStream, @ptrCast(self)), pTerminal);
+        return self.vtable.UnselectTerminal(self, pTerminal);
     }
     pub fn EnumerateTerminals(self: *const ITSubStream, ppEnumTerminal: ?*?*IEnumTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).EnumerateTerminals(@as(*const ITSubStream, @ptrCast(self)), ppEnumTerminal);
+        return self.vtable.EnumerateTerminals(self, ppEnumTerminal);
     }
     pub fn get_Terminals(self: *const ITSubStream, pTerminals: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).get_Terminals(@as(*const ITSubStream, @ptrCast(self)), pTerminals);
+        return self.vtable.get_Terminals(self, pTerminals);
     }
     pub fn get_Stream(self: *const ITSubStream, ppITStream: ?*?*ITStream) callconv(.Inline) HRESULT {
-        return @as(*const ITSubStream.VTable, @ptrCast(self.vtable)).get_Stream(@as(*const ITSubStream, @ptrCast(self)), ppITStream);
+        return self.vtable.get_Stream(self, ppITStream);
     }
 };
 
@@ -9663,16 +9663,16 @@ pub const IEnumSubStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSubStream, celt: u32, ppElements: ?*?*ITSubStream, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSubStream.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSubStream, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumSubStream) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSubStream.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSubStream, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumSubStream, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSubStream.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSubStream, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumSubStream, ppEnum: ?*?*IEnumSubStream) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSubStream.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSubStream, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -9697,7 +9697,7 @@ pub const ITLegacyWaveSupport = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn IsFullDuplex(self: *const ITLegacyWaveSupport, pSupport: ?*FULLDUPLEX_SUPPORT) callconv(.Inline) HRESULT {
-        return @as(*const ITLegacyWaveSupport.VTable, @ptrCast(self.vtable)).IsFullDuplex(@as(*const ITLegacyWaveSupport, @ptrCast(self)), pSupport);
+        return self.vtable.IsFullDuplex(self, pSupport);
     }
 };
 
@@ -9741,13 +9741,13 @@ pub const ITBasicCallControl2 = extern union {
     };}
     pub usingnamespace ITBasicCallControl.MethodMixin(@This());
     pub fn RequestTerminal(self: *const ITBasicCallControl2, bstrTerminalClassGUID: ?BSTR, lMediaType: i32, Direction: TERMINAL_DIRECTION, ppTerminal: ?*?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl2.VTable, @ptrCast(self.vtable)).RequestTerminal(@as(*const ITBasicCallControl2, @ptrCast(self)), bstrTerminalClassGUID, lMediaType, Direction, ppTerminal);
+        return self.vtable.RequestTerminal(self, bstrTerminalClassGUID, lMediaType, Direction, ppTerminal);
     }
     pub fn SelectTerminalOnCall(self: *const ITBasicCallControl2, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl2.VTable, @ptrCast(self.vtable)).SelectTerminalOnCall(@as(*const ITBasicCallControl2, @ptrCast(self)), pTerminal);
+        return self.vtable.SelectTerminalOnCall(self, pTerminal);
     }
     pub fn UnselectTerminalOnCall(self: *const ITBasicCallControl2, pTerminal: ?*ITTerminal) callconv(.Inline) HRESULT {
-        return @as(*const ITBasicCallControl2.VTable, @ptrCast(self.vtable)).UnselectTerminalOnCall(@as(*const ITBasicCallControl2, @ptrCast(self)), pTerminal);
+        return self.vtable.UnselectTerminalOnCall(self, pTerminal);
     }
 };
 
@@ -9872,40 +9872,40 @@ pub const ITScriptableAudioFormat = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Channels(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_Channels(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_Channels(self, pVal);
     }
     pub fn put_Channels(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_Channels(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_Channels(self, nNewVal);
     }
     pub fn get_SamplesPerSec(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_SamplesPerSec(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_SamplesPerSec(self, pVal);
     }
     pub fn put_SamplesPerSec(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_SamplesPerSec(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_SamplesPerSec(self, nNewVal);
     }
     pub fn get_AvgBytesPerSec(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_AvgBytesPerSec(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_AvgBytesPerSec(self, pVal);
     }
     pub fn put_AvgBytesPerSec(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_AvgBytesPerSec(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_AvgBytesPerSec(self, nNewVal);
     }
     pub fn get_BlockAlign(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_BlockAlign(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_BlockAlign(self, pVal);
     }
     pub fn put_BlockAlign(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_BlockAlign(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_BlockAlign(self, nNewVal);
     }
     pub fn get_BitsPerSample(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_BitsPerSample(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_BitsPerSample(self, pVal);
     }
     pub fn put_BitsPerSample(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_BitsPerSample(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_BitsPerSample(self, nNewVal);
     }
     pub fn get_FormatTag(self: *const ITScriptableAudioFormat, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).get_FormatTag(@as(*const ITScriptableAudioFormat, @ptrCast(self)), pVal);
+        return self.vtable.get_FormatTag(self, pVal);
     }
     pub fn put_FormatTag(self: *const ITScriptableAudioFormat, nNewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITScriptableAudioFormat.VTable, @ptrCast(self.vtable)).put_FormatTag(@as(*const ITScriptableAudioFormat, @ptrCast(self)), nNewVal);
+        return self.vtable.put_FormatTag(self, nNewVal);
     }
 };
 
@@ -10156,55 +10156,55 @@ pub const ITAgent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EnumerateAgentSessions(self: *const ITAgent, ppEnumAgentSession: ?*?*IEnumAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).EnumerateAgentSessions(@as(*const ITAgent, @ptrCast(self)), ppEnumAgentSession);
+        return self.vtable.EnumerateAgentSessions(self, ppEnumAgentSession);
     }
     pub fn CreateSession(self: *const ITAgent, pACDGroup: ?*ITACDGroup, pAddress: ?*ITAddress, ppAgentSession: ?*?*ITAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const ITAgent, @ptrCast(self)), pACDGroup, pAddress, ppAgentSession);
+        return self.vtable.CreateSession(self, pACDGroup, pAddress, ppAgentSession);
     }
     pub fn CreateSessionWithPIN(self: *const ITAgent, pACDGroup: ?*ITACDGroup, pAddress: ?*ITAddress, pPIN: ?BSTR, ppAgentSession: ?*?*ITAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).CreateSessionWithPIN(@as(*const ITAgent, @ptrCast(self)), pACDGroup, pAddress, pPIN, ppAgentSession);
+        return self.vtable.CreateSessionWithPIN(self, pACDGroup, pAddress, pPIN, ppAgentSession);
     }
     pub fn get_ID(self: *const ITAgent, ppID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_ID(@as(*const ITAgent, @ptrCast(self)), ppID);
+        return self.vtable.get_ID(self, ppID);
     }
     pub fn get_User(self: *const ITAgent, ppUser: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_User(@as(*const ITAgent, @ptrCast(self)), ppUser);
+        return self.vtable.get_User(self, ppUser);
     }
     pub fn put_State(self: *const ITAgent, AgentState: AGENT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).put_State(@as(*const ITAgent, @ptrCast(self)), AgentState);
+        return self.vtable.put_State(self, AgentState);
     }
     pub fn get_State(self: *const ITAgent, pAgentState: ?*AGENT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITAgent, @ptrCast(self)), pAgentState);
+        return self.vtable.get_State(self, pAgentState);
     }
     pub fn put_MeasurementPeriod(self: *const ITAgent, lPeriod: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).put_MeasurementPeriod(@as(*const ITAgent, @ptrCast(self)), lPeriod);
+        return self.vtable.put_MeasurementPeriod(self, lPeriod);
     }
     pub fn get_MeasurementPeriod(self: *const ITAgent, plPeriod: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_MeasurementPeriod(@as(*const ITAgent, @ptrCast(self)), plPeriod);
+        return self.vtable.get_MeasurementPeriod(self, plPeriod);
     }
     pub fn get_OverallCallRate(self: *const ITAgent, pcyCallrate: ?*CY) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_OverallCallRate(@as(*const ITAgent, @ptrCast(self)), pcyCallrate);
+        return self.vtable.get_OverallCallRate(self, pcyCallrate);
     }
     pub fn get_NumberOfACDCalls(self: *const ITAgent, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_NumberOfACDCalls(@as(*const ITAgent, @ptrCast(self)), plCalls);
+        return self.vtable.get_NumberOfACDCalls(self, plCalls);
     }
     pub fn get_NumberOfIncomingCalls(self: *const ITAgent, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_NumberOfIncomingCalls(@as(*const ITAgent, @ptrCast(self)), plCalls);
+        return self.vtable.get_NumberOfIncomingCalls(self, plCalls);
     }
     pub fn get_NumberOfOutgoingCalls(self: *const ITAgent, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_NumberOfOutgoingCalls(@as(*const ITAgent, @ptrCast(self)), plCalls);
+        return self.vtable.get_NumberOfOutgoingCalls(self, plCalls);
     }
     pub fn get_TotalACDTalkTime(self: *const ITAgent, plTalkTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_TotalACDTalkTime(@as(*const ITAgent, @ptrCast(self)), plTalkTime);
+        return self.vtable.get_TotalACDTalkTime(self, plTalkTime);
     }
     pub fn get_TotalACDCallTime(self: *const ITAgent, plCallTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_TotalACDCallTime(@as(*const ITAgent, @ptrCast(self)), plCallTime);
+        return self.vtable.get_TotalACDCallTime(self, plCallTime);
     }
     pub fn get_TotalWrapUpTime(self: *const ITAgent, plWrapUpTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_TotalWrapUpTime(@as(*const ITAgent, @ptrCast(self)), plWrapUpTime);
+        return self.vtable.get_TotalWrapUpTime(self, plWrapUpTime);
     }
     pub fn get_AgentSessions(self: *const ITAgent, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgent.VTable, @ptrCast(self.vtable)).get_AgentSessions(@as(*const ITAgent, @ptrCast(self)), pVariant);
+        return self.vtable.get_AgentSessions(self, pVariant);
     }
 };
 
@@ -10374,55 +10374,55 @@ pub const ITAgentSession = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Agent(self: *const ITAgentSession, ppAgent: ?*?*ITAgent) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_Agent(@as(*const ITAgentSession, @ptrCast(self)), ppAgent);
+        return self.vtable.get_Agent(self, ppAgent);
     }
     pub fn get_Address(self: *const ITAgentSession, ppAddress: ?*?*ITAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_Address(@as(*const ITAgentSession, @ptrCast(self)), ppAddress);
+        return self.vtable.get_Address(self, ppAddress);
     }
     pub fn get_ACDGroup(self: *const ITAgentSession, ppACDGroup: ?*?*ITACDGroup) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_ACDGroup(@as(*const ITAgentSession, @ptrCast(self)), ppACDGroup);
+        return self.vtable.get_ACDGroup(self, ppACDGroup);
     }
     pub fn put_State(self: *const ITAgentSession, SessionState: AGENT_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).put_State(@as(*const ITAgentSession, @ptrCast(self)), SessionState);
+        return self.vtable.put_State(self, SessionState);
     }
     pub fn get_State(self: *const ITAgentSession, pSessionState: ?*AGENT_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITAgentSession, @ptrCast(self)), pSessionState);
+        return self.vtable.get_State(self, pSessionState);
     }
     pub fn get_SessionStartTime(self: *const ITAgentSession, pdateSessionStart: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_SessionStartTime(@as(*const ITAgentSession, @ptrCast(self)), pdateSessionStart);
+        return self.vtable.get_SessionStartTime(self, pdateSessionStart);
     }
     pub fn get_SessionDuration(self: *const ITAgentSession, plDuration: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_SessionDuration(@as(*const ITAgentSession, @ptrCast(self)), plDuration);
+        return self.vtable.get_SessionDuration(self, plDuration);
     }
     pub fn get_NumberOfCalls(self: *const ITAgentSession, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_NumberOfCalls(@as(*const ITAgentSession, @ptrCast(self)), plCalls);
+        return self.vtable.get_NumberOfCalls(self, plCalls);
     }
     pub fn get_TotalTalkTime(self: *const ITAgentSession, plTalkTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_TotalTalkTime(@as(*const ITAgentSession, @ptrCast(self)), plTalkTime);
+        return self.vtable.get_TotalTalkTime(self, plTalkTime);
     }
     pub fn get_AverageTalkTime(self: *const ITAgentSession, plTalkTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_AverageTalkTime(@as(*const ITAgentSession, @ptrCast(self)), plTalkTime);
+        return self.vtable.get_AverageTalkTime(self, plTalkTime);
     }
     pub fn get_TotalCallTime(self: *const ITAgentSession, plCallTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_TotalCallTime(@as(*const ITAgentSession, @ptrCast(self)), plCallTime);
+        return self.vtable.get_TotalCallTime(self, plCallTime);
     }
     pub fn get_AverageCallTime(self: *const ITAgentSession, plCallTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_AverageCallTime(@as(*const ITAgentSession, @ptrCast(self)), plCallTime);
+        return self.vtable.get_AverageCallTime(self, plCallTime);
     }
     pub fn get_TotalWrapUpTime(self: *const ITAgentSession, plWrapUpTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_TotalWrapUpTime(@as(*const ITAgentSession, @ptrCast(self)), plWrapUpTime);
+        return self.vtable.get_TotalWrapUpTime(self, plWrapUpTime);
     }
     pub fn get_AverageWrapUpTime(self: *const ITAgentSession, plWrapUpTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_AverageWrapUpTime(@as(*const ITAgentSession, @ptrCast(self)), plWrapUpTime);
+        return self.vtable.get_AverageWrapUpTime(self, plWrapUpTime);
     }
     pub fn get_ACDCallRate(self: *const ITAgentSession, pcyCallrate: ?*CY) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_ACDCallRate(@as(*const ITAgentSession, @ptrCast(self)), pcyCallrate);
+        return self.vtable.get_ACDCallRate(self, pcyCallrate);
     }
     pub fn get_LongestTimeToAnswer(self: *const ITAgentSession, plAnswerTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_LongestTimeToAnswer(@as(*const ITAgentSession, @ptrCast(self)), plAnswerTime);
+        return self.vtable.get_LongestTimeToAnswer(self, plAnswerTime);
     }
     pub fn get_AverageTimeToAnswer(self: *const ITAgentSession, plAnswerTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSession.VTable, @ptrCast(self.vtable)).get_AverageTimeToAnswer(@as(*const ITAgentSession, @ptrCast(self)), plAnswerTime);
+        return self.vtable.get_AverageTimeToAnswer(self, plAnswerTime);
     }
 };
 
@@ -10465,13 +10465,13 @@ pub const ITACDGroup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ITACDGroup, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITACDGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITACDGroup, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
     pub fn EnumerateQueues(self: *const ITACDGroup, ppEnumQueue: ?*?*IEnumQueue) callconv(.Inline) HRESULT {
-        return @as(*const ITACDGroup.VTable, @ptrCast(self.vtable)).EnumerateQueues(@as(*const ITACDGroup, @ptrCast(self)), ppEnumQueue);
+        return self.vtable.EnumerateQueues(self, ppEnumQueue);
     }
     pub fn get_Queues(self: *const ITACDGroup, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITACDGroup.VTable, @ptrCast(self.vtable)).get_Queues(@as(*const ITACDGroup, @ptrCast(self)), pVariant);
+        return self.vtable.get_Queues(self, pVariant);
     }
 };
 
@@ -10596,40 +10596,40 @@ pub const ITQueue = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_MeasurementPeriod(self: *const ITQueue, lPeriod: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).put_MeasurementPeriod(@as(*const ITQueue, @ptrCast(self)), lPeriod);
+        return self.vtable.put_MeasurementPeriod(self, lPeriod);
     }
     pub fn get_MeasurementPeriod(self: *const ITQueue, plPeriod: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_MeasurementPeriod(@as(*const ITQueue, @ptrCast(self)), plPeriod);
+        return self.vtable.get_MeasurementPeriod(self, plPeriod);
     }
     pub fn get_TotalCallsQueued(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_TotalCallsQueued(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_TotalCallsQueued(self, plCalls);
     }
     pub fn get_CurrentCallsQueued(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_CurrentCallsQueued(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_CurrentCallsQueued(self, plCalls);
     }
     pub fn get_TotalCallsAbandoned(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_TotalCallsAbandoned(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_TotalCallsAbandoned(self, plCalls);
     }
     pub fn get_TotalCallsFlowedIn(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_TotalCallsFlowedIn(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_TotalCallsFlowedIn(self, plCalls);
     }
     pub fn get_TotalCallsFlowedOut(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_TotalCallsFlowedOut(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_TotalCallsFlowedOut(self, plCalls);
     }
     pub fn get_LongestEverWaitTime(self: *const ITQueue, plWaitTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_LongestEverWaitTime(@as(*const ITQueue, @ptrCast(self)), plWaitTime);
+        return self.vtable.get_LongestEverWaitTime(self, plWaitTime);
     }
     pub fn get_CurrentLongestWaitTime(self: *const ITQueue, plWaitTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_CurrentLongestWaitTime(@as(*const ITQueue, @ptrCast(self)), plWaitTime);
+        return self.vtable.get_CurrentLongestWaitTime(self, plWaitTime);
     }
     pub fn get_AverageWaitTime(self: *const ITQueue, plWaitTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_AverageWaitTime(@as(*const ITQueue, @ptrCast(self)), plWaitTime);
+        return self.vtable.get_AverageWaitTime(self, plWaitTime);
     }
     pub fn get_FinalDisposition(self: *const ITQueue, plCalls: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_FinalDisposition(@as(*const ITQueue, @ptrCast(self)), plCalls);
+        return self.vtable.get_FinalDisposition(self, plCalls);
     }
     pub fn get_Name(self: *const ITQueue, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITQueue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITQueue, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
 };
 
@@ -10664,10 +10664,10 @@ pub const ITAgentEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Agent(self: *const ITAgentEvent, ppAgent: ?*?*ITAgent) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentEvent.VTable, @ptrCast(self.vtable)).get_Agent(@as(*const ITAgentEvent, @ptrCast(self)), ppAgent);
+        return self.vtable.get_Agent(self, ppAgent);
     }
     pub fn get_Event(self: *const ITAgentEvent, pEvent: ?*AGENT_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITAgentEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
 };
 
@@ -10702,10 +10702,10 @@ pub const ITAgentSessionEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const ITAgentSessionEvent, ppSession: ?*?*ITAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSessionEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const ITAgentSessionEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_Event(self: *const ITAgentSessionEvent, pEvent: ?*AGENT_SESSION_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentSessionEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITAgentSessionEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
 };
 
@@ -10740,10 +10740,10 @@ pub const ITACDGroupEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Group(self: *const ITACDGroupEvent, ppGroup: ?*?*ITACDGroup) callconv(.Inline) HRESULT {
-        return @as(*const ITACDGroupEvent.VTable, @ptrCast(self.vtable)).get_Group(@as(*const ITACDGroupEvent, @ptrCast(self)), ppGroup);
+        return self.vtable.get_Group(self, ppGroup);
     }
     pub fn get_Event(self: *const ITACDGroupEvent, pEvent: ?*ACDGROUP_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITACDGroupEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITACDGroupEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
 };
 
@@ -10778,10 +10778,10 @@ pub const ITQueueEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Queue(self: *const ITQueueEvent, ppQueue: ?*?*ITQueue) callconv(.Inline) HRESULT {
-        return @as(*const ITQueueEvent.VTable, @ptrCast(self.vtable)).get_Queue(@as(*const ITQueueEvent, @ptrCast(self)), ppQueue);
+        return self.vtable.get_Queue(self, ppQueue);
     }
     pub fn get_Event(self: *const ITQueueEvent, pEvent: ?*ACDQUEUE_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITQueueEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITQueueEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
 };
 
@@ -10816,10 +10816,10 @@ pub const ITAgentHandlerEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AgentHandler(self: *const ITAgentHandlerEvent, ppAgentHandler: ?*?*ITAgentHandler) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandlerEvent.VTable, @ptrCast(self.vtable)).get_AgentHandler(@as(*const ITAgentHandlerEvent, @ptrCast(self)), ppAgentHandler);
+        return self.vtable.get_AgentHandler(self, ppAgentHandler);
     }
     pub fn get_Event(self: *const ITAgentHandlerEvent, pEvent: ?*AGENTHANDLER_EVENT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandlerEvent.VTable, @ptrCast(self.vtable)).get_Event(@as(*const ITAgentHandlerEvent, @ptrCast(self)), pEvent);
+        return self.vtable.get_Event(self, pEvent);
     }
 };
 
@@ -10853,10 +10853,10 @@ pub const ITTAPICallCenter = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EnumerateAgentHandlers(self: *const ITTAPICallCenter, ppEnumHandler: ?*?*IEnumAgentHandler) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPICallCenter.VTable, @ptrCast(self.vtable)).EnumerateAgentHandlers(@as(*const ITTAPICallCenter, @ptrCast(self)), ppEnumHandler);
+        return self.vtable.EnumerateAgentHandlers(self, ppEnumHandler);
     }
     pub fn get_AgentHandlers(self: *const ITTAPICallCenter, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITTAPICallCenter.VTable, @ptrCast(self.vtable)).get_AgentHandlers(@as(*const ITTAPICallCenter, @ptrCast(self)), pVariant);
+        return self.vtable.get_AgentHandlers(self, pVariant);
     }
 };
 
@@ -10934,25 +10934,25 @@ pub const ITAgentHandler = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ITAgentHandler, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITAgentHandler, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
     pub fn CreateAgent(self: *const ITAgentHandler, ppAgent: ?*?*ITAgent) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).CreateAgent(@as(*const ITAgentHandler, @ptrCast(self)), ppAgent);
+        return self.vtable.CreateAgent(self, ppAgent);
     }
     pub fn CreateAgentWithID(self: *const ITAgentHandler, pID: ?BSTR, pPIN: ?BSTR, ppAgent: ?*?*ITAgent) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).CreateAgentWithID(@as(*const ITAgentHandler, @ptrCast(self)), pID, pPIN, ppAgent);
+        return self.vtable.CreateAgentWithID(self, pID, pPIN, ppAgent);
     }
     pub fn EnumerateACDGroups(self: *const ITAgentHandler, ppEnumACDGroup: ?*?*IEnumACDGroup) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).EnumerateACDGroups(@as(*const ITAgentHandler, @ptrCast(self)), ppEnumACDGroup);
+        return self.vtable.EnumerateACDGroups(self, ppEnumACDGroup);
     }
     pub fn EnumerateUsableAddresses(self: *const ITAgentHandler, ppEnumAddress: ?*?*IEnumAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).EnumerateUsableAddresses(@as(*const ITAgentHandler, @ptrCast(self)), ppEnumAddress);
+        return self.vtable.EnumerateUsableAddresses(self, ppEnumAddress);
     }
     pub fn get_ACDGroups(self: *const ITAgentHandler, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).get_ACDGroups(@as(*const ITAgentHandler, @ptrCast(self)), pVariant);
+        return self.vtable.get_ACDGroups(self, pVariant);
     }
     pub fn get_UsableAddresses(self: *const ITAgentHandler, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITAgentHandler.VTable, @ptrCast(self.vtable)).get_UsableAddresses(@as(*const ITAgentHandler, @ptrCast(self)), pVariant);
+        return self.vtable.get_UsableAddresses(self, pVariant);
     }
 };
 
@@ -11002,16 +11002,16 @@ pub const IEnumAgent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumAgent, celt: u32, ppElements: ?*?*ITAgent, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgent.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumAgent, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumAgent) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgent.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumAgent, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumAgent, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgent.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumAgent, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumAgent, ppEnum: ?*?*IEnumAgent) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgent.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumAgent, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -11061,16 +11061,16 @@ pub const IEnumAgentSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumAgentSession, celt: u32, ppElements: ?*?*ITAgentSession, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentSession.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumAgentSession, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentSession.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumAgentSession, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumAgentSession, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentSession.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumAgentSession, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumAgentSession, ppEnum: ?*?*IEnumAgentSession) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentSession.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumAgentSession, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -11120,16 +11120,16 @@ pub const IEnumQueue = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumQueue, celt: u32, ppElements: ?*?*ITQueue, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumQueue.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumQueue, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumQueue) callconv(.Inline) HRESULT {
-        return @as(*const IEnumQueue.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumQueue, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumQueue, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumQueue.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumQueue, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumQueue, ppEnum: ?*?*IEnumQueue) callconv(.Inline) HRESULT {
-        return @as(*const IEnumQueue.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumQueue, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -11179,16 +11179,16 @@ pub const IEnumACDGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumACDGroup, celt: u32, ppElements: ?*?*ITACDGroup, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACDGroup.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumACDGroup, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumACDGroup) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACDGroup.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumACDGroup, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumACDGroup, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACDGroup.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumACDGroup, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumACDGroup, ppEnum: ?*?*IEnumACDGroup) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACDGroup.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumACDGroup, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -11238,16 +11238,16 @@ pub const IEnumAgentHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumAgentHandler, celt: u32, ppElements: ?*?*ITAgentHandler, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentHandler.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumAgentHandler, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IEnumAgentHandler) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentHandler.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumAgentHandler, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumAgentHandler, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentHandler.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumAgentHandler, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumAgentHandler, ppEnum: ?*?*IEnumAgentHandler) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAgentHandler.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumAgentHandler, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -11282,10 +11282,10 @@ pub const ITAMMediaFormat = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_MediaFormat(self: *const ITAMMediaFormat, ppmt: ?*?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITAMMediaFormat.VTable, @ptrCast(self.vtable)).get_MediaFormat(@as(*const ITAMMediaFormat, @ptrCast(self)), ppmt);
+        return self.vtable.get_MediaFormat(self, ppmt);
     }
     pub fn put_MediaFormat(self: *const ITAMMediaFormat, pmt: ?*const AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITAMMediaFormat.VTable, @ptrCast(self.vtable)).put_MediaFormat(@as(*const ITAMMediaFormat, @ptrCast(self)), pmt);
+        return self.vtable.put_MediaFormat(self, pmt);
     }
 };
 
@@ -11350,22 +11350,22 @@ pub const ITAllocatorProperties = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAllocatorProperties(self: *const ITAllocatorProperties, pAllocProperties: ?*ALLOCATOR_PROPERTIES) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).SetAllocatorProperties(@as(*const ITAllocatorProperties, @ptrCast(self)), pAllocProperties);
+        return self.vtable.SetAllocatorProperties(self, pAllocProperties);
     }
     pub fn GetAllocatorProperties(self: *const ITAllocatorProperties, pAllocProperties: ?*ALLOCATOR_PROPERTIES) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).GetAllocatorProperties(@as(*const ITAllocatorProperties, @ptrCast(self)), pAllocProperties);
+        return self.vtable.GetAllocatorProperties(self, pAllocProperties);
     }
     pub fn SetAllocateBuffers(self: *const ITAllocatorProperties, bAllocBuffers: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).SetAllocateBuffers(@as(*const ITAllocatorProperties, @ptrCast(self)), bAllocBuffers);
+        return self.vtable.SetAllocateBuffers(self, bAllocBuffers);
     }
     pub fn GetAllocateBuffers(self: *const ITAllocatorProperties, pbAllocBuffers: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).GetAllocateBuffers(@as(*const ITAllocatorProperties, @ptrCast(self)), pbAllocBuffers);
+        return self.vtable.GetAllocateBuffers(self, pbAllocBuffers);
     }
     pub fn SetBufferSize(self: *const ITAllocatorProperties, BufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).SetBufferSize(@as(*const ITAllocatorProperties, @ptrCast(self)), BufferSize);
+        return self.vtable.SetBufferSize(self, BufferSize);
     }
     pub fn GetBufferSize(self: *const ITAllocatorProperties, pBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITAllocatorProperties.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const ITAllocatorProperties, @ptrCast(self)), pBufferSize);
+        return self.vtable.GetBufferSize(self, pBufferSize);
     }
 };
 
@@ -11496,7 +11496,7 @@ pub const ITPluggableTerminalEventSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FireEvent(self: *const ITPluggableTerminalEventSink, pMspEventInfo: ?*const MSP_EVENT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalEventSink.VTable, @ptrCast(self.vtable)).FireEvent(@as(*const ITPluggableTerminalEventSink, @ptrCast(self)), pMspEventInfo);
+        return self.vtable.FireEvent(self, pMspEventInfo);
     }
 };
 
@@ -11528,10 +11528,10 @@ pub const ITPluggableTerminalEventSinkRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterSink(self: *const ITPluggableTerminalEventSinkRegistration, pEventSink: ?*ITPluggableTerminalEventSink) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalEventSinkRegistration.VTable, @ptrCast(self.vtable)).RegisterSink(@as(*const ITPluggableTerminalEventSinkRegistration, @ptrCast(self)), pEventSink);
+        return self.vtable.RegisterSink(self, pEventSink);
     }
     pub fn UnregisterSink(self: *const ITPluggableTerminalEventSinkRegistration) callconv(.Inline) HRESULT {
-        return @as(*const ITPluggableTerminalEventSinkRegistration.VTable, @ptrCast(self.vtable)).UnregisterSink(@as(*const ITPluggableTerminalEventSinkRegistration, @ptrCast(self)));
+        return self.vtable.UnregisterSink(self);
     }
 };
 
@@ -11602,22 +11602,22 @@ pub const ITMSPAddress = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const ITMSPAddress, hEvent: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ITMSPAddress, @ptrCast(self)), hEvent);
+        return self.vtable.Initialize(self, hEvent);
     }
     pub fn Shutdown(self: *const ITMSPAddress) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const ITMSPAddress, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn CreateMSPCall(self: *const ITMSPAddress, hCall: ?*i32, dwReserved: u32, dwMediaType: u32, pOuterUnknown: ?*IUnknown, ppStreamControl: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).CreateMSPCall(@as(*const ITMSPAddress, @ptrCast(self)), hCall, dwReserved, dwMediaType, pOuterUnknown, ppStreamControl);
+        return self.vtable.CreateMSPCall(self, hCall, dwReserved, dwMediaType, pOuterUnknown, ppStreamControl);
     }
     pub fn ShutdownMSPCall(self: *const ITMSPAddress, pStreamControl: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).ShutdownMSPCall(@as(*const ITMSPAddress, @ptrCast(self)), pStreamControl);
+        return self.vtable.ShutdownMSPCall(self, pStreamControl);
     }
     pub fn ReceiveTSPData(self: *const ITMSPAddress, pMSPCall: ?*IUnknown, pBuffer: [*:0]u8, dwSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).ReceiveTSPData(@as(*const ITMSPAddress, @ptrCast(self)), pMSPCall, pBuffer, dwSize);
+        return self.vtable.ReceiveTSPData(self, pMSPCall, pBuffer, dwSize);
     }
     pub fn GetEvent(self: *const ITMSPAddress, pdwSize: ?*u32, pEventBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const ITMSPAddress.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const ITMSPAddress, @ptrCast(self)), pdwSize, pEventBuffer);
+        return self.vtable.GetEvent(self, pdwSize, pEventBuffer);
     }
 };
 
@@ -11811,49 +11811,49 @@ pub const ITDirectoryObjectConference = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Protocol(self: *const ITDirectoryObjectConference, ppProtocol: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const ITDirectoryObjectConference, @ptrCast(self)), ppProtocol);
+        return self.vtable.get_Protocol(self, ppProtocol);
     }
     pub fn get_Originator(self: *const ITDirectoryObjectConference, ppOriginator: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_Originator(@as(*const ITDirectoryObjectConference, @ptrCast(self)), ppOriginator);
+        return self.vtable.get_Originator(self, ppOriginator);
     }
     pub fn put_Originator(self: *const ITDirectoryObjectConference, pOriginator: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_Originator(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pOriginator);
+        return self.vtable.put_Originator(self, pOriginator);
     }
     pub fn get_AdvertisingScope(self: *const ITDirectoryObjectConference, pAdvertisingScope: ?*RND_ADVERTISING_SCOPE) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_AdvertisingScope(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pAdvertisingScope);
+        return self.vtable.get_AdvertisingScope(self, pAdvertisingScope);
     }
     pub fn put_AdvertisingScope(self: *const ITDirectoryObjectConference, AdvertisingScope: RND_ADVERTISING_SCOPE) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_AdvertisingScope(@as(*const ITDirectoryObjectConference, @ptrCast(self)), AdvertisingScope);
+        return self.vtable.put_AdvertisingScope(self, AdvertisingScope);
     }
     pub fn get_Url(self: *const ITDirectoryObjectConference, ppUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_Url(@as(*const ITDirectoryObjectConference, @ptrCast(self)), ppUrl);
+        return self.vtable.get_Url(self, ppUrl);
     }
     pub fn put_Url(self: *const ITDirectoryObjectConference, pUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_Url(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pUrl);
+        return self.vtable.put_Url(self, pUrl);
     }
     pub fn get_Description(self: *const ITDirectoryObjectConference, ppDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ITDirectoryObjectConference, @ptrCast(self)), ppDescription);
+        return self.vtable.get_Description(self, ppDescription);
     }
     pub fn put_Description(self: *const ITDirectoryObjectConference, pDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_Description(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pDescription);
+        return self.vtable.put_Description(self, pDescription);
     }
     pub fn get_IsEncrypted(self: *const ITDirectoryObjectConference, pfEncrypted: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_IsEncrypted(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pfEncrypted);
+        return self.vtable.get_IsEncrypted(self, pfEncrypted);
     }
     pub fn put_IsEncrypted(self: *const ITDirectoryObjectConference, fEncrypted: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_IsEncrypted(@as(*const ITDirectoryObjectConference, @ptrCast(self)), fEncrypted);
+        return self.vtable.put_IsEncrypted(self, fEncrypted);
     }
     pub fn get_StartTime(self: *const ITDirectoryObjectConference, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pDate);
+        return self.vtable.get_StartTime(self, pDate);
     }
     pub fn put_StartTime(self: *const ITDirectoryObjectConference, Date: f64) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const ITDirectoryObjectConference, @ptrCast(self)), Date);
+        return self.vtable.put_StartTime(self, Date);
     }
     pub fn get_StopTime(self: *const ITDirectoryObjectConference, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).get_StopTime(@as(*const ITDirectoryObjectConference, @ptrCast(self)), pDate);
+        return self.vtable.get_StopTime(self, pDate);
     }
     pub fn put_StopTime(self: *const ITDirectoryObjectConference, Date: f64) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectConference.VTable, @ptrCast(self.vtable)).put_StopTime(@as(*const ITDirectoryObjectConference, @ptrCast(self)), Date);
+        return self.vtable.put_StopTime(self, Date);
     }
 };
 
@@ -11888,10 +11888,10 @@ pub const ITDirectoryObjectUser = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_IPPhonePrimary(self: *const ITDirectoryObjectUser, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectUser.VTable, @ptrCast(self.vtable)).get_IPPhonePrimary(@as(*const ITDirectoryObjectUser, @ptrCast(self)), ppName);
+        return self.vtable.get_IPPhonePrimary(self, ppName);
     }
     pub fn put_IPPhonePrimary(self: *const ITDirectoryObjectUser, pName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObjectUser.VTable, @ptrCast(self.vtable)).put_IPPhonePrimary(@as(*const ITDirectoryObjectUser, @ptrCast(self)), pName);
+        return self.vtable.put_IPPhonePrimary(self, pName);
     }
 };
 
@@ -11941,16 +11941,16 @@ pub const IEnumDialableAddrs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDialableAddrs, celt: u32, ppElements: [*]?BSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDialableAddrs.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDialableAddrs, @ptrCast(self)), celt, ppElements, pcFetched);
+        return self.vtable.Next(self, celt, ppElements, pcFetched);
     }
     pub fn Reset(self: *const IEnumDialableAddrs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDialableAddrs.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDialableAddrs, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumDialableAddrs, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDialableAddrs.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDialableAddrs, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumDialableAddrs, ppEnum: ?*?*IEnumDialableAddrs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDialableAddrs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDialableAddrs, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -12030,25 +12030,25 @@ pub const ITDirectoryObject = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ObjectType(self: *const ITDirectoryObject, pObjectType: ?*DIRECTORY_OBJECT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).get_ObjectType(@as(*const ITDirectoryObject, @ptrCast(self)), pObjectType);
+        return self.vtable.get_ObjectType(self, pObjectType);
     }
     pub fn get_Name(self: *const ITDirectoryObject, ppName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITDirectoryObject, @ptrCast(self)), ppName);
+        return self.vtable.get_Name(self, ppName);
     }
     pub fn put_Name(self: *const ITDirectoryObject, pName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).put_Name(@as(*const ITDirectoryObject, @ptrCast(self)), pName);
+        return self.vtable.put_Name(self, pName);
     }
     pub fn get_DialableAddrs(self: *const ITDirectoryObject, dwAddressType: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).get_DialableAddrs(@as(*const ITDirectoryObject, @ptrCast(self)), dwAddressType, pVariant);
+        return self.vtable.get_DialableAddrs(self, dwAddressType, pVariant);
     }
     pub fn EnumerateDialableAddrs(self: *const ITDirectoryObject, dwAddressType: u32, ppEnumDialableAddrs: ?*?*IEnumDialableAddrs) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).EnumerateDialableAddrs(@as(*const ITDirectoryObject, @ptrCast(self)), dwAddressType, ppEnumDialableAddrs);
+        return self.vtable.EnumerateDialableAddrs(self, dwAddressType, ppEnumDialableAddrs);
     }
     pub fn get_SecurityDescriptor(self: *const ITDirectoryObject, ppSecDes: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).get_SecurityDescriptor(@as(*const ITDirectoryObject, @ptrCast(self)), ppSecDes);
+        return self.vtable.get_SecurityDescriptor(self, ppSecDes);
     }
     pub fn put_SecurityDescriptor(self: *const ITDirectoryObject, pSecDes: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectoryObject.VTable, @ptrCast(self.vtable)).put_SecurityDescriptor(@as(*const ITDirectoryObject, @ptrCast(self)), pSecDes);
+        return self.vtable.put_SecurityDescriptor(self, pSecDes);
     }
 };
 
@@ -12098,16 +12098,16 @@ pub const IEnumDirectoryObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDirectoryObject, celt: u32, pVal: [*]?*ITDirectoryObject, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectoryObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDirectoryObject, @ptrCast(self)), celt, pVal, pcFetched);
+        return self.vtable.Next(self, celt, pVal, pcFetched);
     }
     pub fn Reset(self: *const IEnumDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectoryObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDirectoryObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumDirectoryObject, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectoryObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDirectoryObject, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumDirectoryObject, ppEnum: ?*?*IEnumDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectoryObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDirectoryObject, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -12142,10 +12142,10 @@ pub const ITILSConfig = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Port(self: *const ITILSConfig, pPort: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITILSConfig.VTable, @ptrCast(self.vtable)).get_Port(@as(*const ITILSConfig, @ptrCast(self)), pPort);
+        return self.vtable.get_Port(self, pPort);
     }
     pub fn put_Port(self: *const ITILSConfig, Port: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITILSConfig.VTable, @ptrCast(self.vtable)).put_Port(@as(*const ITILSConfig, @ptrCast(self)), Port);
+        return self.vtable.put_Port(self, Port);
     }
 };
 
@@ -12286,46 +12286,46 @@ pub const ITDirectory = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DirectoryType(self: *const ITDirectory, pDirectoryType: ?*DIRECTORY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).get_DirectoryType(@as(*const ITDirectory, @ptrCast(self)), pDirectoryType);
+        return self.vtable.get_DirectoryType(self, pDirectoryType);
     }
     pub fn get_DisplayName(self: *const ITDirectory, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ITDirectory, @ptrCast(self)), pName);
+        return self.vtable.get_DisplayName(self, pName);
     }
     pub fn get_IsDynamic(self: *const ITDirectory, pfDynamic: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).get_IsDynamic(@as(*const ITDirectory, @ptrCast(self)), pfDynamic);
+        return self.vtable.get_IsDynamic(self, pfDynamic);
     }
     pub fn get_DefaultObjectTTL(self: *const ITDirectory, pTTL: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).get_DefaultObjectTTL(@as(*const ITDirectory, @ptrCast(self)), pTTL);
+        return self.vtable.get_DefaultObjectTTL(self, pTTL);
     }
     pub fn put_DefaultObjectTTL(self: *const ITDirectory, TTL: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).put_DefaultObjectTTL(@as(*const ITDirectory, @ptrCast(self)), TTL);
+        return self.vtable.put_DefaultObjectTTL(self, TTL);
     }
     pub fn EnableAutoRefresh(self: *const ITDirectory, fEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).EnableAutoRefresh(@as(*const ITDirectory, @ptrCast(self)), fEnable);
+        return self.vtable.EnableAutoRefresh(self, fEnable);
     }
     pub fn Connect(self: *const ITDirectory, fSecure: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).Connect(@as(*const ITDirectory, @ptrCast(self)), fSecure);
+        return self.vtable.Connect(self, fSecure);
     }
     pub fn Bind(self: *const ITDirectory, pDomainName: ?BSTR, pUserName: ?BSTR, pPassword: ?BSTR, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).Bind(@as(*const ITDirectory, @ptrCast(self)), pDomainName, pUserName, pPassword, lFlags);
+        return self.vtable.Bind(self, pDomainName, pUserName, pPassword, lFlags);
     }
     pub fn AddDirectoryObject(self: *const ITDirectory, pDirectoryObject: ?*ITDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).AddDirectoryObject(@as(*const ITDirectory, @ptrCast(self)), pDirectoryObject);
+        return self.vtable.AddDirectoryObject(self, pDirectoryObject);
     }
     pub fn ModifyDirectoryObject(self: *const ITDirectory, pDirectoryObject: ?*ITDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).ModifyDirectoryObject(@as(*const ITDirectory, @ptrCast(self)), pDirectoryObject);
+        return self.vtable.ModifyDirectoryObject(self, pDirectoryObject);
     }
     pub fn RefreshDirectoryObject(self: *const ITDirectory, pDirectoryObject: ?*ITDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).RefreshDirectoryObject(@as(*const ITDirectory, @ptrCast(self)), pDirectoryObject);
+        return self.vtable.RefreshDirectoryObject(self, pDirectoryObject);
     }
     pub fn DeleteDirectoryObject(self: *const ITDirectory, pDirectoryObject: ?*ITDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).DeleteDirectoryObject(@as(*const ITDirectory, @ptrCast(self)), pDirectoryObject);
+        return self.vtable.DeleteDirectoryObject(self, pDirectoryObject);
     }
     pub fn get_DirectoryObjects(self: *const ITDirectory, DirectoryObjectType: DIRECTORY_OBJECT_TYPE, pName: ?BSTR, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).get_DirectoryObjects(@as(*const ITDirectory, @ptrCast(self)), DirectoryObjectType, pName, pVariant);
+        return self.vtable.get_DirectoryObjects(self, DirectoryObjectType, pName, pVariant);
     }
     pub fn EnumerateDirectoryObjects(self: *const ITDirectory, DirectoryObjectType: DIRECTORY_OBJECT_TYPE, pName: ?BSTR, ppEnumObject: ?*?*IEnumDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITDirectory.VTable, @ptrCast(self.vtable)).EnumerateDirectoryObjects(@as(*const ITDirectory, @ptrCast(self)), DirectoryObjectType, pName, ppEnumObject);
+        return self.vtable.EnumerateDirectoryObjects(self, DirectoryObjectType, pName, ppEnumObject);
     }
 };
 
@@ -12375,16 +12375,16 @@ pub const IEnumDirectory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDirectory, celt: u32, ppElements: [*]?*ITDirectory, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectory.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDirectory, @ptrCast(self)), celt, ppElements, pcFetched);
+        return self.vtable.Next(self, celt, ppElements, pcFetched);
     }
     pub fn Reset(self: *const IEnumDirectory) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectory.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDirectory, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumDirectory, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectory.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDirectory, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumDirectory, ppEnum: ?*?*IEnumDirectory) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDirectory.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDirectory, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -12438,16 +12438,16 @@ pub const ITRendezvous = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DefaultDirectories(self: *const ITRendezvous, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITRendezvous.VTable, @ptrCast(self.vtable)).get_DefaultDirectories(@as(*const ITRendezvous, @ptrCast(self)), pVariant);
+        return self.vtable.get_DefaultDirectories(self, pVariant);
     }
     pub fn EnumerateDefaultDirectories(self: *const ITRendezvous, ppEnumDirectory: ?*?*IEnumDirectory) callconv(.Inline) HRESULT {
-        return @as(*const ITRendezvous.VTable, @ptrCast(self.vtable)).EnumerateDefaultDirectories(@as(*const ITRendezvous, @ptrCast(self)), ppEnumDirectory);
+        return self.vtable.EnumerateDefaultDirectories(self, ppEnumDirectory);
     }
     pub fn CreateDirectory(self: *const ITRendezvous, DirectoryType: DIRECTORY_TYPE, pName: ?BSTR, ppDir: ?*?*ITDirectory) callconv(.Inline) HRESULT {
-        return @as(*const ITRendezvous.VTable, @ptrCast(self.vtable)).CreateDirectory(@as(*const ITRendezvous, @ptrCast(self)), DirectoryType, pName, ppDir);
+        return self.vtable.CreateDirectory(self, DirectoryType, pName, ppDir);
     }
     pub fn CreateDirectoryObject(self: *const ITRendezvous, DirectoryObjectType: DIRECTORY_OBJECT_TYPE, pName: ?BSTR, ppDirectoryObject: ?*?*ITDirectoryObject) callconv(.Inline) HRESULT {
-        return @as(*const ITRendezvous.VTable, @ptrCast(self.vtable)).CreateDirectoryObject(@as(*const ITRendezvous, @ptrCast(self)), DirectoryObjectType, pName, ppDirectoryObject);
+        return self.vtable.CreateDirectoryObject(self, DirectoryObjectType, pName, ppDirectoryObject);
     }
 };
 
@@ -12512,19 +12512,19 @@ pub const IMcastScope = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ScopeID(self: *const IMcastScope, pID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastScope.VTable, @ptrCast(self.vtable)).get_ScopeID(@as(*const IMcastScope, @ptrCast(self)), pID);
+        return self.vtable.get_ScopeID(self, pID);
     }
     pub fn get_ServerID(self: *const IMcastScope, pID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastScope.VTable, @ptrCast(self.vtable)).get_ServerID(@as(*const IMcastScope, @ptrCast(self)), pID);
+        return self.vtable.get_ServerID(self, pID);
     }
     pub fn get_InterfaceID(self: *const IMcastScope, pID: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastScope.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMcastScope, @ptrCast(self)), pID);
+        return self.vtable.get_InterfaceID(self, pID);
     }
     pub fn get_ScopeDescription(self: *const IMcastScope, ppDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMcastScope.VTable, @ptrCast(self.vtable)).get_ScopeDescription(@as(*const IMcastScope, @ptrCast(self)), ppDescription);
+        return self.vtable.get_ScopeDescription(self, ppDescription);
     }
     pub fn get_TTL(self: *const IMcastScope, pTTL: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastScope.VTable, @ptrCast(self.vtable)).get_TTL(@as(*const IMcastScope, @ptrCast(self)), pTTL);
+        return self.vtable.get_TTL(self, pTTL);
     }
 };
 
@@ -12630,34 +12630,34 @@ pub const IMcastLeaseInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_RequestID(self: *const IMcastLeaseInfo, ppRequestID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_RequestID(@as(*const IMcastLeaseInfo, @ptrCast(self)), ppRequestID);
+        return self.vtable.get_RequestID(self, ppRequestID);
     }
     pub fn get_LeaseStartTime(self: *const IMcastLeaseInfo, pTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_LeaseStartTime(@as(*const IMcastLeaseInfo, @ptrCast(self)), pTime);
+        return self.vtable.get_LeaseStartTime(self, pTime);
     }
     pub fn put_LeaseStartTime(self: *const IMcastLeaseInfo, time: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).put_LeaseStartTime(@as(*const IMcastLeaseInfo, @ptrCast(self)), time);
+        return self.vtable.put_LeaseStartTime(self, time);
     }
     pub fn get_LeaseStopTime(self: *const IMcastLeaseInfo, pTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_LeaseStopTime(@as(*const IMcastLeaseInfo, @ptrCast(self)), pTime);
+        return self.vtable.get_LeaseStopTime(self, pTime);
     }
     pub fn put_LeaseStopTime(self: *const IMcastLeaseInfo, time: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).put_LeaseStopTime(@as(*const IMcastLeaseInfo, @ptrCast(self)), time);
+        return self.vtable.put_LeaseStopTime(self, time);
     }
     pub fn get_AddressCount(self: *const IMcastLeaseInfo, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_AddressCount(@as(*const IMcastLeaseInfo, @ptrCast(self)), pCount);
+        return self.vtable.get_AddressCount(self, pCount);
     }
     pub fn get_ServerAddress(self: *const IMcastLeaseInfo, ppAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_ServerAddress(@as(*const IMcastLeaseInfo, @ptrCast(self)), ppAddress);
+        return self.vtable.get_ServerAddress(self, ppAddress);
     }
     pub fn get_TTL(self: *const IMcastLeaseInfo, pTTL: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_TTL(@as(*const IMcastLeaseInfo, @ptrCast(self)), pTTL);
+        return self.vtable.get_TTL(self, pTTL);
     }
     pub fn get_Addresses(self: *const IMcastLeaseInfo, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).get_Addresses(@as(*const IMcastLeaseInfo, @ptrCast(self)), pVariant);
+        return self.vtable.get_Addresses(self, pVariant);
     }
     pub fn EnumerateAddresses(self: *const IMcastLeaseInfo, ppEnumAddresses: ?*?*IEnumBstr) callconv(.Inline) HRESULT {
-        return @as(*const IMcastLeaseInfo.VTable, @ptrCast(self.vtable)).EnumerateAddresses(@as(*const IMcastLeaseInfo, @ptrCast(self)), ppEnumAddresses);
+        return self.vtable.EnumerateAddresses(self, ppEnumAddresses);
     }
 };
 
@@ -12707,16 +12707,16 @@ pub const IEnumMcastScope = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumMcastScope, celt: u32, ppScopes: ?*?*IMcastScope, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumMcastScope.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumMcastScope, @ptrCast(self)), celt, ppScopes, pceltFetched);
+        return self.vtable.Next(self, celt, ppScopes, pceltFetched);
     }
     pub fn Reset(self: *const IEnumMcastScope) callconv(.Inline) HRESULT {
-        return @as(*const IEnumMcastScope.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumMcastScope, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumMcastScope, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumMcastScope.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumMcastScope, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IEnumMcastScope, ppEnum: ?*?*IEnumMcastScope) callconv(.Inline) HRESULT {
-        return @as(*const IEnumMcastScope.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumMcastScope, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -12807,25 +12807,25 @@ pub const IMcastAddressAllocation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Scopes(self: *const IMcastAddressAllocation, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).get_Scopes(@as(*const IMcastAddressAllocation, @ptrCast(self)), pVariant);
+        return self.vtable.get_Scopes(self, pVariant);
     }
     pub fn EnumerateScopes(self: *const IMcastAddressAllocation, ppEnumMcastScope: ?*?*IEnumMcastScope) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).EnumerateScopes(@as(*const IMcastAddressAllocation, @ptrCast(self)), ppEnumMcastScope);
+        return self.vtable.EnumerateScopes(self, ppEnumMcastScope);
     }
     pub fn RequestAddress(self: *const IMcastAddressAllocation, pScope: ?*IMcastScope, LeaseStartTime: f64, LeaseStopTime: f64, NumAddresses: i32, ppLeaseResponse: ?*?*IMcastLeaseInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).RequestAddress(@as(*const IMcastAddressAllocation, @ptrCast(self)), pScope, LeaseStartTime, LeaseStopTime, NumAddresses, ppLeaseResponse);
+        return self.vtable.RequestAddress(self, pScope, LeaseStartTime, LeaseStopTime, NumAddresses, ppLeaseResponse);
     }
     pub fn RenewAddress(self: *const IMcastAddressAllocation, lReserved: i32, pRenewRequest: ?*IMcastLeaseInfo, ppRenewResponse: ?*?*IMcastLeaseInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).RenewAddress(@as(*const IMcastAddressAllocation, @ptrCast(self)), lReserved, pRenewRequest, ppRenewResponse);
+        return self.vtable.RenewAddress(self, lReserved, pRenewRequest, ppRenewResponse);
     }
     pub fn ReleaseAddress(self: *const IMcastAddressAllocation, pReleaseRequest: ?*IMcastLeaseInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).ReleaseAddress(@as(*const IMcastAddressAllocation, @ptrCast(self)), pReleaseRequest);
+        return self.vtable.ReleaseAddress(self, pReleaseRequest);
     }
     pub fn CreateLeaseInfo(self: *const IMcastAddressAllocation, LeaseStartTime: f64, LeaseStopTime: f64, dwNumAddresses: u32, ppAddresses: ?*?PWSTR, pRequestID: ?PWSTR, pServerAddress: ?PWSTR, ppReleaseRequest: ?*?*IMcastLeaseInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).CreateLeaseInfo(@as(*const IMcastAddressAllocation, @ptrCast(self)), LeaseStartTime, LeaseStopTime, dwNumAddresses, ppAddresses, pRequestID, pServerAddress, ppReleaseRequest);
+        return self.vtable.CreateLeaseInfo(self, LeaseStartTime, LeaseStopTime, dwNumAddresses, ppAddresses, pRequestID, pServerAddress, ppReleaseRequest);
     }
     pub fn CreateLeaseInfoFromVariant(self: *const IMcastAddressAllocation, LeaseStartTime: f64, LeaseStopTime: f64, vAddresses: VARIANT, pRequestID: ?BSTR, pServerAddress: ?BSTR, ppReleaseRequest: ?*?*IMcastLeaseInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMcastAddressAllocation.VTable, @ptrCast(self.vtable)).CreateLeaseInfoFromVariant(@as(*const IMcastAddressAllocation, @ptrCast(self)), LeaseStartTime, LeaseStopTime, vAddresses, pRequestID, pServerAddress, ppReleaseRequest);
+        return self.vtable.CreateLeaseInfoFromVariant(self, LeaseStartTime, LeaseStopTime, vAddresses, pRequestID, pServerAddress, ppReleaseRequest);
     }
 };
 
@@ -12926,25 +12926,25 @@ pub const ITnef = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddProps(self: *const ITnef, ulFlags: u32, ulElemID: u32, lpvData: ?*anyopaque, lpPropList: ?*SPropTagArray) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).AddProps(@as(*const ITnef, @ptrCast(self)), ulFlags, ulElemID, lpvData, lpPropList);
+        return self.vtable.AddProps(self, ulFlags, ulElemID, lpvData, lpPropList);
     }
     pub fn ExtractProps(self: *const ITnef, ulFlags: u32, lpPropList: ?*SPropTagArray, lpProblems: ?*?*STnefProblemArray) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).ExtractProps(@as(*const ITnef, @ptrCast(self)), ulFlags, lpPropList, lpProblems);
+        return self.vtable.ExtractProps(self, ulFlags, lpPropList, lpProblems);
     }
     pub fn Finish(self: *const ITnef, ulFlags: u32, lpKey: ?*u16, lpProblems: ?*?*STnefProblemArray) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).Finish(@as(*const ITnef, @ptrCast(self)), ulFlags, lpKey, lpProblems);
+        return self.vtable.Finish(self, ulFlags, lpKey, lpProblems);
     }
     pub fn OpenTaggedBody(self: *const ITnef, lpMessage: ?*IMessage, ulFlags: u32, lppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).OpenTaggedBody(@as(*const ITnef, @ptrCast(self)), lpMessage, ulFlags, lppStream);
+        return self.vtable.OpenTaggedBody(self, lpMessage, ulFlags, lppStream);
     }
     pub fn SetProps(self: *const ITnef, ulFlags: u32, ulElemID: u32, cValues: u32, lpProps: ?*SPropValue) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).SetProps(@as(*const ITnef, @ptrCast(self)), ulFlags, ulElemID, cValues, lpProps);
+        return self.vtable.SetProps(self, ulFlags, ulElemID, cValues, lpProps);
     }
     pub fn EncodeRecips(self: *const ITnef, ulFlags: u32, lpRecipientTable: ?*IMAPITable) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).EncodeRecips(@as(*const ITnef, @ptrCast(self)), ulFlags, lpRecipientTable);
+        return self.vtable.EncodeRecips(self, ulFlags, lpRecipientTable);
     }
     pub fn FinishComponent(self: *const ITnef, ulFlags: u32, ulComponentID: u32, lpCustomPropList: ?*SPropTagArray, lpCustomProps: ?*SPropValue, lpPropList: ?*SPropTagArray, lpProblems: ?*?*STnefProblemArray) callconv(.Inline) HRESULT {
-        return @as(*const ITnef.VTable, @ptrCast(self.vtable)).FinishComponent(@as(*const ITnef, @ptrCast(self)), ulFlags, ulComponentID, lpCustomPropList, lpCustomProps, lpPropList, lpProblems);
+        return self.vtable.FinishComponent(self, ulFlags, ulComponentID, lpCustomPropList, lpCustomProps, lpPropList, lpProblems);
     }
 };
 

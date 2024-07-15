@@ -340,19 +340,19 @@ pub const IAudioEndpoint = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFrameFormat(self: *const IAudioEndpoint, ppFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpoint.VTable, @ptrCast(self.vtable)).GetFrameFormat(@as(*const IAudioEndpoint, @ptrCast(self)), ppFormat);
+        return self.vtable.GetFrameFormat(self, ppFormat);
     }
     pub fn GetFramesPerPacket(self: *const IAudioEndpoint, pFramesPerPacket: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpoint.VTable, @ptrCast(self.vtable)).GetFramesPerPacket(@as(*const IAudioEndpoint, @ptrCast(self)), pFramesPerPacket);
+        return self.vtable.GetFramesPerPacket(self, pFramesPerPacket);
     }
     pub fn GetLatency(self: *const IAudioEndpoint, pLatency: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpoint.VTable, @ptrCast(self.vtable)).GetLatency(@as(*const IAudioEndpoint, @ptrCast(self)), pLatency);
+        return self.vtable.GetLatency(self, pLatency);
     }
     pub fn SetStreamFlags(self: *const IAudioEndpoint, streamFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpoint.VTable, @ptrCast(self.vtable)).SetStreamFlags(@as(*const IAudioEndpoint, @ptrCast(self)), streamFlags);
+        return self.vtable.SetStreamFlags(self, streamFlags);
     }
     pub fn SetEventHandle(self: *const IAudioEndpoint, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpoint.VTable, @ptrCast(self.vtable)).SetEventHandle(@as(*const IAudioEndpoint, @ptrCast(self)), eventHandle);
+        return self.vtable.SetEventHandle(self, eventHandle);
     }
 };
 
@@ -400,16 +400,16 @@ pub const IAudioEndpointRT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrentPadding(self: *const IAudioEndpointRT, pPadding: ?*i64, pAeCurrentPosition: ?*AE_CURRENT_POSITION) callconv(.Inline) void {
-        return @as(*const IAudioEndpointRT.VTable, @ptrCast(self.vtable)).GetCurrentPadding(@as(*const IAudioEndpointRT, @ptrCast(self)), pPadding, pAeCurrentPosition);
+        return self.vtable.GetCurrentPadding(self, pPadding, pAeCurrentPosition);
     }
     pub fn ProcessingComplete(self: *const IAudioEndpointRT) callconv(.Inline) void {
-        return @as(*const IAudioEndpointRT.VTable, @ptrCast(self.vtable)).ProcessingComplete(@as(*const IAudioEndpointRT, @ptrCast(self)));
+        return self.vtable.ProcessingComplete(self);
     }
     pub fn SetPinInactive(self: *const IAudioEndpointRT) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointRT.VTable, @ptrCast(self.vtable)).SetPinInactive(@as(*const IAudioEndpointRT, @ptrCast(self)));
+        return self.vtable.SetPinInactive(self);
     }
     pub fn SetPinActive(self: *const IAudioEndpointRT) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointRT.VTable, @ptrCast(self.vtable)).SetPinActive(@as(*const IAudioEndpointRT, @ptrCast(self)));
+        return self.vtable.SetPinActive(self);
     }
 };
 
@@ -452,13 +452,13 @@ pub const IAudioInputEndpointRT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputDataPointer(self: *const IAudioInputEndpointRT, pConnectionProperty: ?*APO_CONNECTION_PROPERTY, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.Inline) void {
-        return @as(*const IAudioInputEndpointRT.VTable, @ptrCast(self.vtable)).GetInputDataPointer(@as(*const IAudioInputEndpointRT, @ptrCast(self)), pConnectionProperty, pAeTimeStamp);
+        return self.vtable.GetInputDataPointer(self, pConnectionProperty, pAeTimeStamp);
     }
     pub fn ReleaseInputDataPointer(self: *const IAudioInputEndpointRT, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
-        return @as(*const IAudioInputEndpointRT.VTable, @ptrCast(self.vtable)).ReleaseInputDataPointer(@as(*const IAudioInputEndpointRT, @ptrCast(self)), u32FrameCount, pDataPointer);
+        return self.vtable.ReleaseInputDataPointer(self, u32FrameCount, pDataPointer);
     }
     pub fn PulseEndpoint(self: *const IAudioInputEndpointRT) callconv(.Inline) void {
-        return @as(*const IAudioInputEndpointRT.VTable, @ptrCast(self.vtable)).PulseEndpoint(@as(*const IAudioInputEndpointRT, @ptrCast(self)));
+        return self.vtable.PulseEndpoint(self);
     }
 };
 
@@ -500,13 +500,13 @@ pub const IAudioOutputEndpointRT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutputDataPointer(self: *const IAudioOutputEndpointRT, u32FrameCount: u32, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.Inline) usize {
-        return @as(*const IAudioOutputEndpointRT.VTable, @ptrCast(self.vtable)).GetOutputDataPointer(@as(*const IAudioOutputEndpointRT, @ptrCast(self)), u32FrameCount, pAeTimeStamp);
+        return self.vtable.GetOutputDataPointer(self, u32FrameCount, pAeTimeStamp);
     }
     pub fn ReleaseOutputDataPointer(self: *const IAudioOutputEndpointRT, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-        return @as(*const IAudioOutputEndpointRT.VTable, @ptrCast(self.vtable)).ReleaseOutputDataPointer(@as(*const IAudioOutputEndpointRT, @ptrCast(self)), pConnectionProperty);
+        return self.vtable.ReleaseOutputDataPointer(self, pConnectionProperty);
     }
     pub fn PulseEndpoint(self: *const IAudioOutputEndpointRT) callconv(.Inline) void {
-        return @as(*const IAudioOutputEndpointRT.VTable, @ptrCast(self.vtable)).PulseEndpoint(@as(*const IAudioOutputEndpointRT, @ptrCast(self)));
+        return self.vtable.PulseEndpoint(self);
     }
 };
 
@@ -562,16 +562,16 @@ pub const IAudioDeviceEndpoint = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBuffer(self: *const IAudioDeviceEndpoint, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioDeviceEndpoint.VTable, @ptrCast(self.vtable)).SetBuffer(@as(*const IAudioDeviceEndpoint, @ptrCast(self)), MaxPeriod, u32LatencyCoefficient);
+        return self.vtable.SetBuffer(self, MaxPeriod, u32LatencyCoefficient);
     }
     pub fn GetRTCaps(self: *const IAudioDeviceEndpoint, pbIsRTCapable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioDeviceEndpoint.VTable, @ptrCast(self.vtable)).GetRTCaps(@as(*const IAudioDeviceEndpoint, @ptrCast(self)), pbIsRTCapable);
+        return self.vtable.GetRTCaps(self, pbIsRTCapable);
     }
     pub fn GetEventDrivenCapable(self: *const IAudioDeviceEndpoint, pbisEventCapable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioDeviceEndpoint.VTable, @ptrCast(self.vtable)).GetEventDrivenCapable(@as(*const IAudioDeviceEndpoint, @ptrCast(self)), pbisEventCapable);
+        return self.vtable.GetEventDrivenCapable(self, pbisEventCapable);
     }
     pub fn WriteExclusiveModeParametersToSharedMemory(self: *const IAudioDeviceEndpoint, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: ?*u32, phSharedMemory: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IAudioDeviceEndpoint.VTable, @ptrCast(self.vtable)).WriteExclusiveModeParametersToSharedMemory(@as(*const IAudioDeviceEndpoint, @ptrCast(self)), hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
+        return self.vtable.WriteExclusiveModeParametersToSharedMemory(self, hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
     }
 };
 
@@ -610,13 +610,13 @@ pub const IAudioEndpointControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointControl.VTable, @ptrCast(self.vtable)).Start(@as(*const IAudioEndpointControl, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn Reset(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointControl.VTable, @ptrCast(self.vtable)).Reset(@as(*const IAudioEndpointControl, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Stop(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointControl.VTable, @ptrCast(self.vtable)).Stop(@as(*const IAudioEndpointControl, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
 };
 
@@ -914,94 +914,94 @@ pub const IADsTSUserEx = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_TerminalServicesProfilePath(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_TerminalServicesProfilePath(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_TerminalServicesProfilePath(self, pVal);
     }
     pub fn put_TerminalServicesProfilePath(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_TerminalServicesProfilePath(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.put_TerminalServicesProfilePath(self, pNewVal);
     }
     pub fn get_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_TerminalServicesHomeDirectory(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_TerminalServicesHomeDirectory(self, pVal);
     }
     pub fn put_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_TerminalServicesHomeDirectory(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.put_TerminalServicesHomeDirectory(self, pNewVal);
     }
     pub fn get_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_TerminalServicesHomeDrive(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_TerminalServicesHomeDrive(self, pVal);
     }
     pub fn put_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_TerminalServicesHomeDrive(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.put_TerminalServicesHomeDrive(self, pNewVal);
     }
     pub fn get_AllowLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_AllowLogon(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_AllowLogon(self, pVal);
     }
     pub fn put_AllowLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_AllowLogon(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_AllowLogon(self, NewVal);
     }
     pub fn get_EnableRemoteControl(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_EnableRemoteControl(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_EnableRemoteControl(self, pVal);
     }
     pub fn put_EnableRemoteControl(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_EnableRemoteControl(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_EnableRemoteControl(self, NewVal);
     }
     pub fn get_MaxDisconnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_MaxDisconnectionTime(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_MaxDisconnectionTime(self, pVal);
     }
     pub fn put_MaxDisconnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_MaxDisconnectionTime(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_MaxDisconnectionTime(self, NewVal);
     }
     pub fn get_MaxConnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_MaxConnectionTime(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_MaxConnectionTime(self, pVal);
     }
     pub fn put_MaxConnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_MaxConnectionTime(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_MaxConnectionTime(self, NewVal);
     }
     pub fn get_MaxIdleTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_MaxIdleTime(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_MaxIdleTime(self, pVal);
     }
     pub fn put_MaxIdleTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_MaxIdleTime(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_MaxIdleTime(self, NewVal);
     }
     pub fn get_ReconnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_ReconnectionAction(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.get_ReconnectionAction(self, pNewVal);
     }
     pub fn put_ReconnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_ReconnectionAction(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_ReconnectionAction(self, NewVal);
     }
     pub fn get_BrokenConnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_BrokenConnectionAction(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.get_BrokenConnectionAction(self, pNewVal);
     }
     pub fn put_BrokenConnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_BrokenConnectionAction(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_BrokenConnectionAction(self, NewVal);
     }
     pub fn get_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_ConnectClientDrivesAtLogon(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.get_ConnectClientDrivesAtLogon(self, pNewVal);
     }
     pub fn put_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_ConnectClientDrivesAtLogon(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_ConnectClientDrivesAtLogon(self, NewVal);
     }
     pub fn get_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_ConnectClientPrintersAtLogon(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_ConnectClientPrintersAtLogon(self, pVal);
     }
     pub fn put_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_ConnectClientPrintersAtLogon(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_ConnectClientPrintersAtLogon(self, NewVal);
     }
     pub fn get_DefaultToMainPrinter(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_DefaultToMainPrinter(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_DefaultToMainPrinter(self, pVal);
     }
     pub fn put_DefaultToMainPrinter(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_DefaultToMainPrinter(@as(*const IADsTSUserEx, @ptrCast(self)), NewVal);
+        return self.vtable.put_DefaultToMainPrinter(self, NewVal);
     }
     pub fn get_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_TerminalServicesWorkDirectory(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_TerminalServicesWorkDirectory(self, pVal);
     }
     pub fn put_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_TerminalServicesWorkDirectory(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.put_TerminalServicesWorkDirectory(self, pNewVal);
     }
     pub fn get_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).get_TerminalServicesInitialProgram(@as(*const IADsTSUserEx, @ptrCast(self)), pVal);
+        return self.vtable.get_TerminalServicesInitialProgram(self, pVal);
     }
     pub fn put_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IADsTSUserEx.VTable, @ptrCast(self.vtable)).put_TerminalServicesInitialProgram(@as(*const IADsTSUserEx, @ptrCast(self)), pNewVal);
+        return self.vtable.put_TerminalServicesInitialProgram(self, pNewVal);
     }
 };
 
@@ -1124,7 +1124,7 @@ pub const ITSGAuthorizeConnectionSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionAuthorized(self: *const ITSGAuthorizeConnectionSink, hrIn: HRESULT, mainSessionId: Guid, cbSoHResponse: u32, pbSoHResponse: [*:0]u8, idleTimeout: u32, sessionTimeout: u32, sessionTimeoutAction: SESSION_TIMEOUT_ACTION_TYPE, trustClass: AATrustClassID, policyAttributes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthorizeConnectionSink.VTable, @ptrCast(self.vtable)).OnConnectionAuthorized(@as(*const ITSGAuthorizeConnectionSink, @ptrCast(self)), hrIn, mainSessionId, cbSoHResponse, pbSoHResponse, idleTimeout, sessionTimeout, sessionTimeoutAction, trustClass, policyAttributes);
+        return self.vtable.OnConnectionAuthorized(self, hrIn, mainSessionId, cbSoHResponse, pbSoHResponse, idleTimeout, sessionTimeout, sessionTimeoutAction, trustClass, policyAttributes);
     }
 };
 
@@ -1156,7 +1156,7 @@ pub const ITSGAuthorizeResourceSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnChannelAuthorized(self: *const ITSGAuthorizeResourceSink, hrIn: HRESULT, mainSessionId: Guid, subSessionId: i32, allowedResourceNames: [*]?BSTR, numAllowedResourceNames: u32, failedResourceNames: [*]?BSTR, numFailedResourceNames: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthorizeResourceSink.VTable, @ptrCast(self.vtable)).OnChannelAuthorized(@as(*const ITSGAuthorizeResourceSink, @ptrCast(self)), hrIn, mainSessionId, subSessionId, allowedResourceNames, numAllowedResourceNames, failedResourceNames, numFailedResourceNames);
+        return self.vtable.OnChannelAuthorized(self, hrIn, mainSessionId, subSessionId, allowedResourceNames, numAllowedResourceNames, failedResourceNames, numFailedResourceNames);
     }
 };
 
@@ -1226,16 +1226,16 @@ pub const ITSGPolicyEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AuthorizeConnection(self: *const ITSGPolicyEngine, mainSessionId: Guid, username: ?BSTR, authType: AAAuthSchemes, clientMachineIP: ?BSTR, clientMachineName: ?BSTR, sohData: [*:0]u8, numSOHBytes: u32, cookieData: [*:0]u8, numCookieBytes: u32, userToken: HANDLE_PTR, pSink: ?*ITSGAuthorizeConnectionSink) callconv(.Inline) HRESULT {
-        return @as(*const ITSGPolicyEngine.VTable, @ptrCast(self.vtable)).AuthorizeConnection(@as(*const ITSGPolicyEngine, @ptrCast(self)), mainSessionId, username, authType, clientMachineIP, clientMachineName, sohData, numSOHBytes, cookieData, numCookieBytes, userToken, pSink);
+        return self.vtable.AuthorizeConnection(self, mainSessionId, username, authType, clientMachineIP, clientMachineName, sohData, numSOHBytes, cookieData, numCookieBytes, userToken, pSink);
     }
     pub fn AuthorizeResource(self: *const ITSGPolicyEngine, mainSessionId: Guid, subSessionId: i32, username: ?BSTR, resourceNames: [*]?BSTR, numResources: u32, alternateResourceNames: [*]?BSTR, numAlternateResourceName: u32, portNumber: u32, operation: ?BSTR, cookie: [*:0]u8, numBytesInCookie: u32, pSink: ?*ITSGAuthorizeResourceSink) callconv(.Inline) HRESULT {
-        return @as(*const ITSGPolicyEngine.VTable, @ptrCast(self.vtable)).AuthorizeResource(@as(*const ITSGPolicyEngine, @ptrCast(self)), mainSessionId, subSessionId, username, resourceNames, numResources, alternateResourceNames, numAlternateResourceName, portNumber, operation, cookie, numBytesInCookie, pSink);
+        return self.vtable.AuthorizeResource(self, mainSessionId, subSessionId, username, resourceNames, numResources, alternateResourceNames, numAlternateResourceName, portNumber, operation, cookie, numBytesInCookie, pSink);
     }
     pub fn Refresh(self: *const ITSGPolicyEngine) callconv(.Inline) HRESULT {
-        return @as(*const ITSGPolicyEngine.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ITSGPolicyEngine, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn IsQuarantineEnabled(self: *const ITSGPolicyEngine, quarantineEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITSGPolicyEngine.VTable, @ptrCast(self.vtable)).IsQuarantineEnabled(@as(*const ITSGPolicyEngine, @ptrCast(self)), quarantineEnabled);
+        return self.vtable.IsQuarantineEnabled(self, quarantineEnabled);
     }
 };
 
@@ -1262,7 +1262,7 @@ pub const ITSGAccountingEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DoAccounting(self: *const ITSGAccountingEngine, accountingDataType: AAAccountingDataType, accountingData: AAAccountingData) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAccountingEngine.VTable, @ptrCast(self.vtable)).DoAccounting(@as(*const ITSGAccountingEngine, @ptrCast(self)), accountingDataType, accountingData);
+        return self.vtable.DoAccounting(self, accountingDataType, accountingData);
     }
 };
 
@@ -1317,16 +1317,16 @@ pub const ITSGAuthenticateUserSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUserAuthenticated(self: *const ITSGAuthenticateUserSink, userName: ?BSTR, userDomain: ?BSTR, context: usize, userToken: HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticateUserSink.VTable, @ptrCast(self.vtable)).OnUserAuthenticated(@as(*const ITSGAuthenticateUserSink, @ptrCast(self)), userName, userDomain, context, userToken);
+        return self.vtable.OnUserAuthenticated(self, userName, userDomain, context, userToken);
     }
     pub fn OnUserAuthenticationFailed(self: *const ITSGAuthenticateUserSink, context: usize, genericErrorCode: HRESULT, specificErrorCode: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticateUserSink.VTable, @ptrCast(self.vtable)).OnUserAuthenticationFailed(@as(*const ITSGAuthenticateUserSink, @ptrCast(self)), context, genericErrorCode, specificErrorCode);
+        return self.vtable.OnUserAuthenticationFailed(self, context, genericErrorCode, specificErrorCode);
     }
     pub fn ReauthenticateUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticateUserSink.VTable, @ptrCast(self.vtable)).ReauthenticateUser(@as(*const ITSGAuthenticateUserSink, @ptrCast(self)), context);
+        return self.vtable.ReauthenticateUser(self, context);
     }
     pub fn DisconnectUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticateUserSink.VTable, @ptrCast(self.vtable)).DisconnectUser(@as(*const ITSGAuthenticateUserSink, @ptrCast(self)), context);
+        return self.vtable.DisconnectUser(self, context);
     }
 };
 
@@ -1365,10 +1365,10 @@ pub const ITSGAuthenticationEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AuthenticateUser(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, cookieData: ?*u8, numCookieBytes: u32, context: usize, pSink: ?*ITSGAuthenticateUserSink) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticationEngine.VTable, @ptrCast(self.vtable)).AuthenticateUser(@as(*const ITSGAuthenticationEngine, @ptrCast(self)), mainSessionId, cookieData, numCookieBytes, context, pSink);
+        return self.vtable.AuthenticateUser(self, mainSessionId, cookieData, numCookieBytes, context, pSink);
     }
     pub fn CancelAuthentication(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, context: usize) callconv(.Inline) HRESULT {
-        return @as(*const ITSGAuthenticationEngine.VTable, @ptrCast(self.vtable)).CancelAuthentication(@as(*const ITSGAuthenticationEngine, @ptrCast(self)), mainSessionId, context);
+        return self.vtable.CancelAuthentication(self, mainSessionId, context);
     }
 };
 
@@ -2098,22 +2098,22 @@ pub const IWTSSBPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWTSSBPlugin, PluginCapabilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWTSSBPlugin, @ptrCast(self)), PluginCapabilities);
+        return self.vtable.Initialize(self, PluginCapabilities);
     }
     pub fn WTSSBX_MachineChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, pMachineInfo: ?*WTSSBX_MACHINE_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).WTSSBX_MachineChangeNotification(@as(*const IWTSSBPlugin, @ptrCast(self)), NotificationType, MachineId, pMachineInfo);
+        return self.vtable.WTSSBX_MachineChangeNotification(self, NotificationType, MachineId, pMachineInfo);
     }
     pub fn WTSSBX_SessionChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, NumOfSessions: u32, SessionInfo: [*]WTSSBX_SESSION_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).WTSSBX_SessionChangeNotification(@as(*const IWTSSBPlugin, @ptrCast(self)), NotificationType, MachineId, NumOfSessions, SessionInfo);
+        return self.vtable.WTSSBX_SessionChangeNotification(self, NotificationType, MachineId, NumOfSessions, SessionInfo);
     }
     pub fn WTSSBX_GetMostSuitableServer(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, FarmName: ?PWSTR, pMachineId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).WTSSBX_GetMostSuitableServer(@as(*const IWTSSBPlugin, @ptrCast(self)), UserName, DomainName, ApplicationType, FarmName, pMachineId);
+        return self.vtable.WTSSBX_GetMostSuitableServer(self, UserName, DomainName, ApplicationType, FarmName, pMachineId);
     }
     pub fn Terminated(self: *const IWTSSBPlugin) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).Terminated(@as(*const IWTSSBPlugin, @ptrCast(self)));
+        return self.vtable.Terminated(self);
     }
     pub fn WTSSBX_GetUserExternalSession(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS, pSessionId: ?*u32, pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWTSSBPlugin.VTable, @ptrCast(self.vtable)).WTSSBX_GetUserExternalSession(@as(*const IWTSSBPlugin, @ptrCast(self)), UserName, DomainName, ApplicationType, RedirectorInternalIP, pSessionId, pMachineConnectInfo);
+        return self.vtable.WTSSBX_GetUserExternalSession(self, UserName, DomainName, ApplicationType, RedirectorInternalIP, pSessionId, pMachineConnectInfo);
     }
 };
 
@@ -2222,13 +2222,13 @@ pub const IWorkspaceClientExt = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResourceId(self: *const IWorkspaceClientExt, bstrWorkspaceId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceClientExt.VTable, @ptrCast(self.vtable)).GetResourceId(@as(*const IWorkspaceClientExt, @ptrCast(self)), bstrWorkspaceId);
+        return self.vtable.GetResourceId(self, bstrWorkspaceId);
     }
     pub fn GetResourceDisplayName(self: *const IWorkspaceClientExt, bstrWorkspaceDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceClientExt.VTable, @ptrCast(self.vtable)).GetResourceDisplayName(@as(*const IWorkspaceClientExt, @ptrCast(self)), bstrWorkspaceDisplayName);
+        return self.vtable.GetResourceDisplayName(self, bstrWorkspaceDisplayName);
     }
     pub fn IssueDisconnect(self: *const IWorkspaceClientExt) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceClientExt.VTable, @ptrCast(self.vtable)).IssueDisconnect(@as(*const IWorkspaceClientExt, @ptrCast(self)));
+        return self.vtable.IssueDisconnect(self);
     }
 };
 
@@ -2271,13 +2271,13 @@ pub const IWorkspace = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWorkspaceNames(self: *const IWorkspace, psaWkspNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace.VTable, @ptrCast(self.vtable)).GetWorkspaceNames(@as(*const IWorkspace, @ptrCast(self)), psaWkspNames);
+        return self.vtable.GetWorkspaceNames(self, psaWkspNames);
     }
     pub fn StartRemoteApplication(self: *const IWorkspace, bstrWorkspaceId: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace.VTable, @ptrCast(self.vtable)).StartRemoteApplication(@as(*const IWorkspace, @ptrCast(self)), bstrWorkspaceId, psaParams);
+        return self.vtable.StartRemoteApplication(self, bstrWorkspaceId, psaParams);
     }
     pub fn GetProcessId(self: *const IWorkspace, pulProcessId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace.VTable, @ptrCast(self.vtable)).GetProcessId(@as(*const IWorkspace, @ptrCast(self)), pulProcessId);
+        return self.vtable.GetProcessId(self, pulProcessId);
     }
 };
 
@@ -2308,7 +2308,7 @@ pub const IWorkspace2 = extern union {
     };}
     pub usingnamespace IWorkspace.MethodMixin(@This());
     pub fn StartRemoteApplicationEx(self: *const IWorkspace2, bstrWorkspaceId: ?BSTR, bstrRequestingAppId: ?BSTR, bstrRequestingAppFamilyName: ?BSTR, bLaunchIntoImmersiveClient: i16, bstrImmersiveClientActivationContext: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace2.VTable, @ptrCast(self.vtable)).StartRemoteApplicationEx(@as(*const IWorkspace2, @ptrCast(self)), bstrWorkspaceId, bstrRequestingAppId, bstrRequestingAppFamilyName, bLaunchIntoImmersiveClient, bstrImmersiveClientActivationContext, psaParams);
+        return self.vtable.StartRemoteApplicationEx(self, bstrWorkspaceId, bstrRequestingAppId, bstrRequestingAppFamilyName, bLaunchIntoImmersiveClient, bstrImmersiveClientActivationContext, psaParams);
     }
 };
 
@@ -2349,10 +2349,10 @@ pub const IWorkspace3 = extern union {
     };}
     pub usingnamespace IWorkspace2.MethodMixin(@This());
     pub fn GetClaimsToken2(self: *const IWorkspace3, bstrClaimsHint: ?BSTR, bstrUserHint: ?BSTR, claimCookie: u32, hwndCredUiParent: u32, rectCredUiParent: RECT, pbstrAccessToken: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace3.VTable, @ptrCast(self.vtable)).GetClaimsToken2(@as(*const IWorkspace3, @ptrCast(self)), bstrClaimsHint, bstrUserHint, claimCookie, hwndCredUiParent, rectCredUiParent, pbstrAccessToken);
+        return self.vtable.GetClaimsToken2(self, bstrClaimsHint, bstrUserHint, claimCookie, hwndCredUiParent, rectCredUiParent, pbstrAccessToken);
     }
     pub fn SetClaimsToken(self: *const IWorkspace3, bstrAccessToken: ?BSTR, ullAccessTokenExpiration: u64, bstrRefreshToken: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspace3.VTable, @ptrCast(self.vtable)).SetClaimsToken(@as(*const IWorkspace3, @ptrCast(self)), bstrAccessToken, ullAccessTokenExpiration, bstrRefreshToken);
+        return self.vtable.SetClaimsToken(self, bstrAccessToken, ullAccessTokenExpiration, bstrRefreshToken);
     }
 };
 
@@ -2387,10 +2387,10 @@ pub const IWorkspaceRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddResource(self: *const IWorkspaceRegistration, pUnk: ?*IWorkspaceClientExt, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceRegistration.VTable, @ptrCast(self.vtable)).AddResource(@as(*const IWorkspaceRegistration, @ptrCast(self)), pUnk, pdwCookie);
+        return self.vtable.AddResource(self, pUnk, pdwCookie);
     }
     pub fn RemoveResource(self: *const IWorkspaceRegistration, dwCookieConnection: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceRegistration.VTable, @ptrCast(self.vtable)).RemoveResource(@as(*const IWorkspaceRegistration, @ptrCast(self)), dwCookieConnection);
+        return self.vtable.RemoveResource(self, dwCookieConnection);
     }
 };
 
@@ -2428,10 +2428,10 @@ pub const IWorkspaceRegistration2 = extern union {
     };}
     pub usingnamespace IWorkspaceRegistration.MethodMixin(@This());
     pub fn AddResourceEx(self: *const IWorkspaceRegistration2, pUnk: ?*IWorkspaceClientExt, bstrEventLogUploadAddress: ?BSTR, pdwCookie: ?*u32, correlationId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceRegistration2.VTable, @ptrCast(self.vtable)).AddResourceEx(@as(*const IWorkspaceRegistration2, @ptrCast(self)), pUnk, bstrEventLogUploadAddress, pdwCookie, correlationId);
+        return self.vtable.AddResourceEx(self, pUnk, bstrEventLogUploadAddress, pdwCookie, correlationId);
     }
     pub fn RemoveResourceEx(self: *const IWorkspaceRegistration2, dwCookieConnection: u32, correlationId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceRegistration2.VTable, @ptrCast(self.vtable)).RemoveResourceEx(@as(*const IWorkspaceRegistration2, @ptrCast(self)), dwCookieConnection, correlationId);
+        return self.vtable.RemoveResourceEx(self, dwCookieConnection, correlationId);
     }
 };
 
@@ -2513,25 +2513,25 @@ pub const IWorkspaceScriptable = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn DisconnectWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).DisconnectWorkspace(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceId);
+        return self.vtable.DisconnectWorkspace(self, bstrWorkspaceId);
     }
     pub fn StartWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).StartWorkspace(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceId, bstrUserName, bstrPassword, bstrWorkspaceParams, lTimeout, lFlags);
+        return self.vtable.StartWorkspace(self, bstrWorkspaceId, bstrUserName, bstrPassword, bstrWorkspaceParams, lTimeout, lFlags);
     }
     pub fn IsWorkspaceCredentialSpecified(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bCountUnauthenticatedCredentials: i16, pbCredExist: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).IsWorkspaceCredentialSpecified(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceId, bCountUnauthenticatedCredentials, pbCredExist);
+        return self.vtable.IsWorkspaceCredentialSpecified(self, bstrWorkspaceId, bCountUnauthenticatedCredentials, pbCredExist);
     }
     pub fn IsWorkspaceSSOEnabled(self: *const IWorkspaceScriptable, pbSSOEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).IsWorkspaceSSOEnabled(@as(*const IWorkspaceScriptable, @ptrCast(self)), pbSSOEnabled);
+        return self.vtable.IsWorkspaceSSOEnabled(self, pbSSOEnabled);
     }
     pub fn ClearWorkspaceCredential(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).ClearWorkspaceCredential(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceId);
+        return self.vtable.ClearWorkspaceCredential(self, bstrWorkspaceId);
     }
     pub fn OnAuthenticated(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).OnAuthenticated(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceId, bstrUserName);
+        return self.vtable.OnAuthenticated(self, bstrWorkspaceId, bstrUserName);
     }
     pub fn DisconnectWorkspaceByFriendlyName(self: *const IWorkspaceScriptable, bstrWorkspaceFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable.VTable, @ptrCast(self.vtable)).DisconnectWorkspaceByFriendlyName(@as(*const IWorkspaceScriptable, @ptrCast(self)), bstrWorkspaceFriendlyName);
+        return self.vtable.DisconnectWorkspaceByFriendlyName(self, bstrWorkspaceFriendlyName);
     }
 };
 
@@ -2574,10 +2574,10 @@ pub const IWorkspaceScriptable2 = extern union {
     };}
     pub usingnamespace IWorkspaceScriptable.MethodMixin(@This());
     pub fn StartWorkspaceEx(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable2.VTable, @ptrCast(self.vtable)).StartWorkspaceEx(@as(*const IWorkspaceScriptable2, @ptrCast(self)), bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags);
+        return self.vtable.StartWorkspaceEx(self, bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags);
     }
     pub fn ResourceDismissed(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable2.VTable, @ptrCast(self.vtable)).ResourceDismissed(@as(*const IWorkspaceScriptable2, @ptrCast(self)), bstrWorkspaceId, bstrWorkspaceFriendlyName);
+        return self.vtable.ResourceDismissed(self, bstrWorkspaceId, bstrWorkspaceFriendlyName);
     }
 };
 
@@ -2613,7 +2613,7 @@ pub const IWorkspaceScriptable3 = extern union {
     };}
     pub usingnamespace IWorkspaceScriptable2.MethodMixin(@This());
     pub fn StartWorkspaceEx2(self: *const IWorkspaceScriptable3, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32, bstrEventLogUploadAddress: ?BSTR, correlationId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceScriptable3.VTable, @ptrCast(self.vtable)).StartWorkspaceEx2(@as(*const IWorkspaceScriptable3, @ptrCast(self)), bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags, bstrEventLogUploadAddress, correlationId);
+        return self.vtable.StartWorkspaceEx2(self, bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags, bstrEventLogUploadAddress, correlationId);
     }
 };
 
@@ -2662,13 +2662,13 @@ pub const IWorkspaceReportMessage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterErrorLogMessage(self: *const IWorkspaceReportMessage, bstrMessage: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceReportMessage.VTable, @ptrCast(self.vtable)).RegisterErrorLogMessage(@as(*const IWorkspaceReportMessage, @ptrCast(self)), bstrMessage);
+        return self.vtable.RegisterErrorLogMessage(self, bstrMessage);
     }
     pub fn IsErrorMessageRegistered(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32, pfErrorExist: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceReportMessage.VTable, @ptrCast(self.vtable)).IsErrorMessageRegistered(@as(*const IWorkspaceReportMessage, @ptrCast(self)), bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode, pfErrorExist);
+        return self.vtable.IsErrorMessageRegistered(self, bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode, pfErrorExist);
     }
     pub fn RegisterErrorEvent(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceReportMessage.VTable, @ptrCast(self.vtable)).RegisterErrorEvent(@as(*const IWorkspaceReportMessage, @ptrCast(self)), bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode);
+        return self.vtable.RegisterErrorEvent(self, bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode);
     }
 };
 
@@ -2994,10 +2994,10 @@ pub const ITsSbPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const ITsSbPlugin, pProvider: ?*ITsSbProvider, pNotifySink: ?*ITsSbPluginNotifySink, pPropertySet: ?*ITsSbPluginPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPlugin.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ITsSbPlugin, @ptrCast(self)), pProvider, pNotifySink, pPropertySet);
+        return self.vtable.Initialize(self, pProvider, pNotifySink, pPropertySet);
     }
     pub fn Terminate(self: *const ITsSbPlugin, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPlugin.VTable, @ptrCast(self.vtable)).Terminate(@as(*const ITsSbPlugin, @ptrCast(self)), hr);
+        return self.vtable.Terminate(self, hr);
     }
 };
 
@@ -3044,10 +3044,10 @@ pub const ITsSbServiceNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifyServiceFailure(self: *const ITsSbServiceNotification) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbServiceNotification.VTable, @ptrCast(self.vtable)).NotifyServiceFailure(@as(*const ITsSbServiceNotification, @ptrCast(self)));
+        return self.vtable.NotifyServiceFailure(self);
     }
     pub fn NotifyServiceSuccess(self: *const ITsSbServiceNotification) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbServiceNotification.VTable, @ptrCast(self.vtable)).NotifyServiceSuccess(@as(*const ITsSbServiceNotification, @ptrCast(self)));
+        return self.vtable.NotifyServiceSuccess(self);
     }
 };
 
@@ -3074,7 +3074,7 @@ pub const ITsSbLoadBalancing = extern union {
     };}
     pub usingnamespace ITsSbPlugin.MethodMixin(@This());
     pub fn GetMostSuitableTarget(self: *const ITsSbLoadBalancing, pConnection: ?*ITsSbClientConnection, pLBSink: ?*ITsSbLoadBalancingNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbLoadBalancing.VTable, @ptrCast(self.vtable)).GetMostSuitableTarget(@as(*const ITsSbLoadBalancing, @ptrCast(self)), pConnection, pLBSink);
+        return self.vtable.GetMostSuitableTarget(self, pConnection, pLBSink);
     }
 };
 
@@ -3101,7 +3101,7 @@ pub const ITsSbPlacement = extern union {
     };}
     pub usingnamespace ITsSbPlugin.MethodMixin(@This());
     pub fn QueryEnvironmentForTarget(self: *const ITsSbPlacement, pConnection: ?*ITsSbClientConnection, pPlacementSink: ?*ITsSbPlacementNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPlacement.VTable, @ptrCast(self.vtable)).QueryEnvironmentForTarget(@as(*const ITsSbPlacement, @ptrCast(self)), pConnection, pPlacementSink);
+        return self.vtable.QueryEnvironmentForTarget(self, pConnection, pPlacementSink);
     }
 };
 
@@ -3128,7 +3128,7 @@ pub const ITsSbOrchestration = extern union {
     };}
     pub usingnamespace ITsSbPlugin.MethodMixin(@This());
     pub fn PrepareTargetForConnect(self: *const ITsSbOrchestration, pConnection: ?*ITsSbClientConnection, pOrchestrationNotifySink: ?*ITsSbOrchestrationNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbOrchestration.VTable, @ptrCast(self.vtable)).PrepareTargetForConnect(@as(*const ITsSbOrchestration, @ptrCast(self)), pConnection, pOrchestrationNotifySink);
+        return self.vtable.PrepareTargetForConnect(self, pConnection, pOrchestrationNotifySink);
     }
 };
 
@@ -3182,16 +3182,16 @@ pub const ITsSbEnvironment = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Name(self: *const ITsSbEnvironment, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbEnvironment.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ITsSbEnvironment, @ptrCast(self)), pVal);
+        return self.vtable.get_Name(self, pVal);
     }
     pub fn get_ServerWeight(self: *const ITsSbEnvironment, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbEnvironment.VTable, @ptrCast(self.vtable)).get_ServerWeight(@as(*const ITsSbEnvironment, @ptrCast(self)), pVal);
+        return self.vtable.get_ServerWeight(self, pVal);
     }
     pub fn get_EnvironmentPropertySet(self: *const ITsSbEnvironment, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbEnvironment.VTable, @ptrCast(self.vtable)).get_EnvironmentPropertySet(@as(*const ITsSbEnvironment, @ptrCast(self)), ppPropertySet);
+        return self.vtable.get_EnvironmentPropertySet(self, ppPropertySet);
     }
     pub fn put_EnvironmentPropertySet(self: *const ITsSbEnvironment, pVal: ?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbEnvironment.VTable, @ptrCast(self.vtable)).put_EnvironmentPropertySet(@as(*const ITsSbEnvironment, @ptrCast(self)), pVal);
+        return self.vtable.put_EnvironmentPropertySet(self, pVal);
     }
 };
 
@@ -3218,7 +3218,7 @@ pub const ITsSbLoadBalanceResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_TargetName(self: *const ITsSbLoadBalanceResult, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbLoadBalanceResult.VTable, @ptrCast(self.vtable)).get_TargetName(@as(*const ITsSbLoadBalanceResult, @ptrCast(self)), pVal);
+        return self.vtable.get_TargetName(self, pVal);
     }
 };
 
@@ -3407,61 +3407,61 @@ pub const ITsSbTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_TargetName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetName(@as(*const ITsSbTarget, @ptrCast(self)), pVal);
+        return self.vtable.get_TargetName(self, pVal);
     }
     pub fn put_TargetName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_TargetName(@as(*const ITsSbTarget, @ptrCast(self)), Val);
+        return self.vtable.put_TargetName(self, Val);
     }
     pub fn get_FarmName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_FarmName(@as(*const ITsSbTarget, @ptrCast(self)), pVal);
+        return self.vtable.get_FarmName(self, pVal);
     }
     pub fn put_FarmName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_FarmName(@as(*const ITsSbTarget, @ptrCast(self)), Val);
+        return self.vtable.put_FarmName(self, Val);
     }
     pub fn get_TargetFQDN(self: *const ITsSbTarget, TargetFqdnName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetFQDN(@as(*const ITsSbTarget, @ptrCast(self)), TargetFqdnName);
+        return self.vtable.get_TargetFQDN(self, TargetFqdnName);
     }
     pub fn put_TargetFQDN(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_TargetFQDN(@as(*const ITsSbTarget, @ptrCast(self)), Val);
+        return self.vtable.put_TargetFQDN(self, Val);
     }
     pub fn get_TargetNetbios(self: *const ITsSbTarget, TargetNetbiosName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetNetbios(@as(*const ITsSbTarget, @ptrCast(self)), TargetNetbiosName);
+        return self.vtable.get_TargetNetbios(self, TargetNetbiosName);
     }
     pub fn put_TargetNetbios(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_TargetNetbios(@as(*const ITsSbTarget, @ptrCast(self)), Val);
+        return self.vtable.put_TargetNetbios(self, Val);
     }
     pub fn get_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_IpAddresses(@as(*const ITsSbTarget, @ptrCast(self)), SOCKADDR, numAddresses);
+        return self.vtable.get_IpAddresses(self, SOCKADDR, numAddresses);
     }
     pub fn put_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_IpAddresses(@as(*const ITsSbTarget, @ptrCast(self)), SOCKADDR, numAddresses);
+        return self.vtable.put_IpAddresses(self, SOCKADDR, numAddresses);
     }
     pub fn get_TargetState(self: *const ITsSbTarget, pState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetState(@as(*const ITsSbTarget, @ptrCast(self)), pState);
+        return self.vtable.get_TargetState(self, pState);
     }
     pub fn put_TargetState(self: *const ITsSbTarget, State: TARGET_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_TargetState(@as(*const ITsSbTarget, @ptrCast(self)), State);
+        return self.vtable.put_TargetState(self, State);
     }
     pub fn get_TargetPropertySet(self: *const ITsSbTarget, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetPropertySet(@as(*const ITsSbTarget, @ptrCast(self)), ppPropertySet);
+        return self.vtable.get_TargetPropertySet(self, ppPropertySet);
     }
     pub fn put_TargetPropertySet(self: *const ITsSbTarget, pVal: ?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_TargetPropertySet(@as(*const ITsSbTarget, @ptrCast(self)), pVal);
+        return self.vtable.put_TargetPropertySet(self, pVal);
     }
     pub fn get_EnvironmentName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_EnvironmentName(@as(*const ITsSbTarget, @ptrCast(self)), pVal);
+        return self.vtable.get_EnvironmentName(self, pVal);
     }
     pub fn put_EnvironmentName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).put_EnvironmentName(@as(*const ITsSbTarget, @ptrCast(self)), Val);
+        return self.vtable.put_EnvironmentName(self, Val);
     }
     pub fn get_NumSessions(self: *const ITsSbTarget, pNumSessions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_NumSessions(@as(*const ITsSbTarget, @ptrCast(self)), pNumSessions);
+        return self.vtable.get_NumSessions(self, pNumSessions);
     }
     pub fn get_NumPendingConnections(self: *const ITsSbTarget, pNumPendingConnections: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_NumPendingConnections(@as(*const ITsSbTarget, @ptrCast(self)), pNumPendingConnections);
+        return self.vtable.get_NumPendingConnections(self, pNumPendingConnections);
     }
     pub fn get_TargetLoad(self: *const ITsSbTarget, pTargetLoad: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTarget.VTable, @ptrCast(self.vtable)).get_TargetLoad(@as(*const ITsSbTarget, @ptrCast(self)), pTargetLoad);
+        return self.vtable.get_TargetLoad(self, pTargetLoad);
     }
 };
 
@@ -3632,55 +3632,55 @@ pub const ITsSbSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SessionId(self: *const ITsSbSession, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_SessionId(@as(*const ITsSbSession, @ptrCast(self)), pVal);
+        return self.vtable.get_SessionId(self, pVal);
     }
     pub fn get_TargetName(self: *const ITsSbSession, targetName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_TargetName(@as(*const ITsSbSession, @ptrCast(self)), targetName);
+        return self.vtable.get_TargetName(self, targetName);
     }
     pub fn put_TargetName(self: *const ITsSbSession, targetName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_TargetName(@as(*const ITsSbSession, @ptrCast(self)), targetName);
+        return self.vtable.put_TargetName(self, targetName);
     }
     pub fn get_Username(self: *const ITsSbSession, userName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_Username(@as(*const ITsSbSession, @ptrCast(self)), userName);
+        return self.vtable.get_Username(self, userName);
     }
     pub fn get_Domain(self: *const ITsSbSession, domain: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const ITsSbSession, @ptrCast(self)), domain);
+        return self.vtable.get_Domain(self, domain);
     }
     pub fn get_State(self: *const ITsSbSession, pState: ?*TSSESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const ITsSbSession, @ptrCast(self)), pState);
+        return self.vtable.get_State(self, pState);
     }
     pub fn put_State(self: *const ITsSbSession, State: TSSESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_State(@as(*const ITsSbSession, @ptrCast(self)), State);
+        return self.vtable.put_State(self, State);
     }
     pub fn get_CreateTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const ITsSbSession, @ptrCast(self)), pTime);
+        return self.vtable.get_CreateTime(self, pTime);
     }
     pub fn put_CreateTime(self: *const ITsSbSession, Time: FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_CreateTime(@as(*const ITsSbSession, @ptrCast(self)), Time);
+        return self.vtable.put_CreateTime(self, Time);
     }
     pub fn get_DisconnectTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_DisconnectTime(@as(*const ITsSbSession, @ptrCast(self)), pTime);
+        return self.vtable.get_DisconnectTime(self, pTime);
     }
     pub fn put_DisconnectTime(self: *const ITsSbSession, Time: FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_DisconnectTime(@as(*const ITsSbSession, @ptrCast(self)), Time);
+        return self.vtable.put_DisconnectTime(self, Time);
     }
     pub fn get_InitialProgram(self: *const ITsSbSession, app: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_InitialProgram(@as(*const ITsSbSession, @ptrCast(self)), app);
+        return self.vtable.get_InitialProgram(self, app);
     }
     pub fn put_InitialProgram(self: *const ITsSbSession, Application: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_InitialProgram(@as(*const ITsSbSession, @ptrCast(self)), Application);
+        return self.vtable.put_InitialProgram(self, Application);
     }
     pub fn get_ClientDisplay(self: *const ITsSbSession, pClientDisplay: ?*CLIENT_DISPLAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_ClientDisplay(@as(*const ITsSbSession, @ptrCast(self)), pClientDisplay);
+        return self.vtable.get_ClientDisplay(self, pClientDisplay);
     }
     pub fn put_ClientDisplay(self: *const ITsSbSession, pClientDisplay: CLIENT_DISPLAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_ClientDisplay(@as(*const ITsSbSession, @ptrCast(self)), pClientDisplay);
+        return self.vtable.put_ClientDisplay(self, pClientDisplay);
     }
     pub fn get_ProtocolType(self: *const ITsSbSession, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).get_ProtocolType(@as(*const ITsSbSession, @ptrCast(self)), pVal);
+        return self.vtable.get_ProtocolType(self, pVal);
     }
     pub fn put_ProtocolType(self: *const ITsSbSession, Val: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbSession.VTable, @ptrCast(self.vtable)).put_ProtocolType(@as(*const ITsSbSession, @ptrCast(self)), Val);
+        return self.vtable.put_ProtocolType(self, Val);
     }
 };
 
@@ -3725,13 +3725,13 @@ pub const ITsSbResourceNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifySessionChange(self: *const ITsSbResourceNotification, changeType: TSSESSION_STATE, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotification.VTable, @ptrCast(self.vtable)).NotifySessionChange(@as(*const ITsSbResourceNotification, @ptrCast(self)), changeType, pSession);
+        return self.vtable.NotifySessionChange(self, changeType, pSession);
     }
     pub fn NotifyTargetChange(self: *const ITsSbResourceNotification, TargetChangeType: u32, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotification.VTable, @ptrCast(self.vtable)).NotifyTargetChange(@as(*const ITsSbResourceNotification, @ptrCast(self)), TargetChangeType, pTarget);
+        return self.vtable.NotifyTargetChange(self, TargetChangeType, pTarget);
     }
     pub fn NotifyClientConnectionStateChange(self: *const ITsSbResourceNotification, ChangeType: CONNECTION_CHANGE_NOTIFICATION, pConnection: ?*ITsSbClientConnection) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotification.VTable, @ptrCast(self.vtable)).NotifyClientConnectionStateChange(@as(*const ITsSbResourceNotification, @ptrCast(self)), ChangeType, pConnection);
+        return self.vtable.NotifyClientConnectionStateChange(self, ChangeType, pConnection);
     }
 };
 
@@ -3783,13 +3783,13 @@ pub const ITsSbResourceNotificationEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifySessionChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, userName: ?BSTR, domain: ?BSTR, sessionId: u32, sessionState: TSSESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotificationEx.VTable, @ptrCast(self.vtable)).NotifySessionChangeEx(@as(*const ITsSbResourceNotificationEx, @ptrCast(self)), targetName, userName, domain, sessionId, sessionState);
+        return self.vtable.NotifySessionChangeEx(self, targetName, userName, domain, sessionId, sessionState);
     }
     pub fn NotifyTargetChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, targetChangeType: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotificationEx.VTable, @ptrCast(self.vtable)).NotifyTargetChangeEx(@as(*const ITsSbResourceNotificationEx, @ptrCast(self)), targetName, targetChangeType);
+        return self.vtable.NotifyTargetChangeEx(self, targetName, targetChangeType);
     }
     pub fn NotifyClientConnectionStateChangeEx(self: *const ITsSbResourceNotificationEx, userName: ?BSTR, domain: ?BSTR, initialProgram: ?BSTR, poolName: ?BSTR, targetName: ?BSTR, connectionChangeType: CONNECTION_CHANGE_NOTIFICATION) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourceNotificationEx.VTable, @ptrCast(self.vtable)).NotifyClientConnectionStateChangeEx(@as(*const ITsSbResourceNotificationEx, @ptrCast(self)), userName, domain, initialProgram, poolName, targetName, connectionChangeType);
+        return self.vtable.NotifyClientConnectionStateChangeEx(self, userName, domain, initialProgram, poolName, targetName, connectionChangeType);
     }
 };
 
@@ -3888,31 +3888,31 @@ pub const ITsSbTaskInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_TargetId(self: *const ITsSbTaskInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_TargetId(@as(*const ITsSbTaskInfo, @ptrCast(self)), pName);
+        return self.vtable.get_TargetId(self, pName);
     }
     pub fn get_StartTime(self: *const ITsSbTaskInfo, pStartTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ITsSbTaskInfo, @ptrCast(self)), pStartTime);
+        return self.vtable.get_StartTime(self, pStartTime);
     }
     pub fn get_EndTime(self: *const ITsSbTaskInfo, pEndTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_EndTime(@as(*const ITsSbTaskInfo, @ptrCast(self)), pEndTime);
+        return self.vtable.get_EndTime(self, pEndTime);
     }
     pub fn get_Deadline(self: *const ITsSbTaskInfo, pDeadline: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Deadline(@as(*const ITsSbTaskInfo, @ptrCast(self)), pDeadline);
+        return self.vtable.get_Deadline(self, pDeadline);
     }
     pub fn get_Identifier(self: *const ITsSbTaskInfo, pIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const ITsSbTaskInfo, @ptrCast(self)), pIdentifier);
+        return self.vtable.get_Identifier(self, pIdentifier);
     }
     pub fn get_Label(self: *const ITsSbTaskInfo, pLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Label(@as(*const ITsSbTaskInfo, @ptrCast(self)), pLabel);
+        return self.vtable.get_Label(self, pLabel);
     }
     pub fn get_Context(self: *const ITsSbTaskInfo, pContext: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Context(@as(*const ITsSbTaskInfo, @ptrCast(self)), pContext);
+        return self.vtable.get_Context(self, pContext);
     }
     pub fn get_Plugin(self: *const ITsSbTaskInfo, pPlugin: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Plugin(@as(*const ITsSbTaskInfo, @ptrCast(self)), pPlugin);
+        return self.vtable.get_Plugin(self, pPlugin);
     }
     pub fn get_Status(self: *const ITsSbTaskInfo, pStatus: ?*RDV_TASK_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskInfo.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ITsSbTaskInfo, @ptrCast(self)), pStatus);
+        return self.vtable.get_Status(self, pStatus);
     }
 };
 
@@ -3948,10 +3948,10 @@ pub const ITsSbTaskPlugin = extern union {
     };}
     pub usingnamespace ITsSbPlugin.MethodMixin(@This());
     pub fn InitializeTaskPlugin(self: *const ITsSbTaskPlugin, pITsSbTaskPluginNotifySink: ?*ITsSbTaskPluginNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPlugin.VTable, @ptrCast(self.vtable)).InitializeTaskPlugin(@as(*const ITsSbTaskPlugin, @ptrCast(self)), pITsSbTaskPluginNotifySink);
+        return self.vtable.InitializeTaskPlugin(self, pITsSbTaskPluginNotifySink);
     }
     pub fn SetTaskQueue(self: *const ITsSbTaskPlugin, pszHostName: ?BSTR, SbTaskInfoSize: u32, pITsSbTaskInfo: [*]?*ITsSbTaskInfo) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPlugin.VTable, @ptrCast(self.vtable)).SetTaskQueue(@as(*const ITsSbTaskPlugin, @ptrCast(self)), pszHostName, SbTaskInfoSize, pITsSbTaskInfo);
+        return self.vtable.SetTaskQueue(self, pszHostName, SbTaskInfoSize, pITsSbTaskInfo);
     }
 };
 
@@ -4061,10 +4061,10 @@ pub const ITsSbBaseNotifySink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnError(self: *const ITsSbBaseNotifySink, hrError: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbBaseNotifySink.VTable, @ptrCast(self.vtable)).OnError(@as(*const ITsSbBaseNotifySink, @ptrCast(self)), hrError);
+        return self.vtable.OnError(self, hrError);
     }
     pub fn OnReportStatus(self: *const ITsSbBaseNotifySink, messageType: CLIENT_MESSAGE_TYPE, messageID: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbBaseNotifySink.VTable, @ptrCast(self.vtable)).OnReportStatus(@as(*const ITsSbBaseNotifySink, @ptrCast(self)), messageType, messageID);
+        return self.vtable.OnReportStatus(self, messageType, messageID);
     }
 };
 
@@ -4097,10 +4097,10 @@ pub const ITsSbPluginNotifySink = extern union {
     };}
     pub usingnamespace ITsSbBaseNotifySink.MethodMixin(@This());
     pub fn OnInitialized(self: *const ITsSbPluginNotifySink, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPluginNotifySink.VTable, @ptrCast(self.vtable)).OnInitialized(@as(*const ITsSbPluginNotifySink, @ptrCast(self)), hr);
+        return self.vtable.OnInitialized(self, hr);
     }
     pub fn OnTerminated(self: *const ITsSbPluginNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPluginNotifySink.VTable, @ptrCast(self.vtable)).OnTerminated(@as(*const ITsSbPluginNotifySink, @ptrCast(self)));
+        return self.vtable.OnTerminated(self);
     }
 };
 
@@ -4127,7 +4127,7 @@ pub const ITsSbLoadBalancingNotifySink = extern union {
     };}
     pub usingnamespace ITsSbBaseNotifySink.MethodMixin(@This());
     pub fn OnGetMostSuitableTarget(self: *const ITsSbLoadBalancingNotifySink, pLBResult: ?*ITsSbLoadBalanceResult, fIsNewConnection: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbLoadBalancingNotifySink.VTable, @ptrCast(self.vtable)).OnGetMostSuitableTarget(@as(*const ITsSbLoadBalancingNotifySink, @ptrCast(self)), pLBResult, fIsNewConnection);
+        return self.vtable.OnGetMostSuitableTarget(self, pLBResult, fIsNewConnection);
     }
 };
 
@@ -4153,7 +4153,7 @@ pub const ITsSbPlacementNotifySink = extern union {
     };}
     pub usingnamespace ITsSbBaseNotifySink.MethodMixin(@This());
     pub fn OnQueryEnvironmentCompleted(self: *const ITsSbPlacementNotifySink, pEnvironment: ?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbPlacementNotifySink.VTable, @ptrCast(self.vtable)).OnQueryEnvironmentCompleted(@as(*const ITsSbPlacementNotifySink, @ptrCast(self)), pEnvironment);
+        return self.vtable.OnQueryEnvironmentCompleted(self, pEnvironment);
     }
 };
 
@@ -4179,7 +4179,7 @@ pub const ITsSbOrchestrationNotifySink = extern union {
     };}
     pub usingnamespace ITsSbBaseNotifySink.MethodMixin(@This());
     pub fn OnReadyToConnect(self: *const ITsSbOrchestrationNotifySink, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbOrchestrationNotifySink.VTable, @ptrCast(self.vtable)).OnReadyToConnect(@as(*const ITsSbOrchestrationNotifySink, @ptrCast(self)), pTarget);
+        return self.vtable.OnReadyToConnect(self, pTarget);
     }
 };
 
@@ -4240,16 +4240,16 @@ pub const ITsSbTaskPluginNotifySink = extern union {
     };}
     pub usingnamespace ITsSbBaseNotifySink.MethodMixin(@This());
     pub fn OnSetTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskStartTime: FILETIME, TaskEndTime: FILETIME, TaskDeadline: FILETIME, szTaskLabel: ?BSTR, szTaskIdentifier: ?BSTR, szTaskPlugin: ?BSTR, dwTaskStatus: u32, saContext: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPluginNotifySink.VTable, @ptrCast(self.vtable)).OnSetTaskTime(@as(*const ITsSbTaskPluginNotifySink, @ptrCast(self)), szTargetName, TaskStartTime, TaskEndTime, TaskDeadline, szTaskLabel, szTaskIdentifier, szTaskPlugin, dwTaskStatus, saContext);
+        return self.vtable.OnSetTaskTime(self, szTargetName, TaskStartTime, TaskEndTime, TaskDeadline, szTaskLabel, szTaskIdentifier, szTaskPlugin, dwTaskStatus, saContext);
     }
     pub fn OnDeleteTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, szTaskIdentifier: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPluginNotifySink.VTable, @ptrCast(self.vtable)).OnDeleteTaskTime(@as(*const ITsSbTaskPluginNotifySink, @ptrCast(self)), szTargetName, szTaskIdentifier);
+        return self.vtable.OnDeleteTaskTime(self, szTargetName, szTaskIdentifier);
     }
     pub fn OnUpdateTaskStatus(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskIdentifier: ?BSTR, TaskStatus: RDV_TASK_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPluginNotifySink.VTable, @ptrCast(self.vtable)).OnUpdateTaskStatus(@as(*const ITsSbTaskPluginNotifySink, @ptrCast(self)), szTargetName, TaskIdentifier, TaskStatus);
+        return self.vtable.OnUpdateTaskStatus(self, szTargetName, TaskIdentifier, TaskStatus);
     }
     pub fn OnReportTasks(self: *const ITsSbTaskPluginNotifySink, szHostName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbTaskPluginNotifySink.VTable, @ptrCast(self.vtable)).OnReportTasks(@as(*const ITsSbTaskPluginNotifySink, @ptrCast(self)), szHostName);
+        return self.vtable.OnReportTasks(self, szHostName);
     }
 };
 
@@ -4400,49 +4400,49 @@ pub const ITsSbClientConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_UserName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const ITsSbClientConnection, @ptrCast(self)), pVal);
+        return self.vtable.get_UserName(self, pVal);
     }
     pub fn get_Domain(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const ITsSbClientConnection, @ptrCast(self)), pVal);
+        return self.vtable.get_Domain(self, pVal);
     }
     pub fn get_InitialProgram(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_InitialProgram(@as(*const ITsSbClientConnection, @ptrCast(self)), pVal);
+        return self.vtable.get_InitialProgram(self, pVal);
     }
     pub fn get_LoadBalanceResult(self: *const ITsSbClientConnection, ppVal: ?*?*ITsSbLoadBalanceResult) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_LoadBalanceResult(@as(*const ITsSbClientConnection, @ptrCast(self)), ppVal);
+        return self.vtable.get_LoadBalanceResult(self, ppVal);
     }
     pub fn get_FarmName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_FarmName(@as(*const ITsSbClientConnection, @ptrCast(self)), pVal);
+        return self.vtable.get_FarmName(self, pVal);
     }
     pub fn PutContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: VARIANT, existingContext: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).PutContext(@as(*const ITsSbClientConnection, @ptrCast(self)), contextId, context, existingContext);
+        return self.vtable.PutContext(self, contextId, context, existingContext);
     }
     pub fn GetContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).GetContext(@as(*const ITsSbClientConnection, @ptrCast(self)), contextId, context);
+        return self.vtable.GetContext(self, contextId, context);
     }
     pub fn get_Environment(self: *const ITsSbClientConnection, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_Environment(@as(*const ITsSbClientConnection, @ptrCast(self)), ppEnvironment);
+        return self.vtable.get_Environment(self, ppEnvironment);
     }
     pub fn get_ConnectionError(self: *const ITsSbClientConnection) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_ConnectionError(@as(*const ITsSbClientConnection, @ptrCast(self)));
+        return self.vtable.get_ConnectionError(self);
     }
     pub fn get_SamUserAccount(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_SamUserAccount(@as(*const ITsSbClientConnection, @ptrCast(self)), pVal);
+        return self.vtable.get_SamUserAccount(self, pVal);
     }
     pub fn get_ClientConnectionPropertySet(self: *const ITsSbClientConnection, ppPropertySet: ?*?*ITsSbClientConnectionPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_ClientConnectionPropertySet(@as(*const ITsSbClientConnection, @ptrCast(self)), ppPropertySet);
+        return self.vtable.get_ClientConnectionPropertySet(self, ppPropertySet);
     }
     pub fn get_IsFirstAssignment(self: *const ITsSbClientConnection, ppVal: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_IsFirstAssignment(@as(*const ITsSbClientConnection, @ptrCast(self)), ppVal);
+        return self.vtable.get_IsFirstAssignment(self, ppVal);
     }
     pub fn get_RdFarmType(self: *const ITsSbClientConnection, pRdFarmType: ?*RD_FARM_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_RdFarmType(@as(*const ITsSbClientConnection, @ptrCast(self)), pRdFarmType);
+        return self.vtable.get_RdFarmType(self, pRdFarmType);
     }
     pub fn get_UserSidString(self: *const ITsSbClientConnection, pszUserSidString: ?*?*i8) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).get_UserSidString(@as(*const ITsSbClientConnection, @ptrCast(self)), pszUserSidString);
+        return self.vtable.get_UserSidString(self, pszUserSidString);
     }
     pub fn GetDisconnectedSession(self: *const ITsSbClientConnection, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbClientConnection.VTable, @ptrCast(self.vtable)).GetDisconnectedSession(@as(*const ITsSbClientConnection, @ptrCast(self)), ppSession);
+        return self.vtable.GetDisconnectedSession(self, ppSession);
     }
 };
 
@@ -4568,40 +4568,40 @@ pub const ITsSbProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTargetObject(self: *const ITsSbProvider, TargetName: ?BSTR, EnvironmentName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateTargetObject(@as(*const ITsSbProvider, @ptrCast(self)), TargetName, EnvironmentName, ppTarget);
+        return self.vtable.CreateTargetObject(self, TargetName, EnvironmentName, ppTarget);
     }
     pub fn CreateLoadBalanceResultObject(self: *const ITsSbProvider, TargetName: ?BSTR, ppLBResult: ?*?*ITsSbLoadBalanceResult) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateLoadBalanceResultObject(@as(*const ITsSbProvider, @ptrCast(self)), TargetName, ppLBResult);
+        return self.vtable.CreateLoadBalanceResultObject(self, TargetName, ppLBResult);
     }
     pub fn CreateSessionObject(self: *const ITsSbProvider, TargetName: ?BSTR, UserName: ?BSTR, Domain: ?BSTR, SessionId: u32, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateSessionObject(@as(*const ITsSbProvider, @ptrCast(self)), TargetName, UserName, Domain, SessionId, ppSession);
+        return self.vtable.CreateSessionObject(self, TargetName, UserName, Domain, SessionId, ppSession);
     }
     pub fn CreatePluginPropertySet(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbPluginPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreatePluginPropertySet(@as(*const ITsSbProvider, @ptrCast(self)), ppPropertySet);
+        return self.vtable.CreatePluginPropertySet(self, ppPropertySet);
     }
     pub fn CreateTargetPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateTargetPropertySetObject(@as(*const ITsSbProvider, @ptrCast(self)), ppPropertySet);
+        return self.vtable.CreateTargetPropertySetObject(self, ppPropertySet);
     }
     pub fn CreateEnvironmentObject(self: *const ITsSbProvider, Name: ?BSTR, ServerWeight: u32, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateEnvironmentObject(@as(*const ITsSbProvider, @ptrCast(self)), Name, ServerWeight, ppEnvironment);
+        return self.vtable.CreateEnvironmentObject(self, Name, ServerWeight, ppEnvironment);
     }
     pub fn GetResourcePluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbResourcePluginStore) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).GetResourcePluginStore(@as(*const ITsSbProvider, @ptrCast(self)), ppStore);
+        return self.vtable.GetResourcePluginStore(self, ppStore);
     }
     pub fn GetFilterPluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbFilterPluginStore) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).GetFilterPluginStore(@as(*const ITsSbProvider, @ptrCast(self)), ppStore);
+        return self.vtable.GetFilterPluginStore(self, ppStore);
     }
     pub fn RegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR, pPluginNotification: ?*ITsSbResourceNotification) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).RegisterForNotification(@as(*const ITsSbProvider, @ptrCast(self)), notificationType, ResourceToMonitor, pPluginNotification);
+        return self.vtable.RegisterForNotification(self, notificationType, ResourceToMonitor, pPluginNotification);
     }
     pub fn UnRegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).UnRegisterForNotification(@as(*const ITsSbProvider, @ptrCast(self)), notificationType, ResourceToMonitor);
+        return self.vtable.UnRegisterForNotification(self, notificationType, ResourceToMonitor);
     }
     pub fn GetInstanceOfGlobalStore(self: *const ITsSbProvider, ppGlobalStore: ?*?*ITsSbGlobalStore) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).GetInstanceOfGlobalStore(@as(*const ITsSbProvider, @ptrCast(self)), ppGlobalStore);
+        return self.vtable.GetInstanceOfGlobalStore(self, ppGlobalStore);
     }
     pub fn CreateEnvironmentPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvider.VTable, @ptrCast(self.vtable)).CreateEnvironmentPropertySetObject(@as(*const ITsSbProvider, @ptrCast(self)), ppPropertySet);
+        return self.vtable.CreateEnvironmentPropertySetObject(self, ppPropertySet);
     }
 };
 
@@ -4888,88 +4888,88 @@ pub const ITsSbResourcePluginStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryTarget(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).QueryTarget(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), TargetName, FarmName, ppTarget);
+        return self.vtable.QueryTarget(self, TargetName, FarmName, ppTarget);
     }
     pub fn QuerySessionBySessionId(self: *const ITsSbResourcePluginStore, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).QuerySessionBySessionId(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), dwSessionId, TargetName, ppSession);
+        return self.vtable.QuerySessionBySessionId(self, dwSessionId, TargetName, ppSession);
     }
     pub fn AddTargetToStore(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).AddTargetToStore(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pTarget);
+        return self.vtable.AddTargetToStore(self, pTarget);
     }
     pub fn AddSessionToStore(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).AddSessionToStore(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pSession);
+        return self.vtable.AddSessionToStore(self, pSession);
     }
     pub fn AddEnvironmentToStore(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).AddEnvironmentToStore(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pEnvironment);
+        return self.vtable.AddEnvironmentToStore(self, pEnvironment);
     }
     pub fn RemoveEnvironmentFromStore(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, bIgnoreOwner: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).RemoveEnvironmentFromStore(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), EnvironmentName, bIgnoreOwner);
+        return self.vtable.RemoveEnvironmentFromStore(self, EnvironmentName, bIgnoreOwner);
     }
     pub fn EnumerateFarms(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).EnumerateFarms(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pdwCount, pVal);
+        return self.vtable.EnumerateFarms(self, pdwCount, pVal);
     }
     pub fn QueryEnvironment(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).QueryEnvironment(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), EnvironmentName, ppEnvironment);
+        return self.vtable.QueryEnvironment(self, EnvironmentName, ppEnvironment);
     }
     pub fn EnumerateEnvironments(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: [*]?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).EnumerateEnvironments(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pdwCount, pVal);
+        return self.vtable.EnumerateEnvironments(self, pdwCount, pVal);
     }
     pub fn SaveTarget(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, bForceWrite: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SaveTarget(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pTarget, bForceWrite);
+        return self.vtable.SaveTarget(self, pTarget, bForceWrite);
     }
     pub fn SaveEnvironment(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, bForceWrite: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SaveEnvironment(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pEnvironment, bForceWrite);
+        return self.vtable.SaveEnvironment(self, pEnvironment, bForceWrite);
     }
     pub fn SaveSession(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SaveSession(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pSession);
+        return self.vtable.SaveSession(self, pSession);
     }
     pub fn SetTargetProperty(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetTargetProperty(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), TargetName, PropertyName, pProperty);
+        return self.vtable.SetTargetProperty(self, TargetName, PropertyName, pProperty);
     }
     pub fn SetEnvironmentProperty(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetEnvironmentProperty(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), EnvironmentName, PropertyName, pProperty);
+        return self.vtable.SetEnvironmentProperty(self, EnvironmentName, PropertyName, pProperty);
     }
     pub fn SetTargetState(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, newState: TARGET_STATE, pOldState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetTargetState(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), targetName, newState, pOldState);
+        return self.vtable.SetTargetState(self, targetName, newState, pOldState);
     }
     pub fn SetSessionState(self: *const ITsSbResourcePluginStore, sbSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetSessionState(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), sbSession);
+        return self.vtable.SetSessionState(self, sbSession);
     }
     pub fn EnumerateTargets(self: *const ITsSbResourcePluginStore, FarmName: ?BSTR, EnvName: ?BSTR, sortByFieldId: TS_SB_SORT_BY, sortyByPropName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).EnumerateTargets(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), FarmName, EnvName, sortByFieldId, sortyByPropName, pdwCount, pVal);
+        return self.vtable.EnumerateTargets(self, FarmName, EnvName, sortByFieldId, sortyByPropName, pdwCount, pVal);
     }
     pub fn EnumerateSessions(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).EnumerateSessions(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
+        return self.vtable.EnumerateSessions(self, targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
     }
     pub fn GetFarmProperty(self: *const ITsSbResourcePluginStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).GetFarmProperty(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), farmName, propertyName, pVarValue);
+        return self.vtable.GetFarmProperty(self, farmName, propertyName, pVarValue);
     }
     pub fn DeleteTarget(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, hostName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).DeleteTarget(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), targetName, hostName);
+        return self.vtable.DeleteTarget(self, targetName, hostName);
     }
     pub fn SetTargetPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetTargetPropertyWithVersionCheck(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pTarget, PropertyName, pProperty);
+        return self.vtable.SetTargetPropertyWithVersionCheck(self, pTarget, PropertyName, pProperty);
     }
     pub fn SetEnvironmentPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetEnvironmentPropertyWithVersionCheck(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pEnvironment, PropertyName, pProperty);
+        return self.vtable.SetEnvironmentPropertyWithVersionCheck(self, pEnvironment, PropertyName, pProperty);
     }
     pub fn AcquireTargetLock(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, dwTimeout: u32, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).AcquireTargetLock(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), targetName, dwTimeout, ppContext);
+        return self.vtable.AcquireTargetLock(self, targetName, dwTimeout, ppContext);
     }
     pub fn ReleaseTargetLock(self: *const ITsSbResourcePluginStore, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).ReleaseTargetLock(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), pContext);
+        return self.vtable.ReleaseTargetLock(self, pContext);
     }
     pub fn TestAndSetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, NewState: TARGET_STATE, TestState: TARGET_STATE, pInitState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).TestAndSetServerState(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), PoolName, ServerFQDN, NewState, TestState, pInitState);
+        return self.vtable.TestAndSetServerState(self, PoolName, ServerFQDN, NewState, TestState, pInitState);
     }
     pub fn SetServerWaitingToStart(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, serverName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetServerWaitingToStart(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), PoolName, serverName);
+        return self.vtable.SetServerWaitingToStart(self, PoolName, serverName);
     }
     pub fn GetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, pState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).GetServerState(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), PoolName, ServerFQDN, pState);
+        return self.vtable.GetServerState(self, PoolName, ServerFQDN, pState);
     }
     pub fn SetServerDrainMode(self: *const ITsSbResourcePluginStore, ServerFQDN: ?BSTR, DrainMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbResourcePluginStore.VTable, @ptrCast(self.vtable)).SetServerDrainMode(@as(*const ITsSbResourcePluginStore, @ptrCast(self)), ServerFQDN, DrainMode);
+        return self.vtable.SetServerDrainMode(self, ServerFQDN, DrainMode);
     }
 };
 
@@ -5011,13 +5011,13 @@ pub const ITsSbFilterPluginStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SaveProperties(self: *const ITsSbFilterPluginStore, pPropertySet: ?*ITsSbPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbFilterPluginStore.VTable, @ptrCast(self.vtable)).SaveProperties(@as(*const ITsSbFilterPluginStore, @ptrCast(self)), pPropertySet);
+        return self.vtable.SaveProperties(self, pPropertySet);
     }
     pub fn EnumerateProperties(self: *const ITsSbFilterPluginStore, ppPropertySet: ?*?*ITsSbPropertySet) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbFilterPluginStore.VTable, @ptrCast(self.vtable)).EnumerateProperties(@as(*const ITsSbFilterPluginStore, @ptrCast(self)), ppPropertySet);
+        return self.vtable.EnumerateProperties(self, ppPropertySet);
     }
     pub fn DeleteProperties(self: *const ITsSbFilterPluginStore, propertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbFilterPluginStore.VTable, @ptrCast(self.vtable)).DeleteProperties(@as(*const ITsSbFilterPluginStore, @ptrCast(self)), propertyName);
+        return self.vtable.DeleteProperties(self, propertyName);
     }
 };
 
@@ -5115,25 +5115,25 @@ pub const ITsSbGlobalStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryTarget(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).QueryTarget(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, TargetName, FarmName, ppTarget);
+        return self.vtable.QueryTarget(self, ProviderName, TargetName, FarmName, ppTarget);
     }
     pub fn QuerySessionBySessionId(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).QuerySessionBySessionId(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, dwSessionId, TargetName, ppSession);
+        return self.vtable.QuerySessionBySessionId(self, ProviderName, dwSessionId, TargetName, ppSession);
     }
     pub fn EnumerateFarms(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).EnumerateFarms(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, pdwCount, pVal);
+        return self.vtable.EnumerateFarms(self, ProviderName, pdwCount, pVal);
     }
     pub fn EnumerateTargets(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, FarmName: ?BSTR, EnvName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).EnumerateTargets(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, FarmName, EnvName, pdwCount, pVal);
+        return self.vtable.EnumerateTargets(self, ProviderName, FarmName, EnvName, pdwCount, pVal);
     }
     pub fn EnumerateEnvironmentsByProvider(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).EnumerateEnvironmentsByProvider(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, pdwCount, ppVal);
+        return self.vtable.EnumerateEnvironmentsByProvider(self, ProviderName, pdwCount, ppVal);
     }
     pub fn EnumerateSessions(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).EnumerateSessions(@as(*const ITsSbGlobalStore, @ptrCast(self)), ProviderName, targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
+        return self.vtable.EnumerateSessions(self, ProviderName, targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
     }
     pub fn GetFarmProperty(self: *const ITsSbGlobalStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGlobalStore.VTable, @ptrCast(self.vtable)).GetFarmProperty(@as(*const ITsSbGlobalStore, @ptrCast(self)), farmName, propertyName, pVarValue);
+        return self.vtable.GetFarmProperty(self, farmName, propertyName, pVarValue);
     }
 };
 
@@ -5205,22 +5205,22 @@ pub const ITsSbProvisioningPluginNotifySink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnJobCreated(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyInfo: ?*VM_NOTIFY_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).OnJobCreated(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)), pVmNotifyInfo);
+        return self.vtable.OnJobCreated(self, pVmNotifyInfo);
     }
     pub fn OnVirtualMachineStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY, VmNotifyStatus: VM_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).OnVirtualMachineStatusChanged(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)), pVmNotifyEntry, VmNotifyStatus, ErrorCode, ErrorDescr);
+        return self.vtable.OnVirtualMachineStatusChanged(self, pVmNotifyEntry, VmNotifyStatus, ErrorCode, ErrorDescr);
     }
     pub fn OnJobCompleted(self: *const ITsSbProvisioningPluginNotifySink, ResultCode: HRESULT, ResultDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).OnJobCompleted(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)), ResultCode, ResultDescription);
+        return self.vtable.OnJobCompleted(self, ResultCode, ResultDescription);
     }
     pub fn OnJobCancelled(self: *const ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).OnJobCancelled(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)));
+        return self.vtable.OnJobCancelled(self);
     }
     pub fn LockVirtualMachine(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).LockVirtualMachine(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)), pVmNotifyEntry);
+        return self.vtable.LockVirtualMachine(self, pVmNotifyEntry);
     }
     pub fn OnVirtualMachineHostStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, VmHost: ?BSTR, VmHostNotifyStatus: VM_HOST_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioningPluginNotifySink.VTable, @ptrCast(self.vtable)).OnVirtualMachineHostStatusChanged(@as(*const ITsSbProvisioningPluginNotifySink, @ptrCast(self)), VmHost, VmHostNotifyStatus, ErrorCode, ErrorDescr);
+        return self.vtable.OnVirtualMachineHostStatusChanged(self, VmHost, VmHostNotifyStatus, ErrorCode, ErrorDescr);
     }
 };
 
@@ -5277,16 +5277,16 @@ pub const ITsSbProvisioning = extern union {
     };}
     pub usingnamespace ITsSbPlugin.MethodMixin(@This());
     pub fn CreateVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioning.VTable, @ptrCast(self.vtable)).CreateVirtualMachines(@as(*const ITsSbProvisioning, @ptrCast(self)), JobXmlString, JobGuid, pSink);
+        return self.vtable.CreateVirtualMachines(self, JobXmlString, JobGuid, pSink);
     }
     pub fn PatchVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink, pVMPatchInfo: ?*VM_PATCH_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioning.VTable, @ptrCast(self.vtable)).PatchVirtualMachines(@as(*const ITsSbProvisioning, @ptrCast(self)), JobXmlString, JobGuid, pSink, pVMPatchInfo);
+        return self.vtable.PatchVirtualMachines(self, JobXmlString, JobGuid, pSink, pVMPatchInfo);
     }
     pub fn DeleteVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioning.VTable, @ptrCast(self.vtable)).DeleteVirtualMachines(@as(*const ITsSbProvisioning, @ptrCast(self)), JobXmlString, JobGuid, pSink);
+        return self.vtable.DeleteVirtualMachines(self, JobXmlString, JobGuid, pSink);
     }
     pub fn CancelJob(self: *const ITsSbProvisioning, JobGuid: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbProvisioning.VTable, @ptrCast(self.vtable)).CancelJob(@as(*const ITsSbProvisioning, @ptrCast(self)), JobGuid);
+        return self.vtable.CancelJob(self, JobGuid);
     }
 };
 
@@ -5320,10 +5320,10 @@ pub const ITsSbGenericNotifySink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnCompleted(self: *const ITsSbGenericNotifySink, Status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGenericNotifySink.VTable, @ptrCast(self.vtable)).OnCompleted(@as(*const ITsSbGenericNotifySink, @ptrCast(self)), Status);
+        return self.vtable.OnCompleted(self, Status);
     }
     pub fn GetWaitTimeout(self: *const ITsSbGenericNotifySink, pftTimeout: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ITsSbGenericNotifySink.VTable, @ptrCast(self.vtable)).GetWaitTimeout(@as(*const ITsSbGenericNotifySink, @ptrCast(self)), pftTimeout);
+        return self.vtable.GetWaitTimeout(self, pftTimeout);
     }
 };
 
@@ -5413,22 +5413,22 @@ pub const ItsPubPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResourceList(self: *const ItsPubPlugin, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).GetResourceList(@as(*const ItsPubPlugin, @ptrCast(self)), userID, pceAppListSize, resourceList);
+        return self.vtable.GetResourceList(self, userID, pceAppListSize, resourceList);
     }
     pub fn GetResource(self: *const ItsPubPlugin, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ItsPubPlugin, @ptrCast(self)), alias, flags, resource);
+        return self.vtable.GetResource(self, alias, flags, resource);
     }
     pub fn GetCacheLastUpdateTime(self: *const ItsPubPlugin, lastUpdateTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).GetCacheLastUpdateTime(@as(*const ItsPubPlugin, @ptrCast(self)), lastUpdateTime);
+        return self.vtable.GetCacheLastUpdateTime(self, lastUpdateTime);
     }
     pub fn get_pluginName(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).get_pluginName(@as(*const ItsPubPlugin, @ptrCast(self)), pVal);
+        return self.vtable.get_pluginName(self, pVal);
     }
     pub fn get_pluginVersion(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).get_pluginVersion(@as(*const ItsPubPlugin, @ptrCast(self)), pVal);
+        return self.vtable.get_pluginVersion(self, pVal);
     }
     pub fn ResolveResource(self: *const ItsPubPlugin, resourceType: ?*u32, resourceLocation: ?PWSTR, endPointName: ?PWSTR, userID: ?PWSTR, alias: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin.VTable, @ptrCast(self.vtable)).ResolveResource(@as(*const ItsPubPlugin, @ptrCast(self)), resourceType, resourceLocation, endPointName, userID, alias);
+        return self.vtable.ResolveResource(self, resourceType, resourceLocation, endPointName, userID, alias);
     }
 };
 
@@ -5518,16 +5518,16 @@ pub const ItsPubPlugin2 = extern union {
     };}
     pub usingnamespace ItsPubPlugin.MethodMixin(@This());
     pub fn GetResource2List(self: *const ItsPubPlugin2, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource2) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin2.VTable, @ptrCast(self.vtable)).GetResource2List(@as(*const ItsPubPlugin2, @ptrCast(self)), userID, pceAppListSize, resourceList);
+        return self.vtable.GetResource2List(self, userID, pceAppListSize, resourceList);
     }
     pub fn GetResource2(self: *const ItsPubPlugin2, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource2) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin2.VTable, @ptrCast(self.vtable)).GetResource2(@as(*const ItsPubPlugin2, @ptrCast(self)), alias, flags, resource);
+        return self.vtable.GetResource2(self, alias, flags, resource);
     }
     pub fn ResolvePersonalDesktop(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin2.VTable, @ptrCast(self.vtable)).ResolvePersonalDesktop(@as(*const ItsPubPlugin2, @ptrCast(self)), userId, poolId, ePdResolutionType, pPdAssignmentType, endPointName);
+        return self.vtable.ResolvePersonalDesktop(self, userId, poolId, ePdResolutionType, pPdAssignmentType, endPointName);
     }
     pub fn DeletePersonalDesktopAssignment(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, endpointName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ItsPubPlugin2.VTable, @ptrCast(self.vtable)).DeletePersonalDesktopAssignment(@as(*const ItsPubPlugin2, @ptrCast(self)), userId, poolId, endpointName);
+        return self.vtable.DeletePersonalDesktopAssignment(self, userId, poolId, endpointName);
     }
 };
 
@@ -5593,19 +5593,19 @@ pub const IWorkspaceResTypeRegistry = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn AddResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceResTypeRegistry.VTable, @ptrCast(self.vtable)).AddResourceType(@as(*const IWorkspaceResTypeRegistry, @ptrCast(self)), fMachineWide, bstrFileExtension, bstrLauncher);
+        return self.vtable.AddResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
     pub fn DeleteResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceResTypeRegistry.VTable, @ptrCast(self.vtable)).DeleteResourceType(@as(*const IWorkspaceResTypeRegistry, @ptrCast(self)), fMachineWide, bstrFileExtension);
+        return self.vtable.DeleteResourceType(self, fMachineWide, bstrFileExtension);
     }
     pub fn GetRegisteredFileExtensions(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, psaFileExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceResTypeRegistry.VTable, @ptrCast(self.vtable)).GetRegisteredFileExtensions(@as(*const IWorkspaceResTypeRegistry, @ptrCast(self)), fMachineWide, psaFileExtensions);
+        return self.vtable.GetRegisteredFileExtensions(self, fMachineWide, psaFileExtensions);
     }
     pub fn GetResourceTypeInfo(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, pbstrLauncher: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceResTypeRegistry.VTable, @ptrCast(self.vtable)).GetResourceTypeInfo(@as(*const IWorkspaceResTypeRegistry, @ptrCast(self)), fMachineWide, bstrFileExtension, pbstrLauncher);
+        return self.vtable.GetResourceTypeInfo(self, fMachineWide, bstrFileExtension, pbstrLauncher);
     }
     pub fn ModifyResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWorkspaceResTypeRegistry.VTable, @ptrCast(self.vtable)).ModifyResourceType(@as(*const IWorkspaceResTypeRegistry, @ptrCast(self)), fMachineWide, bstrFileExtension, bstrLauncher);
+        return self.vtable.ModifyResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
 };
 
@@ -5653,16 +5653,16 @@ pub const IWTSPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWTSPlugin, pChannelMgr: ?*IWTSVirtualChannelManager) callconv(.Inline) HRESULT {
-        return @as(*const IWTSPlugin.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWTSPlugin, @ptrCast(self)), pChannelMgr);
+        return self.vtable.Initialize(self, pChannelMgr);
     }
     pub fn Connected(self: *const IWTSPlugin) callconv(.Inline) HRESULT {
-        return @as(*const IWTSPlugin.VTable, @ptrCast(self.vtable)).Connected(@as(*const IWTSPlugin, @ptrCast(self)));
+        return self.vtable.Connected(self);
     }
     pub fn Disconnected(self: *const IWTSPlugin, dwDisconnectCode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSPlugin.VTable, @ptrCast(self.vtable)).Disconnected(@as(*const IWTSPlugin, @ptrCast(self)), dwDisconnectCode);
+        return self.vtable.Disconnected(self, dwDisconnectCode);
     }
     pub fn Terminated(self: *const IWTSPlugin) callconv(.Inline) HRESULT {
-        return @as(*const IWTSPlugin.VTable, @ptrCast(self.vtable)).Terminated(@as(*const IWTSPlugin, @ptrCast(self)));
+        return self.vtable.Terminated(self);
     }
 };
 
@@ -5688,7 +5688,7 @@ pub const IWTSListener = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConfiguration(self: *const IWTSListener, ppPropertyBag: ?*?*IPropertyBag) callconv(.Inline) HRESULT {
-        return @as(*const IWTSListener.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IWTSListener, @ptrCast(self)), ppPropertyBag);
+        return self.vtable.GetConfiguration(self, ppPropertyBag);
     }
 };
 
@@ -5717,7 +5717,7 @@ pub const IWTSListenerCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnNewChannelConnection(self: *const IWTSListenerCallback, pChannel: ?*IWTSVirtualChannel, data: ?BSTR, pbAccept: ?*BOOL, ppCallback: ?*?*IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSListenerCallback.VTable, @ptrCast(self.vtable)).OnNewChannelConnection(@as(*const IWTSListenerCallback, @ptrCast(self)), pChannel, data, pbAccept, ppCallback);
+        return self.vtable.OnNewChannelConnection(self, pChannel, data, pbAccept, ppCallback);
     }
 };
 
@@ -5751,10 +5751,10 @@ pub const IWTSVirtualChannelCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnDataReceived(self: *const IWTSVirtualChannelCallback, cbSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWTSVirtualChannelCallback.VTable, @ptrCast(self.vtable)).OnDataReceived(@as(*const IWTSVirtualChannelCallback, @ptrCast(self)), cbSize, pBuffer);
+        return self.vtable.OnDataReceived(self, cbSize, pBuffer);
     }
     pub fn OnClose(self: *const IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSVirtualChannelCallback.VTable, @ptrCast(self.vtable)).OnClose(@as(*const IWTSVirtualChannelCallback, @ptrCast(self)));
+        return self.vtable.OnClose(self);
     }
 };
 
@@ -5783,7 +5783,7 @@ pub const IWTSVirtualChannelManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateListener(self: *const IWTSVirtualChannelManager, pszChannelName: ?*const u8, uFlags: u32, pListenerCallback: ?*IWTSListenerCallback, ppListener: ?*?*IWTSListener) callconv(.Inline) HRESULT {
-        return @as(*const IWTSVirtualChannelManager.VTable, @ptrCast(self.vtable)).CreateListener(@as(*const IWTSVirtualChannelManager, @ptrCast(self)), pszChannelName, uFlags, pListenerCallback, ppListener);
+        return self.vtable.CreateListener(self, pszChannelName, uFlags, pListenerCallback, ppListener);
     }
 };
 
@@ -5818,10 +5818,10 @@ pub const IWTSVirtualChannel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Write(self: *const IWTSVirtualChannel, cbSize: u32, pBuffer: [*:0]u8, pReserved: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWTSVirtualChannel.VTable, @ptrCast(self.vtable)).Write(@as(*const IWTSVirtualChannel, @ptrCast(self)), cbSize, pBuffer, pReserved);
+        return self.vtable.Write(self, cbSize, pBuffer, pReserved);
     }
     pub fn Close(self: *const IWTSVirtualChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWTSVirtualChannel.VTable, @ptrCast(self.vtable)).Close(@as(*const IWTSVirtualChannel, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -5848,7 +5848,7 @@ pub const IWTSPluginServiceProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetService(self: *const IWTSPluginServiceProvider, ServiceId: Guid, ppunkObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWTSPluginServiceProvider.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWTSPluginServiceProvider, @ptrCast(self)), ServiceId, ppunkObject);
+        return self.vtable.GetService(self, ServiceId, ppunkObject);
     }
 };
 
@@ -5899,13 +5899,13 @@ pub const IWTSBitmapRenderer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Render(self: *const IWTSBitmapRenderer, imageFormat: Guid, dwWidth: u32, dwHeight: u32, cbStride: i32, cbImageBuffer: u32, pImageBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWTSBitmapRenderer.VTable, @ptrCast(self.vtable)).Render(@as(*const IWTSBitmapRenderer, @ptrCast(self)), imageFormat, dwWidth, dwHeight, cbStride, cbImageBuffer, pImageBuffer);
+        return self.vtable.Render(self, imageFormat, dwWidth, dwHeight, cbStride, cbImageBuffer, pImageBuffer);
     }
     pub fn GetRendererStatistics(self: *const IWTSBitmapRenderer, pStatistics: ?*BITMAP_RENDERER_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IWTSBitmapRenderer.VTable, @ptrCast(self.vtable)).GetRendererStatistics(@as(*const IWTSBitmapRenderer, @ptrCast(self)), pStatistics);
+        return self.vtable.GetRendererStatistics(self, pStatistics);
     }
     pub fn RemoveMapping(self: *const IWTSBitmapRenderer) callconv(.Inline) HRESULT {
-        return @as(*const IWTSBitmapRenderer.VTable, @ptrCast(self.vtable)).RemoveMapping(@as(*const IWTSBitmapRenderer, @ptrCast(self)));
+        return self.vtable.RemoveMapping(self);
     }
 };
 
@@ -5931,7 +5931,7 @@ pub const IWTSBitmapRendererCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnTargetSizeChanged(self: *const IWTSBitmapRendererCallback, rcNewSize: RECT) callconv(.Inline) HRESULT {
-        return @as(*const IWTSBitmapRendererCallback.VTable, @ptrCast(self.vtable)).OnTargetSizeChanged(@as(*const IWTSBitmapRendererCallback, @ptrCast(self)), rcNewSize);
+        return self.vtable.OnTargetSizeChanged(self, rcNewSize);
     }
 };
 
@@ -5959,7 +5959,7 @@ pub const IWTSBitmapRenderService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMappedRenderer(self: *const IWTSBitmapRenderService, mappingId: u64, pMappedRendererCallback: ?*IWTSBitmapRendererCallback, ppMappedRenderer: ?*?*IWTSBitmapRenderer) callconv(.Inline) HRESULT {
-        return @as(*const IWTSBitmapRenderService.VTable, @ptrCast(self.vtable)).GetMappedRenderer(@as(*const IWTSBitmapRenderService, @ptrCast(self)), mappingId, pMappedRendererCallback, ppMappedRenderer);
+        return self.vtable.GetMappedRenderer(self, mappingId, pMappedRendererCallback, ppMappedRenderer);
     }
 };
 
@@ -6023,19 +6023,19 @@ pub const IWRdsGraphicsChannelEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnDataReceived(self: *const IWRdsGraphicsChannelEvents, cbSize: u32, pBuffer: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelEvents.VTable, @ptrCast(self.vtable)).OnDataReceived(@as(*const IWRdsGraphicsChannelEvents, @ptrCast(self)), cbSize, pBuffer);
+        return self.vtable.OnDataReceived(self, cbSize, pBuffer);
     }
     pub fn OnClose(self: *const IWRdsGraphicsChannelEvents) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelEvents.VTable, @ptrCast(self.vtable)).OnClose(@as(*const IWRdsGraphicsChannelEvents, @ptrCast(self)));
+        return self.vtable.OnClose(self);
     }
     pub fn OnChannelOpened(self: *const IWRdsGraphicsChannelEvents, OpenResult: HRESULT, pOpenContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelEvents.VTable, @ptrCast(self.vtable)).OnChannelOpened(@as(*const IWRdsGraphicsChannelEvents, @ptrCast(self)), OpenResult, pOpenContext);
+        return self.vtable.OnChannelOpened(self, OpenResult, pOpenContext);
     }
     pub fn OnDataSent(self: *const IWRdsGraphicsChannelEvents, pWriteContext: ?*IUnknown, bCancelled: BOOL, pBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelEvents.VTable, @ptrCast(self.vtable)).OnDataSent(@as(*const IWRdsGraphicsChannelEvents, @ptrCast(self)), pWriteContext, bCancelled, pBuffer, cbBuffer);
+        return self.vtable.OnDataSent(self, pWriteContext, bCancelled, pBuffer, cbBuffer);
     }
     pub fn OnMetricsUpdate(self: *const IWRdsGraphicsChannelEvents, bandwidth: u32, RTT: u32, lastSentByteIndex: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelEvents.VTable, @ptrCast(self.vtable)).OnMetricsUpdate(@as(*const IWRdsGraphicsChannelEvents, @ptrCast(self)), bandwidth, RTT, lastSentByteIndex);
+        return self.vtable.OnMetricsUpdate(self, bandwidth, RTT, lastSentByteIndex);
     }
 };
 
@@ -6079,13 +6079,13 @@ pub const IWRdsGraphicsChannel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Write(self: *const IWRdsGraphicsChannel, cbSize: u32, pBuffer: ?*u8, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannel.VTable, @ptrCast(self.vtable)).Write(@as(*const IWRdsGraphicsChannel, @ptrCast(self)), cbSize, pBuffer, pContext);
+        return self.vtable.Write(self, cbSize, pBuffer, pContext);
     }
     pub fn Close(self: *const IWRdsGraphicsChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannel.VTable, @ptrCast(self.vtable)).Close(@as(*const IWRdsGraphicsChannel, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Open(self: *const IWRdsGraphicsChannel, pChannelEvents: ?*IWRdsGraphicsChannelEvents, pOpenContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannel.VTable, @ptrCast(self.vtable)).Open(@as(*const IWRdsGraphicsChannel, @ptrCast(self)), pChannelEvents, pOpenContext);
+        return self.vtable.Open(self, pChannelEvents, pOpenContext);
     }
 };
 
@@ -6120,7 +6120,7 @@ pub const IWRdsGraphicsChannelManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateChannel(self: *const IWRdsGraphicsChannelManager, pszChannelName: ?*const u8, channelType: WRdsGraphicsChannelType, ppVirtualChannel: ?*?*IWRdsGraphicsChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsGraphicsChannelManager.VTable, @ptrCast(self.vtable)).CreateChannel(@as(*const IWRdsGraphicsChannelManager, @ptrCast(self)), pszChannelName, channelType, ppVirtualChannel);
+        return self.vtable.CreateChannel(self, pszChannelName, channelType, ppVirtualChannel);
     }
 };
 
@@ -6695,19 +6695,19 @@ pub const IWTSProtocolManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateListener(self: *const IWTSProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWTSProtocolListener) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolManager.VTable, @ptrCast(self.vtable)).CreateListener(@as(*const IWTSProtocolManager, @ptrCast(self)), wszListenerName, pProtocolListener);
+        return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
     pub fn NotifyServiceStateChange(self: *const IWTSProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolManager.VTable, @ptrCast(self.vtable)).NotifyServiceStateChange(@as(*const IWTSProtocolManager, @ptrCast(self)), pTSServiceStateChange);
+        return self.vtable.NotifyServiceStateChange(self, pTSServiceStateChange);
     }
     pub fn NotifySessionOfServiceStart(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionOfServiceStart(@as(*const IWTSProtocolManager, @ptrCast(self)), SessionId);
+        return self.vtable.NotifySessionOfServiceStart(self, SessionId);
     }
     pub fn NotifySessionOfServiceStop(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionOfServiceStop(@as(*const IWTSProtocolManager, @ptrCast(self)), SessionId);
+        return self.vtable.NotifySessionOfServiceStop(self, SessionId);
     }
     pub fn NotifySessionStateChange(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionStateChange(@as(*const IWTSProtocolManager, @ptrCast(self)), SessionId, EventId);
+        return self.vtable.NotifySessionStateChange(self, SessionId, EventId);
     }
 };
 
@@ -6740,10 +6740,10 @@ pub const IWTSProtocolListener = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartListen(self: *const IWTSProtocolListener, pCallback: ?*IWTSProtocolListenerCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolListener.VTable, @ptrCast(self.vtable)).StartListen(@as(*const IWTSProtocolListener, @ptrCast(self)), pCallback);
+        return self.vtable.StartListen(self, pCallback);
     }
     pub fn StopListen(self: *const IWTSProtocolListener) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolListener.VTable, @ptrCast(self.vtable)).StopListen(@as(*const IWTSProtocolListener, @ptrCast(self)));
+        return self.vtable.StopListen(self);
     }
 };
 
@@ -6770,7 +6770,7 @@ pub const IWTSProtocolListenerCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnected(self: *const IWTSProtocolListenerCallback, pConnection: ?*IWTSProtocolConnection, pCallback: ?*?*IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolListenerCallback.VTable, @ptrCast(self.vtable)).OnConnected(@as(*const IWTSProtocolListenerCallback, @ptrCast(self)), pConnection, pCallback);
+        return self.vtable.OnConnected(self, pConnection, pCallback);
     }
 };
 
@@ -6990,73 +6990,73 @@ pub const IWTSProtocolConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLogonErrorRedirector(self: *const IWTSProtocolConnection, ppLogonErrorRedir: ?*?*IWTSProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetLogonErrorRedirector(@as(*const IWTSProtocolConnection, @ptrCast(self)), ppLogonErrorRedir);
+        return self.vtable.GetLogonErrorRedirector(self, ppLogonErrorRedir);
     }
     pub fn SendPolicyData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).SendPolicyData(@as(*const IWTSProtocolConnection, @ptrCast(self)), pPolicyData);
+        return self.vtable.SendPolicyData(self, pPolicyData);
     }
     pub fn AcceptConnection(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).AcceptConnection(@as(*const IWTSProtocolConnection, @ptrCast(self)));
+        return self.vtable.AcceptConnection(self);
     }
     pub fn GetClientData(self: *const IWTSProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetClientData(@as(*const IWTSProtocolConnection, @ptrCast(self)), pClientData);
+        return self.vtable.GetClientData(self, pClientData);
     }
     pub fn GetUserCredentials(self: *const IWTSProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetUserCredentials(@as(*const IWTSProtocolConnection, @ptrCast(self)), pUserCreds);
+        return self.vtable.GetUserCredentials(self, pUserCreds);
     }
     pub fn GetLicenseConnection(self: *const IWTSProtocolConnection, ppLicenseConnection: ?*?*IWTSProtocolLicenseConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetLicenseConnection(@as(*const IWTSProtocolConnection, @ptrCast(self)), ppLicenseConnection);
+        return self.vtable.GetLicenseConnection(self, ppLicenseConnection);
     }
     pub fn AuthenticateClientToSession(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).AuthenticateClientToSession(@as(*const IWTSProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.AuthenticateClientToSession(self, SessionId);
     }
     pub fn NotifySessionId(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).NotifySessionId(@as(*const IWTSProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.NotifySessionId(self, SessionId);
     }
     pub fn GetProtocolHandles(self: *const IWTSProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR, pVideoHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetProtocolHandles(@as(*const IWTSProtocolConnection, @ptrCast(self)), pKeyboardHandle, pMouseHandle, pBeepHandle, pVideoHandle);
+        return self.vtable.GetProtocolHandles(self, pKeyboardHandle, pMouseHandle, pBeepHandle, pVideoHandle);
     }
     pub fn ConnectNotify(self: *const IWTSProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).ConnectNotify(@as(*const IWTSProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.ConnectNotify(self, SessionId);
     }
     pub fn IsUserAllowedToLogon(self: *const IWTSProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).IsUserAllowedToLogon(@as(*const IWTSProtocolConnection, @ptrCast(self)), SessionId, UserToken, pDomainName, pUserName);
+        return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
     pub fn SessionArbitrationEnumeration(self: *const IWTSProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).SessionArbitrationEnumeration(@as(*const IWTSProtocolConnection, @ptrCast(self)), hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
+        return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
     pub fn LogonNotify(self: *const IWTSProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).LogonNotify(@as(*const IWTSProtocolConnection, @ptrCast(self)), hClientToken, wszUserName, wszDomainName, SessionId);
+        return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId);
     }
     pub fn GetUserData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA, pClientData: ?*WTS_USER_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetUserData(@as(*const IWTSProtocolConnection, @ptrCast(self)), pPolicyData, pClientData);
+        return self.vtable.GetUserData(self, pPolicyData, pClientData);
     }
     pub fn DisconnectNotify(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).DisconnectNotify(@as(*const IWTSProtocolConnection, @ptrCast(self)));
+        return self.vtable.DisconnectNotify(self);
     }
     pub fn Close(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).Close(@as(*const IWTSProtocolConnection, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetProtocolStatus(self: *const IWTSProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetProtocolStatus(@as(*const IWTSProtocolConnection, @ptrCast(self)), pProtocolStatus);
+        return self.vtable.GetProtocolStatus(self, pProtocolStatus);
     }
     pub fn GetLastInputTime(self: *const IWTSProtocolConnection, pLastInputTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetLastInputTime(@as(*const IWTSProtocolConnection, @ptrCast(self)), pLastInputTime);
+        return self.vtable.GetLastInputTime(self, pLastInputTime);
     }
     pub fn SetErrorInfo(self: *const IWTSProtocolConnection, ulError: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).SetErrorInfo(@as(*const IWTSProtocolConnection, @ptrCast(self)), ulError);
+        return self.vtable.SetErrorInfo(self, ulError);
     }
     pub fn SendBeep(self: *const IWTSProtocolConnection, Frequency: u32, Duration: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).SendBeep(@as(*const IWTSProtocolConnection, @ptrCast(self)), Frequency, Duration);
+        return self.vtable.SendBeep(self, Frequency, Duration);
     }
     pub fn CreateVirtualChannel(self: *const IWTSProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).CreateVirtualChannel(@as(*const IWTSProtocolConnection, @ptrCast(self)), szEndpointName, bStatic, RequestedPriority, phChannel);
+        return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
     pub fn QueryProperty(self: *const IWTSProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).QueryProperty(@as(*const IWTSProtocolConnection, @ptrCast(self)), QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
+        return self.vtable.QueryProperty(self, QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
     }
     pub fn GetShadowConnection(self: *const IWTSProtocolConnection, ppShadowConnection: ?*?*IWTSProtocolShadowConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnection.VTable, @ptrCast(self.vtable)).GetShadowConnection(@as(*const IWTSProtocolConnection, @ptrCast(self)), ppShadowConnection);
+        return self.vtable.GetShadowConnection(self, ppShadowConnection);
     }
 };
 
@@ -7113,19 +7113,19 @@ pub const IWTSProtocolConnectionCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnReady(self: *const IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).OnReady(@as(*const IWTSProtocolConnectionCallback, @ptrCast(self)));
+        return self.vtable.OnReady(self);
     }
     pub fn BrokenConnection(self: *const IWTSProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).BrokenConnection(@as(*const IWTSProtocolConnectionCallback, @ptrCast(self)), Reason, Source);
+        return self.vtable.BrokenConnection(self, Reason, Source);
     }
     pub fn StopScreenUpdates(self: *const IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).StopScreenUpdates(@as(*const IWTSProtocolConnectionCallback, @ptrCast(self)));
+        return self.vtable.StopScreenUpdates(self);
     }
     pub fn RedrawWindow(self: *const IWTSProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).RedrawWindow(@as(*const IWTSProtocolConnectionCallback, @ptrCast(self)), rect);
+        return self.vtable.RedrawWindow(self, rect);
     }
     pub fn DisplayIOCtl(self: *const IWTSProtocolConnectionCallback, _param_DisplayIOCtl: ?*WTS_DISPLAY_IOCTL) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).DisplayIOCtl(@as(*const IWTSProtocolConnectionCallback, @ptrCast(self)), _param_DisplayIOCtl);
+        return self.vtable.DisplayIOCtl(self, _param_DisplayIOCtl);
     }
 };
 
@@ -7178,13 +7178,13 @@ pub const IWTSProtocolShadowConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IWTSProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWTSProtocolShadowCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolShadowConnection.VTable, @ptrCast(self.vtable)).Start(@as(*const IWTSProtocolShadowConnection, @ptrCast(self)), pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
+        return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
     pub fn Stop(self: *const IWTSProtocolShadowConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolShadowConnection.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWTSProtocolShadowConnection, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn DoTarget(self: *const IWTSProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolShadowConnection.VTable, @ptrCast(self.vtable)).DoTarget(@as(*const IWTSProtocolShadowConnection, @ptrCast(self)), pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
+        return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
 
@@ -7227,10 +7227,10 @@ pub const IWTSProtocolShadowCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StopShadow(self: *const IWTSProtocolShadowCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolShadowCallback.VTable, @ptrCast(self.vtable)).StopShadow(@as(*const IWTSProtocolShadowCallback, @ptrCast(self)));
+        return self.vtable.StopShadow(self);
     }
     pub fn InvokeTargetShadow(self: *const IWTSProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolShadowCallback.VTable, @ptrCast(self.vtable)).InvokeTargetShadow(@as(*const IWTSProtocolShadowCallback, @ptrCast(self)), pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
+        return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
 
@@ -7285,16 +7285,16 @@ pub const IWTSProtocolLicenseConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequestLicensingCapabilities(self: *const IWTSProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).RequestLicensingCapabilities(@as(*const IWTSProtocolLicenseConnection, @ptrCast(self)), ppLicenseCapabilities, pcbLicenseCapabilities);
+        return self.vtable.RequestLicensingCapabilities(self, ppLicenseCapabilities, pcbLicenseCapabilities);
     }
     pub fn SendClientLicense(self: *const IWTSProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).SendClientLicense(@as(*const IWTSProtocolLicenseConnection, @ptrCast(self)), pClientLicense, cbClientLicense);
+        return self.vtable.SendClientLicense(self, pClientLicense, cbClientLicense);
     }
     pub fn RequestClientLicense(self: *const IWTSProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).RequestClientLicense(@as(*const IWTSProtocolLicenseConnection, @ptrCast(self)), Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
+        return self.vtable.RequestClientLicense(self, Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
     }
     pub fn ProtocolComplete(self: *const IWTSProtocolLicenseConnection, ulComplete: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).ProtocolComplete(@as(*const IWTSProtocolLicenseConnection, @ptrCast(self)), ulComplete);
+        return self.vtable.ProtocolComplete(self, ulComplete);
     }
 };
 
@@ -7352,16 +7352,16 @@ pub const IWTSProtocolLogonErrorRedirector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBeginPainting(self: *const IWTSProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).OnBeginPainting(@as(*const IWTSProtocolLogonErrorRedirector, @ptrCast(self)));
+        return self.vtable.OnBeginPainting(self);
     }
     pub fn RedirectStatus(self: *const IWTSProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectStatus(@as(*const IWTSProtocolLogonErrorRedirector, @ptrCast(self)), pszMessage, pResponse);
+        return self.vtable.RedirectStatus(self, pszMessage, pResponse);
     }
     pub fn RedirectMessage(self: *const IWTSProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectMessage(@as(*const IWTSProtocolLogonErrorRedirector, @ptrCast(self)), pszCaption, pszMessage, uType, pResponse);
+        return self.vtable.RedirectMessage(self, pszCaption, pszMessage, uType, pResponse);
     }
     pub fn RedirectLogonError(self: *const IWTSProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWTSProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectLogonError(@as(*const IWTSProtocolLogonErrorRedirector, @ptrCast(self)), ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
+        return self.vtable.RedirectLogonError(self, ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
     }
 };
 
@@ -7399,10 +7399,10 @@ pub const IWRdsProtocolSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSettings(self: *const IWRdsProtocolSettings, WRdsSettingType: WRDS_SETTING_TYPE, WRdsSettingLevel: WRDS_SETTING_LEVEL, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolSettings.VTable, @ptrCast(self.vtable)).GetSettings(@as(*const IWRdsProtocolSettings, @ptrCast(self)), WRdsSettingType, WRdsSettingLevel, pWRdsSettings);
+        return self.vtable.GetSettings(self, WRdsSettingType, WRdsSettingLevel, pWRdsSettings);
     }
     pub fn MergeSettings(self: *const IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS, WRdsConnectionSettingLevel: WRDS_CONNECTION_SETTING_LEVEL, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolSettings.VTable, @ptrCast(self.vtable)).MergeSettings(@as(*const IWRdsProtocolSettings, @ptrCast(self)), pWRdsSettings, WRdsConnectionSettingLevel, pWRdsConnectionSettings);
+        return self.vtable.MergeSettings(self, pWRdsSettings, WRdsConnectionSettingLevel, pWRdsConnectionSettings);
     }
 };
 
@@ -7486,28 +7486,28 @@ pub const IWRdsProtocolManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWRdsProtocolManager, pIWRdsSettings: ?*IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWRdsProtocolManager, @ptrCast(self)), pIWRdsSettings, pWRdsSettings);
+        return self.vtable.Initialize(self, pIWRdsSettings, pWRdsSettings);
     }
     pub fn CreateListener(self: *const IWRdsProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWRdsProtocolListener) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).CreateListener(@as(*const IWRdsProtocolManager, @ptrCast(self)), wszListenerName, pProtocolListener);
+        return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
     pub fn NotifyServiceStateChange(self: *const IWRdsProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).NotifyServiceStateChange(@as(*const IWRdsProtocolManager, @ptrCast(self)), pTSServiceStateChange);
+        return self.vtable.NotifyServiceStateChange(self, pTSServiceStateChange);
     }
     pub fn NotifySessionOfServiceStart(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionOfServiceStart(@as(*const IWRdsProtocolManager, @ptrCast(self)), SessionId);
+        return self.vtable.NotifySessionOfServiceStart(self, SessionId);
     }
     pub fn NotifySessionOfServiceStop(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionOfServiceStop(@as(*const IWRdsProtocolManager, @ptrCast(self)), SessionId);
+        return self.vtable.NotifySessionOfServiceStop(self, SessionId);
     }
     pub fn NotifySessionStateChange(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).NotifySessionStateChange(@as(*const IWRdsProtocolManager, @ptrCast(self)), SessionId, EventId);
+        return self.vtable.NotifySessionStateChange(self, SessionId, EventId);
     }
     pub fn NotifySettingsChange(self: *const IWRdsProtocolManager, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).NotifySettingsChange(@as(*const IWRdsProtocolManager, @ptrCast(self)), pWRdsSettings);
+        return self.vtable.NotifySettingsChange(self, pWRdsSettings);
     }
     pub fn Uninitialize(self: *const IWRdsProtocolManager) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolManager.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IWRdsProtocolManager, @ptrCast(self)));
+        return self.vtable.Uninitialize(self);
     }
 };
 
@@ -7549,13 +7549,13 @@ pub const IWRdsProtocolListener = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSettings(self: *const IWRdsProtocolListener, WRdsListenerSettingLevel: WRDS_LISTENER_SETTING_LEVEL, pWRdsListenerSettings: ?*WRDS_LISTENER_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolListener.VTable, @ptrCast(self.vtable)).GetSettings(@as(*const IWRdsProtocolListener, @ptrCast(self)), WRdsListenerSettingLevel, pWRdsListenerSettings);
+        return self.vtable.GetSettings(self, WRdsListenerSettingLevel, pWRdsListenerSettings);
     }
     pub fn StartListen(self: *const IWRdsProtocolListener, pCallback: ?*IWRdsProtocolListenerCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolListener.VTable, @ptrCast(self.vtable)).StartListen(@as(*const IWRdsProtocolListener, @ptrCast(self)), pCallback);
+        return self.vtable.StartListen(self, pCallback);
     }
     pub fn StopListen(self: *const IWRdsProtocolListener) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolListener.VTable, @ptrCast(self.vtable)).StopListen(@as(*const IWRdsProtocolListener, @ptrCast(self)));
+        return self.vtable.StopListen(self);
     }
 };
 
@@ -7583,7 +7583,7 @@ pub const IWRdsProtocolListenerCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnected(self: *const IWRdsProtocolListenerCallback, pConnection: ?*IWRdsProtocolConnection, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS, pCallback: ?*?*IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolListenerCallback.VTable, @ptrCast(self.vtable)).OnConnected(@as(*const IWRdsProtocolListenerCallback, @ptrCast(self)), pConnection, pWRdsConnectionSettings, pCallback);
+        return self.vtable.OnConnected(self, pConnection, pWRdsConnectionSettings, pCallback);
     }
 };
 
@@ -7811,76 +7811,76 @@ pub const IWRdsProtocolConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLogonErrorRedirector(self: *const IWRdsProtocolConnection, ppLogonErrorRedir: ?*?*IWRdsProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetLogonErrorRedirector(@as(*const IWRdsProtocolConnection, @ptrCast(self)), ppLogonErrorRedir);
+        return self.vtable.GetLogonErrorRedirector(self, ppLogonErrorRedir);
     }
     pub fn AcceptConnection(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).AcceptConnection(@as(*const IWRdsProtocolConnection, @ptrCast(self)));
+        return self.vtable.AcceptConnection(self);
     }
     pub fn GetClientData(self: *const IWRdsProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetClientData(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pClientData);
+        return self.vtable.GetClientData(self, pClientData);
     }
     pub fn GetClientMonitorData(self: *const IWRdsProtocolConnection, pNumMonitors: ?*u32, pPrimaryMonitor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetClientMonitorData(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pNumMonitors, pPrimaryMonitor);
+        return self.vtable.GetClientMonitorData(self, pNumMonitors, pPrimaryMonitor);
     }
     pub fn GetUserCredentials(self: *const IWRdsProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetUserCredentials(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pUserCreds);
+        return self.vtable.GetUserCredentials(self, pUserCreds);
     }
     pub fn GetLicenseConnection(self: *const IWRdsProtocolConnection, ppLicenseConnection: ?*?*IWRdsProtocolLicenseConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetLicenseConnection(@as(*const IWRdsProtocolConnection, @ptrCast(self)), ppLicenseConnection);
+        return self.vtable.GetLicenseConnection(self, ppLicenseConnection);
     }
     pub fn AuthenticateClientToSession(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).AuthenticateClientToSession(@as(*const IWRdsProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.AuthenticateClientToSession(self, SessionId);
     }
     pub fn NotifySessionId(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID, SessionHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).NotifySessionId(@as(*const IWRdsProtocolConnection, @ptrCast(self)), SessionId, SessionHandle);
+        return self.vtable.NotifySessionId(self, SessionId, SessionHandle);
     }
     pub fn GetInputHandles(self: *const IWRdsProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetInputHandles(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pKeyboardHandle, pMouseHandle, pBeepHandle);
+        return self.vtable.GetInputHandles(self, pKeyboardHandle, pMouseHandle, pBeepHandle);
     }
     pub fn GetVideoHandle(self: *const IWRdsProtocolConnection, pVideoHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetVideoHandle(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pVideoHandle);
+        return self.vtable.GetVideoHandle(self, pVideoHandle);
     }
     pub fn ConnectNotify(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).ConnectNotify(@as(*const IWRdsProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.ConnectNotify(self, SessionId);
     }
     pub fn IsUserAllowedToLogon(self: *const IWRdsProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).IsUserAllowedToLogon(@as(*const IWRdsProtocolConnection, @ptrCast(self)), SessionId, UserToken, pDomainName, pUserName);
+        return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
     pub fn SessionArbitrationEnumeration(self: *const IWRdsProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).SessionArbitrationEnumeration(@as(*const IWRdsProtocolConnection, @ptrCast(self)), hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
+        return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
     pub fn LogonNotify(self: *const IWRdsProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).LogonNotify(@as(*const IWRdsProtocolConnection, @ptrCast(self)), hClientToken, wszUserName, wszDomainName, SessionId, pWRdsConnectionSettings);
+        return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId, pWRdsConnectionSettings);
     }
     pub fn PreDisconnect(self: *const IWRdsProtocolConnection, DisconnectReason: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).PreDisconnect(@as(*const IWRdsProtocolConnection, @ptrCast(self)), DisconnectReason);
+        return self.vtable.PreDisconnect(self, DisconnectReason);
     }
     pub fn DisconnectNotify(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).DisconnectNotify(@as(*const IWRdsProtocolConnection, @ptrCast(self)));
+        return self.vtable.DisconnectNotify(self);
     }
     pub fn Close(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).Close(@as(*const IWRdsProtocolConnection, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetProtocolStatus(self: *const IWRdsProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetProtocolStatus(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pProtocolStatus);
+        return self.vtable.GetProtocolStatus(self, pProtocolStatus);
     }
     pub fn GetLastInputTime(self: *const IWRdsProtocolConnection, pLastInputTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetLastInputTime(@as(*const IWRdsProtocolConnection, @ptrCast(self)), pLastInputTime);
+        return self.vtable.GetLastInputTime(self, pLastInputTime);
     }
     pub fn SetErrorInfo(self: *const IWRdsProtocolConnection, ulError: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).SetErrorInfo(@as(*const IWRdsProtocolConnection, @ptrCast(self)), ulError);
+        return self.vtable.SetErrorInfo(self, ulError);
     }
     pub fn CreateVirtualChannel(self: *const IWRdsProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).CreateVirtualChannel(@as(*const IWRdsProtocolConnection, @ptrCast(self)), szEndpointName, bStatic, RequestedPriority, phChannel);
+        return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
     pub fn QueryProperty(self: *const IWRdsProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).QueryProperty(@as(*const IWRdsProtocolConnection, @ptrCast(self)), QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
+        return self.vtable.QueryProperty(self, QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
     }
     pub fn GetShadowConnection(self: *const IWRdsProtocolConnection, ppShadowConnection: ?*?*IWRdsProtocolShadowConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).GetShadowConnection(@as(*const IWRdsProtocolConnection, @ptrCast(self)), ppShadowConnection);
+        return self.vtable.GetShadowConnection(self, ppShadowConnection);
     }
     pub fn NotifyCommandProcessCreated(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnection.VTable, @ptrCast(self.vtable)).NotifyCommandProcessCreated(@as(*const IWRdsProtocolConnection, @ptrCast(self)), SessionId);
+        return self.vtable.NotifyCommandProcessCreated(self, SessionId);
     }
 };
 
@@ -7937,19 +7937,19 @@ pub const IWRdsProtocolConnectionCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnReady(self: *const IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).OnReady(@as(*const IWRdsProtocolConnectionCallback, @ptrCast(self)));
+        return self.vtable.OnReady(self);
     }
     pub fn BrokenConnection(self: *const IWRdsProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).BrokenConnection(@as(*const IWRdsProtocolConnectionCallback, @ptrCast(self)), Reason, Source);
+        return self.vtable.BrokenConnection(self, Reason, Source);
     }
     pub fn StopScreenUpdates(self: *const IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).StopScreenUpdates(@as(*const IWRdsProtocolConnectionCallback, @ptrCast(self)));
+        return self.vtable.StopScreenUpdates(self);
     }
     pub fn RedrawWindow(self: *const IWRdsProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).RedrawWindow(@as(*const IWRdsProtocolConnectionCallback, @ptrCast(self)), rect);
+        return self.vtable.RedrawWindow(self, rect);
     }
     pub fn GetConnectionId(self: *const IWRdsProtocolConnectionCallback, pConnectionId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionCallback.VTable, @ptrCast(self.vtable)).GetConnectionId(@as(*const IWRdsProtocolConnectionCallback, @ptrCast(self)), pConnectionId);
+        return self.vtable.GetConnectionId(self, pConnectionId);
     }
 };
 
@@ -8002,13 +8002,13 @@ pub const IWRdsProtocolShadowConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IWRdsProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWRdsProtocolShadowCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolShadowConnection.VTable, @ptrCast(self.vtable)).Start(@as(*const IWRdsProtocolShadowConnection, @ptrCast(self)), pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
+        return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
     pub fn Stop(self: *const IWRdsProtocolShadowConnection) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolShadowConnection.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWRdsProtocolShadowConnection, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn DoTarget(self: *const IWRdsProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolShadowConnection.VTable, @ptrCast(self.vtable)).DoTarget(@as(*const IWRdsProtocolShadowConnection, @ptrCast(self)), pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
+        return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
 
@@ -8051,10 +8051,10 @@ pub const IWRdsProtocolShadowCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StopShadow(self: *const IWRdsProtocolShadowCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolShadowCallback.VTable, @ptrCast(self.vtable)).StopShadow(@as(*const IWRdsProtocolShadowCallback, @ptrCast(self)));
+        return self.vtable.StopShadow(self);
     }
     pub fn InvokeTargetShadow(self: *const IWRdsProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolShadowCallback.VTable, @ptrCast(self.vtable)).InvokeTargetShadow(@as(*const IWRdsProtocolShadowCallback, @ptrCast(self)), pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
+        return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
 
@@ -8109,16 +8109,16 @@ pub const IWRdsProtocolLicenseConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequestLicensingCapabilities(self: *const IWRdsProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).RequestLicensingCapabilities(@as(*const IWRdsProtocolLicenseConnection, @ptrCast(self)), ppLicenseCapabilities, pcbLicenseCapabilities);
+        return self.vtable.RequestLicensingCapabilities(self, ppLicenseCapabilities, pcbLicenseCapabilities);
     }
     pub fn SendClientLicense(self: *const IWRdsProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).SendClientLicense(@as(*const IWRdsProtocolLicenseConnection, @ptrCast(self)), pClientLicense, cbClientLicense);
+        return self.vtable.SendClientLicense(self, pClientLicense, cbClientLicense);
     }
     pub fn RequestClientLicense(self: *const IWRdsProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).RequestClientLicense(@as(*const IWRdsProtocolLicenseConnection, @ptrCast(self)), Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
+        return self.vtable.RequestClientLicense(self, Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
     }
     pub fn ProtocolComplete(self: *const IWRdsProtocolLicenseConnection, ulComplete: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLicenseConnection.VTable, @ptrCast(self.vtable)).ProtocolComplete(@as(*const IWRdsProtocolLicenseConnection, @ptrCast(self)), ulComplete);
+        return self.vtable.ProtocolComplete(self, ulComplete);
     }
 };
 
@@ -8176,16 +8176,16 @@ pub const IWRdsProtocolLogonErrorRedirector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBeginPainting(self: *const IWRdsProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).OnBeginPainting(@as(*const IWRdsProtocolLogonErrorRedirector, @ptrCast(self)));
+        return self.vtable.OnBeginPainting(self);
     }
     pub fn RedirectStatus(self: *const IWRdsProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectStatus(@as(*const IWRdsProtocolLogonErrorRedirector, @ptrCast(self)), pszMessage, pResponse);
+        return self.vtable.RedirectStatus(self, pszMessage, pResponse);
     }
     pub fn RedirectMessage(self: *const IWRdsProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectMessage(@as(*const IWRdsProtocolLogonErrorRedirector, @ptrCast(self)), pszCaption, pszMessage, uType, pResponse);
+        return self.vtable.RedirectMessage(self, pszCaption, pszMessage, uType, pResponse);
     }
     pub fn RedirectLogonError(self: *const IWRdsProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolLogonErrorRedirector.VTable, @ptrCast(self.vtable)).RedirectLogonError(@as(*const IWRdsProtocolLogonErrorRedirector, @ptrCast(self)), ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
+        return self.vtable.RedirectLogonError(self, ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
     }
 };
 
@@ -8236,16 +8236,16 @@ pub const IWRdsWddmIddProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHardwareId(self: *const IWRdsWddmIddProps, pDisplayDriverHardwareId: [*:0]u16, Count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsWddmIddProps.VTable, @ptrCast(self.vtable)).GetHardwareId(@as(*const IWRdsWddmIddProps, @ptrCast(self)), pDisplayDriverHardwareId, Count);
+        return self.vtable.GetHardwareId(self, pDisplayDriverHardwareId, Count);
     }
     pub fn OnDriverLoad(self: *const IWRdsWddmIddProps, SessionId: u32, DriverHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsWddmIddProps.VTable, @ptrCast(self.vtable)).OnDriverLoad(@as(*const IWRdsWddmIddProps, @ptrCast(self)), SessionId, DriverHandle);
+        return self.vtable.OnDriverLoad(self, SessionId, DriverHandle);
     }
     pub fn OnDriverUnload(self: *const IWRdsWddmIddProps, SessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsWddmIddProps.VTable, @ptrCast(self.vtable)).OnDriverUnload(@as(*const IWRdsWddmIddProps, @ptrCast(self)), SessionId);
+        return self.vtable.OnDriverUnload(self, SessionId);
     }
     pub fn EnableWddmIdd(self: *const IWRdsWddmIddProps, Enabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsWddmIddProps.VTable, @ptrCast(self.vtable)).EnableWddmIdd(@as(*const IWRdsWddmIddProps, @ptrCast(self)), Enabled);
+        return self.vtable.EnableWddmIdd(self, Enabled);
     }
 };
 
@@ -8280,10 +8280,10 @@ pub const IWRdsProtocolConnectionSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesIn: ?*WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionSettings.VTable, @ptrCast(self.vtable)).SetConnectionSetting(@as(*const IWRdsProtocolConnectionSettings, @ptrCast(self)), PropertyID, pPropertyEntriesIn);
+        return self.vtable.SetConnectionSetting(self, PropertyID, pPropertyEntriesIn);
     }
     pub fn GetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesOut: ?*WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsProtocolConnectionSettings.VTable, @ptrCast(self.vtable)).GetConnectionSetting(@as(*const IWRdsProtocolConnectionSettings, @ptrCast(self)), PropertyID, pPropertyEntriesOut);
+        return self.vtable.GetConnectionSetting(self, PropertyID, pPropertyEntriesOut);
     }
 };
 
@@ -8310,7 +8310,7 @@ pub const IWRdsEnhancedFastReconnectArbitrator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSessionForEnhancedFastReconnect(self: *const IWRdsEnhancedFastReconnectArbitrator, pSessionIdArray: ?*i32, dwSessionCount: u32, pResultSessionId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWRdsEnhancedFastReconnectArbitrator.VTable, @ptrCast(self.vtable)).GetSessionForEnhancedFastReconnect(@as(*const IWRdsEnhancedFastReconnectArbitrator, @ptrCast(self)), pSessionIdArray, dwSessionCount, pResultSessionId);
+        return self.vtable.GetSessionForEnhancedFastReconnect(self, pSessionIdArray, dwSessionCount, pResultSessionId);
     }
 };
 
@@ -8371,16 +8371,16 @@ pub const IRemoteDesktopClientSettings = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn ApplySettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientSettings.VTable, @ptrCast(self.vtable)).ApplySettings(@as(*const IRemoteDesktopClientSettings, @ptrCast(self)), rdpFileContents);
+        return self.vtable.ApplySettings(self, rdpFileContents);
     }
     pub fn RetrieveSettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientSettings.VTable, @ptrCast(self.vtable)).RetrieveSettings(@as(*const IRemoteDesktopClientSettings, @ptrCast(self)), rdpFileContents);
+        return self.vtable.RetrieveSettings(self, rdpFileContents);
     }
     pub fn GetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientSettings.VTable, @ptrCast(self.vtable)).GetRdpProperty(@as(*const IRemoteDesktopClientSettings, @ptrCast(self)), propertyName, value);
+        return self.vtable.GetRdpProperty(self, propertyName, value);
     }
     pub fn SetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientSettings.VTable, @ptrCast(self.vtable)).SetRdpProperty(@as(*const IRemoteDesktopClientSettings, @ptrCast(self)), propertyName, value);
+        return self.vtable.SetRdpProperty(self, propertyName, value);
     }
 };
 
@@ -8459,16 +8459,16 @@ pub const IRemoteDesktopClientActions = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SuspendScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientActions.VTable, @ptrCast(self.vtable)).SuspendScreenUpdates(@as(*const IRemoteDesktopClientActions, @ptrCast(self)));
+        return self.vtable.SuspendScreenUpdates(self);
     }
     pub fn ResumeScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientActions.VTable, @ptrCast(self.vtable)).ResumeScreenUpdates(@as(*const IRemoteDesktopClientActions, @ptrCast(self)));
+        return self.vtable.ResumeScreenUpdates(self);
     }
     pub fn ExecuteRemoteAction(self: *const IRemoteDesktopClientActions, remoteAction: RemoteActionType) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientActions.VTable, @ptrCast(self.vtable)).ExecuteRemoteAction(@as(*const IRemoteDesktopClientActions, @ptrCast(self)), remoteAction);
+        return self.vtable.ExecuteRemoteAction(self, remoteAction);
     }
     pub fn GetSnapshot(self: *const IRemoteDesktopClientActions, snapshotEncoding: SnapshotEncodingType, snapshotFormat: SnapshotFormatType, snapshotWidth: u32, snapshotHeight: u32, snapshotData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientActions.VTable, @ptrCast(self.vtable)).GetSnapshot(@as(*const IRemoteDesktopClientActions, @ptrCast(self)), snapshotEncoding, snapshotFormat, snapshotWidth, snapshotHeight, snapshotData);
+        return self.vtable.GetSnapshot(self, snapshotEncoding, snapshotFormat, snapshotWidth, snapshotHeight, snapshotData);
     }
 };
 
@@ -8540,22 +8540,22 @@ pub const IRemoteDesktopClientTouchPointer = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), enabled);
+        return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), enabled);
+        return self.vtable.get_Enabled(self, enabled);
     }
     pub fn put_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).put_EventsEnabled(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), eventsEnabled);
+        return self.vtable.put_EventsEnabled(self, eventsEnabled);
     }
     pub fn get_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).get_EventsEnabled(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), eventsEnabled);
+        return self.vtable.get_EventsEnabled(self, eventsEnabled);
     }
     pub fn put_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).put_PointerSpeed(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), pointerSpeed);
+        return self.vtable.put_PointerSpeed(self, pointerSpeed);
     }
     pub fn get_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClientTouchPointer.VTable, @ptrCast(self.vtable)).get_PointerSpeed(@as(*const IRemoteDesktopClientTouchPointer, @ptrCast(self)), pointerSpeed);
+        return self.vtable.get_PointerSpeed(self, pointerSpeed);
     }
 };
 
@@ -8673,34 +8673,34 @@ pub const IRemoteDesktopClient = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Connect(self: *const IRemoteDesktopClient) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).Connect(@as(*const IRemoteDesktopClient, @ptrCast(self)));
+        return self.vtable.Connect(self);
     }
     pub fn Disconnect(self: *const IRemoteDesktopClient) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IRemoteDesktopClient, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
     pub fn Reconnect(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).Reconnect(@as(*const IRemoteDesktopClient, @ptrCast(self)), width, height);
+        return self.vtable.Reconnect(self, width, height);
     }
     pub fn get_Settings(self: *const IRemoteDesktopClient, settings: ?*?*IRemoteDesktopClientSettings) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).get_Settings(@as(*const IRemoteDesktopClient, @ptrCast(self)), settings);
+        return self.vtable.get_Settings(self, settings);
     }
     pub fn get_Actions(self: *const IRemoteDesktopClient, actions: ?*?*IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).get_Actions(@as(*const IRemoteDesktopClient, @ptrCast(self)), actions);
+        return self.vtable.get_Actions(self, actions);
     }
     pub fn get_TouchPointer(self: *const IRemoteDesktopClient, touchPointer: ?*?*IRemoteDesktopClientTouchPointer) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).get_TouchPointer(@as(*const IRemoteDesktopClient, @ptrCast(self)), touchPointer);
+        return self.vtable.get_TouchPointer(self, touchPointer);
     }
     pub fn DeleteSavedCredentials(self: *const IRemoteDesktopClient, serverName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).DeleteSavedCredentials(@as(*const IRemoteDesktopClient, @ptrCast(self)), serverName);
+        return self.vtable.DeleteSavedCredentials(self, serverName);
     }
     pub fn UpdateSessionDisplaySettings(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).UpdateSessionDisplaySettings(@as(*const IRemoteDesktopClient, @ptrCast(self)), width, height);
+        return self.vtable.UpdateSessionDisplaySettings(self, width, height);
     }
     pub fn attachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).attachEvent(@as(*const IRemoteDesktopClient, @ptrCast(self)), eventName, callback);
+        return self.vtable.attachEvent(self, eventName, callback);
     }
     pub fn detachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteDesktopClient.VTable, @ptrCast(self.vtable)).detachEvent(@as(*const IRemoteDesktopClient, @ptrCast(self)), eventName, callback);
+        return self.vtable.detachEvent(self, eventName, callback);
     }
 };
 
@@ -8727,7 +8727,7 @@ pub const IRemoteSystemAdditionalInfoProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAdditionalInfo(self: *const IRemoteSystemAdditionalInfoProvider, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteSystemAdditionalInfoProvider.VTable, @ptrCast(self.vtable)).GetAdditionalInfo(@as(*const IRemoteSystemAdditionalInfoProvider, @ptrCast(self)), deduplicationId, riid, mapView);
+        return self.vtable.GetAdditionalInfo(self, deduplicationId, riid, mapView);
     }
 };
 

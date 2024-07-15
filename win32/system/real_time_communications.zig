@@ -1172,130 +1172,130 @@ pub const IRTCClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRTCClient, @ptrCast(self)));
+        return self.vtable.Initialize(self);
     }
     pub fn Shutdown(self: *const IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IRTCClient, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn PrepareForShutdown(self: *const IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).PrepareForShutdown(@as(*const IRTCClient, @ptrCast(self)));
+        return self.vtable.PrepareForShutdown(self);
     }
     pub fn put_EventFilter(self: *const IRTCClient, lFilter: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_EventFilter(@as(*const IRTCClient, @ptrCast(self)), lFilter);
+        return self.vtable.put_EventFilter(self, lFilter);
     }
     pub fn get_EventFilter(self: *const IRTCClient, plFilter: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_EventFilter(@as(*const IRTCClient, @ptrCast(self)), plFilter);
+        return self.vtable.get_EventFilter(self, plFilter);
     }
     pub fn SetPreferredMediaTypes(self: *const IRTCClient, lMediaTypes: i32, fPersistent: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).SetPreferredMediaTypes(@as(*const IRTCClient, @ptrCast(self)), lMediaTypes, fPersistent);
+        return self.vtable.SetPreferredMediaTypes(self, lMediaTypes, fPersistent);
     }
     pub fn get_PreferredMediaTypes(self: *const IRTCClient, plMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredMediaTypes(@as(*const IRTCClient, @ptrCast(self)), plMediaTypes);
+        return self.vtable.get_PreferredMediaTypes(self, plMediaTypes);
     }
     pub fn get_MediaCapabilities(self: *const IRTCClient, plMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_MediaCapabilities(@as(*const IRTCClient, @ptrCast(self)), plMediaTypes);
+        return self.vtable.get_MediaCapabilities(self, plMediaTypes);
     }
     pub fn CreateSession(self: *const IRTCClient, enType: RTC_SESSION_TYPE, bstrLocalPhoneURI: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppSession: ?*?*IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IRTCClient, @ptrCast(self)), enType, bstrLocalPhoneURI, pProfile, lFlags, ppSession);
+        return self.vtable.CreateSession(self, enType, bstrLocalPhoneURI, pProfile, lFlags, ppSession);
     }
     pub fn put_ListenForIncomingSessions(self: *const IRTCClient, enListen: RTC_LISTEN_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_ListenForIncomingSessions(@as(*const IRTCClient, @ptrCast(self)), enListen);
+        return self.vtable.put_ListenForIncomingSessions(self, enListen);
     }
     pub fn get_ListenForIncomingSessions(self: *const IRTCClient, penListen: ?*RTC_LISTEN_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_ListenForIncomingSessions(@as(*const IRTCClient, @ptrCast(self)), penListen);
+        return self.vtable.get_ListenForIncomingSessions(self, penListen);
     }
     pub fn get_NetworkAddresses(self: *const IRTCClient, fTCP: i16, fExternal: i16, pvAddresses: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_NetworkAddresses(@as(*const IRTCClient, @ptrCast(self)), fTCP, fExternal, pvAddresses);
+        return self.vtable.get_NetworkAddresses(self, fTCP, fExternal, pvAddresses);
     }
     pub fn put_Volume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, lVolume: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const IRTCClient, @ptrCast(self)), enDevice, lVolume);
+        return self.vtable.put_Volume(self, enDevice, lVolume);
     }
     pub fn get_Volume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const IRTCClient, @ptrCast(self)), enDevice, plVolume);
+        return self.vtable.get_Volume(self, enDevice, plVolume);
     }
     pub fn put_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, fMuted: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_AudioMuted(@as(*const IRTCClient, @ptrCast(self)), enDevice, fMuted);
+        return self.vtable.put_AudioMuted(self, enDevice, fMuted);
     }
     pub fn get_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, pfMuted: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_AudioMuted(@as(*const IRTCClient, @ptrCast(self)), enDevice, pfMuted);
+        return self.vtable.get_AudioMuted(self, enDevice, pfMuted);
     }
     pub fn get_IVideoWindow(self: *const IRTCClient, enDevice: RTC_VIDEO_DEVICE, ppIVideoWindow: ?*?*IVideoWindow) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IVideoWindow(@as(*const IRTCClient, @ptrCast(self)), enDevice, ppIVideoWindow);
+        return self.vtable.get_IVideoWindow(self, enDevice, ppIVideoWindow);
     }
     pub fn put_PreferredAudioDevice(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, bstrDeviceName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredAudioDevice(@as(*const IRTCClient, @ptrCast(self)), enDevice, bstrDeviceName);
+        return self.vtable.put_PreferredAudioDevice(self, enDevice, bstrDeviceName);
     }
     pub fn get_PreferredAudioDevice(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredAudioDevice(@as(*const IRTCClient, @ptrCast(self)), enDevice, pbstrDeviceName);
+        return self.vtable.get_PreferredAudioDevice(self, enDevice, pbstrDeviceName);
     }
     pub fn put_PreferredVolume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, lVolume: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredVolume(@as(*const IRTCClient, @ptrCast(self)), enDevice, lVolume);
+        return self.vtable.put_PreferredVolume(self, enDevice, lVolume);
     }
     pub fn get_PreferredVolume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredVolume(@as(*const IRTCClient, @ptrCast(self)), enDevice, plVolume);
+        return self.vtable.get_PreferredVolume(self, enDevice, plVolume);
     }
     pub fn put_PreferredAEC(self: *const IRTCClient, bEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredAEC(@as(*const IRTCClient, @ptrCast(self)), bEnable);
+        return self.vtable.put_PreferredAEC(self, bEnable);
     }
     pub fn get_PreferredAEC(self: *const IRTCClient, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredAEC(@as(*const IRTCClient, @ptrCast(self)), pbEnabled);
+        return self.vtable.get_PreferredAEC(self, pbEnabled);
     }
     pub fn put_PreferredVideoDevice(self: *const IRTCClient, bstrDeviceName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredVideoDevice(@as(*const IRTCClient, @ptrCast(self)), bstrDeviceName);
+        return self.vtable.put_PreferredVideoDevice(self, bstrDeviceName);
     }
     pub fn get_PreferredVideoDevice(self: *const IRTCClient, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredVideoDevice(@as(*const IRTCClient, @ptrCast(self)), pbstrDeviceName);
+        return self.vtable.get_PreferredVideoDevice(self, pbstrDeviceName);
     }
     pub fn get_ActiveMedia(self: *const IRTCClient, plMediaType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_ActiveMedia(@as(*const IRTCClient, @ptrCast(self)), plMediaType);
+        return self.vtable.get_ActiveMedia(self, plMediaType);
     }
     pub fn put_MaxBitrate(self: *const IRTCClient, lMaxBitrate: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_MaxBitrate(@as(*const IRTCClient, @ptrCast(self)), lMaxBitrate);
+        return self.vtable.put_MaxBitrate(self, lMaxBitrate);
     }
     pub fn get_MaxBitrate(self: *const IRTCClient, plMaxBitrate: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_MaxBitrate(@as(*const IRTCClient, @ptrCast(self)), plMaxBitrate);
+        return self.vtable.get_MaxBitrate(self, plMaxBitrate);
     }
     pub fn put_TemporalSpatialTradeOff(self: *const IRTCClient, lValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_TemporalSpatialTradeOff(@as(*const IRTCClient, @ptrCast(self)), lValue);
+        return self.vtable.put_TemporalSpatialTradeOff(self, lValue);
     }
     pub fn get_TemporalSpatialTradeOff(self: *const IRTCClient, plValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_TemporalSpatialTradeOff(@as(*const IRTCClient, @ptrCast(self)), plValue);
+        return self.vtable.get_TemporalSpatialTradeOff(self, plValue);
     }
     pub fn get_NetworkQuality(self: *const IRTCClient, plNetworkQuality: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_NetworkQuality(@as(*const IRTCClient, @ptrCast(self)), plNetworkQuality);
+        return self.vtable.get_NetworkQuality(self, plNetworkQuality);
     }
     pub fn StartT120Applet(self: *const IRTCClient, enApplet: RTC_T120_APPLET) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).StartT120Applet(@as(*const IRTCClient, @ptrCast(self)), enApplet);
+        return self.vtable.StartT120Applet(self, enApplet);
     }
     pub fn StopT120Applets(self: *const IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).StopT120Applets(@as(*const IRTCClient, @ptrCast(self)));
+        return self.vtable.StopT120Applets(self);
     }
     pub fn get_IsT120AppletRunning(self: *const IRTCClient, enApplet: RTC_T120_APPLET, pfRunning: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IsT120AppletRunning(@as(*const IRTCClient, @ptrCast(self)), enApplet, pfRunning);
+        return self.vtable.get_IsT120AppletRunning(self, enApplet, pfRunning);
     }
     pub fn get_LocalUserURI(self: *const IRTCClient, pbstrUserURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_LocalUserURI(@as(*const IRTCClient, @ptrCast(self)), pbstrUserURI);
+        return self.vtable.get_LocalUserURI(self, pbstrUserURI);
     }
     pub fn put_LocalUserURI(self: *const IRTCClient, bstrUserURI: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_LocalUserURI(@as(*const IRTCClient, @ptrCast(self)), bstrUserURI);
+        return self.vtable.put_LocalUserURI(self, bstrUserURI);
     }
     pub fn get_LocalUserName(self: *const IRTCClient, pbstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_LocalUserName(@as(*const IRTCClient, @ptrCast(self)), pbstrUserName);
+        return self.vtable.get_LocalUserName(self, pbstrUserName);
     }
     pub fn put_LocalUserName(self: *const IRTCClient, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_LocalUserName(@as(*const IRTCClient, @ptrCast(self)), bstrUserName);
+        return self.vtable.put_LocalUserName(self, bstrUserName);
     }
     pub fn PlayRing(self: *const IRTCClient, enType: RTC_RING_TYPE, bPlay: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).PlayRing(@as(*const IRTCClient, @ptrCast(self)), enType, bPlay);
+        return self.vtable.PlayRing(self, enType, bPlay);
     }
     pub fn SendDTMF(self: *const IRTCClient, enDTMF: RTC_DTMF) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).SendDTMF(@as(*const IRTCClient, @ptrCast(self)), enDTMF);
+        return self.vtable.SendDTMF(self, enDTMF);
     }
     pub fn InvokeTuningWizard(self: *const IRTCClient, hwndParent: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).InvokeTuningWizard(@as(*const IRTCClient, @ptrCast(self)), hwndParent);
+        return self.vtable.InvokeTuningWizard(self, hwndParent);
     }
     pub fn get_IsTuned(self: *const IRTCClient, pfTuned: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IsTuned(@as(*const IRTCClient, @ptrCast(self)), pfTuned);
+        return self.vtable.get_IsTuned(self, pfTuned);
     }
 };
 
@@ -1431,43 +1431,43 @@ pub const IRTCClient2 = extern union {
     };}
     pub usingnamespace IRTCClient.MethodMixin(@This());
     pub fn put_AnswerMode(self: *const IRTCClient2, enType: RTC_SESSION_TYPE, enMode: RTC_ANSWER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_AnswerMode(@as(*const IRTCClient2, @ptrCast(self)), enType, enMode);
+        return self.vtable.put_AnswerMode(self, enType, enMode);
     }
     pub fn get_AnswerMode(self: *const IRTCClient2, enType: RTC_SESSION_TYPE, penMode: ?*RTC_ANSWER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_AnswerMode(@as(*const IRTCClient2, @ptrCast(self)), enType, penMode);
+        return self.vtable.get_AnswerMode(self, enType, penMode);
     }
     pub fn InvokeTuningWizardEx(self: *const IRTCClient2, hwndParent: isize, fAllowAudio: i16, fAllowVideo: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).InvokeTuningWizardEx(@as(*const IRTCClient2, @ptrCast(self)), hwndParent, fAllowAudio, fAllowVideo);
+        return self.vtable.InvokeTuningWizardEx(self, hwndParent, fAllowAudio, fAllowVideo);
     }
     pub fn get_Version(self: *const IRTCClient2, plVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IRTCClient2, @ptrCast(self)), plVersion);
+        return self.vtable.get_Version(self, plVersion);
     }
     pub fn put_ClientName(self: *const IRTCClient2, bstrClientName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IRTCClient2, @ptrCast(self)), bstrClientName);
+        return self.vtable.put_ClientName(self, bstrClientName);
     }
     pub fn put_ClientCurVer(self: *const IRTCClient2, bstrClientCurVer: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_ClientCurVer(@as(*const IRTCClient2, @ptrCast(self)), bstrClientCurVer);
+        return self.vtable.put_ClientCurVer(self, bstrClientCurVer);
     }
     pub fn InitializeEx(self: *const IRTCClient2, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).InitializeEx(@as(*const IRTCClient2, @ptrCast(self)), lFlags);
+        return self.vtable.InitializeEx(self, lFlags);
     }
     pub fn CreateSessionWithDescription(self: *const IRTCClient2, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppSession2: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).CreateSessionWithDescription(@as(*const IRTCClient2, @ptrCast(self)), bstrContentType, bstrSessionDescription, pProfile, lFlags, ppSession2);
+        return self.vtable.CreateSessionWithDescription(self, bstrContentType, bstrSessionDescription, pProfile, lFlags, ppSession2);
     }
     pub fn SetSessionDescriptionManager(self: *const IRTCClient2, pSessionDescriptionManager: ?*IRTCSessionDescriptionManager) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).SetSessionDescriptionManager(@as(*const IRTCClient2, @ptrCast(self)), pSessionDescriptionManager);
+        return self.vtable.SetSessionDescriptionManager(self, pSessionDescriptionManager);
     }
     pub fn put_PreferredSecurityLevel(self: *const IRTCClient2, enSecurityType: RTC_SECURITY_TYPE, enSecurityLevel: RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_PreferredSecurityLevel(@as(*const IRTCClient2, @ptrCast(self)), enSecurityType, enSecurityLevel);
+        return self.vtable.put_PreferredSecurityLevel(self, enSecurityType, enSecurityLevel);
     }
     pub fn get_PreferredSecurityLevel(self: *const IRTCClient2, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_PreferredSecurityLevel(@as(*const IRTCClient2, @ptrCast(self)), enSecurityType, penSecurityLevel);
+        return self.vtable.get_PreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
     pub fn put_AllowedPorts(self: *const IRTCClient2, lTransport: i32, enListenMode: RTC_LISTEN_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_AllowedPorts(@as(*const IRTCClient2, @ptrCast(self)), lTransport, enListenMode);
+        return self.vtable.put_AllowedPorts(self, lTransport, enListenMode);
     }
     pub fn get_AllowedPorts(self: *const IRTCClient2, lTransport: i32, penListenMode: ?*RTC_LISTEN_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_AllowedPorts(@as(*const IRTCClient2, @ptrCast(self)), lTransport, penListenMode);
+        return self.vtable.get_AllowedPorts(self, lTransport, penListenMode);
     }
 };
 
@@ -1650,58 +1650,58 @@ pub const IRTCClientPresence = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnablePresence(self: *const IRTCClientPresence, fUseStorage: i16, varStorage: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnablePresence(@as(*const IRTCClientPresence, @ptrCast(self)), fUseStorage, varStorage);
+        return self.vtable.EnablePresence(self, fUseStorage, varStorage);
     }
     pub fn Export(self: *const IRTCClientPresence, varStorage: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).Export(@as(*const IRTCClientPresence, @ptrCast(self)), varStorage);
+        return self.vtable.Export(self, varStorage);
     }
     pub fn Import(self: *const IRTCClientPresence, varStorage: VARIANT, fReplaceAll: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).Import(@as(*const IRTCClientPresence, @ptrCast(self)), varStorage, fReplaceAll);
+        return self.vtable.Import(self, varStorage, fReplaceAll);
     }
     pub fn EnumerateBuddies(self: *const IRTCClientPresence, ppEnum: ?*?*IRTCEnumBuddies) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnumerateBuddies(@as(*const IRTCClientPresence, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateBuddies(self, ppEnum);
     }
     pub fn get_Buddies(self: *const IRTCClientPresence, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Buddies(@as(*const IRTCClientPresence, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Buddies(self, ppCollection);
     }
     pub fn get_Buddy(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, ppBuddy: ?*?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, ppBuddy);
+        return self.vtable.get_Buddy(self, bstrPresentityURI, ppBuddy);
     }
     pub fn AddBuddy(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).AddBuddy(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fPersistent, pProfile, lFlags, ppBuddy);
+        return self.vtable.AddBuddy(self, bstrPresentityURI, bstrUserName, bstrData, fPersistent, pProfile, lFlags, ppBuddy);
     }
     pub fn RemoveBuddy(self: *const IRTCClientPresence, pBuddy: ?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).RemoveBuddy(@as(*const IRTCClientPresence, @ptrCast(self)), pBuddy);
+        return self.vtable.RemoveBuddy(self, pBuddy);
     }
     pub fn EnumerateWatchers(self: *const IRTCClientPresence, ppEnum: ?*?*IRTCEnumWatchers) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnumerateWatchers(@as(*const IRTCClientPresence, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateWatchers(self, ppEnum);
     }
     pub fn get_Watchers(self: *const IRTCClientPresence, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Watchers(@as(*const IRTCClientPresence, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Watchers(self, ppCollection);
     }
     pub fn get_Watcher(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Watcher(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, ppWatcher);
+        return self.vtable.get_Watcher(self, bstrPresentityURI, ppWatcher);
     }
     pub fn AddWatcher(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fBlocked: i16, fPersistent: i16, ppWatcher: ?*?*IRTCWatcher) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).AddWatcher(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fBlocked, fPersistent, ppWatcher);
+        return self.vtable.AddWatcher(self, bstrPresentityURI, bstrUserName, bstrData, fBlocked, fPersistent, ppWatcher);
     }
     pub fn RemoveWatcher(self: *const IRTCClientPresence, pWatcher: ?*IRTCWatcher) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).RemoveWatcher(@as(*const IRTCClientPresence, @ptrCast(self)), pWatcher);
+        return self.vtable.RemoveWatcher(self, pWatcher);
     }
     pub fn SetLocalPresenceInfo(self: *const IRTCClientPresence, enStatus: RTC_PRESENCE_STATUS, bstrNotes: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).SetLocalPresenceInfo(@as(*const IRTCClientPresence, @ptrCast(self)), enStatus, bstrNotes);
+        return self.vtable.SetLocalPresenceInfo(self, enStatus, bstrNotes);
     }
     pub fn get_OfferWatcherMode(self: *const IRTCClientPresence, penMode: ?*RTC_OFFER_WATCHER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_OfferWatcherMode(@as(*const IRTCClientPresence, @ptrCast(self)), penMode);
+        return self.vtable.get_OfferWatcherMode(self, penMode);
     }
     pub fn put_OfferWatcherMode(self: *const IRTCClientPresence, enMode: RTC_OFFER_WATCHER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).put_OfferWatcherMode(@as(*const IRTCClientPresence, @ptrCast(self)), enMode);
+        return self.vtable.put_OfferWatcherMode(self, enMode);
     }
     pub fn get_PrivacyMode(self: *const IRTCClientPresence, penMode: ?*RTC_PRIVACY_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_PrivacyMode(@as(*const IRTCClientPresence, @ptrCast(self)), penMode);
+        return self.vtable.get_PrivacyMode(self, penMode);
     }
     pub fn put_PrivacyMode(self: *const IRTCClientPresence, enMode: RTC_PRIVACY_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).put_PrivacyMode(@as(*const IRTCClientPresence, @ptrCast(self)), enMode);
+        return self.vtable.put_PrivacyMode(self, enMode);
     }
 };
 
@@ -1867,49 +1867,49 @@ pub const IRTCClientPresence2 = extern union {
     };}
     pub usingnamespace IRTCClientPresence.MethodMixin(@This());
     pub fn EnablePresenceEx(self: *const IRTCClientPresence2, pProfile: ?*IRTCProfile, varStorage: VARIANT, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).EnablePresenceEx(@as(*const IRTCClientPresence2, @ptrCast(self)), pProfile, varStorage, lFlags);
+        return self.vtable.EnablePresenceEx(self, pProfile, varStorage, lFlags);
     }
     pub fn DisablePresence(self: *const IRTCClientPresence2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).DisablePresence(@as(*const IRTCClientPresence2, @ptrCast(self)));
+        return self.vtable.DisablePresence(self);
     }
     pub fn AddGroup(self: *const IRTCClientPresence2, bstrGroupName: ?BSTR, bstrData: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppGroup: ?*?*IRTCBuddyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddGroup(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrGroupName, bstrData, pProfile, lFlags, ppGroup);
+        return self.vtable.AddGroup(self, bstrGroupName, bstrData, pProfile, lFlags, ppGroup);
     }
     pub fn RemoveGroup(self: *const IRTCClientPresence2, pGroup: ?*IRTCBuddyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).RemoveGroup(@as(*const IRTCClientPresence2, @ptrCast(self)), pGroup);
+        return self.vtable.RemoveGroup(self, pGroup);
     }
     pub fn EnumerateGroups(self: *const IRTCClientPresence2, ppEnum: ?*?*IRTCEnumGroups) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).EnumerateGroups(@as(*const IRTCClientPresence2, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateGroups(self, ppEnum);
     }
     pub fn get_Groups(self: *const IRTCClientPresence2, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IRTCClientPresence2, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Groups(self, ppCollection);
     }
     pub fn get_Group(self: *const IRTCClientPresence2, bstrGroupName: ?BSTR, ppGroup: ?*?*IRTCBuddyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_Group(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrGroupName, ppGroup);
+        return self.vtable.get_Group(self, bstrGroupName, ppGroup);
     }
     pub fn AddWatcherEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, enState: RTC_WATCHER_STATE, fPersistent: i16, enScope: RTC_ACE_SCOPE, pProfile: ?*IRTCProfile, lFlags: i32, ppWatcher: ?*?*IRTCWatcher2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddWatcherEx(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, enState, fPersistent, enScope, pProfile, lFlags, ppWatcher);
+        return self.vtable.AddWatcherEx(self, bstrPresentityURI, bstrUserName, bstrData, enState, fPersistent, enScope, pProfile, lFlags, ppWatcher);
     }
     pub fn get_WatcherEx(self: *const IRTCClientPresence2, enMode: RTC_WATCHER_MATCH_MODE, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_WatcherEx(@as(*const IRTCClientPresence2, @ptrCast(self)), enMode, bstrPresentityURI, ppWatcher);
+        return self.vtable.get_WatcherEx(self, enMode, bstrPresentityURI, ppWatcher);
     }
     pub fn put_PresenceProperty(self: *const IRTCClientPresence2, enProperty: RTC_PRESENCE_PROPERTY, bstrProperty: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).put_PresenceProperty(@as(*const IRTCClientPresence2, @ptrCast(self)), enProperty, bstrProperty);
+        return self.vtable.put_PresenceProperty(self, enProperty, bstrProperty);
     }
     pub fn get_PresenceProperty(self: *const IRTCClientPresence2, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCClientPresence2, @ptrCast(self)), enProperty, pbstrProperty);
+        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
     }
     pub fn SetPresenceData(self: *const IRTCClientPresence2, bstrNamespace: ?BSTR, bstrData: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).SetPresenceData(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrNamespace, bstrData);
+        return self.vtable.SetPresenceData(self, bstrNamespace, bstrData);
     }
     pub fn GetPresenceData(self: *const IRTCClientPresence2, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCClientPresence2, @ptrCast(self)), pbstrNamespace, pbstrData);
+        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
     }
     pub fn GetLocalPresenceInfo(self: *const IRTCClientPresence2, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).GetLocalPresenceInfo(@as(*const IRTCClientPresence2, @ptrCast(self)), penStatus, pbstrNotes);
+        return self.vtable.GetLocalPresenceInfo(self, penStatus, pbstrNotes);
     }
     pub fn AddBuddyEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddBuddyEx(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fPersistent, enSubscriptionType, pProfile, lFlags, ppBuddy);
+        return self.vtable.AddBuddyEx(self, bstrPresentityURI, bstrUserName, bstrData, fPersistent, enSubscriptionType, pProfile, lFlags, ppBuddy);
     }
 };
 
@@ -1991,25 +1991,25 @@ pub const IRTCClientProvisioning = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateProfile(self: *const IRTCClientProvisioning, bstrProfileXML: ?BSTR, ppProfile: ?*?*IRTCProfile) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).CreateProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), bstrProfileXML, ppProfile);
+        return self.vtable.CreateProfile(self, bstrProfileXML, ppProfile);
     }
     pub fn EnableProfile(self: *const IRTCClientProvisioning, pProfile: ?*IRTCProfile, lRegisterFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).EnableProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), pProfile, lRegisterFlags);
+        return self.vtable.EnableProfile(self, pProfile, lRegisterFlags);
     }
     pub fn DisableProfile(self: *const IRTCClientProvisioning, pProfile: ?*IRTCProfile) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).DisableProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), pProfile);
+        return self.vtable.DisableProfile(self, pProfile);
     }
     pub fn EnumerateProfiles(self: *const IRTCClientProvisioning, ppEnum: ?*?*IRTCEnumProfiles) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).EnumerateProfiles(@as(*const IRTCClientProvisioning, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateProfiles(self, ppEnum);
     }
     pub fn get_Profiles(self: *const IRTCClientProvisioning, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).get_Profiles(@as(*const IRTCClientProvisioning, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Profiles(self, ppCollection);
     }
     pub fn GetProfile(self: *const IRTCClientProvisioning, bstrUserAccount: ?BSTR, bstrUserPassword: ?BSTR, bstrUserURI: ?BSTR, bstrServer: ?BSTR, lTransport: i32, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), bstrUserAccount, bstrUserPassword, bstrUserURI, bstrServer, lTransport, lCookie);
+        return self.vtable.GetProfile(self, bstrUserAccount, bstrUserPassword, bstrUserURI, bstrServer, lTransport, lCookie);
     }
     pub fn get_SessionCapabilities(self: *const IRTCClientProvisioning, plSupportedSessions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).get_SessionCapabilities(@as(*const IRTCClientProvisioning, @ptrCast(self)), plSupportedSessions);
+        return self.vtable.get_SessionCapabilities(self, plSupportedSessions);
     }
 };
 
@@ -2036,7 +2036,7 @@ pub const IRTCClientProvisioning2 = extern union {
     };}
     pub usingnamespace IRTCClientProvisioning.MethodMixin(@This());
     pub fn EnableProfileEx(self: *const IRTCClientProvisioning2, pProfile: ?*IRTCProfile, lRegisterFlags: i32, lRoamingFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientProvisioning2.VTable, @ptrCast(self.vtable)).EnableProfileEx(@as(*const IRTCClientProvisioning2, @ptrCast(self)), pProfile, lRegisterFlags, lRoamingFlags);
+        return self.vtable.EnableProfileEx(self, pProfile, lRegisterFlags, lRoamingFlags);
     }
 };
 
@@ -2216,58 +2216,58 @@ pub const IRTCProfile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Key(self: *const IRTCProfile, pbstrKey: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_Key(@as(*const IRTCProfile, @ptrCast(self)), pbstrKey);
+        return self.vtable.get_Key(self, pbstrKey);
     }
     pub fn get_Name(self: *const IRTCProfile, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_XML(self: *const IRTCProfile, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IRTCProfile, @ptrCast(self)), pbstrXML);
+        return self.vtable.get_XML(self, pbstrXML);
     }
     pub fn get_ProviderName(self: *const IRTCProfile, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
+        return self.vtable.get_ProviderName(self, pbstrName);
     }
     pub fn get_ProviderURI(self: *const IRTCProfile, enURI: RTC_PROVIDER_URI, pbstrURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderURI(@as(*const IRTCProfile, @ptrCast(self)), enURI, pbstrURI);
+        return self.vtable.get_ProviderURI(self, enURI, pbstrURI);
     }
     pub fn get_ProviderData(self: *const IRTCProfile, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderData(@as(*const IRTCProfile, @ptrCast(self)), pbstrData);
+        return self.vtable.get_ProviderData(self, pbstrData);
     }
     pub fn get_ClientName(self: *const IRTCProfile, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
+        return self.vtable.get_ClientName(self, pbstrName);
     }
     pub fn get_ClientBanner(self: *const IRTCProfile, pfBanner: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientBanner(@as(*const IRTCProfile, @ptrCast(self)), pfBanner);
+        return self.vtable.get_ClientBanner(self, pfBanner);
     }
     pub fn get_ClientMinVer(self: *const IRTCProfile, pbstrMinVer: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientMinVer(@as(*const IRTCProfile, @ptrCast(self)), pbstrMinVer);
+        return self.vtable.get_ClientMinVer(self, pbstrMinVer);
     }
     pub fn get_ClientCurVer(self: *const IRTCProfile, pbstrCurVer: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientCurVer(@as(*const IRTCProfile, @ptrCast(self)), pbstrCurVer);
+        return self.vtable.get_ClientCurVer(self, pbstrCurVer);
     }
     pub fn get_ClientUpdateURI(self: *const IRTCProfile, pbstrUpdateURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientUpdateURI(@as(*const IRTCProfile, @ptrCast(self)), pbstrUpdateURI);
+        return self.vtable.get_ClientUpdateURI(self, pbstrUpdateURI);
     }
     pub fn get_ClientData(self: *const IRTCProfile, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientData(@as(*const IRTCProfile, @ptrCast(self)), pbstrData);
+        return self.vtable.get_ClientData(self, pbstrData);
     }
     pub fn get_UserURI(self: *const IRTCProfile, pbstrUserURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserURI(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserURI);
+        return self.vtable.get_UserURI(self, pbstrUserURI);
     }
     pub fn get_UserName(self: *const IRTCProfile, pbstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserName);
+        return self.vtable.get_UserName(self, pbstrUserName);
     }
     pub fn get_UserAccount(self: *const IRTCProfile, pbstrUserAccount: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserAccount);
+        return self.vtable.get_UserAccount(self, pbstrUserAccount);
     }
     pub fn SetCredentials(self: *const IRTCProfile, bstrUserURI: ?BSTR, bstrUserAccount: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IRTCProfile, @ptrCast(self)), bstrUserURI, bstrUserAccount, bstrPassword);
+        return self.vtable.SetCredentials(self, bstrUserURI, bstrUserAccount, bstrPassword);
     }
     pub fn get_SessionCapabilities(self: *const IRTCProfile, plSupportedSessions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_SessionCapabilities(@as(*const IRTCProfile, @ptrCast(self)), plSupportedSessions);
+        return self.vtable.get_SessionCapabilities(self, plSupportedSessions);
     }
     pub fn get_State(self: *const IRTCProfile, penState: ?*RTC_REGISTRATION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCProfile, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
 };
 
@@ -2320,16 +2320,16 @@ pub const IRTCProfile2 = extern union {
     };}
     pub usingnamespace IRTCProfile.MethodMixin(@This());
     pub fn get_Realm(self: *const IRTCProfile2, pbstrRealm: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).get_Realm(@as(*const IRTCProfile2, @ptrCast(self)), pbstrRealm);
+        return self.vtable.get_Realm(self, pbstrRealm);
     }
     pub fn put_Realm(self: *const IRTCProfile2, bstrRealm: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).put_Realm(@as(*const IRTCProfile2, @ptrCast(self)), bstrRealm);
+        return self.vtable.put_Realm(self, bstrRealm);
     }
     pub fn get_AllowedAuth(self: *const IRTCProfile2, plAllowedAuth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).get_AllowedAuth(@as(*const IRTCProfile2, @ptrCast(self)), plAllowedAuth);
+        return self.vtable.get_AllowedAuth(self, plAllowedAuth);
     }
     pub fn put_AllowedAuth(self: *const IRTCProfile2, lAllowedAuth: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).put_AllowedAuth(@as(*const IRTCProfile2, @ptrCast(self)), lAllowedAuth);
+        return self.vtable.put_AllowedAuth(self, lAllowedAuth);
     }
 };
 
@@ -2523,64 +2523,64 @@ pub const IRTCSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Client(self: *const IRTCSession, ppClient: ?*?*IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Client(@as(*const IRTCSession, @ptrCast(self)), ppClient);
+        return self.vtable.get_Client(self, ppClient);
     }
     pub fn get_State(self: *const IRTCSession, penState: ?*RTC_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCSession, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn get_Type(self: *const IRTCSession, penType: ?*RTC_SESSION_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IRTCSession, @ptrCast(self)), penType);
+        return self.vtable.get_Type(self, penType);
     }
     pub fn get_Profile(self: *const IRTCSession, ppProfile: ?*?*IRTCProfile) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCSession, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_Participants(self: *const IRTCSession, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Participants(@as(*const IRTCSession, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Participants(self, ppCollection);
     }
     pub fn Answer(self: *const IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Answer(@as(*const IRTCSession, @ptrCast(self)));
+        return self.vtable.Answer(self);
     }
     pub fn Terminate(self: *const IRTCSession, enReason: RTC_TERMINATE_REASON) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRTCSession, @ptrCast(self)), enReason);
+        return self.vtable.Terminate(self, enReason);
     }
     pub fn Redirect(self: *const IRTCSession, enType: RTC_SESSION_TYPE, bstrLocalPhoneURI: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IRTCSession, @ptrCast(self)), enType, bstrLocalPhoneURI, pProfile, lFlags);
+        return self.vtable.Redirect(self, enType, bstrLocalPhoneURI, pProfile, lFlags);
     }
     pub fn AddParticipant(self: *const IRTCSession, bstrAddress: ?BSTR, bstrName: ?BSTR, ppParticipant: ?*?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).AddParticipant(@as(*const IRTCSession, @ptrCast(self)), bstrAddress, bstrName, ppParticipant);
+        return self.vtable.AddParticipant(self, bstrAddress, bstrName, ppParticipant);
     }
     pub fn RemoveParticipant(self: *const IRTCSession, pParticipant: ?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).RemoveParticipant(@as(*const IRTCSession, @ptrCast(self)), pParticipant);
+        return self.vtable.RemoveParticipant(self, pParticipant);
     }
     pub fn EnumerateParticipants(self: *const IRTCSession, ppEnum: ?*?*IRTCEnumParticipants) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).EnumerateParticipants(@as(*const IRTCSession, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateParticipants(self, ppEnum);
     }
     pub fn get_CanAddParticipants(self: *const IRTCSession, pfCanAdd: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_CanAddParticipants(@as(*const IRTCSession, @ptrCast(self)), pfCanAdd);
+        return self.vtable.get_CanAddParticipants(self, pfCanAdd);
     }
     pub fn get_RedirectedUserURI(self: *const IRTCSession, pbstrUserURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_RedirectedUserURI(@as(*const IRTCSession, @ptrCast(self)), pbstrUserURI);
+        return self.vtable.get_RedirectedUserURI(self, pbstrUserURI);
     }
     pub fn get_RedirectedUserName(self: *const IRTCSession, pbstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_RedirectedUserName(@as(*const IRTCSession, @ptrCast(self)), pbstrUserName);
+        return self.vtable.get_RedirectedUserName(self, pbstrUserName);
     }
     pub fn NextRedirectedUser(self: *const IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).NextRedirectedUser(@as(*const IRTCSession, @ptrCast(self)));
+        return self.vtable.NextRedirectedUser(self);
     }
     pub fn SendMessage(self: *const IRTCSession, bstrMessageHeader: ?BSTR, bstrMessage: ?BSTR, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).SendMessage(@as(*const IRTCSession, @ptrCast(self)), bstrMessageHeader, bstrMessage, lCookie);
+        return self.vtable.SendMessage(self, bstrMessageHeader, bstrMessage, lCookie);
     }
     pub fn SendMessageStatus(self: *const IRTCSession, enUserStatus: RTC_MESSAGING_USER_STATUS, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).SendMessageStatus(@as(*const IRTCSession, @ptrCast(self)), enUserStatus, lCookie);
+        return self.vtable.SendMessageStatus(self, enUserStatus, lCookie);
     }
     pub fn AddStream(self: *const IRTCSession, lMediaType: i32, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IRTCSession, @ptrCast(self)), lMediaType, lCookie);
+        return self.vtable.AddStream(self, lMediaType, lCookie);
     }
     pub fn RemoveStream(self: *const IRTCSession, lMediaType: i32, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IRTCSession, @ptrCast(self)), lMediaType, lCookie);
+        return self.vtable.RemoveStream(self, lMediaType, lCookie);
     }
     pub fn put_EncryptionKey(self: *const IRTCSession, lMediaType: i32, EncryptionKey: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).put_EncryptionKey(@as(*const IRTCSession, @ptrCast(self)), lMediaType, EncryptionKey);
+        return self.vtable.put_EncryptionKey(self, lMediaType, EncryptionKey);
     }
 };
 
@@ -2653,22 +2653,22 @@ pub const IRTCSession2 = extern union {
     };}
     pub usingnamespace IRTCSession.MethodMixin(@This());
     pub fn SendInfo(self: *const IRTCSession2, bstrInfoHeader: ?BSTR, bstrInfo: ?BSTR, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).SendInfo(@as(*const IRTCSession2, @ptrCast(self)), bstrInfoHeader, bstrInfo, lCookie);
+        return self.vtable.SendInfo(self, bstrInfoHeader, bstrInfo, lCookie);
     }
     pub fn put_PreferredSecurityLevel(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, enSecurityLevel: RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).put_PreferredSecurityLevel(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, enSecurityLevel);
+        return self.vtable.put_PreferredSecurityLevel(self, enSecurityType, enSecurityLevel);
     }
     pub fn get_PreferredSecurityLevel(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).get_PreferredSecurityLevel(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, penSecurityLevel);
+        return self.vtable.get_PreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
     pub fn IsSecurityEnabled(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, pfSecurityEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).IsSecurityEnabled(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, pfSecurityEnabled);
+        return self.vtable.IsSecurityEnabled(self, enSecurityType, pfSecurityEnabled);
     }
     pub fn AnswerWithSessionDescription(self: *const IRTCSession2, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).AnswerWithSessionDescription(@as(*const IRTCSession2, @ptrCast(self)), bstrContentType, bstrSessionDescription);
+        return self.vtable.AnswerWithSessionDescription(self, bstrContentType, bstrSessionDescription);
     }
     pub fn ReInviteWithSessionDescription(self: *const IRTCSession2, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).ReInviteWithSessionDescription(@as(*const IRTCSession2, @ptrCast(self)), bstrContentType, bstrSessionDescription, lCookie);
+        return self.vtable.ReInviteWithSessionDescription(self, bstrContentType, bstrSessionDescription, lCookie);
     }
 };
 
@@ -2763,31 +2763,31 @@ pub const IRTCSessionCallControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Hold(self: *const IRTCSessionCallControl, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Hold(@as(*const IRTCSessionCallControl, @ptrCast(self)), lCookie);
+        return self.vtable.Hold(self, lCookie);
     }
     pub fn UnHold(self: *const IRTCSessionCallControl, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).UnHold(@as(*const IRTCSessionCallControl, @ptrCast(self)), lCookie);
+        return self.vtable.UnHold(self, lCookie);
     }
     pub fn Forward(self: *const IRTCSessionCallControl, bstrForwardToURI: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Forward(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrForwardToURI);
+        return self.vtable.Forward(self, bstrForwardToURI);
     }
     pub fn Refer(self: *const IRTCSessionCallControl, bstrReferToURI: ?BSTR, bstrReferCookie: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Refer(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferToURI, bstrReferCookie);
+        return self.vtable.Refer(self, bstrReferToURI, bstrReferCookie);
     }
     pub fn put_ReferredByURI(self: *const IRTCSessionCallControl, bstrReferredByURI: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).put_ReferredByURI(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferredByURI);
+        return self.vtable.put_ReferredByURI(self, bstrReferredByURI);
     }
     pub fn get_ReferredByURI(self: *const IRTCSessionCallControl, pbstrReferredByURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_ReferredByURI(@as(*const IRTCSessionCallControl, @ptrCast(self)), pbstrReferredByURI);
+        return self.vtable.get_ReferredByURI(self, pbstrReferredByURI);
     }
     pub fn put_ReferCookie(self: *const IRTCSessionCallControl, bstrReferCookie: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).put_ReferCookie(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferCookie);
+        return self.vtable.put_ReferCookie(self, bstrReferCookie);
     }
     pub fn get_ReferCookie(self: *const IRTCSessionCallControl, pbstrReferCookie: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_ReferCookie(@as(*const IRTCSessionCallControl, @ptrCast(self)), pbstrReferCookie);
+        return self.vtable.get_ReferCookie(self, pbstrReferCookie);
     }
     pub fn get_IsReferred(self: *const IRTCSessionCallControl, pfIsReferred: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_IsReferred(@as(*const IRTCSessionCallControl, @ptrCast(self)), pfIsReferred);
+        return self.vtable.get_IsReferred(self, pfIsReferred);
     }
 };
 
@@ -2849,19 +2849,19 @@ pub const IRTCParticipant = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_UserURI(self: *const IRTCParticipant, pbstrUserURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_UserURI(@as(*const IRTCParticipant, @ptrCast(self)), pbstrUserURI);
+        return self.vtable.get_UserURI(self, pbstrUserURI);
     }
     pub fn get_Name(self: *const IRTCParticipant, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCParticipant, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_Removable(self: *const IRTCParticipant, pfRemovable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Removable(@as(*const IRTCParticipant, @ptrCast(self)), pfRemovable);
+        return self.vtable.get_Removable(self, pfRemovable);
     }
     pub fn get_State(self: *const IRTCParticipant, penState: ?*RTC_PARTICIPANT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCParticipant, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn get_Session(self: *const IRTCParticipant, ppSession: ?*?*IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCParticipant, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
 };
 
@@ -2914,16 +2914,16 @@ pub const IRTCRoamingEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCRoamingEvent, pEventType: ?*RTC_ROAMING_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCRoamingEvent, @ptrCast(self)), pEventType);
+        return self.vtable.get_EventType(self, pEventType);
     }
     pub fn get_Profile(self: *const IRTCRoamingEvent, ppProfile: ?*?*IRTCProfile2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCRoamingEvent, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_StatusCode(self: *const IRTCRoamingEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCRoamingEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCRoamingEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCRoamingEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -2967,13 +2967,13 @@ pub const IRTCProfileEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Profile(self: *const IRTCProfileEvent, ppProfile: ?*?*IRTCProfile) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCProfileEvent, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_Cookie(self: *const IRTCProfileEvent, plCookie: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCProfileEvent, @ptrCast(self)), plCookie);
+        return self.vtable.get_Cookie(self, plCookie);
     }
     pub fn get_StatusCode(self: *const IRTCProfileEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCProfileEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
 };
 
@@ -2999,7 +2999,7 @@ pub const IRTCProfileEvent2 = extern union {
     };}
     pub usingnamespace IRTCProfileEvent.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCProfileEvent2, pEventType: ?*RTC_PROFILE_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCProfileEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCProfileEvent2, @ptrCast(self)), pEventType);
+        return self.vtable.get_EventType(self, pEventType);
     }
 };
 
@@ -3034,10 +3034,10 @@ pub const IRTCClientEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCClientEvent, penEventType: ?*RTC_CLIENT_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCClientEvent, @ptrCast(self)), penEventType);
+        return self.vtable.get_EventType(self, penEventType);
     }
     pub fn get_Client(self: *const IRTCClientEvent, ppClient: ?*?*IRTCClient) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientEvent.VTable, @ptrCast(self.vtable)).get_Client(@as(*const IRTCClientEvent, @ptrCast(self)), ppClient);
+        return self.vtable.get_Client(self, ppClient);
     }
 };
 
@@ -3090,16 +3090,16 @@ pub const IRTCRegistrationStateChangeEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Profile(self: *const IRTCRegistrationStateChangeEvent, ppProfile: ?*?*IRTCProfile) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_State(self: *const IRTCRegistrationStateChangeEvent, penState: ?*RTC_REGISTRATION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn get_StatusCode(self: *const IRTCRegistrationStateChangeEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCRegistrationStateChangeEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -3152,16 +3152,16 @@ pub const IRTCSessionStateChangeEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCSessionStateChangeEvent, ppSession: ?*?*IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_State(self: *const IRTCSessionStateChangeEvent, penState: ?*RTC_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn get_StatusCode(self: *const IRTCSessionStateChangeEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCSessionStateChangeEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -3214,16 +3214,16 @@ pub const IRTCSessionStateChangeEvent2 = extern union {
     };}
     pub usingnamespace IRTCSessionStateChangeEvent.MethodMixin(@This());
     pub fn get_MediaTypes(self: *const IRTCSessionStateChangeEvent2, pMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_MediaTypes(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pMediaTypes);
+        return self.vtable.get_MediaTypes(self, pMediaTypes);
     }
     pub fn get_RemotePreferredSecurityLevel(self: *const IRTCSessionStateChangeEvent2, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_RemotePreferredSecurityLevel(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), enSecurityType, penSecurityLevel);
+        return self.vtable.get_RemotePreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
     pub fn get_IsForked(self: *const IRTCSessionStateChangeEvent2, pfIsForked: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_IsForked(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pfIsForked);
+        return self.vtable.get_IsForked(self, pfIsForked);
     }
     pub fn GetRemoteSessionDescription(self: *const IRTCSessionStateChangeEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
+        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
     }
 };
 
@@ -3276,16 +3276,16 @@ pub const IRTCSessionOperationCompleteEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCSessionOperationCompleteEvent, ppSession: ?*?*IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_Cookie(self: *const IRTCSessionOperationCompleteEvent, plCookie: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), plCookie);
+        return self.vtable.get_Cookie(self, plCookie);
     }
     pub fn get_StatusCode(self: *const IRTCSessionOperationCompleteEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCSessionOperationCompleteEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -3320,10 +3320,10 @@ pub const IRTCSessionOperationCompleteEvent2 = extern union {
     };}
     pub usingnamespace IRTCSessionOperationCompleteEvent.MethodMixin(@This());
     pub fn get_Participant(self: *const IRTCSessionOperationCompleteEvent2, ppParticipant: ?*?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent2.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCSessionOperationCompleteEvent2, @ptrCast(self)), ppParticipant);
+        return self.vtable.get_Participant(self, ppParticipant);
     }
     pub fn GetRemoteSessionDescription(self: *const IRTCSessionOperationCompleteEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionOperationCompleteEvent2.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCSessionOperationCompleteEvent2, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
+        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
     }
 };
 
@@ -3367,13 +3367,13 @@ pub const IRTCParticipantStateChangeEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Participant(self: *const IRTCParticipantStateChangeEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), ppParticipant);
+        return self.vtable.get_Participant(self, ppParticipant);
     }
     pub fn get_State(self: *const IRTCParticipantStateChangeEvent, penState: ?*RTC_PARTICIPANT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn get_StatusCode(self: *const IRTCParticipantStateChangeEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
 };
 
@@ -3417,13 +3417,13 @@ pub const IRTCMediaEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MediaType(self: *const IRTCMediaEvent, pMediaType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const IRTCMediaEvent, @ptrCast(self)), pMediaType);
+        return self.vtable.get_MediaType(self, pMediaType);
     }
     pub fn get_EventType(self: *const IRTCMediaEvent, penEventType: ?*RTC_MEDIA_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCMediaEvent, @ptrCast(self)), penEventType);
+        return self.vtable.get_EventType(self, penEventType);
     }
     pub fn get_EventReason(self: *const IRTCMediaEvent, penEventReason: ?*RTC_MEDIA_EVENT_REASON) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_EventReason(@as(*const IRTCMediaEvent, @ptrCast(self)), penEventReason);
+        return self.vtable.get_EventReason(self, penEventReason);
     }
 };
 
@@ -3476,16 +3476,16 @@ pub const IRTCIntensityEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Level(self: *const IRTCIntensityEvent, plLevel: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Level(@as(*const IRTCIntensityEvent, @ptrCast(self)), plLevel);
+        return self.vtable.get_Level(self, plLevel);
     }
     pub fn get_Min(self: *const IRTCIntensityEvent, plMin: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Min(@as(*const IRTCIntensityEvent, @ptrCast(self)), plMin);
+        return self.vtable.get_Min(self, plMin);
     }
     pub fn get_Max(self: *const IRTCIntensityEvent, plMax: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Max(@as(*const IRTCIntensityEvent, @ptrCast(self)), plMax);
+        return self.vtable.get_Max(self, plMax);
     }
     pub fn get_Direction(self: *const IRTCIntensityEvent, penDirection: ?*RTC_AUDIO_DEVICE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const IRTCIntensityEvent, @ptrCast(self)), penDirection);
+        return self.vtable.get_Direction(self, penDirection);
     }
 };
 
@@ -3556,22 +3556,22 @@ pub const IRTCMessagingEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCMessagingEvent, ppSession: ?*?*IRTCSession) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCMessagingEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_Participant(self: *const IRTCMessagingEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCMessagingEvent, @ptrCast(self)), ppParticipant);
+        return self.vtable.get_Participant(self, ppParticipant);
     }
     pub fn get_EventType(self: *const IRTCMessagingEvent, penEventType: ?*RTC_MESSAGING_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCMessagingEvent, @ptrCast(self)), penEventType);
+        return self.vtable.get_EventType(self, penEventType);
     }
     pub fn get_Message(self: *const IRTCMessagingEvent, pbstrMessage: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IRTCMessagingEvent, @ptrCast(self)), pbstrMessage);
+        return self.vtable.get_Message(self, pbstrMessage);
     }
     pub fn get_MessageHeader(self: *const IRTCMessagingEvent, pbstrMessageHeader: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_MessageHeader(@as(*const IRTCMessagingEvent, @ptrCast(self)), pbstrMessageHeader);
+        return self.vtable.get_MessageHeader(self, pbstrMessageHeader);
     }
     pub fn get_UserStatus(self: *const IRTCMessagingEvent, penUserStatus: ?*RTC_MESSAGING_USER_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_UserStatus(@as(*const IRTCMessagingEvent, @ptrCast(self)), penUserStatus);
+        return self.vtable.get_UserStatus(self, penUserStatus);
     }
 };
 
@@ -3597,7 +3597,7 @@ pub const IRTCBuddyEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Buddy(self: *const IRTCBuddyEvent, ppBuddy: ?*?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyEvent.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCBuddyEvent, @ptrCast(self)), ppBuddy);
+        return self.vtable.get_Buddy(self, ppBuddy);
     }
 };
 
@@ -3641,13 +3641,13 @@ pub const IRTCBuddyEvent2 = extern union {
     };}
     pub usingnamespace IRTCBuddyEvent.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCBuddyEvent2, pEventType: ?*RTC_BUDDY_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCBuddyEvent2, @ptrCast(self)), pEventType);
+        return self.vtable.get_EventType(self, pEventType);
     }
     pub fn get_StatusCode(self: *const IRTCBuddyEvent2, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCBuddyEvent2, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCBuddyEvent2, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCBuddyEvent2, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -3673,7 +3673,7 @@ pub const IRTCWatcherEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Watcher(self: *const IRTCWatcherEvent, ppWatcher: ?*?*IRTCWatcher) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcherEvent.VTable, @ptrCast(self.vtable)).get_Watcher(@as(*const IRTCWatcherEvent, @ptrCast(self)), ppWatcher);
+        return self.vtable.get_Watcher(self, ppWatcher);
     }
 };
 
@@ -3708,10 +3708,10 @@ pub const IRTCWatcherEvent2 = extern union {
     };}
     pub usingnamespace IRTCWatcherEvent.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCWatcherEvent2, pEventType: ?*RTC_WATCHER_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcherEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCWatcherEvent2, @ptrCast(self)), pEventType);
+        return self.vtable.get_EventType(self, pEventType);
     }
     pub fn get_StatusCode(self: *const IRTCWatcherEvent2, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcherEvent2.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCWatcherEvent2, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
 };
 
@@ -3764,16 +3764,16 @@ pub const IRTCBuddyGroupEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_EventType(self: *const IRTCBuddyGroupEvent, pEventType: ?*RTC_GROUP_EVENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), pEventType);
+        return self.vtable.get_EventType(self, pEventType);
     }
     pub fn get_Group(self: *const IRTCBuddyGroupEvent, ppGroup: ?*?*IRTCBuddyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_Group(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), ppGroup);
+        return self.vtable.get_Group(self, ppGroup);
     }
     pub fn get_Buddy(self: *const IRTCBuddyGroupEvent, ppBuddy: ?*?*IRTCBuddy2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), ppBuddy);
+        return self.vtable.get_Buddy(self, ppBuddy);
     }
     pub fn get_StatusCode(self: *const IRTCBuddyGroupEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
 };
 
@@ -3826,16 +3826,16 @@ pub const IRTCInfoEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCInfoEvent, ppSession: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCInfoEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_Participant(self: *const IRTCInfoEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.Inline) HRESULT {
-        return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCInfoEvent, @ptrCast(self)), ppParticipant);
+        return self.vtable.get_Participant(self, ppParticipant);
     }
     pub fn get_Info(self: *const IRTCInfoEvent, pbstrInfo: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IRTCInfoEvent, @ptrCast(self)), pbstrInfo);
+        return self.vtable.get_Info(self, pbstrInfo);
     }
     pub fn get_InfoHeader(self: *const IRTCInfoEvent, pbstrInfoHeader: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_InfoHeader(@as(*const IRTCInfoEvent, @ptrCast(self)), pbstrInfoHeader);
+        return self.vtable.get_InfoHeader(self, pbstrInfoHeader);
     }
 };
 
@@ -3912,25 +3912,25 @@ pub const IRTCMediaRequestEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCMediaRequestEvent, ppSession: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_ProposedMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_ProposedMedia(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), plMediaTypes);
+        return self.vtable.get_ProposedMedia(self, plMediaTypes);
     }
     pub fn get_CurrentMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_CurrentMedia(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), plMediaTypes);
+        return self.vtable.get_CurrentMedia(self, plMediaTypes);
     }
     pub fn Accept(self: *const IRTCMediaRequestEvent, lMediaTypes: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), lMediaTypes);
+        return self.vtable.Accept(self, lMediaTypes);
     }
     pub fn get_RemotePreferredSecurityLevel(self: *const IRTCMediaRequestEvent, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_RemotePreferredSecurityLevel(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), enSecurityType, penSecurityLevel);
+        return self.vtable.get_RemotePreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
     pub fn Reject(self: *const IRTCMediaRequestEvent) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCMediaRequestEvent, @ptrCast(self)));
+        return self.vtable.Reject(self);
     }
     pub fn get_State(self: *const IRTCMediaRequestEvent, pState: ?*RTC_REINVITE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), pState);
+        return self.vtable.get_State(self, pState);
     }
 };
 
@@ -3990,19 +3990,19 @@ pub const IRTCReInviteEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCReInviteEvent, ppSession2: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCReInviteEvent, @ptrCast(self)), ppSession2);
+        return self.vtable.get_Session(self, ppSession2);
     }
     pub fn Accept(self: *const IRTCReInviteEvent, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCReInviteEvent, @ptrCast(self)), bstrContentType, bstrSessionDescription);
+        return self.vtable.Accept(self, bstrContentType, bstrSessionDescription);
     }
     pub fn Reject(self: *const IRTCReInviteEvent) callconv(.Inline) HRESULT {
-        return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCReInviteEvent, @ptrCast(self)));
+        return self.vtable.Reject(self);
     }
     pub fn get_State(self: *const IRTCReInviteEvent, pState: ?*RTC_REINVITE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCReInviteEvent, @ptrCast(self)), pState);
+        return self.vtable.get_State(self, pState);
     }
     pub fn GetRemoteSessionDescription(self: *const IRTCReInviteEvent, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCReInviteEvent, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
+        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
     }
 };
 
@@ -4055,16 +4055,16 @@ pub const IRTCPresencePropertyEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StatusCode(self: *const IRTCPresencePropertyEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCPresencePropertyEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
     pub fn get_PresenceProperty(self: *const IRTCPresencePropertyEvent, penPresProp: ?*RTC_PRESENCE_PROPERTY) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), penPresProp);
+        return self.vtable.get_PresenceProperty(self, penPresProp);
     }
     pub fn get_Value(self: *const IRTCPresencePropertyEvent, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), pbstrValue);
+        return self.vtable.get_Value(self, pbstrValue);
     }
 };
 
@@ -4108,13 +4108,13 @@ pub const IRTCPresenceDataEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StatusCode(self: *const IRTCPresenceDataEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCPresenceDataEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
     pub fn GetPresenceData(self: *const IRTCPresenceDataEvent, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), pbstrNamespace, pbstrData);
+        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
     }
 };
 
@@ -4158,13 +4158,13 @@ pub const IRTCPresenceStatusEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StatusCode(self: *const IRTCPresenceStatusEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCPresenceStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
     pub fn GetLocalPresenceInfo(self: *const IRTCPresenceStatusEvent, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).GetLocalPresenceInfo(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), penStatus, pbstrNotes);
+        return self.vtable.GetLocalPresenceInfo(self, penStatus, pbstrNotes);
     }
 };
 
@@ -4208,13 +4208,13 @@ pub const IRTCCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IRTCCollection, lCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IRTCCollection, @ptrCast(self)), lCount);
+        return self.vtable.get_Count(self, lCount);
     }
     pub fn get_Item(self: *const IRTCCollection, Index: i32, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRTCCollection, @ptrCast(self)), Index, pVariant);
+        return self.vtable.get_Item(self, Index, pVariant);
     }
     pub fn get__NewEnum(self: *const IRTCCollection, ppNewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRTCCollection, @ptrCast(self)), ppNewEnum);
+        return self.vtable.get__NewEnum(self, ppNewEnum);
     }
 };
 
@@ -4264,16 +4264,16 @@ pub const IRTCEnumParticipants = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumParticipants, celt: u32, ppElements: [*]?*IRTCParticipant, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumParticipants, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumParticipants) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumParticipants, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumParticipants, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumParticipants, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumParticipants, ppEnum: ?*?*IRTCEnumParticipants) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumParticipants, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4323,16 +4323,16 @@ pub const IRTCEnumProfiles = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumProfiles, celt: u32, ppElements: [*]?*IRTCProfile, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumProfiles, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumProfiles) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumProfiles, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumProfiles, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumProfiles, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumProfiles, ppEnum: ?*?*IRTCEnumProfiles) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumProfiles, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4382,16 +4382,16 @@ pub const IRTCEnumBuddies = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumBuddies, celt: u32, ppElements: [*]?*IRTCBuddy, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumBuddies, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumBuddies) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumBuddies, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumBuddies, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumBuddies, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumBuddies, ppEnum: ?*?*IRTCEnumBuddies) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumBuddies, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4441,16 +4441,16 @@ pub const IRTCEnumWatchers = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumWatchers, celt: u32, ppElements: [*]?*IRTCWatcher, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumWatchers, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumWatchers) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumWatchers, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumWatchers, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumWatchers, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumWatchers, ppEnum: ?*?*IRTCEnumWatchers) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumWatchers, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4500,16 +4500,16 @@ pub const IRTCEnumGroups = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumGroups, celt: u32, ppElements: [*]?*IRTCBuddyGroup, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumGroups, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumGroups) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumGroups, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumGroups, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumGroups, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumGroups, ppEnum: ?*?*IRTCEnumGroups) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumGroups, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4598,28 +4598,28 @@ pub const IRTCPresenceContact = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_PresentityURI(self: *const IRTCPresenceContact, pbstrPresentityURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_PresentityURI(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrPresentityURI);
+        return self.vtable.get_PresentityURI(self, pbstrPresentityURI);
     }
     pub fn put_PresentityURI(self: *const IRTCPresenceContact, bstrPresentityURI: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_PresentityURI(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrPresentityURI);
+        return self.vtable.put_PresentityURI(self, bstrPresentityURI);
     }
     pub fn get_Name(self: *const IRTCPresenceContact, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn put_Name(self: *const IRTCPresenceContact, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrName);
+        return self.vtable.put_Name(self, bstrName);
     }
     pub fn get_Data(self: *const IRTCPresenceContact, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrData);
+        return self.vtable.get_Data(self, pbstrData);
     }
     pub fn put_Data(self: *const IRTCPresenceContact, bstrData: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrData);
+        return self.vtable.put_Data(self, bstrData);
     }
     pub fn get_Persistent(self: *const IRTCPresenceContact, pfPersistent: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Persistent(@as(*const IRTCPresenceContact, @ptrCast(self)), pfPersistent);
+        return self.vtable.get_Persistent(self, pfPersistent);
     }
     pub fn put_Persistent(self: *const IRTCPresenceContact, fPersistent: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Persistent(@as(*const IRTCPresenceContact, @ptrCast(self)), fPersistent);
+        return self.vtable.put_Persistent(self, fPersistent);
     }
 };
 
@@ -4654,10 +4654,10 @@ pub const IRTCBuddy = extern union {
     };}
     pub usingnamespace IRTCPresenceContact.MethodMixin(@This());
     pub fn get_Status(self: *const IRTCBuddy, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IRTCBuddy, @ptrCast(self)), penStatus);
+        return self.vtable.get_Status(self, penStatus);
     }
     pub fn get_Notes(self: *const IRTCBuddy, pbstrNotes: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy.VTable, @ptrCast(self.vtable)).get_Notes(@as(*const IRTCBuddy, @ptrCast(self)), pbstrNotes);
+        return self.vtable.get_Notes(self, pbstrNotes);
     }
 };
 
@@ -4742,28 +4742,28 @@ pub const IRTCBuddy2 = extern union {
     };}
     pub usingnamespace IRTCBuddy.MethodMixin(@This());
     pub fn get_Profile(self: *const IRTCBuddy2, ppProfile: ?*?*IRTCProfile2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCBuddy2, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn Refresh(self: *const IRTCBuddy2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IRTCBuddy2, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn EnumerateGroups(self: *const IRTCBuddy2, ppEnum: ?*?*IRTCEnumGroups) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).EnumerateGroups(@as(*const IRTCBuddy2, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateGroups(self, ppEnum);
     }
     pub fn get_Groups(self: *const IRTCBuddy2, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IRTCBuddy2, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Groups(self, ppCollection);
     }
     pub fn get_PresenceProperty(self: *const IRTCBuddy2, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCBuddy2, @ptrCast(self)), enProperty, pbstrProperty);
+        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
     }
     pub fn EnumeratePresenceDevices(self: *const IRTCBuddy2, ppEnumDevices: ?*?*IRTCEnumPresenceDevices) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).EnumeratePresenceDevices(@as(*const IRTCBuddy2, @ptrCast(self)), ppEnumDevices);
+        return self.vtable.EnumeratePresenceDevices(self, ppEnumDevices);
     }
     pub fn get_PresenceDevices(self: *const IRTCBuddy2, ppDevicesCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_PresenceDevices(@as(*const IRTCBuddy2, @ptrCast(self)), ppDevicesCollection);
+        return self.vtable.get_PresenceDevices(self, ppDevicesCollection);
     }
     pub fn get_SubscriptionType(self: *const IRTCBuddy2, penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_SubscriptionType(@as(*const IRTCBuddy2, @ptrCast(self)), penSubscriptionType);
+        return self.vtable.get_SubscriptionType(self, penSubscriptionType);
     }
 };
 
@@ -4798,10 +4798,10 @@ pub const IRTCWatcher = extern union {
     };}
     pub usingnamespace IRTCPresenceContact.MethodMixin(@This());
     pub fn get_State(self: *const IRTCWatcher, penState: ?*RTC_WATCHER_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcher.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCWatcher, @ptrCast(self)), penState);
+        return self.vtable.get_State(self, penState);
     }
     pub fn put_State(self: *const IRTCWatcher, enState: RTC_WATCHER_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcher.VTable, @ptrCast(self.vtable)).put_State(@as(*const IRTCWatcher, @ptrCast(self)), enState);
+        return self.vtable.put_State(self, enState);
     }
 };
 
@@ -4836,10 +4836,10 @@ pub const IRTCWatcher2 = extern union {
     };}
     pub usingnamespace IRTCWatcher.MethodMixin(@This());
     pub fn get_Profile(self: *const IRTCWatcher2, ppProfile: ?*?*IRTCProfile2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcher2.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCWatcher2, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_Scope(self: *const IRTCWatcher2, penScope: ?*RTC_ACE_SCOPE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCWatcher2.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IRTCWatcher2, @ptrCast(self)), penScope);
+        return self.vtable.get_Scope(self, penScope);
     }
 };
 
@@ -4934,31 +4934,31 @@ pub const IRTCBuddyGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Name(self: *const IRTCBuddyGroup, pbstrGroupName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCBuddyGroup, @ptrCast(self)), pbstrGroupName);
+        return self.vtable.get_Name(self, pbstrGroupName);
     }
     pub fn put_Name(self: *const IRTCBuddyGroup, bstrGroupName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IRTCBuddyGroup, @ptrCast(self)), bstrGroupName);
+        return self.vtable.put_Name(self, bstrGroupName);
     }
     pub fn AddBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).AddBuddy(@as(*const IRTCBuddyGroup, @ptrCast(self)), pBuddy);
+        return self.vtable.AddBuddy(self, pBuddy);
     }
     pub fn RemoveBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).RemoveBuddy(@as(*const IRTCBuddyGroup, @ptrCast(self)), pBuddy);
+        return self.vtable.RemoveBuddy(self, pBuddy);
     }
     pub fn EnumerateBuddies(self: *const IRTCBuddyGroup, ppEnum: ?*?*IRTCEnumBuddies) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).EnumerateBuddies(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateBuddies(self, ppEnum);
     }
     pub fn get_Buddies(self: *const IRTCBuddyGroup, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Buddies(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Buddies(self, ppCollection);
     }
     pub fn get_Data(self: *const IRTCBuddyGroup, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IRTCBuddyGroup, @ptrCast(self)), pbstrData);
+        return self.vtable.get_Data(self, pbstrData);
     }
     pub fn put_Data(self: *const IRTCBuddyGroup, bstrData: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IRTCBuddyGroup, @ptrCast(self)), bstrData);
+        return self.vtable.put_Data(self, bstrData);
     }
     pub fn get_Profile(self: *const IRTCBuddyGroup, ppProfile: ?*?*IRTCProfile2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
 };
 
@@ -4984,7 +4984,7 @@ pub const IRTCEventNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Event(self: *const IRTCEventNotification, RTCEvent: RTC_EVENT, pEvent: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEventNotification.VTable, @ptrCast(self.vtable)).Event(@as(*const IRTCEventNotification, @ptrCast(self)), RTCEvent, pEvent);
+        return self.vtable.Event(self, RTCEvent, pEvent);
     }
 };
 
@@ -5037,13 +5037,13 @@ pub const IRTCPortManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMapping(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, enPortType: RTC_PORT_TYPE, pbstrInternalLocalAddress: ?*?BSTR, plInternalLocalPort: ?*i32, pbstrExternalLocalAddress: ?*?BSTR, plExternalLocalPort: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).GetMapping(@as(*const IRTCPortManager, @ptrCast(self)), bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
+        return self.vtable.GetMapping(self, bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
     }
     pub fn UpdateRemoteAddress(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalPort: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).UpdateRemoteAddress(@as(*const IRTCPortManager, @ptrCast(self)), bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
+        return self.vtable.UpdateRemoteAddress(self, bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
     }
     pub fn ReleaseMapping(self: *const IRTCPortManager, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalAddress: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).ReleaseMapping(@as(*const IRTCPortManager, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
+        return self.vtable.ReleaseMapping(self, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
     }
 };
 
@@ -5068,7 +5068,7 @@ pub const IRTCSessionPortManagement = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPortManager(self: *const IRTCSessionPortManagement, pPortManager: ?*IRTCPortManager) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionPortManagement.VTable, @ptrCast(self.vtable)).SetPortManager(@as(*const IRTCSessionPortManagement, @ptrCast(self)), pPortManager);
+        return self.vtable.SetPortManager(self, pPortManager);
     }
 };
 
@@ -5113,13 +5113,13 @@ pub const IRTCClientPortManagement = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).StartListenAddressAndPort(@as(*const IRTCClientPortManagement, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort);
+        return self.vtable.StartListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
     }
     pub fn StopListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).StopListenAddressAndPort(@as(*const IRTCClientPortManagement, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort);
+        return self.vtable.StopListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
     }
     pub fn GetPortRange(self: *const IRTCClientPortManagement, enPortType: RTC_PORT_TYPE, plMinValue: ?*i32, plMaxValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).GetPortRange(@as(*const IRTCClientPortManagement, @ptrCast(self)), enPortType, plMinValue, plMaxValue);
+        return self.vtable.GetPortRange(self, enPortType, plMinValue, plMaxValue);
     }
 };
 
@@ -5154,10 +5154,10 @@ pub const IRTCUserSearch = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateQuery(self: *const IRTCUserSearch, ppQuery: ?*?*IRTCUserSearchQuery) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearch.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const IRTCUserSearch, @ptrCast(self)), ppQuery);
+        return self.vtable.CreateQuery(self, ppQuery);
     }
     pub fn ExecuteSearch(self: *const IRTCUserSearch, pQuery: ?*IRTCUserSearchQuery, pProfile: ?*IRTCProfile, lCookie: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearch.VTable, @ptrCast(self.vtable)).ExecuteSearch(@as(*const IRTCUserSearch, @ptrCast(self)), pQuery, pProfile, lCookie);
+        return self.vtable.ExecuteSearch(self, pQuery, pProfile, lCookie);
     }
 };
 
@@ -5237,25 +5237,25 @@ pub const IRTCUserSearchQuery = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn put_SearchTerm(self: *const IRTCUserSearchQuery, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchTerm(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrName, bstrValue);
+        return self.vtable.put_SearchTerm(self, bstrName, bstrValue);
     }
     pub fn get_SearchTerm(self: *const IRTCUserSearchQuery, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchTerm(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrName, pbstrValue);
+        return self.vtable.get_SearchTerm(self, bstrName, pbstrValue);
     }
     pub fn get_SearchTerms(self: *const IRTCUserSearchQuery, pbstrNames: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchTerms(@as(*const IRTCUserSearchQuery, @ptrCast(self)), pbstrNames);
+        return self.vtable.get_SearchTerms(self, pbstrNames);
     }
     pub fn put_SearchPreference(self: *const IRTCUserSearchQuery, enPreference: RTC_USER_SEARCH_PREFERENCE, lValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchPreference(@as(*const IRTCUserSearchQuery, @ptrCast(self)), enPreference, lValue);
+        return self.vtable.put_SearchPreference(self, enPreference, lValue);
     }
     pub fn get_SearchPreference(self: *const IRTCUserSearchQuery, enPreference: RTC_USER_SEARCH_PREFERENCE, plValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchPreference(@as(*const IRTCUserSearchQuery, @ptrCast(self)), enPreference, plValue);
+        return self.vtable.get_SearchPreference(self, enPreference, plValue);
     }
     pub fn put_SearchDomain(self: *const IRTCUserSearchQuery, bstrDomain: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchDomain(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrDomain);
+        return self.vtable.put_SearchDomain(self, bstrDomain);
     }
     pub fn get_SearchDomain(self: *const IRTCUserSearchQuery, pbstrDomain: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchDomain(@as(*const IRTCUserSearchQuery, @ptrCast(self)), pbstrDomain);
+        return self.vtable.get_SearchDomain(self, pbstrDomain);
     }
 };
 
@@ -5281,7 +5281,7 @@ pub const IRTCUserSearchResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Value(self: *const IRTCUserSearchResult, enColumn: RTC_USER_SEARCH_COLUMN, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResult.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IRTCUserSearchResult, @ptrCast(self)), enColumn, pbstrValue);
+        return self.vtable.get_Value(self, enColumn, pbstrValue);
     }
 };
 
@@ -5331,16 +5331,16 @@ pub const IRTCEnumUserSearchResults = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumUserSearchResults, celt: u32, ppElements: [*]?*IRTCUserSearchResult, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumUserSearchResults) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumUserSearchResults, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumUserSearchResults, ppEnum: ?*?*IRTCEnumUserSearchResults) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -5419,25 +5419,25 @@ pub const IRTCUserSearchResultsEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EnumerateResults(self: *const IRTCUserSearchResultsEvent, ppEnum: ?*?*IRTCEnumUserSearchResults) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).EnumerateResults(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumerateResults(self, ppEnum);
     }
     pub fn get_Results(self: *const IRTCUserSearchResultsEvent, ppCollection: ?*?*IRTCCollection) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppCollection);
+        return self.vtable.get_Results(self, ppCollection);
     }
     pub fn get_Profile(self: *const IRTCUserSearchResultsEvent, ppProfile: ?*?*IRTCProfile2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppProfile);
+        return self.vtable.get_Profile(self, ppProfile);
     }
     pub fn get_Query(self: *const IRTCUserSearchResultsEvent, ppQuery: ?*?*IRTCUserSearchQuery) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Query(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppQuery);
+        return self.vtable.get_Query(self, ppQuery);
     }
     pub fn get_Cookie(self: *const IRTCUserSearchResultsEvent, plCookie: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), plCookie);
+        return self.vtable.get_Cookie(self, plCookie);
     }
     pub fn get_StatusCode(self: *const IRTCUserSearchResultsEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_MoreAvailable(self: *const IRTCUserSearchResultsEvent, pfMoreAvailable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_MoreAvailable(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), pfMoreAvailable);
+        return self.vtable.get_MoreAvailable(self, pfMoreAvailable);
     }
 };
 
@@ -5490,16 +5490,16 @@ pub const IRTCSessionReferStatusEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCSessionReferStatusEvent, ppSession: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_ReferStatus(self: *const IRTCSessionReferStatusEvent, penReferStatus: ?*RTC_SESSION_REFER_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_ReferStatus(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), penReferStatus);
+        return self.vtable.get_ReferStatus(self, penReferStatus);
     }
     pub fn get_StatusCode(self: *const IRTCSessionReferStatusEvent, plStatusCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), plStatusCode);
+        return self.vtable.get_StatusCode(self, plStatusCode);
     }
     pub fn get_StatusText(self: *const IRTCSessionReferStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), pbstrStatusText);
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -5574,25 +5574,25 @@ pub const IRTCSessionReferredEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Session(self: *const IRTCSessionReferredEvent, ppSession: ?*?*IRTCSession2) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), ppSession);
+        return self.vtable.get_Session(self, ppSession);
     }
     pub fn get_ReferredByURI(self: *const IRTCSessionReferredEvent, pbstrReferredByURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferredByURI(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferredByURI);
+        return self.vtable.get_ReferredByURI(self, pbstrReferredByURI);
     }
     pub fn get_ReferToURI(self: *const IRTCSessionReferredEvent, pbstrReferoURI: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferToURI(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferoURI);
+        return self.vtable.get_ReferToURI(self, pbstrReferoURI);
     }
     pub fn get_ReferCookie(self: *const IRTCSessionReferredEvent, pbstrReferCookie: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferCookie(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferCookie);
+        return self.vtable.get_ReferCookie(self, pbstrReferCookie);
     }
     pub fn Accept(self: *const IRTCSessionReferredEvent) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCSessionReferredEvent, @ptrCast(self)));
+        return self.vtable.Accept(self);
     }
     pub fn Reject(self: *const IRTCSessionReferredEvent) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCSessionReferredEvent, @ptrCast(self)));
+        return self.vtable.Reject(self);
     }
     pub fn SetReferredSessionState(self: *const IRTCSessionReferredEvent, enState: RTC_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).SetReferredSessionState(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), enState);
+        return self.vtable.SetReferredSessionState(self, enState);
     }
 };
 
@@ -5619,7 +5619,7 @@ pub const IRTCSessionDescriptionManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EvaluateSessionDescription(self: *const IRTCSessionDescriptionManager, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRTCSessionDescriptionManager.VTable, @ptrCast(self.vtable)).EvaluateSessionDescription(@as(*const IRTCSessionDescriptionManager, @ptrCast(self)), bstrContentType, bstrSessionDescription, pfApplicationSession);
+        return self.vtable.EvaluateSessionDescription(self, bstrContentType, bstrSessionDescription, pfApplicationSession);
     }
 };
 
@@ -5669,16 +5669,16 @@ pub const IRTCEnumPresenceDevices = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IRTCEnumPresenceDevices, celt: u32, ppElements: [*]?*IRTCPresenceDevice, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), celt, ppElements, pceltFetched);
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
     }
     pub fn Reset(self: *const IRTCEnumPresenceDevices) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IRTCEnumPresenceDevices, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Clone(self: *const IRTCEnumPresenceDevices, ppEnum: ?*?*IRTCEnumPresenceDevices) callconv(.Inline) HRESULT {
-        return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -5731,16 +5731,16 @@ pub const IRTCPresenceDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Status(self: *const IRTCPresenceDevice, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IRTCPresenceDevice, @ptrCast(self)), penStatus);
+        return self.vtable.get_Status(self, penStatus);
     }
     pub fn get_Notes(self: *const IRTCPresenceDevice, pbstrNotes: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_Notes(@as(*const IRTCPresenceDevice, @ptrCast(self)), pbstrNotes);
+        return self.vtable.get_Notes(self, pbstrNotes);
     }
     pub fn get_PresenceProperty(self: *const IRTCPresenceDevice, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCPresenceDevice, @ptrCast(self)), enProperty, pbstrProperty);
+        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
     }
     pub fn GetPresenceData(self: *const IRTCPresenceDevice, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCPresenceDevice, @ptrCast(self)), pbstrNamespace, pbstrData);
+        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
     }
 };
 
@@ -5793,10 +5793,10 @@ pub const ITransportSettingsInternal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ApplySetting(self: *const ITransportSettingsInternal, Setting: ?*TRANSPORT_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const ITransportSettingsInternal.VTable, @ptrCast(self.vtable)).ApplySetting(@as(*const ITransportSettingsInternal, @ptrCast(self)), Setting);
+        return self.vtable.ApplySetting(self, Setting);
     }
     pub fn QuerySetting(self: *const ITransportSettingsInternal, Setting: ?*TRANSPORT_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const ITransportSettingsInternal.VTable, @ptrCast(self.vtable)).QuerySetting(@as(*const ITransportSettingsInternal, @ptrCast(self)), Setting);
+        return self.vtable.QuerySetting(self, Setting);
     }
 };
 
@@ -5837,10 +5837,10 @@ pub const INetworkTransportSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ApplySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const INetworkTransportSettings.VTable, @ptrCast(self.vtable)).ApplySetting(@as(*const INetworkTransportSettings, @ptrCast(self)), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+        return self.vtable.ApplySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
     }
     pub fn QuerySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const INetworkTransportSettings.VTable, @ptrCast(self.vtable)).QuerySetting(@as(*const INetworkTransportSettings, @ptrCast(self)), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+        return self.vtable.QuerySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
     }
 };
 
@@ -5871,10 +5871,10 @@ pub const INotificationTransportSync = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CompleteDelivery(self: *const INotificationTransportSync) callconv(.Inline) HRESULT {
-        return @as(*const INotificationTransportSync.VTable, @ptrCast(self.vtable)).CompleteDelivery(@as(*const INotificationTransportSync, @ptrCast(self)));
+        return self.vtable.CompleteDelivery(self);
     }
     pub fn Flush(self: *const INotificationTransportSync) callconv(.Inline) HRESULT {
-        return @as(*const INotificationTransportSync.VTable, @ptrCast(self.vtable)).Flush(@as(*const INotificationTransportSync, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 

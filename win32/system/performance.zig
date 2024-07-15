@@ -1051,184 +1051,184 @@ pub const IDataCollectorSet = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DataCollectors(self: *const IDataCollectorSet, collectors: ?*?*IDataCollectorCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DataCollectors(@as(*const IDataCollectorSet, @ptrCast(self)), collectors);
+        return self.vtable.get_DataCollectors(self, collectors);
     }
     pub fn get_Duration(self: *const IDataCollectorSet, seconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Duration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
+        return self.vtable.get_Duration(self, seconds);
     }
     pub fn put_Duration(self: *const IDataCollectorSet, seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Duration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
+        return self.vtable.put_Duration(self, seconds);
     }
     pub fn get_Description(self: *const IDataCollectorSet, description: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IDataCollectorSet, @ptrCast(self)), description);
+        return self.vtable.get_Description(self, description);
     }
     pub fn put_Description(self: *const IDataCollectorSet, description: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IDataCollectorSet, @ptrCast(self)), description);
+        return self.vtable.put_Description(self, description);
     }
     pub fn get_DescriptionUnresolved(self: *const IDataCollectorSet, Descr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DescriptionUnresolved(@as(*const IDataCollectorSet, @ptrCast(self)), Descr);
+        return self.vtable.get_DescriptionUnresolved(self, Descr);
     }
     pub fn get_DisplayName(self: *const IDataCollectorSet, DisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IDataCollectorSet, @ptrCast(self)), DisplayName);
+        return self.vtable.get_DisplayName(self, DisplayName);
     }
     pub fn put_DisplayName(self: *const IDataCollectorSet, DisplayName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IDataCollectorSet, @ptrCast(self)), DisplayName);
+        return self.vtable.put_DisplayName(self, DisplayName);
     }
     pub fn get_DisplayNameUnresolved(self: *const IDataCollectorSet, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DisplayNameUnresolved(@as(*const IDataCollectorSet, @ptrCast(self)), name);
+        return self.vtable.get_DisplayNameUnresolved(self, name);
     }
     pub fn get_Keywords(self: *const IDataCollectorSet, keywords: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Keywords(@as(*const IDataCollectorSet, @ptrCast(self)), keywords);
+        return self.vtable.get_Keywords(self, keywords);
     }
     pub fn put_Keywords(self: *const IDataCollectorSet, keywords: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Keywords(@as(*const IDataCollectorSet, @ptrCast(self)), keywords);
+        return self.vtable.put_Keywords(self, keywords);
     }
     pub fn get_LatestOutputLocation(self: *const IDataCollectorSet, path: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_LatestOutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
+        return self.vtable.get_LatestOutputLocation(self, path);
     }
     pub fn put_LatestOutputLocation(self: *const IDataCollectorSet, path: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_LatestOutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
+        return self.vtable.put_LatestOutputLocation(self, path);
     }
     pub fn get_Name(self: *const IDataCollectorSet, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IDataCollectorSet, @ptrCast(self)), name);
+        return self.vtable.get_Name(self, name);
     }
     pub fn get_OutputLocation(self: *const IDataCollectorSet, path: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_OutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
+        return self.vtable.get_OutputLocation(self, path);
     }
     pub fn get_RootPath(self: *const IDataCollectorSet, folder: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_RootPath(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
+        return self.vtable.get_RootPath(self, folder);
     }
     pub fn put_RootPath(self: *const IDataCollectorSet, folder: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_RootPath(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
+        return self.vtable.put_RootPath(self, folder);
     }
     pub fn get_Segment(self: *const IDataCollectorSet, segment: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Segment(@as(*const IDataCollectorSet, @ptrCast(self)), segment);
+        return self.vtable.get_Segment(self, segment);
     }
     pub fn put_Segment(self: *const IDataCollectorSet, segment: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Segment(@as(*const IDataCollectorSet, @ptrCast(self)), segment);
+        return self.vtable.put_Segment(self, segment);
     }
     pub fn get_SegmentMaxDuration(self: *const IDataCollectorSet, seconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SegmentMaxDuration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
+        return self.vtable.get_SegmentMaxDuration(self, seconds);
     }
     pub fn put_SegmentMaxDuration(self: *const IDataCollectorSet, seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SegmentMaxDuration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
+        return self.vtable.put_SegmentMaxDuration(self, seconds);
     }
     pub fn get_SegmentMaxSize(self: *const IDataCollectorSet, size: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SegmentMaxSize(@as(*const IDataCollectorSet, @ptrCast(self)), size);
+        return self.vtable.get_SegmentMaxSize(self, size);
     }
     pub fn put_SegmentMaxSize(self: *const IDataCollectorSet, size: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SegmentMaxSize(@as(*const IDataCollectorSet, @ptrCast(self)), size);
+        return self.vtable.put_SegmentMaxSize(self, size);
     }
     pub fn get_SerialNumber(self: *const IDataCollectorSet, index: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IDataCollectorSet, @ptrCast(self)), index);
+        return self.vtable.get_SerialNumber(self, index);
     }
     pub fn put_SerialNumber(self: *const IDataCollectorSet, index: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SerialNumber(@as(*const IDataCollectorSet, @ptrCast(self)), index);
+        return self.vtable.put_SerialNumber(self, index);
     }
     pub fn get_Server(self: *const IDataCollectorSet, server: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Server(@as(*const IDataCollectorSet, @ptrCast(self)), server);
+        return self.vtable.get_Server(self, server);
     }
     pub fn get_Status(self: *const IDataCollectorSet, status: ?*DataCollectorSetStatus) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IDataCollectorSet, @ptrCast(self)), status);
+        return self.vtable.get_Status(self, status);
     }
     pub fn get_Subdirectory(self: *const IDataCollectorSet, folder: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Subdirectory(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
+        return self.vtable.get_Subdirectory(self, folder);
     }
     pub fn put_Subdirectory(self: *const IDataCollectorSet, folder: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Subdirectory(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
+        return self.vtable.put_Subdirectory(self, folder);
     }
     pub fn get_SubdirectoryFormat(self: *const IDataCollectorSet, format: ?*AutoPathFormat) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SubdirectoryFormat(@as(*const IDataCollectorSet, @ptrCast(self)), format);
+        return self.vtable.get_SubdirectoryFormat(self, format);
     }
     pub fn put_SubdirectoryFormat(self: *const IDataCollectorSet, format: AutoPathFormat) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SubdirectoryFormat(@as(*const IDataCollectorSet, @ptrCast(self)), format);
+        return self.vtable.put_SubdirectoryFormat(self, format);
     }
     pub fn get_SubdirectoryFormatPattern(self: *const IDataCollectorSet, pattern: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SubdirectoryFormatPattern(@as(*const IDataCollectorSet, @ptrCast(self)), pattern);
+        return self.vtable.get_SubdirectoryFormatPattern(self, pattern);
     }
     pub fn put_SubdirectoryFormatPattern(self: *const IDataCollectorSet, pattern: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SubdirectoryFormatPattern(@as(*const IDataCollectorSet, @ptrCast(self)), pattern);
+        return self.vtable.put_SubdirectoryFormatPattern(self, pattern);
     }
     pub fn get_Task(self: *const IDataCollectorSet, task: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IDataCollectorSet, @ptrCast(self)), task);
+        return self.vtable.get_Task(self, task);
     }
     pub fn put_Task(self: *const IDataCollectorSet, task: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IDataCollectorSet, @ptrCast(self)), task);
+        return self.vtable.put_Task(self, task);
     }
     pub fn get_TaskRunAsSelf(self: *const IDataCollectorSet, RunAsSelf: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskRunAsSelf(@as(*const IDataCollectorSet, @ptrCast(self)), RunAsSelf);
+        return self.vtable.get_TaskRunAsSelf(self, RunAsSelf);
     }
     pub fn put_TaskRunAsSelf(self: *const IDataCollectorSet, RunAsSelf: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskRunAsSelf(@as(*const IDataCollectorSet, @ptrCast(self)), RunAsSelf);
+        return self.vtable.put_TaskRunAsSelf(self, RunAsSelf);
     }
     pub fn get_TaskArguments(self: *const IDataCollectorSet, task: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskArguments(@as(*const IDataCollectorSet, @ptrCast(self)), task);
+        return self.vtable.get_TaskArguments(self, task);
     }
     pub fn put_TaskArguments(self: *const IDataCollectorSet, task: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskArguments(@as(*const IDataCollectorSet, @ptrCast(self)), task);
+        return self.vtable.put_TaskArguments(self, task);
     }
     pub fn get_TaskUserTextArguments(self: *const IDataCollectorSet, UserText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskUserTextArguments(@as(*const IDataCollectorSet, @ptrCast(self)), UserText);
+        return self.vtable.get_TaskUserTextArguments(self, UserText);
     }
     pub fn put_TaskUserTextArguments(self: *const IDataCollectorSet, UserText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskUserTextArguments(@as(*const IDataCollectorSet, @ptrCast(self)), UserText);
+        return self.vtable.put_TaskUserTextArguments(self, UserText);
     }
     pub fn get_Schedules(self: *const IDataCollectorSet, ppSchedules: ?*?*IScheduleCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Schedules(@as(*const IDataCollectorSet, @ptrCast(self)), ppSchedules);
+        return self.vtable.get_Schedules(self, ppSchedules);
     }
     pub fn get_SchedulesEnabled(self: *const IDataCollectorSet, enabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SchedulesEnabled(@as(*const IDataCollectorSet, @ptrCast(self)), enabled);
+        return self.vtable.get_SchedulesEnabled(self, enabled);
     }
     pub fn put_SchedulesEnabled(self: *const IDataCollectorSet, enabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SchedulesEnabled(@as(*const IDataCollectorSet, @ptrCast(self)), enabled);
+        return self.vtable.put_SchedulesEnabled(self, enabled);
     }
     pub fn get_UserAccount(self: *const IDataCollectorSet, user: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IDataCollectorSet, @ptrCast(self)), user);
+        return self.vtable.get_UserAccount(self, user);
     }
     pub fn get_Xml(self: *const IDataCollectorSet, xml: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Xml(@as(*const IDataCollectorSet, @ptrCast(self)), xml);
+        return self.vtable.get_Xml(self, xml);
     }
     pub fn get_Security(self: *const IDataCollectorSet, pbstrSecurity: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IDataCollectorSet, @ptrCast(self)), pbstrSecurity);
+        return self.vtable.get_Security(self, pbstrSecurity);
     }
     pub fn put_Security(self: *const IDataCollectorSet, bstrSecurity: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IDataCollectorSet, @ptrCast(self)), bstrSecurity);
+        return self.vtable.put_Security(self, bstrSecurity);
     }
     pub fn get_StopOnCompletion(self: *const IDataCollectorSet, _param_Stop: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_StopOnCompletion(@as(*const IDataCollectorSet, @ptrCast(self)), _param_Stop);
+        return self.vtable.get_StopOnCompletion(self, _param_Stop);
     }
     pub fn put_StopOnCompletion(self: *const IDataCollectorSet, _param_Stop: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_StopOnCompletion(@as(*const IDataCollectorSet, @ptrCast(self)), _param_Stop);
+        return self.vtable.put_StopOnCompletion(self, _param_Stop);
     }
     pub fn get_DataManager(self: *const IDataCollectorSet, DataManager: ?*?*IDataManager) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DataManager(@as(*const IDataCollectorSet, @ptrCast(self)), DataManager);
+        return self.vtable.get_DataManager(self, DataManager);
     }
     pub fn SetCredentials(self: *const IDataCollectorSet, user: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IDataCollectorSet, @ptrCast(self)), user, password);
+        return self.vtable.SetCredentials(self, user, password);
     }
     pub fn Query(self: *const IDataCollectorSet, name: ?BSTR, server: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Query(@as(*const IDataCollectorSet, @ptrCast(self)), name, server);
+        return self.vtable.Query(self, name, server);
     }
     pub fn Commit(self: *const IDataCollectorSet, name: ?BSTR, server: ?BSTR, mode: CommitMode, validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDataCollectorSet, @ptrCast(self)), name, server, mode, validation);
+        return self.vtable.Commit(self, name, server, mode, validation);
     }
     pub fn Delete(self: *const IDataCollectorSet) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IDataCollectorSet, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn Start(self: *const IDataCollectorSet, Synchronous: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Start(@as(*const IDataCollectorSet, @ptrCast(self)), Synchronous);
+        return self.vtable.Start(self, Synchronous);
     }
     pub fn Stop(self: *const IDataCollectorSet, Synchronous: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDataCollectorSet, @ptrCast(self)), Synchronous);
+        return self.vtable.Stop(self, Synchronous);
     }
     pub fn SetXml(self: *const IDataCollectorSet, xml: ?BSTR, validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetXml(@as(*const IDataCollectorSet, @ptrCast(self)), xml, validation);
+        return self.vtable.SetXml(self, xml, validation);
     }
     pub fn SetValue(self: *const IDataCollectorSet, key: ?BSTR, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IDataCollectorSet, @ptrCast(self)), key, value);
+        return self.vtable.SetValue(self, key, value);
     }
     pub fn GetValue(self: *const IDataCollectorSet, key: ?BSTR, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IDataCollectorSet, @ptrCast(self)), key, value);
+        return self.vtable.GetValue(self, key, value);
     }
 };
 
@@ -1472,79 +1472,79 @@ pub const IDataManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Enabled(self: *const IDataManager, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IDataManager, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_Enabled(self, pfEnabled);
     }
     pub fn put_Enabled(self: *const IDataManager, fEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IDataManager, @ptrCast(self)), fEnabled);
+        return self.vtable.put_Enabled(self, fEnabled);
     }
     pub fn get_CheckBeforeRunning(self: *const IDataManager, pfCheck: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_CheckBeforeRunning(@as(*const IDataManager, @ptrCast(self)), pfCheck);
+        return self.vtable.get_CheckBeforeRunning(self, pfCheck);
     }
     pub fn put_CheckBeforeRunning(self: *const IDataManager, fCheck: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_CheckBeforeRunning(@as(*const IDataManager, @ptrCast(self)), fCheck);
+        return self.vtable.put_CheckBeforeRunning(self, fCheck);
     }
     pub fn get_MinFreeDisk(self: *const IDataManager, MinFreeDisk: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MinFreeDisk(@as(*const IDataManager, @ptrCast(self)), MinFreeDisk);
+        return self.vtable.get_MinFreeDisk(self, MinFreeDisk);
     }
     pub fn put_MinFreeDisk(self: *const IDataManager, MinFreeDisk: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MinFreeDisk(@as(*const IDataManager, @ptrCast(self)), MinFreeDisk);
+        return self.vtable.put_MinFreeDisk(self, MinFreeDisk);
     }
     pub fn get_MaxSize(self: *const IDataManager, pulMaxSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MaxSize(@as(*const IDataManager, @ptrCast(self)), pulMaxSize);
+        return self.vtable.get_MaxSize(self, pulMaxSize);
     }
     pub fn put_MaxSize(self: *const IDataManager, ulMaxSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MaxSize(@as(*const IDataManager, @ptrCast(self)), ulMaxSize);
+        return self.vtable.put_MaxSize(self, ulMaxSize);
     }
     pub fn get_MaxFolderCount(self: *const IDataManager, pulMaxFolderCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MaxFolderCount(@as(*const IDataManager, @ptrCast(self)), pulMaxFolderCount);
+        return self.vtable.get_MaxFolderCount(self, pulMaxFolderCount);
     }
     pub fn put_MaxFolderCount(self: *const IDataManager, ulMaxFolderCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MaxFolderCount(@as(*const IDataManager, @ptrCast(self)), ulMaxFolderCount);
+        return self.vtable.put_MaxFolderCount(self, ulMaxFolderCount);
     }
     pub fn get_ResourcePolicy(self: *const IDataManager, pPolicy: ?*ResourcePolicy) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ResourcePolicy(@as(*const IDataManager, @ptrCast(self)), pPolicy);
+        return self.vtable.get_ResourcePolicy(self, pPolicy);
     }
     pub fn put_ResourcePolicy(self: *const IDataManager, Policy: ResourcePolicy) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ResourcePolicy(@as(*const IDataManager, @ptrCast(self)), Policy);
+        return self.vtable.put_ResourcePolicy(self, Policy);
     }
     pub fn get_FolderActions(self: *const IDataManager, Actions: ?*?*IFolderActionCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_FolderActions(@as(*const IDataManager, @ptrCast(self)), Actions);
+        return self.vtable.get_FolderActions(self, Actions);
     }
     pub fn get_ReportSchema(self: *const IDataManager, ReportSchema: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ReportSchema(@as(*const IDataManager, @ptrCast(self)), ReportSchema);
+        return self.vtable.get_ReportSchema(self, ReportSchema);
     }
     pub fn put_ReportSchema(self: *const IDataManager, ReportSchema: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ReportSchema(@as(*const IDataManager, @ptrCast(self)), ReportSchema);
+        return self.vtable.put_ReportSchema(self, ReportSchema);
     }
     pub fn get_ReportFileName(self: *const IDataManager, pbstrFilename: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ReportFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
+        return self.vtable.get_ReportFileName(self, pbstrFilename);
     }
     pub fn put_ReportFileName(self: *const IDataManager, pbstrFilename: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ReportFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
+        return self.vtable.put_ReportFileName(self, pbstrFilename);
     }
     pub fn get_RuleTargetFileName(self: *const IDataManager, Filename: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_RuleTargetFileName(@as(*const IDataManager, @ptrCast(self)), Filename);
+        return self.vtable.get_RuleTargetFileName(self, Filename);
     }
     pub fn put_RuleTargetFileName(self: *const IDataManager, Filename: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_RuleTargetFileName(@as(*const IDataManager, @ptrCast(self)), Filename);
+        return self.vtable.put_RuleTargetFileName(self, Filename);
     }
     pub fn get_EventsFileName(self: *const IDataManager, pbstrFilename: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_EventsFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
+        return self.vtable.get_EventsFileName(self, pbstrFilename);
     }
     pub fn put_EventsFileName(self: *const IDataManager, pbstrFilename: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_EventsFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
+        return self.vtable.put_EventsFileName(self, pbstrFilename);
     }
     pub fn get_Rules(self: *const IDataManager, pbstrXml: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const IDataManager, @ptrCast(self)), pbstrXml);
+        return self.vtable.get_Rules(self, pbstrXml);
     }
     pub fn put_Rules(self: *const IDataManager, bstrXml: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_Rules(@as(*const IDataManager, @ptrCast(self)), bstrXml);
+        return self.vtable.put_Rules(self, bstrXml);
     }
     pub fn Run(self: *const IDataManager, Steps: DataManagerSteps, bstrFolder: ?BSTR, Errors: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).Run(@as(*const IDataManager, @ptrCast(self)), Steps, bstrFolder, Errors);
+        return self.vtable.Run(self, Steps, bstrFolder, Errors);
     }
     pub fn Extract(self: *const IDataManager, CabFilename: ?BSTR, DestinationPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).Extract(@as(*const IDataManager, @ptrCast(self)), CabFilename, DestinationPath);
+        return self.vtable.Extract(self, CabFilename, DestinationPath);
     }
 };
 
@@ -1634,28 +1634,28 @@ pub const IFolderAction = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Age(self: *const IFolderAction, pulAge: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Age(@as(*const IFolderAction, @ptrCast(self)), pulAge);
+        return self.vtable.get_Age(self, pulAge);
     }
     pub fn put_Age(self: *const IFolderAction, ulAge: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Age(@as(*const IFolderAction, @ptrCast(self)), ulAge);
+        return self.vtable.put_Age(self, ulAge);
     }
     pub fn get_Size(self: *const IFolderAction, pulAge: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFolderAction, @ptrCast(self)), pulAge);
+        return self.vtable.get_Size(self, pulAge);
     }
     pub fn put_Size(self: *const IFolderAction, ulAge: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Size(@as(*const IFolderAction, @ptrCast(self)), ulAge);
+        return self.vtable.put_Size(self, ulAge);
     }
     pub fn get_Actions(self: *const IFolderAction, Steps: ?*FolderActionSteps) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Actions(@as(*const IFolderAction, @ptrCast(self)), Steps);
+        return self.vtable.get_Actions(self, Steps);
     }
     pub fn put_Actions(self: *const IFolderAction, Steps: FolderActionSteps) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Actions(@as(*const IFolderAction, @ptrCast(self)), Steps);
+        return self.vtable.put_Actions(self, Steps);
     }
     pub fn get_SendCabTo(self: *const IFolderAction, pbstrDestination: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_SendCabTo(@as(*const IFolderAction, @ptrCast(self)), pbstrDestination);
+        return self.vtable.get_SendCabTo(self, pbstrDestination);
     }
     pub fn put_SendCabTo(self: *const IFolderAction, bstrDestination: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_SendCabTo(@as(*const IFolderAction, @ptrCast(self)), bstrDestination);
+        return self.vtable.put_SendCabTo(self, bstrDestination);
     }
 };
 
@@ -1739,28 +1739,28 @@ pub const IFolderActionCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IFolderActionCollection, Count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFolderActionCollection, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn get_Item(self: *const IFolderActionCollection, Index: VARIANT, Action: ?*?*IFolderAction) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFolderActionCollection, @ptrCast(self)), Index, Action);
+        return self.vtable.get_Item(self, Index, Action);
     }
     pub fn get__NewEnum(self: *const IFolderActionCollection, Enum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFolderActionCollection, @ptrCast(self)), Enum);
+        return self.vtable.get__NewEnum(self, Enum);
     }
     pub fn Add(self: *const IFolderActionCollection, Action: ?*IFolderAction) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IFolderActionCollection, @ptrCast(self)), Action);
+        return self.vtable.Add(self, Action);
     }
     pub fn Remove(self: *const IFolderActionCollection, Index: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFolderActionCollection, @ptrCast(self)), Index);
+        return self.vtable.Remove(self, Index);
     }
     pub fn Clear(self: *const IFolderActionCollection) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IFolderActionCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const IFolderActionCollection, Actions: ?*IFolderActionCollection) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IFolderActionCollection, @ptrCast(self)), Actions);
+        return self.vtable.AddRange(self, Actions);
     }
     pub fn CreateFolderAction(self: *const IFolderActionCollection, FolderAction: ?*?*IFolderAction) callconv(.Inline) HRESULT {
-        return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).CreateFolderAction(@as(*const IFolderActionCollection, @ptrCast(self)), FolderAction);
+        return self.vtable.CreateFolderAction(self, FolderAction);
     }
 };
 
@@ -2003,79 +2003,79 @@ pub const IDataCollector = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DataCollectorSet(self: *const IDataCollector, group: ?*?*IDataCollectorSet) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorSet(@as(*const IDataCollector, @ptrCast(self)), group);
+        return self.vtable.get_DataCollectorSet(self, group);
     }
     pub fn put_DataCollectorSet(self: *const IDataCollector, group: ?*IDataCollectorSet) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_DataCollectorSet(@as(*const IDataCollector, @ptrCast(self)), group);
+        return self.vtable.put_DataCollectorSet(self, group);
     }
     pub fn get_DataCollectorType(self: *const IDataCollector, @"type": ?*DataCollectorType) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorType(@as(*const IDataCollector, @ptrCast(self)), @"type");
+        return self.vtable.get_DataCollectorType(self, @"type");
     }
     pub fn get_FileName(self: *const IDataCollector, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileName(@as(*const IDataCollector, @ptrCast(self)), name);
+        return self.vtable.get_FileName(self, name);
     }
     pub fn put_FileName(self: *const IDataCollector, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileName(@as(*const IDataCollector, @ptrCast(self)), name);
+        return self.vtable.put_FileName(self, name);
     }
     pub fn get_FileNameFormat(self: *const IDataCollector, format: ?*AutoPathFormat) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileNameFormat(@as(*const IDataCollector, @ptrCast(self)), format);
+        return self.vtable.get_FileNameFormat(self, format);
     }
     pub fn put_FileNameFormat(self: *const IDataCollector, format: AutoPathFormat) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileNameFormat(@as(*const IDataCollector, @ptrCast(self)), format);
+        return self.vtable.put_FileNameFormat(self, format);
     }
     pub fn get_FileNameFormatPattern(self: *const IDataCollector, pattern: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileNameFormatPattern(@as(*const IDataCollector, @ptrCast(self)), pattern);
+        return self.vtable.get_FileNameFormatPattern(self, pattern);
     }
     pub fn put_FileNameFormatPattern(self: *const IDataCollector, pattern: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileNameFormatPattern(@as(*const IDataCollector, @ptrCast(self)), pattern);
+        return self.vtable.put_FileNameFormatPattern(self, pattern);
     }
     pub fn get_LatestOutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LatestOutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
+        return self.vtable.get_LatestOutputLocation(self, path);
     }
     pub fn put_LatestOutputLocation(self: *const IDataCollector, path: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LatestOutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
+        return self.vtable.put_LatestOutputLocation(self, path);
     }
     pub fn get_LogAppend(self: *const IDataCollector, append: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogAppend(@as(*const IDataCollector, @ptrCast(self)), append);
+        return self.vtable.get_LogAppend(self, append);
     }
     pub fn put_LogAppend(self: *const IDataCollector, append: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogAppend(@as(*const IDataCollector, @ptrCast(self)), append);
+        return self.vtable.put_LogAppend(self, append);
     }
     pub fn get_LogCircular(self: *const IDataCollector, circular: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogCircular(@as(*const IDataCollector, @ptrCast(self)), circular);
+        return self.vtable.get_LogCircular(self, circular);
     }
     pub fn put_LogCircular(self: *const IDataCollector, circular: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogCircular(@as(*const IDataCollector, @ptrCast(self)), circular);
+        return self.vtable.put_LogCircular(self, circular);
     }
     pub fn get_LogOverwrite(self: *const IDataCollector, overwrite: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogOverwrite(@as(*const IDataCollector, @ptrCast(self)), overwrite);
+        return self.vtable.get_LogOverwrite(self, overwrite);
     }
     pub fn put_LogOverwrite(self: *const IDataCollector, overwrite: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogOverwrite(@as(*const IDataCollector, @ptrCast(self)), overwrite);
+        return self.vtable.put_LogOverwrite(self, overwrite);
     }
     pub fn get_Name(self: *const IDataCollector, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IDataCollector, @ptrCast(self)), name);
+        return self.vtable.get_Name(self, name);
     }
     pub fn put_Name(self: *const IDataCollector, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IDataCollector, @ptrCast(self)), name);
+        return self.vtable.put_Name(self, name);
     }
     pub fn get_OutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_OutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
+        return self.vtable.get_OutputLocation(self, path);
     }
     pub fn get_Index(self: *const IDataCollector, index: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IDataCollector, @ptrCast(self)), index);
+        return self.vtable.get_Index(self, index);
     }
     pub fn put_Index(self: *const IDataCollector, index: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_Index(@as(*const IDataCollector, @ptrCast(self)), index);
+        return self.vtable.put_Index(self, index);
     }
     pub fn get_Xml(self: *const IDataCollector, Xml: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Xml(@as(*const IDataCollector, @ptrCast(self)), Xml);
+        return self.vtable.get_Xml(self, Xml);
     }
     pub fn SetXml(self: *const IDataCollector, Xml: ?BSTR, Validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).SetXml(@as(*const IDataCollector, @ptrCast(self)), Xml, Validation);
+        return self.vtable.SetXml(self, Xml, Validation);
     }
     pub fn CreateOutputLocation(self: *const IDataCollector, Latest: i16, Location: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).CreateOutputLocation(@as(*const IDataCollector, @ptrCast(self)), Latest, Location);
+        return self.vtable.CreateOutputLocation(self, Latest, Location);
     }
 };
 
@@ -2183,34 +2183,34 @@ pub const IPerformanceCounterDataCollector = extern union {
     };}
     pub usingnamespace IDataCollector.MethodMixin(@This());
     pub fn get_DataSourceName(self: *const IPerformanceCounterDataCollector, dsn: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_DataSourceName(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), dsn);
+        return self.vtable.get_DataSourceName(self, dsn);
     }
     pub fn put_DataSourceName(self: *const IPerformanceCounterDataCollector, dsn: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_DataSourceName(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), dsn);
+        return self.vtable.put_DataSourceName(self, dsn);
     }
     pub fn get_PerformanceCounters(self: *const IPerformanceCounterDataCollector, counters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_PerformanceCounters(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), counters);
+        return self.vtable.get_PerformanceCounters(self, counters);
     }
     pub fn put_PerformanceCounters(self: *const IPerformanceCounterDataCollector, counters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_PerformanceCounters(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), counters);
+        return self.vtable.put_PerformanceCounters(self, counters);
     }
     pub fn get_LogFileFormat(self: *const IPerformanceCounterDataCollector, format: ?*FileFormat) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_LogFileFormat(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), format);
+        return self.vtable.get_LogFileFormat(self, format);
     }
     pub fn put_LogFileFormat(self: *const IPerformanceCounterDataCollector, format: FileFormat) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_LogFileFormat(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), format);
+        return self.vtable.put_LogFileFormat(self, format);
     }
     pub fn get_SampleInterval(self: *const IPerformanceCounterDataCollector, interval: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_SampleInterval(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), interval);
+        return self.vtable.get_SampleInterval(self, interval);
     }
     pub fn put_SampleInterval(self: *const IPerformanceCounterDataCollector, interval: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_SampleInterval(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), interval);
+        return self.vtable.put_SampleInterval(self, interval);
     }
     pub fn get_SegmentMaxRecords(self: *const IPerformanceCounterDataCollector, records: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_SegmentMaxRecords(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), records);
+        return self.vtable.get_SegmentMaxRecords(self, records);
     }
     pub fn put_SegmentMaxRecords(self: *const IPerformanceCounterDataCollector, records: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_SegmentMaxRecords(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), records);
+        return self.vtable.put_SegmentMaxRecords(self, records);
     }
 };
 
@@ -2588,124 +2588,124 @@ pub const ITraceDataCollector = extern union {
     };}
     pub usingnamespace IDataCollector.MethodMixin(@This());
     pub fn get_BufferSize(self: *const ITraceDataCollector, size: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BufferSize(@as(*const ITraceDataCollector, @ptrCast(self)), size);
+        return self.vtable.get_BufferSize(self, size);
     }
     pub fn put_BufferSize(self: *const ITraceDataCollector, size: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BufferSize(@as(*const ITraceDataCollector, @ptrCast(self)), size);
+        return self.vtable.put_BufferSize(self, size);
     }
     pub fn get_BuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_BuffersLost(self, buffers);
     }
     pub fn put_BuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_BuffersLost(self, buffers);
     }
     pub fn get_BuffersWritten(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BuffersWritten(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_BuffersWritten(self, buffers);
     }
     pub fn put_BuffersWritten(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BuffersWritten(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_BuffersWritten(self, buffers);
     }
     pub fn get_ClockType(self: *const ITraceDataCollector, clock: ?*ClockType) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ClockType(@as(*const ITraceDataCollector, @ptrCast(self)), clock);
+        return self.vtable.get_ClockType(self, clock);
     }
     pub fn put_ClockType(self: *const ITraceDataCollector, clock: ClockType) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ClockType(@as(*const ITraceDataCollector, @ptrCast(self)), clock);
+        return self.vtable.put_ClockType(self, clock);
     }
     pub fn get_EventsLost(self: *const ITraceDataCollector, events: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_EventsLost(@as(*const ITraceDataCollector, @ptrCast(self)), events);
+        return self.vtable.get_EventsLost(self, events);
     }
     pub fn put_EventsLost(self: *const ITraceDataCollector, events: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_EventsLost(@as(*const ITraceDataCollector, @ptrCast(self)), events);
+        return self.vtable.put_EventsLost(self, events);
     }
     pub fn get_ExtendedModes(self: *const ITraceDataCollector, mode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ExtendedModes(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
+        return self.vtable.get_ExtendedModes(self, mode);
     }
     pub fn put_ExtendedModes(self: *const ITraceDataCollector, mode: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ExtendedModes(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
+        return self.vtable.put_ExtendedModes(self, mode);
     }
     pub fn get_FlushTimer(self: *const ITraceDataCollector, seconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_FlushTimer(@as(*const ITraceDataCollector, @ptrCast(self)), seconds);
+        return self.vtable.get_FlushTimer(self, seconds);
     }
     pub fn put_FlushTimer(self: *const ITraceDataCollector, seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_FlushTimer(@as(*const ITraceDataCollector, @ptrCast(self)), seconds);
+        return self.vtable.put_FlushTimer(self, seconds);
     }
     pub fn get_FreeBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_FreeBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_FreeBuffers(self, buffers);
     }
     pub fn put_FreeBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_FreeBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_FreeBuffers(self, buffers);
     }
     pub fn get_Guid(self: *const ITraceDataCollector, guid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ITraceDataCollector, @ptrCast(self)), guid);
+        return self.vtable.get_Guid(self, guid);
     }
     pub fn put_Guid(self: *const ITraceDataCollector, guid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ITraceDataCollector, @ptrCast(self)), guid);
+        return self.vtable.put_Guid(self, guid);
     }
     pub fn get_IsKernelTrace(self: *const ITraceDataCollector, kernel: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_IsKernelTrace(@as(*const ITraceDataCollector, @ptrCast(self)), kernel);
+        return self.vtable.get_IsKernelTrace(self, kernel);
     }
     pub fn get_MaximumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_MaximumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_MaximumBuffers(self, buffers);
     }
     pub fn put_MaximumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_MaximumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_MaximumBuffers(self, buffers);
     }
     pub fn get_MinimumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_MinimumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_MinimumBuffers(self, buffers);
     }
     pub fn put_MinimumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_MinimumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_MinimumBuffers(self, buffers);
     }
     pub fn get_NumberOfBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_NumberOfBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_NumberOfBuffers(self, buffers);
     }
     pub fn put_NumberOfBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_NumberOfBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_NumberOfBuffers(self, buffers);
     }
     pub fn get_PreallocateFile(self: *const ITraceDataCollector, allocate: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_PreallocateFile(@as(*const ITraceDataCollector, @ptrCast(self)), allocate);
+        return self.vtable.get_PreallocateFile(self, allocate);
     }
     pub fn put_PreallocateFile(self: *const ITraceDataCollector, allocate: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_PreallocateFile(@as(*const ITraceDataCollector, @ptrCast(self)), allocate);
+        return self.vtable.put_PreallocateFile(self, allocate);
     }
     pub fn get_ProcessMode(self: *const ITraceDataCollector, process: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ProcessMode(@as(*const ITraceDataCollector, @ptrCast(self)), process);
+        return self.vtable.get_ProcessMode(self, process);
     }
     pub fn put_ProcessMode(self: *const ITraceDataCollector, process: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ProcessMode(@as(*const ITraceDataCollector, @ptrCast(self)), process);
+        return self.vtable.put_ProcessMode(self, process);
     }
     pub fn get_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_RealTimeBuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.get_RealTimeBuffersLost(self, buffers);
     }
     pub fn put_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_RealTimeBuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
+        return self.vtable.put_RealTimeBuffersLost(self, buffers);
     }
     pub fn get_SessionId(self: *const ITraceDataCollector, id: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionId(@as(*const ITraceDataCollector, @ptrCast(self)), id);
+        return self.vtable.get_SessionId(self, id);
     }
     pub fn put_SessionId(self: *const ITraceDataCollector, id: u64) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionId(@as(*const ITraceDataCollector, @ptrCast(self)), id);
+        return self.vtable.put_SessionId(self, id);
     }
     pub fn get_SessionName(self: *const ITraceDataCollector, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionName(@as(*const ITraceDataCollector, @ptrCast(self)), name);
+        return self.vtable.get_SessionName(self, name);
     }
     pub fn put_SessionName(self: *const ITraceDataCollector, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionName(@as(*const ITraceDataCollector, @ptrCast(self)), name);
+        return self.vtable.put_SessionName(self, name);
     }
     pub fn get_SessionThreadId(self: *const ITraceDataCollector, tid: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionThreadId(@as(*const ITraceDataCollector, @ptrCast(self)), tid);
+        return self.vtable.get_SessionThreadId(self, tid);
     }
     pub fn put_SessionThreadId(self: *const ITraceDataCollector, tid: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionThreadId(@as(*const ITraceDataCollector, @ptrCast(self)), tid);
+        return self.vtable.put_SessionThreadId(self, tid);
     }
     pub fn get_StreamMode(self: *const ITraceDataCollector, mode: ?*StreamMode) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_StreamMode(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
+        return self.vtable.get_StreamMode(self, mode);
     }
     pub fn put_StreamMode(self: *const ITraceDataCollector, mode: StreamMode) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_StreamMode(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
+        return self.vtable.put_StreamMode(self, mode);
     }
     pub fn get_TraceDataProviders(self: *const ITraceDataCollector, providers: ?*?*ITraceDataProviderCollection) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_TraceDataProviders(@as(*const ITraceDataCollector, @ptrCast(self)), providers);
+        return self.vtable.get_TraceDataProviders(self, providers);
     }
 };
 
@@ -2885,58 +2885,58 @@ pub const IConfigurationDataCollector = extern union {
     };}
     pub usingnamespace IDataCollector.MethodMixin(@This());
     pub fn get_FileMaxCount(self: *const IConfigurationDataCollector, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxCount(@as(*const IConfigurationDataCollector, @ptrCast(self)), count);
+        return self.vtable.get_FileMaxCount(self, count);
     }
     pub fn put_FileMaxCount(self: *const IConfigurationDataCollector, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxCount(@as(*const IConfigurationDataCollector, @ptrCast(self)), count);
+        return self.vtable.put_FileMaxCount(self, count);
     }
     pub fn get_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
+        return self.vtable.get_FileMaxRecursiveDepth(self, depth);
     }
     pub fn put_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
+        return self.vtable.put_FileMaxRecursiveDepth(self, depth);
     }
     pub fn get_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxTotalSize(@as(*const IConfigurationDataCollector, @ptrCast(self)), size);
+        return self.vtable.get_FileMaxTotalSize(self, size);
     }
     pub fn put_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxTotalSize(@as(*const IConfigurationDataCollector, @ptrCast(self)), size);
+        return self.vtable.put_FileMaxTotalSize(self, size);
     }
     pub fn get_Files(self: *const IConfigurationDataCollector, Files: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_Files(@as(*const IConfigurationDataCollector, @ptrCast(self)), Files);
+        return self.vtable.get_Files(self, Files);
     }
     pub fn put_Files(self: *const IConfigurationDataCollector, Files: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_Files(@as(*const IConfigurationDataCollector, @ptrCast(self)), Files);
+        return self.vtable.put_Files(self, Files);
     }
     pub fn get_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_ManagementQueries(@as(*const IConfigurationDataCollector, @ptrCast(self)), Queries);
+        return self.vtable.get_ManagementQueries(self, Queries);
     }
     pub fn put_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_ManagementQueries(@as(*const IConfigurationDataCollector, @ptrCast(self)), Queries);
+        return self.vtable.put_ManagementQueries(self, Queries);
     }
     pub fn get_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_QueryNetworkAdapters(@as(*const IConfigurationDataCollector, @ptrCast(self)), network);
+        return self.vtable.get_QueryNetworkAdapters(self, network);
     }
     pub fn put_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: i16) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_QueryNetworkAdapters(@as(*const IConfigurationDataCollector, @ptrCast(self)), network);
+        return self.vtable.put_QueryNetworkAdapters(self, network);
     }
     pub fn get_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_RegistryKeys(@as(*const IConfigurationDataCollector, @ptrCast(self)), query);
+        return self.vtable.get_RegistryKeys(self, query);
     }
     pub fn put_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_RegistryKeys(@as(*const IConfigurationDataCollector, @ptrCast(self)), query);
+        return self.vtable.put_RegistryKeys(self, query);
     }
     pub fn get_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_RegistryMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
+        return self.vtable.get_RegistryMaxRecursiveDepth(self, depth);
     }
     pub fn put_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_RegistryMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
+        return self.vtable.put_RegistryMaxRecursiveDepth(self, depth);
     }
     pub fn get_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_SystemStateFile(@as(*const IConfigurationDataCollector, @ptrCast(self)), FileName);
+        return self.vtable.get_SystemStateFile(self, FileName);
     }
     pub fn put_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_SystemStateFile(@as(*const IConfigurationDataCollector, @ptrCast(self)), FileName);
+        return self.vtable.put_SystemStateFile(self, FileName);
     }
 };
 
@@ -3098,52 +3098,52 @@ pub const IAlertDataCollector = extern union {
     };}
     pub usingnamespace IDataCollector.MethodMixin(@This());
     pub fn get_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_AlertThresholds(@as(*const IAlertDataCollector, @ptrCast(self)), alerts);
+        return self.vtable.get_AlertThresholds(self, alerts);
     }
     pub fn put_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_AlertThresholds(@as(*const IAlertDataCollector, @ptrCast(self)), alerts);
+        return self.vtable.put_AlertThresholds(self, alerts);
     }
     pub fn get_EventLog(self: *const IAlertDataCollector, log: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_EventLog(@as(*const IAlertDataCollector, @ptrCast(self)), log);
+        return self.vtable.get_EventLog(self, log);
     }
     pub fn put_EventLog(self: *const IAlertDataCollector, log: i16) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_EventLog(@as(*const IAlertDataCollector, @ptrCast(self)), log);
+        return self.vtable.put_EventLog(self, log);
     }
     pub fn get_SampleInterval(self: *const IAlertDataCollector, interval: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_SampleInterval(@as(*const IAlertDataCollector, @ptrCast(self)), interval);
+        return self.vtable.get_SampleInterval(self, interval);
     }
     pub fn put_SampleInterval(self: *const IAlertDataCollector, interval: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_SampleInterval(@as(*const IAlertDataCollector, @ptrCast(self)), interval);
+        return self.vtable.put_SampleInterval(self, interval);
     }
     pub fn get_Task(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.get_Task(self, task);
     }
     pub fn put_Task(self: *const IAlertDataCollector, task: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.put_Task(self, task);
     }
     pub fn get_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskRunAsSelf(@as(*const IAlertDataCollector, @ptrCast(self)), RunAsSelf);
+        return self.vtable.get_TaskRunAsSelf(self, RunAsSelf);
     }
     pub fn put_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: i16) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskRunAsSelf(@as(*const IAlertDataCollector, @ptrCast(self)), RunAsSelf);
+        return self.vtable.put_TaskRunAsSelf(self, RunAsSelf);
     }
     pub fn get_TaskArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.get_TaskArguments(self, task);
     }
     pub fn put_TaskArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.put_TaskArguments(self, task);
     }
     pub fn get_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskUserTextArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.get_TaskUserTextArguments(self, task);
     }
     pub fn put_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskUserTextArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
+        return self.vtable.put_TaskUserTextArguments(self, task);
     }
     pub fn get_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TriggerDataCollectorSet(@as(*const IAlertDataCollector, @ptrCast(self)), name);
+        return self.vtable.get_TriggerDataCollectorSet(self, name);
     }
     pub fn put_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TriggerDataCollectorSet(@as(*const IAlertDataCollector, @ptrCast(self)), name);
+        return self.vtable.put_TriggerDataCollectorSet(self, name);
     }
 };
 
@@ -3287,46 +3287,46 @@ pub const IApiTracingDataCollector = extern union {
     };}
     pub usingnamespace IDataCollector.MethodMixin(@This());
     pub fn get_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogApiNamesOnly(@as(*const IApiTracingDataCollector, @ptrCast(self)), logapinames);
+        return self.vtable.get_LogApiNamesOnly(self, logapinames);
     }
     pub fn put_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: i16) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogApiNamesOnly(@as(*const IApiTracingDataCollector, @ptrCast(self)), logapinames);
+        return self.vtable.put_LogApiNamesOnly(self, logapinames);
     }
     pub fn get_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogApisRecursively(@as(*const IApiTracingDataCollector, @ptrCast(self)), logrecursively);
+        return self.vtable.get_LogApisRecursively(self, logrecursively);
     }
     pub fn put_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: i16) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogApisRecursively(@as(*const IApiTracingDataCollector, @ptrCast(self)), logrecursively);
+        return self.vtable.put_LogApisRecursively(self, logrecursively);
     }
     pub fn get_ExePath(self: *const IApiTracingDataCollector, exepath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_ExePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), exepath);
+        return self.vtable.get_ExePath(self, exepath);
     }
     pub fn put_ExePath(self: *const IApiTracingDataCollector, exepath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_ExePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), exepath);
+        return self.vtable.put_ExePath(self, exepath);
     }
     pub fn get_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogFilePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), logfilepath);
+        return self.vtable.get_LogFilePath(self, logfilepath);
     }
     pub fn put_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogFilePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), logfilepath);
+        return self.vtable.put_LogFilePath(self, logfilepath);
     }
     pub fn get_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_IncludeModules(@as(*const IApiTracingDataCollector, @ptrCast(self)), includemodules);
+        return self.vtable.get_IncludeModules(self, includemodules);
     }
     pub fn put_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_IncludeModules(@as(*const IApiTracingDataCollector, @ptrCast(self)), includemodules);
+        return self.vtable.put_IncludeModules(self, includemodules);
     }
     pub fn get_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_IncludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), includeapis);
+        return self.vtable.get_IncludeApis(self, includeapis);
     }
     pub fn put_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_IncludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), includeapis);
+        return self.vtable.put_IncludeApis(self, includeapis);
     }
     pub fn get_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_ExcludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), excludeapis);
+        return self.vtable.get_ExcludeApis(self, excludeapis);
     }
     pub fn put_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_ExcludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), excludeapis);
+        return self.vtable.put_ExcludeApis(self, excludeapis);
     }
 };
 
@@ -3421,31 +3421,31 @@ pub const IDataCollectorCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IDataCollectorCollection, retVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDataCollectorCollection, @ptrCast(self)), retVal);
+        return self.vtable.get_Count(self, retVal);
     }
     pub fn get_Item(self: *const IDataCollectorCollection, index: VARIANT, collector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDataCollectorCollection, @ptrCast(self)), index, collector);
+        return self.vtable.get_Item(self, index, collector);
     }
     pub fn get__NewEnum(self: *const IDataCollectorCollection, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDataCollectorCollection, @ptrCast(self)), retVal);
+        return self.vtable.get__NewEnum(self, retVal);
     }
     pub fn Add(self: *const IDataCollectorCollection, collector: ?*IDataCollector) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDataCollectorCollection, @ptrCast(self)), collector);
+        return self.vtable.Add(self, collector);
     }
     pub fn Remove(self: *const IDataCollectorCollection, collector: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDataCollectorCollection, @ptrCast(self)), collector);
+        return self.vtable.Remove(self, collector);
     }
     pub fn Clear(self: *const IDataCollectorCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDataCollectorCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const IDataCollectorCollection, collectors: ?*IDataCollectorCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IDataCollectorCollection, @ptrCast(self)), collectors);
+        return self.vtable.AddRange(self, collectors);
     }
     pub fn CreateDataCollectorFromXml(self: *const IDataCollectorCollection, bstrXml: ?BSTR, pValidation: ?*?*IValueMap, pCollector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).CreateDataCollectorFromXml(@as(*const IDataCollectorCollection, @ptrCast(self)), bstrXml, pValidation, pCollector);
+        return self.vtable.CreateDataCollectorFromXml(self, bstrXml, pValidation, pCollector);
     }
     pub fn CreateDataCollector(self: *const IDataCollectorCollection, Type: DataCollectorType, Collector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).CreateDataCollector(@as(*const IDataCollectorCollection, @ptrCast(self)), Type, Collector);
+        return self.vtable.CreateDataCollector(self, Type, Collector);
     }
 };
 
@@ -3530,28 +3530,28 @@ pub const IDataCollectorSetCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IDataCollectorSetCollection, retVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDataCollectorSetCollection, @ptrCast(self)), retVal);
+        return self.vtable.get_Count(self, retVal);
     }
     pub fn get_Item(self: *const IDataCollectorSetCollection, index: VARIANT, set: ?*?*IDataCollectorSet) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDataCollectorSetCollection, @ptrCast(self)), index, set);
+        return self.vtable.get_Item(self, index, set);
     }
     pub fn get__NewEnum(self: *const IDataCollectorSetCollection, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDataCollectorSetCollection, @ptrCast(self)), retVal);
+        return self.vtable.get__NewEnum(self, retVal);
     }
     pub fn Add(self: *const IDataCollectorSetCollection, set: ?*IDataCollectorSet) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDataCollectorSetCollection, @ptrCast(self)), set);
+        return self.vtable.Add(self, set);
     }
     pub fn Remove(self: *const IDataCollectorSetCollection, set: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDataCollectorSetCollection, @ptrCast(self)), set);
+        return self.vtable.Remove(self, set);
     }
     pub fn Clear(self: *const IDataCollectorSetCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDataCollectorSetCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const IDataCollectorSetCollection, sets: ?*IDataCollectorSetCollection) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IDataCollectorSetCollection, @ptrCast(self)), sets);
+        return self.vtable.AddRange(self, sets);
     }
     pub fn GetDataCollectorSets(self: *const IDataCollectorSetCollection, server: ?BSTR, filter: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).GetDataCollectorSets(@as(*const IDataCollectorSetCollection, @ptrCast(self)), server, filter);
+        return self.vtable.GetDataCollectorSets(self, server, filter);
     }
 };
 
@@ -3737,61 +3737,61 @@ pub const ITraceDataProvider = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DisplayName(self: *const ITraceDataProvider, name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ITraceDataProvider, @ptrCast(self)), name);
+        return self.vtable.get_DisplayName(self, name);
     }
     pub fn put_DisplayName(self: *const ITraceDataProvider, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const ITraceDataProvider, @ptrCast(self)), name);
+        return self.vtable.put_DisplayName(self, name);
     }
     pub fn get_Guid(self: *const ITraceDataProvider, guid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ITraceDataProvider, @ptrCast(self)), guid);
+        return self.vtable.get_Guid(self, guid);
     }
     pub fn put_Guid(self: *const ITraceDataProvider, guid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ITraceDataProvider, @ptrCast(self)), guid);
+        return self.vtable.put_Guid(self, guid);
     }
     pub fn get_Level(self: *const ITraceDataProvider, ppLevel: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Level(@as(*const ITraceDataProvider, @ptrCast(self)), ppLevel);
+        return self.vtable.get_Level(self, ppLevel);
     }
     pub fn get_KeywordsAny(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_KeywordsAny(@as(*const ITraceDataProvider, @ptrCast(self)), ppKeywords);
+        return self.vtable.get_KeywordsAny(self, ppKeywords);
     }
     pub fn get_KeywordsAll(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_KeywordsAll(@as(*const ITraceDataProvider, @ptrCast(self)), ppKeywords);
+        return self.vtable.get_KeywordsAll(self, ppKeywords);
     }
     pub fn get_Properties(self: *const ITraceDataProvider, ppProperties: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const ITraceDataProvider, @ptrCast(self)), ppProperties);
+        return self.vtable.get_Properties(self, ppProperties);
     }
     pub fn get_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterEnabled(@as(*const ITraceDataProvider, @ptrCast(self)), FilterEnabled);
+        return self.vtable.get_FilterEnabled(self, FilterEnabled);
     }
     pub fn put_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterEnabled(@as(*const ITraceDataProvider, @ptrCast(self)), FilterEnabled);
+        return self.vtable.put_FilterEnabled(self, FilterEnabled);
     }
     pub fn get_FilterType(self: *const ITraceDataProvider, pulType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterType(@as(*const ITraceDataProvider, @ptrCast(self)), pulType);
+        return self.vtable.get_FilterType(self, pulType);
     }
     pub fn put_FilterType(self: *const ITraceDataProvider, ulType: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterType(@as(*const ITraceDataProvider, @ptrCast(self)), ulType);
+        return self.vtable.put_FilterType(self, ulType);
     }
     pub fn get_FilterData(self: *const ITraceDataProvider, ppData: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterData(@as(*const ITraceDataProvider, @ptrCast(self)), ppData);
+        return self.vtable.get_FilterData(self, ppData);
     }
     pub fn put_FilterData(self: *const ITraceDataProvider, pData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterData(@as(*const ITraceDataProvider, @ptrCast(self)), pData);
+        return self.vtable.put_FilterData(self, pData);
     }
     pub fn Query(self: *const ITraceDataProvider, bstrName: ?BSTR, bstrServer: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const ITraceDataProvider, @ptrCast(self)), bstrName, bstrServer);
+        return self.vtable.Query(self, bstrName, bstrServer);
     }
     pub fn Resolve(self: *const ITraceDataProvider, pFrom: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).Resolve(@as(*const ITraceDataProvider, @ptrCast(self)), pFrom);
+        return self.vtable.Resolve(self, pFrom);
     }
     pub fn SetSecurity(self: *const ITraceDataProvider, Sddl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const ITraceDataProvider, @ptrCast(self)), Sddl);
+        return self.vtable.SetSecurity(self, Sddl);
     }
     pub fn GetSecurity(self: *const ITraceDataProvider, SecurityInfo: u32, Sddl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const ITraceDataProvider, @ptrCast(self)), SecurityInfo, Sddl);
+        return self.vtable.GetSecurity(self, SecurityInfo, Sddl);
     }
     pub fn GetRegisteredProcesses(self: *const ITraceDataProvider, Processes: ?*?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).GetRegisteredProcesses(@as(*const ITraceDataProvider, @ptrCast(self)), Processes);
+        return self.vtable.GetRegisteredProcesses(self, Processes);
     }
 };
 
@@ -3892,34 +3892,34 @@ pub const ITraceDataProviderCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ITraceDataProviderCollection, retVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ITraceDataProviderCollection, @ptrCast(self)), retVal);
+        return self.vtable.get_Count(self, retVal);
     }
     pub fn get_Item(self: *const ITraceDataProviderCollection, index: VARIANT, ppProvider: ?*?*ITraceDataProvider) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ITraceDataProviderCollection, @ptrCast(self)), index, ppProvider);
+        return self.vtable.get_Item(self, index, ppProvider);
     }
     pub fn get__NewEnum(self: *const ITraceDataProviderCollection, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ITraceDataProviderCollection, @ptrCast(self)), retVal);
+        return self.vtable.get__NewEnum(self, retVal);
     }
     pub fn Add(self: *const ITraceDataProviderCollection, pProvider: ?*ITraceDataProvider) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ITraceDataProviderCollection, @ptrCast(self)), pProvider);
+        return self.vtable.Add(self, pProvider);
     }
     pub fn Remove(self: *const ITraceDataProviderCollection, vProvider: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ITraceDataProviderCollection, @ptrCast(self)), vProvider);
+        return self.vtable.Remove(self, vProvider);
     }
     pub fn Clear(self: *const ITraceDataProviderCollection) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ITraceDataProviderCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const ITraceDataProviderCollection, providers: ?*ITraceDataProviderCollection) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const ITraceDataProviderCollection, @ptrCast(self)), providers);
+        return self.vtable.AddRange(self, providers);
     }
     pub fn CreateTraceDataProvider(self: *const ITraceDataProviderCollection, Provider: ?*?*ITraceDataProvider) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).CreateTraceDataProvider(@as(*const ITraceDataProviderCollection, @ptrCast(self)), Provider);
+        return self.vtable.CreateTraceDataProvider(self, Provider);
     }
     pub fn GetTraceDataProviders(self: *const ITraceDataProviderCollection, server: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).GetTraceDataProviders(@as(*const ITraceDataProviderCollection, @ptrCast(self)), server);
+        return self.vtable.GetTraceDataProviders(self, server);
     }
     pub fn GetTraceDataProvidersByProcess(self: *const ITraceDataProviderCollection, Server: ?BSTR, Pid: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).GetTraceDataProvidersByProcess(@as(*const ITraceDataProviderCollection, @ptrCast(self)), Server, Pid);
+        return self.vtable.GetTraceDataProvidersByProcess(self, Server, Pid);
     }
 };
 
@@ -4009,28 +4009,28 @@ pub const ISchedule = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StartDate(self: *const ISchedule, start: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_StartDate(@as(*const ISchedule, @ptrCast(self)), start);
+        return self.vtable.get_StartDate(self, start);
     }
     pub fn put_StartDate(self: *const ISchedule, start: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_StartDate(@as(*const ISchedule, @ptrCast(self)), start);
+        return self.vtable.put_StartDate(self, start);
     }
     pub fn get_EndDate(self: *const ISchedule, end: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_EndDate(@as(*const ISchedule, @ptrCast(self)), end);
+        return self.vtable.get_EndDate(self, end);
     }
     pub fn put_EndDate(self: *const ISchedule, end: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_EndDate(@as(*const ISchedule, @ptrCast(self)), end);
+        return self.vtable.put_EndDate(self, end);
     }
     pub fn get_StartTime(self: *const ISchedule, start: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ISchedule, @ptrCast(self)), start);
+        return self.vtable.get_StartTime(self, start);
     }
     pub fn put_StartTime(self: *const ISchedule, start: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const ISchedule, @ptrCast(self)), start);
+        return self.vtable.put_StartTime(self, start);
     }
     pub fn get_Days(self: *const ISchedule, days: ?*WeekDays) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_Days(@as(*const ISchedule, @ptrCast(self)), days);
+        return self.vtable.get_Days(self, days);
     }
     pub fn put_Days(self: *const ISchedule, days: WeekDays) callconv(.Inline) HRESULT {
-        return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_Days(@as(*const ISchedule, @ptrCast(self)), days);
+        return self.vtable.put_Days(self, days);
     }
 };
 
@@ -4114,28 +4114,28 @@ pub const IScheduleCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IScheduleCollection, retVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IScheduleCollection, @ptrCast(self)), retVal);
+        return self.vtable.get_Count(self, retVal);
     }
     pub fn get_Item(self: *const IScheduleCollection, index: VARIANT, ppSchedule: ?*?*ISchedule) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IScheduleCollection, @ptrCast(self)), index, ppSchedule);
+        return self.vtable.get_Item(self, index, ppSchedule);
     }
     pub fn get__NewEnum(self: *const IScheduleCollection, ienum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IScheduleCollection, @ptrCast(self)), ienum);
+        return self.vtable.get__NewEnum(self, ienum);
     }
     pub fn Add(self: *const IScheduleCollection, pSchedule: ?*ISchedule) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IScheduleCollection, @ptrCast(self)), pSchedule);
+        return self.vtable.Add(self, pSchedule);
     }
     pub fn Remove(self: *const IScheduleCollection, vSchedule: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IScheduleCollection, @ptrCast(self)), vSchedule);
+        return self.vtable.Remove(self, vSchedule);
     }
     pub fn Clear(self: *const IScheduleCollection) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IScheduleCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const IScheduleCollection, pSchedules: ?*IScheduleCollection) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IScheduleCollection, @ptrCast(self)), pSchedules);
+        return self.vtable.AddRange(self, pSchedules);
     }
     pub fn CreateSchedule(self: *const IScheduleCollection, Schedule: ?*?*ISchedule) callconv(.Inline) HRESULT {
-        return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).CreateSchedule(@as(*const IScheduleCollection, @ptrCast(self)), Schedule);
+        return self.vtable.CreateSchedule(self, Schedule);
     }
 };
 
@@ -4243,34 +4243,34 @@ pub const IValueMapItem = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Description(self: *const IValueMapItem, description: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IValueMapItem, @ptrCast(self)), description);
+        return self.vtable.get_Description(self, description);
     }
     pub fn put_Description(self: *const IValueMapItem, description: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IValueMapItem, @ptrCast(self)), description);
+        return self.vtable.put_Description(self, description);
     }
     pub fn get_Enabled(self: *const IValueMapItem, enabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IValueMapItem, @ptrCast(self)), enabled);
+        return self.vtable.get_Enabled(self, enabled);
     }
     pub fn put_Enabled(self: *const IValueMapItem, enabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IValueMapItem, @ptrCast(self)), enabled);
+        return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_Key(self: *const IValueMapItem, key: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Key(@as(*const IValueMapItem, @ptrCast(self)), key);
+        return self.vtable.get_Key(self, key);
     }
     pub fn put_Key(self: *const IValueMapItem, key: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Key(@as(*const IValueMapItem, @ptrCast(self)), key);
+        return self.vtable.put_Key(self, key);
     }
     pub fn get_Value(self: *const IValueMapItem, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IValueMapItem, @ptrCast(self)), Value);
+        return self.vtable.get_Value(self, Value);
     }
     pub fn put_Value(self: *const IValueMapItem, Value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMapItem, @ptrCast(self)), Value);
+        return self.vtable.put_Value(self, Value);
     }
     pub fn get_ValueMapType(self: *const IValueMapItem, @"type": ?*ValueMapType) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), @"type");
+        return self.vtable.get_ValueMapType(self, @"type");
     }
     pub fn put_ValueMapType(self: *const IValueMapItem, @"type": ValueMapType) callconv(.Inline) HRESULT {
-        return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), @"type");
+        return self.vtable.put_ValueMapType(self, @"type");
     }
 };
 
@@ -4408,46 +4408,46 @@ pub const IValueMap = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IValueMap, retVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IValueMap, @ptrCast(self)), retVal);
+        return self.vtable.get_Count(self, retVal);
     }
     pub fn get_Item(self: *const IValueMap, index: VARIANT, value: ?*?*IValueMapItem) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IValueMap, @ptrCast(self)), index, value);
+        return self.vtable.get_Item(self, index, value);
     }
     pub fn get__NewEnum(self: *const IValueMap, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IValueMap, @ptrCast(self)), retVal);
+        return self.vtable.get__NewEnum(self, retVal);
     }
     pub fn get_Description(self: *const IValueMap, description: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IValueMap, @ptrCast(self)), description);
+        return self.vtable.get_Description(self, description);
     }
     pub fn put_Description(self: *const IValueMap, description: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IValueMap, @ptrCast(self)), description);
+        return self.vtable.put_Description(self, description);
     }
     pub fn get_Value(self: *const IValueMap, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IValueMap, @ptrCast(self)), Value);
+        return self.vtable.get_Value(self, Value);
     }
     pub fn put_Value(self: *const IValueMap, Value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMap, @ptrCast(self)), Value);
+        return self.vtable.put_Value(self, Value);
     }
     pub fn get_ValueMapType(self: *const IValueMap, @"type": ?*ValueMapType) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMap, @ptrCast(self)), @"type");
+        return self.vtable.get_ValueMapType(self, @"type");
     }
     pub fn put_ValueMapType(self: *const IValueMap, @"type": ValueMapType) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMap, @ptrCast(self)), @"type");
+        return self.vtable.put_ValueMapType(self, @"type");
     }
     pub fn Add(self: *const IValueMap, value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Add(@as(*const IValueMap, @ptrCast(self)), value);
+        return self.vtable.Add(self, value);
     }
     pub fn Remove(self: *const IValueMap, value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Remove(@as(*const IValueMap, @ptrCast(self)), value);
+        return self.vtable.Remove(self, value);
     }
     pub fn Clear(self: *const IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Clear(@as(*const IValueMap, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddRange(self: *const IValueMap, map: ?*IValueMap) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IValueMap, @ptrCast(self)), map);
+        return self.vtable.AddRange(self, map);
     }
     pub fn CreateValueMapItem(self: *const IValueMap, Item: ?*?*IValueMapItem) callconv(.Inline) HRESULT {
-        return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).CreateValueMapItem(@as(*const IValueMap, @ptrCast(self)), Item);
+        return self.vtable.CreateValueMapItem(self, Item);
     }
 };
 
@@ -5178,40 +5178,40 @@ pub const ICounterItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Value(self: *const ICounterItem, pdblValue: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ICounterItem, @ptrCast(self)), pdblValue);
+        return self.vtable.get_Value(self, pdblValue);
     }
     pub fn put_Color(self: *const ICounterItem, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_Color(@as(*const ICounterItem, @ptrCast(self)), Color);
+        return self.vtable.put_Color(self, Color);
     }
     pub fn get_Color(self: *const ICounterItem, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Color(@as(*const ICounterItem, @ptrCast(self)), pColor);
+        return self.vtable.get_Color(self, pColor);
     }
     pub fn put_Width(self: *const ICounterItem, iWidth: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_Width(@as(*const ICounterItem, @ptrCast(self)), iWidth);
+        return self.vtable.put_Width(self, iWidth);
     }
     pub fn get_Width(self: *const ICounterItem, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Width(@as(*const ICounterItem, @ptrCast(self)), piValue);
+        return self.vtable.get_Width(self, piValue);
     }
     pub fn put_LineStyle(self: *const ICounterItem, iLineStyle: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_LineStyle(@as(*const ICounterItem, @ptrCast(self)), iLineStyle);
+        return self.vtable.put_LineStyle(self, iLineStyle);
     }
     pub fn get_LineStyle(self: *const ICounterItem, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_LineStyle(@as(*const ICounterItem, @ptrCast(self)), piValue);
+        return self.vtable.get_LineStyle(self, piValue);
     }
     pub fn put_ScaleFactor(self: *const ICounterItem, iScale: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_ScaleFactor(@as(*const ICounterItem, @ptrCast(self)), iScale);
+        return self.vtable.put_ScaleFactor(self, iScale);
     }
     pub fn get_ScaleFactor(self: *const ICounterItem, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_ScaleFactor(@as(*const ICounterItem, @ptrCast(self)), piValue);
+        return self.vtable.get_ScaleFactor(self, piValue);
     }
     pub fn get_Path(self: *const ICounterItem, pstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ICounterItem, @ptrCast(self)), pstrValue);
+        return self.vtable.get_Path(self, pstrValue);
     }
     pub fn GetValue(self: *const ICounterItem, Value: ?*f64, Status: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICounterItem, @ptrCast(self)), Value, Status);
+        return self.vtable.GetValue(self, Value, Status);
     }
     pub fn GetStatistics(self: *const ICounterItem, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const ICounterItem, @ptrCast(self)), Max, Min, Avg, Status);
+        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
     }
 };
 
@@ -5274,19 +5274,19 @@ pub const ICounterItem2 = extern union {
     };}
     pub usingnamespace ICounterItem.MethodMixin(@This());
     pub fn put_Selected(self: *const ICounterItem2, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const ICounterItem2, @ptrCast(self)), bState);
+        return self.vtable.put_Selected(self, bState);
     }
     pub fn get_Selected(self: *const ICounterItem2, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const ICounterItem2, @ptrCast(self)), pbState);
+        return self.vtable.get_Selected(self, pbState);
     }
     pub fn put_Visible(self: *const ICounterItem2, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const ICounterItem2, @ptrCast(self)), bState);
+        return self.vtable.put_Visible(self, bState);
     }
     pub fn get_Visible(self: *const ICounterItem2, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const ICounterItem2, @ptrCast(self)), pbState);
+        return self.vtable.get_Visible(self, pbState);
     }
     pub fn GetDataAt(self: *const ICounterItem2, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).GetDataAt(@as(*const ICounterItem2, @ptrCast(self)), iIndex, iWhich, pVariant);
+        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
     }
 };
 
@@ -5459,55 +5459,55 @@ pub const _ICounterItemUnion = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Value(self: *const _ICounterItemUnion, pdblValue: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Value(@as(*const _ICounterItemUnion, @ptrCast(self)), pdblValue);
+        return self.vtable.get_Value(self, pdblValue);
     }
     pub fn put_Color(self: *const _ICounterItemUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Color(@as(*const _ICounterItemUnion, @ptrCast(self)), Color);
+        return self.vtable.put_Color(self, Color);
     }
     pub fn get_Color(self: *const _ICounterItemUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Color(@as(*const _ICounterItemUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_Color(self, pColor);
     }
     pub fn put_Width(self: *const _ICounterItemUnion, iWidth: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Width(@as(*const _ICounterItemUnion, @ptrCast(self)), iWidth);
+        return self.vtable.put_Width(self, iWidth);
     }
     pub fn get_Width(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Width(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_Width(self, piValue);
     }
     pub fn put_LineStyle(self: *const _ICounterItemUnion, iLineStyle: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_LineStyle(@as(*const _ICounterItemUnion, @ptrCast(self)), iLineStyle);
+        return self.vtable.put_LineStyle(self, iLineStyle);
     }
     pub fn get_LineStyle(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_LineStyle(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_LineStyle(self, piValue);
     }
     pub fn put_ScaleFactor(self: *const _ICounterItemUnion, iScale: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_ScaleFactor(@as(*const _ICounterItemUnion, @ptrCast(self)), iScale);
+        return self.vtable.put_ScaleFactor(self, iScale);
     }
     pub fn get_ScaleFactor(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_ScaleFactor(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_ScaleFactor(self, piValue);
     }
     pub fn get_Path(self: *const _ICounterItemUnion, pstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Path(@as(*const _ICounterItemUnion, @ptrCast(self)), pstrValue);
+        return self.vtable.get_Path(self, pstrValue);
     }
     pub fn GetValue(self: *const _ICounterItemUnion, Value: ?*f64, Status: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetValue(@as(*const _ICounterItemUnion, @ptrCast(self)), Value, Status);
+        return self.vtable.GetValue(self, Value, Status);
     }
     pub fn GetStatistics(self: *const _ICounterItemUnion, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const _ICounterItemUnion, @ptrCast(self)), Max, Min, Avg, Status);
+        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
     }
     pub fn put_Selected(self: *const _ICounterItemUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const _ICounterItemUnion, @ptrCast(self)), bState);
+        return self.vtable.put_Selected(self, bState);
     }
     pub fn get_Selected(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const _ICounterItemUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_Selected(self, pbState);
     }
     pub fn put_Visible(self: *const _ICounterItemUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const _ICounterItemUnion, @ptrCast(self)), bState);
+        return self.vtable.put_Visible(self, bState);
     }
     pub fn get_Visible(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const _ICounterItemUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_Visible(self, pbState);
     }
     pub fn GetDataAt(self: *const _ICounterItemUnion, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetDataAt(@as(*const _ICounterItemUnion, @ptrCast(self)), iIndex, iWhich, pVariant);
+        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
     }
 };
 
@@ -5582,19 +5582,19 @@ pub const ICounters = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ICounters, pLong: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICounters, @ptrCast(self)), pLong);
+        return self.vtable.get_Count(self, pLong);
     }
     pub fn get__NewEnum(self: *const ICounters, ppIunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICounters, @ptrCast(self)), ppIunk);
+        return self.vtable.get__NewEnum(self, ppIunk);
     }
     pub fn get_Item(self: *const ICounters, index: VARIANT, ppI: ?*?*DICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICounters, @ptrCast(self)), index, ppI);
+        return self.vtable.get_Item(self, index, ppI);
     }
     pub fn Add(self: *const ICounters, pathname: ?BSTR, ppI: ?*?*DICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const ICounters.VTable, @ptrCast(self.vtable)).Add(@as(*const ICounters, @ptrCast(self)), pathname, ppI);
+        return self.vtable.Add(self, pathname, ppI);
     }
     pub fn Remove(self: *const ICounters, index: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICounters.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICounters, @ptrCast(self)), index);
+        return self.vtable.Remove(self, index);
     }
 };
 
@@ -5620,7 +5620,7 @@ pub const ILogFileItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Path(self: *const ILogFileItem, pstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ILogFileItem.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ILogFileItem, @ptrCast(self)), pstrValue);
+        return self.vtable.get_Path(self, pstrValue);
     }
 };
 
@@ -5695,19 +5695,19 @@ pub const ILogFiles = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ILogFiles, pLong: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ILogFiles, @ptrCast(self)), pLong);
+        return self.vtable.get_Count(self, pLong);
     }
     pub fn get__NewEnum(self: *const ILogFiles, ppIunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ILogFiles, @ptrCast(self)), ppIunk);
+        return self.vtable.get__NewEnum(self, ppIunk);
     }
     pub fn get_Item(self: *const ILogFiles, index: VARIANT, ppI: ?*?*DILogFileItem) callconv(.Inline) HRESULT {
-        return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ILogFiles, @ptrCast(self)), index, ppI);
+        return self.vtable.get_Item(self, index, ppI);
     }
     pub fn Add(self: *const ILogFiles, pathname: ?BSTR, ppI: ?*?*DILogFileItem) callconv(.Inline) HRESULT {
-        return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).Add(@as(*const ILogFiles, @ptrCast(self)), pathname, ppI);
+        return self.vtable.Add(self, pathname, ppI);
     }
     pub fn Remove(self: *const ILogFiles, index: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).Remove(@as(*const ILogFiles, @ptrCast(self)), index);
+        return self.vtable.Remove(self, index);
     }
 };
 
@@ -6392,232 +6392,232 @@ pub const ISystemMonitor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Appearance(self: *const ISystemMonitor, iAppearance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Appearance(@as(*const ISystemMonitor, @ptrCast(self)), iAppearance);
+        return self.vtable.get_Appearance(self, iAppearance);
     }
     pub fn put_Appearance(self: *const ISystemMonitor, iAppearance: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_Appearance(@as(*const ISystemMonitor, @ptrCast(self)), iAppearance);
+        return self.vtable.put_Appearance(self, iAppearance);
     }
     pub fn get_BackColor(self: *const ISystemMonitor, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
+        return self.vtable.get_BackColor(self, pColor);
     }
     pub fn put_BackColor(self: *const ISystemMonitor, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
+        return self.vtable.put_BackColor(self, Color);
     }
     pub fn get_BorderStyle(self: *const ISystemMonitor, iBorderStyle: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BorderStyle(@as(*const ISystemMonitor, @ptrCast(self)), iBorderStyle);
+        return self.vtable.get_BorderStyle(self, iBorderStyle);
     }
     pub fn put_BorderStyle(self: *const ISystemMonitor, iBorderStyle: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BorderStyle(@as(*const ISystemMonitor, @ptrCast(self)), iBorderStyle);
+        return self.vtable.put_BorderStyle(self, iBorderStyle);
     }
     pub fn get_ForeColor(self: *const ISystemMonitor, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ForeColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
+        return self.vtable.get_ForeColor(self, pColor);
     }
     pub fn put_ForeColor(self: *const ISystemMonitor, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ForeColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
+        return self.vtable.put_ForeColor(self, Color);
     }
     pub fn get_Font(self: *const ISystemMonitor, ppFont: ?*?*IFontDisp) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Font(@as(*const ISystemMonitor, @ptrCast(self)), ppFont);
+        return self.vtable.get_Font(self, ppFont);
     }
     pub fn putref_Font(self: *const ISystemMonitor, pFont: ?*IFontDisp) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).putref_Font(@as(*const ISystemMonitor, @ptrCast(self)), pFont);
+        return self.vtable.putref_Font(self, pFont);
     }
     pub fn get_Counters(self: *const ISystemMonitor, ppICounters: ?*?*ICounters) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Counters(@as(*const ISystemMonitor, @ptrCast(self)), ppICounters);
+        return self.vtable.get_Counters(self, ppICounters);
     }
     pub fn put_ShowVerticalGrid(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowVerticalGrid(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowVerticalGrid(self, bState);
     }
     pub fn get_ShowVerticalGrid(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowVerticalGrid(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowVerticalGrid(self, pbState);
     }
     pub fn put_ShowHorizontalGrid(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowHorizontalGrid(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowHorizontalGrid(self, bState);
     }
     pub fn get_ShowHorizontalGrid(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowHorizontalGrid(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowHorizontalGrid(self, pbState);
     }
     pub fn put_ShowLegend(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowLegend(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowLegend(self, bState);
     }
     pub fn get_ShowLegend(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowLegend(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowLegend(self, pbState);
     }
     pub fn put_ShowScaleLabels(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowScaleLabels(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowScaleLabels(self, bState);
     }
     pub fn get_ShowScaleLabels(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowScaleLabels(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowScaleLabels(self, pbState);
     }
     pub fn put_ShowValueBar(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowValueBar(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowValueBar(self, bState);
     }
     pub fn get_ShowValueBar(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowValueBar(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowValueBar(self, pbState);
     }
     pub fn put_MaximumScale(self: *const ISystemMonitor, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MaximumScale(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
+        return self.vtable.put_MaximumScale(self, iValue);
     }
     pub fn get_MaximumScale(self: *const ISystemMonitor, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MaximumScale(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
+        return self.vtable.get_MaximumScale(self, piValue);
     }
     pub fn put_MinimumScale(self: *const ISystemMonitor, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MinimumScale(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
+        return self.vtable.put_MinimumScale(self, iValue);
     }
     pub fn get_MinimumScale(self: *const ISystemMonitor, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MinimumScale(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
+        return self.vtable.get_MinimumScale(self, piValue);
     }
     pub fn put_UpdateInterval(self: *const ISystemMonitor, fValue: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_UpdateInterval(@as(*const ISystemMonitor, @ptrCast(self)), fValue);
+        return self.vtable.put_UpdateInterval(self, fValue);
     }
     pub fn get_UpdateInterval(self: *const ISystemMonitor, pfValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_UpdateInterval(@as(*const ISystemMonitor, @ptrCast(self)), pfValue);
+        return self.vtable.get_UpdateInterval(self, pfValue);
     }
     pub fn put_DisplayType(self: *const ISystemMonitor, eDisplayType: DisplayTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DisplayType(@as(*const ISystemMonitor, @ptrCast(self)), eDisplayType);
+        return self.vtable.put_DisplayType(self, eDisplayType);
     }
     pub fn get_DisplayType(self: *const ISystemMonitor, peDisplayType: ?*DisplayTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DisplayType(@as(*const ISystemMonitor, @ptrCast(self)), peDisplayType);
+        return self.vtable.get_DisplayType(self, peDisplayType);
     }
     pub fn put_ManualUpdate(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ManualUpdate(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ManualUpdate(self, bState);
     }
     pub fn get_ManualUpdate(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ManualUpdate(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ManualUpdate(self, pbState);
     }
     pub fn put_GraphTitle(self: *const ISystemMonitor, bsTitle: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_GraphTitle(@as(*const ISystemMonitor, @ptrCast(self)), bsTitle);
+        return self.vtable.put_GraphTitle(self, bsTitle);
     }
     pub fn get_GraphTitle(self: *const ISystemMonitor, pbsTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_GraphTitle(@as(*const ISystemMonitor, @ptrCast(self)), pbsTitle);
+        return self.vtable.get_GraphTitle(self, pbsTitle);
     }
     pub fn put_YAxisLabel(self: *const ISystemMonitor, bsTitle: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_YAxisLabel(@as(*const ISystemMonitor, @ptrCast(self)), bsTitle);
+        return self.vtable.put_YAxisLabel(self, bsTitle);
     }
     pub fn get_YAxisLabel(self: *const ISystemMonitor, pbsTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_YAxisLabel(@as(*const ISystemMonitor, @ptrCast(self)), pbsTitle);
+        return self.vtable.get_YAxisLabel(self, pbsTitle);
     }
     pub fn CollectSample(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).CollectSample(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.CollectSample(self);
     }
     pub fn UpdateGraph(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).UpdateGraph(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.UpdateGraph(self);
     }
     pub fn BrowseCounters(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).BrowseCounters(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.BrowseCounters(self);
     }
     pub fn DisplayProperties(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).DisplayProperties(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.DisplayProperties(self);
     }
     pub fn Counter(self: *const ISystemMonitor, iIndex: i32, ppICounter: ?*?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Counter(@as(*const ISystemMonitor, @ptrCast(self)), iIndex, ppICounter);
+        return self.vtable.Counter(self, iIndex, ppICounter);
     }
     pub fn AddCounter(self: *const ISystemMonitor, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).AddCounter(@as(*const ISystemMonitor, @ptrCast(self)), bsPath, ppICounter);
+        return self.vtable.AddCounter(self, bsPath, ppICounter);
     }
     pub fn DeleteCounter(self: *const ISystemMonitor, pCtr: ?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).DeleteCounter(@as(*const ISystemMonitor, @ptrCast(self)), pCtr);
+        return self.vtable.DeleteCounter(self, pCtr);
     }
     pub fn get_BackColorCtl(self: *const ISystemMonitor, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BackColorCtl(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
+        return self.vtable.get_BackColorCtl(self, pColor);
     }
     pub fn put_BackColorCtl(self: *const ISystemMonitor, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BackColorCtl(@as(*const ISystemMonitor, @ptrCast(self)), Color);
+        return self.vtable.put_BackColorCtl(self, Color);
     }
     pub fn put_LogFileName(self: *const ISystemMonitor, bsFileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogFileName(@as(*const ISystemMonitor, @ptrCast(self)), bsFileName);
+        return self.vtable.put_LogFileName(self, bsFileName);
     }
     pub fn get_LogFileName(self: *const ISystemMonitor, bsFileName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogFileName(@as(*const ISystemMonitor, @ptrCast(self)), bsFileName);
+        return self.vtable.get_LogFileName(self, bsFileName);
     }
     pub fn put_LogViewStart(self: *const ISystemMonitor, StartTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogViewStart(@as(*const ISystemMonitor, @ptrCast(self)), StartTime);
+        return self.vtable.put_LogViewStart(self, StartTime);
     }
     pub fn get_LogViewStart(self: *const ISystemMonitor, StartTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogViewStart(@as(*const ISystemMonitor, @ptrCast(self)), StartTime);
+        return self.vtable.get_LogViewStart(self, StartTime);
     }
     pub fn put_LogViewStop(self: *const ISystemMonitor, StopTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogViewStop(@as(*const ISystemMonitor, @ptrCast(self)), StopTime);
+        return self.vtable.put_LogViewStop(self, StopTime);
     }
     pub fn get_LogViewStop(self: *const ISystemMonitor, StopTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogViewStop(@as(*const ISystemMonitor, @ptrCast(self)), StopTime);
+        return self.vtable.get_LogViewStop(self, StopTime);
     }
     pub fn get_GridColor(self: *const ISystemMonitor, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_GridColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
+        return self.vtable.get_GridColor(self, pColor);
     }
     pub fn put_GridColor(self: *const ISystemMonitor, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_GridColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
+        return self.vtable.put_GridColor(self, Color);
     }
     pub fn get_TimeBarColor(self: *const ISystemMonitor, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_TimeBarColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
+        return self.vtable.get_TimeBarColor(self, pColor);
     }
     pub fn put_TimeBarColor(self: *const ISystemMonitor, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_TimeBarColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
+        return self.vtable.put_TimeBarColor(self, Color);
     }
     pub fn get_Highlight(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Highlight(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_Highlight(self, pbState);
     }
     pub fn put_Highlight(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_Highlight(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_Highlight(self, bState);
     }
     pub fn get_ShowToolbar(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowToolbar(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowToolbar(self, pbState);
     }
     pub fn put_ShowToolbar(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowToolbar(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ShowToolbar(self, bState);
     }
     pub fn Paste(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Paste(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.Paste(self);
     }
     pub fn Copy(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Copy(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.Copy(self);
     }
     pub fn Reset(self: *const ISystemMonitor) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISystemMonitor, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn put_ReadOnly(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ReadOnly(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_ReadOnly(self, bState);
     }
     pub fn get_ReadOnly(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_ReadOnly(self, pbState);
     }
     pub fn put_ReportValueType(self: *const ISystemMonitor, eReportValueType: ReportValueTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ReportValueType(@as(*const ISystemMonitor, @ptrCast(self)), eReportValueType);
+        return self.vtable.put_ReportValueType(self, eReportValueType);
     }
     pub fn get_ReportValueType(self: *const ISystemMonitor, peReportValueType: ?*ReportValueTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ReportValueType(@as(*const ISystemMonitor, @ptrCast(self)), peReportValueType);
+        return self.vtable.get_ReportValueType(self, peReportValueType);
     }
     pub fn put_MonitorDuplicateInstances(self: *const ISystemMonitor, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MonitorDuplicateInstances(@as(*const ISystemMonitor, @ptrCast(self)), bState);
+        return self.vtable.put_MonitorDuplicateInstances(self, bState);
     }
     pub fn get_MonitorDuplicateInstances(self: *const ISystemMonitor, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MonitorDuplicateInstances(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
+        return self.vtable.get_MonitorDuplicateInstances(self, pbState);
     }
     pub fn put_DisplayFilter(self: *const ISystemMonitor, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DisplayFilter(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
+        return self.vtable.put_DisplayFilter(self, iValue);
     }
     pub fn get_DisplayFilter(self: *const ISystemMonitor, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DisplayFilter(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
+        return self.vtable.get_DisplayFilter(self, piValue);
     }
     pub fn get_LogFiles(self: *const ISystemMonitor, ppILogFiles: ?*?*ILogFiles) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogFiles(@as(*const ISystemMonitor, @ptrCast(self)), ppILogFiles);
+        return self.vtable.get_LogFiles(self, ppILogFiles);
     }
     pub fn put_DataSourceType(self: *const ISystemMonitor, eDataSourceType: DataSourceTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DataSourceType(@as(*const ISystemMonitor, @ptrCast(self)), eDataSourceType);
+        return self.vtable.put_DataSourceType(self, eDataSourceType);
     }
     pub fn get_DataSourceType(self: *const ISystemMonitor, peDataSourceType: ?*DataSourceTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DataSourceType(@as(*const ISystemMonitor, @ptrCast(self)), peDataSourceType);
+        return self.vtable.get_DataSourceType(self, peDataSourceType);
     }
     pub fn put_SqlDsnName(self: *const ISystemMonitor, bsSqlDsnName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_SqlDsnName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlDsnName);
+        return self.vtable.put_SqlDsnName(self, bsSqlDsnName);
     }
     pub fn get_SqlDsnName(self: *const ISystemMonitor, bsSqlDsnName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_SqlDsnName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlDsnName);
+        return self.vtable.get_SqlDsnName(self, bsSqlDsnName);
     }
     pub fn put_SqlLogSetName(self: *const ISystemMonitor, bsSqlLogSetName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_SqlLogSetName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlLogSetName);
+        return self.vtable.put_SqlLogSetName(self, bsSqlLogSetName);
     }
     pub fn get_SqlLogSetName(self: *const ISystemMonitor, bsSqlLogSetName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_SqlLogSetName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlLogSetName);
+        return self.vtable.get_SqlLogSetName(self, bsSqlLogSetName);
     }
 };
 
@@ -6811,64 +6811,64 @@ pub const ISystemMonitor2 = extern union {
     };}
     pub usingnamespace ISystemMonitor.MethodMixin(@This());
     pub fn put_EnableDigitGrouping(self: *const ISystemMonitor2, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_EnableDigitGrouping(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
+        return self.vtable.put_EnableDigitGrouping(self, bState);
     }
     pub fn get_EnableDigitGrouping(self: *const ISystemMonitor2, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_EnableDigitGrouping(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
+        return self.vtable.get_EnableDigitGrouping(self, pbState);
     }
     pub fn put_EnableToolTips(self: *const ISystemMonitor2, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_EnableToolTips(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
+        return self.vtable.put_EnableToolTips(self, bState);
     }
     pub fn get_EnableToolTips(self: *const ISystemMonitor2, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_EnableToolTips(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
+        return self.vtable.get_EnableToolTips(self, pbState);
     }
     pub fn put_ShowTimeAxisLabels(self: *const ISystemMonitor2, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_ShowTimeAxisLabels(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
+        return self.vtable.put_ShowTimeAxisLabels(self, bState);
     }
     pub fn get_ShowTimeAxisLabels(self: *const ISystemMonitor2, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_ShowTimeAxisLabels(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowTimeAxisLabels(self, pbState);
     }
     pub fn put_ChartScroll(self: *const ISystemMonitor2, bScroll: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_ChartScroll(@as(*const ISystemMonitor2, @ptrCast(self)), bScroll);
+        return self.vtable.put_ChartScroll(self, bScroll);
     }
     pub fn get_ChartScroll(self: *const ISystemMonitor2, pbScroll: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_ChartScroll(@as(*const ISystemMonitor2, @ptrCast(self)), pbScroll);
+        return self.vtable.get_ChartScroll(self, pbScroll);
     }
     pub fn put_DataPointCount(self: *const ISystemMonitor2, iNewCount: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_DataPointCount(@as(*const ISystemMonitor2, @ptrCast(self)), iNewCount);
+        return self.vtable.put_DataPointCount(self, iNewCount);
     }
     pub fn get_DataPointCount(self: *const ISystemMonitor2, piDataPointCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_DataPointCount(@as(*const ISystemMonitor2, @ptrCast(self)), piDataPointCount);
+        return self.vtable.get_DataPointCount(self, piDataPointCount);
     }
     pub fn ScaleToFit(self: *const ISystemMonitor2, bSelectedCountersOnly: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).ScaleToFit(@as(*const ISystemMonitor2, @ptrCast(self)), bSelectedCountersOnly);
+        return self.vtable.ScaleToFit(self, bSelectedCountersOnly);
     }
     pub fn SaveAs(self: *const ISystemMonitor2, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).SaveAs(@as(*const ISystemMonitor2, @ptrCast(self)), bstrFileName, eSysmonFileType);
+        return self.vtable.SaveAs(self, bstrFileName, eSysmonFileType);
     }
     pub fn Relog(self: *const ISystemMonitor2, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).Relog(@as(*const ISystemMonitor2, @ptrCast(self)), bstrFileName, eSysmonFileType, iFilter);
+        return self.vtable.Relog(self, bstrFileName, eSysmonFileType, iFilter);
     }
     pub fn ClearData(self: *const ISystemMonitor2) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).ClearData(@as(*const ISystemMonitor2, @ptrCast(self)));
+        return self.vtable.ClearData(self);
     }
     pub fn get_LogSourceStartTime(self: *const ISystemMonitor2, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_LogSourceStartTime(@as(*const ISystemMonitor2, @ptrCast(self)), pDate);
+        return self.vtable.get_LogSourceStartTime(self, pDate);
     }
     pub fn get_LogSourceStopTime(self: *const ISystemMonitor2, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_LogSourceStopTime(@as(*const ISystemMonitor2, @ptrCast(self)), pDate);
+        return self.vtable.get_LogSourceStopTime(self, pDate);
     }
     pub fn SetLogViewRange(self: *const ISystemMonitor2, StartTime: f64, StopTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).SetLogViewRange(@as(*const ISystemMonitor2, @ptrCast(self)), StartTime, StopTime);
+        return self.vtable.SetLogViewRange(self, StartTime, StopTime);
     }
     pub fn GetLogViewRange(self: *const ISystemMonitor2, StartTime: ?*f64, StopTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).GetLogViewRange(@as(*const ISystemMonitor2, @ptrCast(self)), StartTime, StopTime);
+        return self.vtable.GetLogViewRange(self, StartTime, StopTime);
     }
     pub fn BatchingLock(self: *const ISystemMonitor2, fLock: i16, eBatchReason: SysmonBatchReason) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).BatchingLock(@as(*const ISystemMonitor2, @ptrCast(self)), fLock, eBatchReason);
+        return self.vtable.BatchingLock(self, fLock, eBatchReason);
     }
     pub fn LoadSettings(self: *const ISystemMonitor2, bstrSettingFileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).LoadSettings(@as(*const ISystemMonitor2, @ptrCast(self)), bstrSettingFileName);
+        return self.vtable.LoadSettings(self, bstrSettingFileName);
     }
 };
 
@@ -7730,292 +7730,292 @@ pub const _ISystemMonitorUnion = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Appearance(self: *const _ISystemMonitorUnion, iAppearance: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Appearance(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iAppearance);
+        return self.vtable.get_Appearance(self, iAppearance);
     }
     pub fn put_Appearance(self: *const _ISystemMonitorUnion, iAppearance: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_Appearance(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iAppearance);
+        return self.vtable.put_Appearance(self, iAppearance);
     }
     pub fn get_BackColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_BackColor(self, pColor);
     }
     pub fn put_BackColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
+        return self.vtable.put_BackColor(self, Color);
     }
     pub fn get_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BorderStyle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iBorderStyle);
+        return self.vtable.get_BorderStyle(self, iBorderStyle);
     }
     pub fn put_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BorderStyle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iBorderStyle);
+        return self.vtable.put_BorderStyle(self, iBorderStyle);
     }
     pub fn get_ForeColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ForeColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_ForeColor(self, pColor);
     }
     pub fn put_ForeColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ForeColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
+        return self.vtable.put_ForeColor(self, Color);
     }
     pub fn get_Font(self: *const _ISystemMonitorUnion, ppFont: ?*?*IFontDisp) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Font(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppFont);
+        return self.vtable.get_Font(self, ppFont);
     }
     pub fn putref_Font(self: *const _ISystemMonitorUnion, pFont: ?*IFontDisp) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).putref_Font(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pFont);
+        return self.vtable.putref_Font(self, pFont);
     }
     pub fn get_Counters(self: *const _ISystemMonitorUnion, ppICounters: ?*?*ICounters) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Counters(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppICounters);
+        return self.vtable.get_Counters(self, ppICounters);
     }
     pub fn put_ShowVerticalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowVerticalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowVerticalGrid(self, bState);
     }
     pub fn get_ShowVerticalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowVerticalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowVerticalGrid(self, pbState);
     }
     pub fn put_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowHorizontalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowHorizontalGrid(self, bState);
     }
     pub fn get_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowHorizontalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowHorizontalGrid(self, pbState);
     }
     pub fn put_ShowLegend(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowLegend(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowLegend(self, bState);
     }
     pub fn get_ShowLegend(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowLegend(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowLegend(self, pbState);
     }
     pub fn put_ShowScaleLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowScaleLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowScaleLabels(self, bState);
     }
     pub fn get_ShowScaleLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowScaleLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowScaleLabels(self, pbState);
     }
     pub fn put_ShowValueBar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowValueBar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowValueBar(self, bState);
     }
     pub fn get_ShowValueBar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowValueBar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowValueBar(self, pbState);
     }
     pub fn put_MaximumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MaximumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
+        return self.vtable.put_MaximumScale(self, iValue);
     }
     pub fn get_MaximumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MaximumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_MaximumScale(self, piValue);
     }
     pub fn put_MinimumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MinimumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
+        return self.vtable.put_MinimumScale(self, iValue);
     }
     pub fn get_MinimumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MinimumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_MinimumScale(self, piValue);
     }
     pub fn put_UpdateInterval(self: *const _ISystemMonitorUnion, fValue: f32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_UpdateInterval(@as(*const _ISystemMonitorUnion, @ptrCast(self)), fValue);
+        return self.vtable.put_UpdateInterval(self, fValue);
     }
     pub fn get_UpdateInterval(self: *const _ISystemMonitorUnion, pfValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_UpdateInterval(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pfValue);
+        return self.vtable.get_UpdateInterval(self, pfValue);
     }
     pub fn put_DisplayType(self: *const _ISystemMonitorUnion, eDisplayType: DisplayTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DisplayType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eDisplayType);
+        return self.vtable.put_DisplayType(self, eDisplayType);
     }
     pub fn get_DisplayType(self: *const _ISystemMonitorUnion, peDisplayType: ?*DisplayTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DisplayType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peDisplayType);
+        return self.vtable.get_DisplayType(self, peDisplayType);
     }
     pub fn put_ManualUpdate(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ManualUpdate(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ManualUpdate(self, bState);
     }
     pub fn get_ManualUpdate(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ManualUpdate(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ManualUpdate(self, pbState);
     }
     pub fn put_GraphTitle(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_GraphTitle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsTitle);
+        return self.vtable.put_GraphTitle(self, bsTitle);
     }
     pub fn get_GraphTitle(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_GraphTitle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbsTitle);
+        return self.vtable.get_GraphTitle(self, pbsTitle);
     }
     pub fn put_YAxisLabel(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_YAxisLabel(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsTitle);
+        return self.vtable.put_YAxisLabel(self, bsTitle);
     }
     pub fn get_YAxisLabel(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_YAxisLabel(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbsTitle);
+        return self.vtable.get_YAxisLabel(self, pbsTitle);
     }
     pub fn CollectSample(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).CollectSample(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.CollectSample(self);
     }
     pub fn UpdateGraph(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).UpdateGraph(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.UpdateGraph(self);
     }
     pub fn BrowseCounters(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).BrowseCounters(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.BrowseCounters(self);
     }
     pub fn DisplayProperties(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).DisplayProperties(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.DisplayProperties(self);
     }
     pub fn Counter(self: *const _ISystemMonitorUnion, iIndex: i32, ppICounter: ?*?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Counter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iIndex, ppICounter);
+        return self.vtable.Counter(self, iIndex, ppICounter);
     }
     pub fn AddCounter(self: *const _ISystemMonitorUnion, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).AddCounter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsPath, ppICounter);
+        return self.vtable.AddCounter(self, bsPath, ppICounter);
     }
     pub fn DeleteCounter(self: *const _ISystemMonitorUnion, pCtr: ?*ICounterItem) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).DeleteCounter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pCtr);
+        return self.vtable.DeleteCounter(self, pCtr);
     }
     pub fn get_BackColorCtl(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BackColorCtl(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_BackColorCtl(self, pColor);
     }
     pub fn put_BackColorCtl(self: *const _ISystemMonitorUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BackColorCtl(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
+        return self.vtable.put_BackColorCtl(self, Color);
     }
     pub fn put_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogFileName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsFileName);
+        return self.vtable.put_LogFileName(self, bsFileName);
     }
     pub fn get_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogFileName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsFileName);
+        return self.vtable.get_LogFileName(self, bsFileName);
     }
     pub fn put_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogViewStart(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime);
+        return self.vtable.put_LogViewStart(self, StartTime);
     }
     pub fn get_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogViewStart(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime);
+        return self.vtable.get_LogViewStart(self, StartTime);
     }
     pub fn put_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogViewStop(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StopTime);
+        return self.vtable.put_LogViewStop(self, StopTime);
     }
     pub fn get_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogViewStop(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StopTime);
+        return self.vtable.get_LogViewStop(self, StopTime);
     }
     pub fn get_GridColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_GridColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_GridColor(self, pColor);
     }
     pub fn put_GridColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_GridColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
+        return self.vtable.put_GridColor(self, Color);
     }
     pub fn get_TimeBarColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_TimeBarColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
+        return self.vtable.get_TimeBarColor(self, pColor);
     }
     pub fn put_TimeBarColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_TimeBarColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
+        return self.vtable.put_TimeBarColor(self, Color);
     }
     pub fn get_Highlight(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Highlight(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_Highlight(self, pbState);
     }
     pub fn put_Highlight(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_Highlight(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_Highlight(self, bState);
     }
     pub fn get_ShowToolbar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowToolbar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowToolbar(self, pbState);
     }
     pub fn put_ShowToolbar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowToolbar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowToolbar(self, bState);
     }
     pub fn Paste(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Paste(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.Paste(self);
     }
     pub fn Copy(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Copy(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.Copy(self);
     }
     pub fn Reset(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Reset(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn put_ReadOnly(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ReadOnly(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ReadOnly(self, bState);
     }
     pub fn get_ReadOnly(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ReadOnly(self, pbState);
     }
     pub fn put_ReportValueType(self: *const _ISystemMonitorUnion, eReportValueType: ReportValueTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ReportValueType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eReportValueType);
+        return self.vtable.put_ReportValueType(self, eReportValueType);
     }
     pub fn get_ReportValueType(self: *const _ISystemMonitorUnion, peReportValueType: ?*ReportValueTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ReportValueType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peReportValueType);
+        return self.vtable.get_ReportValueType(self, peReportValueType);
     }
     pub fn put_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MonitorDuplicateInstances(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_MonitorDuplicateInstances(self, bState);
     }
     pub fn get_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MonitorDuplicateInstances(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_MonitorDuplicateInstances(self, pbState);
     }
     pub fn put_DisplayFilter(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DisplayFilter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
+        return self.vtable.put_DisplayFilter(self, iValue);
     }
     pub fn get_DisplayFilter(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DisplayFilter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
+        return self.vtable.get_DisplayFilter(self, piValue);
     }
     pub fn get_LogFiles(self: *const _ISystemMonitorUnion, ppILogFiles: ?*?*ILogFiles) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogFiles(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppILogFiles);
+        return self.vtable.get_LogFiles(self, ppILogFiles);
     }
     pub fn put_DataSourceType(self: *const _ISystemMonitorUnion, eDataSourceType: DataSourceTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DataSourceType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eDataSourceType);
+        return self.vtable.put_DataSourceType(self, eDataSourceType);
     }
     pub fn get_DataSourceType(self: *const _ISystemMonitorUnion, peDataSourceType: ?*DataSourceTypeConstants) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DataSourceType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peDataSourceType);
+        return self.vtable.get_DataSourceType(self, peDataSourceType);
     }
     pub fn put_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_SqlDsnName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlDsnName);
+        return self.vtable.put_SqlDsnName(self, bsSqlDsnName);
     }
     pub fn get_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_SqlDsnName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlDsnName);
+        return self.vtable.get_SqlDsnName(self, bsSqlDsnName);
     }
     pub fn put_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_SqlLogSetName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlLogSetName);
+        return self.vtable.put_SqlLogSetName(self, bsSqlLogSetName);
     }
     pub fn get_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_SqlLogSetName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlLogSetName);
+        return self.vtable.get_SqlLogSetName(self, bsSqlLogSetName);
     }
     pub fn put_EnableDigitGrouping(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_EnableDigitGrouping(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_EnableDigitGrouping(self, bState);
     }
     pub fn get_EnableDigitGrouping(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_EnableDigitGrouping(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_EnableDigitGrouping(self, pbState);
     }
     pub fn put_EnableToolTips(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_EnableToolTips(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_EnableToolTips(self, bState);
     }
     pub fn get_EnableToolTips(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_EnableToolTips(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_EnableToolTips(self, pbState);
     }
     pub fn put_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowTimeAxisLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
+        return self.vtable.put_ShowTimeAxisLabels(self, bState);
     }
     pub fn get_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowTimeAxisLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
+        return self.vtable.get_ShowTimeAxisLabels(self, pbState);
     }
     pub fn put_ChartScroll(self: *const _ISystemMonitorUnion, bScroll: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ChartScroll(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bScroll);
+        return self.vtable.put_ChartScroll(self, bScroll);
     }
     pub fn get_ChartScroll(self: *const _ISystemMonitorUnion, pbScroll: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ChartScroll(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbScroll);
+        return self.vtable.get_ChartScroll(self, pbScroll);
     }
     pub fn put_DataPointCount(self: *const _ISystemMonitorUnion, iNewCount: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DataPointCount(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iNewCount);
+        return self.vtable.put_DataPointCount(self, iNewCount);
     }
     pub fn get_DataPointCount(self: *const _ISystemMonitorUnion, piDataPointCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DataPointCount(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piDataPointCount);
+        return self.vtable.get_DataPointCount(self, piDataPointCount);
     }
     pub fn ScaleToFit(self: *const _ISystemMonitorUnion, bSelectedCountersOnly: i16) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).ScaleToFit(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bSelectedCountersOnly);
+        return self.vtable.ScaleToFit(self, bSelectedCountersOnly);
     }
     pub fn SaveAs(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).SaveAs(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrFileName, eSysmonFileType);
+        return self.vtable.SaveAs(self, bstrFileName, eSysmonFileType);
     }
     pub fn Relog(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Relog(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrFileName, eSysmonFileType, iFilter);
+        return self.vtable.Relog(self, bstrFileName, eSysmonFileType, iFilter);
     }
     pub fn ClearData(self: *const _ISystemMonitorUnion) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).ClearData(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
+        return self.vtable.ClearData(self);
     }
     pub fn get_LogSourceStartTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogSourceStartTime(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pDate);
+        return self.vtable.get_LogSourceStartTime(self, pDate);
     }
     pub fn get_LogSourceStopTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogSourceStopTime(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pDate);
+        return self.vtable.get_LogSourceStopTime(self, pDate);
     }
     pub fn SetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: f64, StopTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).SetLogViewRange(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime, StopTime);
+        return self.vtable.SetLogViewRange(self, StartTime, StopTime);
     }
     pub fn GetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: ?*f64, StopTime: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).GetLogViewRange(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime, StopTime);
+        return self.vtable.GetLogViewRange(self, StartTime, StopTime);
     }
     pub fn BatchingLock(self: *const _ISystemMonitorUnion, fLock: i16, eBatchReason: SysmonBatchReason) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).BatchingLock(@as(*const _ISystemMonitorUnion, @ptrCast(self)), fLock, eBatchReason);
+        return self.vtable.BatchingLock(self, fLock, eBatchReason);
     }
     pub fn LoadSettings(self: *const _ISystemMonitorUnion, bstrSettingFileName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).LoadSettings(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrSettingFileName);
+        return self.vtable.LoadSettings(self, bstrSettingFileName);
     }
 };
 
@@ -8099,19 +8099,19 @@ pub const ISystemMonitorEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnCounterSelected(self: *const ISystemMonitorEvents, Index: i32) callconv(.Inline) void {
-        return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterSelected(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
+        return self.vtable.OnCounterSelected(self, Index);
     }
     pub fn OnCounterAdded(self: *const ISystemMonitorEvents, Index: i32) callconv(.Inline) void {
-        return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterAdded(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
+        return self.vtable.OnCounterAdded(self, Index);
     }
     pub fn OnCounterDeleted(self: *const ISystemMonitorEvents, Index: i32) callconv(.Inline) void {
-        return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterDeleted(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
+        return self.vtable.OnCounterDeleted(self, Index);
     }
     pub fn OnSampleCollected(self: *const ISystemMonitorEvents) callconv(.Inline) void {
-        return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnSampleCollected(@as(*const ISystemMonitorEvents, @ptrCast(self)));
+        return self.vtable.OnSampleCollected(self);
     }
     pub fn OnDblClick(self: *const ISystemMonitorEvents, Index: i32) callconv(.Inline) void {
-        return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnDblClick(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
+        return self.vtable.OnDblClick(self, Index);
     }
 };
 

@@ -485,40 +485,40 @@ pub const IGPM = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetDomain(self: *const IGPM, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, pIGPMDomain: ?*?*IGPMDomain) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetDomain(@as(*const IGPM, @ptrCast(self)), bstrDomain, bstrDomainController, lDCFlags, pIGPMDomain);
+        return self.vtable.GetDomain(self, bstrDomain, bstrDomainController, lDCFlags, pIGPMDomain);
     }
     pub fn GetBackupDir(self: *const IGPM, bstrBackupDir: ?BSTR, pIGPMBackupDir: ?*?*IGPMBackupDir) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetBackupDir(@as(*const IGPM, @ptrCast(self)), bstrBackupDir, pIGPMBackupDir);
+        return self.vtable.GetBackupDir(self, bstrBackupDir, pIGPMBackupDir);
     }
     pub fn GetSitesContainer(self: *const IGPM, bstrForest: ?BSTR, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, ppIGPMSitesContainer: ?*?*IGPMSitesContainer) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetSitesContainer(@as(*const IGPM, @ptrCast(self)), bstrForest, bstrDomain, bstrDomainController, lDCFlags, ppIGPMSitesContainer);
+        return self.vtable.GetSitesContainer(self, bstrForest, bstrDomain, bstrDomainController, lDCFlags, ppIGPMSitesContainer);
     }
     pub fn GetRSOP(self: *const IGPM, gpmRSoPMode: GPMRSOPMode, bstrNamespace: ?BSTR, lFlags: i32, ppIGPMRSOP: ?*?*IGPMRSOP) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetRSOP(@as(*const IGPM, @ptrCast(self)), gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
+        return self.vtable.GetRSOP(self, gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
     }
     pub fn CreatePermission(self: *const IGPM, bstrTrustee: ?BSTR, perm: GPMPermissionType, bInheritable: i16, ppPerm: ?*?*IGPMPermission) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreatePermission(@as(*const IGPM, @ptrCast(self)), bstrTrustee, perm, bInheritable, ppPerm);
+        return self.vtable.CreatePermission(self, bstrTrustee, perm, bInheritable, ppPerm);
     }
     pub fn CreateSearchCriteria(self: *const IGPM, ppIGPMSearchCriteria: ?*?*IGPMSearchCriteria) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateSearchCriteria(@as(*const IGPM, @ptrCast(self)), ppIGPMSearchCriteria);
+        return self.vtable.CreateSearchCriteria(self, ppIGPMSearchCriteria);
     }
     pub fn CreateTrustee(self: *const IGPM, bstrTrustee: ?BSTR, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateTrustee(@as(*const IGPM, @ptrCast(self)), bstrTrustee, ppIGPMTrustee);
+        return self.vtable.CreateTrustee(self, bstrTrustee, ppIGPMTrustee);
     }
     pub fn GetClientSideExtensions(self: *const IGPM, ppIGPMCSECollection: ?*?*IGPMCSECollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetClientSideExtensions(@as(*const IGPM, @ptrCast(self)), ppIGPMCSECollection);
+        return self.vtable.GetClientSideExtensions(self, ppIGPMCSECollection);
     }
     pub fn GetConstants(self: *const IGPM, ppIGPMConstants: ?*?*IGPMConstants) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetConstants(@as(*const IGPM, @ptrCast(self)), ppIGPMConstants);
+        return self.vtable.GetConstants(self, ppIGPMConstants);
     }
     pub fn GetMigrationTable(self: *const IGPM, bstrMigrationTablePath: ?BSTR, ppMigrationTable: ?*?*IGPMMigrationTable) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetMigrationTable(@as(*const IGPM, @ptrCast(self)), bstrMigrationTablePath, ppMigrationTable);
+        return self.vtable.GetMigrationTable(self, bstrMigrationTablePath, ppMigrationTable);
     }
     pub fn CreateMigrationTable(self: *const IGPM, ppMigrationTable: ?*?*IGPMMigrationTable) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateMigrationTable(@as(*const IGPM, @ptrCast(self)), ppMigrationTable);
+        return self.vtable.CreateMigrationTable(self, ppMigrationTable);
     }
     pub fn InitializeReporting(self: *const IGPM, bstrAdmPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPM.VTable, @ptrCast(self.vtable)).InitializeReporting(@as(*const IGPM, @ptrCast(self)), bstrAdmPath);
+        return self.vtable.InitializeReporting(self, bstrAdmPath);
     }
 };
 
@@ -628,34 +628,34 @@ pub const IGPMDomain = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DomainController(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).get_DomainController(@as(*const IGPMDomain, @ptrCast(self)), pVal);
+        return self.vtable.get_DomainController(self, pVal);
     }
     pub fn get_Domain(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMDomain, @ptrCast(self)), pVal);
+        return self.vtable.get_Domain(self, pVal);
     }
     pub fn CreateGPO(self: *const IGPMDomain, ppNewGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).CreateGPO(@as(*const IGPMDomain, @ptrCast(self)), ppNewGPO);
+        return self.vtable.CreateGPO(self, ppNewGPO);
     }
     pub fn GetGPO(self: *const IGPMDomain, bstrGuid: ?BSTR, ppGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetGPO(@as(*const IGPMDomain, @ptrCast(self)), bstrGuid, ppGPO);
+        return self.vtable.GetGPO(self, bstrGuid, ppGPO);
     }
     pub fn SearchGPOs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMGPOCollection: ?*?*IGPMGPOCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchGPOs(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMGPOCollection);
+        return self.vtable.SearchGPOs(self, pIGPMSearchCriteria, ppIGPMGPOCollection);
     }
     pub fn RestoreGPO(self: *const IGPMDomain, pIGPMBackup: ?*IGPMBackup, lDCFlags: i32, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).RestoreGPO(@as(*const IGPMDomain, @ptrCast(self)), pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.RestoreGPO(self, pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GetSOM(self: *const IGPMDomain, bstrPath: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetSOM(@as(*const IGPMDomain, @ptrCast(self)), bstrPath, ppSOM);
+        return self.vtable.GetSOM(self, bstrPath, ppSOM);
     }
     pub fn SearchSOMs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchSOMs(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMSOMCollection);
+        return self.vtable.SearchSOMs(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
     }
     pub fn GetWMIFilter(self: *const IGPMDomain, bstrPath: ?BSTR, ppWMIFilter: ?*?*IGPMWMIFilter) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetWMIFilter(@as(*const IGPMDomain, @ptrCast(self)), bstrPath, ppWMIFilter);
+        return self.vtable.GetWMIFilter(self, bstrPath, ppWMIFilter);
     }
     pub fn SearchWMIFilters(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchWMIFilters(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
+        return self.vtable.SearchWMIFilters(self, pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
     }
 };
 
@@ -700,13 +700,13 @@ pub const IGPMBackupDir = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_BackupDirectory(self: *const IGPMBackupDir, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).get_BackupDirectory(@as(*const IGPMBackupDir, @ptrCast(self)), pVal);
+        return self.vtable.get_BackupDirectory(self, pVal);
     }
     pub fn GetBackup(self: *const IGPMBackupDir, bstrID: ?BSTR, ppBackup: ?*?*IGPMBackup) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).GetBackup(@as(*const IGPMBackupDir, @ptrCast(self)), bstrID, ppBackup);
+        return self.vtable.GetBackup(self, bstrID, ppBackup);
     }
     pub fn SearchBackups(self: *const IGPMBackupDir, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMBackupCollection: ?*?*IGPMBackupCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).SearchBackups(@as(*const IGPMBackupDir, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMBackupCollection);
+        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, ppIGPMBackupCollection);
     }
 };
 
@@ -769,19 +769,19 @@ pub const IGPMSitesContainer = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DomainController(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_DomainController(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
+        return self.vtable.get_DomainController(self, pVal);
     }
     pub fn get_Domain(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
+        return self.vtable.get_Domain(self, pVal);
     }
     pub fn get_Forest(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_Forest(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
+        return self.vtable.get_Forest(self, pVal);
     }
     pub fn GetSite(self: *const IGPMSitesContainer, bstrSiteName: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).GetSite(@as(*const IGPMSitesContainer, @ptrCast(self)), bstrSiteName, ppSOM);
+        return self.vtable.GetSite(self, bstrSiteName, ppSOM);
     }
     pub fn SearchSites(self: *const IGPMSitesContainer, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).SearchSites(@as(*const IGPMSitesContainer, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMSOMCollection);
+        return self.vtable.SearchSites(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
     }
 };
 
@@ -809,7 +809,7 @@ pub const IGPMSearchCriteria = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Add(self: *const IGPMSearchCriteria, searchProperty: GPMSearchProperty, searchOperation: GPMSearchOperation, varValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSearchCriteria.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMSearchCriteria, @ptrCast(self)), searchProperty, searchOperation, varValue);
+        return self.vtable.Add(self, searchProperty, searchOperation, varValue);
     }
 };
 
@@ -872,19 +872,19 @@ pub const IGPMTrustee = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_TrusteeSid(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeSid(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
+        return self.vtable.get_TrusteeSid(self, bstrVal);
     }
     pub fn get_TrusteeName(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeName(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
+        return self.vtable.get_TrusteeName(self, bstrVal);
     }
     pub fn get_TrusteeDomain(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeDomain(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
+        return self.vtable.get_TrusteeDomain(self, bstrVal);
     }
     pub fn get_TrusteeDSPath(self: *const IGPMTrustee, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeDSPath(@as(*const IGPMTrustee, @ptrCast(self)), pVal);
+        return self.vtable.get_TrusteeDSPath(self, pVal);
     }
     pub fn get_TrusteeType(self: *const IGPMTrustee, lVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeType(@as(*const IGPMTrustee, @ptrCast(self)), lVal);
+        return self.vtable.get_TrusteeType(self, lVal);
     }
 };
 
@@ -947,19 +947,19 @@ pub const IGPMPermission = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Inherited(self: *const IGPMPermission, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Inherited(@as(*const IGPMPermission, @ptrCast(self)), pVal);
+        return self.vtable.get_Inherited(self, pVal);
     }
     pub fn get_Inheritable(self: *const IGPMPermission, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Inheritable(@as(*const IGPMPermission, @ptrCast(self)), pVal);
+        return self.vtable.get_Inheritable(self, pVal);
     }
     pub fn get_Denied(self: *const IGPMPermission, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Denied(@as(*const IGPMPermission, @ptrCast(self)), pVal);
+        return self.vtable.get_Denied(self, pVal);
     }
     pub fn get_Permission(self: *const IGPMPermission, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Permission(@as(*const IGPMPermission, @ptrCast(self)), pVal);
+        return self.vtable.get_Permission(self, pVal);
     }
     pub fn get_Trustee(self: *const IGPMPermission, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.Inline) HRESULT {
-        return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Trustee(@as(*const IGPMPermission, @ptrCast(self)), ppIGPMTrustee);
+        return self.vtable.get_Trustee(self, ppIGPMTrustee);
     }
 };
 
@@ -1028,22 +1028,22 @@ pub const IGPMSecurityInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMSecurityInfo, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMSecurityInfo, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMSecurityInfo, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMSecurityInfo, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMSecurityInfo, ppEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMSecurityInfo, @ptrCast(self)), ppEnum);
+        return self.vtable.get__NewEnum(self, ppEnum);
     }
     pub fn Add(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMSecurityInfo, @ptrCast(self)), pPerm);
+        return self.vtable.Add(self, pPerm);
     }
     pub fn Remove(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).Remove(@as(*const IGPMSecurityInfo, @ptrCast(self)), pPerm);
+        return self.vtable.Remove(self, pPerm);
     }
     pub fn RemoveTrustee(self: *const IGPMSecurityInfo, bstrTrustee: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).RemoveTrustee(@as(*const IGPMSecurityInfo, @ptrCast(self)), bstrTrustee);
+        return self.vtable.RemoveTrustee(self, bstrTrustee);
     }
 };
 
@@ -1152,34 +1152,34 @@ pub const IGPMBackup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ID(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_ID(self, pVal);
     }
     pub fn get_GPOID(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPOID(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_GPOID(self, pVal);
     }
     pub fn get_GPODomain(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPODomain(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_GPODomain(self, pVal);
     }
     pub fn get_GPODisplayName(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPODisplayName(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_GPODisplayName(self, pVal);
     }
     pub fn get_Timestamp(self: *const IGPMBackup, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_Timestamp(self, pVal);
     }
     pub fn get_Comment(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_Comment(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_Comment(self, pVal);
     }
     pub fn get_BackupDir(self: *const IGPMBackup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMBackup, @ptrCast(self)), pVal);
+        return self.vtable.get_BackupDir(self, pVal);
     }
     pub fn Delete(self: *const IGPMBackup) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMBackup, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn GenerateReport(self: *const IGPMBackup, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMBackup, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReportToFile(self: *const IGPMBackup, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMBackup, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
 };
 
@@ -1224,13 +1224,13 @@ pub const IGPMBackupCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMBackupCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMBackupCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMBackupCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMBackupCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMBackupCollection, ppIGPMBackup: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMBackupCollection, @ptrCast(self)), ppIGPMBackup);
+        return self.vtable.get__NewEnum(self, ppIGPMBackup);
     }
 };
 
@@ -1344,34 +1344,34 @@ pub const IGPMSOM = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_GPOInheritanceBlocked(self: *const IGPMSOM, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_GPOInheritanceBlocked(@as(*const IGPMSOM, @ptrCast(self)), pVal);
+        return self.vtable.get_GPOInheritanceBlocked(self, pVal);
     }
     pub fn put_GPOInheritanceBlocked(self: *const IGPMSOM, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).put_GPOInheritanceBlocked(@as(*const IGPMSOM, @ptrCast(self)), newVal);
+        return self.vtable.put_GPOInheritanceBlocked(self, newVal);
     }
     pub fn get_Name(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IGPMSOM, @ptrCast(self)), pVal);
+        return self.vtable.get_Name(self, pVal);
     }
     pub fn get_Path(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMSOM, @ptrCast(self)), pVal);
+        return self.vtable.get_Path(self, pVal);
     }
     pub fn CreateGPOLink(self: *const IGPMSOM, lLinkPos: i32, pGPO: ?*IGPMGPO, ppNewGPOLink: ?*?*IGPMGPOLink) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).CreateGPOLink(@as(*const IGPMSOM, @ptrCast(self)), lLinkPos, pGPO, ppNewGPOLink);
+        return self.vtable.CreateGPOLink(self, lLinkPos, pGPO, ppNewGPOLink);
     }
     pub fn get_Type(self: *const IGPMSOM, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMSOM, @ptrCast(self)), pVal);
+        return self.vtable.get_Type(self, pVal);
     }
     pub fn GetGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetGPOLinks(@as(*const IGPMSOM, @ptrCast(self)), ppGPOLinks);
+        return self.vtable.GetGPOLinks(self, ppGPOLinks);
     }
     pub fn GetInheritedGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetInheritedGPOLinks(@as(*const IGPMSOM, @ptrCast(self)), ppGPOLinks);
+        return self.vtable.GetInheritedGPOLinks(self, ppGPOLinks);
     }
     pub fn GetSecurityInfo(self: *const IGPMSOM, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMSOM, @ptrCast(self)), ppSecurityInfo);
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
     }
     pub fn SetSecurityInfo(self: *const IGPMSOM, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMSOM, @ptrCast(self)), pSecurityInfo);
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
     }
 };
 
@@ -1416,13 +1416,13 @@ pub const IGPMSOMCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMSOMCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMSOMCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMSOMCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMSOMCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMSOMCollection, ppIGPMSOM: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMSOMCollection, @ptrCast(self)), ppIGPMSOM);
+        return self.vtable.get__NewEnum(self, ppIGPMSOM);
     }
 };
 
@@ -1509,28 +1509,28 @@ pub const IGPMWMIFilter = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Path(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
+        return self.vtable.get_Path(self, pVal);
     }
     pub fn put_Name(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IGPMWMIFilter, @ptrCast(self)), newVal);
+        return self.vtable.put_Name(self, newVal);
     }
     pub fn get_Name(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
+        return self.vtable.get_Name(self, pVal);
     }
     pub fn put_Description(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMWMIFilter, @ptrCast(self)), newVal);
+        return self.vtable.put_Description(self, newVal);
     }
     pub fn get_Description(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
+        return self.vtable.get_Description(self, pVal);
     }
     pub fn GetQueryList(self: *const IGPMWMIFilter, pQryList: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).GetQueryList(@as(*const IGPMWMIFilter, @ptrCast(self)), pQryList);
+        return self.vtable.GetQueryList(self, pQryList);
     }
     pub fn GetSecurityInfo(self: *const IGPMWMIFilter, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMWMIFilter, @ptrCast(self)), ppSecurityInfo);
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
     }
     pub fn SetSecurityInfo(self: *const IGPMWMIFilter, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMWMIFilter, @ptrCast(self)), pSecurityInfo);
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
     }
 };
 
@@ -1575,13 +1575,13 @@ pub const IGPMWMIFilterCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMWMIFilterCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMWMIFilterCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMWMIFilterCollection, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), pVal);
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
@@ -1912,109 +1912,109 @@ pub const IGPMRSOP = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Mode(self: *const IGPMRSOP, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_Mode(@as(*const IGPMRSOP, @ptrCast(self)), pVal);
+        return self.vtable.get_Mode(self, pVal);
     }
     pub fn get_Namespace(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_Namespace(self, bstrVal);
     }
     pub fn put_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_LoggingComputer(self, bstrVal);
     }
     pub fn get_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_LoggingComputer(self, bstrVal);
     }
     pub fn put_LoggingUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_LoggingUser(self, bstrVal);
     }
     pub fn get_LoggingUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_LoggingUser(self, bstrVal);
     }
     pub fn put_LoggingFlags(self: *const IGPMRSOP, lVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
+        return self.vtable.put_LoggingFlags(self, lVal);
     }
     pub fn get_LoggingFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
+        return self.vtable.get_LoggingFlags(self, lVal);
     }
     pub fn put_PlanningFlags(self: *const IGPMRSOP, lVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
+        return self.vtable.put_PlanningFlags(self, lVal);
     }
     pub fn get_PlanningFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
+        return self.vtable.get_PlanningFlags(self, lVal);
     }
     pub fn put_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningDomainController(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningDomainController(self, bstrVal);
     }
     pub fn get_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningDomainController(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningDomainController(self, bstrVal);
     }
     pub fn put_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningSiteName(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningSiteName(self, bstrVal);
     }
     pub fn get_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningSiteName(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningSiteName(self, bstrVal);
     }
     pub fn put_PlanningUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningUser(self, bstrVal);
     }
     pub fn get_PlanningUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningUser(self, bstrVal);
     }
     pub fn put_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningUserSOM(self, bstrVal);
     }
     pub fn get_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningUserSOM(self, bstrVal);
     }
     pub fn put_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.put_PlanningUserWMIFilters(self, varVal);
     }
     pub fn get_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.get_PlanningUserWMIFilters(self, varVal);
     }
     pub fn put_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.put_PlanningUserSecurityGroups(self, varVal);
     }
     pub fn get_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.get_PlanningUserSecurityGroups(self, varVal);
     }
     pub fn put_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningComputer(self, bstrVal);
     }
     pub fn get_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningComputer(self, bstrVal);
     }
     pub fn put_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.put_PlanningComputerSOM(self, bstrVal);
     }
     pub fn get_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
+        return self.vtable.get_PlanningComputerSOM(self, bstrVal);
     }
     pub fn put_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.put_PlanningComputerWMIFilters(self, varVal);
     }
     pub fn get_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.get_PlanningComputerWMIFilters(self, varVal);
     }
     pub fn put_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.put_PlanningComputerSecurityGroups(self, varVal);
     }
     pub fn get_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.get_PlanningComputerSecurityGroups(self, varVal);
     }
     pub fn LoggingEnumerateUsers(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).LoggingEnumerateUsers(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
+        return self.vtable.LoggingEnumerateUsers(self, varVal);
     }
     pub fn CreateQueryResults(self: *const IGPMRSOP) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).CreateQueryResults(@as(*const IGPMRSOP, @ptrCast(self)));
+        return self.vtable.CreateQueryResults(self);
     }
     pub fn ReleaseQueryResults(self: *const IGPMRSOP) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).ReleaseQueryResults(@as(*const IGPMRSOP, @ptrCast(self)));
+        return self.vtable.ReleaseQueryResults(self);
     }
     pub fn GenerateReport(self: *const IGPMRSOP, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMRSOP, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReportToFile(self: *const IGPMRSOP, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMRSOP, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
 };
 
@@ -2295,91 +2295,91 @@ pub const IGPMGPO = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DisplayName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_DisplayName(self, pVal);
     }
     pub fn put_DisplayName(self: *const IGPMGPO, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IGPMGPO, @ptrCast(self)), newVal);
+        return self.vtable.put_DisplayName(self, newVal);
     }
     pub fn get_Path(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_Path(self, pVal);
     }
     pub fn get_ID(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ID(self, pVal);
     }
     pub fn get_DomainName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_DomainName(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_DomainName(self, pVal);
     }
     pub fn get_CreationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IGPMGPO, @ptrCast(self)), pDate);
+        return self.vtable.get_CreationTime(self, pDate);
     }
     pub fn get_ModificationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ModificationTime(@as(*const IGPMGPO, @ptrCast(self)), pDate);
+        return self.vtable.get_ModificationTime(self, pDate);
     }
     pub fn get_UserDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_UserDSVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_UserDSVersionNumber(self, pVal);
     }
     pub fn get_ComputerDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ComputerDSVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ComputerDSVersionNumber(self, pVal);
     }
     pub fn get_UserSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_UserSysvolVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_UserSysvolVersionNumber(self, pVal);
     }
     pub fn get_ComputerSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ComputerSysvolVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ComputerSysvolVersionNumber(self, pVal);
     }
     pub fn GetWMIFilter(self: *const IGPMGPO, ppIGPMWMIFilter: ?*?*IGPMWMIFilter) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetWMIFilter(@as(*const IGPMGPO, @ptrCast(self)), ppIGPMWMIFilter);
+        return self.vtable.GetWMIFilter(self, ppIGPMWMIFilter);
     }
     pub fn SetWMIFilter(self: *const IGPMGPO, pIGPMWMIFilter: ?*IGPMWMIFilter) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetWMIFilter(@as(*const IGPMGPO, @ptrCast(self)), pIGPMWMIFilter);
+        return self.vtable.SetWMIFilter(self, pIGPMWMIFilter);
     }
     pub fn SetUserEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetUserEnabled(@as(*const IGPMGPO, @ptrCast(self)), vbEnabled);
+        return self.vtable.SetUserEnabled(self, vbEnabled);
     }
     pub fn SetComputerEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetComputerEnabled(@as(*const IGPMGPO, @ptrCast(self)), vbEnabled);
+        return self.vtable.SetComputerEnabled(self, vbEnabled);
     }
     pub fn IsUserEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsUserEnabled(@as(*const IGPMGPO, @ptrCast(self)), pvbEnabled);
+        return self.vtable.IsUserEnabled(self, pvbEnabled);
     }
     pub fn IsComputerEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsComputerEnabled(@as(*const IGPMGPO, @ptrCast(self)), pvbEnabled);
+        return self.vtable.IsComputerEnabled(self, pvbEnabled);
     }
     pub fn GetSecurityInfo(self: *const IGPMGPO, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMGPO, @ptrCast(self)), ppSecurityInfo);
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
     }
     pub fn SetSecurityInfo(self: *const IGPMGPO, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMGPO, @ptrCast(self)), pSecurityInfo);
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
     }
     pub fn Delete(self: *const IGPMGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMGPO, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn Backup(self: *const IGPMGPO, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Backup(@as(*const IGPMGPO, @ptrCast(self)), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.Backup(self, bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn Import(self: *const IGPMGPO, lFlags: i32, pIGPMBackup: ?*IGPMBackup, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Import(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.Import(self, lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReport(self: *const IGPMGPO, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMGPO, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReportToFile(self: *const IGPMGPO, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMGPO, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
     pub fn CopyTo(self: *const IGPMGPO, lFlags: i32, pIGPMDomain: ?*IGPMDomain, pvarNewDisplayName: ?*VARIANT, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).CopyTo(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.CopyTo(self, lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn SetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, pSD: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetSecurityDescriptor(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pSD);
+        return self.vtable.SetSecurityDescriptor(self, lFlags, pSD);
     }
     pub fn GetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, ppSD: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetSecurityDescriptor(@as(*const IGPMGPO, @ptrCast(self)), lFlags, ppSD);
+        return self.vtable.GetSecurityDescriptor(self, lFlags, ppSD);
     }
     pub fn IsACLConsistent(self: *const IGPMGPO, pvbConsistent: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsACLConsistent(@as(*const IGPMGPO, @ptrCast(self)), pvbConsistent);
+        return self.vtable.IsACLConsistent(self, pvbConsistent);
     }
     pub fn MakeACLConsistent(self: *const IGPMGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).MakeACLConsistent(@as(*const IGPMGPO, @ptrCast(self)));
+        return self.vtable.MakeACLConsistent(self);
     }
 };
 
@@ -2424,13 +2424,13 @@ pub const IGPMGPOCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMGPOCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMGPOCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMGPOCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMGPOCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMGPOCollection, ppIGPMGPOs: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMGPOCollection, @ptrCast(self)), ppIGPMGPOs);
+        return self.vtable.get__NewEnum(self, ppIGPMGPOs);
     }
 };
 
@@ -2527,31 +2527,31 @@ pub const IGPMGPOLink = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_GPOID(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_GPOID(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
+        return self.vtable.get_GPOID(self, pVal);
     }
     pub fn get_GPODomain(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_GPODomain(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
+        return self.vtable.get_GPODomain(self, pVal);
     }
     pub fn get_Enabled(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
+        return self.vtable.get_Enabled(self, pVal);
     }
     pub fn put_Enabled(self: *const IGPMGPOLink, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IGPMGPOLink, @ptrCast(self)), newVal);
+        return self.vtable.put_Enabled(self, newVal);
     }
     pub fn get_Enforced(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_Enforced(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
+        return self.vtable.get_Enforced(self, pVal);
     }
     pub fn put_Enforced(self: *const IGPMGPOLink, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).put_Enforced(@as(*const IGPMGPOLink, @ptrCast(self)), newVal);
+        return self.vtable.put_Enforced(self, newVal);
     }
     pub fn get_SOMLinkOrder(self: *const IGPMGPOLink, lVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_SOMLinkOrder(@as(*const IGPMGPOLink, @ptrCast(self)), lVal);
+        return self.vtable.get_SOMLinkOrder(self, lVal);
     }
     pub fn get_SOM(self: *const IGPMGPOLink, ppIGPMSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_SOM(@as(*const IGPMGPOLink, @ptrCast(self)), ppIGPMSOM);
+        return self.vtable.get_SOM(self, ppIGPMSOM);
     }
     pub fn Delete(self: *const IGPMGPOLink) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMGPOLink, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
 };
 
@@ -2596,13 +2596,13 @@ pub const IGPMGPOLinksCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMGPOLinksCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMGPOLinksCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMGPOLinksCollection, ppIGPMLinks: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), ppIGPMLinks);
+        return self.vtable.get__NewEnum(self, ppIGPMLinks);
     }
 };
 
@@ -2647,13 +2647,13 @@ pub const IGPMCSECollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMCSECollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMCSECollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMCSECollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMCSECollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMCSECollection, ppIGPMCSEs: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMCSECollection, @ptrCast(self)), ppIGPMCSEs);
+        return self.vtable.get__NewEnum(self, ppIGPMCSEs);
     }
 };
 
@@ -2705,16 +2705,16 @@ pub const IGPMClientSideExtension = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ID(self: *const IGPMClientSideExtension, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMClientSideExtension, @ptrCast(self)), pVal);
+        return self.vtable.get_ID(self, pVal);
     }
     pub fn get_DisplayName(self: *const IGPMClientSideExtension, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMClientSideExtension, @ptrCast(self)), pVal);
+        return self.vtable.get_DisplayName(self, pVal);
     }
     pub fn IsUserEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).IsUserEnabled(@as(*const IGPMClientSideExtension, @ptrCast(self)), pvbEnabled);
+        return self.vtable.IsUserEnabled(self, pvbEnabled);
     }
     pub fn IsComputerEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).IsComputerEnabled(@as(*const IGPMClientSideExtension, @ptrCast(self)), pvbEnabled);
+        return self.vtable.IsComputerEnabled(self, pvbEnabled);
     }
 };
 
@@ -2739,7 +2739,7 @@ pub const IGPMAsyncCancel = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Cancel(self: *const IGPMAsyncCancel) callconv(.Inline) HRESULT {
-        return @as(*const IGPMAsyncCancel.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IGPMAsyncCancel, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -2769,7 +2769,7 @@ pub const IGPMAsyncProgress = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Status(self: *const IGPMAsyncProgress, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: ?*VARIANT, ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMAsyncProgress.VTable, @ptrCast(self.vtable)).Status(@as(*const IGPMAsyncProgress, @ptrCast(self)), lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
+        return self.vtable.Status(self, lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
     }
 };
 
@@ -2814,13 +2814,13 @@ pub const IGPMStatusMsgCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMStatusMsgCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMStatusMsgCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMStatusMsgCollection, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), pVal);
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
@@ -2888,22 +2888,22 @@ pub const IGPMStatusMessage = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ObjectPath(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_ObjectPath(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
+        return self.vtable.get_ObjectPath(self, pVal);
     }
     pub fn ErrorCode(self: *const IGPMStatusMessage) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).ErrorCode(@as(*const IGPMStatusMessage, @ptrCast(self)));
+        return self.vtable.ErrorCode(self);
     }
     pub fn get_ExtensionName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_ExtensionName(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
+        return self.vtable.get_ExtensionName(self, pVal);
     }
     pub fn get_SettingsName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_SettingsName(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
+        return self.vtable.get_SettingsName(self, pVal);
     }
     pub fn OperationCode(self: *const IGPMStatusMessage) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).OperationCode(@as(*const IGPMStatusMessage, @ptrCast(self)));
+        return self.vtable.OperationCode(self);
     }
     pub fn get_Message(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
+        return self.vtable.get_Message(self, pVal);
     }
 };
 
@@ -3464,184 +3464,184 @@ pub const IGPMConstants = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_PermGPOApply(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOApply(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermGPOApply(self, pVal);
     }
     pub fn get_PermGPORead(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPORead(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermGPORead(self, pVal);
     }
     pub fn get_PermGPOEdit(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOEdit(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermGPOEdit(self, pVal);
     }
     pub fn get_PermGPOEditSecurityAndDelete(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOEditSecurityAndDelete(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermGPOEditSecurityAndDelete(self, pVal);
     }
     pub fn get_PermGPOCustom(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOCustom(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermGPOCustom(self, pVal);
     }
     pub fn get_PermWMIFilterEdit(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterEdit(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermWMIFilterEdit(self, pVal);
     }
     pub fn get_PermWMIFilterFullControl(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterFullControl(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermWMIFilterFullControl(self, pVal);
     }
     pub fn get_PermWMIFilterCustom(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterCustom(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermWMIFilterCustom(self, pVal);
     }
     pub fn get_PermSOMLink(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMLink(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMLink(self, pVal);
     }
     pub fn get_PermSOMLogging(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMLogging(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMLogging(self, pVal);
     }
     pub fn get_PermSOMPlanning(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMPlanning(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMPlanning(self, pVal);
     }
     pub fn get_PermSOMGPOCreate(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMGPOCreate(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMGPOCreate(self, pVal);
     }
     pub fn get_PermSOMWMICreate(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMWMICreate(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMWMICreate(self, pVal);
     }
     pub fn get_PermSOMWMIFullControl(self: *const IGPMConstants, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMWMIFullControl(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_PermSOMWMIFullControl(self, pVal);
     }
     pub fn get_SearchPropertyGPOPermissions(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOPermissions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOPermissions(self, pVal);
     }
     pub fn get_SearchPropertyGPOEffectivePermissions(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOEffectivePermissions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOEffectivePermissions(self, pVal);
     }
     pub fn get_SearchPropertyGPODisplayName(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPODisplayName(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPODisplayName(self, pVal);
     }
     pub fn get_SearchPropertyGPOWMIFilter(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOWMIFilter(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOWMIFilter(self, pVal);
     }
     pub fn get_SearchPropertyGPOID(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOID(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOID(self, pVal);
     }
     pub fn get_SearchPropertyGPOComputerExtensions(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOComputerExtensions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOComputerExtensions(self, pVal);
     }
     pub fn get_SearchPropertyGPOUserExtensions(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOUserExtensions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPOUserExtensions(self, pVal);
     }
     pub fn get_SearchPropertySOMLinks(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertySOMLinks(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertySOMLinks(self, pVal);
     }
     pub fn get_SearchPropertyGPODomain(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPODomain(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyGPODomain(self, pVal);
     }
     pub fn get_SearchPropertyBackupMostRecent(self: *const IGPMConstants, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyBackupMostRecent(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyBackupMostRecent(self, pVal);
     }
     pub fn get_SearchOpEquals(self: *const IGPMConstants, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpEquals(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchOpEquals(self, pVal);
     }
     pub fn get_SearchOpContains(self: *const IGPMConstants, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpContains(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchOpContains(self, pVal);
     }
     pub fn get_SearchOpNotContains(self: *const IGPMConstants, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpNotContains(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchOpNotContains(self, pVal);
     }
     pub fn get_SearchOpNotEquals(self: *const IGPMConstants, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpNotEquals(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchOpNotEquals(self, pVal);
     }
     pub fn get_UsePDC(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_UsePDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_UsePDC(self, pVal);
     }
     pub fn get_UseAnyDC(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_UseAnyDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_UseAnyDC(self, pVal);
     }
     pub fn get_DoNotUseW2KDC(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DoNotUseW2KDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DoNotUseW2KDC(self, pVal);
     }
     pub fn get_SOMSite(self: *const IGPMConstants, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMSite(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SOMSite(self, pVal);
     }
     pub fn get_SOMDomain(self: *const IGPMConstants, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMDomain(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SOMDomain(self, pVal);
     }
     pub fn get_SOMOU(self: *const IGPMConstants, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMOU(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_SOMOU(self, pVal);
     }
     pub fn get_SecurityFlags(self: *const IGPMConstants, vbOwner: i16, vbGroup: i16, vbDACL: i16, vbSACL: i16, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SecurityFlags(@as(*const IGPMConstants, @ptrCast(self)), vbOwner, vbGroup, vbDACL, vbSACL, pVal);
+        return self.vtable.get_SecurityFlags(self, vbOwner, vbGroup, vbDACL, vbSACL, pVal);
     }
     pub fn get_DoNotValidateDC(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DoNotValidateDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DoNotValidateDC(self, pVal);
     }
     pub fn get_ReportHTML(self: *const IGPMConstants, pVal: ?*GPMReportType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ReportHTML(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_ReportHTML(self, pVal);
     }
     pub fn get_ReportXML(self: *const IGPMConstants, pVal: ?*GPMReportType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ReportXML(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_ReportXML(self, pVal);
     }
     pub fn get_RSOPModeUnknown(self: *const IGPMConstants, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModeUnknown(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RSOPModeUnknown(self, pVal);
     }
     pub fn get_RSOPModePlanning(self: *const IGPMConstants, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModePlanning(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RSOPModePlanning(self, pVal);
     }
     pub fn get_RSOPModeLogging(self: *const IGPMConstants, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModeLogging(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RSOPModeLogging(self, pVal);
     }
     pub fn get_EntryTypeUser(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUser(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeUser(self, pVal);
     }
     pub fn get_EntryTypeComputer(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeComputer(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeComputer(self, pVal);
     }
     pub fn get_EntryTypeLocalGroup(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeLocalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeLocalGroup(self, pVal);
     }
     pub fn get_EntryTypeGlobalGroup(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeGlobalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeGlobalGroup(self, pVal);
     }
     pub fn get_EntryTypeUniversalGroup(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUniversalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeUniversalGroup(self, pVal);
     }
     pub fn get_EntryTypeUNCPath(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUNCPath(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeUNCPath(self, pVal);
     }
     pub fn get_EntryTypeUnknown(self: *const IGPMConstants, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUnknown(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_EntryTypeUnknown(self, pVal);
     }
     pub fn get_DestinationOptionSameAsSource(self: *const IGPMConstants, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionSameAsSource(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DestinationOptionSameAsSource(self, pVal);
     }
     pub fn get_DestinationOptionNone(self: *const IGPMConstants, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionNone(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DestinationOptionNone(self, pVal);
     }
     pub fn get_DestinationOptionByRelativeName(self: *const IGPMConstants, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionByRelativeName(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DestinationOptionByRelativeName(self, pVal);
     }
     pub fn get_DestinationOptionSet(self: *const IGPMConstants, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionSet(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_DestinationOptionSet(self, pVal);
     }
     pub fn get_MigrationTableOnly(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_MigrationTableOnly(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_MigrationTableOnly(self, pVal);
     }
     pub fn get_ProcessSecurity(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ProcessSecurity(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_ProcessSecurity(self, pVal);
     }
     pub fn get_RsopLoggingNoComputer(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopLoggingNoComputer(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RsopLoggingNoComputer(self, pVal);
     }
     pub fn get_RsopLoggingNoUser(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopLoggingNoUser(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RsopLoggingNoUser(self, pVal);
     }
     pub fn get_RsopPlanningAssumeSlowLink(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeSlowLink(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RsopPlanningAssumeSlowLink(self, pVal);
     }
     pub fn get_RsopPlanningLoopbackOption(self: *const IGPMConstants, vbMerge: i16, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningLoopbackOption(@as(*const IGPMConstants, @ptrCast(self)), vbMerge, pVal);
+        return self.vtable.get_RsopPlanningLoopbackOption(self, vbMerge, pVal);
     }
     pub fn get_RsopPlanningAssumeUserWQLFilterTrue(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeUserWQLFilterTrue(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RsopPlanningAssumeUserWQLFilterTrue(self, pVal);
     }
     pub fn get_RsopPlanningAssumeCompWQLFilterTrue(self: *const IGPMConstants, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeCompWQLFilterTrue(@as(*const IGPMConstants, @ptrCast(self)), pVal);
+        return self.vtable.get_RsopPlanningAssumeCompWQLFilterTrue(self, pVal);
     }
 };
 
@@ -3684,13 +3684,13 @@ pub const IGPMResult = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Status(self: *const IGPMResult, ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IGPMResult, @ptrCast(self)), ppIGPMStatusMsgCollection);
+        return self.vtable.get_Status(self, ppIGPMStatusMsgCollection);
     }
     pub fn get_Result(self: *const IGPMResult, pvarResult: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).get_Result(@as(*const IGPMResult, @ptrCast(self)), pvarResult);
+        return self.vtable.get_Result(self, pvarResult);
     }
     pub fn OverallStatus(self: *const IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).OverallStatus(@as(*const IGPMResult, @ptrCast(self)));
+        return self.vtable.OverallStatus(self);
     }
 };
 
@@ -3735,13 +3735,13 @@ pub const IGPMMapEntryCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMMapEntryCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMMapEntryCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMMapEntryCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMMapEntryCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMMapEntryCollection, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMMapEntryCollection, @ptrCast(self)), pVal);
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
@@ -3795,16 +3795,16 @@ pub const IGPMMapEntry = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Source(self: *const IGPMMapEntry, pbstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_Source(@as(*const IGPMMapEntry, @ptrCast(self)), pbstrSource);
+        return self.vtable.get_Source(self, pbstrSource);
     }
     pub fn get_Destination(self: *const IGPMMapEntry, pbstrDestination: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IGPMMapEntry, @ptrCast(self)), pbstrDestination);
+        return self.vtable.get_Destination(self, pbstrDestination);
     }
     pub fn get_DestinationOption(self: *const IGPMMapEntry, pgpmDestOption: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_DestinationOption(@as(*const IGPMMapEntry, @ptrCast(self)), pgpmDestOption);
+        return self.vtable.get_DestinationOption(self, pgpmDestOption);
     }
     pub fn get_EntryType(self: *const IGPMMapEntry, pgpmEntryType: ?*GPMEntryType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_EntryType(@as(*const IGPMMapEntry, @ptrCast(self)), pgpmEntryType);
+        return self.vtable.get_EntryType(self, pgpmEntryType);
     }
 };
 
@@ -3893,28 +3893,28 @@ pub const IGPMMigrationTable = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Save(self: *const IGPMMigrationTable, bstrMigrationTablePath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Save(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrMigrationTablePath);
+        return self.vtable.Save(self, bstrMigrationTablePath);
     }
     pub fn Add(self: *const IGPMMigrationTable, lFlags: i32, @"var": VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMMigrationTable, @ptrCast(self)), lFlags, @"var");
+        return self.vtable.Add(self, lFlags, @"var");
     }
     pub fn AddEntry(self: *const IGPMMigrationTable, bstrSource: ?BSTR, gpmEntryType: GPMEntryType, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, gpmEntryType, pvarDestination, ppEntry);
+        return self.vtable.AddEntry(self, bstrSource, gpmEntryType, pvarDestination, ppEntry);
     }
     pub fn GetEntry(self: *const IGPMMigrationTable, bstrSource: ?BSTR, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).GetEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, ppEntry);
+        return self.vtable.GetEntry(self, bstrSource, ppEntry);
     }
     pub fn DeleteEntry(self: *const IGPMMigrationTable, bstrSource: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).DeleteEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource);
+        return self.vtable.DeleteEntry(self, bstrSource);
     }
     pub fn UpdateDestination(self: *const IGPMMigrationTable, bstrSource: ?BSTR, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).UpdateDestination(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, pvarDestination, ppEntry);
+        return self.vtable.UpdateDestination(self, bstrSource, pvarDestination, ppEntry);
     }
     pub fn Validate(self: *const IGPMMigrationTable, ppResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Validate(@as(*const IGPMMigrationTable, @ptrCast(self)), ppResult);
+        return self.vtable.Validate(self, ppResult);
     }
     pub fn GetEntries(self: *const IGPMMigrationTable, ppEntries: ?*?*IGPMMapEntryCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).GetEntries(@as(*const IGPMMigrationTable, @ptrCast(self)), ppEntries);
+        return self.vtable.GetEntries(self, ppEntries);
     }
 };
 
@@ -3982,16 +3982,16 @@ pub const IGPMBackupDirEx = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_BackupDir(self: *const IGPMBackupDirEx, pbstrBackupDir: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMBackupDirEx, @ptrCast(self)), pbstrBackupDir);
+        return self.vtable.get_BackupDir(self, pbstrBackupDir);
     }
     pub fn get_BackupType(self: *const IGPMBackupDirEx, pgpmBackupType: ?*GPMBackupType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).get_BackupType(@as(*const IGPMBackupDirEx, @ptrCast(self)), pgpmBackupType);
+        return self.vtable.get_BackupType(self, pgpmBackupType);
     }
     pub fn GetBackup(self: *const IGPMBackupDirEx, bstrID: ?BSTR, pvarBackup: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).GetBackup(@as(*const IGPMBackupDirEx, @ptrCast(self)), bstrID, pvarBackup);
+        return self.vtable.GetBackup(self, bstrID, pvarBackup);
     }
     pub fn SearchBackups(self: *const IGPMBackupDirEx, pIGPMSearchCriteria: ?*IGPMSearchCriteria, pvarBackupCollection: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).SearchBackups(@as(*const IGPMBackupDirEx, @ptrCast(self)), pIGPMSearchCriteria, pvarBackupCollection);
+        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, pvarBackupCollection);
     }
 };
 
@@ -4036,13 +4036,13 @@ pub const IGPMStarterGPOBackupCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMStarterGPOBackupCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMStarterGPOBackupCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMStarterGPOBackupCollection, ppIGPMTmplBackup: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), ppIGPMTmplBackup);
+        return self.vtable.get__NewEnum(self, ppIGPMTmplBackup);
     }
 };
 
@@ -4160,37 +4160,37 @@ pub const IGPMStarterGPOBackup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_BackupDir(self: *const IGPMStarterGPOBackup, pbstrBackupDir: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrBackupDir);
+        return self.vtable.get_BackupDir(self, pbstrBackupDir);
     }
     pub fn get_Comment(self: *const IGPMStarterGPOBackup, pbstrComment: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Comment(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrComment);
+        return self.vtable.get_Comment(self, pbstrComment);
     }
     pub fn get_DisplayName(self: *const IGPMStarterGPOBackup, pbstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrDisplayName);
+        return self.vtable.get_DisplayName(self, pbstrDisplayName);
     }
     pub fn get_Domain(self: *const IGPMStarterGPOBackup, pbstrTemplateDomain: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrTemplateDomain);
+        return self.vtable.get_Domain(self, pbstrTemplateDomain);
     }
     pub fn get_StarterGPOID(self: *const IGPMStarterGPOBackup, pbstrTemplateID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_StarterGPOID(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrTemplateID);
+        return self.vtable.get_StarterGPOID(self, pbstrTemplateID);
     }
     pub fn get_ID(self: *const IGPMStarterGPOBackup, pbstrID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrID);
+        return self.vtable.get_ID(self, pbstrID);
     }
     pub fn get_Timestamp(self: *const IGPMStarterGPOBackup, pTimestamp: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pTimestamp);
+        return self.vtable.get_Timestamp(self, pTimestamp);
     }
     pub fn get_Type(self: *const IGPMStarterGPOBackup, pType: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pType);
+        return self.vtable.get_Type(self, pType);
     }
     pub fn Delete(self: *const IGPMStarterGPOBackup) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMStarterGPOBackup, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn GenerateReport(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReportToFile(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
 };
 
@@ -4227,10 +4227,10 @@ pub const IGPM2 = extern union {
     };}
     pub usingnamespace IGPM.MethodMixin(@This());
     pub fn GetBackupDirEx(self: *const IGPM2, bstrBackupDir: ?BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx) callconv(.Inline) HRESULT {
-        return @as(*const IGPM2.VTable, @ptrCast(self.vtable)).GetBackupDirEx(@as(*const IGPM2, @ptrCast(self)), bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
+        return self.vtable.GetBackupDirEx(self, bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
     }
     pub fn InitializeReportingEx(self: *const IGPM2, bstrAdmPath: ?BSTR, reportingOptions: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPM2.VTable, @ptrCast(self.vtable)).InitializeReportingEx(@as(*const IGPM2, @ptrCast(self)), bstrAdmPath, reportingOptions);
+        return self.vtable.InitializeReportingEx(self, bstrAdmPath, reportingOptions);
     }
 };
 
@@ -4450,67 +4450,67 @@ pub const IGPMStarterGPO = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DisplayName(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_DisplayName(self, pVal);
     }
     pub fn put_DisplayName(self: *const IGPMStarterGPO, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IGPMStarterGPO, @ptrCast(self)), newVal);
+        return self.vtable.put_DisplayName(self, newVal);
     }
     pub fn get_Description(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_Description(self, pVal);
     }
     pub fn put_Description(self: *const IGPMStarterGPO, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMStarterGPO, @ptrCast(self)), newVal);
+        return self.vtable.put_Description(self, newVal);
     }
     pub fn get_Author(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Author(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_Author(self, pVal);
     }
     pub fn get_Product(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Product(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_Product(self, pVal);
     }
     pub fn get_CreationTime(self: *const IGPMStarterGPO, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_CreationTime(self, pVal);
     }
     pub fn get_ID(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ID(self, pVal);
     }
     pub fn get_ModifiedTime(self: *const IGPMStarterGPO, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ModifiedTime(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ModifiedTime(self, pVal);
     }
     pub fn get_Type(self: *const IGPMStarterGPO, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_Type(self, pVal);
     }
     pub fn get_ComputerVersion(self: *const IGPMStarterGPO, pVal: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ComputerVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_ComputerVersion(self, pVal);
     }
     pub fn get_UserVersion(self: *const IGPMStarterGPO, pVal: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_UserVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_UserVersion(self, pVal);
     }
     pub fn get_StarterGPOVersion(self: *const IGPMStarterGPO, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_StarterGPOVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
+        return self.vtable.get_StarterGPOVersion(self, pVal);
     }
     pub fn Delete(self: *const IGPMStarterGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMStarterGPO, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn Save(self: *const IGPMStarterGPO, bstrSaveFile: ?BSTR, bOverwrite: i16, bSaveAsSystem: i16, bstrLanguage: ?*VARIANT, bstrAuthor: ?*VARIANT, bstrProduct: ?*VARIANT, bstrUniqueID: ?*VARIANT, bstrVersion: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Save(@as(*const IGPMStarterGPO, @ptrCast(self)), bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.Save(self, bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn Backup(self: *const IGPMStarterGPO, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Backup(@as(*const IGPMStarterGPO, @ptrCast(self)), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.Backup(self, bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn CopyTo(self: *const IGPMStarterGPO, pvarNewDisplayName: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).CopyTo(@as(*const IGPMStarterGPO, @ptrCast(self)), pvarNewDisplayName, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.CopyTo(self, pvarNewDisplayName, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReport(self: *const IGPMStarterGPO, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMStarterGPO, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn GenerateReportToFile(self: *const IGPMStarterGPO, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMStarterGPO, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
     pub fn GetSecurityInfo(self: *const IGPMStarterGPO, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMStarterGPO, @ptrCast(self)), ppSecurityInfo);
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
     }
     pub fn SetSecurityInfo(self: *const IGPMStarterGPO, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMStarterGPO, @ptrCast(self)), pSecurityInfo);
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
     }
 };
 
@@ -4555,13 +4555,13 @@ pub const IGPMStarterGPOCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IGPMStarterGPOCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IGPMStarterGPOCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), lIndex, pVal);
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
     pub fn get__NewEnum(self: *const IGPMStarterGPOCollection, ppIGPMTemplates: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), ppIGPMTemplates);
+        return self.vtable.get__NewEnum(self, ppIGPMTemplates);
     }
 };
 
@@ -4637,22 +4637,22 @@ pub const IGPMDomain2 = extern union {
     };}
     pub usingnamespace IGPMDomain.MethodMixin(@This());
     pub fn CreateStarterGPO(self: *const IGPMDomain2, ppnewTemplate: ?*?*IGPMStarterGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).CreateStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), ppnewTemplate);
+        return self.vtable.CreateStarterGPO(self, ppnewTemplate);
     }
     pub fn CreateGPOFromStarterGPO(self: *const IGPMDomain2, pGPOTemplate: ?*IGPMStarterGPO, ppnewGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).CreateGPOFromStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), pGPOTemplate, ppnewGPO);
+        return self.vtable.CreateGPOFromStarterGPO(self, pGPOTemplate, ppnewGPO);
     }
     pub fn GetStarterGPO(self: *const IGPMDomain2, bstrGuid: ?BSTR, ppTemplate: ?*?*IGPMStarterGPO) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).GetStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), bstrGuid, ppTemplate);
+        return self.vtable.GetStarterGPO(self, bstrGuid, ppTemplate);
     }
     pub fn SearchStarterGPOs(self: *const IGPMDomain2, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).SearchStarterGPOs(@as(*const IGPMDomain2, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMTemplateCollection);
+        return self.vtable.SearchStarterGPOs(self, pIGPMSearchCriteria, ppIGPMTemplateCollection);
     }
     pub fn LoadStarterGPO(self: *const IGPMDomain2, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).LoadStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.LoadStarterGPO(self, bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn RestoreStarterGPO(self: *const IGPMDomain2, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).RestoreStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.RestoreStarterGPO(self, pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
 };
 
@@ -4805,49 +4805,49 @@ pub const IGPMConstants2 = extern union {
     };}
     pub usingnamespace IGPMConstants.MethodMixin(@This());
     pub fn get_BackupTypeGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_BackupTypeGPO(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_BackupTypeGPO(self, pVal);
     }
     pub fn get_BackupTypeStarterGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_BackupTypeStarterGPO(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_BackupTypeStarterGPO(self, pVal);
     }
     pub fn get_StarterGPOTypeSystem(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_StarterGPOTypeSystem(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_StarterGPOTypeSystem(self, pVal);
     }
     pub fn get_StarterGPOTypeCustom(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_StarterGPOTypeCustom(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_StarterGPOTypeCustom(self, pVal);
     }
     pub fn get_SearchPropertyStarterGPOPermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOPermissions(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyStarterGPOPermissions(self, pVal);
     }
     pub fn get_SearchPropertyStarterGPOEffectivePermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOEffectivePermissions(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyStarterGPOEffectivePermissions(self, pVal);
     }
     pub fn get_SearchPropertyStarterGPODisplayName(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPODisplayName(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyStarterGPODisplayName(self, pVal);
     }
     pub fn get_SearchPropertyStarterGPOID(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOID(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyStarterGPOID(self, pVal);
     }
     pub fn get_SearchPropertyStarterGPODomain(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPODomain(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_SearchPropertyStarterGPODomain(self, pVal);
     }
     pub fn get_PermStarterGPORead(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPORead(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_PermStarterGPORead(self, pVal);
     }
     pub fn get_PermStarterGPOEdit(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOEdit(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_PermStarterGPOEdit(self, pVal);
     }
     pub fn get_PermStarterGPOFullControl(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOFullControl(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_PermStarterGPOFullControl(self, pVal);
     }
     pub fn get_PermStarterGPOCustom(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOCustom(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_PermStarterGPOCustom(self, pVal);
     }
     pub fn get_ReportLegacy(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_ReportLegacy(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_ReportLegacy(self, pVal);
     }
     pub fn get_ReportComments(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.Inline) HRESULT {
-        return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_ReportComments(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
+        return self.vtable.get_ReportComments(self, pVal);
     }
 };
 
@@ -4883,10 +4883,10 @@ pub const IGPMGPO2 = extern union {
     };}
     pub usingnamespace IGPMGPO.MethodMixin(@This());
     pub fn get_Description(self: *const IGPMGPO2, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO2.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMGPO2, @ptrCast(self)), pVal);
+        return self.vtable.get_Description(self, pVal);
     }
     pub fn put_Description(self: *const IGPMGPO2, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO2.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMGPO2, @ptrCast(self)), newVal);
+        return self.vtable.put_Description(self, newVal);
     }
 };
 
@@ -4941,16 +4941,16 @@ pub const IGPMDomain3 = extern union {
     };}
     pub usingnamespace IGPMDomain2.MethodMixin(@This());
     pub fn GenerateReport(self: *const IGPMDomain3, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMDomain3, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn get_InfrastructureDC(self: *const IGPMDomain3, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).get_InfrastructureDC(@as(*const IGPMDomain3, @ptrCast(self)), pVal);
+        return self.vtable.get_InfrastructureDC(self, pVal);
     }
     pub fn put_InfrastructureDC(self: *const IGPMDomain3, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).put_InfrastructureDC(@as(*const IGPMDomain3, @ptrCast(self)), newVal);
+        return self.vtable.put_InfrastructureDC(self, newVal);
     }
     pub fn put_InfrastructureFlags(self: *const IGPMDomain3, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).put_InfrastructureFlags(@as(*const IGPMDomain3, @ptrCast(self)), dwFlags);
+        return self.vtable.put_InfrastructureFlags(self, dwFlags);
     }
 };
 
@@ -4994,13 +4994,13 @@ pub const IGPMGPO3 = extern union {
     };}
     pub usingnamespace IGPMGPO2.MethodMixin(@This());
     pub fn get_InfrastructureDC(self: *const IGPMGPO3, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).get_InfrastructureDC(@as(*const IGPMGPO3, @ptrCast(self)), pVal);
+        return self.vtable.get_InfrastructureDC(self, pVal);
     }
     pub fn put_InfrastructureDC(self: *const IGPMGPO3, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).put_InfrastructureDC(@as(*const IGPMGPO3, @ptrCast(self)), newVal);
+        return self.vtable.put_InfrastructureDC(self, newVal);
     }
     pub fn put_InfrastructureFlags(self: *const IGPMGPO3, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).put_InfrastructureFlags(@as(*const IGPMGPO3, @ptrCast(self)), dwFlags);
+        return self.vtable.put_InfrastructureFlags(self, dwFlags);
     }
 };
 
@@ -5304,31 +5304,31 @@ pub const IGPEInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetName(@as(*const IGPEInformation, @ptrCast(self)), pszName, cchMaxLength);
+        return self.vtable.GetName(self, pszName, cchMaxLength);
     }
     pub fn GetDisplayName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IGPEInformation, @ptrCast(self)), pszName, cchMaxLength);
+        return self.vtable.GetDisplayName(self, pszName, cchMaxLength);
     }
     pub fn GetRegistryKey(self: *const IGPEInformation, dwSection: u32, hKey: ?*?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetRegistryKey(@as(*const IGPEInformation, @ptrCast(self)), dwSection, hKey);
+        return self.vtable.GetRegistryKey(self, dwSection, hKey);
     }
     pub fn GetDSPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetDSPath(@as(*const IGPEInformation, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
+        return self.vtable.GetDSPath(self, dwSection, pszPath, cchMaxPath);
     }
     pub fn GetFileSysPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetFileSysPath(@as(*const IGPEInformation, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
+        return self.vtable.GetFileSysPath(self, dwSection, pszPath, cchMaxPath);
     }
     pub fn GetOptions(self: *const IGPEInformation, dwOptions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IGPEInformation, @ptrCast(self)), dwOptions);
+        return self.vtable.GetOptions(self, dwOptions);
     }
     pub fn GetType(self: *const IGPEInformation, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetType(@as(*const IGPEInformation, @ptrCast(self)), gpoType);
+        return self.vtable.GetType(self, gpoType);
     }
     pub fn GetHint(self: *const IGPEInformation, gpHint: ?*GROUP_POLICY_HINT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetHint(@as(*const IGPEInformation, @ptrCast(self)), gpHint);
+        return self.vtable.GetHint(self, gpHint);
     }
     pub fn PolicyChanged(self: *const IGPEInformation, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuidSnapin: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).PolicyChanged(@as(*const IGPEInformation, @ptrCast(self)), bMachine, bAdd, pGuidExtension, pGuidSnapin);
+        return self.vtable.PolicyChanged(self, bMachine, bAdd, pGuidExtension, pGuidSnapin);
     }
 };
 
@@ -5507,58 +5507,58 @@ pub const IGroupPolicyObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn New(self: *const IGroupPolicyObject, pszDomainName: ?PWSTR, pszDisplayName: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).New(@as(*const IGroupPolicyObject, @ptrCast(self)), pszDomainName, pszDisplayName, dwFlags);
+        return self.vtable.New(self, pszDomainName, pszDisplayName, dwFlags);
     }
     pub fn OpenDSGPO(self: *const IGroupPolicyObject, pszPath: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenDSGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), pszPath, dwFlags);
+        return self.vtable.OpenDSGPO(self, pszPath, dwFlags);
     }
     pub fn OpenLocalMachineGPO(self: *const IGroupPolicyObject, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenLocalMachineGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), dwFlags);
+        return self.vtable.OpenLocalMachineGPO(self, dwFlags);
     }
     pub fn OpenRemoteMachineGPO(self: *const IGroupPolicyObject, pszComputerName: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenRemoteMachineGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), pszComputerName, dwFlags);
+        return self.vtable.OpenRemoteMachineGPO(self, pszComputerName, dwFlags);
     }
     pub fn Save(self: *const IGroupPolicyObject, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).Save(@as(*const IGroupPolicyObject, @ptrCast(self)), bMachine, bAdd, pGuidExtension, pGuid);
+        return self.vtable.Save(self, bMachine, bAdd, pGuidExtension, pGuid);
     }
     pub fn Delete(self: *const IGroupPolicyObject) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGroupPolicyObject, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn GetName(self: *const IGroupPolicyObject, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
+        return self.vtable.GetName(self, pszName, cchMaxLength);
     }
     pub fn GetDisplayName(self: *const IGroupPolicyObject, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
+        return self.vtable.GetDisplayName(self, pszName, cchMaxLength);
     }
     pub fn SetDisplayName(self: *const IGroupPolicyObject, pszName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName);
+        return self.vtable.SetDisplayName(self, pszName);
     }
     pub fn GetPath(self: *const IGroupPolicyObject, pszPath: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IGroupPolicyObject, @ptrCast(self)), pszPath, cchMaxLength);
+        return self.vtable.GetPath(self, pszPath, cchMaxLength);
     }
     pub fn GetDSPath(self: *const IGroupPolicyObject, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetDSPath(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
+        return self.vtable.GetDSPath(self, dwSection, pszPath, cchMaxPath);
     }
     pub fn GetFileSysPath(self: *const IGroupPolicyObject, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetFileSysPath(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
+        return self.vtable.GetFileSysPath(self, dwSection, pszPath, cchMaxPath);
     }
     pub fn GetRegistryKey(self: *const IGroupPolicyObject, dwSection: u32, hKey: ?*?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetRegistryKey(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, hKey);
+        return self.vtable.GetRegistryKey(self, dwSection, hKey);
     }
     pub fn GetOptions(self: *const IGroupPolicyObject, dwOptions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IGroupPolicyObject, @ptrCast(self)), dwOptions);
+        return self.vtable.GetOptions(self, dwOptions);
     }
     pub fn SetOptions(self: *const IGroupPolicyObject, dwOptions: u32, dwMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IGroupPolicyObject, @ptrCast(self)), dwOptions, dwMask);
+        return self.vtable.SetOptions(self, dwOptions, dwMask);
     }
     pub fn GetType(self: *const IGroupPolicyObject, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetType(@as(*const IGroupPolicyObject, @ptrCast(self)), gpoType);
+        return self.vtable.GetType(self, gpoType);
     }
     pub fn GetMachineName(self: *const IGroupPolicyObject, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetMachineName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
+        return self.vtable.GetMachineName(self, pszName, cchMaxLength);
     }
     pub fn GetPropertySheetPages(self: *const IGroupPolicyObject, hPages: ?*?*?HPROPSHEETPAGE, uPageCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetPropertySheetPages(@as(*const IGroupPolicyObject, @ptrCast(self)), hPages, uPageCount);
+        return self.vtable.GetPropertySheetPages(self, hPages, uPageCount);
     }
 };
 
@@ -5606,13 +5606,13 @@ pub const IRSOPInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNamespace(self: *const IRSOPInformation, dwSection: u32, pszName: [*:0]u16, cchMaxLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetNamespace(@as(*const IRSOPInformation, @ptrCast(self)), dwSection, pszName, cchMaxLength);
+        return self.vtable.GetNamespace(self, dwSection, pszName, cchMaxLength);
     }
     pub fn GetFlags(self: *const IRSOPInformation, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IRSOPInformation, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn GetEventLogEntryText(self: *const IRSOPInformation, pszEventSource: ?PWSTR, pszEventLogName: ?PWSTR, pszEventTime: ?PWSTR, dwEventID: u32, ppszText: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetEventLogEntryText(@as(*const IRSOPInformation, @ptrCast(self)), pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
+        return self.vtable.GetEventLogEntryText(self, pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
     }
 };
 

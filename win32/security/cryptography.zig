@@ -8311,40 +8311,40 @@ pub const ICertSrvSetupKeyInformation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ProviderName(self: *const ICertSrvSetupKeyInformation, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_ProviderName(self, pVal);
     }
     pub fn put_ProviderName(self: *const ICertSrvSetupKeyInformation, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), bstrVal);
+        return self.vtable.put_ProviderName(self, bstrVal);
     }
     pub fn get_Length(self: *const ICertSrvSetupKeyInformation, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_Length(self, pVal);
     }
     pub fn put_Length(self: *const ICertSrvSetupKeyInformation, lVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_Length(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), lVal);
+        return self.vtable.put_Length(self, lVal);
     }
     pub fn get_Existing(self: *const ICertSrvSetupKeyInformation, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_Existing(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_Existing(self, pVal);
     }
     pub fn put_Existing(self: *const ICertSrvSetupKeyInformation, bVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_Existing(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), bVal);
+        return self.vtable.put_Existing(self, bVal);
     }
     pub fn get_ContainerName(self: *const ICertSrvSetupKeyInformation, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_ContainerName(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_ContainerName(self, pVal);
     }
     pub fn put_ContainerName(self: *const ICertSrvSetupKeyInformation, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_ContainerName(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), bstrVal);
+        return self.vtable.put_ContainerName(self, bstrVal);
     }
     pub fn get_HashAlgorithm(self: *const ICertSrvSetupKeyInformation, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_HashAlgorithm(self, pVal);
     }
     pub fn put_HashAlgorithm(self: *const ICertSrvSetupKeyInformation, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), bstrVal);
+        return self.vtable.put_HashAlgorithm(self, bstrVal);
     }
     pub fn get_ExistingCACertificate(self: *const ICertSrvSetupKeyInformation, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).get_ExistingCACertificate(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), pVal);
+        return self.vtable.get_ExistingCACertificate(self, pVal);
     }
     pub fn put_ExistingCACertificate(self: *const ICertSrvSetupKeyInformation, varVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformation.VTable, @ptrCast(self.vtable)).put_ExistingCACertificate(@as(*const ICertSrvSetupKeyInformation, @ptrCast(self)), varVal);
+        return self.vtable.put_ExistingCACertificate(self, varVal);
     }
 };
 
@@ -8397,16 +8397,16 @@ pub const ICertSrvSetupKeyInformationCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const ICertSrvSetupKeyInformationCollection, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformationCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertSrvSetupKeyInformationCollection, @ptrCast(self)), ppVal);
+        return self.vtable.get__NewEnum(self, ppVal);
     }
     pub fn get_Item(self: *const ICertSrvSetupKeyInformationCollection, Index: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformationCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICertSrvSetupKeyInformationCollection, @ptrCast(self)), Index, pVal);
+        return self.vtable.get_Item(self, Index, pVal);
     }
     pub fn get_Count(self: *const ICertSrvSetupKeyInformationCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformationCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertSrvSetupKeyInformationCollection, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn Add(self: *const ICertSrvSetupKeyInformationCollection, pIKeyInformation: ?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetupKeyInformationCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertSrvSetupKeyInformationCollection, @ptrCast(self)), pIKeyInformation);
+        return self.vtable.Add(self, pIKeyInformation);
     }
 };
 
@@ -8639,64 +8639,64 @@ pub const ICertSrvSetup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CAErrorId(self: *const ICertSrvSetup, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).get_CAErrorId(@as(*const ICertSrvSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_CAErrorId(self, pVal);
     }
     pub fn get_CAErrorString(self: *const ICertSrvSetup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).get_CAErrorString(@as(*const ICertSrvSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_CAErrorString(self, pVal);
     }
     pub fn InitializeDefaults(self: *const ICertSrvSetup, bServer: i16, bClient: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).InitializeDefaults(@as(*const ICertSrvSetup, @ptrCast(self)), bServer, bClient);
+        return self.vtable.InitializeDefaults(self, bServer, bClient);
     }
     pub fn GetCASetupProperty(self: *const ICertSrvSetup, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetCASetupProperty(@as(*const ICertSrvSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.GetCASetupProperty(self, propertyId, pPropertyValue);
     }
     pub fn SetCASetupProperty(self: *const ICertSrvSetup, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).SetCASetupProperty(@as(*const ICertSrvSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.SetCASetupProperty(self, propertyId, pPropertyValue);
     }
     pub fn IsPropertyEditable(self: *const ICertSrvSetup, propertyId: CASetupProperty, pbEditable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).IsPropertyEditable(@as(*const ICertSrvSetup, @ptrCast(self)), propertyId, pbEditable);
+        return self.vtable.IsPropertyEditable(self, propertyId, pbEditable);
     }
     pub fn GetSupportedCATypes(self: *const ICertSrvSetup, pCATypes: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetSupportedCATypes(@as(*const ICertSrvSetup, @ptrCast(self)), pCATypes);
+        return self.vtable.GetSupportedCATypes(self, pCATypes);
     }
     pub fn GetProviderNameList(self: *const ICertSrvSetup, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetProviderNameList(@as(*const ICertSrvSetup, @ptrCast(self)), pVal);
+        return self.vtable.GetProviderNameList(self, pVal);
     }
     pub fn GetKeyLengthList(self: *const ICertSrvSetup, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetKeyLengthList(@as(*const ICertSrvSetup, @ptrCast(self)), bstrProviderName, pVal);
+        return self.vtable.GetKeyLengthList(self, bstrProviderName, pVal);
     }
     pub fn GetHashAlgorithmList(self: *const ICertSrvSetup, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetHashAlgorithmList(@as(*const ICertSrvSetup, @ptrCast(self)), bstrProviderName, pVal);
+        return self.vtable.GetHashAlgorithmList(self, bstrProviderName, pVal);
     }
     pub fn GetPrivateKeyContainerList(self: *const ICertSrvSetup, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetPrivateKeyContainerList(@as(*const ICertSrvSetup, @ptrCast(self)), bstrProviderName, pVal);
+        return self.vtable.GetPrivateKeyContainerList(self, bstrProviderName, pVal);
     }
     pub fn GetExistingCACertificates(self: *const ICertSrvSetup, ppVal: ?*?*ICertSrvSetupKeyInformationCollection) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).GetExistingCACertificates(@as(*const ICertSrvSetup, @ptrCast(self)), ppVal);
+        return self.vtable.GetExistingCACertificates(self, ppVal);
     }
     pub fn CAImportPFX(self: *const ICertSrvSetup, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: i16, ppVal: ?*?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).CAImportPFX(@as(*const ICertSrvSetup, @ptrCast(self)), bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
+        return self.vtable.CAImportPFX(self, bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
     }
     pub fn SetCADistinguishedName(self: *const ICertSrvSetup, bstrCADN: ?BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).SetCADistinguishedName(@as(*const ICertSrvSetup, @ptrCast(self)), bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
+        return self.vtable.SetCADistinguishedName(self, bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
     }
     pub fn SetDatabaseInformation(self: *const ICertSrvSetup, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).SetDatabaseInformation(@as(*const ICertSrvSetup, @ptrCast(self)), bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
+        return self.vtable.SetDatabaseInformation(self, bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
     }
     pub fn SetParentCAInformation(self: *const ICertSrvSetup, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).SetParentCAInformation(@as(*const ICertSrvSetup, @ptrCast(self)), bstrCAConfiguration);
+        return self.vtable.SetParentCAInformation(self, bstrCAConfiguration);
     }
     pub fn SetWebCAInformation(self: *const ICertSrvSetup, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).SetWebCAInformation(@as(*const ICertSrvSetup, @ptrCast(self)), bstrCAConfiguration);
+        return self.vtable.SetWebCAInformation(self, bstrCAConfiguration);
     }
     pub fn Install(self: *const ICertSrvSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const ICertSrvSetup, @ptrCast(self)));
+        return self.vtable.Install(self);
     }
     pub fn PreUnInstall(self: *const ICertSrvSetup, bClientOnly: i16) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).PreUnInstall(@as(*const ICertSrvSetup, @ptrCast(self)), bClientOnly);
+        return self.vtable.PreUnInstall(self, bClientOnly);
     }
     pub fn PostUnInstall(self: *const ICertSrvSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertSrvSetup.VTable, @ptrCast(self.vtable)).PostUnInstall(@as(*const ICertSrvSetup, @ptrCast(self)));
+        return self.vtable.PostUnInstall(self);
     }
 };
 
@@ -8845,40 +8845,40 @@ pub const IMSCEPSetup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MSCEPErrorId(self: *const IMSCEPSetup, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).get_MSCEPErrorId(@as(*const IMSCEPSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_MSCEPErrorId(self, pVal);
     }
     pub fn get_MSCEPErrorString(self: *const IMSCEPSetup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).get_MSCEPErrorString(@as(*const IMSCEPSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_MSCEPErrorString(self, pVal);
     }
     pub fn InitializeDefaults(self: *const IMSCEPSetup) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).InitializeDefaults(@as(*const IMSCEPSetup, @ptrCast(self)));
+        return self.vtable.InitializeDefaults(self);
     }
     pub fn GetMSCEPSetupProperty(self: *const IMSCEPSetup, propertyId: MSCEPSetupProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).GetMSCEPSetupProperty(@as(*const IMSCEPSetup, @ptrCast(self)), propertyId, pVal);
+        return self.vtable.GetMSCEPSetupProperty(self, propertyId, pVal);
     }
     pub fn SetMSCEPSetupProperty(self: *const IMSCEPSetup, propertyId: MSCEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).SetMSCEPSetupProperty(@as(*const IMSCEPSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.SetMSCEPSetupProperty(self, propertyId, pPropertyValue);
     }
     pub fn SetAccountInformation(self: *const IMSCEPSetup, bstrUserName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).SetAccountInformation(@as(*const IMSCEPSetup, @ptrCast(self)), bstrUserName, bstrPassword);
+        return self.vtable.SetAccountInformation(self, bstrUserName, bstrPassword);
     }
     pub fn IsMSCEPStoreEmpty(self: *const IMSCEPSetup, pbEmpty: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).IsMSCEPStoreEmpty(@as(*const IMSCEPSetup, @ptrCast(self)), pbEmpty);
+        return self.vtable.IsMSCEPStoreEmpty(self, pbEmpty);
     }
     pub fn GetProviderNameList(self: *const IMSCEPSetup, bExchange: i16, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).GetProviderNameList(@as(*const IMSCEPSetup, @ptrCast(self)), bExchange, pVal);
+        return self.vtable.GetProviderNameList(self, bExchange, pVal);
     }
     pub fn GetKeyLengthList(self: *const IMSCEPSetup, bExchange: i16, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).GetKeyLengthList(@as(*const IMSCEPSetup, @ptrCast(self)), bExchange, bstrProviderName, pVal);
+        return self.vtable.GetKeyLengthList(self, bExchange, bstrProviderName, pVal);
     }
     pub fn Install(self: *const IMSCEPSetup) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const IMSCEPSetup, @ptrCast(self)));
+        return self.vtable.Install(self);
     }
     pub fn PreUnInstall(self: *const IMSCEPSetup) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).PreUnInstall(@as(*const IMSCEPSetup, @ptrCast(self)));
+        return self.vtable.PreUnInstall(self);
     }
     pub fn PostUnInstall(self: *const IMSCEPSetup) callconv(.Inline) HRESULT {
-        return @as(*const IMSCEPSetup.VTable, @ptrCast(self.vtable)).PostUnInstall(@as(*const IMSCEPSetup, @ptrCast(self)));
+        return self.vtable.PostUnInstall(self);
     }
 };
 
@@ -8972,25 +8972,25 @@ pub const ICertificateEnrollmentServerSetup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ErrorString(self: *const ICertificateEnrollmentServerSetup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).get_ErrorString(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_ErrorString(self, pVal);
     }
     pub fn InitializeInstallDefaults(self: *const ICertificateEnrollmentServerSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).InitializeInstallDefaults(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)));
+        return self.vtable.InitializeInstallDefaults(self);
     }
     pub fn GetProperty(self: *const ICertificateEnrollmentServerSetup, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.GetProperty(self, propertyId, pPropertyValue);
     }
     pub fn SetProperty(self: *const ICertificateEnrollmentServerSetup, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.SetProperty(self, propertyId, pPropertyValue);
     }
     pub fn SetApplicationPoolCredentials(self: *const ICertificateEnrollmentServerSetup, bstrUsername: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).SetApplicationPoolCredentials(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)), bstrUsername, bstrPassword);
+        return self.vtable.SetApplicationPoolCredentials(self, bstrUsername, bstrPassword);
     }
     pub fn Install(self: *const ICertificateEnrollmentServerSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)));
+        return self.vtable.Install(self);
     }
     pub fn UnInstall(self: *const ICertificateEnrollmentServerSetup, pCAConfig: ?*VARIANT, pAuthentication: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentServerSetup.VTable, @ptrCast(self.vtable)).UnInstall(@as(*const ICertificateEnrollmentServerSetup, @ptrCast(self)), pCAConfig, pAuthentication);
+        return self.vtable.UnInstall(self, pCAConfig, pAuthentication);
     }
 };
 
@@ -9068,22 +9068,22 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ErrorString(self: *const ICertificateEnrollmentPolicyServerSetup, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).get_ErrorString(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)), pVal);
+        return self.vtable.get_ErrorString(self, pVal);
     }
     pub fn InitializeInstallDefaults(self: *const ICertificateEnrollmentPolicyServerSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).InitializeInstallDefaults(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)));
+        return self.vtable.InitializeInstallDefaults(self);
     }
     pub fn GetProperty(self: *const ICertificateEnrollmentPolicyServerSetup, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.GetProperty(self, propertyId, pPropertyValue);
     }
     pub fn SetProperty(self: *const ICertificateEnrollmentPolicyServerSetup, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)), propertyId, pPropertyValue);
+        return self.vtable.SetProperty(self, propertyId, pPropertyValue);
     }
     pub fn Install(self: *const ICertificateEnrollmentPolicyServerSetup) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)));
+        return self.vtable.Install(self);
     }
     pub fn UnInstall(self: *const ICertificateEnrollmentPolicyServerSetup, pAuthKeyBasedRenewal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICertificateEnrollmentPolicyServerSetup.VTable, @ptrCast(self.vtable)).UnInstall(@as(*const ICertificateEnrollmentPolicyServerSetup, @ptrCast(self)), pAuthKeyBasedRenewal);
+        return self.vtable.UnInstall(self, pAuthKeyBasedRenewal);
     }
 };
 

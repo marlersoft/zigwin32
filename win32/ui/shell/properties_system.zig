@@ -44,7 +44,7 @@ pub const IInitializeWithFile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithFile, pszFilePath: ?[*:0]const u16, grfMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithFile.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithFile, @ptrCast(self)), pszFilePath, grfMode);
+        return self.vtable.Initialize(self, pszFilePath, grfMode);
     }
 };
 
@@ -71,7 +71,7 @@ pub const IInitializeWithStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithStream, pstream: ?*IStream, grfMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithStream.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithStream, @ptrCast(self)), pstream, grfMode);
+        return self.vtable.Initialize(self, pstream, grfMode);
     }
 };
 
@@ -130,19 +130,19 @@ pub const IPropertyStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPropertyStore, cProps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyStore, @ptrCast(self)), cProps);
+        return self.vtable.GetCount(self, cProps);
     }
     pub fn GetAt(self: *const IPropertyStore, iProp: u32, pkey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyStore, @ptrCast(self)), iProp, pkey);
+        return self.vtable.GetAt(self, iProp, pkey);
     }
     pub fn GetValue(self: *const IPropertyStore, key: ?*const PROPERTYKEY, pv: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IPropertyStore, @ptrCast(self)), key, pv);
+        return self.vtable.GetValue(self, key, pv);
     }
     pub fn SetValue(self: *const IPropertyStore, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IPropertyStore, @ptrCast(self)), key, propvar);
+        return self.vtable.SetValue(self, key, propvar);
     }
     pub fn Commit(self: *const IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).Commit(@as(*const IPropertyStore, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
 };
 
@@ -195,16 +195,16 @@ pub const INamedPropertyStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNamedValue(self: *const INamedPropertyStore, pszName: ?[*:0]const u16, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNamedValue(@as(*const INamedPropertyStore, @ptrCast(self)), pszName, ppropvar);
+        return self.vtable.GetNamedValue(self, pszName, ppropvar);
     }
     pub fn SetNamedValue(self: *const INamedPropertyStore, pszName: ?[*:0]const u16, propvar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).SetNamedValue(@as(*const INamedPropertyStore, @ptrCast(self)), pszName, propvar);
+        return self.vtable.SetNamedValue(self, pszName, propvar);
     }
     pub fn GetNameCount(self: *const INamedPropertyStore, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const INamedPropertyStore, @ptrCast(self)), pdwCount);
+        return self.vtable.GetNameCount(self, pdwCount);
     }
     pub fn GetNameAt(self: *const INamedPropertyStore, iProp: u32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNameAt(@as(*const INamedPropertyStore, @ptrCast(self)), iProp, pbstrName);
+        return self.vtable.GetNameAt(self, iProp, pbstrName);
     }
 };
 
@@ -302,10 +302,10 @@ pub const IObjectWithPropertyKey = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPropertyKey(self: *const IObjectWithPropertyKey, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithPropertyKey.VTable, @ptrCast(self.vtable)).SetPropertyKey(@as(*const IObjectWithPropertyKey, @ptrCast(self)), key);
+        return self.vtable.SetPropertyKey(self, key);
     }
     pub fn GetPropertyKey(self: *const IObjectWithPropertyKey, pkey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithPropertyKey.VTable, @ptrCast(self.vtable)).GetPropertyKey(@as(*const IObjectWithPropertyKey, @ptrCast(self)), pkey);
+        return self.vtable.GetPropertyKey(self, pkey);
     }
 };
 
@@ -370,7 +370,7 @@ pub const IPropertyChange = extern union {
     };}
     pub usingnamespace IObjectWithPropertyKey.MethodMixin(@This());
     pub fn ApplyToPropVariant(self: *const IPropertyChange, propvarIn: ?*const PROPVARIANT, ppropvarOut: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChange.VTable, @ptrCast(self.vtable)).ApplyToPropVariant(@as(*const IPropertyChange, @ptrCast(self)), propvarIn, ppropvarOut);
+        return self.vtable.ApplyToPropVariant(self, propvarIn, ppropvarOut);
     }
 };
 
@@ -447,25 +447,25 @@ pub const IPropertyChangeArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPropertyChangeArray, pcOperations: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyChangeArray, @ptrCast(self)), pcOperations);
+        return self.vtable.GetCount(self, pcOperations);
     }
     pub fn GetAt(self: *const IPropertyChangeArray, iIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex, riid, ppv);
+        return self.vtable.GetAt(self, iIndex, riid, ppv);
     }
     pub fn InsertAt(self: *const IPropertyChangeArray, iIndex: u32, ppropChange: ?*IPropertyChange) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex, ppropChange);
+        return self.vtable.InsertAt(self, iIndex, ppropChange);
     }
     pub fn Append(self: *const IPropertyChangeArray, ppropChange: ?*IPropertyChange) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).Append(@as(*const IPropertyChangeArray, @ptrCast(self)), ppropChange);
+        return self.vtable.Append(self, ppropChange);
     }
     pub fn AppendOrReplace(self: *const IPropertyChangeArray, ppropChange: ?*IPropertyChange) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).AppendOrReplace(@as(*const IPropertyChangeArray, @ptrCast(self)), ppropChange);
+        return self.vtable.AppendOrReplace(self, ppropChange);
     }
     pub fn RemoveAt(self: *const IPropertyChangeArray, iIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex);
+        return self.vtable.RemoveAt(self, iIndex);
     }
     pub fn IsKeyInArray(self: *const IPropertyChangeArray, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).IsKeyInArray(@as(*const IPropertyChangeArray, @ptrCast(self)), key);
+        return self.vtable.IsKeyInArray(self, key);
     }
 };
 
@@ -491,7 +491,7 @@ pub const IPropertyStoreCapabilities = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsPropertyWritable(self: *const IPropertyStoreCapabilities, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreCapabilities.VTable, @ptrCast(self.vtable)).IsPropertyWritable(@as(*const IPropertyStoreCapabilities, @ptrCast(self)), key);
+        return self.vtable.IsPropertyWritable(self, key);
     }
 };
 
@@ -558,16 +558,16 @@ pub const IPropertyStoreCache = extern union {
     };}
     pub usingnamespace IPropertyStore.MethodMixin(@This());
     pub fn GetState(self: *const IPropertyStoreCache, key: ?*const PROPERTYKEY, pstate: ?*PSC_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).GetState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, pstate);
+        return self.vtable.GetState(self, key, pstate);
     }
     pub fn GetValueAndState(self: *const IPropertyStoreCache, key: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT, pstate: ?*PSC_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).GetValueAndState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, ppropvar, pstate);
+        return self.vtable.GetValueAndState(self, key, ppropvar, pstate);
     }
     pub fn SetState(self: *const IPropertyStoreCache, key: ?*const PROPERTYKEY, state: PSC_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).SetState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, state);
+        return self.vtable.SetState(self, key, state);
     }
     pub fn SetValueAndState(self: *const IPropertyStoreCache, key: ?*const PROPERTYKEY, ppropvar: ?*const PROPVARIANT, state: PSC_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).SetValueAndState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, ppropvar, state);
+        return self.vtable.SetValueAndState(self, key, ppropvar, state);
     }
 };
 
@@ -636,19 +636,19 @@ pub const IPropertyEnumType = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEnumType(self: *const IPropertyEnumType, penumtype: ?*PROPENUMTYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetEnumType(@as(*const IPropertyEnumType, @ptrCast(self)), penumtype);
+        return self.vtable.GetEnumType(self, penumtype);
     }
     pub fn GetValue(self: *const IPropertyEnumType, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvar);
+        return self.vtable.GetValue(self, ppropvar);
     }
     pub fn GetRangeMinValue(self: *const IPropertyEnumType, ppropvarMin: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetRangeMinValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvarMin);
+        return self.vtable.GetRangeMinValue(self, ppropvarMin);
     }
     pub fn GetRangeSetValue(self: *const IPropertyEnumType, ppropvarSet: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetRangeSetValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvarSet);
+        return self.vtable.GetRangeSetValue(self, ppropvarSet);
     }
     pub fn GetDisplayText(self: *const IPropertyEnumType, ppszDisplay: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetDisplayText(@as(*const IPropertyEnumType, @ptrCast(self)), ppszDisplay);
+        return self.vtable.GetDisplayText(self, ppszDisplay);
     }
 };
 
@@ -674,7 +674,7 @@ pub const IPropertyEnumType2 = extern union {
     };}
     pub usingnamespace IPropertyEnumType.MethodMixin(@This());
     pub fn GetImageReference(self: *const IPropertyEnumType2, ppszImageRes: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumType2.VTable, @ptrCast(self.vtable)).GetImageReference(@as(*const IPropertyEnumType2, @ptrCast(self)), ppszImageRes);
+        return self.vtable.GetImageReference(self, ppszImageRes);
     }
 };
 
@@ -729,16 +729,16 @@ pub const IPropertyEnumTypeList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPropertyEnumTypeList, pctypes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyEnumTypeList, @ptrCast(self)), pctypes);
+        return self.vtable.GetCount(self, pctypes);
     }
     pub fn GetAt(self: *const IPropertyEnumTypeList, itype: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyEnumTypeList, @ptrCast(self)), itype, riid, ppv);
+        return self.vtable.GetAt(self, itype, riid, ppv);
     }
     pub fn GetConditionAt(self: *const IPropertyEnumTypeList, nIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetConditionAt(@as(*const IPropertyEnumTypeList, @ptrCast(self)), nIndex, riid, ppv);
+        return self.vtable.GetConditionAt(self, nIndex, riid, ppv);
     }
     pub fn FindMatchingIndex(self: *const IPropertyEnumTypeList, propvarCmp: ?*const PROPVARIANT, pnIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).FindMatchingIndex(@as(*const IPropertyEnumTypeList, @ptrCast(self)), propvarCmp, pnIndex);
+        return self.vtable.FindMatchingIndex(self, propvarCmp, pnIndex);
     }
 };
 
@@ -1213,67 +1213,67 @@ pub const IPropertyDescription = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyKey(self: *const IPropertyDescription, pkey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetPropertyKey(@as(*const IPropertyDescription, @ptrCast(self)), pkey);
+        return self.vtable.GetPropertyKey(self, pkey);
     }
     pub fn GetCanonicalName(self: *const IPropertyDescription, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetCanonicalName(@as(*const IPropertyDescription, @ptrCast(self)), ppszName);
+        return self.vtable.GetCanonicalName(self, ppszName);
     }
     pub fn GetPropertyType(self: *const IPropertyDescription, pvartype: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetPropertyType(@as(*const IPropertyDescription, @ptrCast(self)), pvartype);
+        return self.vtable.GetPropertyType(self, pvartype);
     }
     pub fn GetDisplayName(self: *const IPropertyDescription, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IPropertyDescription, @ptrCast(self)), ppszName);
+        return self.vtable.GetDisplayName(self, ppszName);
     }
     pub fn GetEditInvitation(self: *const IPropertyDescription, ppszInvite: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetEditInvitation(@as(*const IPropertyDescription, @ptrCast(self)), ppszInvite);
+        return self.vtable.GetEditInvitation(self, ppszInvite);
     }
     pub fn GetTypeFlags(self: *const IPropertyDescription, mask: PROPDESC_TYPE_FLAGS, ppdtFlags: ?*PROPDESC_TYPE_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetTypeFlags(@as(*const IPropertyDescription, @ptrCast(self)), mask, ppdtFlags);
+        return self.vtable.GetTypeFlags(self, mask, ppdtFlags);
     }
     pub fn GetViewFlags(self: *const IPropertyDescription, ppdvFlags: ?*PROPDESC_VIEW_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetViewFlags(@as(*const IPropertyDescription, @ptrCast(self)), ppdvFlags);
+        return self.vtable.GetViewFlags(self, ppdvFlags);
     }
     pub fn GetDefaultColumnWidth(self: *const IPropertyDescription, pcxChars: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDefaultColumnWidth(@as(*const IPropertyDescription, @ptrCast(self)), pcxChars);
+        return self.vtable.GetDefaultColumnWidth(self, pcxChars);
     }
     pub fn GetDisplayType(self: *const IPropertyDescription, pdisplaytype: ?*PROPDESC_DISPLAYTYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDisplayType(@as(*const IPropertyDescription, @ptrCast(self)), pdisplaytype);
+        return self.vtable.GetDisplayType(self, pdisplaytype);
     }
     pub fn GetColumnState(self: *const IPropertyDescription, pcsFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetColumnState(@as(*const IPropertyDescription, @ptrCast(self)), pcsFlags);
+        return self.vtable.GetColumnState(self, pcsFlags);
     }
     pub fn GetGroupingRange(self: *const IPropertyDescription, pgr: ?*PROPDESC_GROUPING_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetGroupingRange(@as(*const IPropertyDescription, @ptrCast(self)), pgr);
+        return self.vtable.GetGroupingRange(self, pgr);
     }
     pub fn GetRelativeDescriptionType(self: *const IPropertyDescription, prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetRelativeDescriptionType(@as(*const IPropertyDescription, @ptrCast(self)), prdt);
+        return self.vtable.GetRelativeDescriptionType(self, prdt);
     }
     pub fn GetRelativeDescription(self: *const IPropertyDescription, propvar1: ?*const PROPVARIANT, propvar2: ?*const PROPVARIANT, ppszDesc1: ?*?PWSTR, ppszDesc2: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetRelativeDescription(@as(*const IPropertyDescription, @ptrCast(self)), propvar1, propvar2, ppszDesc1, ppszDesc2);
+        return self.vtable.GetRelativeDescription(self, propvar1, propvar2, ppszDesc1, ppszDesc2);
     }
     pub fn GetSortDescription(self: *const IPropertyDescription, psd: ?*PROPDESC_SORTDESCRIPTION) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetSortDescription(@as(*const IPropertyDescription, @ptrCast(self)), psd);
+        return self.vtable.GetSortDescription(self, psd);
     }
     pub fn GetSortDescriptionLabel(self: *const IPropertyDescription, fDescending: BOOL, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetSortDescriptionLabel(@as(*const IPropertyDescription, @ptrCast(self)), fDescending, ppszDescription);
+        return self.vtable.GetSortDescriptionLabel(self, fDescending, ppszDescription);
     }
     pub fn GetAggregationType(self: *const IPropertyDescription, paggtype: ?*PROPDESC_AGGREGATION_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetAggregationType(@as(*const IPropertyDescription, @ptrCast(self)), paggtype);
+        return self.vtable.GetAggregationType(self, paggtype);
     }
     pub fn GetConditionType(self: *const IPropertyDescription, pcontype: ?*PROPDESC_CONDITION_TYPE, popDefault: ?*CONDITION_OPERATION) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetConditionType(@as(*const IPropertyDescription, @ptrCast(self)), pcontype, popDefault);
+        return self.vtable.GetConditionType(self, pcontype, popDefault);
     }
     pub fn GetEnumTypeList(self: *const IPropertyDescription, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetEnumTypeList(@as(*const IPropertyDescription, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetEnumTypeList(self, riid, ppv);
     }
     pub fn CoerceToCanonicalValue(self: *const IPropertyDescription, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).CoerceToCanonicalValue(@as(*const IPropertyDescription, @ptrCast(self)), ppropvar);
+        return self.vtable.CoerceToCanonicalValue(self, ppropvar);
     }
     pub fn FormatForDisplay(self: *const IPropertyDescription, propvar: ?*const PROPVARIANT, pdfFlags: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertyDescription, @ptrCast(self)), propvar, pdfFlags, ppszDisplay);
+        return self.vtable.FormatForDisplay(self, propvar, pdfFlags, ppszDisplay);
     }
     pub fn IsValueCanonical(self: *const IPropertyDescription, propvar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).IsValueCanonical(@as(*const IPropertyDescription, @ptrCast(self)), propvar);
+        return self.vtable.IsValueCanonical(self, propvar);
     }
 };
 
@@ -1300,7 +1300,7 @@ pub const IPropertyDescription2 = extern union {
     };}
     pub usingnamespace IPropertyDescription.MethodMixin(@This());
     pub fn GetImageReferenceForValue(self: *const IPropertyDescription2, propvar: ?*const PROPVARIANT, ppszImageRes: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescription2.VTable, @ptrCast(self.vtable)).GetImageReferenceForValue(@as(*const IPropertyDescription2, @ptrCast(self)), propvar, ppszImageRes);
+        return self.vtable.GetImageReferenceForValue(self, propvar, ppszImageRes);
     }
 };
 
@@ -1336,10 +1336,10 @@ pub const IPropertyDescriptionAliasInfo = extern union {
     };}
     pub usingnamespace IPropertyDescription.MethodMixin(@This());
     pub fn GetSortByAlias(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionAliasInfo.VTable, @ptrCast(self.vtable)).GetSortByAlias(@as(*const IPropertyDescriptionAliasInfo, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetSortByAlias(self, riid, ppv);
     }
     pub fn GetAdditionalSortByAliases(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionAliasInfo.VTable, @ptrCast(self.vtable)).GetAdditionalSortByAliases(@as(*const IPropertyDescriptionAliasInfo, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetAdditionalSortByAliases(self, riid, ppv);
     }
 };
 
@@ -1445,16 +1445,16 @@ pub const IPropertyDescriptionSearchInfo = extern union {
     };}
     pub usingnamespace IPropertyDescription.MethodMixin(@This());
     pub fn GetSearchInfoFlags(self: *const IPropertyDescriptionSearchInfo, ppdsiFlags: ?*PROPDESC_SEARCHINFO_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetSearchInfoFlags(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppdsiFlags);
+        return self.vtable.GetSearchInfoFlags(self, ppdsiFlags);
     }
     pub fn GetColumnIndexType(self: *const IPropertyDescriptionSearchInfo, ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetColumnIndexType(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppdciType);
+        return self.vtable.GetColumnIndexType(self, ppdciType);
     }
     pub fn GetProjectionString(self: *const IPropertyDescriptionSearchInfo, ppszProjection: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetProjectionString(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppszProjection);
+        return self.vtable.GetProjectionString(self, ppszProjection);
     }
     pub fn GetMaxSize(self: *const IPropertyDescriptionSearchInfo, pcbMaxSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetMaxSize(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), pcbMaxSize);
+        return self.vtable.GetMaxSize(self, pcbMaxSize);
     }
 };
 
@@ -1482,7 +1482,7 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern union {
     };}
     pub usingnamespace IPropertyDescription.MethodMixin(@This());
     pub fn GetRelatedProperty(self: *const IPropertyDescriptionRelatedPropertyInfo, pszRelationshipName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionRelatedPropertyInfo.VTable, @ptrCast(self.vtable)).GetRelatedProperty(@as(*const IPropertyDescriptionRelatedPropertyInfo, @ptrCast(self)), pszRelationshipName, riid, ppv);
+        return self.vtable.GetRelatedProperty(self, pszRelationshipName, riid, ppv);
     }
 };
 
@@ -1603,31 +1603,31 @@ pub const IPropertySystem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyDescription(self: *const IPropertySystem, propkey: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescription(@as(*const IPropertySystem, @ptrCast(self)), propkey, riid, ppv);
+        return self.vtable.GetPropertyDescription(self, propkey, riid, ppv);
     }
     pub fn GetPropertyDescriptionByName(self: *const IPropertySystem, pszCanonicalName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionByName(@as(*const IPropertySystem, @ptrCast(self)), pszCanonicalName, riid, ppv);
+        return self.vtable.GetPropertyDescriptionByName(self, pszCanonicalName, riid, ppv);
     }
     pub fn GetPropertyDescriptionListFromString(self: *const IPropertySystem, pszPropList: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionListFromString(@as(*const IPropertySystem, @ptrCast(self)), pszPropList, riid, ppv);
+        return self.vtable.GetPropertyDescriptionListFromString(self, pszPropList, riid, ppv);
     }
     pub fn EnumeratePropertyDescriptions(self: *const IPropertySystem, filterOn: PROPDESC_ENUMFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).EnumeratePropertyDescriptions(@as(*const IPropertySystem, @ptrCast(self)), filterOn, riid, ppv);
+        return self.vtable.EnumeratePropertyDescriptions(self, filterOn, riid, ppv);
     }
     pub fn FormatForDisplay(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, pszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertySystem, @ptrCast(self)), key, propvar, pdff, pszText, cchText);
+        return self.vtable.FormatForDisplay(self, key, propvar, pdff, pszText, cchText);
     }
     pub fn FormatForDisplayAlloc(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).FormatForDisplayAlloc(@as(*const IPropertySystem, @ptrCast(self)), key, propvar, pdff, ppszDisplay);
+        return self.vtable.FormatForDisplayAlloc(self, key, propvar, pdff, ppszDisplay);
     }
     pub fn RegisterPropertySchema(self: *const IPropertySystem, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).RegisterPropertySchema(@as(*const IPropertySystem, @ptrCast(self)), pszPath);
+        return self.vtable.RegisterPropertySchema(self, pszPath);
     }
     pub fn UnregisterPropertySchema(self: *const IPropertySystem, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).UnregisterPropertySchema(@as(*const IPropertySystem, @ptrCast(self)), pszPath);
+        return self.vtable.UnregisterPropertySchema(self, pszPath);
     }
     pub fn RefreshPropertySchema(self: *const IPropertySystem) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).RefreshPropertySchema(@as(*const IPropertySystem, @ptrCast(self)));
+        return self.vtable.RefreshPropertySchema(self);
     }
 };
 
@@ -1663,10 +1663,10 @@ pub const IPropertyDescriptionList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IPropertyDescriptionList, pcElem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyDescriptionList, @ptrCast(self)), pcElem);
+        return self.vtable.GetCount(self, pcElem);
     }
     pub fn GetAt(self: *const IPropertyDescriptionList, iElem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyDescriptionList.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyDescriptionList, @ptrCast(self)), iElem, riid, ppv);
+        return self.vtable.GetAt(self, iElem, riid, ppv);
     }
 };
 
@@ -1707,10 +1707,10 @@ pub const IPropertyStoreFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyStore(self: *const IPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetPropertyStore(@as(*const IPropertyStoreFactory, @ptrCast(self)), flags, pUnkFactory, riid, ppv);
+        return self.vtable.GetPropertyStore(self, flags, pUnkFactory, riid, ppv);
     }
     pub fn GetPropertyStoreForKeys(self: *const IPropertyStoreFactory, rgKeys: ?*const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetPropertyStoreForKeys(@as(*const IPropertyStoreFactory, @ptrCast(self)), rgKeys, cKeys, flags, riid, ppv);
+        return self.vtable.GetPropertyStoreForKeys(self, rgKeys, cKeys, flags, riid, ppv);
     }
 };
 
@@ -1739,7 +1739,7 @@ pub const IDelayedPropertyStoreFactory = extern union {
     };}
     pub usingnamespace IPropertyStoreFactory.MethodMixin(@This());
     pub fn GetDelayedPropertyStore(self: *const IDelayedPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDelayedPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetDelayedPropertyStore(@as(*const IDelayedPropertyStoreFactory, @ptrCast(self)), flags, dwStoreId, riid, ppv);
+        return self.vtable.GetDelayedPropertyStore(self, flags, dwStoreId, riid, ppv);
     }
 };
 
@@ -1797,13 +1797,13 @@ pub const IPersistSerializedPropStorage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFlags(self: *const IPersistSerializedPropStorage, flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), flags);
+        return self.vtable.SetFlags(self, flags);
     }
     pub fn SetPropertyStorage(self: *const IPersistSerializedPropStorage, psps: ?*SERIALIZEDPROPSTORAGE, cb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).SetPropertyStorage(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), psps, cb);
+        return self.vtable.SetPropertyStorage(self, psps, cb);
     }
     pub fn GetPropertyStorage(self: *const IPersistSerializedPropStorage, ppsps: ?*?*SERIALIZEDPROPSTORAGE, pcb: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).GetPropertyStorage(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), ppsps, pcb);
+        return self.vtable.GetPropertyStorage(self, ppsps, pcb);
     }
 };
 
@@ -1840,10 +1840,10 @@ pub const IPersistSerializedPropStorage2 = extern union {
     };}
     pub usingnamespace IPersistSerializedPropStorage.MethodMixin(@This());
     pub fn GetPropertyStorageSize(self: *const IPersistSerializedPropStorage2, pcb: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPersistSerializedPropStorage2.VTable, @ptrCast(self.vtable)).GetPropertyStorageSize(@as(*const IPersistSerializedPropStorage2, @ptrCast(self)), pcb);
+        return self.vtable.GetPropertyStorageSize(self, pcb);
     }
     pub fn GetPropertyStorageBuffer(self: *const IPersistSerializedPropStorage2, psps: ?*SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPersistSerializedPropStorage2.VTable, @ptrCast(self.vtable)).GetPropertyStorageBuffer(@as(*const IPersistSerializedPropStorage2, @ptrCast(self)), psps, cb, pcbWritten);
+        return self.vtable.GetPropertyStorageBuffer(self, psps, cb, pcbWritten);
     }
 };
 
@@ -1867,7 +1867,7 @@ pub const IPropertySystemChangeNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SchemaRefreshed(self: *const IPropertySystemChangeNotify) callconv(.Inline) HRESULT {
-        return @as(*const IPropertySystemChangeNotify.VTable, @ptrCast(self.vtable)).SchemaRefreshed(@as(*const IPropertySystemChangeNotify, @ptrCast(self)));
+        return self.vtable.SchemaRefreshed(self);
     }
 };
 
@@ -1896,7 +1896,7 @@ pub const ICreateObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateObject(self: *const ICreateObject, clsid: ?*const Guid, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ICreateObject.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const ICreateObject, @ptrCast(self)), clsid, pUnkOuter, riid, ppv);
+        return self.vtable.CreateObject(self, clsid, pUnkOuter, riid, ppv);
     }
 };
 
@@ -2395,28 +2395,28 @@ pub const IPropertyUI = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ParsePropertyName(self: *const IPropertyUI, pszName: ?[*:0]const u16, pfmtid: ?*Guid, ppid: ?*u32, pchEaten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).ParsePropertyName(@as(*const IPropertyUI, @ptrCast(self)), pszName, pfmtid, ppid, pchEaten);
+        return self.vtable.ParsePropertyName(self, pszName, pfmtid, ppid, pchEaten);
     }
     pub fn GetCannonicalName(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetCannonicalName(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszText, cchText);
+        return self.vtable.GetCannonicalName(self, fmtid, pid, pwszText, cchText);
     }
     pub fn GetDisplayName(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, flags: PROPERTYUI_NAME_FLAGS, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, flags, pwszText, cchText);
+        return self.vtable.GetDisplayName(self, fmtid, pid, flags, pwszText, cchText);
     }
     pub fn GetPropertyDescription(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetPropertyDescription(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszText, cchText);
+        return self.vtable.GetPropertyDescription(self, fmtid, pid, pwszText, cchText);
     }
     pub fn GetDefaultWidth(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, pcxChars: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetDefaultWidth(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pcxChars);
+        return self.vtable.GetDefaultWidth(self, fmtid, pid, pcxChars);
     }
     pub fn GetFlags(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, pflags: ?*PROPERTYUI_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pflags);
+        return self.vtable.GetFlags(self, fmtid, pid, pflags);
     }
     pub fn FormatForDisplay(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, ppropvar: ?*const PROPVARIANT, puiff: PROPERTYUI_FORMAT_FLAGS, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, ppropvar, puiff, pwszText, cchText);
+        return self.vtable.FormatForDisplay(self, fmtid, pid, ppropvar, puiff, pwszText, cchText);
     }
     pub fn GetHelpInfo(self: *const IPropertyUI, fmtid: ?*const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetHelpInfo(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszHelpFile, cch, puHelpID);
+        return self.vtable.GetHelpInfo(self, fmtid, pid, pwszHelpFile, cch, puHelpID);
     }
 };
 

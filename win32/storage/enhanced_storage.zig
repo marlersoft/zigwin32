@@ -1457,10 +1457,10 @@ pub const IEnumEnhancedStorageACT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetACTs(self: *const IEnumEnhancedStorageACT, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetACTs(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
+        return self.vtable.GetACTs(self, pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
     }
     pub fn GetMatchingACT(self: *const IEnumEnhancedStorageACT, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingACT(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), szVolume, ppIEnhancedStorageACT);
+        return self.vtable.GetMatchingACT(self, szVolume, ppIEnhancedStorageACT);
     }
 };
 
@@ -1527,22 +1527,22 @@ pub const IEnhancedStorageACT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Authorize(self: *const IEnhancedStorageACT, hwndParent: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Authorize(@as(*const IEnhancedStorageACT, @ptrCast(self)), hwndParent, dwFlags);
+        return self.vtable.Authorize(self, hwndParent, dwFlags);
     }
     pub fn Unauthorize(self: *const IEnhancedStorageACT) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Unauthorize(@as(*const IEnhancedStorageACT, @ptrCast(self)));
+        return self.vtable.Unauthorize(self);
     }
     pub fn GetAuthorizationState(self: *const IEnhancedStorageACT, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetAuthorizationState(@as(*const IEnhancedStorageACT, @ptrCast(self)), pState);
+        return self.vtable.GetAuthorizationState(self, pState);
     }
     pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingVolume(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszVolume);
+        return self.vtable.GetMatchingVolume(self, ppwszVolume);
     }
     pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetUniqueIdentity(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszIdentity);
+        return self.vtable.GetUniqueIdentity(self, ppwszIdentity);
     }
     pub fn GetSilos(self: *const IEnhancedStorageACT, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetSilos(@as(*const IEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
+        return self.vtable.GetSilos(self, pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
     }
 };
 
@@ -1576,10 +1576,10 @@ pub const IEnhancedStorageACT2 = extern union {
     };}
     pub usingnamespace IEnhancedStorageACT.MethodMixin(@This());
     pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).GetDeviceName(@as(*const IEnhancedStorageACT2, @ptrCast(self)), ppwszDeviceName);
+        return self.vtable.GetDeviceName(self, ppwszDeviceName);
     }
     pub fn IsDeviceRemovable(self: *const IEnhancedStorageACT2, pIsDeviceRemovable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).IsDeviceRemovable(@as(*const IEnhancedStorageACT2, @ptrCast(self)), pIsDeviceRemovable);
+        return self.vtable.IsDeviceRemovable(self, pIsDeviceRemovable);
     }
 };
 
@@ -1620,13 +1620,13 @@ pub const IEnhancedStorageACT3 = extern union {
     };}
     pub usingnamespace IEnhancedStorageACT2.MethodMixin(@This());
     pub fn UnauthorizeEx(self: *const IEnhancedStorageACT3, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).UnauthorizeEx(@as(*const IEnhancedStorageACT3, @ptrCast(self)), dwFlags);
+        return self.vtable.UnauthorizeEx(self, dwFlags);
     }
     pub fn IsQueueFrozen(self: *const IEnhancedStorageACT3, pIsQueueFrozen: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).IsQueueFrozen(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pIsQueueFrozen);
+        return self.vtable.IsQueueFrozen(self, pIsQueueFrozen);
     }
     pub fn GetShellExtSupport(self: *const IEnhancedStorageACT3, pShellExtSupport: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).GetShellExtSupport(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pShellExtSupport);
+        return self.vtable.GetShellExtSupport(self, pShellExtSupport);
     }
 };
 
@@ -1689,19 +1689,19 @@ pub const IEnhancedStorageSilo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInfo(self: *const IEnhancedStorageSilo, pSiloInfo: ?*SILO_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pSiloInfo);
+        return self.vtable.GetInfo(self, pSiloInfo);
     }
     pub fn GetActions(self: *const IEnhancedStorageSilo, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetActions(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
+        return self.vtable.GetActions(self, pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
     }
     pub fn SendCommand(self: *const IEnhancedStorageSilo, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).SendCommand(@as(*const IEnhancedStorageSilo, @ptrCast(self)), Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
+        return self.vtable.SendCommand(self, Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
     }
     pub fn GetPortableDevice(self: *const IEnhancedStorageSilo, ppIPortableDevice: ?*?*IPortableDevice) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetPortableDevice(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppIPortableDevice);
+        return self.vtable.GetPortableDevice(self, ppIPortableDevice);
     }
     pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetDevicePath(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppwszSiloDevicePath);
+        return self.vtable.GetDevicePath(self, ppwszSiloDevicePath);
     }
 };
 
@@ -1742,13 +1742,13 @@ pub const IEnhancedStorageSiloAction = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionName);
+        return self.vtable.GetName(self, ppwszActionName);
     }
     pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionDescription);
+        return self.vtable.GetDescription(self, ppwszActionDescription);
     }
     pub fn Invoke(self: *const IEnhancedStorageSiloAction) callconv(.Inline) HRESULT {
-        return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)));
+        return self.vtable.Invoke(self);
     }
 };
 

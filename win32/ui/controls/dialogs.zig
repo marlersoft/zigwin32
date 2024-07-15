@@ -639,13 +639,13 @@ pub const IPrintDialogCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitDone(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).InitDone(@as(*const IPrintDialogCallback, @ptrCast(self)));
+        return self.vtable.InitDone(self);
     }
     pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).SelectionChange(@as(*const IPrintDialogCallback, @ptrCast(self)));
+        return self.vtable.SelectionChange(self);
     }
     pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).HandleMessage(@as(*const IPrintDialogCallback, @ptrCast(self)), hDlg, uMsg, wParam, lParam, pResult);
+        return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
     }
 };
 
@@ -690,13 +690,13 @@ pub const IPrintDialogServices = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentDevMode(@as(*const IPrintDialogServices, @ptrCast(self)), pDevMode, pcbSize);
+        return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
     }
     pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentPrinterName(@as(*const IPrintDialogServices, @ptrCast(self)), pPrinterName, pcchSize);
+        return self.vtable.GetCurrentPrinterName(self, pPrinterName, pcchSize);
     }
     pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentPortName(@as(*const IPrintDialogServices, @ptrCast(self)), pPortName, pcchSize);
+        return self.vtable.GetCurrentPortName(self, pPortName, pcchSize);
     }
 };
 

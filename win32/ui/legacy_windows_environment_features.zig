@@ -60,10 +60,10 @@ pub const IEmptyVolumeCacheCallBack = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ScanProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCacheCallBack.VTable, @ptrCast(self.vtable)).ScanProgress(@as(*const IEmptyVolumeCacheCallBack, @ptrCast(self)), dwlSpaceUsed, dwFlags, pcwszStatus);
+        return self.vtable.ScanProgress(self, dwlSpaceUsed, dwFlags, pcwszStatus);
     }
     pub fn PurgeProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCacheCallBack.VTable, @ptrCast(self.vtable)).PurgeProgress(@as(*const IEmptyVolumeCacheCallBack, @ptrCast(self)), dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
+        return self.vtable.PurgeProgress(self, dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
     }
 };
 
@@ -127,19 +127,19 @@ pub const IEmptyVolumeCache = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IEmptyVolumeCache, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IEmptyVolumeCache, @ptrCast(self)), hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
+        return self.vtable.Initialize(self, hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
     }
     pub fn GetSpaceUsed(self: *const IEmptyVolumeCache, pdwlSpaceUsed: ?*u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).GetSpaceUsed(@as(*const IEmptyVolumeCache, @ptrCast(self)), pdwlSpaceUsed, picb);
+        return self.vtable.GetSpaceUsed(self, pdwlSpaceUsed, picb);
     }
     pub fn Purge(self: *const IEmptyVolumeCache, dwlSpaceToFree: u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Purge(@as(*const IEmptyVolumeCache, @ptrCast(self)), dwlSpaceToFree, picb);
+        return self.vtable.Purge(self, dwlSpaceToFree, picb);
     }
     pub fn ShowProperties(self: *const IEmptyVolumeCache, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).ShowProperties(@as(*const IEmptyVolumeCache, @ptrCast(self)), hwnd);
+        return self.vtable.ShowProperties(self, hwnd);
     }
     pub fn Deactivate(self: *const IEmptyVolumeCache, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IEmptyVolumeCache, @ptrCast(self)), pdwFlags);
+        return self.vtable.Deactivate(self, pdwFlags);
     }
 };
 
@@ -171,7 +171,7 @@ pub const IEmptyVolumeCache2 = extern union {
     };}
     pub usingnamespace IEmptyVolumeCache.MethodMixin(@This());
     pub fn InitializeEx(self: *const IEmptyVolumeCache2, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEmptyVolumeCache2.VTable, @ptrCast(self.vtable)).InitializeEx(@as(*const IEmptyVolumeCache2, @ptrCast(self)), hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
+        return self.vtable.InitializeEx(self, hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
     }
 };
 
@@ -206,10 +206,10 @@ pub const IReconcileInitiator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAbortCallback(self: *const IReconcileInitiator, punkForAbort: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IReconcileInitiator.VTable, @ptrCast(self.vtable)).SetAbortCallback(@as(*const IReconcileInitiator, @ptrCast(self)), punkForAbort);
+        return self.vtable.SetAbortCallback(self, punkForAbort);
     }
     pub fn SetProgressFeedback(self: *const IReconcileInitiator, ulProgress: u32, ulProgressMax: u32) callconv(.Inline) HRESULT {
-        return @as(*const IReconcileInitiator.VTable, @ptrCast(self.vtable)).SetProgressFeedback(@as(*const IReconcileInitiator, @ptrCast(self)), ulProgress, ulProgressMax);
+        return self.vtable.SetProgressFeedback(self, ulProgress, ulProgressMax);
     }
 };
 
@@ -270,10 +270,10 @@ pub const IReconcilableObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reconcile(self: *const IReconcilableObject, pInitiator: ?*IReconcileInitiator, dwFlags: u32, hwndOwner: ?HWND, hwndProgressFeedback: ?HWND, ulcInput: u32, rgpmkOtherInput: [*]?*IMoniker, plOutIndex: ?*i32, pstgNewResidues: ?*IStorage, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IReconcilableObject.VTable, @ptrCast(self.vtable)).Reconcile(@as(*const IReconcilableObject, @ptrCast(self)), pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
+        return self.vtable.Reconcile(self, pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
     }
     pub fn GetProgressFeedbackMaxEstimate(self: *const IReconcilableObject, pulProgressMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IReconcilableObject.VTable, @ptrCast(self.vtable)).GetProgressFeedbackMaxEstimate(@as(*const IReconcilableObject, @ptrCast(self)), pulProgressMax);
+        return self.vtable.GetProgressFeedbackMaxEstimate(self, pulProgressMax);
     }
 };
 
@@ -298,7 +298,7 @@ pub const IBriefcaseInitiator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMonikerInBriefcase(self: *const IBriefcaseInitiator, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
-        return @as(*const IBriefcaseInitiator.VTable, @ptrCast(self.vtable)).IsMonikerInBriefcase(@as(*const IBriefcaseInitiator, @ptrCast(self)), pmk);
+        return self.vtable.IsMonikerInBriefcase(self, pmk);
     }
 };
 
@@ -350,16 +350,16 @@ pub const IActiveDesktopP = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSafeMode(self: *const IActiveDesktopP, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).SetSafeMode(@as(*const IActiveDesktopP, @ptrCast(self)), dwFlags);
+        return self.vtable.SetSafeMode(self, dwFlags);
     }
     pub fn EnsureUpdateHTML(self: *const IActiveDesktopP) callconv(.Inline) HRESULT {
-        return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).EnsureUpdateHTML(@as(*const IActiveDesktopP, @ptrCast(self)));
+        return self.vtable.EnsureUpdateHTML(self);
     }
     pub fn SetScheme(self: *const IActiveDesktopP, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).SetScheme(@as(*const IActiveDesktopP, @ptrCast(self)), pwszSchemeName, dwFlags);
+        return self.vtable.SetScheme(self, pwszSchemeName, dwFlags);
     }
     pub fn GetScheme(self: *const IActiveDesktopP, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).GetScheme(@as(*const IActiveDesktopP, @ptrCast(self)), pwszSchemeName, pdwcchBuffer, dwFlags);
+        return self.vtable.GetScheme(self, pwszSchemeName, pdwcchBuffer, dwFlags);
     }
 };
 
@@ -408,16 +408,16 @@ pub const IADesktopP2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReReadWallpaper(self: *const IADesktopP2) callconv(.Inline) HRESULT {
-        return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).ReReadWallpaper(@as(*const IADesktopP2, @ptrCast(self)));
+        return self.vtable.ReReadWallpaper(self);
     }
     pub fn GetADObjectFlags(self: *const IADesktopP2, pdwFlags: ?*u32, dwMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).GetADObjectFlags(@as(*const IADesktopP2, @ptrCast(self)), pdwFlags, dwMask);
+        return self.vtable.GetADObjectFlags(self, pdwFlags, dwMask);
     }
     pub fn UpdateAllDesktopSubscriptions(self: *const IADesktopP2) callconv(.Inline) HRESULT {
-        return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).UpdateAllDesktopSubscriptions(@as(*const IADesktopP2, @ptrCast(self)));
+        return self.vtable.UpdateAllDesktopSubscriptions(self);
     }
     pub fn MakeDynamicChanges(self: *const IADesktopP2, pOleObj: ?*IOleObject) callconv(.Inline) HRESULT {
-        return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).MakeDynamicChanges(@as(*const IADesktopP2, @ptrCast(self)), pOleObj);
+        return self.vtable.MakeDynamicChanges(self, pOleObj);
     }
 };
 

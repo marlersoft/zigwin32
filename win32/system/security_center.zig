@@ -127,25 +127,25 @@ pub const IWscProduct = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ProductName(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductName(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_ProductName(self, pVal);
     }
     pub fn get_ProductState(self: *const IWscProduct, pVal: ?*WSC_SECURITY_PRODUCT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductState(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_ProductState(self, pVal);
     }
     pub fn get_SignatureStatus(self: *const IWscProduct, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_SignatureStatus(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_SignatureStatus(self, pVal);
     }
     pub fn get_RemediationPath(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_RemediationPath(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_RemediationPath(self, pVal);
     }
     pub fn get_ProductStateTimestamp(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductStateTimestamp(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_ProductStateTimestamp(self, pVal);
     }
     pub fn get_ProductGuid(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductGuid(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_ProductGuid(self, pVal);
     }
     pub fn get_ProductIsDefault(self: *const IWscProduct, pVal: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductIsDefault(@as(*const IWscProduct, @ptrCast(self)), pVal);
+        return self.vtable.get_ProductIsDefault(self, pVal);
     }
 };
 
@@ -216,22 +216,22 @@ pub const IWscProduct2 = extern union {
     };}
     pub usingnamespace IWscProduct.MethodMixin(@This());
     pub fn get_AntivirusScanSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusScanSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_AntivirusScanSubstatus(self, peStatus);
     }
     pub fn get_AntivirusSettingsSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusSettingsSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_AntivirusSettingsSubstatus(self, peStatus);
     }
     pub fn get_AntivirusProtectionUpdateSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusProtectionUpdateSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_AntivirusProtectionUpdateSubstatus(self, peStatus);
     }
     pub fn get_FirewallDomainProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallDomainProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_FirewallDomainProfileSubstatus(self, peStatus);
     }
     pub fn get_FirewallPrivateProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPrivateProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_FirewallPrivateProfileSubstatus(self, peStatus);
     }
     pub fn get_FirewallPublicProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPublicProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
+        return self.vtable.get_FirewallPublicProfileSubstatus(self, peStatus);
     }
 };
 
@@ -257,7 +257,7 @@ pub const IWscProduct3 = extern union {
     };}
     pub usingnamespace IWscProduct2.MethodMixin(@This());
     pub fn get_AntivirusDaysUntilExpired(self: *const IWscProduct3, pdwDays: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWscProduct3.VTable, @ptrCast(self.vtable)).get_AntivirusDaysUntilExpired(@as(*const IWscProduct3, @ptrCast(self)), pdwDays);
+        return self.vtable.get_AntivirusDaysUntilExpired(self, pdwDays);
     }
 };
 
@@ -301,13 +301,13 @@ pub const IWSCProductList = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Initialize(self: *const IWSCProductList, provider: WSC_SECURITY_PROVIDER) callconv(.Inline) HRESULT {
-        return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWSCProductList, @ptrCast(self)), provider);
+        return self.vtable.Initialize(self, provider);
     }
     pub fn get_Count(self: *const IWSCProductList, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWSCProductList, @ptrCast(self)), pVal);
+        return self.vtable.get_Count(self, pVal);
     }
     pub fn get_Item(self: *const IWSCProductList, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
-        return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWSCProductList, @ptrCast(self)), index, pVal);
+        return self.vtable.get_Item(self, index, pVal);
     }
 };
 
@@ -333,7 +333,7 @@ pub const IWSCDefaultProduct = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWSCDefaultProduct.VTable, @ptrCast(self.vtable)).SetDefaultProduct(@as(*const IWSCDefaultProduct, @ptrCast(self)), eType, pGuid);
+        return self.vtable.SetDefaultProduct(self, eType, pGuid);
     }
 };
 

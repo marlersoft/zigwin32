@@ -28,7 +28,7 @@ pub const IRandomAccessStreamFileAccessMode = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMode(self: *const IRandomAccessStreamFileAccessMode, fileAccessMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRandomAccessStreamFileAccessMode.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IRandomAccessStreamFileAccessMode, @ptrCast(self)), fileAccessMode);
+        return self.vtable.GetMode(self, fileAccessMode);
     }
 };
 
@@ -53,7 +53,7 @@ pub const IUnbufferedFileHandleOplockCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBrokenCallback(self: *const IUnbufferedFileHandleOplockCallback) callconv(.Inline) HRESULT {
-        return @as(*const IUnbufferedFileHandleOplockCallback.VTable, @ptrCast(self.vtable)).OnBrokenCallback(@as(*const IUnbufferedFileHandleOplockCallback, @ptrCast(self)));
+        return self.vtable.OnBrokenCallback(self);
     }
 };
 
@@ -87,10 +87,10 @@ pub const IUnbufferedFileHandleProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OpenUnbufferedFileHandle(self: *const IUnbufferedFileHandleProvider, oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback, fileHandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).OpenUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)), oplockBreakCallback, fileHandle);
+        return self.vtable.OpenUnbufferedFileHandle(self, oplockBreakCallback, fileHandle);
     }
     pub fn CloseUnbufferedFileHandle(self: *const IUnbufferedFileHandleProvider) callconv(.Inline) HRESULT {
-        return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).CloseUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)));
+        return self.vtable.CloseUnbufferedFileHandle(self);
     }
 };
 
@@ -263,7 +263,7 @@ pub const IOplockBreakingHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OplockBreaking(self: *const IOplockBreakingHandler) callconv(.Inline) HRESULT {
-        return @as(*const IOplockBreakingHandler.VTable, @ptrCast(self.vtable)).OplockBreaking(@as(*const IOplockBreakingHandler, @ptrCast(self)));
+        return self.vtable.OplockBreaking(self);
     }
 };
 
@@ -293,7 +293,7 @@ pub const IStorageItemHandleAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Create(self: *const IStorageItemHandleAccess, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IStorageItemHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageItemHandleAccess, @ptrCast(self)), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+        return self.vtable.Create(self, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
     }
 };
 
@@ -325,7 +325,7 @@ pub const IStorageFolderHandleAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Create(self: *const IStorageFolderHandleAccess, fileName: ?[*:0]const u16, creationOptions: HANDLE_CREATION_OPTIONS, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IStorageFolderHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageFolderHandleAccess, @ptrCast(self)), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+        return self.vtable.Create(self, fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
     }
 };
 

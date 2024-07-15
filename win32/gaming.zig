@@ -72,16 +72,16 @@ pub const IGameExplorer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddGame(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).AddGame(@as(*const IGameExplorer, @ptrCast(self)), bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
+        return self.vtable.AddGame(self, bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
     }
     pub fn RemoveGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).RemoveGame(@as(*const IGameExplorer, @ptrCast(self)), guidInstanceID);
+        return self.vtable.RemoveGame(self, guidInstanceID);
     }
     pub fn UpdateGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).UpdateGame(@as(*const IGameExplorer, @ptrCast(self)), guidInstanceID);
+        return self.vtable.UpdateGame(self, guidInstanceID);
     }
     pub fn VerifyAccess(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, pfHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).VerifyAccess(@as(*const IGameExplorer, @ptrCast(self)), bstrGDFBinaryPath, pfHasAccess);
+        return self.vtable.VerifyAccess(self, bstrGDFBinaryPath, pfHasAccess);
     }
 };
 
@@ -216,40 +216,40 @@ pub const IGameStatistics = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaxCategoryLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxCategoryLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
+        return self.vtable.GetMaxCategoryLength(self, cch);
     }
     pub fn GetMaxNameLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxNameLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
+        return self.vtable.GetMaxNameLength(self, cch);
     }
     pub fn GetMaxValueLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxValueLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
+        return self.vtable.GetMaxValueLength(self, cch);
     }
     pub fn GetMaxCategories(self: *const IGameStatistics, pMax: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxCategories(@as(*const IGameStatistics, @ptrCast(self)), pMax);
+        return self.vtable.GetMaxCategories(self, pMax);
     }
     pub fn GetMaxStatsPerCategory(self: *const IGameStatistics, pMax: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxStatsPerCategory(@as(*const IGameStatistics, @ptrCast(self)), pMax);
+        return self.vtable.GetMaxStatsPerCategory(self, pMax);
     }
     pub fn SetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetCategoryTitle(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, title);
+        return self.vtable.SetCategoryTitle(self, categoryIndex, title);
     }
     pub fn GetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetCategoryTitle(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, pTitle);
+        return self.vtable.GetCategoryTitle(self, categoryIndex, pTitle);
     }
     pub fn GetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetStatistic(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, statIndex, pName, pValue);
+        return self.vtable.GetStatistic(self, categoryIndex, statIndex, pName, pValue);
     }
     pub fn SetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetStatistic(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, statIndex, name, value);
+        return self.vtable.SetStatistic(self, categoryIndex, statIndex, name, value);
     }
     pub fn Save(self: *const IGameStatistics, trackChanges: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).Save(@as(*const IGameStatistics, @ptrCast(self)), trackChanges);
+        return self.vtable.Save(self, trackChanges);
     }
     pub fn SetLastPlayedCategory(self: *const IGameStatistics, categoryIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetLastPlayedCategory(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex);
+        return self.vtable.SetLastPlayedCategory(self, categoryIndex);
     }
     pub fn GetLastPlayedCategory(self: *const IGameStatistics, pCategoryIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetLastPlayedCategory(@as(*const IGameStatistics, @ptrCast(self)), pCategoryIndex);
+        return self.vtable.GetLastPlayedCategory(self, pCategoryIndex);
     }
 };
 
@@ -285,10 +285,10 @@ pub const IGameStatisticsMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatisticsMgr.VTable, @ptrCast(self.vtable)).GetGameStatistics(@as(*const IGameStatisticsMgr, @ptrCast(self)), GDFBinaryPath, openType, pOpenResult, ppiStats);
+        return self.vtable.GetGameStatistics(self, GDFBinaryPath, openType, pOpenResult, ppiStats);
     }
     pub fn RemoveGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameStatisticsMgr.VTable, @ptrCast(self.vtable)).RemoveGameStatistics(@as(*const IGameStatisticsMgr, @ptrCast(self)), GDFBinaryPath);
+        return self.vtable.RemoveGameStatistics(self, GDFBinaryPath);
     }
 };
 
@@ -332,13 +332,13 @@ pub const IGameExplorer2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).InstallGame(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath, installDirectory, installScope);
+        return self.vtable.InstallGame(self, binaryGDFPath, installDirectory, installScope);
     }
     pub fn UninstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).UninstallGame(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath);
+        return self.vtable.UninstallGame(self, binaryGDFPath);
     }
     pub fn CheckAccess(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).CheckAccess(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath, pHasAccess);
+        return self.vtable.CheckAccess(self, binaryGDFPath, pHasAccess);
     }
 };
 
@@ -527,22 +527,22 @@ pub const IXblIdpAuthManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).SetGamerAccount(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, xuid);
+        return self.vtable.SetGamerAccount(self, msaAccountId, xuid);
     }
     pub fn GetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetGamerAccount(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, xuid);
+        return self.vtable.GetGamerAccount(self, msaAccountId, xuid);
     }
     pub fn SetAppViewInitialized(self: *const IXblIdpAuthManager, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).SetAppViewInitialized(@as(*const IXblIdpAuthManager, @ptrCast(self)), appSid, msaAccountId);
+        return self.vtable.SetAppViewInitialized(self, appSid, msaAccountId);
     }
     pub fn GetEnvironment(self: *const IXblIdpAuthManager, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetEnvironment(@as(*const IXblIdpAuthManager, @ptrCast(self)), environment);
+        return self.vtable.GetEnvironment(self, environment);
     }
     pub fn GetSandbox(self: *const IXblIdpAuthManager, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetSandbox(@as(*const IXblIdpAuthManager, @ptrCast(self)), sandbox);
+        return self.vtable.GetSandbox(self, sandbox);
     }
     pub fn GetTokenAndSignatureWithTokenResult(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetTokenAndSignatureWithTokenResult(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, appSid, msaTarget, msaPolicy, httpMethod, uri, headers, body, bodySize, forceRefresh, result);
+        return self.vtable.GetTokenAndSignatureWithTokenResult(self, msaAccountId, appSid, msaTarget, msaPolicy, httpMethod, uri, headers, body, bodySize, forceRefresh, result);
     }
 };
 
@@ -719,64 +719,64 @@ pub const IXblIdpAuthTokenResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IXblIdpAuthTokenResult, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), status);
+        return self.vtable.GetStatus(self, status);
     }
     pub fn GetErrorCode(self: *const IXblIdpAuthTokenResult, errorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), errorCode);
+        return self.vtable.GetErrorCode(self, errorCode);
     }
     pub fn GetToken(self: *const IXblIdpAuthTokenResult, token: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetToken(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), token);
+        return self.vtable.GetToken(self, token);
     }
     pub fn GetSignature(self: *const IXblIdpAuthTokenResult, signature: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), signature);
+        return self.vtable.GetSignature(self, signature);
     }
     pub fn GetSandbox(self: *const IXblIdpAuthTokenResult, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetSandbox(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), sandbox);
+        return self.vtable.GetSandbox(self, sandbox);
     }
     pub fn GetEnvironment(self: *const IXblIdpAuthTokenResult, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetEnvironment(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), environment);
+        return self.vtable.GetEnvironment(self, environment);
     }
     pub fn GetMsaAccountId(self: *const IXblIdpAuthTokenResult, msaAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaAccountId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaAccountId);
+        return self.vtable.GetMsaAccountId(self, msaAccountId);
     }
     pub fn GetXuid(self: *const IXblIdpAuthTokenResult, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetXuid(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), xuid);
+        return self.vtable.GetXuid(self, xuid);
     }
     pub fn GetGamertag(self: *const IXblIdpAuthTokenResult, gamertag: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetGamertag(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), gamertag);
+        return self.vtable.GetGamertag(self, gamertag);
     }
     pub fn GetAgeGroup(self: *const IXblIdpAuthTokenResult, ageGroup: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetAgeGroup(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), ageGroup);
+        return self.vtable.GetAgeGroup(self, ageGroup);
     }
     pub fn GetPrivileges(self: *const IXblIdpAuthTokenResult, privileges: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetPrivileges(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), privileges);
+        return self.vtable.GetPrivileges(self, privileges);
     }
     pub fn GetMsaTarget(self: *const IXblIdpAuthTokenResult, msaTarget: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaTarget(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaTarget);
+        return self.vtable.GetMsaTarget(self, msaTarget);
     }
     pub fn GetMsaPolicy(self: *const IXblIdpAuthTokenResult, msaPolicy: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaPolicy(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaPolicy);
+        return self.vtable.GetMsaPolicy(self, msaPolicy);
     }
     pub fn GetMsaAppId(self: *const IXblIdpAuthTokenResult, msaAppId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaAppId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaAppId);
+        return self.vtable.GetMsaAppId(self, msaAppId);
     }
     pub fn GetRedirect(self: *const IXblIdpAuthTokenResult, redirect: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetRedirect(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), redirect);
+        return self.vtable.GetRedirect(self, redirect);
     }
     pub fn GetMessage(self: *const IXblIdpAuthTokenResult, message: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), message);
+        return self.vtable.GetMessage(self, message);
     }
     pub fn GetHelpId(self: *const IXblIdpAuthTokenResult, helpId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetHelpId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), helpId);
+        return self.vtable.GetHelpId(self, helpId);
     }
     pub fn GetEnforcementBans(self: *const IXblIdpAuthTokenResult, enforcementBans: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetEnforcementBans(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), enforcementBans);
+        return self.vtable.GetEnforcementBans(self, enforcementBans);
     }
     pub fn GetRestrictions(self: *const IXblIdpAuthTokenResult, restrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), restrictions);
+        return self.vtable.GetRestrictions(self, restrictions);
     }
     pub fn GetTitleRestrictions(self: *const IXblIdpAuthTokenResult, titleRestrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetTitleRestrictions(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), titleRestrictions);
+        return self.vtable.GetTitleRestrictions(self, titleRestrictions);
     }
 };
 
@@ -817,13 +817,13 @@ pub const IXblIdpAuthTokenResult2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetModernGamertag(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
+        return self.vtable.GetModernGamertag(self, value);
     }
     pub fn GetModernGamertagSuffix(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetModernGamertagSuffix(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
+        return self.vtable.GetModernGamertagSuffix(self, value);
     }
     pub fn GetUniqueModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetUniqueModernGamertag(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
+        return self.vtable.GetUniqueModernGamertag(self, value);
     }
 };
 

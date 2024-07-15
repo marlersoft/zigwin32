@@ -30,7 +30,7 @@ pub const IAudioFrameNative = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetData(self: *const IAudioFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAudioFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IAudioFrameNative, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetData(self, riid, ppv);
     }
 };
 
@@ -65,10 +65,10 @@ pub const IVideoFrameNative = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetData(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetData(self, riid, ppv);
     }
     pub fn GetDevice(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetDevice(self, riid, ppv);
     }
 };
 
@@ -96,7 +96,7 @@ pub const IAudioFrameNativeFactory = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAudioFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IAudioFrameNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
+        return self.vtable.CreateFromMFSample(self, data, forceReadOnly, riid, ppv);
     }
 };
 
@@ -129,7 +129,7 @@ pub const IVideoFrameNativeFactory = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateFromMFSample(self: *const IVideoFrameNativeFactory, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IVideoFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IVideoFrameNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
+        return self.vtable.CreateFromMFSample(self, data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
     }
 };
 

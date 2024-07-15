@@ -28,7 +28,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentInterop, value: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusAttachmentInterop.VTable, @ptrCast(self.vtable)).get_Win32Handle(@as(*const IWindowsDevicesAllJoynBusAttachmentInterop, @ptrCast(self)), value);
+        return self.vtable.get_Win32Handle(self, value);
     }
 };
 
@@ -56,7 +56,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop.VTable, @ptrCast(self.vtable)).CreateFromWin32Handle(@as(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, @ptrCast(self)), win32handle, enableAboutData, riid, ppv);
+        return self.vtable.CreateFromWin32Handle(self, win32handle, enableAboutData, riid, ppv);
     }
 };
 
@@ -102,13 +102,13 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn AddPropertyGetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).AddPropertyGetHandler(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), context, interfaceName, callback);
+        return self.vtable.AddPropertyGetHandler(self, context, interfaceName, callback);
     }
     pub fn AddPropertySetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).AddPropertySetHandler(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), context, interfaceName, callback);
+        return self.vtable.AddPropertySetHandler(self, context, interfaceName, callback);
     }
     pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusObjectInterop, value: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).get_Win32Handle(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), value);
+        return self.vtable.get_Win32Handle(self, value);
     }
 };
 
@@ -135,7 +135,7 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop, win32handle: u64, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsDevicesAllJoynBusObjectFactoryInterop.VTable, @ptrCast(self.vtable)).CreateFromWin32Handle(@as(*const IWindowsDevicesAllJoynBusObjectFactoryInterop, @ptrCast(self)), win32handle, riid, ppv);
+        return self.vtable.CreateFromWin32Handle(self, win32handle, riid, ppv);
     }
 };
 

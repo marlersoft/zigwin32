@@ -72,7 +72,7 @@ pub const IAgileReference = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Resolve(self: *const IAgileReference, riid: ?*const Guid, ppvObjectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAgileReference.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IAgileReference, @ptrCast(self)), riid, ppvObjectReference);
+        return self.vtable.Resolve(self, riid, ppvObjectReference);
     }
 };
 
@@ -98,7 +98,7 @@ pub const IApartmentShutdown = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUninitialize(self: *const IApartmentShutdown, ui64ApartmentIdentifier: u64) callconv(.Inline) void {
-        return @as(*const IApartmentShutdown.VTable, @ptrCast(self.vtable)).OnUninitialize(@as(*const IApartmentShutdown, @ptrCast(self)), ui64ApartmentIdentifier);
+        return self.vtable.OnUninitialize(self, ui64ApartmentIdentifier);
     }
 };
 
@@ -139,7 +139,7 @@ pub const ISpatialInteractionManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const ISpatialInteractionManagerInterop, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISpatialInteractionManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ISpatialInteractionManagerInterop, @ptrCast(self)), window, riid, spatialInteractionManager);
+        return self.vtable.GetForWindow(self, window, riid, spatialInteractionManager);
     }
 };
 
@@ -167,7 +167,7 @@ pub const IHolographicSpaceInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateForWindow(self: *const IHolographicSpaceInterop, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IHolographicSpaceInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IHolographicSpaceInterop, @ptrCast(self)), window, riid, holographicSpace);
+        return self.vtable.CreateForWindow(self, window, riid, holographicSpace);
     }
 };
 
@@ -219,13 +219,13 @@ pub const IInspectable = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIids(self: *const IInspectable, iidCount: ?*u32, iids: [*]?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetIids(@as(*const IInspectable, @ptrCast(self)), iidCount, iids);
+        return self.vtable.GetIids(self, iidCount, iids);
     }
     pub fn GetRuntimeClassName(self: *const IInspectable, className: ?*?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetRuntimeClassName(@as(*const IInspectable, @ptrCast(self)), className);
+        return self.vtable.GetRuntimeClassName(self, className);
     }
     pub fn GetTrustLevel(self: *const IInspectable, trustLevel: ?*TrustLevel) callconv(.Inline) HRESULT {
-        return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetTrustLevel(@as(*const IInspectable, @ptrCast(self)), trustLevel);
+        return self.vtable.GetTrustLevel(self, trustLevel);
     }
 };
 
@@ -308,13 +308,13 @@ pub const IAccountsSettingsPaneInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, accountsSettingsPane);
+        return self.vtable.GetForWindow(self, appWindow, riid, accountsSettingsPane);
     }
     pub fn ShowManageAccountsForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).ShowManageAccountsForWindowAsync(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, asyncAction);
+        return self.vtable.ShowManageAccountsForWindowAsync(self, appWindow, riid, asyncAction);
     }
     pub fn ShowAddAccountForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).ShowAddAccountForWindowAsync(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, asyncAction);
+        return self.vtable.ShowAddAccountForWindowAsync(self, appWindow, riid, asyncAction);
     }
 };
 
@@ -340,7 +340,7 @@ pub const IAppServiceConnectionExtendedExecution = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OpenForExtendedExecutionAsync(self: *const IAppServiceConnectionExtendedExecution, riid: ?*const Guid, operation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IAppServiceConnectionExtendedExecution.VTable, @ptrCast(self.vtable)).OpenForExtendedExecutionAsync(@as(*const IAppServiceConnectionExtendedExecution, @ptrCast(self)), riid, operation);
+        return self.vtable.OpenForExtendedExecutionAsync(self, riid, operation);
     }
 };
 
@@ -366,7 +366,7 @@ pub const ICorrelationVectorSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_CorrelationVector(self: *const ICorrelationVectorSource, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const ICorrelationVectorSource.VTable, @ptrCast(self.vtable)).get_CorrelationVector(@as(*const ICorrelationVectorSource, @ptrCast(self)), cv);
+        return self.vtable.get_CorrelationVector(self, cv);
     }
 };
 
@@ -430,10 +430,10 @@ pub const ICastingEventHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStateChanged(self: *const ICastingEventHandler, newState: CASTING_CONNECTION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ICastingEventHandler.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const ICastingEventHandler, @ptrCast(self)), newState);
+        return self.vtable.OnStateChanged(self, newState);
     }
     pub fn OnError(self: *const ICastingEventHandler, errorStatus: CASTING_CONNECTION_ERROR_STATUS, errorMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICastingEventHandler.VTable, @ptrCast(self.vtable)).OnError(@as(*const ICastingEventHandler, @ptrCast(self)), errorStatus, errorMessage);
+        return self.vtable.OnError(self, errorStatus, errorMessage);
     }
 };
 
@@ -490,19 +490,19 @@ pub const ICastingController = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const ICastingController, castingEngine: ?*IUnknown, castingSource: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICastingController, @ptrCast(self)), castingEngine, castingSource);
+        return self.vtable.Initialize(self, castingEngine, castingSource);
     }
     pub fn Connect(self: *const ICastingController) callconv(.Inline) HRESULT {
-        return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICastingController, @ptrCast(self)));
+        return self.vtable.Connect(self);
     }
     pub fn Disconnect(self: *const ICastingController) callconv(.Inline) HRESULT {
-        return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const ICastingController, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
     pub fn Advise(self: *const ICastingController, eventHandler: ?*ICastingEventHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Advise(@as(*const ICastingController, @ptrCast(self)), eventHandler, cookie);
+        return self.vtable.Advise(self, eventHandler, cookie);
     }
     pub fn UnAdvise(self: *const ICastingController, cookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const ICastingController, @ptrCast(self)), cookie);
+        return self.vtable.UnAdvise(self, cookie);
     }
 };
 
@@ -535,10 +535,10 @@ pub const ICastingSourceInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetController(self: *const ICastingSourceInfo, controller: ?*?*ICastingController) callconv(.Inline) HRESULT {
-        return @as(*const ICastingSourceInfo.VTable, @ptrCast(self.vtable)).GetController(@as(*const ICastingSourceInfo, @ptrCast(self)), controller);
+        return self.vtable.GetController(self, controller);
     }
     pub fn GetProperties(self: *const ICastingSourceInfo, props: ?*?*INamedPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const ICastingSourceInfo.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ICastingSourceInfo, @ptrCast(self)), props);
+        return self.vtable.GetProperties(self, props);
     }
 };
 
@@ -565,7 +565,7 @@ pub const IDragDropManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IDragDropManagerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDragDropManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IDragDropManagerInterop, @ptrCast(self)), hwnd, riid, ppv);
+        return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
 
@@ -593,7 +593,7 @@ pub const IInputPaneInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IInputPaneInterop, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IInputPaneInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IInputPaneInterop, @ptrCast(self)), appWindow, riid, inputPane);
+        return self.vtable.GetForWindow(self, appWindow, riid, inputPane);
     }
 };
 
@@ -629,10 +629,10 @@ pub const IPlayToManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPlayToManagerInterop, @ptrCast(self)), appWindow, riid, playToManager);
+        return self.vtable.GetForWindow(self, appWindow, riid, playToManager);
     }
     pub fn ShowPlayToUIForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToManagerInterop.VTable, @ptrCast(self.vtable)).ShowPlayToUIForWindow(@as(*const IPlayToManagerInterop, @ptrCast(self)), appWindow);
+        return self.vtable.ShowPlayToUIForWindow(self, appWindow);
     }
 };
 
@@ -676,13 +676,13 @@ pub const ICorrelationVectorInformation = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn get_LastCorrelationVectorForThread(self: *const ICorrelationVectorInformation, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).get_LastCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
+        return self.vtable.get_LastCorrelationVectorForThread(self, cv);
     }
     pub fn get_NextCorrelationVectorForThread(self: *const ICorrelationVectorInformation, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).get_NextCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
+        return self.vtable.get_NextCorrelationVectorForThread(self, cv);
     }
     pub fn put_NextCorrelationVectorForThread(self: *const ICorrelationVectorInformation, cv: ?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).put_NextCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
+        return self.vtable.put_NextCorrelationVectorForThread(self, cv);
     }
 };
 
@@ -709,7 +709,7 @@ pub const IUIViewSettingsInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IUIViewSettingsInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IUIViewSettingsInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IUIViewSettingsInterop, @ptrCast(self)), hwnd, riid, ppv);
+        return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
 
@@ -736,7 +736,7 @@ pub const IUserActivityInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateSessionForWindow(self: *const IUserActivityInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IUserActivityInterop.VTable, @ptrCast(self.vtable)).CreateSessionForWindow(@as(*const IUserActivityInterop, @ptrCast(self)), window, iid, value);
+        return self.vtable.CreateSessionForWindow(self, window, iid, value);
     }
 };
 
@@ -761,7 +761,7 @@ pub const IUserActivitySourceHostInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn SetActivitySourceHost(self: *const IUserActivitySourceHostInterop, activitySourceHost: ?HSTRING) callconv(.Inline) HRESULT {
-        return @as(*const IUserActivitySourceHostInterop.VTable, @ptrCast(self.vtable)).SetActivitySourceHost(@as(*const IUserActivitySourceHostInterop, @ptrCast(self)), activitySourceHost);
+        return self.vtable.SetActivitySourceHost(self, activitySourceHost);
     }
 };
 
@@ -788,7 +788,7 @@ pub const IUserActivityRequestManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IUserActivityRequestManagerInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IUserActivityRequestManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IUserActivityRequestManagerInterop, @ptrCast(self)), window, iid, value);
+        return self.vtable.GetForWindow(self, window, iid, value);
     }
 };
 
@@ -816,7 +816,7 @@ pub const IUserConsentVerifierInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn RequestVerificationForWindowAsync(self: *const IUserConsentVerifierInterop, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IUserConsentVerifierInterop.VTable, @ptrCast(self.vtable)).RequestVerificationForWindowAsync(@as(*const IUserConsentVerifierInterop, @ptrCast(self)), appWindow, message, riid, asyncOperation);
+        return self.vtable.RequestVerificationForWindowAsync(self, appWindow, message, riid, asyncOperation);
     }
 };
 
@@ -856,10 +856,10 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn RequestTokenForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWebAuthenticationCoreManagerInterop.VTable, @ptrCast(self.vtable)).RequestTokenForWindowAsync(@as(*const IWebAuthenticationCoreManagerInterop, @ptrCast(self)), appWindow, request, riid, asyncInfo);
+        return self.vtable.RequestTokenForWindowAsync(self, appWindow, request, riid, asyncInfo);
     }
     pub fn RequestTokenWithWebAccountForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWebAuthenticationCoreManagerInterop.VTable, @ptrCast(self.vtable)).RequestTokenWithWebAccountForWindowAsync(@as(*const IWebAuthenticationCoreManagerInterop, @ptrCast(self)), appWindow, request, webAccount, riid, asyncInfo);
+        return self.vtable.RequestTokenWithWebAccountForWindowAsync(self, appWindow, request, webAccount, riid, asyncInfo);
     }
 };
 
@@ -897,10 +897,10 @@ pub const IRestrictedErrorInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetErrorDetails(self: *const IRestrictedErrorInfo, description: ?*?BSTR, @"error": ?*HRESULT, restrictedDescription: ?*?BSTR, capabilitySid: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRestrictedErrorInfo.VTable, @ptrCast(self.vtable)).GetErrorDetails(@as(*const IRestrictedErrorInfo, @ptrCast(self)), description, @"error", restrictedDescription, capabilitySid);
+        return self.vtable.GetErrorDetails(self, description, @"error", restrictedDescription, capabilitySid);
     }
     pub fn GetReference(self: *const IRestrictedErrorInfo, reference: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRestrictedErrorInfo.VTable, @ptrCast(self.vtable)).GetReference(@as(*const IRestrictedErrorInfo, @ptrCast(self)), reference);
+        return self.vtable.GetReference(self, reference);
     }
 };
 
@@ -926,7 +926,7 @@ pub const ILanguageExceptionErrorInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLanguageException(self: *const ILanguageExceptionErrorInfo, languageException: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionErrorInfo.VTable, @ptrCast(self.vtable)).GetLanguageException(@as(*const ILanguageExceptionErrorInfo, @ptrCast(self)), languageException);
+        return self.vtable.GetLanguageException(self, languageException);
     }
 };
 
@@ -952,7 +952,7 @@ pub const ILanguageExceptionTransform = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTransformedRestrictedErrorInfo(self: *const ILanguageExceptionTransform, restrictedErrorInfo: ?*?*IRestrictedErrorInfo) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionTransform.VTable, @ptrCast(self.vtable)).GetTransformedRestrictedErrorInfo(@as(*const ILanguageExceptionTransform, @ptrCast(self)), restrictedErrorInfo);
+        return self.vtable.GetTransformedRestrictedErrorInfo(self, restrictedErrorInfo);
     }
 };
 
@@ -980,7 +980,7 @@ pub const ILanguageExceptionStackBackTrace = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStackBackTrace(self: *const ILanguageExceptionStackBackTrace, maxFramesToCapture: u32, stackBackTrace: ?*usize, framesCaptured: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionStackBackTrace.VTable, @ptrCast(self.vtable)).GetStackBackTrace(@as(*const ILanguageExceptionStackBackTrace, @ptrCast(self)), maxFramesToCapture, stackBackTrace, framesCaptured);
+        return self.vtable.GetStackBackTrace(self, maxFramesToCapture, stackBackTrace, framesCaptured);
     }
 };
 
@@ -1022,13 +1022,13 @@ pub const ILanguageExceptionErrorInfo2 = extern union {
     };}
     pub usingnamespace ILanguageExceptionErrorInfo.MethodMixin(@This());
     pub fn GetPreviousLanguageExceptionErrorInfo(self: *const ILanguageExceptionErrorInfo2, previousLanguageExceptionErrorInfo: ?*?*ILanguageExceptionErrorInfo2) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).GetPreviousLanguageExceptionErrorInfo(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), previousLanguageExceptionErrorInfo);
+        return self.vtable.GetPreviousLanguageExceptionErrorInfo(self, previousLanguageExceptionErrorInfo);
     }
     pub fn CapturePropagationContext(self: *const ILanguageExceptionErrorInfo2, languageException: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).CapturePropagationContext(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), languageException);
+        return self.vtable.CapturePropagationContext(self, languageException);
     }
     pub fn GetPropagationContextHead(self: *const ILanguageExceptionErrorInfo2, propagatedLanguageExceptionErrorInfoHead: ?*?*ILanguageExceptionErrorInfo2) callconv(.Inline) HRESULT {
-        return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).GetPropagationContextHead(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), propagatedLanguageExceptionErrorInfoHead);
+        return self.vtable.GetPropagationContextHead(self, propagatedLanguageExceptionErrorInfoHead);
     }
 };
 
@@ -1054,7 +1054,7 @@ pub const IActivationFactory = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn ActivateInstance(self: *const IActivationFactory, instance: ?*?*IInspectable) callconv(.Inline) HRESULT {
-        return @as(*const IActivationFactory.VTable, @ptrCast(self.vtable)).ActivateInstance(@as(*const IActivationFactory, @ptrCast(self)), instance);
+        return self.vtable.ActivateInstance(self, instance);
     }
 };
 
@@ -1090,7 +1090,7 @@ pub const IBufferByteAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Buffer(self: *const IBufferByteAccess, value: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IBufferByteAccess.VTable, @ptrCast(self.vtable)).Buffer(@as(*const IBufferByteAccess, @ptrCast(self)), value);
+        return self.vtable.Buffer(self, value);
     }
 };
 
@@ -1241,34 +1241,34 @@ pub const IRoSimpleMetaDataBuilder = extern union {
         }
     };}
     pub fn SetWinRtInterface(self: *const IRoSimpleMetaDataBuilder, iid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetWinRtInterface(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), iid);
+        return self.vtable.SetWinRtInterface(self, iid);
     }
     pub fn SetDelegate(self: *const IRoSimpleMetaDataBuilder, iid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetDelegate(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), iid);
+        return self.vtable.SetDelegate(self, iid);
     }
     pub fn SetInterfaceGroupSimpleDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetInterfaceGroupSimpleDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, defaultInterfaceName, defaultInterfaceIID);
+        return self.vtable.SetInterfaceGroupSimpleDefault(self, name, defaultInterfaceName, defaultInterfaceIID);
     }
     pub fn SetInterfaceGroupParameterizedDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetInterfaceGroupParameterizedDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, elementCount, defaultInterfaceNameElements);
+        return self.vtable.SetInterfaceGroupParameterizedDefault(self, name, elementCount, defaultInterfaceNameElements);
     }
     pub fn SetRuntimeClassSimpleDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetRuntimeClassSimpleDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, defaultInterfaceName, defaultInterfaceIID);
+        return self.vtable.SetRuntimeClassSimpleDefault(self, name, defaultInterfaceName, defaultInterfaceIID);
     }
     pub fn SetRuntimeClassParameterizedDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetRuntimeClassParameterizedDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, elementCount, defaultInterfaceNameElements);
+        return self.vtable.SetRuntimeClassParameterizedDefault(self, name, elementCount, defaultInterfaceNameElements);
     }
     pub fn SetStruct(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, numFields: u32, fieldTypeNames: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetStruct(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, numFields, fieldTypeNames);
+        return self.vtable.SetStruct(self, name, numFields, fieldTypeNames);
     }
     pub fn SetEnum(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, baseType: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetEnum(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, baseType);
+        return self.vtable.SetEnum(self, name, baseType);
     }
     pub fn SetParameterizedInterface(self: *const IRoSimpleMetaDataBuilder, piid: Guid, numArgs: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetParameterizedInterface(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), piid, numArgs);
+        return self.vtable.SetParameterizedInterface(self, piid, numArgs);
     }
     pub fn SetParameterizedDelegate(self: *const IRoSimpleMetaDataBuilder, piid: Guid, numArgs: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetParameterizedDelegate(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), piid, numArgs);
+        return self.vtable.SetParameterizedDelegate(self, piid, numArgs);
     }
 };
 
@@ -1288,7 +1288,7 @@ pub const IRoMetaDataLocator = extern union {
         }
     };}
     pub fn Locate(self: *const IRoMetaDataLocator, nameElement: ?[*:0]const u16, metaDataDestination: ?*IRoSimpleMetaDataBuilder) callconv(.Inline) HRESULT {
-        return @as(*const IRoMetaDataLocator.VTable, @ptrCast(self.vtable)).Locate(@as(*const IRoMetaDataLocator, @ptrCast(self)), nameElement, metaDataDestination);
+        return self.vtable.Locate(self, nameElement, metaDataDestination);
     }
 };
 
@@ -1321,7 +1321,7 @@ pub const IMemoryBufferByteAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBuffer(self: *const IMemoryBufferByteAccess, value: ?*?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMemoryBufferByteAccess.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IMemoryBufferByteAccess, @ptrCast(self)), value, capacity);
+        return self.vtable.GetBuffer(self, value, capacity);
     }
 };
 
@@ -1348,7 +1348,7 @@ pub const IWeakReference = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Resolve(self: *const IWeakReference, riid: ?*const Guid, objectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWeakReference.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IWeakReference, @ptrCast(self)), riid, objectReference);
+        return self.vtable.Resolve(self, riid, objectReference);
     }
 };
 
@@ -1374,7 +1374,7 @@ pub const IWeakReferenceSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWeakReference(self: *const IWeakReferenceSource, weakReference: ?*?*IWeakReference) callconv(.Inline) HRESULT {
-        return @as(*const IWeakReferenceSource.VTable, @ptrCast(self.vtable)).GetWeakReference(@as(*const IWeakReferenceSource, @ptrCast(self)), weakReference);
+        return self.vtable.GetWeakReference(self, weakReference);
     }
 };
 
@@ -1401,7 +1401,7 @@ pub const ISystemMediaTransportControlsInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const ISystemMediaTransportControlsInterop, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISystemMediaTransportControlsInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ISystemMediaTransportControlsInterop, @ptrCast(self)), appWindow, riid, mediaTransportControl);
+        return self.vtable.GetForWindow(self, appWindow, riid, mediaTransportControl);
     }
 };
 
@@ -1426,7 +1426,7 @@ pub const IShareWindowCommandEventArgsInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWindow(self: *const IShareWindowCommandEventArgsInterop, value: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IShareWindowCommandEventArgsInterop.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IShareWindowCommandEventArgsInterop, @ptrCast(self)), value);
+        return self.vtable.GetWindow(self, value);
     }
 };
 
@@ -1453,7 +1453,7 @@ pub const IShareWindowCommandSourceInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetForWindow(self: *const IShareWindowCommandSourceInterop, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShareWindowCommandSourceInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IShareWindowCommandSourceInterop, @ptrCast(self)), appWindow, riid, shareWindowCommandSource);
+        return self.vtable.GetForWindow(self, appWindow, riid, shareWindowCommandSource);
     }
 };
 
@@ -1477,7 +1477,7 @@ pub const IMessageDispatcher = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn PumpMessages(self: *const IMessageDispatcher) callconv(.Inline) HRESULT {
-        return @as(*const IMessageDispatcher.VTable, @ptrCast(self.vtable)).PumpMessages(@as(*const IMessageDispatcher, @ptrCast(self)));
+        return self.vtable.PumpMessages(self);
     }
 };
 
@@ -1512,10 +1512,10 @@ pub const ICoreWindowInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_WindowHandle(self: *const ICoreWindowInterop, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const ICoreWindowInterop, @ptrCast(self)), hwnd);
+        return self.vtable.get_WindowHandle(self, hwnd);
     }
     pub fn put_MessageHandled(self: *const ICoreWindowInterop, value: u8) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreWindowInterop, @ptrCast(self)), value);
+        return self.vtable.put_MessageHandled(self, value);
     }
 };
 
@@ -1549,10 +1549,10 @@ pub const ICoreInputInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInputSource(self: *const ICoreInputInterop, value: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).SetInputSource(@as(*const ICoreInputInterop, @ptrCast(self)), value);
+        return self.vtable.SetInputSource(self, value);
     }
     pub fn put_MessageHandled(self: *const ICoreInputInterop, value: u8) callconv(.Inline) HRESULT {
-        return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreInputInterop, @ptrCast(self)), value);
+        return self.vtable.put_MessageHandled(self, value);
     }
 };
 
@@ -1587,10 +1587,10 @@ pub const ICoreWindowComponentInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConfigureComponentInput(self: *const ICoreWindowComponentInterop, hostViewInstanceId: u32, hwndHost: ?HWND, inputSourceVisual: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).ConfigureComponentInput(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), hostViewInstanceId, hwndHost, inputSourceVisual);
+        return self.vtable.ConfigureComponentInput(self, hostViewInstanceId, hwndHost, inputSourceVisual);
     }
     pub fn GetViewInstanceId(self: *const ICoreWindowComponentInterop, componentViewInstanceId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).GetViewInstanceId(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), componentViewInstanceId);
+        return self.vtable.GetViewInstanceId(self, componentViewInstanceId);
     }
 };
 
@@ -1678,28 +1678,28 @@ pub const ICoreWindowAdapterInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn get_AppActivationClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_AppActivationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_AppActivationClientAdapter(self, value);
     }
     pub fn get_ApplicationViewClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_ApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_ApplicationViewClientAdapter(self, value);
     }
     pub fn get_CoreApplicationViewClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_CoreApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_CoreApplicationViewClientAdapter(self, value);
     }
     pub fn get_HoloViewClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_HoloViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_HoloViewClientAdapter(self, value);
     }
     pub fn get_PositionerClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_PositionerClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_PositionerClientAdapter(self, value);
     }
     pub fn get_SystemNavigationClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_SystemNavigationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_SystemNavigationClientAdapter(self, value);
     }
     pub fn get_TitleBarClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_TitleBarClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.get_TitleBarClientAdapter(self, value);
     }
     pub fn SetWindowClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).SetWindowClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        return self.vtable.SetWindowClientAdapter(self, value);
     }
 };
 

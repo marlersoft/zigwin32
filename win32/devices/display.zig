@@ -1312,16 +1312,16 @@ pub const ICloneViewHelper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnectedIDs(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).GetConnectedIDs(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, pulCount, pulID, ulFlags);
+        return self.vtable.GetConnectedIDs(self, wszAdaptorName, pulCount, pulID, ulFlags);
     }
     pub fn GetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).GetActiveTopology(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
+        return self.vtable.GetActiveTopology(self, wszAdaptorName, ulSourceID, pulCount, pulTargetID);
     }
     pub fn SetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).SetActiveTopology(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
+        return self.vtable.SetActiveTopology(self, wszAdaptorName, ulSourceID, ulCount, pulTargetID);
     }
     pub fn Commit(self: *const ICloneViewHelper, fFinalCall: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).Commit(@as(*const ICloneViewHelper, @ptrCast(self)), fFinalCall);
+        return self.vtable.Commit(self, fFinalCall);
     }
 };
 
@@ -1394,22 +1394,22 @@ pub const IViewHelper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnectedIDs(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetConnectedIDs(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, pulCount, pulID, ulFlags);
+        return self.vtable.GetConnectedIDs(self, wszAdaptorName, pulCount, pulID, ulFlags);
     }
     pub fn GetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetActiveTopology(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
+        return self.vtable.GetActiveTopology(self, wszAdaptorName, ulSourceID, pulCount, pulTargetID);
     }
     pub fn SetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).SetActiveTopology(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
+        return self.vtable.SetActiveTopology(self, wszAdaptorName, ulSourceID, ulCount, pulTargetID);
     }
     pub fn Commit(self: *const IViewHelper) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).Commit(@as(*const IViewHelper, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
     pub fn SetConfiguration(self: *const IViewHelper, pIStream: ?*IStream, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IViewHelper, @ptrCast(self)), pIStream, pulStatus);
+        return self.vtable.SetConfiguration(self, pIStream, pulStatus);
     }
     pub fn GetProceedOnNewConfiguration(self: *const IViewHelper) callconv(.Inline) HRESULT {
-        return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetProceedOnNewConfiguration(@as(*const IViewHelper, @ptrCast(self)));
+        return self.vtable.GetProceedOnNewConfiguration(self);
     }
 };
 

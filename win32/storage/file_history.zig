@@ -108,10 +108,10 @@ pub const IFhTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStringProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetStringProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
+        return self.vtable.GetStringProperty(self, PropertyType, PropertyValue);
     }
     pub fn GetNumericalProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetNumericalProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
+        return self.vtable.GetNumericalProperty(self, PropertyType, PropertyValue);
     }
 };
 
@@ -144,10 +144,10 @@ pub const IFhScopeIterator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MoveToNextItem(self: *const IFhScopeIterator) callconv(.Inline) HRESULT {
-        return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).MoveToNextItem(@as(*const IFhScopeIterator, @ptrCast(self)));
+        return self.vtable.MoveToNextItem(self);
     }
     pub fn GetItem(self: *const IFhScopeIterator, Item: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IFhScopeIterator, @ptrCast(self)), Item);
+        return self.vtable.GetItem(self, Item);
     }
 };
 
@@ -347,46 +347,46 @@ pub const IFhConfigMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadConfiguration(self: *const IFhConfigMgr) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).LoadConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
+        return self.vtable.LoadConfiguration(self);
     }
     pub fn CreateDefaultConfiguration(self: *const IFhConfigMgr, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).CreateDefaultConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)), OverwriteIfExists);
+        return self.vtable.CreateDefaultConfiguration(self, OverwriteIfExists);
     }
     pub fn SaveConfiguration(self: *const IFhConfigMgr) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SaveConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
+        return self.vtable.SaveConfiguration(self);
     }
     pub fn AddRemoveExcludeRule(self: *const IFhConfigMgr, Add: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Item: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).AddRemoveExcludeRule(@as(*const IFhConfigMgr, @ptrCast(self)), Add, Category, Item);
+        return self.vtable.AddRemoveExcludeRule(self, Add, Category, Item);
     }
     pub fn GetIncludeExcludeRules(self: *const IFhConfigMgr, Include: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Iterator: ?*?*IFhScopeIterator) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetIncludeExcludeRules(@as(*const IFhConfigMgr, @ptrCast(self)), Include, Category, Iterator);
+        return self.vtable.GetIncludeExcludeRules(self, Include, Category, Iterator);
     }
     pub fn GetLocalPolicy(self: *const IFhConfigMgr, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
+        return self.vtable.GetLocalPolicy(self, LocalPolicyType, PolicyValue);
     }
     pub fn SetLocalPolicy(self: *const IFhConfigMgr, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: u64) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
+        return self.vtable.SetLocalPolicy(self, LocalPolicyType, PolicyValue);
     }
     pub fn GetBackupStatus(self: *const IFhConfigMgr, BackupStatus: ?*FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
+        return self.vtable.GetBackupStatus(self, BackupStatus);
     }
     pub fn SetBackupStatus(self: *const IFhConfigMgr, BackupStatus: FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
+        return self.vtable.SetBackupStatus(self, BackupStatus);
     }
     pub fn GetDefaultTarget(self: *const IFhConfigMgr, DefaultTarget: ?*?*IFhTarget) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetDefaultTarget(@as(*const IFhConfigMgr, @ptrCast(self)), DefaultTarget);
+        return self.vtable.GetDefaultTarget(self, DefaultTarget);
     }
     pub fn ValidateTarget(self: *const IFhConfigMgr, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, ValidationResult);
+        return self.vtable.ValidateTarget(self, TargetUrl, ValidationResult);
     }
     pub fn ProvisionAndSetNewTarget(self: *const IFhConfigMgr, TargetUrl: ?BSTR, TargetName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ProvisionAndSetNewTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, TargetName);
+        return self.vtable.ProvisionAndSetNewTarget(self, TargetUrl, TargetName);
     }
     pub fn ChangeDefaultTargetRecommendation(self: *const IFhConfigMgr, Recommend: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ChangeDefaultTargetRecommendation(@as(*const IFhConfigMgr, @ptrCast(self)), Recommend);
+        return self.vtable.ChangeDefaultTargetRecommendation(self, Recommend);
     }
     pub fn QueryProtectionStatus(self: *const IFhConfigMgr, ProtectionState: ?*u32, ProtectedUntilTime: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).QueryProtectionStatus(@as(*const IFhConfigMgr, @ptrCast(self)), ProtectionState, ProtectedUntilTime);
+        return self.vtable.QueryProtectionStatus(self, ProtectionState, ProtectedUntilTime);
     }
 };
 
@@ -448,19 +448,19 @@ pub const IFhReassociation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ValidateTarget(self: *const IFhReassociation, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
-        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl, ValidationResult);
+        return self.vtable.ValidateTarget(self, TargetUrl, ValidationResult);
     }
     pub fn ScanTargetForConfigurations(self: *const IFhReassociation, TargetUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ScanTargetForConfigurations(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl);
+        return self.vtable.ScanTargetForConfigurations(self, TargetUrl);
     }
     pub fn GetConfigurationDetails(self: *const IFhReassociation, Index: u32, UserName: ?*?BSTR, PcName: ?*?BSTR, BackupTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).GetConfigurationDetails(@as(*const IFhReassociation, @ptrCast(self)), Index, UserName, PcName, BackupTime);
+        return self.vtable.GetConfigurationDetails(self, Index, UserName, PcName, BackupTime);
     }
     pub fn SelectConfiguration(self: *const IFhReassociation, Index: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).SelectConfiguration(@as(*const IFhReassociation, @ptrCast(self)), Index);
+        return self.vtable.SelectConfiguration(self, Index);
     }
     pub fn PerformReassociation(self: *const IFhReassociation, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).PerformReassociation(@as(*const IFhReassociation, @ptrCast(self)), OverwriteIfExists);
+        return self.vtable.PerformReassociation(self, OverwriteIfExists);
     }
 };
 

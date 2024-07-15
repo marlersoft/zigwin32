@@ -70,22 +70,22 @@ pub const ICompositionDrawingSurfaceInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginDraw(self: *const ICompositionDrawingSurfaceInterop, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)), updateRect, iid, updateObject, updateOffset);
+        return self.vtable.BeginDraw(self, updateRect, iid, updateObject, updateOffset);
     }
     pub fn EndDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)));
+        return self.vtable.EndDraw(self);
     }
     pub fn Resize(self: *const ICompositionDrawingSurfaceInterop, sizePixels: SIZE) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).Resize(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)), sizePixels);
+        return self.vtable.Resize(self, sizePixels);
     }
     pub fn Scroll(self: *const ICompositionDrawingSurfaceInterop, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).Scroll(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)), scrollRect, clipRect, offsetX, offsetY);
+        return self.vtable.Scroll(self, scrollRect, clipRect, offsetX, offsetY);
     }
     pub fn ResumeDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)));
+        return self.vtable.ResumeDraw(self);
     }
     pub fn SuspendDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const ICompositionDrawingSurfaceInterop, @ptrCast(self)));
+        return self.vtable.SuspendDraw(self);
     }
 };
 
@@ -113,7 +113,7 @@ pub const ICompositionDrawingSurfaceInterop2 = extern union {
     };}
     pub usingnamespace ICompositionDrawingSurfaceInterop.MethodMixin(@This());
     pub fn CopySurface(self: *const ICompositionDrawingSurfaceInterop2, destinationResource: ?*IUnknown, destinationOffsetX: i32, destinationOffsetY: i32, sourceRectangle: ?*const RECT) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionDrawingSurfaceInterop2.VTable, @ptrCast(self.vtable)).CopySurface(@as(*const ICompositionDrawingSurfaceInterop2, @ptrCast(self)), destinationResource, destinationOffsetX, destinationOffsetY, sourceRectangle);
+        return self.vtable.CopySurface(self, destinationResource, destinationOffsetX, destinationOffsetY, sourceRectangle);
     }
 };
 
@@ -146,10 +146,10 @@ pub const ICompositionGraphicsDeviceInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionGraphicsDeviceInterop.VTable, @ptrCast(self.vtable)).GetRenderingDevice(@as(*const ICompositionGraphicsDeviceInterop, @ptrCast(self)), value);
+        return self.vtable.GetRenderingDevice(self, value);
     }
     pub fn SetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionGraphicsDeviceInterop.VTable, @ptrCast(self.vtable)).SetRenderingDevice(@as(*const ICompositionGraphicsDeviceInterop, @ptrCast(self)), value);
+        return self.vtable.SetRenderingDevice(self, value);
     }
 };
 
@@ -193,13 +193,13 @@ pub const ICompositorInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateCompositionSurfaceForHandle(self: *const ICompositorInterop, swapChain: ?HANDLE, result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-        return @as(*const ICompositorInterop.VTable, @ptrCast(self.vtable)).CreateCompositionSurfaceForHandle(@as(*const ICompositorInterop, @ptrCast(self)), swapChain, result);
+        return self.vtable.CreateCompositionSurfaceForHandle(self, swapChain, result);
     }
     pub fn CreateCompositionSurfaceForSwapChain(self: *const ICompositorInterop, swapChain: ?*IUnknown, result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-        return @as(*const ICompositorInterop.VTable, @ptrCast(self.vtable)).CreateCompositionSurfaceForSwapChain(@as(*const ICompositorInterop, @ptrCast(self)), swapChain, result);
+        return self.vtable.CreateCompositionSurfaceForSwapChain(self, swapChain, result);
     }
     pub fn CreateGraphicsDevice(self: *const ICompositorInterop, renderingDevice: ?*IUnknown, result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-        return @as(*const ICompositorInterop.VTable, @ptrCast(self.vtable)).CreateGraphicsDevice(@as(*const ICompositorInterop, @ptrCast(self)), renderingDevice, result);
+        return self.vtable.CreateGraphicsDevice(self, renderingDevice, result);
     }
 };
 
@@ -224,7 +224,7 @@ pub const ISwapChainInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSwapChain(self: *const ISwapChainInterop, swapChain: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISwapChainInterop.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainInterop, @ptrCast(self)), swapChain);
+        return self.vtable.SetSwapChain(self, swapChain);
     }
 };
 
@@ -249,7 +249,7 @@ pub const IVisualInteractionSourceInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TryRedirectForManipulation(self: *const IVisualInteractionSourceInterop, pointerInfo: ?*const POINTER_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IVisualInteractionSourceInterop.VTable, @ptrCast(self.vtable)).TryRedirectForManipulation(@as(*const IVisualInteractionSourceInterop, @ptrCast(self)), pointerInfo);
+        return self.vtable.TryRedirectForManipulation(self, pointerInfo);
     }
 };
 
@@ -275,7 +275,7 @@ pub const ICompositionCapabilitiesInteropFactory = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const ICompositionCapabilitiesInteropFactory, hwnd: ?HWND, result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-        return @as(*const ICompositionCapabilitiesInteropFactory.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ICompositionCapabilitiesInteropFactory, @ptrCast(self)), hwnd, result);
+        return self.vtable.GetForWindow(self, hwnd, result);
     }
 };
 
@@ -310,10 +310,10 @@ pub const ICompositorDesktopInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDesktopWindowTarget(self: *const ICompositorDesktopInterop, hwndTarget: ?HWND, isTopmost: BOOL, result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.Inline) HRESULT {
-        return @as(*const ICompositorDesktopInterop.VTable, @ptrCast(self.vtable)).CreateDesktopWindowTarget(@as(*const ICompositorDesktopInterop, @ptrCast(self)), hwndTarget, isTopmost, result);
+        return self.vtable.CreateDesktopWindowTarget(self, hwndTarget, isTopmost, result);
     }
     pub fn EnsureOnThread(self: *const ICompositorDesktopInterop, threadId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICompositorDesktopInterop.VTable, @ptrCast(self.vtable)).EnsureOnThread(@as(*const ICompositorDesktopInterop, @ptrCast(self)), threadId);
+        return self.vtable.EnsureOnThread(self, threadId);
     }
 };
 
@@ -339,7 +339,7 @@ pub const IDesktopWindowTargetInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Hwnd(self: *const IDesktopWindowTargetInterop, value: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWindowTargetInterop.VTable, @ptrCast(self.vtable)).get_Hwnd(@as(*const IDesktopWindowTargetInterop, @ptrCast(self)), value);
+        return self.vtable.get_Hwnd(self, value);
     }
 };
 

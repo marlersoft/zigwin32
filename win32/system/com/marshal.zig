@@ -85,22 +85,22 @@ pub const IMarshal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUnmarshalClass(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetUnmarshalClass(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
+        return self.vtable.GetUnmarshalClass(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
     }
     pub fn GetMarshalSizeMax(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
+        return self.vtable.GetMarshalSizeMax(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
     }
     pub fn MarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).MarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
+        return self.vtable.MarshalInterface(self, pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
     }
     pub fn UnmarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, ppv);
+        return self.vtable.UnmarshalInterface(self, pStm, riid, ppv);
     }
     pub fn ReleaseMarshalData(self: *const IMarshal, pStm: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const IMarshal, @ptrCast(self)), pStm);
+        return self.vtable.ReleaseMarshalData(self, pStm);
     }
     pub fn DisconnectObject(self: *const IMarshal, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).DisconnectObject(@as(*const IMarshal, @ptrCast(self)), dwReserved);
+        return self.vtable.DisconnectObject(self, dwReserved);
     }
 };
 
@@ -141,7 +141,7 @@ pub const IMarshalingStream = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn GetMarshalingContextAttribute(self: *const IMarshalingStream, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IMarshalingStream.VTable, @ptrCast(self.vtable)).GetMarshalingContextAttribute(@as(*const IMarshalingStream, @ptrCast(self)), attribute, pAttributeValue);
+        return self.vtable.GetMarshalingContextAttribute(self, attribute, pAttributeValue);
     }
 };
 

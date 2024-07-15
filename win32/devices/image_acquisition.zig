@@ -1465,31 +1465,31 @@ pub const IWiaDevMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumDeviceInfo(self: *const IWiaDevMgr, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).EnumDeviceInfo(@as(*const IWiaDevMgr, @ptrCast(self)), lFlag, ppIEnum);
+        return self.vtable.EnumDeviceInfo(self, lFlag, ppIEnum);
     }
     pub fn CreateDevice(self: *const IWiaDevMgr, bstrDeviceID: ?BSTR, ppWiaItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IWiaDevMgr, @ptrCast(self)), bstrDeviceID, ppWiaItemRoot);
+        return self.vtable.CreateDevice(self, bstrDeviceID, ppWiaItemRoot);
     }
     pub fn SelectDeviceDlg(self: *const IWiaDevMgr, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).SelectDeviceDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+        return self.vtable.SelectDeviceDlg(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
     }
     pub fn SelectDeviceDlgID(self: *const IWiaDevMgr, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).SelectDeviceDlgID(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+        return self.vtable.SelectDeviceDlgID(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID);
     }
     pub fn GetImageDlg(self: *const IWiaDevMgr, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: ?*IWiaItem, bstrFilename: ?BSTR, pguidFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).GetImageDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
+        return self.vtable.GetImageDlg(self, hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
     }
     pub fn RegisterEventCallbackProgram(self: *const IWiaDevMgr, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrCommandline: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackProgram(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
+        return self.vtable.RegisterEventCallbackProgram(self, lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
     }
     pub fn RegisterEventCallbackInterface(self: *const IWiaDevMgr, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackInterface(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+        return self.vtable.RegisterEventCallbackInterface(self, lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
     }
     pub fn RegisterEventCallbackCLSID(self: *const IWiaDevMgr, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackCLSID(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+        return self.vtable.RegisterEventCallbackCLSID(self, lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
     }
     pub fn AddDeviceDlg(self: *const IWiaDevMgr, hwndParent: ?HWND, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).AddDeviceDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lFlags);
+        return self.vtable.AddDeviceDlg(self, hwndParent, lFlags);
     }
 };
 
@@ -1548,19 +1548,19 @@ pub const IEnumWIA_DEV_INFO = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumWIA_DEV_INFO, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumWIA_DEV_INFO, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumWIA_DEV_INFO, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), ppIEnum);
+        return self.vtable.Clone(self, ppIEnum);
     }
     pub fn GetCount(self: *const IEnumWIA_DEV_INFO, celt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt);
+        return self.vtable.GetCount(self, celt);
     }
 };
 
@@ -1593,7 +1593,7 @@ pub const IWiaEventCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ImageEventCallback(self: *const IWiaEventCallback, pEventGUID: ?*const Guid, bstrEventDescription: ?BSTR, bstrDeviceID: ?BSTR, bstrDeviceDescription: ?BSTR, dwDeviceType: u32, bstrFullItemName: ?BSTR, pulEventType: ?*u32, ulReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaEventCallback.VTable, @ptrCast(self.vtable)).ImageEventCallback(@as(*const IWiaEventCallback, @ptrCast(self)), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
+        return self.vtable.ImageEventCallback(self, pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
     }
 };
 
@@ -1633,7 +1633,7 @@ pub const IWiaDataCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BandedDataCallback(self: *const IWiaDataCallback, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataCallback.VTable, @ptrCast(self.vtable)).BandedDataCallback(@as(*const IWiaDataCallback, @ptrCast(self)), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
+        return self.vtable.BandedDataCallback(self, lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
     }
 };
 
@@ -1711,19 +1711,19 @@ pub const IWiaDataTransfer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn idtGetData(self: *const IWiaDataTransfer, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetData(@as(*const IWiaDataTransfer, @ptrCast(self)), pMedium, pIWiaDataCallback);
+        return self.vtable.idtGetData(self, pMedium, pIWiaDataCallback);
     }
     pub fn idtGetBandedData(self: *const IWiaDataTransfer, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetBandedData(@as(*const IWiaDataTransfer, @ptrCast(self)), pWiaDataTransInfo, pIWiaDataCallback);
+        return self.vtable.idtGetBandedData(self, pWiaDataTransInfo, pIWiaDataCallback);
     }
     pub fn idtQueryGetData(self: *const IWiaDataTransfer, pfe: ?*WIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtQueryGetData(@as(*const IWiaDataTransfer, @ptrCast(self)), pfe);
+        return self.vtable.idtQueryGetData(self, pfe);
     }
     pub fn idtEnumWIA_FORMAT_INFO(self: *const IWiaDataTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtEnumWIA_FORMAT_INFO(@as(*const IWiaDataTransfer, @ptrCast(self)), ppEnum);
+        return self.vtable.idtEnumWIA_FORMAT_INFO(self, ppEnum);
     }
     pub fn idtGetExtendedTransferInfo(self: *const IWiaDataTransfer, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetExtendedTransferInfo(@as(*const IWiaDataTransfer, @ptrCast(self)), pExtendedTransferInfo);
+        return self.vtable.idtGetExtendedTransferInfo(self, pExtendedTransferInfo);
     }
 };
 
@@ -1876,49 +1876,49 @@ pub const IWiaItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemType(self: *const IWiaItem, pItemType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IWiaItem, @ptrCast(self)), pItemType);
+        return self.vtable.GetItemType(self, pItemType);
     }
     pub fn AnalyzeItem(self: *const IWiaItem, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).AnalyzeItem(@as(*const IWiaItem, @ptrCast(self)), lFlags);
+        return self.vtable.AnalyzeItem(self, lFlags);
     }
     pub fn EnumChildItems(self: *const IWiaItem, ppIEnumWiaItem: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumChildItems(@as(*const IWiaItem, @ptrCast(self)), ppIEnumWiaItem);
+        return self.vtable.EnumChildItems(self, ppIEnumWiaItem);
     }
     pub fn DeleteItem(self: *const IWiaItem, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IWiaItem, @ptrCast(self)), lFlags);
+        return self.vtable.DeleteItem(self, lFlags);
     }
     pub fn CreateChildItem(self: *const IWiaItem, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).CreateChildItem(@as(*const IWiaItem, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
+        return self.vtable.CreateChildItem(self, lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
     }
     pub fn EnumRegisterEventInfo(self: *const IWiaItem, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumRegisterEventInfo(@as(*const IWiaItem, @ptrCast(self)), lFlags, pEventGUID, ppIEnum);
+        return self.vtable.EnumRegisterEventInfo(self, lFlags, pEventGUID, ppIEnum);
     }
     pub fn FindItemByName(self: *const IWiaItem, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaItem, @ptrCast(self)), lFlags, bstrFullItemName, ppIWiaItem);
+        return self.vtable.FindItemByName(self, lFlags, bstrFullItemName, ppIWiaItem);
     }
     pub fn DeviceDlg(self: *const IWiaItem, hwndParent: ?HWND, lFlags: i32, lIntent: i32, plItemCount: ?*i32, ppIWiaItem: ?*?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeviceDlg(@as(*const IWiaItem, @ptrCast(self)), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
+        return self.vtable.DeviceDlg(self, hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
     }
     pub fn DeviceCommand(self: *const IWiaItem, lFlags: i32, pCmdGUID: ?*const Guid, pIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeviceCommand(@as(*const IWiaItem, @ptrCast(self)), lFlags, pCmdGUID, pIWiaItem);
+        return self.vtable.DeviceCommand(self, lFlags, pCmdGUID, pIWiaItem);
     }
     pub fn GetRootItem(self: *const IWiaItem, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).GetRootItem(@as(*const IWiaItem, @ptrCast(self)), ppIWiaItem);
+        return self.vtable.GetRootItem(self, ppIWiaItem);
     }
     pub fn EnumDeviceCapabilities(self: *const IWiaItem, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumDeviceCapabilities(@as(*const IWiaItem, @ptrCast(self)), lFlags, ppIEnumWIA_DEV_CAPS);
+        return self.vtable.EnumDeviceCapabilities(self, lFlags, ppIEnumWIA_DEV_CAPS);
     }
     pub fn DumpItemData(self: *const IWiaItem, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
+        return self.vtable.DumpItemData(self, bstrData);
     }
     pub fn DumpDrvItemData(self: *const IWiaItem, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpDrvItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
+        return self.vtable.DumpDrvItemData(self, bstrData);
     }
     pub fn DumpTreeItemData(self: *const IWiaItem, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpTreeItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
+        return self.vtable.DumpTreeItemData(self, bstrData);
     }
     pub fn Diagnostic(self: *const IWiaItem, ulSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IWiaItem, @ptrCast(self)), ulSize, pBuffer);
+        return self.vtable.Diagnostic(self, ulSize, pBuffer);
     }
 };
 
@@ -2081,52 +2081,52 @@ pub const IWiaPropertyStorage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReadMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).ReadMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgpropvar);
+        return self.vtable.ReadMultiple(self, cpspec, rgpspec, rgpropvar);
     }
     pub fn WriteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).WriteMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgpropvar, propidNameFirst);
+        return self.vtable.WriteMultiple(self, cpspec, rgpspec, rgpropvar, propidNameFirst);
     }
     pub fn DeleteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).DeleteMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec);
+        return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
     }
     pub fn ReadPropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).ReadPropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid, rglpwstrName);
+        return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
     }
     pub fn WritePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).WritePropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid, rglpwstrName);
+        return self.vtable.WritePropertyNames(self, cpropid, rgpropid, rglpwstrName);
     }
     pub fn DeletePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).DeletePropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid);
+        return self.vtable.DeletePropertyNames(self, cpropid, rgpropid);
     }
     pub fn Commit(self: *const IWiaPropertyStorage, grfCommitFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Commit(@as(*const IWiaPropertyStorage, @ptrCast(self)), grfCommitFlags);
+        return self.vtable.Commit(self, grfCommitFlags);
     }
     pub fn Revert(self: *const IWiaPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Revert(@as(*const IWiaPropertyStorage, @ptrCast(self)));
+        return self.vtable.Revert(self);
     }
     pub fn Enum(self: *const IWiaPropertyStorage, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Enum(@as(*const IWiaPropertyStorage, @ptrCast(self)), ppenum);
+        return self.vtable.Enum(self, ppenum);
     }
     pub fn SetTimes(self: *const IWiaPropertyStorage, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetTimes(@as(*const IWiaPropertyStorage, @ptrCast(self)), pctime, patime, pmtime);
+        return self.vtable.SetTimes(self, pctime, patime, pmtime);
     }
     pub fn SetClass(self: *const IWiaPropertyStorage, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetClass(@as(*const IWiaPropertyStorage, @ptrCast(self)), clsid);
+        return self.vtable.SetClass(self, clsid);
     }
     pub fn Stat(self: *const IWiaPropertyStorage, pstatpsstg: ?*STATPROPSETSTG) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Stat(@as(*const IWiaPropertyStorage, @ptrCast(self)), pstatpsstg);
+        return self.vtable.Stat(self, pstatpsstg);
     }
     pub fn GetPropertyAttributes(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetPropertyAttributes(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgflags, rgpropvar);
+        return self.vtable.GetPropertyAttributes(self, cpspec, rgpspec, rgflags, rgpropvar);
     }
     pub fn GetCount(self: *const IWiaPropertyStorage, pulNumProps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IWiaPropertyStorage, @ptrCast(self)), pulNumProps);
+        return self.vtable.GetCount(self, pulNumProps);
     }
     pub fn GetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetPropertyStream(@as(*const IWiaPropertyStorage, @ptrCast(self)), pCompatibilityId, ppIStream);
+        return self.vtable.GetPropertyStream(self, pCompatibilityId, ppIStream);
     }
     pub fn SetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, pIStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetPropertyStream(@as(*const IWiaPropertyStorage, @ptrCast(self)), pCompatibilityId, pIStream);
+        return self.vtable.SetPropertyStream(self, pCompatibilityId, pIStream);
     }
 };
 
@@ -2185,19 +2185,19 @@ pub const IEnumWiaItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumWiaItem, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWiaItem, @ptrCast(self)), celt, ppIWiaItem, pceltFetched);
+        return self.vtable.Next(self, celt, ppIWiaItem, pceltFetched);
     }
     pub fn Skip(self: *const IEnumWiaItem, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWiaItem, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWiaItem, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumWiaItem, ppIEnum: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWiaItem, @ptrCast(self)), ppIEnum);
+        return self.vtable.Clone(self, ppIEnum);
     }
     pub fn GetCount(self: *const IEnumWiaItem, celt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWiaItem, @ptrCast(self)), celt);
+        return self.vtable.GetCount(self, celt);
     }
 };
 
@@ -2265,19 +2265,19 @@ pub const IEnumWIA_DEV_CAPS = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumWIA_DEV_CAPS, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumWIA_DEV_CAPS, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumWIA_DEV_CAPS, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), ppIEnum);
+        return self.vtable.Clone(self, ppIEnum);
     }
     pub fn GetCount(self: *const IEnumWIA_DEV_CAPS, pcelt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), pcelt);
+        return self.vtable.GetCount(self, pcelt);
     }
 };
 
@@ -2336,19 +2336,19 @@ pub const IEnumWIA_FORMAT_INFO = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumWIA_FORMAT_INFO, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumWIA_FORMAT_INFO, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumWIA_FORMAT_INFO, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), ppIEnum);
+        return self.vtable.Clone(self, ppIEnum);
     }
     pub fn GetCount(self: *const IEnumWIA_FORMAT_INFO, pcelt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), pcelt);
+        return self.vtable.GetCount(self, pcelt);
     }
 };
 
@@ -2393,13 +2393,13 @@ pub const IWiaLog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeLog(self: *const IWiaLog, hInstance: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).InitializeLog(@as(*const IWiaLog, @ptrCast(self)), hInstance);
+        return self.vtable.InitializeLog(self, hInstance);
     }
     pub fn hResult(self: *const IWiaLog, _param_hResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).hResult(@as(*const IWiaLog, @ptrCast(self)), _param_hResult);
+        return self.vtable.hResult(self, _param_hResult);
     }
     pub fn Log(self: *const IWiaLog, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).Log(@as(*const IWiaLog, @ptrCast(self)), lFlags, lResID, lDetail, bstrText);
+        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
     }
 };
 
@@ -2465,19 +2465,19 @@ pub const IWiaLogEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeLogEx(self: *const IWiaLogEx, hInstance: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).InitializeLogEx(@as(*const IWiaLogEx, @ptrCast(self)), hInstance);
+        return self.vtable.InitializeLogEx(self, hInstance);
     }
     pub fn hResult(self: *const IWiaLogEx, _param_hResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).hResult(@as(*const IWiaLogEx, @ptrCast(self)), _param_hResult);
+        return self.vtable.hResult(self, _param_hResult);
     }
     pub fn Log(self: *const IWiaLogEx, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).Log(@as(*const IWiaLogEx, @ptrCast(self)), lFlags, lResID, lDetail, bstrText);
+        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
     }
     pub fn hResultEx(self: *const IWiaLogEx, lMethodId: i32, _param_hResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).hResultEx(@as(*const IWiaLogEx, @ptrCast(self)), lMethodId, _param_hResult);
+        return self.vtable.hResultEx(self, lMethodId, _param_hResult);
     }
     pub fn LogEx(self: *const IWiaLogEx, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).LogEx(@as(*const IWiaLogEx, @ptrCast(self)), lMethodId, lFlags, lResID, lDetail, bstrText);
+        return self.vtable.LogEx(self, lMethodId, lFlags, lResID, lDetail, bstrText);
     }
 };
 
@@ -2502,7 +2502,7 @@ pub const IWiaNotifyDevMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NewDeviceArrival(self: *const IWiaNotifyDevMgr) callconv(.Inline) HRESULT {
-        return @as(*const IWiaNotifyDevMgr.VTable, @ptrCast(self.vtable)).NewDeviceArrival(@as(*const IWiaNotifyDevMgr, @ptrCast(self)));
+        return self.vtable.NewDeviceArrival(self);
     }
 };
 
@@ -2548,13 +2548,13 @@ pub const IWiaItemExtras = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetExtendedErrorInfo(self: *const IWiaItemExtras, bstrErrorText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).GetExtendedErrorInfo(@as(*const IWiaItemExtras, @ptrCast(self)), bstrErrorText);
+        return self.vtable.GetExtendedErrorInfo(self, bstrErrorText);
     }
     pub fn Escape(self: *const IWiaItemExtras, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).Escape(@as(*const IWiaItemExtras, @ptrCast(self)), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
+        return self.vtable.Escape(self, dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
     }
     pub fn CancelPendingIO(self: *const IWiaItemExtras) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).CancelPendingIO(@as(*const IWiaItemExtras, @ptrCast(self)));
+        return self.vtable.CancelPendingIO(self);
     }
 };
 
@@ -2590,10 +2590,10 @@ pub const IWiaAppErrorHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWindow(self: *const IWiaAppErrorHandler, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IWiaAppErrorHandler.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IWiaAppErrorHandler, @ptrCast(self)), phwnd);
+        return self.vtable.GetWindow(self, phwnd);
     }
     pub fn ReportStatus(self: *const IWiaAppErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaAppErrorHandler.VTable, @ptrCast(self.vtable)).ReportStatus(@as(*const IWiaAppErrorHandler, @ptrCast(self)), lFlags, pWiaItem2, hrStatus, lPercentComplete);
+        return self.vtable.ReportStatus(self, lFlags, pWiaItem2, hrStatus, lPercentComplete);
     }
 };
 
@@ -2633,10 +2633,10 @@ pub const IWiaErrorHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReportStatus(self: *const IWiaErrorHandler, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaErrorHandler.VTable, @ptrCast(self.vtable)).ReportStatus(@as(*const IWiaErrorHandler, @ptrCast(self)), lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
+        return self.vtable.ReportStatus(self, lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
     }
     pub fn GetStatusDescription(self: *const IWiaErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaErrorHandler.VTable, @ptrCast(self.vtable)).GetStatusDescription(@as(*const IWiaErrorHandler, @ptrCast(self)), lFlags, pWiaItem2, hrStatus, pbstrDescription);
+        return self.vtable.GetStatusDescription(self, lFlags, pWiaItem2, hrStatus, pbstrDescription);
     }
 };
 
@@ -2687,16 +2687,16 @@ pub const IWiaTransfer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Download(self: *const IWiaTransfer, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Download(@as(*const IWiaTransfer, @ptrCast(self)), lFlags, pIWiaTransferCallback);
+        return self.vtable.Download(self, lFlags, pIWiaTransferCallback);
     }
     pub fn Upload(self: *const IWiaTransfer, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Upload(@as(*const IWiaTransfer, @ptrCast(self)), lFlags, pSource, pIWiaTransferCallback);
+        return self.vtable.Upload(self, lFlags, pSource, pIWiaTransferCallback);
     }
     pub fn Cancel(self: *const IWiaTransfer) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWiaTransfer, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn EnumWIA_FORMAT_INFO(self: *const IWiaTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).EnumWIA_FORMAT_INFO(@as(*const IWiaTransfer, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumWIA_FORMAT_INFO(self, ppEnum);
     }
 };
 
@@ -2740,10 +2740,10 @@ pub const IWiaTransferCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TransferCallback(self: *const IWiaTransferCallback, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransferCallback.VTable, @ptrCast(self.vtable)).TransferCallback(@as(*const IWiaTransferCallback, @ptrCast(self)), lFlags, pWiaTransferParams);
+        return self.vtable.TransferCallback(self, lFlags, pWiaTransferParams);
     }
     pub fn GetNextStream(self: *const IWiaTransferCallback, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWiaTransferCallback.VTable, @ptrCast(self.vtable)).GetNextStream(@as(*const IWiaTransferCallback, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppDestination);
+        return self.vtable.GetNextStream(self, lFlags, bstrItemName, bstrFullItemName, ppDestination);
     }
 };
 
@@ -2770,7 +2770,7 @@ pub const IWiaSegmentationFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DetectRegions(self: *const IWiaSegmentationFilter, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaSegmentationFilter.VTable, @ptrCast(self.vtable)).DetectRegions(@as(*const IWiaSegmentationFilter, @ptrCast(self)), lFlags, pInputStream, pWiaItem2);
+        return self.vtable.DetectRegions(self, lFlags, pInputStream, pWiaItem2);
     }
 };
 
@@ -2823,16 +2823,16 @@ pub const IWiaImageFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeFilter(self: *const IWiaImageFilter, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).InitializeFilter(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaItem2, pWiaTransferCallback);
+        return self.vtable.InitializeFilter(self, pWiaItem2, pWiaTransferCallback);
     }
     pub fn SetNewCallback(self: *const IWiaImageFilter, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).SetNewCallback(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaTransferCallback);
+        return self.vtable.SetNewCallback(self, pWiaTransferCallback);
     }
     pub fn FilterPreviewImage(self: *const IWiaImageFilter, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).FilterPreviewImage(@as(*const IWiaImageFilter, @ptrCast(self)), lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
+        return self.vtable.FilterPreviewImage(self, lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
     }
     pub fn ApplyProperties(self: *const IWiaImageFilter, pWiaPropertyStorage: ?*IWiaPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).ApplyProperties(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaPropertyStorage);
+        return self.vtable.ApplyProperties(self, pWiaPropertyStorage);
     }
 };
 
@@ -2884,16 +2884,16 @@ pub const IWiaPreview = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNewPreview(self: *const IWiaPreview, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).GetNewPreview(@as(*const IWiaPreview, @ptrCast(self)), lFlags, pWiaItem2, pWiaTransferCallback);
+        return self.vtable.GetNewPreview(self, lFlags, pWiaItem2, pWiaTransferCallback);
     }
     pub fn UpdatePreview(self: *const IWiaPreview, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).UpdatePreview(@as(*const IWiaPreview, @ptrCast(self)), lFlags, pChildWiaItem2, pWiaTransferCallback);
+        return self.vtable.UpdatePreview(self, lFlags, pChildWiaItem2, pWiaTransferCallback);
     }
     pub fn DetectRegions(self: *const IWiaPreview, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).DetectRegions(@as(*const IWiaPreview, @ptrCast(self)), lFlags);
+        return self.vtable.DetectRegions(self, lFlags);
     }
     pub fn Clear(self: *const IWiaPreview) callconv(.Inline) HRESULT {
-        return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWiaPreview, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -2951,19 +2951,19 @@ pub const IEnumWiaItem2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumWiaItem2, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt, ppIWiaItem2, pcEltFetched);
+        return self.vtable.Next(self, cElt, ppIWiaItem2, pcEltFetched);
     }
     pub fn Skip(self: *const IEnumWiaItem2, cElt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt);
+        return self.vtable.Skip(self, cElt);
     }
     pub fn Reset(self: *const IEnumWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWiaItem2, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumWiaItem2, ppIEnum: ?*?*IEnumWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWiaItem2, @ptrCast(self)), ppIEnum);
+        return self.vtable.Clone(self, ppIEnum);
     }
     pub fn GetCount(self: *const IEnumWiaItem2, cElt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt);
+        return self.vtable.GetCount(self, cElt);
     }
 };
 
@@ -3133,52 +3133,52 @@ pub const IWiaItem2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateChildItem(self: *const IWiaItem2, lItemFlags: i32, lCreationFlags: i32, bstrItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).CreateChildItem(@as(*const IWiaItem2, @ptrCast(self)), lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
+        return self.vtable.CreateChildItem(self, lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
     }
     pub fn DeleteItem(self: *const IWiaItem2, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IWiaItem2, @ptrCast(self)), lFlags);
+        return self.vtable.DeleteItem(self, lFlags);
     }
     pub fn EnumChildItems(self: *const IWiaItem2, pCategoryGUID: ?*const Guid, ppIEnumWiaItem2: ?*?*IEnumWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumChildItems(@as(*const IWiaItem2, @ptrCast(self)), pCategoryGUID, ppIEnumWiaItem2);
+        return self.vtable.EnumChildItems(self, pCategoryGUID, ppIEnumWiaItem2);
     }
     pub fn FindItemByName(self: *const IWiaItem2, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrFullItemName, ppIWiaItem2);
+        return self.vtable.FindItemByName(self, lFlags, bstrFullItemName, ppIWiaItem2);
     }
     pub fn GetItemCategory(self: *const IWiaItem2, pItemCategoryGUID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetItemCategory(@as(*const IWiaItem2, @ptrCast(self)), pItemCategoryGUID);
+        return self.vtable.GetItemCategory(self, pItemCategoryGUID);
     }
     pub fn GetItemType(self: *const IWiaItem2, pItemType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IWiaItem2, @ptrCast(self)), pItemType);
+        return self.vtable.GetItemType(self, pItemType);
     }
     pub fn DeviceDlg(self: *const IWiaItem2, lFlags: i32, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeviceDlg(@as(*const IWiaItem2, @ptrCast(self)), lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+        return self.vtable.DeviceDlg(self, lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
     }
     pub fn DeviceCommand(self: *const IWiaItem2, lFlags: i32, pCmdGUID: ?*const Guid, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeviceCommand(@as(*const IWiaItem2, @ptrCast(self)), lFlags, pCmdGUID, ppIWiaItem2);
+        return self.vtable.DeviceCommand(self, lFlags, pCmdGUID, ppIWiaItem2);
     }
     pub fn EnumDeviceCapabilities(self: *const IWiaItem2, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumDeviceCapabilities(@as(*const IWiaItem2, @ptrCast(self)), lFlags, ppIEnumWIA_DEV_CAPS);
+        return self.vtable.EnumDeviceCapabilities(self, lFlags, ppIEnumWIA_DEV_CAPS);
     }
     pub fn CheckExtension(self: *const IWiaItem2, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, pbExtensionExists: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).CheckExtension(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
+        return self.vtable.CheckExtension(self, lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
     }
     pub fn GetExtension(self: *const IWiaItem2, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetExtension(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrName, riidExtensionInterface, ppOut);
+        return self.vtable.GetExtension(self, lFlags, bstrName, riidExtensionInterface, ppOut);
     }
     pub fn GetParentItem(self: *const IWiaItem2, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetParentItem(@as(*const IWiaItem2, @ptrCast(self)), ppIWiaItem2);
+        return self.vtable.GetParentItem(self, ppIWiaItem2);
     }
     pub fn GetRootItem(self: *const IWiaItem2, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetRootItem(@as(*const IWiaItem2, @ptrCast(self)), ppIWiaItem2);
+        return self.vtable.GetRootItem(self, ppIWiaItem2);
     }
     pub fn GetPreviewComponent(self: *const IWiaItem2, lFlags: i32, ppWiaPreview: ?*?*IWiaPreview) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetPreviewComponent(@as(*const IWiaItem2, @ptrCast(self)), lFlags, ppWiaPreview);
+        return self.vtable.GetPreviewComponent(self, lFlags, ppWiaPreview);
     }
     pub fn EnumRegisterEventInfo(self: *const IWiaItem2, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumRegisterEventInfo(@as(*const IWiaItem2, @ptrCast(self)), lFlags, pEventGUID, ppIEnum);
+        return self.vtable.EnumRegisterEventInfo(self, lFlags, pEventGUID, ppIEnum);
     }
     pub fn Diagnostic(self: *const IWiaItem2, ulSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IWiaItem2, @ptrCast(self)), ulSize, pBuffer);
+        return self.vtable.Diagnostic(self, ulSize, pBuffer);
     }
 };
 
@@ -3293,28 +3293,28 @@ pub const IWiaDevMgr2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumDeviceInfo(self: *const IWiaDevMgr2, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).EnumDeviceInfo(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, ppIEnum);
+        return self.vtable.EnumDeviceInfo(self, lFlags, ppIEnum);
     }
     pub fn CreateDevice(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, ppWiaItem2Root);
+        return self.vtable.CreateDevice(self, lFlags, bstrDeviceID, ppWiaItem2Root);
     }
     pub fn SelectDeviceDlg(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).SelectDeviceDlg(@as(*const IWiaDevMgr2, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+        return self.vtable.SelectDeviceDlg(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
     }
     pub fn SelectDeviceDlgID(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).SelectDeviceDlgID(@as(*const IWiaDevMgr2, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+        return self.vtable.SelectDeviceDlgID(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID);
     }
     pub fn RegisterEventCallbackInterface(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackInterface(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+        return self.vtable.RegisterEventCallbackInterface(self, lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
     }
     pub fn RegisterEventCallbackProgram(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackProgram(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
+        return self.vtable.RegisterEventCallbackProgram(self, lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
     }
     pub fn RegisterEventCallbackCLSID(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackCLSID(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+        return self.vtable.RegisterEventCallbackCLSID(self, lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
     }
     pub fn GetImageDlg(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).GetImageDlg(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+        return self.vtable.GetImageDlg(self, lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
     }
 };
 
@@ -3556,55 +3556,55 @@ pub const IWiaMiniDrv = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn drvInitializeWia(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0000: ?*u8, __MIDL__IWiaMiniDrv0001: i32, __MIDL__IWiaMiniDrv0002: ?BSTR, __MIDL__IWiaMiniDrv0003: ?BSTR, __MIDL__IWiaMiniDrv0004: ?*IUnknown, __MIDL__IWiaMiniDrv0005: ?*IUnknown, __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0007: ?*?*IUnknown, __MIDL__IWiaMiniDrv0008: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvInitializeWia(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
+        return self.vtable.drvInitializeWia(self, __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
     }
     pub fn drvAcquireItemData(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0009: ?*u8, __MIDL__IWiaMiniDrv0010: i32, __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0012: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvAcquireItemData(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
+        return self.vtable.drvAcquireItemData(self, __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
     }
     pub fn drvInitItemProperties(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0013: ?*u8, __MIDL__IWiaMiniDrv0014: i32, __MIDL__IWiaMiniDrv0015: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvInitItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
+        return self.vtable.drvInitItemProperties(self, __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
     }
     pub fn drvValidateItemProperties(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0016: ?*u8, __MIDL__IWiaMiniDrv0017: i32, __MIDL__IWiaMiniDrv0018: u32, __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0020: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvValidateItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
+        return self.vtable.drvValidateItemProperties(self, __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
     }
     pub fn drvWriteItemProperties(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0021: ?*u8, __MIDL__IWiaMiniDrv0022: i32, __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0024: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvWriteItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
+        return self.vtable.drvWriteItemProperties(self, __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
     }
     pub fn drvReadItemProperties(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0025: ?*u8, __MIDL__IWiaMiniDrv0026: i32, __MIDL__IWiaMiniDrv0027: u32, __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0029: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvReadItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
+        return self.vtable.drvReadItemProperties(self, __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
     }
     pub fn drvLockWiaDevice(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0030: ?*u8, __MIDL__IWiaMiniDrv0031: i32, __MIDL__IWiaMiniDrv0032: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvLockWiaDevice(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
+        return self.vtable.drvLockWiaDevice(self, __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
     }
     pub fn drvUnLockWiaDevice(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0033: ?*u8, __MIDL__IWiaMiniDrv0034: i32, __MIDL__IWiaMiniDrv0035: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvUnLockWiaDevice(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
+        return self.vtable.drvUnLockWiaDevice(self, __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
     }
     pub fn drvAnalyzeItem(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0036: ?*u8, __MIDL__IWiaMiniDrv0037: i32, __MIDL__IWiaMiniDrv0038: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvAnalyzeItem(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
+        return self.vtable.drvAnalyzeItem(self, __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
     }
     pub fn drvGetDeviceErrorStr(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?PWSTR, __MIDL__IWiaMiniDrv0042: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetDeviceErrorStr(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
+        return self.vtable.drvGetDeviceErrorStr(self, __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
     }
     pub fn drvDeviceCommand(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0043: ?*u8, __MIDL__IWiaMiniDrv0044: i32, __MIDL__IWiaMiniDrv0045: ?*const Guid, __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0047: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvDeviceCommand(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
+        return self.vtable.drvDeviceCommand(self, __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
     }
     pub fn drvGetCapabilities(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0048: ?*u8, __MIDL__IWiaMiniDrv0049: i32, __MIDL__IWiaMiniDrv0050: ?*i32, __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV, __MIDL__IWiaMiniDrv0052: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetCapabilities(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
+        return self.vtable.drvGetCapabilities(self, __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
     }
     pub fn drvDeleteItem(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0053: ?*u8, __MIDL__IWiaMiniDrv0054: i32, __MIDL__IWiaMiniDrv0055: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvDeleteItem(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
+        return self.vtable.drvDeleteItem(self, __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
     }
     pub fn drvFreeDrvItemContext(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0056: i32, __MIDL__IWiaMiniDrv0057: ?*u8, __MIDL__IWiaMiniDrv0058: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvFreeDrvItemContext(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
+        return self.vtable.drvFreeDrvItemContext(self, __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
     }
     pub fn drvGetWiaFormatInfo(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0059: ?*u8, __MIDL__IWiaMiniDrv0060: i32, __MIDL__IWiaMiniDrv0061: ?*i32, __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO, __MIDL__IWiaMiniDrv0063: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetWiaFormatInfo(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
+        return self.vtable.drvGetWiaFormatInfo(self, __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
     }
     pub fn drvNotifyPnpEvent(self: *const IWiaMiniDrv, pEventGUID: ?*const Guid, bstrDeviceID: ?BSTR, ulReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvNotifyPnpEvent(@as(*const IWiaMiniDrv, @ptrCast(self)), pEventGUID, bstrDeviceID, ulReserved);
+        return self.vtable.drvNotifyPnpEvent(self, pEventGUID, bstrDeviceID, ulReserved);
     }
     pub fn drvUnInitializeWia(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0064: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvUnInitializeWia(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0064);
+        return self.vtable.drvUnInitializeWia(self, __MIDL__IWiaMiniDrv0064);
     }
 };
 
@@ -3635,7 +3635,7 @@ pub const IWiaMiniDrvCallBack = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MiniDrvCallback(self: *const IWiaMiniDrvCallBack, lReason: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT, lReserved: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrvCallBack.VTable, @ptrCast(self.vtable)).MiniDrvCallback(@as(*const IWiaMiniDrvCallBack, @ptrCast(self)), lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
+        return self.vtable.MiniDrvCallback(self, lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
     }
 };
 
@@ -3672,10 +3672,10 @@ pub const IWiaMiniDrvTransferCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextStream(self: *const IWiaMiniDrvTransferCallback, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrvTransferCallback.VTable, @ptrCast(self.vtable)).GetNextStream(@as(*const IWiaMiniDrvTransferCallback, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppIStream);
+        return self.vtable.GetNextStream(self, lFlags, bstrItemName, bstrFullItemName, ppIStream);
     }
     pub fn SendMessage(self: *const IWiaMiniDrvTransferCallback, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.Inline) HRESULT {
-        return @as(*const IWiaMiniDrvTransferCallback.VTable, @ptrCast(self.vtable)).SendMessage(@as(*const IWiaMiniDrvTransferCallback, @ptrCast(self)), lFlags, pWiaTransferParams);
+        return self.vtable.SendMessage(self, lFlags, pWiaTransferParams);
     }
 };
 
@@ -3799,43 +3799,43 @@ pub const IWiaDrvItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemFlags(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0000: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetItemFlags(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0000);
+        return self.vtable.GetItemFlags(self, __MIDL__IWiaDrvItem0000);
     }
     pub fn GetDeviceSpecContext(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0001: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetDeviceSpecContext(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0001);
+        return self.vtable.GetDeviceSpecContext(self, __MIDL__IWiaDrvItem0001);
     }
     pub fn GetFullItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0002: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetFullItemName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0002);
+        return self.vtable.GetFullItemName(self, __MIDL__IWiaDrvItem0002);
     }
     pub fn GetItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0003: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetItemName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0003);
+        return self.vtable.GetItemName(self, __MIDL__IWiaDrvItem0003);
     }
     pub fn AddItemToFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).AddItemToFolder(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0004);
+        return self.vtable.AddItemToFolder(self, __MIDL__IWiaDrvItem0004);
     }
     pub fn UnlinkItemTree(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0005: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).UnlinkItemTree(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0005);
+        return self.vtable.UnlinkItemTree(self, __MIDL__IWiaDrvItem0005);
     }
     pub fn RemoveItemFromFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0006: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).RemoveItemFromFolder(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0006);
+        return self.vtable.RemoveItemFromFolder(self, __MIDL__IWiaDrvItem0006);
     }
     pub fn FindItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
+        return self.vtable.FindItemByName(self, __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
     }
     pub fn FindChildItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).FindChildItemByName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
+        return self.vtable.FindChildItemByName(self, __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
     }
     pub fn GetParentItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetParentItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0012);
+        return self.vtable.GetParentItem(self, __MIDL__IWiaDrvItem0012);
     }
     pub fn GetFirstChildItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetFirstChildItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0013);
+        return self.vtable.GetFirstChildItem(self, __MIDL__IWiaDrvItem0013);
     }
     pub fn GetNextSiblingItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetNextSiblingItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0014);
+        return self.vtable.GetNextSiblingItem(self, __MIDL__IWiaDrvItem0014);
     }
     pub fn DumpItemData(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0015: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).DumpItemData(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0015);
+        return self.vtable.DumpItemData(self, __MIDL__IWiaDrvItem0015);
     }
 };
 
@@ -4080,43 +4080,43 @@ pub const IWiaVideo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_PreviewVisible(self: *const IWiaVideo, pbPreviewVisible: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).get_PreviewVisible(@as(*const IWiaVideo, @ptrCast(self)), pbPreviewVisible);
+        return self.vtable.get_PreviewVisible(self, pbPreviewVisible);
     }
     pub fn put_PreviewVisible(self: *const IWiaVideo, bPreviewVisible: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).put_PreviewVisible(@as(*const IWiaVideo, @ptrCast(self)), bPreviewVisible);
+        return self.vtable.put_PreviewVisible(self, bPreviewVisible);
     }
     pub fn get_ImagesDirectory(self: *const IWiaVideo, pbstrImageDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).get_ImagesDirectory(@as(*const IWiaVideo, @ptrCast(self)), pbstrImageDirectory);
+        return self.vtable.get_ImagesDirectory(self, pbstrImageDirectory);
     }
     pub fn put_ImagesDirectory(self: *const IWiaVideo, bstrImageDirectory: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).put_ImagesDirectory(@as(*const IWiaVideo, @ptrCast(self)), bstrImageDirectory);
+        return self.vtable.put_ImagesDirectory(self, bstrImageDirectory);
     }
     pub fn CreateVideoByWiaDevID(self: *const IWiaVideo, bstrWiaDeviceID: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByWiaDevID(@as(*const IWiaVideo, @ptrCast(self)), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        return self.vtable.CreateVideoByWiaDevID(self, bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
     }
     pub fn CreateVideoByDevNum(self: *const IWiaVideo, uiDeviceNumber: u32, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByDevNum(@as(*const IWiaVideo, @ptrCast(self)), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        return self.vtable.CreateVideoByDevNum(self, uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
     }
     pub fn CreateVideoByName(self: *const IWiaVideo, bstrFriendlyName: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByName(@as(*const IWiaVideo, @ptrCast(self)), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        return self.vtable.CreateVideoByName(self, bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
     }
     pub fn DestroyVideo(self: *const IWiaVideo) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).DestroyVideo(@as(*const IWiaVideo, @ptrCast(self)));
+        return self.vtable.DestroyVideo(self);
     }
     pub fn Play(self: *const IWiaVideo) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).Play(@as(*const IWiaVideo, @ptrCast(self)));
+        return self.vtable.Play(self);
     }
     pub fn Pause(self: *const IWiaVideo) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).Pause(@as(*const IWiaVideo, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn TakePicture(self: *const IWiaVideo, pbstrNewImageFilename: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).TakePicture(@as(*const IWiaVideo, @ptrCast(self)), pbstrNewImageFilename);
+        return self.vtable.TakePicture(self, pbstrNewImageFilename);
     }
     pub fn ResizeVideo(self: *const IWiaVideo, bStretchToFitParent: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).ResizeVideo(@as(*const IWiaVideo, @ptrCast(self)), bStretchToFitParent);
+        return self.vtable.ResizeVideo(self, bStretchToFitParent);
     }
     pub fn GetCurrentState(self: *const IWiaVideo, pState: ?*WIAVIDEO_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).GetCurrentState(@as(*const IWiaVideo, @ptrCast(self)), pState);
+        return self.vtable.GetCurrentState(self, pState);
     }
 };
 
@@ -4163,10 +4163,10 @@ pub const IWiaUIExtension2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeviceDialog(self: *const IWiaUIExtension2, pDeviceDialogData: ?*DEVICEDIALOGDATA2) callconv(.Inline) HRESULT {
-        return @as(*const IWiaUIExtension2.VTable, @ptrCast(self.vtable)).DeviceDialog(@as(*const IWiaUIExtension2, @ptrCast(self)), pDeviceDialogData);
+        return self.vtable.DeviceDialog(self, pDeviceDialogData);
     }
     pub fn GetDeviceIcon(self: *const IWiaUIExtension2, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaUIExtension2.VTable, @ptrCast(self.vtable)).GetDeviceIcon(@as(*const IWiaUIExtension2, @ptrCast(self)), bstrDeviceId, phIcon, nSize);
+        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
     }
 };
 
@@ -4222,13 +4222,13 @@ pub const IWiaUIExtension = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeviceDialog(self: *const IWiaUIExtension, pDeviceDialogData: ?*DEVICEDIALOGDATA) callconv(.Inline) HRESULT {
-        return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).DeviceDialog(@as(*const IWiaUIExtension, @ptrCast(self)), pDeviceDialogData);
+        return self.vtable.DeviceDialog(self, pDeviceDialogData);
     }
     pub fn GetDeviceIcon(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).GetDeviceIcon(@as(*const IWiaUIExtension, @ptrCast(self)), bstrDeviceId, phIcon, nSize);
+        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
     }
     pub fn GetDeviceBitmapLogo(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).GetDeviceBitmapLogo(@as(*const IWiaUIExtension, @ptrCast(self)), bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
+        return self.vtable.GetDeviceBitmapLogo(self, bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
     }
 };
 

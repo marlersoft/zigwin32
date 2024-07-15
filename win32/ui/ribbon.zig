@@ -136,7 +136,7 @@ pub const IUISimplePropertySet = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUISimplePropertySet.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IUISimplePropertySet, @ptrCast(self)), key, value);
+        return self.vtable.GetValue(self, key, value);
     }
 };
 
@@ -178,13 +178,13 @@ pub const IUIRibbon = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).GetHeight(@as(*const IUIRibbon, @ptrCast(self)), cy);
+        return self.vtable.GetHeight(self, cy);
     }
     pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).LoadSettingsFromStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
+        return self.vtable.LoadSettingsFromStream(self, pStream);
     }
     pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).SaveSettingsToStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
+        return self.vtable.SaveSettingsToStream(self, pStream);
     }
 };
 
@@ -293,31 +293,31 @@ pub const IUIFramework = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IUIFramework, frameWnd: ?HWND, application: ?*IUIApplication) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUIFramework, @ptrCast(self)), frameWnd, application);
+        return self.vtable.Initialize(self, frameWnd, application);
     }
     pub fn Destroy(self: *const IUIFramework) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IUIFramework, @ptrCast(self)));
+        return self.vtable.Destroy(self);
     }
     pub fn LoadUI(self: *const IUIFramework, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).LoadUI(@as(*const IUIFramework, @ptrCast(self)), instance, resourceName);
+        return self.vtable.LoadUI(self, instance, resourceName);
     }
     pub fn GetView(self: *const IUIFramework, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetView(@as(*const IUIFramework, @ptrCast(self)), viewId, riid, ppv);
+        return self.vtable.GetView(self, viewId, riid, ppv);
     }
     pub fn GetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
+        return self.vtable.GetUICommandProperty(self, commandId, key, value);
     }
     pub fn SetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
+        return self.vtable.SetUICommandProperty(self, commandId, key, value);
     }
     pub fn InvalidateUICommand(self: *const IUIFramework, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).InvalidateUICommand(@as(*const IUIFramework, @ptrCast(self)), commandId, flags, key);
+        return self.vtable.InvalidateUICommand(self, commandId, flags, key);
     }
     pub fn FlushPendingInvalidations(self: *const IUIFramework) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).FlushPendingInvalidations(@as(*const IUIFramework, @ptrCast(self)));
+        return self.vtable.FlushPendingInvalidations(self);
     }
     pub fn SetModes(self: *const IUIFramework, iModes: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetModes(@as(*const IUIFramework, @ptrCast(self)), iModes);
+        return self.vtable.SetModes(self, iModes);
     }
 };
 
@@ -360,7 +360,7 @@ pub const IUIEventLogger = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.Inline) void {
-        return @as(*const IUIEventLogger.VTable, @ptrCast(self.vtable)).OnUIEvent(@as(*const IUIEventLogger, @ptrCast(self)), pEventParams);
+        return self.vtable.OnUIEvent(self, pEventParams);
     }
 };
 
@@ -386,7 +386,7 @@ pub const IUIEventingManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.Inline) HRESULT {
-        return @as(*const IUIEventingManager.VTable, @ptrCast(self.vtable)).SetEventLogger(@as(*const IUIEventingManager, @ptrCast(self)), eventLogger);
+        return self.vtable.SetEventLogger(self, eventLogger);
     }
 };
 
@@ -413,7 +413,7 @@ pub const IUIContextualUI = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUIContextualUI.VTable, @ptrCast(self.vtable)).ShowAtLocation(@as(*const IUIContextualUI, @ptrCast(self)), x, y);
+        return self.vtable.ShowAtLocation(self, x, y);
     }
 };
 
@@ -489,25 +489,25 @@ pub const IUICollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IUICollection, @ptrCast(self)), count);
+        return self.vtable.GetCount(self, count);
     }
     pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IUICollection, @ptrCast(self)), index, item);
+        return self.vtable.GetItem(self, index, item);
     }
     pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IUICollection, @ptrCast(self)), item);
+        return self.vtable.Add(self, item);
     }
     pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IUICollection, @ptrCast(self)), index, item);
+        return self.vtable.Insert(self, index, item);
     }
     pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUICollection, @ptrCast(self)), index);
+        return self.vtable.RemoveAt(self, index);
     }
     pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Replace(@as(*const IUICollection, @ptrCast(self)), indexReplaced, itemReplaceWith);
+        return self.vtable.Replace(self, indexReplaced, itemReplaceWith);
     }
     pub fn Clear(self: *const IUICollection) callconv(.Inline) HRESULT {
-        return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IUICollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -548,7 +548,7 @@ pub const IUICollectionChangedEvent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUICollectionChangedEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IUICollectionChangedEvent, @ptrCast(self)), action, oldIndex, oldItem, newIndex, newItem);
+        return self.vtable.OnChanged(self, action, oldIndex, oldItem, newIndex, newItem);
     }
 };
 
@@ -598,10 +598,10 @@ pub const IUICommandHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.Inline) HRESULT {
-        return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).Execute(@as(*const IUICommandHandler, @ptrCast(self)), commandId, verb, key, currentValue, commandExecutionProperties);
+        return self.vtable.Execute(self, commandId, verb, key, currentValue, commandExecutionProperties);
     }
     pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).UpdateProperty(@as(*const IUICommandHandler, @ptrCast(self)), commandId, key, currentValue, newValue);
+        return self.vtable.UpdateProperty(self, commandId, key, currentValue, newValue);
     }
 };
 
@@ -696,13 +696,13 @@ pub const IUIApplication = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnViewChanged(@as(*const IUIApplication, @ptrCast(self)), viewId, typeID, view, verb, uReasonCode);
+        return self.vtable.OnViewChanged(self, viewId, typeID, view, verb, uReasonCode);
     }
     pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.Inline) HRESULT {
-        return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnCreateUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
+        return self.vtable.OnCreateUICommand(self, commandId, typeID, commandHandler);
     }
     pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.Inline) HRESULT {
-        return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnDestroyUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
+        return self.vtable.OnDestroyUICommand(self, commandId, typeID, commandHandler);
     }
 };
 
@@ -728,7 +728,7 @@ pub const IUIImage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IUIImage.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IUIImage, @ptrCast(self)), bitmap);
+        return self.vtable.GetBitmap(self, bitmap);
     }
 };
 
@@ -763,7 +763,7 @@ pub const IUIImageFromBitmap = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.Inline) HRESULT {
-        return @as(*const IUIImageFromBitmap.VTable, @ptrCast(self.vtable)).CreateImage(@as(*const IUIImageFromBitmap, @ptrCast(self)), bitmap, options, image);
+        return self.vtable.CreateImage(self, bitmap, options, image);
     }
 };
 

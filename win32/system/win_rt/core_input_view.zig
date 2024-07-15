@@ -29,7 +29,7 @@ pub const ICoreFrameworkInputViewInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ICoreFrameworkInputViewInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ICoreFrameworkInputViewInterop, @ptrCast(self)), appWindow, riid, coreFrameworkInputView);
+        return self.vtable.GetForWindow(self, appWindow, riid, coreFrameworkInputView);
     }
 };
 

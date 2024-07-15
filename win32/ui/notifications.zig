@@ -36,7 +36,7 @@ pub const INotificationActivationCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Activate(self: *const INotificationActivationCallback, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const INotificationActivationCallback.VTable, @ptrCast(self.vtable)).Activate(@as(*const INotificationActivationCallback, @ptrCast(self)), appUserModelId, invokedArgs, data, count);
+        return self.vtable.Activate(self, appUserModelId, invokedArgs, data, count);
     }
 };
 

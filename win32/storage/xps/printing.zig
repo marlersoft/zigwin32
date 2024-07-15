@@ -50,7 +50,7 @@ pub const IXpsPrintJobStream = extern union {
     };}
     pub usingnamespace ISequentialStream.MethodMixin(@This());
     pub fn Close(self: *const IXpsPrintJobStream) callconv(.Inline) HRESULT {
-        return @as(*const IXpsPrintJobStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsPrintJobStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -83,10 +83,10 @@ pub const IXpsPrintJob = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Cancel(self: *const IXpsPrintJob) callconv(.Inline) HRESULT {
-        return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IXpsPrintJob, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn GetJobStatus(self: *const IXpsPrintJob, jobStatus: ?*XPS_JOB_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).GetJobStatus(@as(*const IXpsPrintJob, @ptrCast(self)), jobStatus);
+        return self.vtable.GetJobStatus(self, jobStatus);
     }
 };
 
@@ -136,13 +136,13 @@ pub const IPrintDocumentPackageTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPackageTargetTypes(self: *const IPrintDocumentPackageTarget, targetCount: ?*u32, targetTypes: [*]?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTargetTypes(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), targetCount, targetTypes);
+        return self.vtable.GetPackageTargetTypes(self, targetCount, targetTypes);
     }
     pub fn GetPackageTarget(self: *const IPrintDocumentPackageTarget, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTarget(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), guidTargetType, riid, ppvTarget);
+        return self.vtable.GetPackageTarget(self, guidTargetType, riid, ppvTarget);
     }
     pub fn Cancel(self: *const IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -188,7 +188,7 @@ pub const IPrintDocumentPackageStatusEvent = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn PackageStatusUpdated(self: *const IPrintDocumentPackageStatusEvent, packageStatus: ?*PrintDocumentPackageStatus) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDocumentPackageStatusEvent.VTable, @ptrCast(self.vtable)).PackageStatusUpdated(@as(*const IPrintDocumentPackageStatusEvent, @ptrCast(self)), packageStatus);
+        return self.vtable.PackageStatusUpdated(self, packageStatus);
     }
 };
 
@@ -218,7 +218,7 @@ pub const IPrintDocumentPackageTargetFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDocumentPackageTargetForPrintJob(self: *const IPrintDocumentPackageTargetFactory, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
-        return @as(*const IPrintDocumentPackageTargetFactory.VTable, @ptrCast(self.vtable)).CreateDocumentPackageTargetForPrintJob(@as(*const IPrintDocumentPackageTargetFactory, @ptrCast(self)), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
+        return self.vtable.CreateDocumentPackageTargetForPrintJob(self, printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
     }
 };
 

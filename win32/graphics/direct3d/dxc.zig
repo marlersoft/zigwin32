@@ -101,10 +101,10 @@ pub const IDxcBlob = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBufferPointer(self: *const IDxcBlob) callconv(.Inline) ?*anyopaque {
-        return @as(*const IDxcBlob.VTable, @ptrCast(self.vtable)).GetBufferPointer(@as(*const IDxcBlob, @ptrCast(self)));
+        return self.vtable.GetBufferPointer(self);
     }
     pub fn GetBufferSize(self: *const IDxcBlob) callconv(.Inline) usize {
-        return @as(*const IDxcBlob.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const IDxcBlob, @ptrCast(self)));
+        return self.vtable.GetBufferSize(self);
     }
 };
 
@@ -130,7 +130,7 @@ pub const IDxcBlobEncoding = extern union {
     };}
     pub usingnamespace IDxcBlob.MethodMixin(@This());
     pub fn GetEncoding(self: *const IDxcBlobEncoding, pKnown: ?*BOOL, pCodePage: ?*DXC_CP) callconv(.Inline) HRESULT {
-        return @as(*const IDxcBlobEncoding.VTable, @ptrCast(self.vtable)).GetEncoding(@as(*const IDxcBlobEncoding, @ptrCast(self)), pKnown, pCodePage);
+        return self.vtable.GetEncoding(self, pKnown, pCodePage);
     }
 };
 
@@ -161,10 +161,10 @@ pub const IDxcBlobUtf16 = extern union {
     };}
     pub usingnamespace IDxcBlobEncoding.MethodMixin(@This());
     pub fn GetStringPointer(self: *const IDxcBlobUtf16) callconv(.Inline) ?PWSTR {
-        return @as(*const IDxcBlobUtf16.VTable, @ptrCast(self.vtable)).GetStringPointer(@as(*const IDxcBlobUtf16, @ptrCast(self)));
+        return self.vtable.GetStringPointer(self);
     }
     pub fn GetStringLength(self: *const IDxcBlobUtf16) callconv(.Inline) usize {
-        return @as(*const IDxcBlobUtf16.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDxcBlobUtf16, @ptrCast(self)));
+        return self.vtable.GetStringLength(self);
     }
 };
 
@@ -195,10 +195,10 @@ pub const IDxcBlobUtf8 = extern union {
     };}
     pub usingnamespace IDxcBlobEncoding.MethodMixin(@This());
     pub fn GetStringPointer(self: *const IDxcBlobUtf8) callconv(.Inline) ?PSTR {
-        return @as(*const IDxcBlobUtf8.VTable, @ptrCast(self.vtable)).GetStringPointer(@as(*const IDxcBlobUtf8, @ptrCast(self)));
+        return self.vtable.GetStringPointer(self);
     }
     pub fn GetStringLength(self: *const IDxcBlobUtf8) callconv(.Inline) usize {
-        return @as(*const IDxcBlobUtf8.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDxcBlobUtf8, @ptrCast(self)));
+        return self.vtable.GetStringLength(self);
     }
 };
 
@@ -224,7 +224,7 @@ pub const IDxcIncludeHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadSource(self: *const IDxcIncludeHandler, pFilename: ?[*:0]const u16, ppIncludeSource: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcIncludeHandler.VTable, @ptrCast(self.vtable)).LoadSource(@as(*const IDxcIncludeHandler, @ptrCast(self)), pFilename, ppIncludeSource);
+        return self.vtable.LoadSource(self, pFilename, ppIncludeSource);
     }
 };
 
@@ -293,19 +293,19 @@ pub const IDxcCompilerArgs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetArguments(self: *const IDxcCompilerArgs) callconv(.Inline) ?*?PWSTR {
-        return @as(*const IDxcCompilerArgs.VTable, @ptrCast(self.vtable)).GetArguments(@as(*const IDxcCompilerArgs, @ptrCast(self)));
+        return self.vtable.GetArguments(self);
     }
     pub fn GetCount(self: *const IDxcCompilerArgs) callconv(.Inline) u32 {
-        return @as(*const IDxcCompilerArgs.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IDxcCompilerArgs, @ptrCast(self)));
+        return self.vtable.GetCount(self);
     }
     pub fn AddArguments(self: *const IDxcCompilerArgs, pArguments: ?[*]?PWSTR, argCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompilerArgs.VTable, @ptrCast(self.vtable)).AddArguments(@as(*const IDxcCompilerArgs, @ptrCast(self)), pArguments, argCount);
+        return self.vtable.AddArguments(self, pArguments, argCount);
     }
     pub fn AddArgumentsUTF8(self: *const IDxcCompilerArgs, pArguments: ?[*]?PSTR, argCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompilerArgs.VTable, @ptrCast(self.vtable)).AddArgumentsUTF8(@as(*const IDxcCompilerArgs, @ptrCast(self)), pArguments, argCount);
+        return self.vtable.AddArgumentsUTF8(self, pArguments, argCount);
     }
     pub fn AddDefines(self: *const IDxcCompilerArgs, pDefines: [*]const DxcDefine, defineCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompilerArgs.VTable, @ptrCast(self.vtable)).AddDefines(@as(*const IDxcCompilerArgs, @ptrCast(self)), pDefines, defineCount);
+        return self.vtable.AddDefines(self, pDefines, defineCount);
     }
 };
 
@@ -423,34 +423,34 @@ pub const IDxcLibrary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMalloc(self: *const IDxcLibrary, pMalloc: ?*IMalloc) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).SetMalloc(@as(*const IDxcLibrary, @ptrCast(self)), pMalloc);
+        return self.vtable.SetMalloc(self, pMalloc);
     }
     pub fn CreateBlobFromBlob(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateBlobFromBlob(@as(*const IDxcLibrary, @ptrCast(self)), pBlob, offset, length, ppResult);
+        return self.vtable.CreateBlobFromBlob(self, pBlob, offset, length, ppResult);
     }
     pub fn CreateBlobFromFile(self: *const IDxcLibrary, pFileName: ?[*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateBlobFromFile(@as(*const IDxcLibrary, @ptrCast(self)), pFileName, codePage, pBlobEncoding);
+        return self.vtable.CreateBlobFromFile(self, pFileName, codePage, pBlobEncoding);
     }
     pub fn CreateBlobWithEncodingFromPinned(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateBlobWithEncodingFromPinned(@as(*const IDxcLibrary, @ptrCast(self)), pText, size, codePage, pBlobEncoding);
+        return self.vtable.CreateBlobWithEncodingFromPinned(self, pText, size, codePage, pBlobEncoding);
     }
     pub fn CreateBlobWithEncodingOnHeapCopy(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateBlobWithEncodingOnHeapCopy(@as(*const IDxcLibrary, @ptrCast(self)), pText, size, codePage, pBlobEncoding);
+        return self.vtable.CreateBlobWithEncodingOnHeapCopy(self, pText, size, codePage, pBlobEncoding);
     }
     pub fn CreateBlobWithEncodingOnMalloc(self: *const IDxcLibrary, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateBlobWithEncodingOnMalloc(@as(*const IDxcLibrary, @ptrCast(self)), pText, pIMalloc, size, codePage, pBlobEncoding);
+        return self.vtable.CreateBlobWithEncodingOnMalloc(self, pText, pIMalloc, size, codePage, pBlobEncoding);
     }
     pub fn CreateIncludeHandler(self: *const IDxcLibrary, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateIncludeHandler(@as(*const IDxcLibrary, @ptrCast(self)), ppResult);
+        return self.vtable.CreateIncludeHandler(self, ppResult);
     }
     pub fn CreateStreamFromBlobReadOnly(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).CreateStreamFromBlobReadOnly(@as(*const IDxcLibrary, @ptrCast(self)), pBlob, ppStream);
+        return self.vtable.CreateStreamFromBlobReadOnly(self, pBlob, ppStream);
     }
     pub fn GetBlobAsUtf8(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).GetBlobAsUtf8(@as(*const IDxcLibrary, @ptrCast(self)), pBlob, pBlobEncoding);
+        return self.vtable.GetBlobAsUtf8(self, pBlob, pBlobEncoding);
     }
     pub fn GetBlobAsUtf16(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLibrary.VTable, @ptrCast(self.vtable)).GetBlobAsUtf16(@as(*const IDxcLibrary, @ptrCast(self)), pBlob, pBlobEncoding);
+        return self.vtable.GetBlobAsUtf16(self, pBlob, pBlobEncoding);
     }
 };
 
@@ -491,13 +491,13 @@ pub const IDxcOperationResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IDxcOperationResult, pStatus: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOperationResult.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDxcOperationResult, @ptrCast(self)), pStatus);
+        return self.vtable.GetStatus(self, pStatus);
     }
     pub fn GetResult(self: *const IDxcOperationResult, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOperationResult.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IDxcOperationResult, @ptrCast(self)), ppResult);
+        return self.vtable.GetResult(self, ppResult);
     }
     pub fn GetErrorBuffer(self: *const IDxcOperationResult, ppErrors: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOperationResult.VTable, @ptrCast(self.vtable)).GetErrorBuffer(@as(*const IDxcOperationResult, @ptrCast(self)), ppErrors);
+        return self.vtable.GetErrorBuffer(self, ppErrors);
     }
 };
 
@@ -555,13 +555,13 @@ pub const IDxcCompiler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compile(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler.VTable, @ptrCast(self.vtable)).Compile(@as(*const IDxcCompiler, @ptrCast(self)), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
+        return self.vtable.Compile(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
     pub fn Preprocess(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler.VTable, @ptrCast(self.vtable)).Preprocess(@as(*const IDxcCompiler, @ptrCast(self)), pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
+        return self.vtable.Preprocess(self, pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
     pub fn Disassemble(self: *const IDxcCompiler, pSource: ?*IDxcBlob, ppDisassembly: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler.VTable, @ptrCast(self.vtable)).Disassemble(@as(*const IDxcCompiler, @ptrCast(self)), pSource, ppDisassembly);
+        return self.vtable.Disassemble(self, pSource, ppDisassembly);
     }
 };
 
@@ -597,7 +597,7 @@ pub const IDxcCompiler2 = extern union {
     };}
     pub usingnamespace IDxcCompiler.MethodMixin(@This());
     pub fn CompileWithDebug(self: *const IDxcCompiler2, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler2.VTable, @ptrCast(self.vtable)).CompileWithDebug(@as(*const IDxcCompiler2, @ptrCast(self)), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
+        return self.vtable.CompileWithDebug(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
     }
 };
 
@@ -637,10 +637,10 @@ pub const IDxcLinker = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterLibrary(self: *const IDxcLinker, pLibName: ?[*:0]const u16, pLib: ?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLinker.VTable, @ptrCast(self.vtable)).RegisterLibrary(@as(*const IDxcLinker, @ptrCast(self)), pLibName, pLib);
+        return self.vtable.RegisterLibrary(self, pLibName, pLib);
     }
     pub fn Link(self: *const IDxcLinker, pEntryName: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pLibNames: [*]const ?[*:0]const u16, libCount: u32, pArguments: ?[*]const ?[*:0]const u16, argCount: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcLinker.VTable, @ptrCast(self.vtable)).Link(@as(*const IDxcLinker, @ptrCast(self)), pEntryName, pTargetProfile, pLibNames, libCount, pArguments, argCount, ppResult);
+        return self.vtable.Link(self, pEntryName, pTargetProfile, pLibNames, libCount, pArguments, argCount, ppResult);
     }
 };
 
@@ -796,43 +796,43 @@ pub const IDxcUtils = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateBlobFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateBlobFromBlob(@as(*const IDxcUtils, @ptrCast(self)), pBlob, offset, length, ppResult);
+        return self.vtable.CreateBlobFromBlob(self, pBlob, offset, length, ppResult);
     }
     pub fn CreateBlobFromPinned(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateBlobFromPinned(@as(*const IDxcUtils, @ptrCast(self)), pData, size, codePage, pBlobEncoding);
+        return self.vtable.CreateBlobFromPinned(self, pData, size, codePage, pBlobEncoding);
     }
     pub fn MoveToBlob(self: *const IDxcUtils, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).MoveToBlob(@as(*const IDxcUtils, @ptrCast(self)), pData, pIMalloc, size, codePage, pBlobEncoding);
+        return self.vtable.MoveToBlob(self, pData, pIMalloc, size, codePage, pBlobEncoding);
     }
     pub fn CreateBlob(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateBlob(@as(*const IDxcUtils, @ptrCast(self)), pData, size, codePage, pBlobEncoding);
+        return self.vtable.CreateBlob(self, pData, size, codePage, pBlobEncoding);
     }
     pub fn LoadFile(self: *const IDxcUtils, pFileName: ?[*:0]const u16, pCodePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).LoadFile(@as(*const IDxcUtils, @ptrCast(self)), pFileName, pCodePage, pBlobEncoding);
+        return self.vtable.LoadFile(self, pFileName, pCodePage, pBlobEncoding);
     }
     pub fn CreateReadOnlyStreamFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateReadOnlyStreamFromBlob(@as(*const IDxcUtils, @ptrCast(self)), pBlob, ppStream);
+        return self.vtable.CreateReadOnlyStreamFromBlob(self, pBlob, ppStream);
     }
     pub fn CreateDefaultIncludeHandler(self: *const IDxcUtils, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateDefaultIncludeHandler(@as(*const IDxcUtils, @ptrCast(self)), ppResult);
+        return self.vtable.CreateDefaultIncludeHandler(self, ppResult);
     }
     pub fn GetBlobAsUtf8(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf8) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).GetBlobAsUtf8(@as(*const IDxcUtils, @ptrCast(self)), pBlob, pBlobEncoding);
+        return self.vtable.GetBlobAsUtf8(self, pBlob, pBlobEncoding);
     }
     pub fn GetBlobAsUtf16(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).GetBlobAsUtf16(@as(*const IDxcUtils, @ptrCast(self)), pBlob, pBlobEncoding);
+        return self.vtable.GetBlobAsUtf16(self, pBlob, pBlobEncoding);
     }
     pub fn GetDxilContainerPart(self: *const IDxcUtils, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*anyopaque, pPartSizeInBytes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).GetDxilContainerPart(@as(*const IDxcUtils, @ptrCast(self)), pShader, DxcPart, ppPartData, pPartSizeInBytes);
+        return self.vtable.GetDxilContainerPart(self, pShader, DxcPart, ppPartData, pPartSizeInBytes);
     }
     pub fn CreateReflection(self: *const IDxcUtils, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).CreateReflection(@as(*const IDxcUtils, @ptrCast(self)), pData, iid, ppvReflection);
+        return self.vtable.CreateReflection(self, pData, iid, ppvReflection);
     }
     pub fn BuildArguments(self: *const IDxcUtils, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: ?*?*IDxcCompilerArgs) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).BuildArguments(@as(*const IDxcUtils, @ptrCast(self)), pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
+        return self.vtable.BuildArguments(self, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
     }
     pub fn GetPDBContents(self: *const IDxcUtils, pPDBBlob: ?*IDxcBlob, ppHash: ?*?*IDxcBlob, ppContainer: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcUtils.VTable, @ptrCast(self.vtable)).GetPDBContents(@as(*const IDxcUtils, @ptrCast(self)), pPDBBlob, ppHash, ppContainer);
+        return self.vtable.GetPDBContents(self, pPDBBlob, ppHash, ppContainer);
     }
 };
 
@@ -917,19 +917,19 @@ pub const IDxcResult = extern union {
     };}
     pub usingnamespace IDxcOperationResult.MethodMixin(@This());
     pub fn HasOutput(self: *const IDxcResult, dxcOutKind: DXC_OUT_KIND) callconv(.Inline) BOOL {
-        return @as(*const IDxcResult.VTable, @ptrCast(self.vtable)).HasOutput(@as(*const IDxcResult, @ptrCast(self)), dxcOutKind);
+        return self.vtable.HasOutput(self, dxcOutKind);
     }
     pub fn GetOutput(self: *const IDxcResult, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-        return @as(*const IDxcResult.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IDxcResult, @ptrCast(self)), dxcOutKind, iid, ppvObject, ppOutputName);
+        return self.vtable.GetOutput(self, dxcOutKind, iid, ppvObject, ppOutputName);
     }
     pub fn GetNumOutputs(self: *const IDxcResult) callconv(.Inline) u32 {
-        return @as(*const IDxcResult.VTable, @ptrCast(self.vtable)).GetNumOutputs(@as(*const IDxcResult, @ptrCast(self)));
+        return self.vtable.GetNumOutputs(self);
     }
     pub fn GetOutputByIndex(self: *const IDxcResult, Index: u32) callconv(.Inline) DXC_OUT_KIND {
-        return @as(*const IDxcResult.VTable, @ptrCast(self.vtable)).GetOutputByIndex(@as(*const IDxcResult, @ptrCast(self)), Index);
+        return self.vtable.GetOutputByIndex(self, Index);
     }
     pub fn PrimaryOutput(self: *const IDxcResult) callconv(.Inline) DXC_OUT_KIND {
-        return @as(*const IDxcResult.VTable, @ptrCast(self.vtable)).PrimaryOutput(@as(*const IDxcResult, @ptrCast(self)));
+        return self.vtable.PrimaryOutput(self);
     }
 };
 
@@ -965,10 +965,10 @@ pub const IDxcExtraOutputs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutputCount(self: *const IDxcExtraOutputs) callconv(.Inline) u32 {
-        return @as(*const IDxcExtraOutputs.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IDxcExtraOutputs, @ptrCast(self)));
+        return self.vtable.GetOutputCount(self);
     }
     pub fn GetOutput(self: *const IDxcExtraOutputs, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-        return @as(*const IDxcExtraOutputs.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IDxcExtraOutputs, @ptrCast(self)), uIndex, iid, ppvObject, ppOutputType, ppOutputName);
+        return self.vtable.GetOutput(self, uIndex, iid, ppvObject, ppOutputType, ppOutputName);
     }
 };
 
@@ -1008,10 +1008,10 @@ pub const IDxcCompiler3 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compile(self: *const IDxcCompiler3, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler3.VTable, @ptrCast(self.vtable)).Compile(@as(*const IDxcCompiler3, @ptrCast(self)), pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
+        return self.vtable.Compile(self, pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
     }
     pub fn Disassemble(self: *const IDxcCompiler3, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDxcCompiler3.VTable, @ptrCast(self.vtable)).Disassemble(@as(*const IDxcCompiler3, @ptrCast(self)), pObject, riid, ppResult);
+        return self.vtable.Disassemble(self, pObject, riid, ppResult);
     }
 };
 
@@ -1038,7 +1038,7 @@ pub const IDxcValidator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Validate(self: *const IDxcValidator, pShader: ?*IDxcBlob, Flags: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcValidator.VTable, @ptrCast(self.vtable)).Validate(@as(*const IDxcValidator, @ptrCast(self)), pShader, Flags, ppResult);
+        return self.vtable.Validate(self, pShader, Flags, ppResult);
     }
 };
 
@@ -1066,7 +1066,7 @@ pub const IDxcValidator2 = extern union {
     };}
     pub usingnamespace IDxcValidator.MethodMixin(@This());
     pub fn ValidateWithDebug(self: *const IDxcValidator2, pShader: ?*IDxcBlob, Flags: u32, pOptDebugBitcode: ?*DxcBuffer, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcValidator2.VTable, @ptrCast(self.vtable)).ValidateWithDebug(@as(*const IDxcValidator2, @ptrCast(self)), pShader, Flags, pOptDebugBitcode, ppResult);
+        return self.vtable.ValidateWithDebug(self, pShader, Flags, pOptDebugBitcode, ppResult);
     }
 };
 
@@ -1116,16 +1116,16 @@ pub const IDxcContainerBuilder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Load(self: *const IDxcContainerBuilder, pDxilContainerHeader: ?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerBuilder.VTable, @ptrCast(self.vtable)).Load(@as(*const IDxcContainerBuilder, @ptrCast(self)), pDxilContainerHeader);
+        return self.vtable.Load(self, pDxilContainerHeader);
     }
     pub fn AddPart(self: *const IDxcContainerBuilder, fourCC: u32, pSource: ?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerBuilder.VTable, @ptrCast(self.vtable)).AddPart(@as(*const IDxcContainerBuilder, @ptrCast(self)), fourCC, pSource);
+        return self.vtable.AddPart(self, fourCC, pSource);
     }
     pub fn RemovePart(self: *const IDxcContainerBuilder, fourCC: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerBuilder.VTable, @ptrCast(self.vtable)).RemovePart(@as(*const IDxcContainerBuilder, @ptrCast(self)), fourCC);
+        return self.vtable.RemovePart(self, fourCC);
     }
     pub fn SerializeContainer(self: *const IDxcContainerBuilder, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerBuilder.VTable, @ptrCast(self.vtable)).SerializeContainer(@as(*const IDxcContainerBuilder, @ptrCast(self)), ppResult);
+        return self.vtable.SerializeContainer(self, ppResult);
     }
 };
 
@@ -1151,7 +1151,7 @@ pub const IDxcAssembler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssembleToContainer(self: *const IDxcAssembler, pShader: ?*IDxcBlob, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcAssembler.VTable, @ptrCast(self.vtable)).AssembleToContainer(@as(*const IDxcAssembler, @ptrCast(self)), pShader, ppResult);
+        return self.vtable.AssembleToContainer(self, pShader, ppResult);
     }
 };
 
@@ -1221,22 +1221,22 @@ pub const IDxcContainerReflection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Load(self: *const IDxcContainerReflection, pContainer: ?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).Load(@as(*const IDxcContainerReflection, @ptrCast(self)), pContainer);
+        return self.vtable.Load(self, pContainer);
     }
     pub fn GetPartCount(self: *const IDxcContainerReflection, pResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).GetPartCount(@as(*const IDxcContainerReflection, @ptrCast(self)), pResult);
+        return self.vtable.GetPartCount(self, pResult);
     }
     pub fn GetPartKind(self: *const IDxcContainerReflection, idx: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).GetPartKind(@as(*const IDxcContainerReflection, @ptrCast(self)), idx, pResult);
+        return self.vtable.GetPartKind(self, idx, pResult);
     }
     pub fn GetPartContent(self: *const IDxcContainerReflection, idx: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).GetPartContent(@as(*const IDxcContainerReflection, @ptrCast(self)), idx, ppResult);
+        return self.vtable.GetPartContent(self, idx, ppResult);
     }
     pub fn FindFirstPartKind(self: *const IDxcContainerReflection, kind: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).FindFirstPartKind(@as(*const IDxcContainerReflection, @ptrCast(self)), kind, pResult);
+        return self.vtable.FindFirstPartKind(self, kind, pResult);
     }
     pub fn GetPartReflection(self: *const IDxcContainerReflection, idx: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDxcContainerReflection.VTable, @ptrCast(self.vtable)).GetPartReflection(@as(*const IDxcContainerReflection, @ptrCast(self)), idx, iid, ppvObject);
+        return self.vtable.GetPartReflection(self, idx, iid, ppvObject);
     }
 };
 
@@ -1295,19 +1295,19 @@ pub const IDxcOptimizerPass = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOptionName(self: *const IDxcOptimizerPass, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizerPass.VTable, @ptrCast(self.vtable)).GetOptionName(@as(*const IDxcOptimizerPass, @ptrCast(self)), ppResult);
+        return self.vtable.GetOptionName(self, ppResult);
     }
     pub fn GetDescription(self: *const IDxcOptimizerPass, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizerPass.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IDxcOptimizerPass, @ptrCast(self)), ppResult);
+        return self.vtable.GetDescription(self, ppResult);
     }
     pub fn GetOptionArgCount(self: *const IDxcOptimizerPass, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizerPass.VTable, @ptrCast(self.vtable)).GetOptionArgCount(@as(*const IDxcOptimizerPass, @ptrCast(self)), pCount);
+        return self.vtable.GetOptionArgCount(self, pCount);
     }
     pub fn GetOptionArgName(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizerPass.VTable, @ptrCast(self.vtable)).GetOptionArgName(@as(*const IDxcOptimizerPass, @ptrCast(self)), argIndex, ppResult);
+        return self.vtable.GetOptionArgName(self, argIndex, ppResult);
     }
     pub fn GetOptionArgDescription(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizerPass.VTable, @ptrCast(self.vtable)).GetOptionArgDescription(@as(*const IDxcOptimizerPass, @ptrCast(self)), argIndex, ppResult);
+        return self.vtable.GetOptionArgDescription(self, argIndex, ppResult);
     }
 };
 
@@ -1353,13 +1353,13 @@ pub const IDxcOptimizer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAvailablePassCount(self: *const IDxcOptimizer, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizer.VTable, @ptrCast(self.vtable)).GetAvailablePassCount(@as(*const IDxcOptimizer, @ptrCast(self)), pCount);
+        return self.vtable.GetAvailablePassCount(self, pCount);
     }
     pub fn GetAvailablePass(self: *const IDxcOptimizer, index: u32, ppResult: ?*?*IDxcOptimizerPass) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizer.VTable, @ptrCast(self.vtable)).GetAvailablePass(@as(*const IDxcOptimizer, @ptrCast(self)), index, ppResult);
+        return self.vtable.GetAvailablePass(self, index, ppResult);
     }
     pub fn RunOptimizer(self: *const IDxcOptimizer, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: ?*?*IDxcBlob, ppOutputText: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcOptimizer.VTable, @ptrCast(self.vtable)).RunOptimizer(@as(*const IDxcOptimizer, @ptrCast(self)), pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
+        return self.vtable.RunOptimizer(self, pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
     }
 };
 
@@ -1393,10 +1393,10 @@ pub const IDxcVersionInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVersion(self: *const IDxcVersionInfo, pMajor: ?*u32, pMinor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcVersionInfo.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IDxcVersionInfo, @ptrCast(self)), pMajor, pMinor);
+        return self.vtable.GetVersion(self, pMajor, pMinor);
     }
     pub fn GetFlags(self: *const IDxcVersionInfo, pFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcVersionInfo.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IDxcVersionInfo, @ptrCast(self)), pFlags);
+        return self.vtable.GetFlags(self, pFlags);
     }
 };
 
@@ -1422,7 +1422,7 @@ pub const IDxcVersionInfo2 = extern union {
     };}
     pub usingnamespace IDxcVersionInfo.MethodMixin(@This());
     pub fn GetCommitInfo(self: *const IDxcVersionInfo2, pCommitCount: ?*u32, pCommitHash: ?*?*i8) callconv(.Inline) HRESULT {
-        return @as(*const IDxcVersionInfo2.VTable, @ptrCast(self.vtable)).GetCommitInfo(@as(*const IDxcVersionInfo2, @ptrCast(self)), pCommitCount, pCommitHash);
+        return self.vtable.GetCommitInfo(self, pCommitCount, pCommitHash);
     }
 };
 
@@ -1447,7 +1447,7 @@ pub const IDxcVersionInfo3 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCustomVersionString(self: *const IDxcVersionInfo3, pVersionString: ?*?*i8) callconv(.Inline) HRESULT {
-        return @as(*const IDxcVersionInfo3.VTable, @ptrCast(self.vtable)).GetCustomVersionString(@as(*const IDxcVersionInfo3, @ptrCast(self)), pVersionString);
+        return self.vtable.GetCustomVersionString(self, pVersionString);
     }
 };
 
@@ -1668,76 +1668,76 @@ pub const IDxcPdbUtils = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Load(self: *const IDxcPdbUtils, pPdbOrDxil: ?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).Load(@as(*const IDxcPdbUtils, @ptrCast(self)), pPdbOrDxil);
+        return self.vtable.Load(self, pPdbOrDxil);
     }
     pub fn GetSourceCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetSourceCount(@as(*const IDxcPdbUtils, @ptrCast(self)), pCount);
+        return self.vtable.GetSourceCount(self, pCount);
     }
     pub fn GetSource(self: *const IDxcPdbUtils, uIndex: u32, ppResult: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, ppResult);
+        return self.vtable.GetSource(self, uIndex, ppResult);
     }
     pub fn GetSourceName(self: *const IDxcPdbUtils, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetSourceName(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, pResult);
+        return self.vtable.GetSourceName(self, uIndex, pResult);
     }
     pub fn GetFlagCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetFlagCount(@as(*const IDxcPdbUtils, @ptrCast(self)), pCount);
+        return self.vtable.GetFlagCount(self, pCount);
     }
     pub fn GetFlag(self: *const IDxcPdbUtils, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetFlag(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, pResult);
+        return self.vtable.GetFlag(self, uIndex, pResult);
     }
     pub fn GetArgCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetArgCount(@as(*const IDxcPdbUtils, @ptrCast(self)), pCount);
+        return self.vtable.GetArgCount(self, pCount);
     }
     pub fn GetArg(self: *const IDxcPdbUtils, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetArg(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, pResult);
+        return self.vtable.GetArg(self, uIndex, pResult);
     }
     pub fn GetArgPairCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetArgPairCount(@as(*const IDxcPdbUtils, @ptrCast(self)), pCount);
+        return self.vtable.GetArgPairCount(self, pCount);
     }
     pub fn GetArgPair(self: *const IDxcPdbUtils, uIndex: u32, pName: ?*?BSTR, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetArgPair(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, pName, pValue);
+        return self.vtable.GetArgPair(self, uIndex, pName, pValue);
     }
     pub fn GetDefineCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetDefineCount(@as(*const IDxcPdbUtils, @ptrCast(self)), pCount);
+        return self.vtable.GetDefineCount(self, pCount);
     }
     pub fn GetDefine(self: *const IDxcPdbUtils, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetDefine(@as(*const IDxcPdbUtils, @ptrCast(self)), uIndex, pResult);
+        return self.vtable.GetDefine(self, uIndex, pResult);
     }
     pub fn GetTargetProfile(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetTargetProfile(@as(*const IDxcPdbUtils, @ptrCast(self)), pResult);
+        return self.vtable.GetTargetProfile(self, pResult);
     }
     pub fn GetEntryPoint(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetEntryPoint(@as(*const IDxcPdbUtils, @ptrCast(self)), pResult);
+        return self.vtable.GetEntryPoint(self, pResult);
     }
     pub fn GetMainFileName(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetMainFileName(@as(*const IDxcPdbUtils, @ptrCast(self)), pResult);
+        return self.vtable.GetMainFileName(self, pResult);
     }
     pub fn GetHash(self: *const IDxcPdbUtils, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetHash(@as(*const IDxcPdbUtils, @ptrCast(self)), ppResult);
+        return self.vtable.GetHash(self, ppResult);
     }
     pub fn GetName(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetName(@as(*const IDxcPdbUtils, @ptrCast(self)), pResult);
+        return self.vtable.GetName(self, pResult);
     }
     pub fn IsFullPDB(self: *const IDxcPdbUtils) callconv(.Inline) BOOL {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).IsFullPDB(@as(*const IDxcPdbUtils, @ptrCast(self)));
+        return self.vtable.IsFullPDB(self);
     }
     pub fn GetFullPDB(self: *const IDxcPdbUtils, ppFullPDB: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetFullPDB(@as(*const IDxcPdbUtils, @ptrCast(self)), ppFullPDB);
+        return self.vtable.GetFullPDB(self, ppFullPDB);
     }
     pub fn GetVersionInfo(self: *const IDxcPdbUtils, ppVersionInfo: ?*?*IDxcVersionInfo) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).GetVersionInfo(@as(*const IDxcPdbUtils, @ptrCast(self)), ppVersionInfo);
+        return self.vtable.GetVersionInfo(self, ppVersionInfo);
     }
     pub fn SetCompiler(self: *const IDxcPdbUtils, pCompiler: ?*IDxcCompiler3) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).SetCompiler(@as(*const IDxcPdbUtils, @ptrCast(self)), pCompiler);
+        return self.vtable.SetCompiler(self, pCompiler);
     }
     pub fn CompileForFullPDB(self: *const IDxcPdbUtils, ppResult: ?*?*IDxcResult) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).CompileForFullPDB(@as(*const IDxcPdbUtils, @ptrCast(self)), ppResult);
+        return self.vtable.CompileForFullPDB(self, ppResult);
     }
     pub fn OverrideArgs(self: *const IDxcPdbUtils, pArgPairs: ?*DxcArgPair, uNumArgPairs: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).OverrideArgs(@as(*const IDxcPdbUtils, @ptrCast(self)), pArgPairs, uNumArgPairs);
+        return self.vtable.OverrideArgs(self, pArgPairs, uNumArgPairs);
     }
     pub fn OverrideRootSignature(self: *const IDxcPdbUtils, pRootSignature: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IDxcPdbUtils.VTable, @ptrCast(self.vtable)).OverrideRootSignature(@as(*const IDxcPdbUtils, @ptrCast(self)), pRootSignature);
+        return self.vtable.OverrideRootSignature(self, pRootSignature);
     }
 };
 

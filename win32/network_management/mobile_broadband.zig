@@ -649,25 +649,25 @@ pub const IMbnConnection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_ConnectionID(self: *const IMbnConnection, ConnectionID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).get_ConnectionID(@as(*const IMbnConnection, @ptrCast(self)), ConnectionID);
+        return self.vtable.get_ConnectionID(self, ConnectionID);
     }
     pub fn get_InterfaceID(self: *const IMbnConnection, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnConnection, @ptrCast(self)), InterfaceID);
+        return self.vtable.get_InterfaceID(self, InterfaceID);
     }
     pub fn Connect(self: *const IMbnConnection, connectionMode: MBN_CONNECTION_MODE, strProfile: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).Connect(@as(*const IMbnConnection, @ptrCast(self)), connectionMode, strProfile, requestID);
+        return self.vtable.Connect(self, connectionMode, strProfile, requestID);
     }
     pub fn Disconnect(self: *const IMbnConnection, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IMbnConnection, @ptrCast(self)), requestID);
+        return self.vtable.Disconnect(self, requestID);
     }
     pub fn GetConnectionState(self: *const IMbnConnection, ConnectionState: ?*MBN_ACTIVATION_STATE, ProfileName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetConnectionState(@as(*const IMbnConnection, @ptrCast(self)), ConnectionState, ProfileName);
+        return self.vtable.GetConnectionState(self, ConnectionState, ProfileName);
     }
     pub fn GetVoiceCallState(self: *const IMbnConnection, voiceCallState: ?*MBN_VOICE_CALL_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetVoiceCallState(@as(*const IMbnConnection, @ptrCast(self)), voiceCallState);
+        return self.vtable.GetVoiceCallState(self, voiceCallState);
     }
     pub fn GetActivationNetworkError(self: *const IMbnConnection, networkError: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetActivationNetworkError(@as(*const IMbnConnection, @ptrCast(self)), networkError);
+        return self.vtable.GetActivationNetworkError(self, networkError);
     }
 };
 
@@ -721,16 +721,16 @@ pub const IMbnConnectionEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectComplete(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnConnectComplete(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection, requestID, status);
+        return self.vtable.OnConnectComplete(self, newConnection, requestID, status);
     }
     pub fn OnDisconnectComplete(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnDisconnectComplete(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection, requestID, status);
+        return self.vtable.OnDisconnectComplete(self, newConnection, requestID, status);
     }
     pub fn OnConnectStateChange(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnConnectStateChange(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection);
+        return self.vtable.OnConnectStateChange(self, newConnection);
     }
     pub fn OnVoiceCallStateChange(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnVoiceCallStateChange(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection);
+        return self.vtable.OnVoiceCallStateChange(self, newConnection);
     }
 };
 
@@ -839,37 +839,37 @@ pub const IMbnInterface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_InterfaceID(self: *const IMbnInterface, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnInterface, @ptrCast(self)), InterfaceID);
+        return self.vtable.get_InterfaceID(self, InterfaceID);
     }
     pub fn GetInterfaceCapability(self: *const IMbnInterface, interfaceCaps: ?*MBN_INTERFACE_CAPS) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetInterfaceCapability(@as(*const IMbnInterface, @ptrCast(self)), interfaceCaps);
+        return self.vtable.GetInterfaceCapability(self, interfaceCaps);
     }
     pub fn GetSubscriberInformation(self: *const IMbnInterface, subscriberInformation: ?*?*IMbnSubscriberInformation) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetSubscriberInformation(@as(*const IMbnInterface, @ptrCast(self)), subscriberInformation);
+        return self.vtable.GetSubscriberInformation(self, subscriberInformation);
     }
     pub fn GetReadyState(self: *const IMbnInterface, readyState: ?*MBN_READY_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMbnInterface, @ptrCast(self)), readyState);
+        return self.vtable.GetReadyState(self, readyState);
     }
     pub fn InEmergencyMode(self: *const IMbnInterface, emergencyMode: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).InEmergencyMode(@as(*const IMbnInterface, @ptrCast(self)), emergencyMode);
+        return self.vtable.InEmergencyMode(self, emergencyMode);
     }
     pub fn GetHomeProvider(self: *const IMbnInterface, homeProvider: ?*MBN_PROVIDER) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetHomeProvider(@as(*const IMbnInterface, @ptrCast(self)), homeProvider);
+        return self.vtable.GetHomeProvider(self, homeProvider);
     }
     pub fn GetPreferredProviders(self: *const IMbnInterface, preferredProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetPreferredProviders(@as(*const IMbnInterface, @ptrCast(self)), preferredProviders);
+        return self.vtable.GetPreferredProviders(self, preferredProviders);
     }
     pub fn SetPreferredProviders(self: *const IMbnInterface, preferredProviders: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).SetPreferredProviders(@as(*const IMbnInterface, @ptrCast(self)), preferredProviders, requestID);
+        return self.vtable.SetPreferredProviders(self, preferredProviders, requestID);
     }
     pub fn GetVisibleProviders(self: *const IMbnInterface, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetVisibleProviders(@as(*const IMbnInterface, @ptrCast(self)), age, visibleProviders);
+        return self.vtable.GetVisibleProviders(self, age, visibleProviders);
     }
     pub fn ScanNetwork(self: *const IMbnInterface, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).ScanNetwork(@as(*const IMbnInterface, @ptrCast(self)), requestID);
+        return self.vtable.ScanNetwork(self, requestID);
     }
     pub fn GetConnection(self: *const IMbnInterface, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMbnInterface, @ptrCast(self)), mbnConnection);
+        return self.vtable.GetConnection(self, mbnConnection);
     }
 };
 
@@ -955,28 +955,28 @@ pub const IMbnInterfaceEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInterfaceCapabilityAvailable(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnInterfaceCapabilityAvailable(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnInterfaceCapabilityAvailable(self, newInterface);
     }
     pub fn OnSubscriberInformationChange(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnSubscriberInformationChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnSubscriberInformationChange(self, newInterface);
     }
     pub fn OnReadyStateChange(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnReadyStateChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnReadyStateChange(self, newInterface);
     }
     pub fn OnEmergencyModeChange(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnEmergencyModeChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnEmergencyModeChange(self, newInterface);
     }
     pub fn OnHomeProviderAvailable(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnHomeProviderAvailable(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnHomeProviderAvailable(self, newInterface);
     }
     pub fn OnPreferredProvidersChange(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnPreferredProvidersChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnPreferredProvidersChange(self, newInterface);
     }
     pub fn OnSetPreferredProvidersComplete(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnSetPreferredProvidersComplete(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface, requestID, status);
+        return self.vtable.OnSetPreferredProvidersComplete(self, newInterface, requestID, status);
     }
     pub fn OnScanNetworkComplete(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnScanNetworkComplete(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface, requestID, status);
+        return self.vtable.OnScanNetworkComplete(self, newInterface, requestID, status);
     }
 };
 
@@ -1011,10 +1011,10 @@ pub const IMbnInterfaceManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInterface(self: *const IMbnInterfaceManager, interfaceID: ?[*:0]const u16, mbnInterface: ?*?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceManager.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IMbnInterfaceManager, @ptrCast(self)), interfaceID, mbnInterface);
+        return self.vtable.GetInterface(self, interfaceID, mbnInterface);
     }
     pub fn GetInterfaces(self: *const IMbnInterfaceManager, mbnInterfaces: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceManager.VTable, @ptrCast(self.vtable)).GetInterfaces(@as(*const IMbnInterfaceManager, @ptrCast(self)), mbnInterfaces);
+        return self.vtable.GetInterfaces(self, mbnInterfaces);
     }
 };
 
@@ -1048,10 +1048,10 @@ pub const IMbnInterfaceManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInterfaceArrival(self: *const IMbnInterfaceManagerEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceManagerEvents.VTable, @ptrCast(self.vtable)).OnInterfaceArrival(@as(*const IMbnInterfaceManagerEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnInterfaceArrival(self, newInterface);
     }
     pub fn OnInterfaceRemoval(self: *const IMbnInterfaceManagerEvents, oldInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-        return @as(*const IMbnInterfaceManagerEvents.VTable, @ptrCast(self.vtable)).OnInterfaceRemoval(@as(*const IMbnInterfaceManagerEvents, @ptrCast(self)), oldInterface);
+        return self.vtable.OnInterfaceRemoval(self, oldInterface);
     }
 };
 
@@ -1152,34 +1152,34 @@ pub const IMbnRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRegisterState(self: *const IMbnRegistration, registerState: ?*MBN_REGISTER_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegisterState(@as(*const IMbnRegistration, @ptrCast(self)), registerState);
+        return self.vtable.GetRegisterState(self, registerState);
     }
     pub fn GetRegisterMode(self: *const IMbnRegistration, registerMode: ?*MBN_REGISTER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegisterMode(@as(*const IMbnRegistration, @ptrCast(self)), registerMode);
+        return self.vtable.GetRegisterMode(self, registerMode);
     }
     pub fn GetProviderID(self: *const IMbnRegistration, providerID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetProviderID(@as(*const IMbnRegistration, @ptrCast(self)), providerID);
+        return self.vtable.GetProviderID(self, providerID);
     }
     pub fn GetProviderName(self: *const IMbnRegistration, providerName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetProviderName(@as(*const IMbnRegistration, @ptrCast(self)), providerName);
+        return self.vtable.GetProviderName(self, providerName);
     }
     pub fn GetRoamingText(self: *const IMbnRegistration, roamingText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRoamingText(@as(*const IMbnRegistration, @ptrCast(self)), roamingText);
+        return self.vtable.GetRoamingText(self, roamingText);
     }
     pub fn GetAvailableDataClasses(self: *const IMbnRegistration, availableDataClasses: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetAvailableDataClasses(@as(*const IMbnRegistration, @ptrCast(self)), availableDataClasses);
+        return self.vtable.GetAvailableDataClasses(self, availableDataClasses);
     }
     pub fn GetCurrentDataClass(self: *const IMbnRegistration, currentDataClass: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetCurrentDataClass(@as(*const IMbnRegistration, @ptrCast(self)), currentDataClass);
+        return self.vtable.GetCurrentDataClass(self, currentDataClass);
     }
     pub fn GetRegistrationNetworkError(self: *const IMbnRegistration, registrationNetworkError: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegistrationNetworkError(@as(*const IMbnRegistration, @ptrCast(self)), registrationNetworkError);
+        return self.vtable.GetRegistrationNetworkError(self, registrationNetworkError);
     }
     pub fn GetPacketAttachNetworkError(self: *const IMbnRegistration, packetAttachNetworkError: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetPacketAttachNetworkError(@as(*const IMbnRegistration, @ptrCast(self)), packetAttachNetworkError);
+        return self.vtable.GetPacketAttachNetworkError(self, packetAttachNetworkError);
     }
     pub fn SetRegisterMode(self: *const IMbnRegistration, registerMode: MBN_REGISTER_MODE, providerID: ?[*:0]const u16, dataClass: u32, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).SetRegisterMode(@as(*const IMbnRegistration, @ptrCast(self)), registerMode, providerID, dataClass, requestID);
+        return self.vtable.SetRegisterMode(self, registerMode, providerID, dataClass, requestID);
     }
 };
 
@@ -1231,16 +1231,16 @@ pub const IMbnRegistrationEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRegisterModeAvailable(self: *const IMbnRegistrationEvents, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnRegisterModeAvailable(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnRegisterModeAvailable(self, newInterface);
     }
     pub fn OnRegisterStateChange(self: *const IMbnRegistrationEvents, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnRegisterStateChange(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnRegisterStateChange(self, newInterface);
     }
     pub fn OnPacketServiceStateChange(self: *const IMbnRegistrationEvents, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnPacketServiceStateChange(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnPacketServiceStateChange(self, newInterface);
     }
     pub fn OnSetRegisterModeComplete(self: *const IMbnRegistrationEvents, newInterface: ?*IMbnRegistration, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnSetRegisterModeComplete(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface, requestID, status);
+        return self.vtable.OnSetRegisterModeComplete(self, newInterface, requestID, status);
     }
 };
 
@@ -1275,10 +1275,10 @@ pub const IMbnConnectionManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnection(self: *const IMbnConnectionManager, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionManager.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMbnConnectionManager, @ptrCast(self)), connectionID, mbnConnection);
+        return self.vtable.GetConnection(self, connectionID, mbnConnection);
     }
     pub fn GetConnections(self: *const IMbnConnectionManager, mbnConnections: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionManager.VTable, @ptrCast(self.vtable)).GetConnections(@as(*const IMbnConnectionManager, @ptrCast(self)), mbnConnections);
+        return self.vtable.GetConnections(self, mbnConnections);
     }
 };
 
@@ -1312,10 +1312,10 @@ pub const IMbnConnectionManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionArrival(self: *const IMbnConnectionManagerEvents, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionArrival(@as(*const IMbnConnectionManagerEvents, @ptrCast(self)), newConnection);
+        return self.vtable.OnConnectionArrival(self, newConnection);
     }
     pub fn OnConnectionRemoval(self: *const IMbnConnectionManagerEvents, oldConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionRemoval(@as(*const IMbnConnectionManagerEvents, @ptrCast(self)), oldConnection);
+        return self.vtable.OnConnectionRemoval(self, oldConnection);
     }
 };
 
@@ -1358,13 +1358,13 @@ pub const IMbnPinManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPinList(self: *const IMbnPinManager, pinList: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPinList(@as(*const IMbnPinManager, @ptrCast(self)), pinList);
+        return self.vtable.GetPinList(self, pinList);
     }
     pub fn GetPin(self: *const IMbnPinManager, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPin(@as(*const IMbnPinManager, @ptrCast(self)), pinType, pin);
+        return self.vtable.GetPin(self, pinType, pin);
     }
     pub fn GetPinState(self: *const IMbnPinManager, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPinState(@as(*const IMbnPinManager, @ptrCast(self)), requestID);
+        return self.vtable.GetPinState(self, requestID);
     }
 };
 
@@ -1401,10 +1401,10 @@ pub const IMbnPinManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnPinListAvailable(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinManagerEvents.VTable, @ptrCast(self.vtable)).OnPinListAvailable(@as(*const IMbnPinManagerEvents, @ptrCast(self)), pinManager);
+        return self.vtable.OnPinListAvailable(self, pinManager);
     }
     pub fn OnGetPinStateComplete(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinManagerEvents.VTable, @ptrCast(self.vtable)).OnGetPinStateComplete(@as(*const IMbnPinManagerEvents, @ptrCast(self)), pinManager, pinInfo, requestID, status);
+        return self.vtable.OnGetPinStateComplete(self, pinManager, pinInfo, requestID, status);
     }
 };
 
@@ -1477,19 +1477,19 @@ pub const IMbnPinEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEnableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnEnableComplete(@as(*const IMbnPinEvents, @ptrCast(self)), pin, pinInfo, requestID, status);
+        return self.vtable.OnEnableComplete(self, pin, pinInfo, requestID, status);
     }
     pub fn OnDisableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnDisableComplete(@as(*const IMbnPinEvents, @ptrCast(self)), pin, pinInfo, requestID, status);
+        return self.vtable.OnDisableComplete(self, pin, pinInfo, requestID, status);
     }
     pub fn OnEnterComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnEnterComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
+        return self.vtable.OnEnterComplete(self, Pin, pinInfo, requestID, status);
     }
     pub fn OnChangeComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnChangeComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
+        return self.vtable.OnChangeComplete(self, Pin, pinInfo, requestID, status);
     }
     pub fn OnUnblockComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnUnblockComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
+        return self.vtable.OnUnblockComplete(self, Pin, pinInfo, requestID, status);
     }
 };
 
@@ -1534,13 +1534,13 @@ pub const IMbnSubscriberInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SubscriberID(self: *const IMbnSubscriberInformation, SubscriberID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_SubscriberID(@as(*const IMbnSubscriberInformation, @ptrCast(self)), SubscriberID);
+        return self.vtable.get_SubscriberID(self, SubscriberID);
     }
     pub fn get_SimIccID(self: *const IMbnSubscriberInformation, SimIccID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_SimIccID(@as(*const IMbnSubscriberInformation, @ptrCast(self)), SimIccID);
+        return self.vtable.get_SimIccID(self, SimIccID);
     }
     pub fn get_TelephoneNumbers(self: *const IMbnSubscriberInformation, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_TelephoneNumbers(@as(*const IMbnSubscriberInformation, @ptrCast(self)), TelephoneNumbers);
+        return self.vtable.get_TelephoneNumbers(self, TelephoneNumbers);
     }
 };
 
@@ -1574,10 +1574,10 @@ pub const IMbnSignal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSignalStrength(self: *const IMbnSignal, signalStrength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSignal.VTable, @ptrCast(self.vtable)).GetSignalStrength(@as(*const IMbnSignal, @ptrCast(self)), signalStrength);
+        return self.vtable.GetSignalStrength(self, signalStrength);
     }
     pub fn GetSignalError(self: *const IMbnSignal, signalError: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSignal.VTable, @ptrCast(self.vtable)).GetSignalError(@as(*const IMbnSignal, @ptrCast(self)), signalError);
+        return self.vtable.GetSignalError(self, signalError);
     }
 };
 
@@ -1603,7 +1603,7 @@ pub const IMbnSignalEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSignalStateChange(self: *const IMbnSignalEvents, newInterface: ?*IMbnSignal) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSignalEvents.VTable, @ptrCast(self.vtable)).OnSignalStateChange(@as(*const IMbnSignalEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnSignalStateChange(self, newInterface);
     }
 };
 
@@ -1639,10 +1639,10 @@ pub const IMbnConnectionContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProvisionedContexts(self: *const IMbnConnectionContext, provisionedContexts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionContext.VTable, @ptrCast(self.vtable)).GetProvisionedContexts(@as(*const IMbnConnectionContext, @ptrCast(self)), provisionedContexts);
+        return self.vtable.GetProvisionedContexts(self, provisionedContexts);
     }
     pub fn SetProvisionedContext(self: *const IMbnConnectionContext, provisionedContexts: MBN_CONTEXT, providerID: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionContext.VTable, @ptrCast(self.vtable)).SetProvisionedContext(@as(*const IMbnConnectionContext, @ptrCast(self)), provisionedContexts, providerID, requestID);
+        return self.vtable.SetProvisionedContext(self, provisionedContexts, providerID, requestID);
     }
 };
 
@@ -1678,10 +1678,10 @@ pub const IMbnConnectionContextEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnProvisionedContextListChange(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionContextEvents.VTable, @ptrCast(self.vtable)).OnProvisionedContextListChange(@as(*const IMbnConnectionContextEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnProvisionedContextListChange(self, newInterface);
     }
     pub fn OnSetProvisionedContextComplete(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionContextEvents.VTable, @ptrCast(self.vtable)).OnSetProvisionedContextComplete(@as(*const IMbnConnectionContextEvents, @ptrCast(self)), newInterface, requestID, status);
+        return self.vtable.OnSetProvisionedContextComplete(self, newInterface, requestID, status);
     }
 };
 
@@ -1726,13 +1726,13 @@ pub const IMbnConnectionProfileManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnectionProfiles(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).GetConnectionProfiles(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), mbnInterface, connectionProfiles);
+        return self.vtable.GetConnectionProfiles(self, mbnInterface, connectionProfiles);
     }
     pub fn GetConnectionProfile(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, profileName: ?[*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).GetConnectionProfile(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), mbnInterface, profileName, connectionProfile);
+        return self.vtable.GetConnectionProfile(self, mbnInterface, profileName, connectionProfile);
     }
     pub fn CreateConnectionProfile(self: *const IMbnConnectionProfileManager, xmlProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).CreateConnectionProfile(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), xmlProfile);
+        return self.vtable.CreateConnectionProfile(self, xmlProfile);
     }
 };
 
@@ -1773,13 +1773,13 @@ pub const IMbnConnectionProfile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProfileXmlData(self: *const IMbnConnectionProfile, profileData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).GetProfileXmlData(@as(*const IMbnConnectionProfile, @ptrCast(self)), profileData);
+        return self.vtable.GetProfileXmlData(self, profileData);
     }
     pub fn UpdateProfile(self: *const IMbnConnectionProfile, strProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).UpdateProfile(@as(*const IMbnConnectionProfile, @ptrCast(self)), strProfile);
+        return self.vtable.UpdateProfile(self, strProfile);
     }
     pub fn Delete(self: *const IMbnConnectionProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMbnConnectionProfile, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
 };
 
@@ -1805,7 +1805,7 @@ pub const IMbnConnectionProfileEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnProfileUpdate(self: *const IMbnConnectionProfileEvents, newProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileEvents.VTable, @ptrCast(self.vtable)).OnProfileUpdate(@as(*const IMbnConnectionProfileEvents, @ptrCast(self)), newProfile);
+        return self.vtable.OnProfileUpdate(self, newProfile);
     }
 };
 
@@ -1877,22 +1877,22 @@ pub const IMbnSmsConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_ServiceCenterAddress(self: *const IMbnSmsConfiguration, scAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_ServiceCenterAddress(@as(*const IMbnSmsConfiguration, @ptrCast(self)), scAddress);
+        return self.vtable.get_ServiceCenterAddress(self, scAddress);
     }
     pub fn put_ServiceCenterAddress(self: *const IMbnSmsConfiguration, scAddress: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).put_ServiceCenterAddress(@as(*const IMbnSmsConfiguration, @ptrCast(self)), scAddress);
+        return self.vtable.put_ServiceCenterAddress(self, scAddress);
     }
     pub fn get_MaxMessageIndex(self: *const IMbnSmsConfiguration, index: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_MaxMessageIndex(@as(*const IMbnSmsConfiguration, @ptrCast(self)), index);
+        return self.vtable.get_MaxMessageIndex(self, index);
     }
     pub fn get_CdmaShortMsgSize(self: *const IMbnSmsConfiguration, shortMsgSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_CdmaShortMsgSize(@as(*const IMbnSmsConfiguration, @ptrCast(self)), shortMsgSize);
+        return self.vtable.get_CdmaShortMsgSize(self, shortMsgSize);
     }
     pub fn get_SmsFormat(self: *const IMbnSmsConfiguration, smsFormat: ?*MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_SmsFormat(@as(*const IMbnSmsConfiguration, @ptrCast(self)), smsFormat);
+        return self.vtable.get_SmsFormat(self, smsFormat);
     }
     pub fn put_SmsFormat(self: *const IMbnSmsConfiguration, smsFormat: MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).put_SmsFormat(@as(*const IMbnSmsConfiguration, @ptrCast(self)), smsFormat);
+        return self.vtable.put_SmsFormat(self, smsFormat);
     }
 };
 
@@ -1946,16 +1946,16 @@ pub const IMbnSmsReadMsgPdu = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Index(self: *const IMbnSmsReadMsgPdu, Index: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Index);
+        return self.vtable.get_Index(self, Index);
     }
     pub fn get_Status(self: *const IMbnSmsReadMsgPdu, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Status);
+        return self.vtable.get_Status(self, Status);
     }
     pub fn get_PduData(self: *const IMbnSmsReadMsgPdu, PduData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_PduData(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), PduData);
+        return self.vtable.get_PduData(self, PduData);
     }
     pub fn get_Message(self: *const IMbnSmsReadMsgPdu, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Message);
+        return self.vtable.get_Message(self, Message);
     }
 };
 
@@ -2045,28 +2045,28 @@ pub const IMbnSmsReadMsgTextCdma = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Index(self: *const IMbnSmsReadMsgTextCdma, Index: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Index);
+        return self.vtable.get_Index(self, Index);
     }
     pub fn get_Status(self: *const IMbnSmsReadMsgTextCdma, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Status);
+        return self.vtable.get_Status(self, Status);
     }
     pub fn get_Address(self: *const IMbnSmsReadMsgTextCdma, Address: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Address);
+        return self.vtable.get_Address(self, Address);
     }
     pub fn get_Timestamp(self: *const IMbnSmsReadMsgTextCdma, Timestamp: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Timestamp);
+        return self.vtable.get_Timestamp(self, Timestamp);
     }
     pub fn get_EncodingID(self: *const IMbnSmsReadMsgTextCdma, EncodingID: ?*MBN_SMS_CDMA_ENCODING) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_EncodingID(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), EncodingID);
+        return self.vtable.get_EncodingID(self, EncodingID);
     }
     pub fn get_LanguageID(self: *const IMbnSmsReadMsgTextCdma, LanguageID: ?*MBN_SMS_CDMA_LANG) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_LanguageID(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), LanguageID);
+        return self.vtable.get_LanguageID(self, LanguageID);
     }
     pub fn get_SizeInCharacters(self: *const IMbnSmsReadMsgTextCdma, SizeInCharacters: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_SizeInCharacters(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), SizeInCharacters);
+        return self.vtable.get_SizeInCharacters(self, SizeInCharacters);
     }
     pub fn get_Message(self: *const IMbnSmsReadMsgTextCdma, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Message);
+        return self.vtable.get_Message(self, Message);
     }
 };
 
@@ -2160,28 +2160,28 @@ pub const IMbnSms = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).GetSmsConfiguration(@as(*const IMbnSms, @ptrCast(self)), smsConfiguration);
+        return self.vtable.GetSmsConfiguration(self, smsConfiguration);
     }
     pub fn SetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*IMbnSmsConfiguration, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SetSmsConfiguration(@as(*const IMbnSms, @ptrCast(self)), smsConfiguration, requestID);
+        return self.vtable.SetSmsConfiguration(self, smsConfiguration, requestID);
     }
     pub fn SmsSendPdu(self: *const IMbnSms, pduData: ?[*:0]const u16, size: u8, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendPdu(@as(*const IMbnSms, @ptrCast(self)), pduData, size, requestID);
+        return self.vtable.SmsSendPdu(self, pduData, size, requestID);
     }
     pub fn SmsSendCdma(self: *const IMbnSms, address: ?[*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendCdma(@as(*const IMbnSms, @ptrCast(self)), address, encoding, language, sizeInCharacters, message, requestID);
+        return self.vtable.SmsSendCdma(self, address, encoding, language, sizeInCharacters, message, requestID);
     }
     pub fn SmsSendCdmaPdu(self: *const IMbnSms, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendCdmaPdu(@as(*const IMbnSms, @ptrCast(self)), message, requestID);
+        return self.vtable.SmsSendCdmaPdu(self, message, requestID);
     }
     pub fn SmsRead(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsRead(@as(*const IMbnSms, @ptrCast(self)), smsFilter, smsFormat, requestID);
+        return self.vtable.SmsRead(self, smsFilter, smsFormat, requestID);
     }
     pub fn SmsDelete(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsDelete(@as(*const IMbnSms, @ptrCast(self)), smsFilter, requestID);
+        return self.vtable.SmsDelete(self, smsFilter, requestID);
     }
     pub fn GetSmsStatus(self: *const IMbnSms, smsStatusInfo: ?*MBN_SMS_STATUS_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).GetSmsStatus(@as(*const IMbnSms, @ptrCast(self)), smsStatusInfo);
+        return self.vtable.GetSmsStatus(self, smsStatusInfo);
     }
 };
 
@@ -2268,25 +2268,25 @@ pub const IMbnSmsEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSmsConfigurationChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsConfigurationChange(@as(*const IMbnSmsEvents, @ptrCast(self)), sms);
+        return self.vtable.OnSmsConfigurationChange(self, sms);
     }
     pub fn OnSetSmsConfigurationComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSetSmsConfigurationComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
+        return self.vtable.OnSetSmsConfigurationComplete(self, sms, requestID, status);
     }
     pub fn OnSmsSendComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsSendComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
+        return self.vtable.OnSmsSendComplete(self, sms, requestID, status);
     }
     pub fn OnSmsReadComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsReadComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, smsFormat, readMsgs, moreMsgs, requestID, status);
+        return self.vtable.OnSmsReadComplete(self, sms, smsFormat, readMsgs, moreMsgs, requestID, status);
     }
     pub fn OnSmsNewClass0Message(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsNewClass0Message(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, smsFormat, readMsgs);
+        return self.vtable.OnSmsNewClass0Message(self, sms, smsFormat, readMsgs);
     }
     pub fn OnSmsDeleteComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsDeleteComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
+        return self.vtable.OnSmsDeleteComplete(self, sms, requestID, status);
     }
     pub fn OnSmsStatusChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
-        return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsStatusChange(@as(*const IMbnSmsEvents, @ptrCast(self)), sms);
+        return self.vtable.OnSmsStatusChange(self, sms);
     }
 };
 
@@ -2313,7 +2313,7 @@ pub const IMbnServiceActivation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Activate(self: *const IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnServiceActivation.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMbnServiceActivation, @ptrCast(self)), vendorSpecificData, requestID);
+        return self.vtable.Activate(self, vendorSpecificData, requestID);
     }
 };
 
@@ -2343,7 +2343,7 @@ pub const IMbnServiceActivationEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnActivationComplete(self: *const IMbnServiceActivationEvents, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnServiceActivationEvents.VTable, @ptrCast(self.vtable)).OnActivationComplete(@as(*const IMbnServiceActivationEvents, @ptrCast(self)), serviceActivation, vendorSpecificData, requestID, status, networkError);
+        return self.vtable.OnActivationComplete(self, serviceActivation, vendorSpecificData, requestID, status, networkError);
     }
 };
 
@@ -2370,7 +2370,7 @@ pub const IMbnVendorSpecificOperation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetVendorSpecific(self: *const IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnVendorSpecificOperation.VTable, @ptrCast(self.vtable)).SetVendorSpecific(@as(*const IMbnVendorSpecificOperation, @ptrCast(self)), vendorSpecificData, requestID);
+        return self.vtable.SetVendorSpecific(self, vendorSpecificData, requestID);
     }
 };
 
@@ -2407,10 +2407,10 @@ pub const IMbnVendorSpecificEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEventNotification(self: *const IMbnVendorSpecificEvents, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnVendorSpecificEvents.VTable, @ptrCast(self.vtable)).OnEventNotification(@as(*const IMbnVendorSpecificEvents, @ptrCast(self)), vendorOperation, vendorSpecificData);
+        return self.vtable.OnEventNotification(self, vendorOperation, vendorSpecificData);
     }
     pub fn OnSetVendorSpecificComplete(self: *const IMbnVendorSpecificEvents, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnVendorSpecificEvents.VTable, @ptrCast(self.vtable)).OnSetVendorSpecificComplete(@as(*const IMbnVendorSpecificEvents, @ptrCast(self)), vendorOperation, vendorSpecificData, requestID);
+        return self.vtable.OnSetVendorSpecificComplete(self, vendorOperation, vendorSpecificData, requestID);
     }
 };
 
@@ -2444,10 +2444,10 @@ pub const IMbnConnectionProfileManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionProfileArrival(self: *const IMbnConnectionProfileManagerEvents, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionProfileArrival(@as(*const IMbnConnectionProfileManagerEvents, @ptrCast(self)), newConnectionProfile);
+        return self.vtable.OnConnectionProfileArrival(self, newConnectionProfile);
     }
     pub fn OnConnectionProfileRemoval(self: *const IMbnConnectionProfileManagerEvents, oldConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMbnConnectionProfileManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionProfileRemoval(@as(*const IMbnConnectionProfileManagerEvents, @ptrCast(self)), oldConnectionProfile);
+        return self.vtable.OnConnectionProfileRemoval(self, oldConnectionProfile);
     }
 };
 
@@ -2492,13 +2492,13 @@ pub const IMbnRadio = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SoftwareRadioState(self: *const IMbnRadio, SoftwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).get_SoftwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), SoftwareRadioState);
+        return self.vtable.get_SoftwareRadioState(self, SoftwareRadioState);
     }
     pub fn get_HardwareRadioState(self: *const IMbnRadio, HardwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).get_HardwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), HardwareRadioState);
+        return self.vtable.get_HardwareRadioState(self, HardwareRadioState);
     }
     pub fn SetSoftwareRadioState(self: *const IMbnRadio, radioState: MBN_RADIO, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).SetSoftwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), radioState, requestID);
+        return self.vtable.SetSoftwareRadioState(self, radioState, requestID);
     }
 };
 
@@ -2534,10 +2534,10 @@ pub const IMbnRadioEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRadioStateChange(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRadioEvents.VTable, @ptrCast(self.vtable)).OnRadioStateChange(@as(*const IMbnRadioEvents, @ptrCast(self)), newInterface);
+        return self.vtable.OnRadioStateChange(self, newInterface);
     }
     pub fn OnSetSoftwareRadioStateComplete(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnRadioEvents.VTable, @ptrCast(self.vtable)).OnSetSoftwareRadioStateComplete(@as(*const IMbnRadioEvents, @ptrCast(self)), newInterface, requestID, status);
+        return self.vtable.OnSetSoftwareRadioStateComplete(self, newInterface, requestID, status);
     }
 };
 
@@ -2605,22 +2605,22 @@ pub const IMbnMultiCarrier = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHomeProvider(self: *const IMbnMultiCarrier, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).SetHomeProvider(@as(*const IMbnMultiCarrier, @ptrCast(self)), homeProvider, requestID);
+        return self.vtable.SetHomeProvider(self, homeProvider, requestID);
     }
     pub fn GetPreferredProviders(self: *const IMbnMultiCarrier, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetPreferredProviders(@as(*const IMbnMultiCarrier, @ptrCast(self)), preferredMulticarrierProviders);
+        return self.vtable.GetPreferredProviders(self, preferredMulticarrierProviders);
     }
     pub fn GetVisibleProviders(self: *const IMbnMultiCarrier, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetVisibleProviders(@as(*const IMbnMultiCarrier, @ptrCast(self)), age, visibleProviders);
+        return self.vtable.GetVisibleProviders(self, age, visibleProviders);
     }
     pub fn GetSupportedCellularClasses(self: *const IMbnMultiCarrier, cellularClasses: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetSupportedCellularClasses(@as(*const IMbnMultiCarrier, @ptrCast(self)), cellularClasses);
+        return self.vtable.GetSupportedCellularClasses(self, cellularClasses);
     }
     pub fn GetCurrentCellularClass(self: *const IMbnMultiCarrier, currentCellularClass: ?*MBN_CELLULAR_CLASS) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetCurrentCellularClass(@as(*const IMbnMultiCarrier, @ptrCast(self)), currentCellularClass);
+        return self.vtable.GetCurrentCellularClass(self, currentCellularClass);
     }
     pub fn ScanNetwork(self: *const IMbnMultiCarrier, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).ScanNetwork(@as(*const IMbnMultiCarrier, @ptrCast(self)), requestID);
+        return self.vtable.ScanNetwork(self, requestID);
     }
 };
 
@@ -2682,19 +2682,19 @@ pub const IMbnMultiCarrierEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSetHomeProviderComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnSetHomeProviderComplete(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface, requestID, status);
+        return self.vtable.OnSetHomeProviderComplete(self, mbnInterface, requestID, status);
     }
     pub fn OnCurrentCellularClassChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnCurrentCellularClassChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
+        return self.vtable.OnCurrentCellularClassChange(self, mbnInterface);
     }
     pub fn OnPreferredProvidersChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnPreferredProvidersChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
+        return self.vtable.OnPreferredProvidersChange(self, mbnInterface);
     }
     pub fn OnScanNetworkComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnScanNetworkComplete(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface, requestID, status);
+        return self.vtable.OnScanNetworkComplete(self, mbnInterface, requestID, status);
     }
     pub fn OnInterfaceCapabilityChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-        return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnInterfaceCapabilityChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
+        return self.vtable.OnInterfaceCapabilityChange(self, mbnInterface);
     }
 };
 
@@ -2720,7 +2720,7 @@ pub const IMbnDeviceServiceStateEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSessionsStateChange(self: *const IMbnDeviceServiceStateEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServiceStateEvents.VTable, @ptrCast(self.vtable)).OnSessionsStateChange(@as(*const IMbnDeviceServiceStateEvents, @ptrCast(self)), interfaceID, stateChange);
+        return self.vtable.OnSessionsStateChange(self, interfaceID, stateChange);
     }
 };
 
@@ -2747,7 +2747,7 @@ pub const IMbnDeviceServicesManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceServicesContext(self: *const IMbnDeviceServicesManager, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesManager.VTable, @ptrCast(self.vtable)).GetDeviceServicesContext(@as(*const IMbnDeviceServicesManager, @ptrCast(self)), networkInterfaceID, mbnDevicesContext);
+        return self.vtable.GetDeviceServicesContext(self, networkInterfaceID, mbnDevicesContext);
     }
 };
 
@@ -2800,16 +2800,16 @@ pub const IMbnDeviceServicesContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumerateDeviceServices(self: *const IMbnDeviceServicesContext, deviceServices: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).EnumerateDeviceServices(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), deviceServices);
+        return self.vtable.EnumerateDeviceServices(self, deviceServices);
     }
     pub fn GetDeviceService(self: *const IMbnDeviceServicesContext, deviceServiceID: ?BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).GetDeviceService(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), deviceServiceID, mbnDeviceService);
+        return self.vtable.GetDeviceService(self, deviceServiceID, mbnDeviceService);
     }
     pub fn get_MaxCommandSize(self: *const IMbnDeviceServicesContext, maxCommandSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).get_MaxCommandSize(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), maxCommandSize);
+        return self.vtable.get_MaxCommandSize(self, maxCommandSize);
     }
     pub fn get_MaxDataSize(self: *const IMbnDeviceServicesContext, maxDataSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).get_MaxDataSize(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), maxDataSize);
+        return self.vtable.get_MaxDataSize(self, maxDataSize);
     }
 };
 
@@ -2940,37 +2940,37 @@ pub const IMbnDeviceServicesEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnQuerySupportedCommandsComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnQuerySupportedCommandsComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, commandIDList, status, requestID);
+        return self.vtable.OnQuerySupportedCommandsComplete(self, deviceService, commandIDList, status, requestID);
     }
     pub fn OnOpenCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnOpenCommandSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
+        return self.vtable.OnOpenCommandSessionComplete(self, deviceService, status, requestID);
     }
     pub fn OnCloseCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnCloseCommandSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
+        return self.vtable.OnCloseCommandSessionComplete(self, deviceService, status, requestID);
     }
     pub fn OnSetCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnSetCommandComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, responseID, deviceServiceData, status, requestID);
+        return self.vtable.OnSetCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
     }
     pub fn OnQueryCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnQueryCommandComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, responseID, deviceServiceData, status, requestID);
+        return self.vtable.OnQueryCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
     }
     pub fn OnEventNotification(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, eventID: u32, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnEventNotification(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, eventID, deviceServiceData);
+        return self.vtable.OnEventNotification(self, deviceService, eventID, deviceServiceData);
     }
     pub fn OnOpenDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnOpenDataSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
+        return self.vtable.OnOpenDataSessionComplete(self, deviceService, status, requestID);
     }
     pub fn OnCloseDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnCloseDataSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
+        return self.vtable.OnCloseDataSessionComplete(self, deviceService, status, requestID);
     }
     pub fn OnWriteDataComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnWriteDataComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
+        return self.vtable.OnWriteDataComplete(self, deviceService, status, requestID);
     }
     pub fn OnReadData(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnReadData(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, deviceServiceData);
+        return self.vtable.OnReadData(self, deviceService, deviceServiceData);
     }
     pub fn OnInterfaceStateChange(self: *const IMbnDeviceServicesEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnInterfaceStateChange(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), interfaceID, stateChange);
+        return self.vtable.OnInterfaceStateChange(self, interfaceID, stateChange);
     }
 };
 
@@ -3093,40 +3093,40 @@ pub const IMbnDeviceService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QuerySupportedCommands(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).QuerySupportedCommands(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
+        return self.vtable.QuerySupportedCommands(self, requestID);
     }
     pub fn OpenCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).OpenCommandSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
+        return self.vtable.OpenCommandSession(self, requestID);
     }
     pub fn CloseCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).CloseCommandSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
+        return self.vtable.CloseCommandSession(self, requestID);
     }
     pub fn SetCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).SetCommand(@as(*const IMbnDeviceService, @ptrCast(self)), commandID, deviceServiceData, requestID);
+        return self.vtable.SetCommand(self, commandID, deviceServiceData, requestID);
     }
     pub fn QueryCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).QueryCommand(@as(*const IMbnDeviceService, @ptrCast(self)), commandID, deviceServiceData, requestID);
+        return self.vtable.QueryCommand(self, commandID, deviceServiceData, requestID);
     }
     pub fn OpenDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).OpenDataSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
+        return self.vtable.OpenDataSession(self, requestID);
     }
     pub fn CloseDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).CloseDataSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
+        return self.vtable.CloseDataSession(self, requestID);
     }
     pub fn WriteData(self: *const IMbnDeviceService, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IMbnDeviceService, @ptrCast(self)), deviceServiceData, requestID);
+        return self.vtable.WriteData(self, deviceServiceData, requestID);
     }
     pub fn get_InterfaceID(self: *const IMbnDeviceService, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnDeviceService, @ptrCast(self)), InterfaceID);
+        return self.vtable.get_InterfaceID(self, InterfaceID);
     }
     pub fn get_DeviceServiceID(self: *const IMbnDeviceService, DeviceServiceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_DeviceServiceID(@as(*const IMbnDeviceService, @ptrCast(self)), DeviceServiceID);
+        return self.vtable.get_DeviceServiceID(self, DeviceServiceID);
     }
     pub fn get_IsCommandSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_IsCommandSessionOpen(@as(*const IMbnDeviceService, @ptrCast(self)), value);
+        return self.vtable.get_IsCommandSessionOpen(self, value);
     }
     pub fn get_IsDataSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_IsDataSessionOpen(@as(*const IMbnDeviceService, @ptrCast(self)), value);
+        return self.vtable.get_IsDataSessionOpen(self, value);
     }
 };
 
@@ -3265,37 +3265,37 @@ pub const IMbnPin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_PinType(self: *const IMbnPin, PinType: ?*MBN_PIN_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinType(@as(*const IMbnPin, @ptrCast(self)), PinType);
+        return self.vtable.get_PinType(self, PinType);
     }
     pub fn get_PinFormat(self: *const IMbnPin, PinFormat: ?*MBN_PIN_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinFormat(@as(*const IMbnPin, @ptrCast(self)), PinFormat);
+        return self.vtable.get_PinFormat(self, PinFormat);
     }
     pub fn get_PinLengthMin(self: *const IMbnPin, PinLengthMin: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinLengthMin(@as(*const IMbnPin, @ptrCast(self)), PinLengthMin);
+        return self.vtable.get_PinLengthMin(self, PinLengthMin);
     }
     pub fn get_PinLengthMax(self: *const IMbnPin, PinLengthMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinLengthMax(@as(*const IMbnPin, @ptrCast(self)), PinLengthMax);
+        return self.vtable.get_PinLengthMax(self, PinLengthMax);
     }
     pub fn get_PinMode(self: *const IMbnPin, PinMode: ?*MBN_PIN_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinMode(@as(*const IMbnPin, @ptrCast(self)), PinMode);
+        return self.vtable.get_PinMode(self, PinMode);
     }
     pub fn Enable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Enable(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
+        return self.vtable.Enable(self, pin, requestID);
     }
     pub fn Disable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Disable(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
+        return self.vtable.Disable(self, pin, requestID);
     }
     pub fn Enter(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Enter(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
+        return self.vtable.Enter(self, pin, requestID);
     }
     pub fn Change(self: *const IMbnPin, pin: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Change(@as(*const IMbnPin, @ptrCast(self)), pin, newPin, requestID);
+        return self.vtable.Change(self, pin, newPin, requestID);
     }
     pub fn Unblock(self: *const IMbnPin, puk: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Unblock(@as(*const IMbnPin, @ptrCast(self)), puk, newPin, requestID);
+        return self.vtable.Unblock(self, puk, newPin, requestID);
     }
     pub fn GetPinManager(self: *const IMbnPin, pinManager: ?*?*IMbnPinManager) callconv(.Inline) HRESULT {
-        return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).GetPinManager(@as(*const IMbnPin, @ptrCast(self)), pinManager);
+        return self.vtable.GetPinManager(self, pinManager);
     }
 };
 

@@ -224,16 +224,16 @@ pub const IWinMLModel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDescription(self: *const IWinMLModel, ppDescription: ?*?*WINML_MODEL_DESC) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IWinMLModel, @ptrCast(self)), ppDescription);
+        return self.vtable.GetDescription(self, ppDescription);
     }
     pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateMetadata(@as(*const IWinMLModel, @ptrCast(self)), Index, pKey, pValue);
+        return self.vtable.EnumerateMetadata(self, Index, pKey, pValue);
     }
     pub fn EnumerateModelInputs(self: *const IWinMLModel, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateModelInputs(@as(*const IWinMLModel, @ptrCast(self)), Index, ppInputDescriptor);
+        return self.vtable.EnumerateModelInputs(self, Index, ppInputDescriptor);
     }
     pub fn EnumerateModelOutputs(self: *const IWinMLModel, Index: u32, ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateModelOutputs(@as(*const IWinMLModel, @ptrCast(self)), Index, ppOutputDescriptor);
+        return self.vtable.EnumerateModelOutputs(self, Index, ppOutputDescriptor);
     }
 };
 
@@ -275,13 +275,13 @@ pub const IWinMLEvaluationContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BindValue(self: *const IWinMLEvaluationContext, pDescriptor: ?*WINML_BINDING_DESC) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).BindValue(@as(*const IWinMLEvaluationContext, @ptrCast(self)), pDescriptor);
+        return self.vtable.BindValue(self, pDescriptor);
     }
     pub fn GetValueByName(self: *const IWinMLEvaluationContext, Name: ?[*:0]const u16, pDescriptor: ?*?*WINML_BINDING_DESC) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).GetValueByName(@as(*const IWinMLEvaluationContext, @ptrCast(self)), Name, pDescriptor);
+        return self.vtable.GetValueByName(self, Name, pDescriptor);
     }
     pub fn Clear(self: *const IWinMLEvaluationContext) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWinMLEvaluationContext, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -325,13 +325,13 @@ pub const IWinMLRuntime = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadModel(self: *const IWinMLRuntime, Path: ?[*:0]const u16, ppModel: ?*?*IWinMLModel) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).LoadModel(@as(*const IWinMLRuntime, @ptrCast(self)), Path, ppModel);
+        return self.vtable.LoadModel(self, Path, ppModel);
     }
     pub fn CreateEvaluationContext(self: *const IWinMLRuntime, device: ?*ID3D12Device, ppContext: ?*?*IWinMLEvaluationContext) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).CreateEvaluationContext(@as(*const IWinMLRuntime, @ptrCast(self)), device, ppContext);
+        return self.vtable.CreateEvaluationContext(self, device, ppContext);
     }
     pub fn EvaluateModel(self: *const IWinMLRuntime, pContext: ?*IWinMLEvaluationContext) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).EvaluateModel(@as(*const IWinMLRuntime, @ptrCast(self)), pContext);
+        return self.vtable.EvaluateModel(self, pContext);
     }
 };
 
@@ -363,7 +363,7 @@ pub const IWinMLRuntimeFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateRuntime(self: *const IWinMLRuntimeFactory, RuntimeType: WINML_RUNTIME_TYPE, ppRuntime: ?*?*IWinMLRuntime) callconv(.Inline) HRESULT {
-        return @as(*const IWinMLRuntimeFactory.VTable, @ptrCast(self.vtable)).CreateRuntime(@as(*const IWinMLRuntimeFactory, @ptrCast(self)), RuntimeType, ppRuntime);
+        return self.vtable.CreateRuntime(self, RuntimeType, ppRuntime);
     }
 };
 
@@ -468,16 +468,16 @@ pub const IMLOperatorAttributes = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAttributeElementCount(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, @"type": MLOperatorAttributeType, elementCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetAttributeElementCount(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, @"type", elementCount);
+        return self.vtable.GetAttributeElementCount(self, name, @"type", elementCount);
     }
     pub fn GetAttribute(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, @"type": MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, @"type", elementCount, elementByteSize, value);
+        return self.vtable.GetAttribute(self, name, @"type", elementCount, elementByteSize, value);
     }
     pub fn GetStringAttributeElementLength(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetStringAttributeElementLength(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, elementIndex, attributeElementByteSize);
+        return self.vtable.GetStringAttributeElementLength(self, name, elementIndex, attributeElementByteSize);
     }
     pub fn GetStringAttributeElement(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: u32, attributeElement: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetStringAttributeElement(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, elementIndex, attributeElementByteSize, attributeElement);
+        return self.vtable.GetStringAttributeElement(self, name, elementIndex, attributeElementByteSize, attributeElement);
     }
 };
 
@@ -539,19 +539,19 @@ pub const IMLOperatorTensorShapeDescription = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetInputTensorDimensionCount(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), inputIndex, dimensionCount);
+        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
     }
     pub fn GetInputTensorShape(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetInputTensorShape(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), inputIndex, dimensionCount, dimensions);
+        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
     }
     pub fn HasOutputShapeDescription(self: *const IMLOperatorTensorShapeDescription) callconv(.Inline) bool {
-        return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).HasOutputShapeDescription(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)));
+        return self.vtable.HasOutputShapeDescription(self);
     }
     pub fn GetOutputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetOutputTensorDimensionCount(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), outputIndex, dimensionCount);
+        return self.vtable.GetOutputTensorDimensionCount(self, outputIndex, dimensionCount);
     }
     pub fn GetOutputTensorShape(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetOutputTensorShape(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), outputIndex, dimensionCount, dimensions);
+        return self.vtable.GetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
     }
 };
 
@@ -639,31 +639,31 @@ pub const IMLOperatorKernelCreationContext = extern union {
     };}
     pub usingnamespace IMLOperatorAttributes.MethodMixin(@This());
     pub fn GetInputCount(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
+        return self.vtable.GetInputCount(self);
     }
     pub fn GetOutputCount(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
+        return self.vtable.GetOutputCount(self);
     }
     pub fn IsInputValid(self: *const IMLOperatorKernelCreationContext, inputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), inputIndex);
+        return self.vtable.IsInputValid(self, inputIndex);
     }
     pub fn IsOutputValid(self: *const IMLOperatorKernelCreationContext, outputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), outputIndex);
+        return self.vtable.IsOutputValid(self, outputIndex);
     }
     pub fn GetInputEdgeDescription(self: *const IMLOperatorKernelCreationContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), inputIndex, edgeDescription);
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
     }
     pub fn GetOutputEdgeDescription(self: *const IMLOperatorKernelCreationContext, outputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetOutputEdgeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), outputIndex, edgeDescription);
+        return self.vtable.GetOutputEdgeDescription(self, outputIndex, edgeDescription);
     }
     pub fn HasTensorShapeDescription(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) bool {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).HasTensorShapeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
+        return self.vtable.HasTensorShapeDescription(self);
     }
     pub fn GetTensorShapeDescription(self: *const IMLOperatorKernelCreationContext, shapeDescription: ?*?*IMLOperatorTensorShapeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetTensorShapeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), shapeDescription);
+        return self.vtable.GetTensorShapeDescription(self, shapeDescription);
     }
     pub fn GetExecutionInterface(self: *const IMLOperatorKernelCreationContext, executionObject: ?*?*IUnknown) callconv(.Inline) void {
-        return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetExecutionInterface(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), executionObject);
+        return self.vtable.GetExecutionInterface(self, executionObject);
     }
 };
 
@@ -732,25 +732,25 @@ pub const IMLOperatorTensor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDimensionCount(self: *const IMLOperatorTensor) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetDimensionCount(@as(*const IMLOperatorTensor, @ptrCast(self)));
+        return self.vtable.GetDimensionCount(self);
     }
     pub fn GetShape(self: *const IMLOperatorTensor, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetShape(@as(*const IMLOperatorTensor, @ptrCast(self)), dimensionCount, dimensions);
+        return self.vtable.GetShape(self, dimensionCount, dimensions);
     }
     pub fn GetTensorDataType(self: *const IMLOperatorTensor) callconv(.Inline) MLOperatorTensorDataType {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetTensorDataType(@as(*const IMLOperatorTensor, @ptrCast(self)));
+        return self.vtable.GetTensorDataType(self);
     }
     pub fn IsCpuData(self: *const IMLOperatorTensor) callconv(.Inline) bool {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).IsCpuData(@as(*const IMLOperatorTensor, @ptrCast(self)));
+        return self.vtable.IsCpuData(self);
     }
     pub fn IsDataInterface(self: *const IMLOperatorTensor) callconv(.Inline) bool {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).IsDataInterface(@as(*const IMLOperatorTensor, @ptrCast(self)));
+        return self.vtable.IsDataInterface(self);
     }
     pub fn GetData(self: *const IMLOperatorTensor) callconv(.Inline) ?*anyopaque {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMLOperatorTensor, @ptrCast(self)));
+        return self.vtable.GetData(self);
     }
     pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: ?*?*IUnknown) callconv(.Inline) void {
-        return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetDataInterface(@as(*const IMLOperatorTensor, @ptrCast(self)), dataInterface);
+        return self.vtable.GetDataInterface(self, dataInterface);
     }
 };
 
@@ -813,19 +813,19 @@ pub const IMLOperatorKernelContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetInputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), inputIndex, tensor);
+        return self.vtable.GetInputTensor(self, inputIndex, tensor);
     }
     pub fn GetOutputTensor(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetOutputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), outputIndex, dimensionCount, dimensionSizes, tensor);
+        return self.vtable.GetOutputTensor(self, outputIndex, dimensionCount, dimensionSizes, tensor);
     }
     pub fn GetOutputTensor1(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetOutputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), outputIndex, tensor);
+        return self.vtable.GetOutputTensor(self, outputIndex, tensor);
     }
     pub fn AllocateTemporaryData(self: *const IMLOperatorKernelContext, size: usize, data: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).AllocateTemporaryData(@as(*const IMLOperatorKernelContext, @ptrCast(self)), size, data);
+        return self.vtable.AllocateTemporaryData(self, size, data);
     }
     pub fn GetExecutionInterface(self: *const IMLOperatorKernelContext, executionObject: ?*?*IUnknown) callconv(.Inline) void {
-        return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetExecutionInterface(@as(*const IMLOperatorKernelContext, @ptrCast(self)), executionObject);
+        return self.vtable.GetExecutionInterface(self, executionObject);
     }
 };
 
@@ -850,7 +850,7 @@ pub const IMLOperatorKernel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Compute(self: *const IMLOperatorKernel, context: ?*IMLOperatorKernelContext) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernel.VTable, @ptrCast(self.vtable)).Compute(@as(*const IMLOperatorKernel, @ptrCast(self)), context);
+        return self.vtable.Compute(self, context);
     }
 };
 
@@ -993,28 +993,28 @@ pub const IMLOperatorShapeInferenceContext = extern union {
     };}
     pub usingnamespace IMLOperatorAttributes.MethodMixin(@This());
     pub fn GetInputCount(self: *const IMLOperatorShapeInferenceContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)));
+        return self.vtable.GetInputCount(self);
     }
     pub fn GetOutputCount(self: *const IMLOperatorShapeInferenceContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)));
+        return self.vtable.GetOutputCount(self);
     }
     pub fn IsInputValid(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex);
+        return self.vtable.IsInputValid(self, inputIndex);
     }
     pub fn IsOutputValid(self: *const IMLOperatorShapeInferenceContext, outputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), outputIndex);
+        return self.vtable.IsOutputValid(self, outputIndex);
     }
     pub fn GetInputEdgeDescription(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, edgeDescription);
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
     }
     pub fn GetInputTensorDimensionCount(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputTensorDimensionCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, dimensionCount);
+        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
     }
     pub fn GetInputTensorShape(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputTensorShape(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, dimensionCount, dimensions);
+        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
     }
     pub fn SetOutputTensorShape(self: *const IMLOperatorShapeInferenceContext, outputIndex: u32, dimensionCount: u32, dimensions: ?*const u32) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).SetOutputTensorShape(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), outputIndex, dimensionCount, dimensions);
+        return self.vtable.SetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
     }
 };
 
@@ -1079,22 +1079,22 @@ pub const IMLOperatorTypeInferenceContext = extern union {
     };}
     pub usingnamespace IMLOperatorAttributes.MethodMixin(@This());
     pub fn GetInputCount(self: *const IMLOperatorTypeInferenceContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)));
+        return self.vtable.GetInputCount(self);
     }
     pub fn GetOutputCount(self: *const IMLOperatorTypeInferenceContext) callconv(.Inline) u32 {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)));
+        return self.vtable.GetOutputCount(self);
     }
     pub fn IsInputValid(self: *const IMLOperatorTypeInferenceContext, inputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), inputIndex);
+        return self.vtable.IsInputValid(self, inputIndex);
     }
     pub fn IsOutputValid(self: *const IMLOperatorTypeInferenceContext, outputIndex: u32) callconv(.Inline) bool {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), outputIndex);
+        return self.vtable.IsOutputValid(self, outputIndex);
     }
     pub fn GetInputEdgeDescription(self: *const IMLOperatorTypeInferenceContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), inputIndex, edgeDescription);
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
     }
     pub fn SetOutputEdgeDescription(self: *const IMLOperatorTypeInferenceContext, outputIndex: u32, edgeDescription: ?*const MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).SetOutputEdgeDescription(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), outputIndex, edgeDescription);
+        return self.vtable.SetOutputEdgeDescription(self, outputIndex, edgeDescription);
     }
 };
 
@@ -1119,7 +1119,7 @@ pub const IMLOperatorTypeInferrer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InferOutputTypes(self: *const IMLOperatorTypeInferrer, context: ?*IMLOperatorTypeInferenceContext) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorTypeInferrer.VTable, @ptrCast(self.vtable)).InferOutputTypes(@as(*const IMLOperatorTypeInferrer, @ptrCast(self)), context);
+        return self.vtable.InferOutputTypes(self, context);
     }
 };
 
@@ -1144,7 +1144,7 @@ pub const IMLOperatorShapeInferrer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InferOutputShapes(self: *const IMLOperatorShapeInferrer, context: ?*IMLOperatorShapeInferenceContext) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorShapeInferrer.VTable, @ptrCast(self.vtable)).InferOutputShapes(@as(*const IMLOperatorShapeInferrer, @ptrCast(self)), context);
+        return self.vtable.InferOutputShapes(self, context);
     }
 };
 
@@ -1264,7 +1264,7 @@ pub const IMLOperatorKernelFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateKernel(self: *const IMLOperatorKernelFactory, context: ?*IMLOperatorKernelCreationContext, kernel: ?*?*IMLOperatorKernel) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorKernelFactory.VTable, @ptrCast(self.vtable)).CreateKernel(@as(*const IMLOperatorKernelFactory, @ptrCast(self)), context, kernel);
+        return self.vtable.CreateKernel(self, context, kernel);
     }
 };
 
@@ -1304,10 +1304,10 @@ pub const IMLOperatorRegistry = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterOperatorSetSchema(self: *const IMLOperatorRegistry, operatorSetId: ?*const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorRegistry.VTable, @ptrCast(self.vtable)).RegisterOperatorSetSchema(@as(*const IMLOperatorRegistry, @ptrCast(self)), operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
+        return self.vtable.RegisterOperatorSetSchema(self, operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
     }
     pub fn RegisterOperatorKernel(self: *const IMLOperatorRegistry, operatorKernel: ?*const MLOperatorKernelDescription, operatorKernelFactory: ?*IMLOperatorKernelFactory, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
-        return @as(*const IMLOperatorRegistry.VTable, @ptrCast(self.vtable)).RegisterOperatorKernel(@as(*const IMLOperatorRegistry, @ptrCast(self)), operatorKernel, operatorKernelFactory, shapeInferrer);
+        return self.vtable.RegisterOperatorKernel(self, operatorKernel, operatorKernelFactory, shapeInferrer);
     }
 };
 

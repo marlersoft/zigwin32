@@ -269,13 +269,13 @@ pub const IBackgroundCopyFile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetRemoteName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
+        return self.vtable.GetRemoteName(self, pVal);
     }
     pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
+        return self.vtable.GetLocalName(self, pVal);
     }
     pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
+        return self.vtable.GetProgress(self, pVal);
     }
 };
 
@@ -334,19 +334,19 @@ pub const IEnumBackgroundCopyFiles = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -428,19 +428,19 @@ pub const IBackgroundCopyError = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetError(self: *const IBackgroundCopyError, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyError, @ptrCast(self)), pContext, pCode);
+        return self.vtable.GetError(self, pContext, pCode);
     }
     pub fn GetFile(self: *const IBackgroundCopyError, pVal: ?*?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyError, @ptrCast(self)), pVal);
+        return self.vtable.GetFile(self, pVal);
     }
     pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pErrorDescription);
+        return self.vtable.GetErrorDescription(self, LanguageId, pErrorDescription);
     }
     pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorContextDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pContextDescription);
+        return self.vtable.GetErrorContextDescription(self, LanguageId, pContextDescription);
     }
     pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetProtocol(@as(*const IBackgroundCopyError, @ptrCast(self)), pProtocol);
+        return self.vtable.GetProtocol(self, pProtocol);
     }
 };
 
@@ -785,100 +785,100 @@ pub const IBackgroundCopyJob = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddFileSet(self: *const IBackgroundCopyJob, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFileSet(@as(*const IBackgroundCopyJob, @ptrCast(self)), cFileCount, pFileSet);
+        return self.vtable.AddFileSet(self, cFileCount, pFileSet);
     }
     pub fn AddFile(self: *const IBackgroundCopyJob, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFile(@as(*const IBackgroundCopyJob, @ptrCast(self)), RemoteUrl, LocalName);
+        return self.vtable.AddFile(self, RemoteUrl, LocalName);
     }
     pub fn EnumFiles(self: *const IBackgroundCopyJob, pEnum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).EnumFiles(@as(*const IBackgroundCopyJob, @ptrCast(self)), pEnum);
+        return self.vtable.EnumFiles(self, pEnum);
     }
     pub fn Suspend(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IBackgroundCopyJob, @ptrCast(self)));
+        return self.vtable.Suspend(self);
     }
     pub fn Resume(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Resume(@as(*const IBackgroundCopyJob, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn Cancel(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IBackgroundCopyJob, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Complete(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Complete(@as(*const IBackgroundCopyJob, @ptrCast(self)));
+        return self.vtable.Complete(self);
     }
     pub fn GetId(self: *const IBackgroundCopyJob, pVal: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetId(self, pVal);
     }
     pub fn GetType(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetType(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetType(self, pVal);
     }
     pub fn GetProgress(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PROGRESS) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetProgress(self, pVal);
     }
     pub fn GetTimes(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TIMES) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetTimes(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetTimes(self, pVal);
     }
     pub fn GetState(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetState(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetState(self, pVal);
     }
     pub fn GetError(self: *const IBackgroundCopyJob, ppError: ?*?*IBackgroundCopyError) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyJob, @ptrCast(self)), ppError);
+        return self.vtable.GetError(self, ppError);
     }
     pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetOwner(self, pVal);
     }
     pub fn SetDisplayName(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
+        return self.vtable.SetDisplayName(self, Val);
     }
     pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetDisplayName(self, pVal);
     }
     pub fn SetDescription(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
+        return self.vtable.SetDescription(self, Val);
     }
     pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetDescription(self, pVal);
     }
     pub fn SetPriority(self: *const IBackgroundCopyJob, Val: BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
+        return self.vtable.SetPriority(self, Val);
     }
     pub fn GetPriority(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetPriority(self, pVal);
     }
     pub fn SetNotifyFlags(self: *const IBackgroundCopyJob, Val: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
+        return self.vtable.SetNotifyFlags(self, Val);
     }
     pub fn GetNotifyFlags(self: *const IBackgroundCopyJob, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetNotifyFlags(self, pVal);
     }
     pub fn SetNotifyInterface(self: *const IBackgroundCopyJob, Val: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
+        return self.vtable.SetNotifyInterface(self, Val);
     }
     pub fn GetNotifyInterface(self: *const IBackgroundCopyJob, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
+        return self.vtable.GetNotifyInterface(self, pVal);
     }
     pub fn SetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
+        return self.vtable.SetMinimumRetryDelay(self, Seconds);
     }
     pub fn GetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
+        return self.vtable.GetMinimumRetryDelay(self, Seconds);
     }
     pub fn SetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
+        return self.vtable.SetNoProgressTimeout(self, Seconds);
     }
     pub fn GetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
+        return self.vtable.GetNoProgressTimeout(self, Seconds);
     }
     pub fn GetErrorCount(self: *const IBackgroundCopyJob, Errors: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetErrorCount(@as(*const IBackgroundCopyJob, @ptrCast(self)), Errors);
+        return self.vtable.GetErrorCount(self, Errors);
     }
     pub fn SetProxySettings(self: *const IBackgroundCopyJob, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), ProxyUsage, ProxyList, ProxyBypassList);
+        return self.vtable.SetProxySettings(self, ProxyUsage, ProxyList, ProxyBypassList);
     }
     pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), pProxyUsage, pProxyList, pProxyBypassList);
+        return self.vtable.GetProxySettings(self, pProxyUsage, pProxyList, pProxyBypassList);
     }
     pub fn TakeOwnership(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).TakeOwnership(@as(*const IBackgroundCopyJob, @ptrCast(self)));
+        return self.vtable.TakeOwnership(self);
     }
 };
 
@@ -937,19 +937,19 @@ pub const IEnumBackgroundCopyJobs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -993,13 +993,13 @@ pub const IBackgroundCopyCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobTransferred(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob);
+        return self.vtable.JobTransferred(self, pJob);
     }
     pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobError(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
+        return self.vtable.JobError(self, pJob, pError);
     }
     pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobModification(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
+        return self.vtable.JobModification(self, pJob, dwReserved);
     }
 };
 
@@ -1063,22 +1063,22 @@ pub const AsyncIBackgroundCopyCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob);
+        return self.vtable.Begin_JobTransferred(self, pJob);
     }
     pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
+        return self.vtable.Finish_JobTransferred(self);
     }
     pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
+        return self.vtable.Begin_JobError(self, pJob, pError);
     }
     pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
+        return self.vtable.Finish_JobError(self);
     }
     pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
+        return self.vtable.Begin_JobModification(self, pJob, dwReserved);
     }
     pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
+        return self.vtable.Finish_JobModification(self);
     }
 };
 
@@ -1135,16 +1135,16 @@ pub const IBackgroundCopyManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), DisplayName, Type, pJobId, ppJob);
+        return self.vtable.CreateJob(self, DisplayName, Type, pJobId, ppJob);
     }
     pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), jobID, ppJob);
+        return self.vtable.GetJob(self, jobID, ppJob);
     }
     pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyManager, @ptrCast(self)), dwFlags, ppEnum);
+        return self.vtable.EnumJobs(self, dwFlags, ppEnum);
     }
     pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyManager, @ptrCast(self)), hResult, LanguageId, pErrorDescription);
+        return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
     }
 };
 
@@ -1273,28 +1273,28 @@ pub const IBackgroundCopyJob2 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJob.MethodMixin(@This());
     pub fn SetNotifyCmdLine(self: *const IBackgroundCopyJob2, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Program, Parameters);
+        return self.vtable.SetNotifyCmdLine(self, Program, Parameters);
     }
     pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgram, pParameters);
+        return self.vtable.GetNotifyCmdLine(self, pProgram, pParameters);
     }
     pub fn GetReplyProgress(self: *const IBackgroundCopyJob2, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyProgress(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgress);
+        return self.vtable.GetReplyProgress(self, pProgress);
     }
     pub fn GetReplyData(self: *const IBackgroundCopyJob2, ppBuffer: ?*?*u8, pLength: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyData(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ppBuffer, pLength);
+        return self.vtable.GetReplyData(self, ppBuffer, pLength);
     }
     pub fn SetReplyFileName(self: *const IBackgroundCopyJob2, ReplyFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ReplyFileName);
+        return self.vtable.SetReplyFileName(self, ReplyFileName);
     }
     pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pReplyFileName);
+        return self.vtable.GetReplyFileName(self, pReplyFileName);
     }
     pub fn SetCredentials(self: *const IBackgroundCopyJob2, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), credentials);
+        return self.vtable.SetCredentials(self, credentials);
     }
     pub fn RemoveCredentials(self: *const IBackgroundCopyJob2, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).RemoveCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Target, Scheme);
+        return self.vtable.RemoveCredentials(self, Target, Scheme);
     }
 };
 
@@ -1356,16 +1356,16 @@ pub const IBackgroundCopyJob3 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJob2.MethodMixin(@This());
     pub fn ReplaceRemotePrefix(self: *const IBackgroundCopyJob3, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).ReplaceRemotePrefix(@as(*const IBackgroundCopyJob3, @ptrCast(self)), OldPrefix, NewPrefix);
+        return self.vtable.ReplaceRemotePrefix(self, OldPrefix, NewPrefix);
     }
     pub fn AddFileWithRanges(self: *const IBackgroundCopyJob3, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).AddFileWithRanges(@as(*const IBackgroundCopyJob3, @ptrCast(self)), RemoteUrl, LocalName, RangeCount, Ranges);
+        return self.vtable.AddFileWithRanges(self, RemoteUrl, LocalName, RangeCount, Ranges);
     }
     pub fn SetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).SetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
+        return self.vtable.SetFileACLFlags(self, Flags);
     }
     pub fn GetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).GetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
+        return self.vtable.GetFileACLFlags(self, Flags);
     }
 };
 
@@ -1400,10 +1400,10 @@ pub const IBackgroundCopyFile2 = extern union {
     };}
     pub usingnamespace IBackgroundCopyFile.MethodMixin(@This());
     pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBackgroundCopyFile2, @ptrCast(self)), RangeCount, Ranges);
+        return self.vtable.GetFileRanges(self, RangeCount, Ranges);
     }
     pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).SetRemoteName(@as(*const IBackgroundCopyFile2, @ptrCast(self)), Val);
+        return self.vtable.SetRemoteName(self, Val);
     }
 };
 
@@ -1513,28 +1513,28 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetClientCertificateByID(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByID(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, pCertHashBlob);
+        return self.vtable.SetClientCertificateByID(self, StoreLocation, StoreName, pCertHashBlob);
     }
     pub fn SetClientCertificateByName(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByName(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, SubjectName);
+        return self.vtable.SetClientCertificateByName(self, StoreLocation, StoreName, SubjectName);
     }
     pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).RemoveClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)));
+        return self.vtable.RemoveClientCertificate(self);
     }
     pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
+        return self.vtable.GetClientCertificate(self, pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
     }
     pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), RequestHeaders);
+        return self.vtable.SetCustomHeaders(self, RequestHeaders);
     }
     pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pRequestHeaders);
+        return self.vtable.GetCustomHeaders(self, pRequestHeaders);
     }
     pub fn SetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, Flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), Flags);
+        return self.vtable.SetSecurityFlags(self, Flags);
     }
     pub fn GetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, pFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pFlags);
+        return self.vtable.GetSecurityFlags(self, pFlags);
     }
 };
 
@@ -1611,25 +1611,25 @@ pub const IBitsPeerCacheRecord = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
+        return self.vtable.GetId(self, pVal);
     }
     pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetOriginUrl(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
+        return self.vtable.GetOriginUrl(self, pVal);
     }
     pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
+        return self.vtable.GetFileSize(self, pVal);
     }
     pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileModificationTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
+        return self.vtable.GetFileModificationTime(self, pVal);
     }
     pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetLastAccessTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
+        return self.vtable.GetLastAccessTime(self, pVal);
     }
     pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).IsFileValidated(@as(*const IBitsPeerCacheRecord, @ptrCast(self)));
+        return self.vtable.IsFileValidated(self);
     }
     pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pRangeCount, ppRanges);
+        return self.vtable.GetFileRanges(self, pRangeCount, ppRanges);
     }
 };
 
@@ -1688,19 +1688,19 @@ pub const IEnumBitsPeerCacheRecords = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -1742,13 +1742,13 @@ pub const IBitsPeer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).GetPeerName(@as(*const IBitsPeer, @ptrCast(self)), pName);
+        return self.vtable.GetPeerName(self, pName);
     }
     pub fn IsAuthenticated(self: *const IBitsPeer, pAuth: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAuthenticated(@as(*const IBitsPeer, @ptrCast(self)), pAuth);
+        return self.vtable.IsAuthenticated(self, pAuth);
     }
     pub fn IsAvailable(self: *const IBitsPeer, pOnline: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IBitsPeer, @ptrCast(self)), pOnline);
+        return self.vtable.IsAvailable(self, pOnline);
     }
 };
 
@@ -1807,19 +1807,19 @@ pub const IEnumBitsPeers = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeers, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeers, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBitsPeers) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeers, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeers, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeers, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -1947,46 +1947,46 @@ pub const IBitsPeerCacheAdministration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, pBytes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pBytes);
+        return self.vtable.GetMaximumCacheSize(self, pBytes);
     }
     pub fn SetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, Bytes: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Bytes);
+        return self.vtable.SetMaximumCacheSize(self, Bytes);
     }
     pub fn GetMaximumContentAge(self: *const IBitsPeerCacheAdministration, pSeconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pSeconds);
+        return self.vtable.GetMaximumContentAge(self, pSeconds);
     }
     pub fn SetMaximumContentAge(self: *const IBitsPeerCacheAdministration, Seconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Seconds);
+        return self.vtable.SetMaximumContentAge(self, Seconds);
     }
     pub fn GetConfigurationFlags(self: *const IBitsPeerCacheAdministration, pFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pFlags);
+        return self.vtable.GetConfigurationFlags(self, pFlags);
     }
     pub fn SetConfigurationFlags(self: *const IBitsPeerCacheAdministration, Flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Flags);
+        return self.vtable.SetConfigurationFlags(self, Flags);
     }
     pub fn EnumRecords(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumRecords(self, ppEnum);
     }
     pub fn GetRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id, ppRecord);
+        return self.vtable.GetRecord(self, id, ppRecord);
     }
     pub fn ClearRecords(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
+        return self.vtable.ClearRecords(self);
     }
     pub fn DeleteRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id);
+        return self.vtable.DeleteRecord(self, id);
     }
     pub fn DeleteUrl(self: *const IBitsPeerCacheAdministration, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteUrl(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), url);
+        return self.vtable.DeleteUrl(self, url);
     }
     pub fn EnumPeers(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumPeers(self, ppEnum);
     }
     pub fn ClearPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
+        return self.vtable.ClearPeers(self);
     }
     pub fn DiscoverPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
-        return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DiscoverPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
+        return self.vtable.DiscoverPeers(self);
     }
 };
 
@@ -2052,22 +2052,22 @@ pub const IBackgroundCopyJob4 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJob3.MethodMixin(@This());
     pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Flags);
+        return self.vtable.SetPeerCachingFlags(self, Flags);
     }
     pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pFlags);
+        return self.vtable.GetPeerCachingFlags(self, pFlags);
     }
     pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerIntegrityLevel(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pLevel);
+        return self.vtable.GetOwnerIntegrityLevel(self, pLevel);
     }
     pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerElevationState(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pElevated);
+        return self.vtable.GetOwnerElevationState(self, pElevated);
     }
     pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Timeout);
+        return self.vtable.SetMaximumDownloadTime(self, Timeout);
     }
     pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pTimeout);
+        return self.vtable.GetMaximumDownloadTime(self, pTimeout);
     }
 };
 
@@ -2117,16 +2117,16 @@ pub const IBackgroundCopyFile3 = extern union {
     };}
     pub usingnamespace IBackgroundCopyFile2.MethodMixin(@This());
     pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetTemporaryName(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pFilename);
+        return self.vtable.GetTemporaryName(self, pFilename);
     }
     pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).SetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), state);
+        return self.vtable.SetValidationState(self, state);
     }
     pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pState);
+        return self.vtable.GetValidationState(self, pState);
     }
     pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).IsDownloadedFromPeer(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pVal);
+        return self.vtable.IsDownloadedFromPeer(self, pVal);
     }
 };
 
@@ -2153,7 +2153,7 @@ pub const IBackgroundCopyCallback2 = extern union {
     };}
     pub usingnamespace IBackgroundCopyCallback.MethodMixin(@This());
     pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback2.VTable, @ptrCast(self.vtable)).FileTransferred(@as(*const IBackgroundCopyCallback2, @ptrCast(self)), pJob, pFile);
+        return self.vtable.FileTransferred(self, pJob, pFile);
     }
 };
 
@@ -2212,19 +2212,19 @@ pub const IBitsTokenOptions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHelperTokenFlags(self: *const IBitsTokenOptions, UsageFlags: BG_TOKEN) callconv(.Inline) HRESULT {
-        return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), UsageFlags);
+        return self.vtable.SetHelperTokenFlags(self, UsageFlags);
     }
     pub fn GetHelperTokenFlags(self: *const IBitsTokenOptions, pFlags: ?*BG_TOKEN) callconv(.Inline) HRESULT {
-        return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), pFlags);
+        return self.vtable.GetHelperTokenFlags(self, pFlags);
     }
     pub fn SetHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
-        return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
+        return self.vtable.SetHelperToken(self);
     }
     pub fn ClearHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
-        return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).ClearHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
+        return self.vtable.ClearHelperToken(self);
     }
     pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenSid(@as(*const IBitsTokenOptions, @ptrCast(self)), pSid);
+        return self.vtable.GetHelperTokenSid(self, pSid);
     }
 };
 
@@ -2251,7 +2251,7 @@ pub const IBackgroundCopyFile4 = extern union {
     };}
     pub usingnamespace IBackgroundCopyFile3.MethodMixin(@This());
     pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile4.VTable, @ptrCast(self.vtable)).GetPeerDownloadStats(@as(*const IBackgroundCopyFile4, @ptrCast(self)), pFromOrigin, pFromPeers);
+        return self.vtable.GetPeerDownloadStats(self, pFromOrigin, pFromPeers);
     }
 };
 
@@ -2339,10 +2339,10 @@ pub const IBackgroundCopyJob5 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJob4.MethodMixin(@This());
     pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
     pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
     }
 };
 
@@ -2378,10 +2378,10 @@ pub const IBackgroundCopyFile5 = extern union {
     };}
     pub usingnamespace IBackgroundCopyFile4.MethodMixin(@This());
     pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
     pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
     }
 };
 
@@ -2413,7 +2413,7 @@ pub const IBackgroundCopyCallback3 = extern union {
     };}
     pub usingnamespace IBackgroundCopyCallback2.MethodMixin(@This());
     pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback3.VTable, @ptrCast(self.vtable)).FileRangesTransferred(@as(*const IBackgroundCopyCallback3, @ptrCast(self)), job, file, rangeCount, ranges);
+        return self.vtable.FileRangesTransferred(self, job, file, rangeCount, ranges);
     }
 };
 
@@ -2457,13 +2457,13 @@ pub const IBackgroundCopyFile6 = extern union {
     };}
     pub usingnamespace IBackgroundCopyFile5.MethodMixin(@This());
     pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).UpdateDownloadPosition(@as(*const IBackgroundCopyFile6, @ptrCast(self)), offset);
+        return self.vtable.UpdateDownloadPosition(self, offset);
     }
     pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).RequestFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
+        return self.vtable.RequestFileRanges(self, rangeCount, ranges);
     }
     pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).GetFilledFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
+        return self.vtable.GetFilledFileRanges(self, rangeCount, ranges);
     }
 };
 
@@ -2500,10 +2500,10 @@ pub const IBackgroundCopyJobHttpOptions2 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJobHttpOptions.MethodMixin(@This());
     pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).SetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
+        return self.vtable.SetHttpMethod(self, method);
     }
     pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).GetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
+        return self.vtable.GetHttpMethod(self, method);
     }
 };
 
@@ -2537,7 +2537,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyServerCertificateValidationCallback.VTable, @ptrCast(self.vtable)).ValidateServerCertificate(@as(*const IBackgroundCopyServerCertificateValidationCallback, @ptrCast(self)), job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
+        return self.vtable.ValidateServerCertificate(self, job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
     }
 };
 
@@ -2569,10 +2569,10 @@ pub const IBackgroundCopyJobHttpOptions3 = extern union {
     };}
     pub usingnamespace IBackgroundCopyJobHttpOptions2.MethodMixin(@This());
     pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).SetServerCertificateValidationInterface(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)), certValidationCallback);
+        return self.vtable.SetServerCertificateValidationInterface(self, certValidationCallback);
     }
     pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).MakeCustomHeadersWriteOnly(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)));
+        return self.vtable.MakeCustomHeadersWriteOnly(self);
     }
 };
 
@@ -2624,16 +2624,16 @@ pub const IBITSExtensionSetup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
-        return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).EnableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
+        return self.vtable.EnableBITSUploads(self);
     }
     pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
-        return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).DisableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
+        return self.vtable.DisableBITSUploads(self);
     }
     pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTaskName(@as(*const IBITSExtensionSetup, @ptrCast(self)), pTaskName);
+        return self.vtable.GetCleanupTaskName(self, pTaskName);
     }
     pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTask(@as(*const IBITSExtensionSetup, @ptrCast(self)), riid, ppUnk);
+        return self.vtable.GetCleanupTask(self, riid, ppUnk);
     }
 };
 
@@ -2660,7 +2660,7 @@ pub const IBITSExtensionSetupFactory = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.Inline) HRESULT {
-        return @as(*const IBITSExtensionSetupFactory.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IBITSExtensionSetupFactory, @ptrCast(self)), Path, ppExtensionSetup);
+        return self.vtable.GetObject(self, Path, ppExtensionSetup);
     }
 };
 
@@ -2756,28 +2756,28 @@ pub const IBackgroundCopyJob1 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).CancelJob(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
+        return self.vtable.CancelJob(self);
     }
     pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob1, @ptrCast(self)), dwFlags, pdwProgress);
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
     }
     pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
+        return self.vtable.GetStatus(self, pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
     }
     pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).AddFiles(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileCount, ppFileSet);
+        return self.vtable.AddFiles(self, cFileCount, ppFileSet);
     }
     pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileIndex, pFileInfo);
+        return self.vtable.GetFile(self, cFileIndex, pFileInfo);
     }
     pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwFileCount);
+        return self.vtable.GetFileCount(self, pdwFileCount);
     }
     pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
+        return self.vtable.SwitchToForeground(self);
     }
     pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).get_JobID(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pguidJobID);
+        return self.vtable.get_JobID(self, pguidJobID);
     }
 };
 
@@ -2836,19 +2836,19 @@ pub const IEnumBackgroundCopyJobs1 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -3022,49 +3022,49 @@ pub const IBackgroundCopyGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
+        return self.vtable.GetProp(self, propID, pvarVal);
     }
     pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
+        return self.vtable.SetProp(self, propID, pvarVal);
     }
     pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, pdwProgress);
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
     }
     pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwStatus, pdwJobIndex);
+        return self.vtable.GetStatus(self, pdwStatus, pdwJobIndex);
     }
     pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), jobID, ppJob);
+        return self.vtable.GetJob(self, jobID, ppJob);
     }
     pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SuspendGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
+        return self.vtable.SuspendGroup(self);
     }
     pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).ResumeGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
+        return self.vtable.ResumeGroup(self);
     }
     pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CancelGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
+        return self.vtable.CancelGroup(self);
     }
     pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwSize);
+        return self.vtable.get_Size(self, pdwSize);
     }
     pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_GroupID(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pguidGroupID);
+        return self.vtable.get_GroupID(self, pguidGroupID);
     }
     pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), guidJobID, ppJob);
+        return self.vtable.CreateJob(self, guidJobID, ppJob);
     }
     pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, ppEnumJobs);
+        return self.vtable.EnumJobs(self, dwFlags, ppEnumJobs);
     }
     pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
+        return self.vtable.SwitchToForeground(self);
     }
     pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).QueryNewJobInterface(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
+        return self.vtable.QueryNewJobInterface(self, iid, pUnk);
     }
     pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetNotificationPointer(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
+        return self.vtable.SetNotificationPointer(self, iid, pUnk);
     }
 };
 
@@ -3123,19 +3123,19 @@ pub const IEnumBackgroundCopyGroups = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumBackgroundCopyGroups, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumBackgroundCopyGroups, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumBackgroundCopyGroups, ppenum: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
     pub fn GetCount(self: *const IEnumBackgroundCopyGroups, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), puCount);
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -3193,13 +3193,13 @@ pub const IBackgroundCopyCallback1 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnStatus(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
+        return self.vtable.OnStatus(self, pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
     }
     pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
+        return self.vtable.OnProgress(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
     }
     pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgressEx(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
+        return self.vtable.OnProgressEx(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
     }
 };
 
@@ -3244,13 +3244,13 @@ pub const IBackgroundCopyQMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).CreateGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), guidGroupID, ppGroup);
+        return self.vtable.CreateGroup(self, guidGroupID, ppGroup);
     }
     pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).GetGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), groupID, ppGroup);
+        return self.vtable.GetGroup(self, groupID, ppGroup);
     }
     pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
-        return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).EnumGroups(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), dwFlags, ppEnumGroups);
+        return self.vtable.EnumGroups(self, dwFlags, ppEnumGroups);
     }
 };
 

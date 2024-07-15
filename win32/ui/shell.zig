@@ -2828,7 +2828,7 @@ pub const INotifyReplica = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn YouAreAReplica(self: *const INotifyReplica, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]?*IMoniker) callconv(.Inline) HRESULT {
-        return @as(*const INotifyReplica.VTable, @ptrCast(self.vtable)).YouAreAReplica(@as(*const INotifyReplica, @ptrCast(self)), ulcOtherReplicas, rgpmkOtherReplicas);
+        return self.vtable.YouAreAReplica(self, ulcOtherReplicas, rgpmkOtherReplicas);
     }
 };
 
@@ -3198,13 +3198,13 @@ pub const IContextMenu = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryContextMenu(self: *const IContextMenu, hmenu: ?HMENU, indexMenu: u32, idCmdFirst: u32, idCmdLast: u32, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenu.VTable, @ptrCast(self.vtable)).QueryContextMenu(@as(*const IContextMenu, @ptrCast(self)), hmenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
+        return self.vtable.QueryContextMenu(self, hmenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
     }
     pub fn InvokeCommand(self: *const IContextMenu, pici: ?*CMINVOKECOMMANDINFO) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenu.VTable, @ptrCast(self.vtable)).InvokeCommand(@as(*const IContextMenu, @ptrCast(self)), pici);
+        return self.vtable.InvokeCommand(self, pici);
     }
     pub fn GetCommandString(self: *const IContextMenu, idCmd: usize, uType: u32, pReserved: ?*u32, pszName: ?PSTR, cchMax: u32) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenu.VTable, @ptrCast(self.vtable)).GetCommandString(@as(*const IContextMenu, @ptrCast(self)), idCmd, uType, pReserved, pszName, cchMax);
+        return self.vtable.GetCommandString(self, idCmd, uType, pReserved, pszName, cchMax);
     }
 };
 
@@ -3232,7 +3232,7 @@ pub const IContextMenu2 = extern union {
     };}
     pub usingnamespace IContextMenu.MethodMixin(@This());
     pub fn HandleMenuMsg(self: *const IContextMenu2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenu2.VTable, @ptrCast(self.vtable)).HandleMenuMsg(@as(*const IContextMenu2, @ptrCast(self)), uMsg, wParam, lParam);
+        return self.vtable.HandleMenuMsg(self, uMsg, wParam, lParam);
     }
 };
 
@@ -3261,7 +3261,7 @@ pub const IContextMenu3 = extern union {
     };}
     pub usingnamespace IContextMenu2.MethodMixin(@This());
     pub fn HandleMenuMsg2(self: *const IContextMenu3, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenu3.VTable, @ptrCast(self.vtable)).HandleMenuMsg2(@as(*const IContextMenu3, @ptrCast(self)), uMsg, wParam, lParam, plResult);
+        return self.vtable.HandleMenuMsg2(self, uMsg, wParam, lParam, plResult);
     }
 };
 
@@ -3334,25 +3334,25 @@ pub const IExecuteCommand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetKeyState(self: *const IExecuteCommand, grfKeyState: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetKeyState(@as(*const IExecuteCommand, @ptrCast(self)), grfKeyState);
+        return self.vtable.SetKeyState(self, grfKeyState);
     }
     pub fn SetParameters(self: *const IExecuteCommand, pszParameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetParameters(@as(*const IExecuteCommand, @ptrCast(self)), pszParameters);
+        return self.vtable.SetParameters(self, pszParameters);
     }
     pub fn SetPosition(self: *const IExecuteCommand, pt: POINT) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IExecuteCommand, @ptrCast(self)), pt);
+        return self.vtable.SetPosition(self, pt);
     }
     pub fn SetShowWindow(self: *const IExecuteCommand, nShow: i32) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetShowWindow(@as(*const IExecuteCommand, @ptrCast(self)), nShow);
+        return self.vtable.SetShowWindow(self, nShow);
     }
     pub fn SetNoShowUI(self: *const IExecuteCommand, fNoShowUI: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetNoShowUI(@as(*const IExecuteCommand, @ptrCast(self)), fNoShowUI);
+        return self.vtable.SetNoShowUI(self, fNoShowUI);
     }
     pub fn SetDirectory(self: *const IExecuteCommand, pszDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).SetDirectory(@as(*const IExecuteCommand, @ptrCast(self)), pszDirectory);
+        return self.vtable.SetDirectory(self, pszDirectory);
     }
     pub fn Execute(self: *const IExecuteCommand) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommand.VTable, @ptrCast(self.vtable)).Execute(@as(*const IExecuteCommand, @ptrCast(self)));
+        return self.vtable.Execute(self);
     }
 };
 
@@ -3378,7 +3378,7 @@ pub const IPersistFolder = extern union {
     };}
     pub usingnamespace IPersist.MethodMixin(@This());
     pub fn Initialize(self: *const IPersistFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IPersistFolder.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPersistFolder, @ptrCast(self)), pidl);
+        return self.vtable.Initialize(self, pidl);
     }
 };
 
@@ -3432,19 +3432,19 @@ pub const IRunnableTask = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Run(self: *const IRunnableTask) callconv(.Inline) HRESULT {
-        return @as(*const IRunnableTask.VTable, @ptrCast(self.vtable)).Run(@as(*const IRunnableTask, @ptrCast(self)));
+        return self.vtable.Run(self);
     }
     pub fn Kill(self: *const IRunnableTask, bWait: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRunnableTask.VTable, @ptrCast(self.vtable)).Kill(@as(*const IRunnableTask, @ptrCast(self)), bWait);
+        return self.vtable.Kill(self, bWait);
     }
     pub fn Suspend(self: *const IRunnableTask) callconv(.Inline) HRESULT {
-        return @as(*const IRunnableTask.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IRunnableTask, @ptrCast(self)));
+        return self.vtable.Suspend(self);
     }
     pub fn Resume(self: *const IRunnableTask) callconv(.Inline) HRESULT {
-        return @as(*const IRunnableTask.VTable, @ptrCast(self.vtable)).Resume(@as(*const IRunnableTask, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn IsRunning(self: *const IRunnableTask) callconv(.Inline) u32 {
-        return @as(*const IRunnableTask.VTable, @ptrCast(self.vtable)).IsRunning(@as(*const IRunnableTask, @ptrCast(self)));
+        return self.vtable.IsRunning(self);
     }
 };
 
@@ -3500,16 +3500,16 @@ pub const IShellTaskScheduler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddTask(self: *const IShellTaskScheduler, prt: ?*IRunnableTask, rtoid: ?*const Guid, lParam: usize, dwPriority: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellTaskScheduler.VTable, @ptrCast(self.vtable)).AddTask(@as(*const IShellTaskScheduler, @ptrCast(self)), prt, rtoid, lParam, dwPriority);
+        return self.vtable.AddTask(self, prt, rtoid, lParam, dwPriority);
     }
     pub fn RemoveTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid, lParam: usize, bWaitIfRunning: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellTaskScheduler.VTable, @ptrCast(self.vtable)).RemoveTasks(@as(*const IShellTaskScheduler, @ptrCast(self)), rtoid, lParam, bWaitIfRunning);
+        return self.vtable.RemoveTasks(self, rtoid, lParam, bWaitIfRunning);
     }
     pub fn CountTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid) callconv(.Inline) u32 {
-        return @as(*const IShellTaskScheduler.VTable, @ptrCast(self.vtable)).CountTasks(@as(*const IShellTaskScheduler, @ptrCast(self)), rtoid);
+        return self.vtable.CountTasks(self, rtoid);
     }
     pub fn Status(self: *const IShellTaskScheduler, dwReleaseStatus: u32, dwThreadTimeout: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellTaskScheduler.VTable, @ptrCast(self.vtable)).Status(@as(*const IShellTaskScheduler, @ptrCast(self)), dwReleaseStatus, dwThreadTimeout);
+        return self.vtable.Status(self, dwReleaseStatus, dwThreadTimeout);
     }
 };
 
@@ -3535,7 +3535,7 @@ pub const IPersistFolder2 = extern union {
     };}
     pub usingnamespace IPersistFolder.MethodMixin(@This());
     pub fn GetCurFolder(self: *const IPersistFolder2, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IPersistFolder2.VTable, @ptrCast(self.vtable)).GetCurFolder(@as(*const IPersistFolder2, @ptrCast(self)), ppidl);
+        return self.vtable.GetCurFolder(self, ppidl);
     }
 };
 
@@ -3579,10 +3579,10 @@ pub const IPersistFolder3 = extern union {
     };}
     pub usingnamespace IPersistFolder2.MethodMixin(@This());
     pub fn InitializeEx(self: *const IPersistFolder3, pbc: ?*IBindCtx, pidlRoot: ?*ITEMIDLIST, ppfti: ?*const PERSIST_FOLDER_TARGET_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IPersistFolder3.VTable, @ptrCast(self.vtable)).InitializeEx(@as(*const IPersistFolder3, @ptrCast(self)), pbc, pidlRoot, ppfti);
+        return self.vtable.InitializeEx(self, pbc, pidlRoot, ppfti);
     }
     pub fn GetFolderTargetInfo(self: *const IPersistFolder3, ppfti: ?*PERSIST_FOLDER_TARGET_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IPersistFolder3.VTable, @ptrCast(self.vtable)).GetFolderTargetInfo(@as(*const IPersistFolder3, @ptrCast(self)), ppfti);
+        return self.vtable.GetFolderTargetInfo(self, ppfti);
     }
 };
 
@@ -3616,10 +3616,10 @@ pub const IPersistIDList = extern union {
     };}
     pub usingnamespace IPersist.MethodMixin(@This());
     pub fn SetIDList(self: *const IPersistIDList, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IPersistIDList.VTable, @ptrCast(self.vtable)).SetIDList(@as(*const IPersistIDList, @ptrCast(self)), pidl);
+        return self.vtable.SetIDList(self, pidl);
     }
     pub fn GetIDList(self: *const IPersistIDList, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IPersistIDList.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const IPersistIDList, @ptrCast(self)), ppidl);
+        return self.vtable.GetIDList(self, ppidl);
     }
 };
 
@@ -3670,16 +3670,16 @@ pub const IEnumIDList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumIDList.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumIDList, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumIDList, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumIDList.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumIDList, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumIDList) callconv(.Inline) HRESULT {
-        return @as(*const IEnumIDList.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumIDList, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumIDList, ppenum: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
-        return @as(*const IEnumIDList.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumIDList, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -3730,16 +3730,16 @@ pub const IEnumFullIDList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumFullIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFullIDList.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFullIDList, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumFullIDList, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFullIDList.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFullIDList, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumFullIDList) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFullIDList.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFullIDList, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumFullIDList, ppenum: ?*?*IEnumFullIDList) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFullIDList.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFullIDList, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -3836,10 +3836,10 @@ pub const IFileSyncMergeHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Merge(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, serverFilePath: ?[*:0]const u16, updateStatus: ?*MERGE_UPDATE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IFileSyncMergeHandler.VTable, @ptrCast(self.vtable)).Merge(@as(*const IFileSyncMergeHandler, @ptrCast(self)), localFilePath, serverFilePath, updateStatus);
+        return self.vtable.Merge(self, localFilePath, serverFilePath, updateStatus);
     }
     pub fn ShowResolveConflictUIAsync(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, monitorToDisplayOn: ?HMONITOR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSyncMergeHandler.VTable, @ptrCast(self.vtable)).ShowResolveConflictUIAsync(@as(*const IFileSyncMergeHandler, @ptrCast(self)), localFilePath, monitorToDisplayOn);
+        return self.vtable.ShowResolveConflictUIAsync(self, localFilePath, monitorToDisplayOn);
     }
 };
 
@@ -3880,10 +3880,10 @@ pub const IObjectWithFolderEnumMode = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMode(self: *const IObjectWithFolderEnumMode, feMode: FOLDER_ENUM_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithFolderEnumMode.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IObjectWithFolderEnumMode, @ptrCast(self)), feMode);
+        return self.vtable.SetMode(self, feMode);
     }
     pub fn GetMode(self: *const IObjectWithFolderEnumMode, pfeMode: ?*FOLDER_ENUM_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithFolderEnumMode.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IObjectWithFolderEnumMode, @ptrCast(self)), pfeMode);
+        return self.vtable.GetMode(self, pfeMode);
     }
 };
 
@@ -3918,10 +3918,10 @@ pub const IParseAndCreateItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetItem(self: *const IParseAndCreateItem, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IParseAndCreateItem.VTable, @ptrCast(self.vtable)).SetItem(@as(*const IParseAndCreateItem, @ptrCast(self)), psi);
+        return self.vtable.SetItem(self, psi);
     }
     pub fn GetItem(self: *const IParseAndCreateItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IParseAndCreateItem.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IParseAndCreateItem, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetItem(self, riid, ppv);
     }
 };
 
@@ -4049,34 +4049,34 @@ pub const IShellFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ParseDisplayName(self: *const IShellFolder, hwnd: ?HWND, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppidl: ?*?*ITEMIDLIST, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).ParseDisplayName(@as(*const IShellFolder, @ptrCast(self)), hwnd, pbc, pszDisplayName, pchEaten, ppidl, pdwAttributes);
+        return self.vtable.ParseDisplayName(self, hwnd, pbc, pszDisplayName, pchEaten, ppidl, pdwAttributes);
     }
     pub fn EnumObjects(self: *const IShellFolder, hwnd: ?HWND, grfFlags: u32, ppenumIDList: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IShellFolder, @ptrCast(self)), hwnd, grfFlags, ppenumIDList);
+        return self.vtable.EnumObjects(self, hwnd, grfFlags, ppenumIDList);
     }
     pub fn BindToObject(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).BindToObject(@as(*const IShellFolder, @ptrCast(self)), pidl, pbc, riid, ppv);
+        return self.vtable.BindToObject(self, pidl, pbc, riid, ppv);
     }
     pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).BindToStorage(@as(*const IShellFolder, @ptrCast(self)), pidl, pbc, riid, ppv);
+        return self.vtable.BindToStorage(self, pidl, pbc, riid, ppv);
     }
     pub fn CompareIDs(self: *const IShellFolder, lParam: LPARAM, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).CompareIDs(@as(*const IShellFolder, @ptrCast(self)), lParam, pidl1, pidl2);
+        return self.vtable.CompareIDs(self, lParam, pidl1, pidl2);
     }
     pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).CreateViewObject(@as(*const IShellFolder, @ptrCast(self)), hwndOwner, riid, ppv);
+        return self.vtable.CreateViewObject(self, hwndOwner, riid, ppv);
     }
     pub fn GetAttributesOf(self: *const IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, rgfInOut: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).GetAttributesOf(@as(*const IShellFolder, @ptrCast(self)), cidl, apidl, rgfInOut);
+        return self.vtable.GetAttributesOf(self, cidl, apidl, rgfInOut);
     }
     pub fn GetUIObjectOf(self: *const IShellFolder, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).GetUIObjectOf(@as(*const IShellFolder, @ptrCast(self)), hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
+        return self.vtable.GetUIObjectOf(self, hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
     }
     pub fn GetDisplayNameOf(self: *const IShellFolder, pidl: ?*ITEMIDLIST, uFlags: SHGDNF, pName: ?*STRRET) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).GetDisplayNameOf(@as(*const IShellFolder, @ptrCast(self)), pidl, uFlags, pName);
+        return self.vtable.GetDisplayNameOf(self, pidl, uFlags, pName);
     }
     pub fn SetNameOf(self: *const IShellFolder, hwnd: ?HWND, pidl: ?*ITEMIDLIST, pszName: ?[*:0]const u16, uFlags: SHGDNF, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).SetNameOf(@as(*const IShellFolder, @ptrCast(self)), hwnd, pidl, pszName, uFlags, ppidlOut);
+        return self.vtable.SetNameOf(self, hwnd, pidl, pszName, uFlags, ppidlOut);
     }
 };
 
@@ -4133,16 +4133,16 @@ pub const IEnumExtraSearch = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumExtraSearch, celt: u32, rgelt: [*]EXTRASEARCH, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExtraSearch.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumExtraSearch, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumExtraSearch, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExtraSearch.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumExtraSearch, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumExtraSearch) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExtraSearch.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumExtraSearch, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumExtraSearch, ppenum: ?*?*IEnumExtraSearch) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExtraSearch.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumExtraSearch, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -4224,25 +4224,25 @@ pub const IShellFolder2 = extern union {
     };}
     pub usingnamespace IShellFolder.MethodMixin(@This());
     pub fn GetDefaultSearchGUID(self: *const IShellFolder2, pguid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).GetDefaultSearchGUID(@as(*const IShellFolder2, @ptrCast(self)), pguid);
+        return self.vtable.GetDefaultSearchGUID(self, pguid);
     }
     pub fn EnumSearches(self: *const IShellFolder2, ppenum: ?*?*IEnumExtraSearch) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).EnumSearches(@as(*const IShellFolder2, @ptrCast(self)), ppenum);
+        return self.vtable.EnumSearches(self, ppenum);
     }
     pub fn GetDefaultColumn(self: *const IShellFolder2, dwRes: u32, pSort: ?*u32, pDisplay: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).GetDefaultColumn(@as(*const IShellFolder2, @ptrCast(self)), dwRes, pSort, pDisplay);
+        return self.vtable.GetDefaultColumn(self, dwRes, pSort, pDisplay);
     }
     pub fn GetDefaultColumnState(self: *const IShellFolder2, iColumn: u32, pcsFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).GetDefaultColumnState(@as(*const IShellFolder2, @ptrCast(self)), iColumn, pcsFlags);
+        return self.vtable.GetDefaultColumnState(self, iColumn, pcsFlags);
     }
     pub fn GetDetailsEx(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, pscid: ?*const PROPERTYKEY, pv: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).GetDetailsEx(@as(*const IShellFolder2, @ptrCast(self)), pidl, pscid, pv);
+        return self.vtable.GetDetailsEx(self, pidl, pscid, pv);
     }
     pub fn GetDetailsOf(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, iColumn: u32, psd: ?*SHELLDETAILS) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).GetDetailsOf(@as(*const IShellFolder2, @ptrCast(self)), pidl, iColumn, psd);
+        return self.vtable.GetDetailsOf(self, pidl, iColumn, psd);
     }
     pub fn MapColumnToSCID(self: *const IShellFolder2, iColumn: u32, pscid: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolder2.VTable, @ptrCast(self.vtable)).MapColumnToSCID(@as(*const IShellFolder2, @ptrCast(self)), iColumn, pscid);
+        return self.vtable.MapColumnToSCID(self, iColumn, pscid);
     }
 };
 
@@ -4527,37 +4527,37 @@ pub const IShellView = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn TranslateAccelerator(self: *const IShellView, pmsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IShellView, @ptrCast(self)), pmsg);
+        return self.vtable.TranslateAccelerator(self, pmsg);
     }
     pub fn EnableModeless(self: *const IShellView, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IShellView, @ptrCast(self)), fEnable);
+        return self.vtable.EnableModeless(self, fEnable);
     }
     pub fn UIActivate(self: *const IShellView, uState: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).UIActivate(@as(*const IShellView, @ptrCast(self)), uState);
+        return self.vtable.UIActivate(self, uState);
     }
     pub fn Refresh(self: *const IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IShellView, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn CreateViewWindow(self: *const IShellView, psvPrevious: ?*IShellView, pfs: ?*FOLDERSETTINGS, psb: ?*IShellBrowser, prcView: ?*RECT, phWnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).CreateViewWindow(@as(*const IShellView, @ptrCast(self)), psvPrevious, pfs, psb, prcView, phWnd);
+        return self.vtable.CreateViewWindow(self, psvPrevious, pfs, psb, prcView, phWnd);
     }
     pub fn DestroyViewWindow(self: *const IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).DestroyViewWindow(@as(*const IShellView, @ptrCast(self)));
+        return self.vtable.DestroyViewWindow(self);
     }
     pub fn GetCurrentInfo(self: *const IShellView, pfs: ?*FOLDERSETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).GetCurrentInfo(@as(*const IShellView, @ptrCast(self)), pfs);
+        return self.vtable.GetCurrentInfo(self, pfs);
     }
     pub fn AddPropertySheetPages(self: *const IShellView, dwReserved: u32, pfn: ?LPFNSVADDPROPSHEETPAGE, lparam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).AddPropertySheetPages(@as(*const IShellView, @ptrCast(self)), dwReserved, pfn, lparam);
+        return self.vtable.AddPropertySheetPages(self, dwReserved, pfn, lparam);
     }
     pub fn SaveViewState(self: *const IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).SaveViewState(@as(*const IShellView, @ptrCast(self)));
+        return self.vtable.SaveViewState(self);
     }
     pub fn SelectItem(self: *const IShellView, pidlItem: ?*ITEMIDLIST, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).SelectItem(@as(*const IShellView, @ptrCast(self)), pidlItem, uFlags);
+        return self.vtable.SelectItem(self, pidlItem, uFlags);
     }
     pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellView.VTable, @ptrCast(self.vtable)).GetItemObject(@as(*const IShellView, @ptrCast(self)), uItem, riid, ppv);
+        return self.vtable.GetItemObject(self, uItem, riid, ppv);
     }
 };
 
@@ -4620,16 +4620,16 @@ pub const IShellView2 = extern union {
     };}
     pub usingnamespace IShellView.MethodMixin(@This());
     pub fn GetView(self: *const IShellView2, pvid: ?*Guid, uView: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellView2.VTable, @ptrCast(self.vtable)).GetView(@as(*const IShellView2, @ptrCast(self)), pvid, uView);
+        return self.vtable.GetView(self, pvid, uView);
     }
     pub fn CreateViewWindow2(self: *const IShellView2, lpParams: ?*SV2CVW2_PARAMS) callconv(.Inline) HRESULT {
-        return @as(*const IShellView2.VTable, @ptrCast(self.vtable)).CreateViewWindow2(@as(*const IShellView2, @ptrCast(self)), lpParams);
+        return self.vtable.CreateViewWindow2(self, lpParams);
     }
     pub fn HandleRename(self: *const IShellView2, pidlNew: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellView2.VTable, @ptrCast(self.vtable)).HandleRename(@as(*const IShellView2, @ptrCast(self)), pidlNew);
+        return self.vtable.HandleRename(self, pidlNew);
     }
     pub fn SelectAndPositionItem(self: *const IShellView2, pidlItem: ?*ITEMIDLIST, uFlags: u32, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IShellView2.VTable, @ptrCast(self.vtable)).SelectAndPositionItem(@as(*const IShellView2, @ptrCast(self)), pidlItem, uFlags, ppt);
+        return self.vtable.SelectAndPositionItem(self, pidlItem, uFlags, ppt);
     }
 };
 
@@ -4768,46 +4768,46 @@ pub const IFolderView = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrentViewMode(self: *const IFolderView, pViewMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetCurrentViewMode(@as(*const IFolderView, @ptrCast(self)), pViewMode);
+        return self.vtable.GetCurrentViewMode(self, pViewMode);
     }
     pub fn SetCurrentViewMode(self: *const IFolderView, ViewMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).SetCurrentViewMode(@as(*const IFolderView, @ptrCast(self)), ViewMode);
+        return self.vtable.SetCurrentViewMode(self, ViewMode);
     }
     pub fn GetFolder(self: *const IFolderView, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetFolder(@as(*const IFolderView, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetFolder(self, riid, ppv);
     }
     pub fn Item(self: *const IFolderView, iItemIndex: i32, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).Item(@as(*const IFolderView, @ptrCast(self)), iItemIndex, ppidl);
+        return self.vtable.Item(self, iItemIndex, ppidl);
     }
     pub fn ItemCount(self: *const IFolderView, uFlags: u32, pcItems: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).ItemCount(@as(*const IFolderView, @ptrCast(self)), uFlags, pcItems);
+        return self.vtable.ItemCount(self, uFlags, pcItems);
     }
     pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).Items(@as(*const IFolderView, @ptrCast(self)), uFlags, riid, ppv);
+        return self.vtable.Items(self, uFlags, riid, ppv);
     }
     pub fn GetSelectionMarkedItem(self: *const IFolderView, piItem: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetSelectionMarkedItem(@as(*const IFolderView, @ptrCast(self)), piItem);
+        return self.vtable.GetSelectionMarkedItem(self, piItem);
     }
     pub fn GetFocusedItem(self: *const IFolderView, piItem: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetFocusedItem(@as(*const IFolderView, @ptrCast(self)), piItem);
+        return self.vtable.GetFocusedItem(self, piItem);
     }
     pub fn GetItemPosition(self: *const IFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetItemPosition(@as(*const IFolderView, @ptrCast(self)), pidl, ppt);
+        return self.vtable.GetItemPosition(self, pidl, ppt);
     }
     pub fn GetSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetSpacing(@as(*const IFolderView, @ptrCast(self)), ppt);
+        return self.vtable.GetSpacing(self, ppt);
     }
     pub fn GetDefaultSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetDefaultSpacing(@as(*const IFolderView, @ptrCast(self)), ppt);
+        return self.vtable.GetDefaultSpacing(self, ppt);
     }
     pub fn GetAutoArrange(self: *const IFolderView) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).GetAutoArrange(@as(*const IFolderView, @ptrCast(self)));
+        return self.vtable.GetAutoArrange(self);
     }
     pub fn SelectItem(self: *const IFolderView, iItem: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).SelectItem(@as(*const IFolderView, @ptrCast(self)), iItem, dwFlags);
+        return self.vtable.SelectItem(self, iItem, dwFlags);
     }
     pub fn SelectAndPositionItems(self: *const IFolderView, cidl: u32, apidl: [*]?*ITEMIDLIST, apt: ?[*]POINT, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView.VTable, @ptrCast(self.vtable)).SelectAndPositionItems(@as(*const IFolderView, @ptrCast(self)), cidl, apidl, apt, dwFlags);
+        return self.vtable.SelectAndPositionItems(self, cidl, apidl, apt, dwFlags);
     }
 };
 
@@ -5061,79 +5061,79 @@ pub const IFolderView2 = extern union {
     };}
     pub usingnamespace IFolderView.MethodMixin(@This());
     pub fn SetGroupBy(self: *const IFolderView2, key: ?*const PROPERTYKEY, fAscending: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetGroupBy(@as(*const IFolderView2, @ptrCast(self)), key, fAscending);
+        return self.vtable.SetGroupBy(self, key, fAscending);
     }
     pub fn GetGroupBy(self: *const IFolderView2, pkey: ?*PROPERTYKEY, pfAscending: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetGroupBy(@as(*const IFolderView2, @ptrCast(self)), pkey, pfAscending);
+        return self.vtable.GetGroupBy(self, pkey, pfAscending);
     }
     pub fn SetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetViewProperty(@as(*const IFolderView2, @ptrCast(self)), pidl, propkey, propvar);
+        return self.vtable.SetViewProperty(self, pidl, propkey, propvar);
     }
     pub fn GetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetViewProperty(@as(*const IFolderView2, @ptrCast(self)), pidl, propkey, ppropvar);
+        return self.vtable.GetViewProperty(self, pidl, propkey, ppropvar);
     }
     pub fn SetTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetTileViewProperties(@as(*const IFolderView2, @ptrCast(self)), pidl, pszPropList);
+        return self.vtable.SetTileViewProperties(self, pidl, pszPropList);
     }
     pub fn SetExtendedTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetExtendedTileViewProperties(@as(*const IFolderView2, @ptrCast(self)), pidl, pszPropList);
+        return self.vtable.SetExtendedTileViewProperties(self, pidl, pszPropList);
     }
     pub fn SetText(self: *const IFolderView2, iType: FVTEXTTYPE, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetText(@as(*const IFolderView2, @ptrCast(self)), iType, pwszText);
+        return self.vtable.SetText(self, iType, pwszText);
     }
     pub fn SetCurrentFolderFlags(self: *const IFolderView2, dwMask: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetCurrentFolderFlags(@as(*const IFolderView2, @ptrCast(self)), dwMask, dwFlags);
+        return self.vtable.SetCurrentFolderFlags(self, dwMask, dwFlags);
     }
     pub fn GetCurrentFolderFlags(self: *const IFolderView2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetCurrentFolderFlags(@as(*const IFolderView2, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetCurrentFolderFlags(self, pdwFlags);
     }
     pub fn GetSortColumnCount(self: *const IFolderView2, pcColumns: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetSortColumnCount(@as(*const IFolderView2, @ptrCast(self)), pcColumns);
+        return self.vtable.GetSortColumnCount(self, pcColumns);
     }
     pub fn SetSortColumns(self: *const IFolderView2, rgSortColumns: [*]const SORTCOLUMN, cColumns: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetSortColumns(@as(*const IFolderView2, @ptrCast(self)), rgSortColumns, cColumns);
+        return self.vtable.SetSortColumns(self, rgSortColumns, cColumns);
     }
     pub fn GetSortColumns(self: *const IFolderView2, rgSortColumns: [*]SORTCOLUMN, cColumns: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetSortColumns(@as(*const IFolderView2, @ptrCast(self)), rgSortColumns, cColumns);
+        return self.vtable.GetSortColumns(self, rgSortColumns, cColumns);
     }
     pub fn GetItem(self: *const IFolderView2, iItem: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IFolderView2, @ptrCast(self)), iItem, riid, ppv);
+        return self.vtable.GetItem(self, iItem, riid, ppv);
     }
     pub fn GetVisibleItem(self: *const IFolderView2, iStart: i32, fPrevious: BOOL, piItem: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetVisibleItem(@as(*const IFolderView2, @ptrCast(self)), iStart, fPrevious, piItem);
+        return self.vtable.GetVisibleItem(self, iStart, fPrevious, piItem);
     }
     pub fn GetSelectedItem(self: *const IFolderView2, iStart: i32, piItem: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetSelectedItem(@as(*const IFolderView2, @ptrCast(self)), iStart, piItem);
+        return self.vtable.GetSelectedItem(self, iStart, piItem);
     }
     pub fn GetSelection(self: *const IFolderView2, fNoneImpliesFolder: BOOL, ppsia: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const IFolderView2, @ptrCast(self)), fNoneImpliesFolder, ppsia);
+        return self.vtable.GetSelection(self, fNoneImpliesFolder, ppsia);
     }
     pub fn GetSelectionState(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetSelectionState(@as(*const IFolderView2, @ptrCast(self)), pidl, pdwFlags);
+        return self.vtable.GetSelectionState(self, pidl, pdwFlags);
     }
     pub fn InvokeVerbOnSelection(self: *const IFolderView2, pszVerb: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).InvokeVerbOnSelection(@as(*const IFolderView2, @ptrCast(self)), pszVerb);
+        return self.vtable.InvokeVerbOnSelection(self, pszVerb);
     }
     pub fn SetViewModeAndIconSize(self: *const IFolderView2, uViewMode: FOLDERVIEWMODE, iImageSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetViewModeAndIconSize(@as(*const IFolderView2, @ptrCast(self)), uViewMode, iImageSize);
+        return self.vtable.SetViewModeAndIconSize(self, uViewMode, iImageSize);
     }
     pub fn GetViewModeAndIconSize(self: *const IFolderView2, puViewMode: ?*FOLDERVIEWMODE, piImageSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetViewModeAndIconSize(@as(*const IFolderView2, @ptrCast(self)), puViewMode, piImageSize);
+        return self.vtable.GetViewModeAndIconSize(self, puViewMode, piImageSize);
     }
     pub fn SetGroupSubsetCount(self: *const IFolderView2, cVisibleRows: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetGroupSubsetCount(@as(*const IFolderView2, @ptrCast(self)), cVisibleRows);
+        return self.vtable.SetGroupSubsetCount(self, cVisibleRows);
     }
     pub fn GetGroupSubsetCount(self: *const IFolderView2, pcVisibleRows: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).GetGroupSubsetCount(@as(*const IFolderView2, @ptrCast(self)), pcVisibleRows);
+        return self.vtable.GetGroupSubsetCount(self, pcVisibleRows);
     }
     pub fn SetRedraw(self: *const IFolderView2, fRedrawOn: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).SetRedraw(@as(*const IFolderView2, @ptrCast(self)), fRedrawOn);
+        return self.vtable.SetRedraw(self, fRedrawOn);
     }
     pub fn IsMoveInSameFolder(self: *const IFolderView2) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).IsMoveInSameFolder(@as(*const IFolderView2, @ptrCast(self)));
+        return self.vtable.IsMoveInSameFolder(self);
     }
     pub fn DoRename(self: *const IFolderView2) callconv(.Inline) HRESULT {
-        return @as(*const IFolderView2.VTable, @ptrCast(self.vtable)).DoRename(@as(*const IFolderView2, @ptrCast(self)));
+        return self.vtable.DoRename(self);
     }
 };
 
@@ -5212,25 +5212,25 @@ pub const IFolderViewSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetColumnPropertyList(self: *const IFolderViewSettings, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetColumnPropertyList(@as(*const IFolderViewSettings, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetColumnPropertyList(self, riid, ppv);
     }
     pub fn GetGroupByProperty(self: *const IFolderViewSettings, pkey: ?*PROPERTYKEY, pfGroupAscending: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetGroupByProperty(@as(*const IFolderViewSettings, @ptrCast(self)), pkey, pfGroupAscending);
+        return self.vtable.GetGroupByProperty(self, pkey, pfGroupAscending);
     }
     pub fn GetViewMode(self: *const IFolderViewSettings, plvm: ?*FOLDERLOGICALVIEWMODE) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetViewMode(@as(*const IFolderViewSettings, @ptrCast(self)), plvm);
+        return self.vtable.GetViewMode(self, plvm);
     }
     pub fn GetIconSize(self: *const IFolderViewSettings, puIconSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetIconSize(@as(*const IFolderViewSettings, @ptrCast(self)), puIconSize);
+        return self.vtable.GetIconSize(self, puIconSize);
     }
     pub fn GetFolderFlags(self: *const IFolderViewSettings, pfolderMask: ?*FOLDERFLAGS, pfolderFlags: ?*FOLDERFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetFolderFlags(@as(*const IFolderViewSettings, @ptrCast(self)), pfolderMask, pfolderFlags);
+        return self.vtable.GetFolderFlags(self, pfolderMask, pfolderFlags);
     }
     pub fn GetSortColumns(self: *const IFolderViewSettings, rgSortColumns: [*]SORTCOLUMN, cColumnsIn: u32, pcColumnsOut: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetSortColumns(@as(*const IFolderViewSettings, @ptrCast(self)), rgSortColumns, cColumnsIn, pcColumnsOut);
+        return self.vtable.GetSortColumns(self, rgSortColumns, cColumnsIn, pcColumnsOut);
     }
     pub fn GetGroupSubsetCount(self: *const IFolderViewSettings, pcVisibleRows: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewSettings.VTable, @ptrCast(self.vtable)).GetGroupSubsetCount(@as(*const IFolderViewSettings, @ptrCast(self)), pcVisibleRows);
+        return self.vtable.GetGroupSubsetCount(self, pcVisibleRows);
     }
 };
 
@@ -5260,7 +5260,7 @@ pub const IInitializeNetworkFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeNetworkFolder, pidl: ?*ITEMIDLIST, pidlTarget: ?*ITEMIDLIST, uDisplayType: u32, pszResName: ?[*:0]const u16, pszProvider: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeNetworkFolder.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeNetworkFolder, @ptrCast(self)), pidl, pidlTarget, uDisplayType, pszResName, pszProvider);
+        return self.vtable.Initialize(self, pidl, pidlTarget, uDisplayType, pszResName, pszProvider);
     }
 };
 
@@ -5304,13 +5304,13 @@ pub const INetworkFolderInternal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResourceDisplayType(self: *const INetworkFolderInternal, displayType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetworkFolderInternal.VTable, @ptrCast(self.vtable)).GetResourceDisplayType(@as(*const INetworkFolderInternal, @ptrCast(self)), displayType);
+        return self.vtable.GetResourceDisplayType(self, displayType);
     }
     pub fn GetIDList(self: *const INetworkFolderInternal, idList: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const INetworkFolderInternal.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const INetworkFolderInternal, @ptrCast(self)), idList);
+        return self.vtable.GetIDList(self, idList);
     }
     pub fn GetProvider(self: *const INetworkFolderInternal, itemIdCount: u32, itemIds: [*]?*ITEMIDLIST, providerMaxLength: u32, provider: [*:0]u16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkFolderInternal.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const INetworkFolderInternal, @ptrCast(self)), itemIdCount, itemIds, providerMaxLength, provider);
+        return self.vtable.GetProvider(self, itemIdCount, itemIds, providerMaxLength, provider);
     }
 };
 
@@ -5352,13 +5352,13 @@ pub const IPreviewHandlerVisuals = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBackgroundColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandlerVisuals.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IPreviewHandlerVisuals, @ptrCast(self)), color);
+        return self.vtable.SetBackgroundColor(self, color);
     }
     pub fn SetFont(self: *const IPreviewHandlerVisuals, plf: ?*const LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandlerVisuals.VTable, @ptrCast(self.vtable)).SetFont(@as(*const IPreviewHandlerVisuals, @ptrCast(self)), plf);
+        return self.vtable.SetFont(self, plf);
     }
     pub fn SetTextColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandlerVisuals.VTable, @ptrCast(self.vtable)).SetTextColor(@as(*const IPreviewHandlerVisuals, @ptrCast(self)), color);
+        return self.vtable.SetTextColor(self, color);
     }
 };
 
@@ -5402,13 +5402,13 @@ pub const ICommDlgBrowser = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnDefaultCommand(self: *const ICommDlgBrowser, ppshv: ?*IShellView) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser.VTable, @ptrCast(self.vtable)).OnDefaultCommand(@as(*const ICommDlgBrowser, @ptrCast(self)), ppshv);
+        return self.vtable.OnDefaultCommand(self, ppshv);
     }
     pub fn OnStateChange(self: *const ICommDlgBrowser, ppshv: ?*IShellView, uChange: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser.VTable, @ptrCast(self.vtable)).OnStateChange(@as(*const ICommDlgBrowser, @ptrCast(self)), ppshv, uChange);
+        return self.vtable.OnStateChange(self, ppshv, uChange);
     }
     pub fn IncludeObject(self: *const ICommDlgBrowser, ppshv: ?*IShellView, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser.VTable, @ptrCast(self.vtable)).IncludeObject(@as(*const ICommDlgBrowser, @ptrCast(self)), ppshv, pidl);
+        return self.vtable.IncludeObject(self, ppshv, pidl);
     }
 };
 
@@ -5453,13 +5453,13 @@ pub const ICommDlgBrowser2 = extern union {
     };}
     pub usingnamespace ICommDlgBrowser.MethodMixin(@This());
     pub fn Notify(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, dwNotifyType: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser2.VTable, @ptrCast(self.vtable)).Notify(@as(*const ICommDlgBrowser2, @ptrCast(self)), ppshv, dwNotifyType);
+        return self.vtable.Notify(self, ppshv, dwNotifyType);
     }
     pub fn GetDefaultMenuText(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, pszText: [*:0]u16, cchMax: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser2.VTable, @ptrCast(self.vtable)).GetDefaultMenuText(@as(*const ICommDlgBrowser2, @ptrCast(self)), ppshv, pszText, cchMax);
+        return self.vtable.GetDefaultMenuText(self, ppshv, pszText, cchMax);
     }
     pub fn GetViewFlags(self: *const ICommDlgBrowser2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser2.VTable, @ptrCast(self.vtable)).GetViewFlags(@as(*const ICommDlgBrowser2, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetViewFlags(self, pdwFlags);
     }
 };
 
@@ -5573,19 +5573,19 @@ pub const IColumnManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*const CM_COLUMNINFO) callconv(.Inline) HRESULT {
-        return @as(*const IColumnManager.VTable, @ptrCast(self.vtable)).SetColumnInfo(@as(*const IColumnManager, @ptrCast(self)), propkey, pcmci);
+        return self.vtable.SetColumnInfo(self, propkey, pcmci);
     }
     pub fn GetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*CM_COLUMNINFO) callconv(.Inline) HRESULT {
-        return @as(*const IColumnManager.VTable, @ptrCast(self.vtable)).GetColumnInfo(@as(*const IColumnManager, @ptrCast(self)), propkey, pcmci);
+        return self.vtable.GetColumnInfo(self, propkey, pcmci);
     }
     pub fn GetColumnCount(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IColumnManager.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const IColumnManager, @ptrCast(self)), dwFlags, puCount);
+        return self.vtable.GetColumnCount(self, dwFlags, puCount);
     }
     pub fn GetColumns(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, rgkeyOrder: [*]PROPERTYKEY, cColumns: u32) callconv(.Inline) HRESULT {
-        return @as(*const IColumnManager.VTable, @ptrCast(self.vtable)).GetColumns(@as(*const IColumnManager, @ptrCast(self)), dwFlags, rgkeyOrder, cColumns);
+        return self.vtable.GetColumns(self, dwFlags, rgkeyOrder, cColumns);
     }
     pub fn SetColumns(self: *const IColumnManager, rgkeyOrder: [*]const PROPERTYKEY, cVisible: u32) callconv(.Inline) HRESULT {
-        return @as(*const IColumnManager.VTable, @ptrCast(self.vtable)).SetColumns(@as(*const IColumnManager, @ptrCast(self)), rgkeyOrder, cVisible);
+        return self.vtable.SetColumns(self, rgkeyOrder, cVisible);
     }
 };
 
@@ -5611,7 +5611,7 @@ pub const IFolderFilterSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFilter(self: *const IFolderFilterSite, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IFolderFilterSite.VTable, @ptrCast(self.vtable)).SetFilter(@as(*const IFolderFilterSite, @ptrCast(self)), punk);
+        return self.vtable.SetFilter(self, punk);
     }
 };
 
@@ -5650,10 +5650,10 @@ pub const IFolderFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShouldShow(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, pidlItem: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IFolderFilter.VTable, @ptrCast(self.vtable)).ShouldShow(@as(*const IFolderFilter, @ptrCast(self)), psf, pidlFolder, pidlItem);
+        return self.vtable.ShouldShow(self, psf, pidlFolder, pidlItem);
     }
     pub fn GetEnumFlags(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, phwnd: ?*?HWND, pgrfFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFolderFilter.VTable, @ptrCast(self.vtable)).GetEnumFlags(@as(*const IFolderFilter, @ptrCast(self)), psf, pidlFolder, phwnd, pgrfFlags);
+        return self.vtable.GetEnumFlags(self, psf, pidlFolder, phwnd, pgrfFlags);
     }
 };
 
@@ -5680,7 +5680,7 @@ pub const IInputObjectSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnFocusChangeIS(self: *const IInputObjectSite, punkObj: ?*IUnknown, fSetFocus: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IInputObjectSite.VTable, @ptrCast(self.vtable)).OnFocusChangeIS(@as(*const IInputObjectSite, @ptrCast(self)), punkObj, fSetFocus);
+        return self.vtable.OnFocusChangeIS(self, punkObj, fSetFocus);
     }
 };
 
@@ -5722,13 +5722,13 @@ pub const IInputObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UIActivateIO(self: *const IInputObject, fActivate: BOOL, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IInputObject.VTable, @ptrCast(self.vtable)).UIActivateIO(@as(*const IInputObject, @ptrCast(self)), fActivate, pMsg);
+        return self.vtable.UIActivateIO(self, fActivate, pMsg);
     }
     pub fn HasFocusIO(self: *const IInputObject) callconv(.Inline) HRESULT {
-        return @as(*const IInputObject.VTable, @ptrCast(self.vtable)).HasFocusIO(@as(*const IInputObject, @ptrCast(self)));
+        return self.vtable.HasFocusIO(self);
     }
     pub fn TranslateAcceleratorIO(self: *const IInputObject, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IInputObject.VTable, @ptrCast(self.vtable)).TranslateAcceleratorIO(@as(*const IInputObject, @ptrCast(self)), pMsg);
+        return self.vtable.TranslateAcceleratorIO(self, pMsg);
     }
 };
 
@@ -5754,7 +5754,7 @@ pub const IInputObject2 = extern union {
     };}
     pub usingnamespace IInputObject.MethodMixin(@This());
     pub fn TranslateAcceleratorGlobal(self: *const IInputObject2, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IInputObject2.VTable, @ptrCast(self.vtable)).TranslateAcceleratorGlobal(@as(*const IInputObject2, @ptrCast(self)), pMsg);
+        return self.vtable.TranslateAcceleratorGlobal(self, pMsg);
     }
 };
 
@@ -5782,7 +5782,7 @@ pub const IShellIcon = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIconOf(self: *const IShellIcon, pidl: ?*ITEMIDLIST, flags: u32, pIconIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIcon.VTable, @ptrCast(self.vtable)).GetIconOf(@as(*const IShellIcon, @ptrCast(self)), pidl, flags, pIconIndex);
+        return self.vtable.GetIconOf(self, pidl, flags, pIconIndex);
     }
 };
 
@@ -5917,43 +5917,43 @@ pub const IShellBrowser = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn InsertMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).InsertMenusSB(@as(*const IShellBrowser, @ptrCast(self)), hmenuShared, lpMenuWidths);
+        return self.vtable.InsertMenusSB(self, hmenuShared, lpMenuWidths);
     }
     pub fn SetMenuSB(self: *const IShellBrowser, hmenuShared: ?HMENU, holemenuRes: isize, hwndActiveObject: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).SetMenuSB(@as(*const IShellBrowser, @ptrCast(self)), hmenuShared, holemenuRes, hwndActiveObject);
+        return self.vtable.SetMenuSB(self, hmenuShared, holemenuRes, hwndActiveObject);
     }
     pub fn RemoveMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).RemoveMenusSB(@as(*const IShellBrowser, @ptrCast(self)), hmenuShared);
+        return self.vtable.RemoveMenusSB(self, hmenuShared);
     }
     pub fn SetStatusTextSB(self: *const IShellBrowser, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).SetStatusTextSB(@as(*const IShellBrowser, @ptrCast(self)), pszStatusText);
+        return self.vtable.SetStatusTextSB(self, pszStatusText);
     }
     pub fn EnableModelessSB(self: *const IShellBrowser, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).EnableModelessSB(@as(*const IShellBrowser, @ptrCast(self)), fEnable);
+        return self.vtable.EnableModelessSB(self, fEnable);
     }
     pub fn TranslateAcceleratorSB(self: *const IShellBrowser, pmsg: ?*MSG, wID: u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).TranslateAcceleratorSB(@as(*const IShellBrowser, @ptrCast(self)), pmsg, wID);
+        return self.vtable.TranslateAcceleratorSB(self, pmsg, wID);
     }
     pub fn BrowseObject(self: *const IShellBrowser, pidl: ?*ITEMIDLIST, wFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).BrowseObject(@as(*const IShellBrowser, @ptrCast(self)), pidl, wFlags);
+        return self.vtable.BrowseObject(self, pidl, wFlags);
     }
     pub fn GetViewStateStream(self: *const IShellBrowser, grfMode: u32, ppStrm: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).GetViewStateStream(@as(*const IShellBrowser, @ptrCast(self)), grfMode, ppStrm);
+        return self.vtable.GetViewStateStream(self, grfMode, ppStrm);
     }
     pub fn GetControlWindow(self: *const IShellBrowser, id: u32, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).GetControlWindow(@as(*const IShellBrowser, @ptrCast(self)), id, phwnd);
+        return self.vtable.GetControlWindow(self, id, phwnd);
     }
     pub fn SendControlMsg(self: *const IShellBrowser, id: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pret: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).SendControlMsg(@as(*const IShellBrowser, @ptrCast(self)), id, uMsg, wParam, lParam, pret);
+        return self.vtable.SendControlMsg(self, id, uMsg, wParam, lParam, pret);
     }
     pub fn QueryActiveShellView(self: *const IShellBrowser, ppshv: ?*?*IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).QueryActiveShellView(@as(*const IShellBrowser, @ptrCast(self)), ppshv);
+        return self.vtable.QueryActiveShellView(self, ppshv);
     }
     pub fn OnViewWindowActive(self: *const IShellBrowser, pshv: ?*IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).OnViewWindowActive(@as(*const IShellBrowser, @ptrCast(self)), pshv);
+        return self.vtable.OnViewWindowActive(self, pshv);
     }
     pub fn SetToolbarItems(self: *const IShellBrowser, lpButtons: ?[*]TBBUTTON, nButtons: u32, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellBrowser.VTable, @ptrCast(self.vtable)).SetToolbarItems(@as(*const IShellBrowser, @ptrCast(self)), lpButtons, nButtons, uFlags);
+        return self.vtable.SetToolbarItems(self, lpButtons, nButtons, uFlags);
     }
 };
 
@@ -5989,10 +5989,10 @@ pub const IProfferService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ProfferService(self: *const IProfferService, serviceId: ?*const Guid, serviceProvider: ?*IServiceProvider, cookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IProfferService.VTable, @ptrCast(self.vtable)).ProfferService(@as(*const IProfferService, @ptrCast(self)), serviceId, serviceProvider, cookie);
+        return self.vtable.ProfferService(self, serviceId, serviceProvider, cookie);
     }
     pub fn RevokeService(self: *const IProfferService, cookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IProfferService.VTable, @ptrCast(self.vtable)).RevokeService(@as(*const IProfferService, @ptrCast(self)), cookie);
+        return self.vtable.RevokeService(self, cookie);
     }
 };
 
@@ -6018,7 +6018,7 @@ pub const IGetServiceIds = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetServiceIds(self: *const IGetServiceIds, serviceIdCount: ?*u32, serviceIds: [*]?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGetServiceIds.VTable, @ptrCast(self.vtable)).GetServiceIds(@as(*const IGetServiceIds, @ptrCast(self)), serviceIdCount, serviceIds);
+        return self.vtable.GetServiceIds(self, serviceIdCount, serviceIds);
     }
 };
 
@@ -6117,19 +6117,19 @@ pub const IShellItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BindToHandler(self: *const IShellItem, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem.VTable, @ptrCast(self.vtable)).BindToHandler(@as(*const IShellItem, @ptrCast(self)), pbc, bhid, riid, ppv);
+        return self.vtable.BindToHandler(self, pbc, bhid, riid, ppv);
     }
     pub fn GetParent(self: *const IShellItem, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem.VTable, @ptrCast(self.vtable)).GetParent(@as(*const IShellItem, @ptrCast(self)), ppsi);
+        return self.vtable.GetParent(self, ppsi);
     }
     pub fn GetDisplayName(self: *const IShellItem, sigdnName: SIGDN, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IShellItem, @ptrCast(self)), sigdnName, ppszName);
+        return self.vtable.GetDisplayName(self, sigdnName, ppszName);
     }
     pub fn GetAttributes(self: *const IShellItem, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IShellItem, @ptrCast(self)), sfgaoMask, psfgaoAttribs);
+        return self.vtable.GetAttributes(self, sfgaoMask, psfgaoAttribs);
     }
     pub fn Compare(self: *const IShellItem, psi: ?*IShellItem, hint: u32, piOrder: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem.VTable, @ptrCast(self.vtable)).Compare(@as(*const IShellItem, @ptrCast(self)), psi, hint, piOrder);
+        return self.vtable.Compare(self, psi, hint, piOrder);
     }
 };
 
@@ -6283,43 +6283,43 @@ pub const IShellItem2 = extern union {
     };}
     pub usingnamespace IShellItem.MethodMixin(@This());
     pub fn GetPropertyStore(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetPropertyStore(@as(*const IShellItem2, @ptrCast(self)), flags, riid, ppv);
+        return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
     pub fn GetPropertyStoreWithCreateObject(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetPropertyStoreWithCreateObject(@as(*const IShellItem2, @ptrCast(self)), flags, punkCreateObject, riid, ppv);
+        return self.vtable.GetPropertyStoreWithCreateObject(self, flags, punkCreateObject, riid, ppv);
     }
     pub fn GetPropertyStoreForKeys(self: *const IShellItem2, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetPropertyStoreForKeys(@as(*const IShellItem2, @ptrCast(self)), rgKeys, cKeys, flags, riid, ppv);
+        return self.vtable.GetPropertyStoreForKeys(self, rgKeys, cKeys, flags, riid, ppv);
     }
     pub fn GetPropertyDescriptionList(self: *const IShellItem2, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionList(@as(*const IShellItem2, @ptrCast(self)), keyType, riid, ppv);
+        return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
     pub fn Update(self: *const IShellItem2, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).Update(@as(*const IShellItem2, @ptrCast(self)), pbc);
+        return self.vtable.Update(self, pbc);
     }
     pub fn GetProperty(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IShellItem2, @ptrCast(self)), key, ppropvar);
+        return self.vtable.GetProperty(self, key, ppropvar);
     }
     pub fn GetCLSID(self: *const IShellItem2, key: ?*const PROPERTYKEY, pclsid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetCLSID(@as(*const IShellItem2, @ptrCast(self)), key, pclsid);
+        return self.vtable.GetCLSID(self, key, pclsid);
     }
     pub fn GetFileTime(self: *const IShellItem2, key: ?*const PROPERTYKEY, pft: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetFileTime(@as(*const IShellItem2, @ptrCast(self)), key, pft);
+        return self.vtable.GetFileTime(self, key, pft);
     }
     pub fn GetInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pi: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetInt32(@as(*const IShellItem2, @ptrCast(self)), key, pi);
+        return self.vtable.GetInt32(self, key, pi);
     }
     pub fn GetString(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetString(@as(*const IShellItem2, @ptrCast(self)), key, ppsz);
+        return self.vtable.GetString(self, key, ppsz);
     }
     pub fn GetUInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pui: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetUInt32(@as(*const IShellItem2, @ptrCast(self)), key, pui);
+        return self.vtable.GetUInt32(self, key, pui);
     }
     pub fn GetUInt64(self: *const IShellItem2, key: ?*const PROPERTYKEY, pull: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetUInt64(@as(*const IShellItem2, @ptrCast(self)), key, pull);
+        return self.vtable.GetUInt64(self, key, pull);
     }
     pub fn GetBool(self: *const IShellItem2, key: ?*const PROPERTYKEY, pf: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellItem2.VTable, @ptrCast(self.vtable)).GetBool(@as(*const IShellItem2, @ptrCast(self)), key, pf);
+        return self.vtable.GetBool(self, key, pf);
     }
 };
 
@@ -6392,7 +6392,7 @@ pub const IShellItemImageFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetImage(self: *const IShellItemImageFactory, size: SIZE, flags: SIIGBF, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemImageFactory.VTable, @ptrCast(self.vtable)).GetImage(@as(*const IShellItemImageFactory, @ptrCast(self)), size, flags, phbm);
+        return self.vtable.GetImage(self, size, flags, phbm);
     }
 };
 
@@ -6443,16 +6443,16 @@ pub const IEnumShellItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumShellItems, celt: u32, rgelt: [*]?*IShellItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumShellItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumShellItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumShellItems, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumShellItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumShellItems, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumShellItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumShellItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumShellItems, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumShellItems, ppenum: ?*?*IEnumShellItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumShellItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumShellItems, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -6600,25 +6600,25 @@ pub const ITransferAdviseSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UpdateProgress(self: *const ITransferAdviseSink, ullSizeCurrent: u64, ullSizeTotal: u64, nFilesCurrent: i32, nFilesTotal: i32, nFoldersCurrent: i32, nFoldersTotal: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).UpdateProgress(@as(*const ITransferAdviseSink, @ptrCast(self)), ullSizeCurrent, ullSizeTotal, nFilesCurrent, nFilesTotal, nFoldersCurrent, nFoldersTotal);
+        return self.vtable.UpdateProgress(self, ullSizeCurrent, ullSizeTotal, nFilesCurrent, nFilesTotal, nFoldersCurrent, nFoldersTotal);
     }
     pub fn UpdateTransferState(self: *const ITransferAdviseSink, ts: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).UpdateTransferState(@as(*const ITransferAdviseSink, @ptrCast(self)), ts);
+        return self.vtable.UpdateTransferState(self, ts);
     }
     pub fn ConfirmOverwrite(self: *const ITransferAdviseSink, psiSource: ?*IShellItem, psiDestParent: ?*IShellItem, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).ConfirmOverwrite(@as(*const ITransferAdviseSink, @ptrCast(self)), psiSource, psiDestParent, pszName);
+        return self.vtable.ConfirmOverwrite(self, psiSource, psiDestParent, pszName);
     }
     pub fn ConfirmEncryptionLoss(self: *const ITransferAdviseSink, psiSource: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).ConfirmEncryptionLoss(@as(*const ITransferAdviseSink, @ptrCast(self)), psiSource);
+        return self.vtable.ConfirmEncryptionLoss(self, psiSource);
     }
     pub fn FileFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszItem: ?[*:0]const u16, hrError: HRESULT, pszRename: [*:0]u16, cchRename: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).FileFailure(@as(*const ITransferAdviseSink, @ptrCast(self)), psi, pszItem, hrError, pszRename, cchRename);
+        return self.vtable.FileFailure(self, psi, pszItem, hrError, pszRename, cchRename);
     }
     pub fn SubStreamFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszStreamName: ?[*:0]const u16, hrError: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).SubStreamFailure(@as(*const ITransferAdviseSink, @ptrCast(self)), psi, pszStreamName, hrError);
+        return self.vtable.SubStreamFailure(self, psi, pszStreamName, hrError);
     }
     pub fn PropertyFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pkey: ?*const PROPERTYKEY, hrError: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITransferAdviseSink.VTable, @ptrCast(self.vtable)).PropertyFailure(@as(*const ITransferAdviseSink, @ptrCast(self)), psi, pkey, hrError);
+        return self.vtable.PropertyFailure(self, psi, pkey, hrError);
     }
 };
 
@@ -6762,43 +6762,43 @@ pub const ITransferSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const ITransferSource, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).Advise(@as(*const ITransferSource, @ptrCast(self)), psink, pdwCookie);
+        return self.vtable.Advise(self, psink, pdwCookie);
     }
     pub fn Unadvise(self: *const ITransferSource, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const ITransferSource, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn SetProperties(self: *const ITransferSource, pproparray: ?*IPropertyChangeArray) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).SetProperties(@as(*const ITransferSource, @ptrCast(self)), pproparray);
+        return self.vtable.SetProperties(self, pproparray);
     }
     pub fn OpenItem(self: *const ITransferSource, psi: ?*IShellItem, flags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).OpenItem(@as(*const ITransferSource, @ptrCast(self)), psi, flags, riid, ppv);
+        return self.vtable.OpenItem(self, psi, flags, riid, ppv);
     }
     pub fn MoveItem(self: *const ITransferSource, psi: ?*IShellItem, psiParentDst: ?*IShellItem, pszNameDst: ?[*:0]const u16, flags: u32, ppsiNew: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).MoveItem(@as(*const ITransferSource, @ptrCast(self)), psi, psiParentDst, pszNameDst, flags, ppsiNew);
+        return self.vtable.MoveItem(self, psi, psiParentDst, pszNameDst, flags, ppsiNew);
     }
     pub fn RecycleItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).RecycleItem(@as(*const ITransferSource, @ptrCast(self)), psiSource, psiParentDest, flags, ppsiNewDest);
+        return self.vtable.RecycleItem(self, psiSource, psiParentDest, flags, ppsiNewDest);
     }
     pub fn RemoveItem(self: *const ITransferSource, psiSource: ?*IShellItem, flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ITransferSource, @ptrCast(self)), psiSource, flags);
+        return self.vtable.RemoveItem(self, psiSource, flags);
     }
     pub fn RenameItem(self: *const ITransferSource, psiSource: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).RenameItem(@as(*const ITransferSource, @ptrCast(self)), psiSource, pszNewName, flags, ppsiNewDest);
+        return self.vtable.RenameItem(self, psiSource, pszNewName, flags, ppsiNewDest);
     }
     pub fn LinkItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).LinkItem(@as(*const ITransferSource, @ptrCast(self)), psiSource, psiParentDest, pszNewName, flags, ppsiNewDest);
+        return self.vtable.LinkItem(self, psiSource, psiParentDest, pszNewName, flags, ppsiNewDest);
     }
     pub fn ApplyPropertiesToItem(self: *const ITransferSource, psiSource: ?*IShellItem, ppsiNew: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).ApplyPropertiesToItem(@as(*const ITransferSource, @ptrCast(self)), psiSource, ppsiNew);
+        return self.vtable.ApplyPropertiesToItem(self, psiSource, ppsiNew);
     }
     pub fn GetDefaultDestinationName(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, ppszDestinationName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).GetDefaultDestinationName(@as(*const ITransferSource, @ptrCast(self)), psiSource, psiParentDest, ppszDestinationName);
+        return self.vtable.GetDefaultDestinationName(self, psiSource, psiParentDest, ppszDestinationName);
     }
     pub fn EnterFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).EnterFolder(@as(*const ITransferSource, @ptrCast(self)), psiChildFolderDest);
+        return self.vtable.EnterFolder(self, psiChildFolderDest);
     }
     pub fn LeaveFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const ITransferSource.VTable, @ptrCast(self.vtable)).LeaveFolder(@as(*const ITransferSource, @ptrCast(self)), psiChildFolderDest);
+        return self.vtable.LeaveFolder(self, psiChildFolderDest);
     }
 };
 
@@ -6854,16 +6854,16 @@ pub const IEnumResources = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumResources, celt: u32, psir: [*]SHELL_ITEM_RESOURCE, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumResources.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumResources, @ptrCast(self)), celt, psir, pceltFetched);
+        return self.vtable.Next(self, celt, psir, pceltFetched);
     }
     pub fn Skip(self: *const IEnumResources, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumResources.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumResources, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumResources) callconv(.Inline) HRESULT {
-        return @as(*const IEnumResources.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumResources, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumResources, ppenumr: ?*?*IEnumResources) callconv(.Inline) HRESULT {
-        return @as(*const IEnumResources.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumResources, @ptrCast(self)), ppenumr);
+        return self.vtable.Clone(self, ppenumr);
     }
 };
 
@@ -6969,34 +6969,34 @@ pub const IShellItemResources = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAttributes(self: *const IShellItemResources, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IShellItemResources, @ptrCast(self)), pdwAttributes);
+        return self.vtable.GetAttributes(self, pdwAttributes);
     }
     pub fn GetSize(self: *const IShellItemResources, pullSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IShellItemResources, @ptrCast(self)), pullSize);
+        return self.vtable.GetSize(self, pullSize);
     }
     pub fn GetTimes(self: *const IShellItemResources, pftCreation: ?*FILETIME, pftWrite: ?*FILETIME, pftAccess: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).GetTimes(@as(*const IShellItemResources, @ptrCast(self)), pftCreation, pftWrite, pftAccess);
+        return self.vtable.GetTimes(self, pftCreation, pftWrite, pftAccess);
     }
     pub fn SetTimes(self: *const IShellItemResources, pftCreation: ?*const FILETIME, pftWrite: ?*const FILETIME, pftAccess: ?*const FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).SetTimes(@as(*const IShellItemResources, @ptrCast(self)), pftCreation, pftWrite, pftAccess);
+        return self.vtable.SetTimes(self, pftCreation, pftWrite, pftAccess);
     }
     pub fn GetResourceDescription(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).GetResourceDescription(@as(*const IShellItemResources, @ptrCast(self)), pcsir, ppszDescription);
+        return self.vtable.GetResourceDescription(self, pcsir, ppszDescription);
     }
     pub fn EnumResources(self: *const IShellItemResources, ppenumr: ?*?*IEnumResources) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).EnumResources(@as(*const IShellItemResources, @ptrCast(self)), ppenumr);
+        return self.vtable.EnumResources(self, ppenumr);
     }
     pub fn SupportsResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).SupportsResource(@as(*const IShellItemResources, @ptrCast(self)), pcsir);
+        return self.vtable.SupportsResource(self, pcsir);
     }
     pub fn OpenResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).OpenResource(@as(*const IShellItemResources, @ptrCast(self)), pcsir, riid, ppv);
+        return self.vtable.OpenResource(self, pcsir, riid, ppv);
     }
     pub fn CreateResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).CreateResource(@as(*const IShellItemResources, @ptrCast(self)), pcsir, riid, ppv);
+        return self.vtable.CreateResource(self, pcsir, riid, ppv);
     }
     pub fn MarkForDelete(self: *const IShellItemResources) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemResources.VTable, @ptrCast(self.vtable)).MarkForDelete(@as(*const IShellItemResources, @ptrCast(self)));
+        return self.vtable.MarkForDelete(self);
     }
 };
 
@@ -7046,13 +7046,13 @@ pub const ITransferDestination = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const ITransferDestination, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferDestination.VTable, @ptrCast(self.vtable)).Advise(@as(*const ITransferDestination, @ptrCast(self)), psink, pdwCookie);
+        return self.vtable.Advise(self, psink, pdwCookie);
     }
     pub fn Unadvise(self: *const ITransferDestination, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITransferDestination.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const ITransferDestination, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn CreateItem(self: *const ITransferDestination, pszName: ?[*:0]const u16, dwAttributes: u32, ullSize: u64, flags: u32, riidItem: ?*const Guid, ppvItem: ?*?*anyopaque, riidResources: ?*const Guid, ppvResources: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ITransferDestination.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ITransferDestination, @ptrCast(self)), pszName, dwAttributes, ullSize, flags, riidItem, ppvItem, riidResources, ppvResources);
+        return self.vtable.CreateItem(self, pszName, dwAttributes, ullSize, flags, riidItem, ppvItem, riidResources, ppvResources);
     }
 };
 
@@ -7229,52 +7229,52 @@ pub const IFileOperationProgressSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartOperations(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).StartOperations(@as(*const IFileOperationProgressSink, @ptrCast(self)));
+        return self.vtable.StartOperations(self);
     }
     pub fn FinishOperations(self: *const IFileOperationProgressSink, hrResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).FinishOperations(@as(*const IFileOperationProgressSink, @ptrCast(self)), hrResult);
+        return self.vtable.FinishOperations(self, hrResult);
     }
     pub fn PreRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PreRenameItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, pszNewName);
+        return self.vtable.PreRenameItem(self, dwFlags, psiItem, pszNewName);
     }
     pub fn PostRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, hrRename: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PostRenameItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, pszNewName, hrRename, psiNewlyCreated);
+        return self.vtable.PostRenameItem(self, dwFlags, psiItem, pszNewName, hrRename, psiNewlyCreated);
     }
     pub fn PreMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PreMoveItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, psiDestinationFolder, pszNewName);
+        return self.vtable.PreMoveItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName);
     }
     pub fn PostMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrMove: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PostMoveItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, psiDestinationFolder, pszNewName, hrMove, psiNewlyCreated);
+        return self.vtable.PostMoveItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName, hrMove, psiNewlyCreated);
     }
     pub fn PreCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PreCopyItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, psiDestinationFolder, pszNewName);
+        return self.vtable.PreCopyItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName);
     }
     pub fn PostCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrCopy: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PostCopyItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, psiDestinationFolder, pszNewName, hrCopy, psiNewlyCreated);
+        return self.vtable.PostCopyItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName, hrCopy, psiNewlyCreated);
     }
     pub fn PreDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PreDeleteItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem);
+        return self.vtable.PreDeleteItem(self, dwFlags, psiItem);
     }
     pub fn PostDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, hrDelete: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PostDeleteItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiItem, hrDelete, psiNewlyCreated);
+        return self.vtable.PostDeleteItem(self, dwFlags, psiItem, hrDelete, psiNewlyCreated);
     }
     pub fn PreNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PreNewItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiDestinationFolder, pszNewName);
+        return self.vtable.PreNewItem(self, dwFlags, psiDestinationFolder, pszNewName);
     }
     pub fn PostNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, dwFileAttributes: u32, hrNew: HRESULT, psiNewItem: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PostNewItem(@as(*const IFileOperationProgressSink, @ptrCast(self)), dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, hrNew, psiNewItem);
+        return self.vtable.PostNewItem(self, dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, hrNew, psiNewItem);
     }
     pub fn UpdateProgress(self: *const IFileOperationProgressSink, iWorkTotal: u32, iWorkSoFar: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).UpdateProgress(@as(*const IFileOperationProgressSink, @ptrCast(self)), iWorkTotal, iWorkSoFar);
+        return self.vtable.UpdateProgress(self, iWorkTotal, iWorkSoFar);
     }
     pub fn ResetTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).ResetTimer(@as(*const IFileOperationProgressSink, @ptrCast(self)));
+        return self.vtable.ResetTimer(self);
     }
     pub fn PauseTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).PauseTimer(@as(*const IFileOperationProgressSink, @ptrCast(self)));
+        return self.vtable.PauseTimer(self);
     }
     pub fn ResumeTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperationProgressSink.VTable, @ptrCast(self.vtable)).ResumeTimer(@as(*const IFileOperationProgressSink, @ptrCast(self)));
+        return self.vtable.ResumeTimer(self);
     }
 };
 
@@ -7371,25 +7371,25 @@ pub const IShellItemArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BindToHandler(self: *const IShellItemArray, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).BindToHandler(@as(*const IShellItemArray, @ptrCast(self)), pbc, bhid, riid, ppvOut);
+        return self.vtable.BindToHandler(self, pbc, bhid, riid, ppvOut);
     }
     pub fn GetPropertyStore(self: *const IShellItemArray, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).GetPropertyStore(@as(*const IShellItemArray, @ptrCast(self)), flags, riid, ppv);
+        return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
     pub fn GetPropertyDescriptionList(self: *const IShellItemArray, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionList(@as(*const IShellItemArray, @ptrCast(self)), keyType, riid, ppv);
+        return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
     pub fn GetAttributes(self: *const IShellItemArray, AttribFlags: SIATTRIBFLAGS, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IShellItemArray, @ptrCast(self)), AttribFlags, sfgaoMask, psfgaoAttribs);
+        return self.vtable.GetAttributes(self, AttribFlags, sfgaoMask, psfgaoAttribs);
     }
     pub fn GetCount(self: *const IShellItemArray, pdwNumItems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IShellItemArray, @ptrCast(self)), pdwNumItems);
+        return self.vtable.GetCount(self, pdwNumItems);
     }
     pub fn GetItemAt(self: *const IShellItemArray, dwIndex: u32, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).GetItemAt(@as(*const IShellItemArray, @ptrCast(self)), dwIndex, ppsi);
+        return self.vtable.GetItemAt(self, dwIndex, ppsi);
     }
     pub fn EnumItems(self: *const IShellItemArray, ppenumShellItems: ?*?*IEnumShellItems) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemArray.VTable, @ptrCast(self.vtable)).EnumItems(@as(*const IShellItemArray, @ptrCast(self)), ppenumShellItems);
+        return self.vtable.EnumItems(self, ppenumShellItems);
     }
 };
 
@@ -7416,7 +7416,7 @@ pub const IInitializeWithItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithItem, psi: ?*IShellItem, grfMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithItem.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithItem, @ptrCast(self)), psi, grfMode);
+        return self.vtable.Initialize(self, psi, grfMode);
     }
 };
 
@@ -7451,10 +7451,10 @@ pub const IObjectWithSelection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSelection(self: *const IObjectWithSelection, psia: ?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithSelection.VTable, @ptrCast(self.vtable)).SetSelection(@as(*const IObjectWithSelection, @ptrCast(self)), psia);
+        return self.vtable.SetSelection(self, psia);
     }
     pub fn GetSelection(self: *const IObjectWithSelection, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithSelection.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const IObjectWithSelection, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetSelection(self, riid, ppv);
     }
 };
 
@@ -7479,7 +7479,7 @@ pub const IObjectWithBackReferences = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RemoveBackReferences(self: *const IObjectWithBackReferences) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithBackReferences.VTable, @ptrCast(self.vtable)).RemoveBackReferences(@as(*const IObjectWithBackReferences, @ptrCast(self)));
+        return self.vtable.RemoveBackReferences(self);
     }
 };
 
@@ -7551,22 +7551,22 @@ pub const ICategoryProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CanCategorizeOnSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).CanCategorizeOnSCID(@as(*const ICategoryProvider, @ptrCast(self)), pscid);
+        return self.vtable.CanCategorizeOnSCID(self, pscid);
     }
     pub fn GetDefaultCategory(self: *const ICategoryProvider, pguid: ?*Guid, pscid: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).GetDefaultCategory(@as(*const ICategoryProvider, @ptrCast(self)), pguid, pscid);
+        return self.vtable.GetDefaultCategory(self, pguid, pscid);
     }
     pub fn GetCategoryForSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY, pguid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).GetCategoryForSCID(@as(*const ICategoryProvider, @ptrCast(self)), pscid, pguid);
+        return self.vtable.GetCategoryForSCID(self, pscid, pguid);
     }
     pub fn EnumCategories(self: *const ICategoryProvider, penum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).EnumCategories(@as(*const ICategoryProvider, @ptrCast(self)), penum);
+        return self.vtable.EnumCategories(self, penum);
     }
     pub fn GetCategoryName(self: *const ICategoryProvider, pguid: ?*const Guid, pszName: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).GetCategoryName(@as(*const ICategoryProvider, @ptrCast(self)), pguid, pszName, cch);
+        return self.vtable.GetCategoryName(self, pguid, pszName, cch);
     }
     pub fn CreateCategory(self: *const ICategoryProvider, pguid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ICategoryProvider.VTable, @ptrCast(self.vtable)).CreateCategory(@as(*const ICategoryProvider, @ptrCast(self)), pguid, riid, ppv);
+        return self.vtable.CreateCategory(self, pguid, riid, ppv);
     }
 };
 
@@ -7657,16 +7657,16 @@ pub const ICategorizer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDescription(self: *const ICategorizer, pszDesc: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICategorizer.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICategorizer, @ptrCast(self)), pszDesc, cch);
+        return self.vtable.GetDescription(self, pszDesc, cch);
     }
     pub fn GetCategory(self: *const ICategorizer, cidl: u32, apidl: [*]?*ITEMIDLIST, rgCategoryIds: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const ICategorizer.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const ICategorizer, @ptrCast(self)), cidl, apidl, rgCategoryIds);
+        return self.vtable.GetCategory(self, cidl, apidl, rgCategoryIds);
     }
     pub fn GetCategoryInfo(self: *const ICategorizer, dwCategoryId: u32, pci: ?*CATEGORY_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ICategorizer.VTable, @ptrCast(self.vtable)).GetCategoryInfo(@as(*const ICategorizer, @ptrCast(self)), dwCategoryId, pci);
+        return self.vtable.GetCategoryInfo(self, dwCategoryId, pci);
     }
     pub fn CompareCategory(self: *const ICategorizer, csfFlags: CATSORT_FLAGS, dwCategoryId1: u32, dwCategoryId2: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICategorizer.VTable, @ptrCast(self.vtable)).CompareCategory(@as(*const ICategorizer, @ptrCast(self)), csfFlags, dwCategoryId1, dwCategoryId2);
+        return self.vtable.CompareCategory(self, csfFlags, dwCategoryId1, dwCategoryId2);
     }
 };
 
@@ -7736,19 +7736,19 @@ pub const IDropTargetHelper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DragEnter(self: *const IDropTargetHelper, hwndTarget: ?HWND, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDropTargetHelper.VTable, @ptrCast(self.vtable)).DragEnter(@as(*const IDropTargetHelper, @ptrCast(self)), hwndTarget, pDataObject, ppt, dwEffect);
+        return self.vtable.DragEnter(self, hwndTarget, pDataObject, ppt, dwEffect);
     }
     pub fn DragLeave(self: *const IDropTargetHelper) callconv(.Inline) HRESULT {
-        return @as(*const IDropTargetHelper.VTable, @ptrCast(self.vtable)).DragLeave(@as(*const IDropTargetHelper, @ptrCast(self)));
+        return self.vtable.DragLeave(self);
     }
     pub fn DragOver(self: *const IDropTargetHelper, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDropTargetHelper.VTable, @ptrCast(self.vtable)).DragOver(@as(*const IDropTargetHelper, @ptrCast(self)), ppt, dwEffect);
+        return self.vtable.DragOver(self, ppt, dwEffect);
     }
     pub fn Drop(self: *const IDropTargetHelper, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDropTargetHelper.VTable, @ptrCast(self.vtable)).Drop(@as(*const IDropTargetHelper, @ptrCast(self)), pDataObject, ppt, dwEffect);
+        return self.vtable.Drop(self, pDataObject, ppt, dwEffect);
     }
     pub fn Show(self: *const IDropTargetHelper, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDropTargetHelper.VTable, @ptrCast(self.vtable)).Show(@as(*const IDropTargetHelper, @ptrCast(self)), fShow);
+        return self.vtable.Show(self, fShow);
     }
 };
 
@@ -7785,10 +7785,10 @@ pub const IDragSourceHelper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeFromBitmap(self: *const IDragSourceHelper, pshdi: ?*SHDRAGIMAGE, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IDragSourceHelper.VTable, @ptrCast(self.vtable)).InitializeFromBitmap(@as(*const IDragSourceHelper, @ptrCast(self)), pshdi, pDataObject);
+        return self.vtable.InitializeFromBitmap(self, pshdi, pDataObject);
     }
     pub fn InitializeFromWindow(self: *const IDragSourceHelper, hwnd: ?HWND, ppt: ?*POINT, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IDragSourceHelper.VTable, @ptrCast(self.vtable)).InitializeFromWindow(@as(*const IDragSourceHelper, @ptrCast(self)), hwnd, ppt, pDataObject);
+        return self.vtable.InitializeFromWindow(self, hwnd, ppt, pDataObject);
     }
 };
 
@@ -8005,58 +8005,58 @@ pub const IShellLinkA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPath(self: *const IShellLinkA, pszFile: [*:0]u8, cch: i32, pfd: ?*WIN32_FIND_DATAA, fFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IShellLinkA, @ptrCast(self)), pszFile, cch, pfd, fFlags);
+        return self.vtable.GetPath(self, pszFile, cch, pfd, fFlags);
     }
     pub fn GetIDList(self: *const IShellLinkA, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const IShellLinkA, @ptrCast(self)), ppidl);
+        return self.vtable.GetIDList(self, ppidl);
     }
     pub fn SetIDList(self: *const IShellLinkA, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetIDList(@as(*const IShellLinkA, @ptrCast(self)), pidl);
+        return self.vtable.SetIDList(self, pidl);
     }
     pub fn GetDescription(self: *const IShellLinkA, pszName: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IShellLinkA, @ptrCast(self)), pszName, cch);
+        return self.vtable.GetDescription(self, pszName, cch);
     }
     pub fn SetDescription(self: *const IShellLinkA, pszName: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IShellLinkA, @ptrCast(self)), pszName);
+        return self.vtable.SetDescription(self, pszName);
     }
     pub fn GetWorkingDirectory(self: *const IShellLinkA, pszDir: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetWorkingDirectory(@as(*const IShellLinkA, @ptrCast(self)), pszDir, cch);
+        return self.vtable.GetWorkingDirectory(self, pszDir, cch);
     }
     pub fn SetWorkingDirectory(self: *const IShellLinkA, pszDir: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetWorkingDirectory(@as(*const IShellLinkA, @ptrCast(self)), pszDir);
+        return self.vtable.SetWorkingDirectory(self, pszDir);
     }
     pub fn GetArguments(self: *const IShellLinkA, pszArgs: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetArguments(@as(*const IShellLinkA, @ptrCast(self)), pszArgs, cch);
+        return self.vtable.GetArguments(self, pszArgs, cch);
     }
     pub fn SetArguments(self: *const IShellLinkA, pszArgs: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetArguments(@as(*const IShellLinkA, @ptrCast(self)), pszArgs);
+        return self.vtable.SetArguments(self, pszArgs);
     }
     pub fn GetHotkey(self: *const IShellLinkA, pwHotkey: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetHotkey(@as(*const IShellLinkA, @ptrCast(self)), pwHotkey);
+        return self.vtable.GetHotkey(self, pwHotkey);
     }
     pub fn SetHotkey(self: *const IShellLinkA, wHotkey: u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetHotkey(@as(*const IShellLinkA, @ptrCast(self)), wHotkey);
+        return self.vtable.SetHotkey(self, wHotkey);
     }
     pub fn GetShowCmd(self: *const IShellLinkA, piShowCmd: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetShowCmd(@as(*const IShellLinkA, @ptrCast(self)), piShowCmd);
+        return self.vtable.GetShowCmd(self, piShowCmd);
     }
     pub fn SetShowCmd(self: *const IShellLinkA, iShowCmd: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetShowCmd(@as(*const IShellLinkA, @ptrCast(self)), iShowCmd);
+        return self.vtable.SetShowCmd(self, iShowCmd);
     }
     pub fn GetIconLocation(self: *const IShellLinkA, pszIconPath: [*:0]u8, cch: i32, piIcon: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IShellLinkA, @ptrCast(self)), pszIconPath, cch, piIcon);
+        return self.vtable.GetIconLocation(self, pszIconPath, cch, piIcon);
     }
     pub fn SetIconLocation(self: *const IShellLinkA, pszIconPath: ?[*:0]const u8, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetIconLocation(@as(*const IShellLinkA, @ptrCast(self)), pszIconPath, iIcon);
+        return self.vtable.SetIconLocation(self, pszIconPath, iIcon);
     }
     pub fn SetRelativePath(self: *const IShellLinkA, pszPathRel: ?[*:0]const u8, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetRelativePath(@as(*const IShellLinkA, @ptrCast(self)), pszPathRel, dwReserved);
+        return self.vtable.SetRelativePath(self, pszPathRel, dwReserved);
     }
     pub fn Resolve(self: *const IShellLinkA, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IShellLinkA, @ptrCast(self)), hwnd, fFlags);
+        return self.vtable.Resolve(self, hwnd, fFlags);
     }
     pub fn SetPath(self: *const IShellLinkA, pszFile: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkA.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IShellLinkA, @ptrCast(self)), pszFile);
+        return self.vtable.SetPath(self, pszFile);
     }
 };
 
@@ -8229,58 +8229,58 @@ pub const IShellLinkW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPath(self: *const IShellLinkW, pszFile: [*:0]u16, cch: i32, pfd: ?*WIN32_FIND_DATAW, fFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IShellLinkW, @ptrCast(self)), pszFile, cch, pfd, fFlags);
+        return self.vtable.GetPath(self, pszFile, cch, pfd, fFlags);
     }
     pub fn GetIDList(self: *const IShellLinkW, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const IShellLinkW, @ptrCast(self)), ppidl);
+        return self.vtable.GetIDList(self, ppidl);
     }
     pub fn SetIDList(self: *const IShellLinkW, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetIDList(@as(*const IShellLinkW, @ptrCast(self)), pidl);
+        return self.vtable.SetIDList(self, pidl);
     }
     pub fn GetDescription(self: *const IShellLinkW, pszName: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IShellLinkW, @ptrCast(self)), pszName, cch);
+        return self.vtable.GetDescription(self, pszName, cch);
     }
     pub fn SetDescription(self: *const IShellLinkW, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IShellLinkW, @ptrCast(self)), pszName);
+        return self.vtable.SetDescription(self, pszName);
     }
     pub fn GetWorkingDirectory(self: *const IShellLinkW, pszDir: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetWorkingDirectory(@as(*const IShellLinkW, @ptrCast(self)), pszDir, cch);
+        return self.vtable.GetWorkingDirectory(self, pszDir, cch);
     }
     pub fn SetWorkingDirectory(self: *const IShellLinkW, pszDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetWorkingDirectory(@as(*const IShellLinkW, @ptrCast(self)), pszDir);
+        return self.vtable.SetWorkingDirectory(self, pszDir);
     }
     pub fn GetArguments(self: *const IShellLinkW, pszArgs: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetArguments(@as(*const IShellLinkW, @ptrCast(self)), pszArgs, cch);
+        return self.vtable.GetArguments(self, pszArgs, cch);
     }
     pub fn SetArguments(self: *const IShellLinkW, pszArgs: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetArguments(@as(*const IShellLinkW, @ptrCast(self)), pszArgs);
+        return self.vtable.SetArguments(self, pszArgs);
     }
     pub fn GetHotkey(self: *const IShellLinkW, pwHotkey: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetHotkey(@as(*const IShellLinkW, @ptrCast(self)), pwHotkey);
+        return self.vtable.GetHotkey(self, pwHotkey);
     }
     pub fn SetHotkey(self: *const IShellLinkW, wHotkey: u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetHotkey(@as(*const IShellLinkW, @ptrCast(self)), wHotkey);
+        return self.vtable.SetHotkey(self, wHotkey);
     }
     pub fn GetShowCmd(self: *const IShellLinkW, piShowCmd: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetShowCmd(@as(*const IShellLinkW, @ptrCast(self)), piShowCmd);
+        return self.vtable.GetShowCmd(self, piShowCmd);
     }
     pub fn SetShowCmd(self: *const IShellLinkW, iShowCmd: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetShowCmd(@as(*const IShellLinkW, @ptrCast(self)), iShowCmd);
+        return self.vtable.SetShowCmd(self, iShowCmd);
     }
     pub fn GetIconLocation(self: *const IShellLinkW, pszIconPath: [*:0]u16, cch: i32, piIcon: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IShellLinkW, @ptrCast(self)), pszIconPath, cch, piIcon);
+        return self.vtable.GetIconLocation(self, pszIconPath, cch, piIcon);
     }
     pub fn SetIconLocation(self: *const IShellLinkW, pszIconPath: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetIconLocation(@as(*const IShellLinkW, @ptrCast(self)), pszIconPath, iIcon);
+        return self.vtable.SetIconLocation(self, pszIconPath, iIcon);
     }
     pub fn SetRelativePath(self: *const IShellLinkW, pszPathRel: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetRelativePath(@as(*const IShellLinkW, @ptrCast(self)), pszPathRel, dwReserved);
+        return self.vtable.SetRelativePath(self, pszPathRel, dwReserved);
     }
     pub fn Resolve(self: *const IShellLinkW, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IShellLinkW, @ptrCast(self)), hwnd, fFlags);
+        return self.vtable.Resolve(self, hwnd, fFlags);
     }
     pub fn SetPath(self: *const IShellLinkW, pszFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkW.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IShellLinkW, @ptrCast(self)), pszFile);
+        return self.vtable.SetPath(self, pszFile);
     }
 };
 
@@ -8339,19 +8339,19 @@ pub const IShellLinkDataList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddDataBlock(self: *const IShellLinkDataList, pDataBlock: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDataList.VTable, @ptrCast(self.vtable)).AddDataBlock(@as(*const IShellLinkDataList, @ptrCast(self)), pDataBlock);
+        return self.vtable.AddDataBlock(self, pDataBlock);
     }
     pub fn CopyDataBlock(self: *const IShellLinkDataList, dwSig: u32, ppDataBlock: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDataList.VTable, @ptrCast(self.vtable)).CopyDataBlock(@as(*const IShellLinkDataList, @ptrCast(self)), dwSig, ppDataBlock);
+        return self.vtable.CopyDataBlock(self, dwSig, ppDataBlock);
     }
     pub fn RemoveDataBlock(self: *const IShellLinkDataList, dwSig: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDataList.VTable, @ptrCast(self.vtable)).RemoveDataBlock(@as(*const IShellLinkDataList, @ptrCast(self)), dwSig);
+        return self.vtable.RemoveDataBlock(self, dwSig);
     }
     pub fn GetFlags(self: *const IShellLinkDataList, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDataList.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IShellLinkDataList, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn SetFlags(self: *const IShellLinkDataList, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDataList.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IShellLinkDataList, @ptrCast(self)), dwFlags);
+        return self.vtable.SetFlags(self, dwFlags);
     }
 };
 
@@ -8379,7 +8379,7 @@ pub const IResolveShellLink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResolveShellLink(self: *const IResolveShellLink, punkLink: ?*IUnknown, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IResolveShellLink.VTable, @ptrCast(self.vtable)).ResolveShellLink(@as(*const IResolveShellLink, @ptrCast(self)), punkLink, hwnd, fFlags);
+        return self.vtable.ResolveShellLink(self, punkLink, hwnd, fFlags);
     }
 };
 
@@ -8423,10 +8423,10 @@ pub const IActionProgressDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IActionProgressDialog, flags: u32, pszTitle: ?[*:0]const u16, pszCancel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgressDialog.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IActionProgressDialog, @ptrCast(self)), flags, pszTitle, pszCancel);
+        return self.vtable.Initialize(self, flags, pszTitle, pszCancel);
     }
     pub fn Stop(self: *const IActionProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgressDialog.VTable, @ptrCast(self.vtable)).Stop(@as(*const IActionProgressDialog, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
 };
 
@@ -8545,22 +8545,22 @@ pub const IActionProgress = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin(self: *const IActionProgress, action: SPACTION, flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).Begin(@as(*const IActionProgress, @ptrCast(self)), action, flags);
+        return self.vtable.Begin(self, action, flags);
     }
     pub fn UpdateProgress(self: *const IActionProgress, ulCompleted: u64, ulTotal: u64) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).UpdateProgress(@as(*const IActionProgress, @ptrCast(self)), ulCompleted, ulTotal);
+        return self.vtable.UpdateProgress(self, ulCompleted, ulTotal);
     }
     pub fn UpdateText(self: *const IActionProgress, sptext: SPTEXT, pszText: ?[*:0]const u16, fMayCompact: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).UpdateText(@as(*const IActionProgress, @ptrCast(self)), sptext, pszText, fMayCompact);
+        return self.vtable.UpdateText(self, sptext, pszText, fMayCompact);
     }
     pub fn QueryCancel(self: *const IActionProgress, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).QueryCancel(@as(*const IActionProgress, @ptrCast(self)), pfCancelled);
+        return self.vtable.QueryCancel(self, pfCancelled);
     }
     pub fn ResetCancel(self: *const IActionProgress) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).ResetCancel(@as(*const IActionProgress, @ptrCast(self)));
+        return self.vtable.ResetCancel(self);
     }
     pub fn End(self: *const IActionProgress) callconv(.Inline) HRESULT {
-        return @as(*const IActionProgress.VTable, @ptrCast(self.vtable)).End(@as(*const IActionProgress, @ptrCast(self)));
+        return self.vtable.End(self);
     }
 };
 
@@ -8588,7 +8588,7 @@ pub const IShellExtInit = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IShellExtInit, pidlFolder: ?*ITEMIDLIST, pdtobj: ?*IDataObject, hkeyProgID: ?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IShellExtInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IShellExtInit, @ptrCast(self)), pidlFolder, pdtobj, hkeyProgID);
+        return self.vtable.Initialize(self, pidlFolder, pdtobj, hkeyProgID);
     }
 };
 
@@ -8630,10 +8630,10 @@ pub const IShellPropSheetExt = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddPages(self: *const IShellPropSheetExt, pfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellPropSheetExt.VTable, @ptrCast(self.vtable)).AddPages(@as(*const IShellPropSheetExt, @ptrCast(self)), pfnAddPage, lParam);
+        return self.vtable.AddPages(self, pfnAddPage, lParam);
     }
     pub fn ReplacePage(self: *const IShellPropSheetExt, uPageID: u32, pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellPropSheetExt.VTable, @ptrCast(self.vtable)).ReplacePage(@as(*const IShellPropSheetExt, @ptrCast(self)), uPageID, pfnReplaceWith, lParam);
+        return self.vtable.ReplacePage(self, uPageID, pfnReplaceWith, lParam);
     }
 };
 
@@ -8660,7 +8660,7 @@ pub const IRemoteComputer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IRemoteComputer, pszMachine: ?[*:0]const u16, bEnumerating: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteComputer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRemoteComputer, @ptrCast(self)), pszMachine, bEnumerating);
+        return self.vtable.Initialize(self, pszMachine, bEnumerating);
     }
 };
 
@@ -8685,7 +8685,7 @@ pub const IQueryContinue = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryContinue(self: *const IQueryContinue) callconv(.Inline) HRESULT {
-        return @as(*const IQueryContinue.VTable, @ptrCast(self.vtable)).QueryContinue(@as(*const IQueryContinue, @ptrCast(self)));
+        return self.vtable.QueryContinue(self);
     }
 };
 
@@ -8711,7 +8711,7 @@ pub const IObjectWithCancelEvent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCancelEvent(self: *const IObjectWithCancelEvent, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithCancelEvent.VTable, @ptrCast(self.vtable)).GetCancelEvent(@as(*const IObjectWithCancelEvent, @ptrCast(self)), phEvent);
+        return self.vtable.GetCancelEvent(self, phEvent);
     }
 };
 
@@ -8775,19 +8775,19 @@ pub const IUserNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBalloonInfo(self: *const IUserNotification, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification.VTable, @ptrCast(self.vtable)).SetBalloonInfo(@as(*const IUserNotification, @ptrCast(self)), pszTitle, pszText, dwInfoFlags);
+        return self.vtable.SetBalloonInfo(self, pszTitle, pszText, dwInfoFlags);
     }
     pub fn SetBalloonRetry(self: *const IUserNotification, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification.VTable, @ptrCast(self.vtable)).SetBalloonRetry(@as(*const IUserNotification, @ptrCast(self)), dwShowTime, dwInterval, cRetryCount);
+        return self.vtable.SetBalloonRetry(self, dwShowTime, dwInterval, cRetryCount);
     }
     pub fn SetIconInfo(self: *const IUserNotification, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification.VTable, @ptrCast(self.vtable)).SetIconInfo(@as(*const IUserNotification, @ptrCast(self)), hIcon, pszToolTip);
+        return self.vtable.SetIconInfo(self, hIcon, pszToolTip);
     }
     pub fn Show(self: *const IUserNotification, pqc: ?*IQueryContinue, dwContinuePollInterval: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification.VTable, @ptrCast(self.vtable)).Show(@as(*const IUserNotification, @ptrCast(self)), pqc, dwContinuePollInterval);
+        return self.vtable.Show(self, pqc, dwContinuePollInterval);
     }
     pub fn PlaySound(self: *const IUserNotification, pszSoundName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification.VTable, @ptrCast(self.vtable)).PlaySound(@as(*const IUserNotification, @ptrCast(self)), pszSoundName);
+        return self.vtable.PlaySound(self, pszSoundName);
     }
 };
 
@@ -8823,10 +8823,10 @@ pub const IItemNameLimits = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetValidCharacters(self: *const IItemNameLimits, ppwszValidChars: ?*?PWSTR, ppwszInvalidChars: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IItemNameLimits.VTable, @ptrCast(self.vtable)).GetValidCharacters(@as(*const IItemNameLimits, @ptrCast(self)), ppwszValidChars, ppwszInvalidChars);
+        return self.vtable.GetValidCharacters(self, ppwszValidChars, ppwszInvalidChars);
     }
     pub fn GetMaxLength(self: *const IItemNameLimits, pszName: ?[*:0]const u16, piMaxNameLen: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IItemNameLimits.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IItemNameLimits, @ptrCast(self)), pszName, piMaxNameLen);
+        return self.vtable.GetMaxLength(self, pszName, piMaxNameLen);
     }
 };
 
@@ -8944,40 +8944,40 @@ pub const ISearchFolderItemFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDisplayName(self: *const ISearchFolderItemFactory, pszDisplayName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const ISearchFolderItemFactory, @ptrCast(self)), pszDisplayName);
+        return self.vtable.SetDisplayName(self, pszDisplayName);
     }
     pub fn SetFolderTypeID(self: *const ISearchFolderItemFactory, ftid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetFolderTypeID(@as(*const ISearchFolderItemFactory, @ptrCast(self)), ftid);
+        return self.vtable.SetFolderTypeID(self, ftid);
     }
     pub fn SetFolderLogicalViewMode(self: *const ISearchFolderItemFactory, flvm: FOLDERLOGICALVIEWMODE) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetFolderLogicalViewMode(@as(*const ISearchFolderItemFactory, @ptrCast(self)), flvm);
+        return self.vtable.SetFolderLogicalViewMode(self, flvm);
     }
     pub fn SetIconSize(self: *const ISearchFolderItemFactory, iIconSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetIconSize(@as(*const ISearchFolderItemFactory, @ptrCast(self)), iIconSize);
+        return self.vtable.SetIconSize(self, iIconSize);
     }
     pub fn SetVisibleColumns(self: *const ISearchFolderItemFactory, cVisibleColumns: u32, rgKey: [*]const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetVisibleColumns(@as(*const ISearchFolderItemFactory, @ptrCast(self)), cVisibleColumns, rgKey);
+        return self.vtable.SetVisibleColumns(self, cVisibleColumns, rgKey);
     }
     pub fn SetSortColumns(self: *const ISearchFolderItemFactory, cSortColumns: u32, rgSortColumns: [*]SORTCOLUMN) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetSortColumns(@as(*const ISearchFolderItemFactory, @ptrCast(self)), cSortColumns, rgSortColumns);
+        return self.vtable.SetSortColumns(self, cSortColumns, rgSortColumns);
     }
     pub fn SetGroupColumn(self: *const ISearchFolderItemFactory, keyGroup: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetGroupColumn(@as(*const ISearchFolderItemFactory, @ptrCast(self)), keyGroup);
+        return self.vtable.SetGroupColumn(self, keyGroup);
     }
     pub fn SetStacks(self: *const ISearchFolderItemFactory, cStackKeys: u32, rgStackKeys: [*]PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetStacks(@as(*const ISearchFolderItemFactory, @ptrCast(self)), cStackKeys, rgStackKeys);
+        return self.vtable.SetStacks(self, cStackKeys, rgStackKeys);
     }
     pub fn SetScope(self: *const ISearchFolderItemFactory, psiaScope: ?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetScope(@as(*const ISearchFolderItemFactory, @ptrCast(self)), psiaScope);
+        return self.vtable.SetScope(self, psiaScope);
     }
     pub fn SetCondition(self: *const ISearchFolderItemFactory, pCondition: ?*ICondition) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).SetCondition(@as(*const ISearchFolderItemFactory, @ptrCast(self)), pCondition);
+        return self.vtable.SetCondition(self, pCondition);
     }
     pub fn GetShellItem(self: *const ISearchFolderItemFactory, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).GetShellItem(@as(*const ISearchFolderItemFactory, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetShellItem(self, riid, ppv);
     }
     pub fn GetIDList(self: *const ISearchFolderItemFactory, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISearchFolderItemFactory.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const ISearchFolderItemFactory, @ptrCast(self)), ppidl);
+        return self.vtable.GetIDList(self, ppidl);
     }
 };
 
@@ -9016,10 +9016,10 @@ pub const IExtractImage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLocation(self: *const IExtractImage, pszPathBuffer: [*:0]u16, cch: u32, pdwPriority: ?*u32, prgSize: ?*const SIZE, dwRecClrDepth: u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExtractImage.VTable, @ptrCast(self.vtable)).GetLocation(@as(*const IExtractImage, @ptrCast(self)), pszPathBuffer, cch, pdwPriority, prgSize, dwRecClrDepth, pdwFlags);
+        return self.vtable.GetLocation(self, pszPathBuffer, cch, pdwPriority, prgSize, dwRecClrDepth, pdwFlags);
     }
     pub fn Extract(self: *const IExtractImage, phBmpThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IExtractImage.VTable, @ptrCast(self.vtable)).Extract(@as(*const IExtractImage, @ptrCast(self)), phBmpThumbnail);
+        return self.vtable.Extract(self, phBmpThumbnail);
     }
 };
 
@@ -9045,7 +9045,7 @@ pub const IExtractImage2 = extern union {
     };}
     pub usingnamespace IExtractImage.MethodMixin(@This());
     pub fn GetDateStamp(self: *const IExtractImage2, pDateStamp: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IExtractImage2.VTable, @ptrCast(self.vtable)).GetDateStamp(@as(*const IExtractImage2, @ptrCast(self)), pDateStamp);
+        return self.vtable.GetDateStamp(self, pDateStamp);
     }
 };
 
@@ -9074,7 +9074,7 @@ pub const IThumbnailHandlerFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetThumbnailHandler(self: *const IThumbnailHandlerFactory, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailHandlerFactory.VTable, @ptrCast(self.vtable)).GetThumbnailHandler(@as(*const IThumbnailHandlerFactory, @ptrCast(self)), pidlChild, pbc, riid, ppv);
+        return self.vtable.GetThumbnailHandler(self, pidlChild, pbc, riid, ppv);
     }
 };
 
@@ -9112,10 +9112,10 @@ pub const IParentAndItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetParentAndItem(self: *const IParentAndItem, pidlParent: ?*ITEMIDLIST, psf: ?*IShellFolder, pidlChild: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IParentAndItem.VTable, @ptrCast(self.vtable)).SetParentAndItem(@as(*const IParentAndItem, @ptrCast(self)), pidlParent, psf, pidlChild);
+        return self.vtable.SetParentAndItem(self, pidlParent, psf, pidlChild);
     }
     pub fn GetParentAndItem(self: *const IParentAndItem, ppidlParent: ?*?*ITEMIDLIST, ppsf: ?*?*IShellFolder, ppidlChild: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IParentAndItem.VTable, @ptrCast(self.vtable)).GetParentAndItem(@as(*const IParentAndItem, @ptrCast(self)), ppidlParent, ppsf, ppidlChild);
+        return self.vtable.GetParentAndItem(self, ppidlParent, ppsf, ppidlChild);
     }
 };
 
@@ -9159,13 +9159,13 @@ pub const IDockingWindow = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn ShowDW(self: *const IDockingWindow, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindow.VTable, @ptrCast(self.vtable)).ShowDW(@as(*const IDockingWindow, @ptrCast(self)), fShow);
+        return self.vtable.ShowDW(self, fShow);
     }
     pub fn CloseDW(self: *const IDockingWindow, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindow.VTable, @ptrCast(self.vtable)).CloseDW(@as(*const IDockingWindow, @ptrCast(self)), dwReserved);
+        return self.vtable.CloseDW(self, dwReserved);
     }
     pub fn ResizeBorderDW(self: *const IDockingWindow, prcBorder: ?*RECT, punkToolbarSite: ?*IUnknown, fReserved: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindow.VTable, @ptrCast(self.vtable)).ResizeBorderDW(@as(*const IDockingWindow, @ptrCast(self)), prcBorder, punkToolbarSite, fReserved);
+        return self.vtable.ResizeBorderDW(self, prcBorder, punkToolbarSite, fReserved);
     }
 };
 
@@ -9223,7 +9223,7 @@ pub const IDeskBand = extern union {
     };}
     pub usingnamespace IDockingWindow.MethodMixin(@This());
     pub fn GetBandInfo(self: *const IDeskBand, dwBandID: u32, dwViewMode: u32, pdbi: ?*DESKBANDINFO) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBand.VTable, @ptrCast(self.vtable)).GetBandInfo(@as(*const IDeskBand, @ptrCast(self)), dwBandID, dwViewMode, pdbi);
+        return self.vtable.GetBandInfo(self, dwBandID, dwViewMode, pdbi);
     }
 };
 
@@ -9251,7 +9251,7 @@ pub const IDeskBandInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDefaultBandWidth(self: *const IDeskBandInfo, dwBandID: u32, dwViewMode: u32, pnWidth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBandInfo.VTable, @ptrCast(self.vtable)).GetDefaultBandWidth(@as(*const IDeskBandInfo, @ptrCast(self)), dwBandID, dwViewMode, pnWidth);
+        return self.vtable.GetDefaultBandWidth(self, dwBandID, dwViewMode, pnWidth);
     }
 };
 
@@ -9308,19 +9308,19 @@ pub const ITaskbarList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn HrInit(self: *const ITaskbarList) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList.VTable, @ptrCast(self.vtable)).HrInit(@as(*const ITaskbarList, @ptrCast(self)));
+        return self.vtable.HrInit(self);
     }
     pub fn AddTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList.VTable, @ptrCast(self.vtable)).AddTab(@as(*const ITaskbarList, @ptrCast(self)), hwnd);
+        return self.vtable.AddTab(self, hwnd);
     }
     pub fn DeleteTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList.VTable, @ptrCast(self.vtable)).DeleteTab(@as(*const ITaskbarList, @ptrCast(self)), hwnd);
+        return self.vtable.DeleteTab(self, hwnd);
     }
     pub fn ActivateTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList.VTable, @ptrCast(self.vtable)).ActivateTab(@as(*const ITaskbarList, @ptrCast(self)), hwnd);
+        return self.vtable.ActivateTab(self, hwnd);
     }
     pub fn SetActiveAlt(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList.VTable, @ptrCast(self.vtable)).SetActiveAlt(@as(*const ITaskbarList, @ptrCast(self)), hwnd);
+        return self.vtable.SetActiveAlt(self, hwnd);
     }
 };
 
@@ -9347,7 +9347,7 @@ pub const ITaskbarList2 = extern union {
     };}
     pub usingnamespace ITaskbarList.MethodMixin(@This());
     pub fn MarkFullscreenWindow(self: *const ITaskbarList2, hwnd: ?HWND, fFullscreen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList2.VTable, @ptrCast(self.vtable)).MarkFullscreenWindow(@as(*const ITaskbarList2, @ptrCast(self)), hwnd, fFullscreen);
+        return self.vtable.MarkFullscreenWindow(self, hwnd, fFullscreen);
     }
 };
 
@@ -9525,40 +9525,40 @@ pub const ITaskbarList3 = extern union {
     };}
     pub usingnamespace ITaskbarList2.MethodMixin(@This());
     pub fn SetProgressValue(self: *const ITaskbarList3, hwnd: ?HWND, ullCompleted: u64, ullTotal: u64) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetProgressValue(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, ullCompleted, ullTotal);
+        return self.vtable.SetProgressValue(self, hwnd, ullCompleted, ullTotal);
     }
     pub fn SetProgressState(self: *const ITaskbarList3, hwnd: ?HWND, tbpFlags: TBPFLAG) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetProgressState(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, tbpFlags);
+        return self.vtable.SetProgressState(self, hwnd, tbpFlags);
     }
     pub fn RegisterTab(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).RegisterTab(@as(*const ITaskbarList3, @ptrCast(self)), hwndTab, hwndMDI);
+        return self.vtable.RegisterTab(self, hwndTab, hwndMDI);
     }
     pub fn UnregisterTab(self: *const ITaskbarList3, hwndTab: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).UnregisterTab(@as(*const ITaskbarList3, @ptrCast(self)), hwndTab);
+        return self.vtable.UnregisterTab(self, hwndTab);
     }
     pub fn SetTabOrder(self: *const ITaskbarList3, hwndTab: ?HWND, hwndInsertBefore: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetTabOrder(@as(*const ITaskbarList3, @ptrCast(self)), hwndTab, hwndInsertBefore);
+        return self.vtable.SetTabOrder(self, hwndTab, hwndInsertBefore);
     }
     pub fn SetTabActive(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetTabActive(@as(*const ITaskbarList3, @ptrCast(self)), hwndTab, hwndMDI, dwReserved);
+        return self.vtable.SetTabActive(self, hwndTab, hwndMDI, dwReserved);
     }
     pub fn ThumbBarAddButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).ThumbBarAddButtons(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, cButtons, pButton);
+        return self.vtable.ThumbBarAddButtons(self, hwnd, cButtons, pButton);
     }
     pub fn ThumbBarUpdateButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).ThumbBarUpdateButtons(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, cButtons, pButton);
+        return self.vtable.ThumbBarUpdateButtons(self, hwnd, cButtons, pButton);
     }
     pub fn ThumbBarSetImageList(self: *const ITaskbarList3, hwnd: ?HWND, himl: ?HIMAGELIST) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).ThumbBarSetImageList(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, himl);
+        return self.vtable.ThumbBarSetImageList(self, hwnd, himl);
     }
     pub fn SetOverlayIcon(self: *const ITaskbarList3, hwnd: ?HWND, hIcon: ?HICON, pszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetOverlayIcon(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, hIcon, pszDescription);
+        return self.vtable.SetOverlayIcon(self, hwnd, hIcon, pszDescription);
     }
     pub fn SetThumbnailTooltip(self: *const ITaskbarList3, hwnd: ?HWND, pszTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetThumbnailTooltip(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, pszTip);
+        return self.vtable.SetThumbnailTooltip(self, hwnd, pszTip);
     }
     pub fn SetThumbnailClip(self: *const ITaskbarList3, hwnd: ?HWND, prcClip: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList3.VTable, @ptrCast(self.vtable)).SetThumbnailClip(@as(*const ITaskbarList3, @ptrCast(self)), hwnd, prcClip);
+        return self.vtable.SetThumbnailClip(self, hwnd, prcClip);
     }
 };
 
@@ -9598,7 +9598,7 @@ pub const ITaskbarList4 = extern union {
     };}
     pub usingnamespace ITaskbarList3.MethodMixin(@This());
     pub fn SetTabProperties(self: *const ITaskbarList4, hwndTab: ?HWND, stpFlags: STPFLAG) callconv(.Inline) HRESULT {
-        return @as(*const ITaskbarList4.VTable, @ptrCast(self.vtable)).SetTabProperties(@as(*const ITaskbarList4, @ptrCast(self)), hwndTab, stpFlags);
+        return self.vtable.SetTabProperties(self, hwndTab, stpFlags);
     }
 };
 
@@ -9648,16 +9648,16 @@ pub const IExplorerBrowserEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnNavigationPending(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowserEvents.VTable, @ptrCast(self.vtable)).OnNavigationPending(@as(*const IExplorerBrowserEvents, @ptrCast(self)), pidlFolder);
+        return self.vtable.OnNavigationPending(self, pidlFolder);
     }
     pub fn OnViewCreated(self: *const IExplorerBrowserEvents, psv: ?*IShellView) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowserEvents.VTable, @ptrCast(self.vtable)).OnViewCreated(@as(*const IExplorerBrowserEvents, @ptrCast(self)), psv);
+        return self.vtable.OnViewCreated(self, psv);
     }
     pub fn OnNavigationComplete(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowserEvents.VTable, @ptrCast(self.vtable)).OnNavigationComplete(@as(*const IExplorerBrowserEvents, @ptrCast(self)), pidlFolder);
+        return self.vtable.OnNavigationComplete(self, pidlFolder);
     }
     pub fn OnNavigationFailed(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowserEvents.VTable, @ptrCast(self.vtable)).OnNavigationFailed(@as(*const IExplorerBrowserEvents, @ptrCast(self)), pidlFolder);
+        return self.vtable.OnNavigationFailed(self, pidlFolder);
     }
 };
 
@@ -9831,49 +9831,49 @@ pub const IExplorerBrowser = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IExplorerBrowser, hwndParent: ?HWND, prc: ?*const RECT, pfs: ?*const FOLDERSETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IExplorerBrowser, @ptrCast(self)), hwndParent, prc, pfs);
+        return self.vtable.Initialize(self, hwndParent, prc, pfs);
     }
     pub fn Destroy(self: *const IExplorerBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IExplorerBrowser, @ptrCast(self)));
+        return self.vtable.Destroy(self);
     }
     pub fn SetRect(self: *const IExplorerBrowser, phdwp: ?*isize, rcBrowser: RECT) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).SetRect(@as(*const IExplorerBrowser, @ptrCast(self)), phdwp, rcBrowser);
+        return self.vtable.SetRect(self, phdwp, rcBrowser);
     }
     pub fn SetPropertyBag(self: *const IExplorerBrowser, pszPropertyBag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).SetPropertyBag(@as(*const IExplorerBrowser, @ptrCast(self)), pszPropertyBag);
+        return self.vtable.SetPropertyBag(self, pszPropertyBag);
     }
     pub fn SetEmptyText(self: *const IExplorerBrowser, pszEmptyText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).SetEmptyText(@as(*const IExplorerBrowser, @ptrCast(self)), pszEmptyText);
+        return self.vtable.SetEmptyText(self, pszEmptyText);
     }
     pub fn SetFolderSettings(self: *const IExplorerBrowser, pfs: ?*const FOLDERSETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).SetFolderSettings(@as(*const IExplorerBrowser, @ptrCast(self)), pfs);
+        return self.vtable.SetFolderSettings(self, pfs);
     }
     pub fn Advise(self: *const IExplorerBrowser, psbe: ?*IExplorerBrowserEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).Advise(@as(*const IExplorerBrowser, @ptrCast(self)), psbe, pdwCookie);
+        return self.vtable.Advise(self, psbe, pdwCookie);
     }
     pub fn Unadvise(self: *const IExplorerBrowser, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IExplorerBrowser, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn SetOptions(self: *const IExplorerBrowser, dwFlag: EXPLORER_BROWSER_OPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IExplorerBrowser, @ptrCast(self)), dwFlag);
+        return self.vtable.SetOptions(self, dwFlag);
     }
     pub fn GetOptions(self: *const IExplorerBrowser, pdwFlag: ?*EXPLORER_BROWSER_OPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IExplorerBrowser, @ptrCast(self)), pdwFlag);
+        return self.vtable.GetOptions(self, pdwFlag);
     }
     pub fn BrowseToIDList(self: *const IExplorerBrowser, pidl: ?*ITEMIDLIST, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).BrowseToIDList(@as(*const IExplorerBrowser, @ptrCast(self)), pidl, uFlags);
+        return self.vtable.BrowseToIDList(self, pidl, uFlags);
     }
     pub fn BrowseToObject(self: *const IExplorerBrowser, punk: ?*IUnknown, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).BrowseToObject(@as(*const IExplorerBrowser, @ptrCast(self)), punk, uFlags);
+        return self.vtable.BrowseToObject(self, punk, uFlags);
     }
     pub fn FillFromObject(self: *const IExplorerBrowser, punk: ?*IUnknown, dwFlags: EXPLORER_BROWSER_FILL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).FillFromObject(@as(*const IExplorerBrowser, @ptrCast(self)), punk, dwFlags);
+        return self.vtable.FillFromObject(self, punk, dwFlags);
     }
     pub fn RemoveAll(self: *const IExplorerBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IExplorerBrowser, @ptrCast(self)));
+        return self.vtable.RemoveAll(self);
     }
     pub fn GetCurrentView(self: *const IExplorerBrowser, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerBrowser.VTable, @ptrCast(self.vtable)).GetCurrentView(@as(*const IExplorerBrowser, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetCurrentView(self, riid, ppv);
     }
 };
 
@@ -9925,16 +9925,16 @@ pub const IEnumObjects = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumObjects, celt: u32, riid: ?*const Guid, rgelt: [*]?*anyopaque, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumObjects.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumObjects, @ptrCast(self)), celt, riid, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, riid, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumObjects, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumObjects.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumObjects, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumObjects) callconv(.Inline) HRESULT {
-        return @as(*const IEnumObjects.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumObjects, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumObjects, ppenum: ?*?*IEnumObjects) callconv(.Inline) HRESULT {
-        return @as(*const IEnumObjects.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumObjects, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -10077,37 +10077,37 @@ pub const IOperationsProgressDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartProgressDialog(self: *const IOperationsProgressDialog, hwndOwner: ?HWND, flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).StartProgressDialog(@as(*const IOperationsProgressDialog, @ptrCast(self)), hwndOwner, flags);
+        return self.vtable.StartProgressDialog(self, hwndOwner, flags);
     }
     pub fn StopProgressDialog(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).StopProgressDialog(@as(*const IOperationsProgressDialog, @ptrCast(self)));
+        return self.vtable.StopProgressDialog(self);
     }
     pub fn SetOperation(self: *const IOperationsProgressDialog, action: SPACTION) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).SetOperation(@as(*const IOperationsProgressDialog, @ptrCast(self)), action);
+        return self.vtable.SetOperation(self, action);
     }
     pub fn SetMode(self: *const IOperationsProgressDialog, mode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IOperationsProgressDialog, @ptrCast(self)), mode);
+        return self.vtable.SetMode(self, mode);
     }
     pub fn UpdateProgress(self: *const IOperationsProgressDialog, ullPointsCurrent: u64, ullPointsTotal: u64, ullSizeCurrent: u64, ullSizeTotal: u64, ullItemsCurrent: u64, ullItemsTotal: u64) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).UpdateProgress(@as(*const IOperationsProgressDialog, @ptrCast(self)), ullPointsCurrent, ullPointsTotal, ullSizeCurrent, ullSizeTotal, ullItemsCurrent, ullItemsTotal);
+        return self.vtable.UpdateProgress(self, ullPointsCurrent, ullPointsTotal, ullSizeCurrent, ullSizeTotal, ullItemsCurrent, ullItemsTotal);
     }
     pub fn UpdateLocations(self: *const IOperationsProgressDialog, psiSource: ?*IShellItem, psiTarget: ?*IShellItem, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).UpdateLocations(@as(*const IOperationsProgressDialog, @ptrCast(self)), psiSource, psiTarget, psiItem);
+        return self.vtable.UpdateLocations(self, psiSource, psiTarget, psiItem);
     }
     pub fn ResetTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).ResetTimer(@as(*const IOperationsProgressDialog, @ptrCast(self)));
+        return self.vtable.ResetTimer(self);
     }
     pub fn PauseTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).PauseTimer(@as(*const IOperationsProgressDialog, @ptrCast(self)));
+        return self.vtable.PauseTimer(self);
     }
     pub fn ResumeTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).ResumeTimer(@as(*const IOperationsProgressDialog, @ptrCast(self)));
+        return self.vtable.ResumeTimer(self);
     }
     pub fn GetMilliseconds(self: *const IOperationsProgressDialog, pullElapsed: ?*u64, pullRemaining: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).GetMilliseconds(@as(*const IOperationsProgressDialog, @ptrCast(self)), pullElapsed, pullRemaining);
+        return self.vtable.GetMilliseconds(self, pullElapsed, pullRemaining);
     }
     pub fn GetOperationStatus(self: *const IOperationsProgressDialog, popstatus: ?*PDOPSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const IOperationsProgressDialog.VTable, @ptrCast(self.vtable)).GetOperationStatus(@as(*const IOperationsProgressDialog, @ptrCast(self)), popstatus);
+        return self.vtable.GetOperationStatus(self, popstatus);
     }
 };
 
@@ -10143,10 +10143,10 @@ pub const IIOCancelInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetCancelInformation(self: *const IIOCancelInformation, dwThreadID: u32, uMsgCancel: u32) callconv(.Inline) HRESULT {
-        return @as(*const IIOCancelInformation.VTable, @ptrCast(self.vtable)).SetCancelInformation(@as(*const IIOCancelInformation, @ptrCast(self)), dwThreadID, uMsgCancel);
+        return self.vtable.SetCancelInformation(self, dwThreadID, uMsgCancel);
     }
     pub fn GetCancelInformation(self: *const IIOCancelInformation, pdwThreadID: ?*u32, puMsgCancel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IIOCancelInformation.VTable, @ptrCast(self.vtable)).GetCancelInformation(@as(*const IIOCancelInformation, @ptrCast(self)), pdwThreadID, puMsgCancel);
+        return self.vtable.GetCancelInformation(self, pdwThreadID, puMsgCancel);
     }
 };
 
@@ -10340,64 +10340,64 @@ pub const IFileOperation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const IFileOperation, pfops: ?*IFileOperationProgressSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).Advise(@as(*const IFileOperation, @ptrCast(self)), pfops, pdwCookie);
+        return self.vtable.Advise(self, pfops, pdwCookie);
     }
     pub fn Unadvise(self: *const IFileOperation, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IFileOperation, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn SetOperationFlags(self: *const IFileOperation, dwOperationFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).SetOperationFlags(@as(*const IFileOperation, @ptrCast(self)), dwOperationFlags);
+        return self.vtable.SetOperationFlags(self, dwOperationFlags);
     }
     pub fn SetProgressMessage(self: *const IFileOperation, pszMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).SetProgressMessage(@as(*const IFileOperation, @ptrCast(self)), pszMessage);
+        return self.vtable.SetProgressMessage(self, pszMessage);
     }
     pub fn SetProgressDialog(self: *const IFileOperation, popd: ?*IOperationsProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).SetProgressDialog(@as(*const IFileOperation, @ptrCast(self)), popd);
+        return self.vtable.SetProgressDialog(self, popd);
     }
     pub fn SetProperties(self: *const IFileOperation, pproparray: ?*IPropertyChangeArray) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).SetProperties(@as(*const IFileOperation, @ptrCast(self)), pproparray);
+        return self.vtable.SetProperties(self, pproparray);
     }
     pub fn SetOwnerWindow(self: *const IFileOperation, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).SetOwnerWindow(@as(*const IFileOperation, @ptrCast(self)), hwndOwner);
+        return self.vtable.SetOwnerWindow(self, hwndOwner);
     }
     pub fn ApplyPropertiesToItem(self: *const IFileOperation, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).ApplyPropertiesToItem(@as(*const IFileOperation, @ptrCast(self)), psiItem);
+        return self.vtable.ApplyPropertiesToItem(self, psiItem);
     }
     pub fn ApplyPropertiesToItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).ApplyPropertiesToItems(@as(*const IFileOperation, @ptrCast(self)), punkItems);
+        return self.vtable.ApplyPropertiesToItems(self, punkItems);
     }
     pub fn RenameItem(self: *const IFileOperation, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).RenameItem(@as(*const IFileOperation, @ptrCast(self)), psiItem, pszNewName, pfopsItem);
+        return self.vtable.RenameItem(self, psiItem, pszNewName, pfopsItem);
     }
     pub fn RenameItems(self: *const IFileOperation, pUnkItems: ?*IUnknown, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).RenameItems(@as(*const IFileOperation, @ptrCast(self)), pUnkItems, pszNewName);
+        return self.vtable.RenameItems(self, pUnkItems, pszNewName);
     }
     pub fn MoveItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).MoveItem(@as(*const IFileOperation, @ptrCast(self)), psiItem, psiDestinationFolder, pszNewName, pfopsItem);
+        return self.vtable.MoveItem(self, psiItem, psiDestinationFolder, pszNewName, pfopsItem);
     }
     pub fn MoveItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).MoveItems(@as(*const IFileOperation, @ptrCast(self)), punkItems, psiDestinationFolder);
+        return self.vtable.MoveItems(self, punkItems, psiDestinationFolder);
     }
     pub fn CopyItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszCopyName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).CopyItem(@as(*const IFileOperation, @ptrCast(self)), psiItem, psiDestinationFolder, pszCopyName, pfopsItem);
+        return self.vtable.CopyItem(self, psiItem, psiDestinationFolder, pszCopyName, pfopsItem);
     }
     pub fn CopyItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).CopyItems(@as(*const IFileOperation, @ptrCast(self)), punkItems, psiDestinationFolder);
+        return self.vtable.CopyItems(self, punkItems, psiDestinationFolder);
     }
     pub fn DeleteItem(self: *const IFileOperation, psiItem: ?*IShellItem, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IFileOperation, @ptrCast(self)), psiItem, pfopsItem);
+        return self.vtable.DeleteItem(self, psiItem, pfopsItem);
     }
     pub fn DeleteItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).DeleteItems(@as(*const IFileOperation, @ptrCast(self)), punkItems);
+        return self.vtable.DeleteItems(self, punkItems);
     }
     pub fn NewItem(self: *const IFileOperation, psiDestinationFolder: ?*IShellItem, dwFileAttributes: u32, pszName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).NewItem(@as(*const IFileOperation, @ptrCast(self)), psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem);
+        return self.vtable.NewItem(self, psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem);
     }
     pub fn PerformOperations(self: *const IFileOperation) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).PerformOperations(@as(*const IFileOperation, @ptrCast(self)));
+        return self.vtable.PerformOperations(self);
     }
     pub fn GetAnyOperationsAborted(self: *const IFileOperation, pfAnyOperationsAborted: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation.VTable, @ptrCast(self.vtable)).GetAnyOperationsAborted(@as(*const IFileOperation, @ptrCast(self)), pfAnyOperationsAborted);
+        return self.vtable.GetAnyOperationsAborted(self, pfAnyOperationsAborted);
     }
 };
 
@@ -10429,7 +10429,7 @@ pub const IFileOperation2 = extern union {
     };}
     pub usingnamespace IFileOperation.MethodMixin(@This());
     pub fn SetOperationFlags2(self: *const IFileOperation2, operationFlags2: FILE_OPERATION_FLAGS2) callconv(.Inline) HRESULT {
-        return @as(*const IFileOperation2.VTable, @ptrCast(self.vtable)).SetOperationFlags2(@as(*const IFileOperation2, @ptrCast(self)), operationFlags2);
+        return self.vtable.SetOperationFlags2(self, operationFlags2);
     }
 };
 
@@ -10457,7 +10457,7 @@ pub const IObjectProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryObject(self: *const IObjectProvider, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IObjectProvider.VTable, @ptrCast(self.vtable)).QueryObject(@as(*const IObjectProvider, @ptrCast(self)), guidObject, riid, ppvOut);
+        return self.vtable.QueryObject(self, guidObject, riid, ppvOut);
     }
 };
 
@@ -10511,16 +10511,16 @@ pub const INamespaceWalkCB = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FoundItem(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalkCB.VTable, @ptrCast(self.vtable)).FoundItem(@as(*const INamespaceWalkCB, @ptrCast(self)), psf, pidl);
+        return self.vtable.FoundItem(self, psf, pidl);
     }
     pub fn EnterFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalkCB.VTable, @ptrCast(self.vtable)).EnterFolder(@as(*const INamespaceWalkCB, @ptrCast(self)), psf, pidl);
+        return self.vtable.EnterFolder(self, psf, pidl);
     }
     pub fn LeaveFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalkCB.VTable, @ptrCast(self.vtable)).LeaveFolder(@as(*const INamespaceWalkCB, @ptrCast(self)), psf, pidl);
+        return self.vtable.LeaveFolder(self, psf, pidl);
     }
     pub fn InitializeProgressDialog(self: *const INamespaceWalkCB, ppszTitle: ?*?PWSTR, ppszCancel: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalkCB.VTable, @ptrCast(self.vtable)).InitializeProgressDialog(@as(*const INamespaceWalkCB, @ptrCast(self)), ppszTitle, ppszCancel);
+        return self.vtable.InitializeProgressDialog(self, ppszTitle, ppszCancel);
     }
 };
 
@@ -10546,7 +10546,7 @@ pub const INamespaceWalkCB2 = extern union {
     };}
     pub usingnamespace INamespaceWalkCB.MethodMixin(@This());
     pub fn WalkComplete(self: *const INamespaceWalkCB2, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalkCB2.VTable, @ptrCast(self.vtable)).WalkComplete(@as(*const INamespaceWalkCB2, @ptrCast(self)), hr);
+        return self.vtable.WalkComplete(self, hr);
     }
 };
 
@@ -10621,10 +10621,10 @@ pub const INamespaceWalk = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Walk(self: *const INamespaceWalk, punkToWalk: ?*IUnknown, dwFlags: u32, cDepth: i32, pnswcb: ?*INamespaceWalkCB) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalk.VTable, @ptrCast(self.vtable)).Walk(@as(*const INamespaceWalk, @ptrCast(self)), punkToWalk, dwFlags, cDepth, pnswcb);
+        return self.vtable.Walk(self, punkToWalk, dwFlags, cDepth, pnswcb);
     }
     pub fn GetIDArrayResult(self: *const INamespaceWalk, pcItems: ?*u32, prgpidl: [*]?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const INamespaceWalk.VTable, @ptrCast(self.vtable)).GetIDArrayResult(@as(*const INamespaceWalk, @ptrCast(self)), pcItems, prgpidl);
+        return self.vtable.GetIDArrayResult(self, pcItems, prgpidl);
     }
 };
 
@@ -10728,28 +10728,28 @@ pub const IBandSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddBand(self: *const IBandSite, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).AddBand(@as(*const IBandSite, @ptrCast(self)), punk);
+        return self.vtable.AddBand(self, punk);
     }
     pub fn EnumBands(self: *const IBandSite, uBand: u32, pdwBandID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).EnumBands(@as(*const IBandSite, @ptrCast(self)), uBand, pdwBandID);
+        return self.vtable.EnumBands(self, uBand, pdwBandID);
     }
     pub fn QueryBand(self: *const IBandSite, dwBandID: u32, ppstb: ?*?*IDeskBand, pdwState: ?*u32, pszName: ?[*:0]u16, cchName: i32) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).QueryBand(@as(*const IBandSite, @ptrCast(self)), dwBandID, ppstb, pdwState, pszName, cchName);
+        return self.vtable.QueryBand(self, dwBandID, ppstb, pdwState, pszName, cchName);
     }
     pub fn SetBandState(self: *const IBandSite, dwBandID: u32, dwMask: u32, dwState: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).SetBandState(@as(*const IBandSite, @ptrCast(self)), dwBandID, dwMask, dwState);
+        return self.vtable.SetBandState(self, dwBandID, dwMask, dwState);
     }
     pub fn RemoveBand(self: *const IBandSite, dwBandID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).RemoveBand(@as(*const IBandSite, @ptrCast(self)), dwBandID);
+        return self.vtable.RemoveBand(self, dwBandID);
     }
     pub fn GetBandObject(self: *const IBandSite, dwBandID: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).GetBandObject(@as(*const IBandSite, @ptrCast(self)), dwBandID, riid, ppv);
+        return self.vtable.GetBandObject(self, dwBandID, riid, ppv);
     }
     pub fn SetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*const BANDSITEINFO) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).SetBandSiteInfo(@as(*const IBandSite, @ptrCast(self)), pbsinfo);
+        return self.vtable.SetBandSiteInfo(self, pbsinfo);
     }
     pub fn GetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*BANDSITEINFO) callconv(.Inline) HRESULT {
-        return @as(*const IBandSite.VTable, @ptrCast(self.vtable)).GetBandSiteInfo(@as(*const IBandSite, @ptrCast(self)), pbsinfo);
+        return self.vtable.GetBandSiteInfo(self, pbsinfo);
     }
 };
 
@@ -10775,7 +10775,7 @@ pub const IModalWindow = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Show(self: *const IModalWindow, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IModalWindow.VTable, @ptrCast(self.vtable)).Show(@as(*const IModalWindow, @ptrCast(self)), hwndOwner);
+        return self.vtable.Show(self, hwndOwner);
     }
 };
 
@@ -10803,7 +10803,7 @@ pub const IContextMenuSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DoContextMenuPopup(self: *const IContextMenuSite, punkContextMenu: ?*IUnknown, fFlags: u32, pt: POINT) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenuSite.VTable, @ptrCast(self.vtable)).DoContextMenuPopup(@as(*const IContextMenuSite, @ptrCast(self)), punkContextMenu, fFlags, pt);
+        return self.vtable.DoContextMenuPopup(self, punkContextMenu, fFlags, pt);
     }
 };
 
@@ -10843,10 +10843,10 @@ pub const IMenuBand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMenuMessage(self: *const IMenuBand, pmsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IMenuBand.VTable, @ptrCast(self.vtable)).IsMenuMessage(@as(*const IMenuBand, @ptrCast(self)), pmsg);
+        return self.vtable.IsMenuMessage(self, pmsg);
     }
     pub fn TranslateMenuMessage(self: *const IMenuBand, pmsg: ?*MSG, plRet: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMenuBand.VTable, @ptrCast(self.vtable)).TranslateMenuMessage(@as(*const IMenuBand, @ptrCast(self)), pmsg, plRet);
+        return self.vtable.TranslateMenuMessage(self, pmsg, plRet);
     }
 };
 
@@ -10880,10 +10880,10 @@ pub const IRegTreeItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCheckState(self: *const IRegTreeItem, pbCheck: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRegTreeItem.VTable, @ptrCast(self.vtable)).GetCheckState(@as(*const IRegTreeItem, @ptrCast(self)), pbCheck);
+        return self.vtable.GetCheckState(self, pbCheck);
     }
     pub fn SetCheckState(self: *const IRegTreeItem, bCheck: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRegTreeItem.VTable, @ptrCast(self.vtable)).SetCheckState(@as(*const IRegTreeItem, @ptrCast(self)), bCheck);
+        return self.vtable.SetCheckState(self, bCheck);
     }
 };
 
@@ -10925,13 +10925,13 @@ pub const IDeskBar = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn SetClient(self: *const IDeskBar, punkClient: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBar.VTable, @ptrCast(self.vtable)).SetClient(@as(*const IDeskBar, @ptrCast(self)), punkClient);
+        return self.vtable.SetClient(self, punkClient);
     }
     pub fn GetClient(self: *const IDeskBar, ppunkClient: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBar.VTable, @ptrCast(self.vtable)).GetClient(@as(*const IDeskBar, @ptrCast(self)), ppunkClient);
+        return self.vtable.GetClient(self, ppunkClient);
     }
     pub fn OnPosRectChangeDB(self: *const IDeskBar, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBar.VTable, @ptrCast(self.vtable)).OnPosRectChangeDB(@as(*const IDeskBar, @ptrCast(self)), prc);
+        return self.vtable.OnPosRectChangeDB(self, prc);
     }
 };
 
@@ -11022,13 +11022,13 @@ pub const IMenuPopup = extern union {
     };}
     pub usingnamespace IDeskBar.MethodMixin(@This());
     pub fn Popup(self: *const IMenuPopup, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IMenuPopup.VTable, @ptrCast(self.vtable)).Popup(@as(*const IMenuPopup, @ptrCast(self)), ppt, prcExclude, dwFlags);
+        return self.vtable.Popup(self, ppt, prcExclude, dwFlags);
     }
     pub fn OnSelect(self: *const IMenuPopup, dwSelectType: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMenuPopup.VTable, @ptrCast(self.vtable)).OnSelect(@as(*const IMenuPopup, @ptrCast(self)), dwSelectType);
+        return self.vtable.OnSelect(self, dwSelectType);
     }
     pub fn SetSubMenu(self: *const IMenuPopup, pmp: ?*IMenuPopup, fSet: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMenuPopup.VTable, @ptrCast(self.vtable)).SetSubMenu(@as(*const IMenuPopup, @ptrCast(self)), pmp, fSet);
+        return self.vtable.SetSubMenu(self, pmp, fSet);
     }
 };
 
@@ -11094,19 +11094,19 @@ pub const IFileIsInUse = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppName(self: *const IFileIsInUse, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileIsInUse.VTable, @ptrCast(self.vtable)).GetAppName(@as(*const IFileIsInUse, @ptrCast(self)), ppszName);
+        return self.vtable.GetAppName(self, ppszName);
     }
     pub fn GetUsage(self: *const IFileIsInUse, pfut: ?*FILE_USAGE_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IFileIsInUse.VTable, @ptrCast(self.vtable)).GetUsage(@as(*const IFileIsInUse, @ptrCast(self)), pfut);
+        return self.vtable.GetUsage(self, pfut);
     }
     pub fn GetCapabilities(self: *const IFileIsInUse, pdwCapFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileIsInUse.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IFileIsInUse, @ptrCast(self)), pdwCapFlags);
+        return self.vtable.GetCapabilities(self, pdwCapFlags);
     }
     pub fn GetSwitchToHWND(self: *const IFileIsInUse, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IFileIsInUse.VTable, @ptrCast(self.vtable)).GetSwitchToHWND(@as(*const IFileIsInUse, @ptrCast(self)), phwnd);
+        return self.vtable.GetSwitchToHWND(self, phwnd);
     }
     pub fn CloseFile(self: *const IFileIsInUse) callconv(.Inline) HRESULT {
-        return @as(*const IFileIsInUse.VTable, @ptrCast(self.vtable)).CloseFile(@as(*const IFileIsInUse, @ptrCast(self)));
+        return self.vtable.CloseFile(self);
     }
 };
 
@@ -11210,25 +11210,25 @@ pub const IFileDialogEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnFileOk(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnFileOk(@as(*const IFileDialogEvents, @ptrCast(self)), pfd);
+        return self.vtable.OnFileOk(self, pfd);
     }
     pub fn OnFolderChanging(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psiFolder: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnFolderChanging(@as(*const IFileDialogEvents, @ptrCast(self)), pfd, psiFolder);
+        return self.vtable.OnFolderChanging(self, pfd, psiFolder);
     }
     pub fn OnFolderChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnFolderChange(@as(*const IFileDialogEvents, @ptrCast(self)), pfd);
+        return self.vtable.OnFolderChange(self, pfd);
     }
     pub fn OnSelectionChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnSelectionChange(@as(*const IFileDialogEvents, @ptrCast(self)), pfd);
+        return self.vtable.OnSelectionChange(self, pfd);
     }
     pub fn OnShareViolation(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_SHAREVIOLATION_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnShareViolation(@as(*const IFileDialogEvents, @ptrCast(self)), pfd, psi, pResponse);
+        return self.vtable.OnShareViolation(self, pfd, psi, pResponse);
     }
     pub fn OnTypeChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnTypeChange(@as(*const IFileDialogEvents, @ptrCast(self)), pfd);
+        return self.vtable.OnTypeChange(self, pfd);
     }
     pub fn OnOverwrite(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_OVERWRITE_RESPONSE) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogEvents.VTable, @ptrCast(self.vtable)).OnOverwrite(@as(*const IFileDialogEvents, @ptrCast(self)), pfd, psi, pResponse);
+        return self.vtable.OnOverwrite(self, pfd, psi, pResponse);
     }
 };
 
@@ -11490,73 +11490,73 @@ pub const IFileDialog = extern union {
     };}
     pub usingnamespace IModalWindow.MethodMixin(@This());
     pub fn SetFileTypes(self: *const IFileDialog, cFileTypes: u32, rgFilterSpec: [*]const COMDLG_FILTERSPEC) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFileTypes(@as(*const IFileDialog, @ptrCast(self)), cFileTypes, rgFilterSpec);
+        return self.vtable.SetFileTypes(self, cFileTypes, rgFilterSpec);
     }
     pub fn SetFileTypeIndex(self: *const IFileDialog, iFileType: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFileTypeIndex(@as(*const IFileDialog, @ptrCast(self)), iFileType);
+        return self.vtable.SetFileTypeIndex(self, iFileType);
     }
     pub fn GetFileTypeIndex(self: *const IFileDialog, piFileType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetFileTypeIndex(@as(*const IFileDialog, @ptrCast(self)), piFileType);
+        return self.vtable.GetFileTypeIndex(self, piFileType);
     }
     pub fn Advise(self: *const IFileDialog, pfde: ?*IFileDialogEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).Advise(@as(*const IFileDialog, @ptrCast(self)), pfde, pdwCookie);
+        return self.vtable.Advise(self, pfde, pdwCookie);
     }
     pub fn Unadvise(self: *const IFileDialog, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IFileDialog, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn SetOptions(self: *const IFileDialog, fos: FILEOPENDIALOGOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IFileDialog, @ptrCast(self)), fos);
+        return self.vtable.SetOptions(self, fos);
     }
     pub fn GetOptions(self: *const IFileDialog, pfos: ?*FILEOPENDIALOGOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IFileDialog, @ptrCast(self)), pfos);
+        return self.vtable.GetOptions(self, pfos);
     }
     pub fn SetDefaultFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetDefaultFolder(@as(*const IFileDialog, @ptrCast(self)), psi);
+        return self.vtable.SetDefaultFolder(self, psi);
     }
     pub fn SetFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFolder(@as(*const IFileDialog, @ptrCast(self)), psi);
+        return self.vtable.SetFolder(self, psi);
     }
     pub fn GetFolder(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetFolder(@as(*const IFileDialog, @ptrCast(self)), ppsi);
+        return self.vtable.GetFolder(self, ppsi);
     }
     pub fn GetCurrentSelection(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetCurrentSelection(@as(*const IFileDialog, @ptrCast(self)), ppsi);
+        return self.vtable.GetCurrentSelection(self, ppsi);
     }
     pub fn SetFileName(self: *const IFileDialog, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFileName(@as(*const IFileDialog, @ptrCast(self)), pszName);
+        return self.vtable.SetFileName(self, pszName);
     }
     pub fn GetFileName(self: *const IFileDialog, pszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetFileName(@as(*const IFileDialog, @ptrCast(self)), pszName);
+        return self.vtable.GetFileName(self, pszName);
     }
     pub fn SetTitle(self: *const IFileDialog, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IFileDialog, @ptrCast(self)), pszTitle);
+        return self.vtable.SetTitle(self, pszTitle);
     }
     pub fn SetOkButtonLabel(self: *const IFileDialog, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetOkButtonLabel(@as(*const IFileDialog, @ptrCast(self)), pszText);
+        return self.vtable.SetOkButtonLabel(self, pszText);
     }
     pub fn SetFileNameLabel(self: *const IFileDialog, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFileNameLabel(@as(*const IFileDialog, @ptrCast(self)), pszLabel);
+        return self.vtable.SetFileNameLabel(self, pszLabel);
     }
     pub fn GetResult(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IFileDialog, @ptrCast(self)), ppsi);
+        return self.vtable.GetResult(self, ppsi);
     }
     pub fn AddPlace(self: *const IFileDialog, psi: ?*IShellItem, fdap: FDAP) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).AddPlace(@as(*const IFileDialog, @ptrCast(self)), psi, fdap);
+        return self.vtable.AddPlace(self, psi, fdap);
     }
     pub fn SetDefaultExtension(self: *const IFileDialog, pszDefaultExtension: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetDefaultExtension(@as(*const IFileDialog, @ptrCast(self)), pszDefaultExtension);
+        return self.vtable.SetDefaultExtension(self, pszDefaultExtension);
     }
     pub fn Close(self: *const IFileDialog, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).Close(@as(*const IFileDialog, @ptrCast(self)), hr);
+        return self.vtable.Close(self, hr);
     }
     pub fn SetClientGuid(self: *const IFileDialog, guid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetClientGuid(@as(*const IFileDialog, @ptrCast(self)), guid);
+        return self.vtable.SetClientGuid(self, guid);
     }
     pub fn ClearClientData(self: *const IFileDialog) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).ClearClientData(@as(*const IFileDialog, @ptrCast(self)));
+        return self.vtable.ClearClientData(self);
     }
     pub fn SetFilter(self: *const IFileDialog, pFilter: ?*IShellItemFilter) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog.VTable, @ptrCast(self.vtable)).SetFilter(@as(*const IFileDialog, @ptrCast(self)), pFilter);
+        return self.vtable.SetFilter(self, pFilter);
     }
 };
 
@@ -11618,19 +11618,19 @@ pub const IFileSaveDialog = extern union {
     };}
     pub usingnamespace IFileDialog.MethodMixin(@This());
     pub fn SetSaveAsItem(self: *const IFileSaveDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileSaveDialog.VTable, @ptrCast(self.vtable)).SetSaveAsItem(@as(*const IFileSaveDialog, @ptrCast(self)), psi);
+        return self.vtable.SetSaveAsItem(self, psi);
     }
     pub fn SetProperties(self: *const IFileSaveDialog, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IFileSaveDialog.VTable, @ptrCast(self.vtable)).SetProperties(@as(*const IFileSaveDialog, @ptrCast(self)), pStore);
+        return self.vtable.SetProperties(self, pStore);
     }
     pub fn SetCollectedProperties(self: *const IFileSaveDialog, pList: ?*IPropertyDescriptionList, fAppendDefault: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileSaveDialog.VTable, @ptrCast(self.vtable)).SetCollectedProperties(@as(*const IFileSaveDialog, @ptrCast(self)), pList, fAppendDefault);
+        return self.vtable.SetCollectedProperties(self, pList, fAppendDefault);
     }
     pub fn GetProperties(self: *const IFileSaveDialog, ppStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IFileSaveDialog.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IFileSaveDialog, @ptrCast(self)), ppStore);
+        return self.vtable.GetProperties(self, ppStore);
     }
     pub fn ApplyProperties(self: *const IFileSaveDialog, psi: ?*IShellItem, pStore: ?*IPropertyStore, hwnd: ?HWND, pSink: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
-        return @as(*const IFileSaveDialog.VTable, @ptrCast(self.vtable)).ApplyProperties(@as(*const IFileSaveDialog, @ptrCast(self)), psi, pStore, hwnd, pSink);
+        return self.vtable.ApplyProperties(self, psi, pStore, hwnd, pSink);
     }
 };
 
@@ -11664,10 +11664,10 @@ pub const IFileOpenDialog = extern union {
     };}
     pub usingnamespace IFileDialog.MethodMixin(@This());
     pub fn GetResults(self: *const IFileOpenDialog, ppenum: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IFileOpenDialog.VTable, @ptrCast(self.vtable)).GetResults(@as(*const IFileOpenDialog, @ptrCast(self)), ppenum);
+        return self.vtable.GetResults(self, ppenum);
     }
     pub fn GetSelectedItems(self: *const IFileOpenDialog, ppsai: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IFileOpenDialog.VTable, @ptrCast(self.vtable)).GetSelectedItems(@as(*const IFileOpenDialog, @ptrCast(self)), ppsai);
+        return self.vtable.GetSelectedItems(self, ppsai);
     }
 };
 
@@ -11936,85 +11936,85 @@ pub const IFileDialogCustomize = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableOpenDropDown(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).EnableOpenDropDown(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.EnableOpenDropDown(self, dwIDCtl);
     }
     pub fn AddMenu(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddMenu(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszLabel);
+        return self.vtable.AddMenu(self, dwIDCtl, pszLabel);
     }
     pub fn AddPushButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddPushButton(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszLabel);
+        return self.vtable.AddPushButton(self, dwIDCtl, pszLabel);
     }
     pub fn AddComboBox(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddComboBox(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.AddComboBox(self, dwIDCtl);
     }
     pub fn AddRadioButtonList(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddRadioButtonList(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.AddRadioButtonList(self, dwIDCtl);
     }
     pub fn AddCheckButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16, bChecked: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddCheckButton(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszLabel, bChecked);
+        return self.vtable.AddCheckButton(self, dwIDCtl, pszLabel, bChecked);
     }
     pub fn AddEditBox(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddEditBox(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszText);
+        return self.vtable.AddEditBox(self, dwIDCtl, pszText);
     }
     pub fn AddSeparator(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddSeparator(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.AddSeparator(self, dwIDCtl);
     }
     pub fn AddText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddText(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszText);
+        return self.vtable.AddText(self, dwIDCtl, pszText);
     }
     pub fn SetControlLabel(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetControlLabel(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszLabel);
+        return self.vtable.SetControlLabel(self, dwIDCtl, pszLabel);
     }
     pub fn GetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).GetControlState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pdwState);
+        return self.vtable.GetControlState(self, dwIDCtl, pdwState);
     }
     pub fn SetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwState: CDCONTROLSTATEF) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetControlState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwState);
+        return self.vtable.SetControlState(self, dwIDCtl, dwState);
     }
     pub fn GetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, ppszText: ?*?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).GetEditBoxText(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, ppszText);
+        return self.vtable.GetEditBoxText(self, dwIDCtl, ppszText);
     }
     pub fn SetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetEditBoxText(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszText);
+        return self.vtable.SetEditBoxText(self, dwIDCtl, pszText);
     }
     pub fn GetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, pbChecked: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).GetCheckButtonState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pbChecked);
+        return self.vtable.GetCheckButtonState(self, dwIDCtl, pbChecked);
     }
     pub fn SetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetCheckButtonState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, bChecked);
+        return self.vtable.SetCheckButtonState(self, dwIDCtl, bChecked);
     }
     pub fn AddControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).AddControlItem(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem, pszLabel);
+        return self.vtable.AddControlItem(self, dwIDCtl, dwIDItem, pszLabel);
     }
     pub fn RemoveControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).RemoveControlItem(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem);
+        return self.vtable.RemoveControlItem(self, dwIDCtl, dwIDItem);
     }
     pub fn RemoveAllControlItems(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).RemoveAllControlItems(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.RemoveAllControlItems(self, dwIDCtl);
     }
     pub fn GetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).GetControlItemState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem, pdwState);
+        return self.vtable.GetControlItemState(self, dwIDCtl, dwIDItem, pdwState);
     }
     pub fn SetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, dwState: CDCONTROLSTATEF) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetControlItemState(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem, dwState);
+        return self.vtable.SetControlItemState(self, dwIDCtl, dwIDItem, dwState);
     }
     pub fn GetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwIDItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).GetSelectedControlItem(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pdwIDItem);
+        return self.vtable.GetSelectedControlItem(self, dwIDCtl, pdwIDItem);
     }
     pub fn SetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetSelectedControlItem(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem);
+        return self.vtable.SetSelectedControlItem(self, dwIDCtl, dwIDItem);
     }
     pub fn StartVisualGroup(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).StartVisualGroup(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, pszLabel);
+        return self.vtable.StartVisualGroup(self, dwIDCtl, pszLabel);
     }
     pub fn EndVisualGroup(self: *const IFileDialogCustomize) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).EndVisualGroup(@as(*const IFileDialogCustomize, @ptrCast(self)));
+        return self.vtable.EndVisualGroup(self);
     }
     pub fn MakeProminent(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).MakeProminent(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl);
+        return self.vtable.MakeProminent(self, dwIDCtl);
     }
     pub fn SetControlItemText(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogCustomize.VTable, @ptrCast(self.vtable)).SetControlItemText(@as(*const IFileDialogCustomize, @ptrCast(self)), dwIDCtl, dwIDItem, pszLabel);
+        return self.vtable.SetControlItemText(self, dwIDCtl, dwIDItem, pszLabel);
     }
 };
 
@@ -12110,22 +12110,22 @@ pub const IApplicationAssociationRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryCurrentDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, ppszAssociation: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).QueryCurrentDefault(@as(*const IApplicationAssociationRegistration, @ptrCast(self)), pszQuery, atQueryType, alQueryLevel, ppszAssociation);
+        return self.vtable.QueryCurrentDefault(self, pszQuery, atQueryType, alQueryLevel, ppszAssociation);
     }
     pub fn QueryAppIsDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).QueryAppIsDefault(@as(*const IApplicationAssociationRegistration, @ptrCast(self)), pszQuery, atQueryType, alQueryLevel, pszAppRegistryName, pfDefault);
+        return self.vtable.QueryAppIsDefault(self, pszQuery, atQueryType, alQueryLevel, pszAppRegistryName, pfDefault);
     }
     pub fn QueryAppIsDefaultAll(self: *const IApplicationAssociationRegistration, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).QueryAppIsDefaultAll(@as(*const IApplicationAssociationRegistration, @ptrCast(self)), alQueryLevel, pszAppRegistryName, pfDefault);
+        return self.vtable.QueryAppIsDefaultAll(self, alQueryLevel, pszAppRegistryName, pfDefault);
     }
     pub fn SetAppAsDefault(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16, pszSet: ?[*:0]const u16, atSetType: ASSOCIATIONTYPE) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).SetAppAsDefault(@as(*const IApplicationAssociationRegistration, @ptrCast(self)), pszAppRegistryName, pszSet, atSetType);
+        return self.vtable.SetAppAsDefault(self, pszAppRegistryName, pszSet, atSetType);
     }
     pub fn SetAppAsDefaultAll(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).SetAppAsDefaultAll(@as(*const IApplicationAssociationRegistration, @ptrCast(self)), pszAppRegistryName);
+        return self.vtable.SetAppAsDefaultAll(self, pszAppRegistryName);
     }
     pub fn ClearUserAssociations(self: *const IApplicationAssociationRegistration) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistration.VTable, @ptrCast(self.vtable)).ClearUserAssociations(@as(*const IApplicationAssociationRegistration, @ptrCast(self)));
+        return self.vtable.ClearUserAssociations(self);
     }
 };
 
@@ -12158,7 +12158,7 @@ pub const IDelegateFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetItemAlloc(self: *const IDelegateFolder, pmalloc: ?*IMalloc) callconv(.Inline) HRESULT {
-        return @as(*const IDelegateFolder.VTable, @ptrCast(self.vtable)).SetItemAlloc(@as(*const IDelegateFolder, @ptrCast(self)), pmalloc);
+        return self.vtable.SetItemAlloc(self, pmalloc);
     }
 };
 
@@ -12228,7 +12228,7 @@ pub const IBrowserFrameOptions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFrameOptions(self: *const IBrowserFrameOptions, dwMask: u32, pdwOptions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserFrameOptions.VTable, @ptrCast(self.vtable)).GetFrameOptions(@as(*const IBrowserFrameOptions, @ptrCast(self)), dwMask, pdwOptions);
+        return self.vtable.GetFrameOptions(self, dwMask, pdwOptions);
     }
 };
 
@@ -12291,7 +12291,7 @@ pub const INewWindowManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EvaluateNewWindow(self: *const INewWindowManager, pszUrl: ?[*:0]const u16, pszName: ?[*:0]const u16, pszUrlContext: ?[*:0]const u16, pszFeatures: ?[*:0]const u16, fReplace: BOOL, dwFlags: u32, dwUserActionTime: u32) callconv(.Inline) HRESULT {
-        return @as(*const INewWindowManager.VTable, @ptrCast(self.vtable)).EvaluateNewWindow(@as(*const INewWindowManager, @ptrCast(self)), pszUrl, pszName, pszUrlContext, pszFeatures, fReplace, dwFlags, dwUserActionTime);
+        return self.vtable.EvaluateNewWindow(self, pszUrl, pszName, pszUrlContext, pszFeatures, fReplace, dwFlags, dwUserActionTime);
     }
 };
 
@@ -12426,40 +12426,40 @@ pub const IAttachmentExecute = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetClientTitle(self: *const IAttachmentExecute, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetClientTitle(@as(*const IAttachmentExecute, @ptrCast(self)), pszTitle);
+        return self.vtable.SetClientTitle(self, pszTitle);
     }
     pub fn SetClientGuid(self: *const IAttachmentExecute, guid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetClientGuid(@as(*const IAttachmentExecute, @ptrCast(self)), guid);
+        return self.vtable.SetClientGuid(self, guid);
     }
     pub fn SetLocalPath(self: *const IAttachmentExecute, pszLocalPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetLocalPath(@as(*const IAttachmentExecute, @ptrCast(self)), pszLocalPath);
+        return self.vtable.SetLocalPath(self, pszLocalPath);
     }
     pub fn SetFileName(self: *const IAttachmentExecute, pszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetFileName(@as(*const IAttachmentExecute, @ptrCast(self)), pszFileName);
+        return self.vtable.SetFileName(self, pszFileName);
     }
     pub fn SetSource(self: *const IAttachmentExecute, pszSource: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetSource(@as(*const IAttachmentExecute, @ptrCast(self)), pszSource);
+        return self.vtable.SetSource(self, pszSource);
     }
     pub fn SetReferrer(self: *const IAttachmentExecute, pszReferrer: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SetReferrer(@as(*const IAttachmentExecute, @ptrCast(self)), pszReferrer);
+        return self.vtable.SetReferrer(self, pszReferrer);
     }
     pub fn CheckPolicy(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).CheckPolicy(@as(*const IAttachmentExecute, @ptrCast(self)));
+        return self.vtable.CheckPolicy(self);
     }
     pub fn Prompt(self: *const IAttachmentExecute, hwnd: ?HWND, prompt: ATTACHMENT_PROMPT, paction: ?*ATTACHMENT_ACTION) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).Prompt(@as(*const IAttachmentExecute, @ptrCast(self)), hwnd, prompt, paction);
+        return self.vtable.Prompt(self, hwnd, prompt, paction);
     }
     pub fn Save(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).Save(@as(*const IAttachmentExecute, @ptrCast(self)));
+        return self.vtable.Save(self);
     }
     pub fn Execute(self: *const IAttachmentExecute, hwnd: ?HWND, pszVerb: ?[*:0]const u16, phProcess: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).Execute(@as(*const IAttachmentExecute, @ptrCast(self)), hwnd, pszVerb, phProcess);
+        return self.vtable.Execute(self, hwnd, pszVerb, phProcess);
     }
     pub fn SaveWithUI(self: *const IAttachmentExecute, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).SaveWithUI(@as(*const IAttachmentExecute, @ptrCast(self)), hwnd);
+        return self.vtable.SaveWithUI(self, hwnd);
     }
     pub fn ClearClientState(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
-        return @as(*const IAttachmentExecute.VTable, @ptrCast(self.vtable)).ClearClientState(@as(*const IAttachmentExecute, @ptrCast(self)));
+        return self.vtable.ClearClientState(self);
     }
 };
 
@@ -12561,7 +12561,7 @@ pub const IShellMenuCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CallbackSM(self: *const IShellMenuCallback, psmd: ?*SMDATA, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenuCallback.VTable, @ptrCast(self.vtable)).CallbackSM(@as(*const IShellMenuCallback, @ptrCast(self)), psmd, uMsg, wParam, lParam);
+        return self.vtable.CallbackSM(self, psmd, uMsg, wParam, lParam);
     }
 };
 
@@ -12669,31 +12669,31 @@ pub const IShellMenu = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IShellMenu, psmc: ?*IShellMenuCallback, uId: u32, uIdAncestor: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IShellMenu, @ptrCast(self)), psmc, uId, uIdAncestor, dwFlags);
+        return self.vtable.Initialize(self, psmc, uId, uIdAncestor, dwFlags);
     }
     pub fn GetMenuInfo(self: *const IShellMenu, ppsmc: ?*?*IShellMenuCallback, puId: ?*u32, puIdAncestor: ?*u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).GetMenuInfo(@as(*const IShellMenu, @ptrCast(self)), ppsmc, puId, puIdAncestor, pdwFlags);
+        return self.vtable.GetMenuInfo(self, ppsmc, puId, puIdAncestor, pdwFlags);
     }
     pub fn SetShellFolder(self: *const IShellMenu, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, hKey: ?HKEY, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).SetShellFolder(@as(*const IShellMenu, @ptrCast(self)), psf, pidlFolder, hKey, dwFlags);
+        return self.vtable.SetShellFolder(self, psf, pidlFolder, hKey, dwFlags);
     }
     pub fn GetShellFolder(self: *const IShellMenu, pdwFlags: ?*u32, ppidl: ?*?*ITEMIDLIST, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).GetShellFolder(@as(*const IShellMenu, @ptrCast(self)), pdwFlags, ppidl, riid, ppv);
+        return self.vtable.GetShellFolder(self, pdwFlags, ppidl, riid, ppv);
     }
     pub fn SetMenu(self: *const IShellMenu, hmenu: ?HMENU, hwnd: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).SetMenu(@as(*const IShellMenu, @ptrCast(self)), hmenu, hwnd, dwFlags);
+        return self.vtable.SetMenu(self, hmenu, hwnd, dwFlags);
     }
     pub fn GetMenu(self: *const IShellMenu, phmenu: ?*?HMENU, phwnd: ?*?HWND, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).GetMenu(@as(*const IShellMenu, @ptrCast(self)), phmenu, phwnd, pdwFlags);
+        return self.vtable.GetMenu(self, phmenu, phwnd, pdwFlags);
     }
     pub fn InvalidateItem(self: *const IShellMenu, psmd: ?*SMDATA, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).InvalidateItem(@as(*const IShellMenu, @ptrCast(self)), psmd, dwFlags);
+        return self.vtable.InvalidateItem(self, psmd, dwFlags);
     }
     pub fn GetState(self: *const IShellMenu, psmd: ?*SMDATA) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).GetState(@as(*const IShellMenu, @ptrCast(self)), psmd);
+        return self.vtable.GetState(self, psmd);
     }
     pub fn SetMenuToolbar(self: *const IShellMenu, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellMenu.VTable, @ptrCast(self.vtable)).SetMenuToolbar(@as(*const IShellMenu, @ptrCast(self)), punk, dwFlags);
+        return self.vtable.SetMenuToolbar(self, punk, dwFlags);
     }
 };
 
@@ -12870,31 +12870,31 @@ pub const IKnownFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetId(self: *const IKnownFolder, pkfid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetId(@as(*const IKnownFolder, @ptrCast(self)), pkfid);
+        return self.vtable.GetId(self, pkfid);
     }
     pub fn GetCategory(self: *const IKnownFolder, pCategory: ?*KF_CATEGORY) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const IKnownFolder, @ptrCast(self)), pCategory);
+        return self.vtable.GetCategory(self, pCategory);
     }
     pub fn GetShellItem(self: *const IKnownFolder, dwFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetShellItem(@as(*const IKnownFolder, @ptrCast(self)), dwFlags, riid, ppv);
+        return self.vtable.GetShellItem(self, dwFlags, riid, ppv);
     }
     pub fn GetPath(self: *const IKnownFolder, dwFlags: u32, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IKnownFolder, @ptrCast(self)), dwFlags, ppszPath);
+        return self.vtable.GetPath(self, dwFlags, ppszPath);
     }
     pub fn SetPath(self: *const IKnownFolder, dwFlags: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IKnownFolder, @ptrCast(self)), dwFlags, pszPath);
+        return self.vtable.SetPath(self, dwFlags, pszPath);
     }
     pub fn GetIDList(self: *const IKnownFolder, dwFlags: u32, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetIDList(@as(*const IKnownFolder, @ptrCast(self)), dwFlags, ppidl);
+        return self.vtable.GetIDList(self, dwFlags, ppidl);
     }
     pub fn GetFolderType(self: *const IKnownFolder, pftid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetFolderType(@as(*const IKnownFolder, @ptrCast(self)), pftid);
+        return self.vtable.GetFolderType(self, pftid);
     }
     pub fn GetRedirectionCapabilities(self: *const IKnownFolder, pCapabilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetRedirectionCapabilities(@as(*const IKnownFolder, @ptrCast(self)), pCapabilities);
+        return self.vtable.GetRedirectionCapabilities(self, pCapabilities);
     }
     pub fn GetFolderDefinition(self: *const IKnownFolder, pKFD: ?*KNOWNFOLDER_DEFINITION) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolder.VTable, @ptrCast(self.vtable)).GetFolderDefinition(@as(*const IKnownFolder, @ptrCast(self)), pKFD);
+        return self.vtable.GetFolderDefinition(self, pKFD);
     }
 };
 
@@ -13014,34 +13014,34 @@ pub const IKnownFolderManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FolderIdFromCsidl(self: *const IKnownFolderManager, nCsidl: i32, pfid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).FolderIdFromCsidl(@as(*const IKnownFolderManager, @ptrCast(self)), nCsidl, pfid);
+        return self.vtable.FolderIdFromCsidl(self, nCsidl, pfid);
     }
     pub fn FolderIdToCsidl(self: *const IKnownFolderManager, rfid: ?*const Guid, pnCsidl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).FolderIdToCsidl(@as(*const IKnownFolderManager, @ptrCast(self)), rfid, pnCsidl);
+        return self.vtable.FolderIdToCsidl(self, rfid, pnCsidl);
     }
     pub fn GetFolderIds(self: *const IKnownFolderManager, ppKFId: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).GetFolderIds(@as(*const IKnownFolderManager, @ptrCast(self)), ppKFId, pCount);
+        return self.vtable.GetFolderIds(self, ppKFId, pCount);
     }
     pub fn GetFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).GetFolder(@as(*const IKnownFolderManager, @ptrCast(self)), rfid, ppkf);
+        return self.vtable.GetFolder(self, rfid, ppkf);
     }
     pub fn GetFolderByName(self: *const IKnownFolderManager, pszCanonicalName: ?[*:0]const u16, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).GetFolderByName(@as(*const IKnownFolderManager, @ptrCast(self)), pszCanonicalName, ppkf);
+        return self.vtable.GetFolderByName(self, pszCanonicalName, ppkf);
     }
     pub fn RegisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, pKFD: ?*const KNOWNFOLDER_DEFINITION) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).RegisterFolder(@as(*const IKnownFolderManager, @ptrCast(self)), rfid, pKFD);
+        return self.vtable.RegisterFolder(self, rfid, pKFD);
     }
     pub fn UnregisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).UnregisterFolder(@as(*const IKnownFolderManager, @ptrCast(self)), rfid);
+        return self.vtable.UnregisterFolder(self, rfid);
     }
     pub fn FindFolderFromPath(self: *const IKnownFolderManager, pszPath: ?[*:0]const u16, mode: FFFP_MODE, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).FindFolderFromPath(@as(*const IKnownFolderManager, @ptrCast(self)), pszPath, mode, ppkf);
+        return self.vtable.FindFolderFromPath(self, pszPath, mode, ppkf);
     }
     pub fn FindFolderFromIDList(self: *const IKnownFolderManager, pidl: ?*ITEMIDLIST, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).FindFolderFromIDList(@as(*const IKnownFolderManager, @ptrCast(self)), pidl, ppkf);
+        return self.vtable.FindFolderFromIDList(self, pidl, ppkf);
     }
     pub fn Redirect(self: *const IKnownFolderManager, rfid: ?*const Guid, hwnd: ?HWND, flags: u32, pszTargetPath: ?[*:0]const u16, cFolders: u32, pExclusion: ?[*]const Guid, ppszError: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IKnownFolderManager.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IKnownFolderManager, @ptrCast(self)), rfid, hwnd, flags, pszTargetPath, cFolders, pExclusion, ppszError);
+        return self.vtable.Redirect(self, rfid, hwnd, flags, pszTargetPath, cFolders, pExclusion, ppszError);
     }
 };
 
@@ -13138,25 +13138,25 @@ pub const ISharingConfigurationManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, role: SHARE_ROLE) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).CreateShare(@as(*const ISharingConfigurationManager, @ptrCast(self)), dsid, role);
+        return self.vtable.CreateShare(self, dsid, role);
     }
     pub fn DeleteShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).DeleteShare(@as(*const ISharingConfigurationManager, @ptrCast(self)), dsid);
+        return self.vtable.DeleteShare(self, dsid);
     }
     pub fn ShareExists(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).ShareExists(@as(*const ISharingConfigurationManager, @ptrCast(self)), dsid);
+        return self.vtable.ShareExists(self, dsid);
     }
     pub fn GetSharePermissions(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, pRole: ?*SHARE_ROLE) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).GetSharePermissions(@as(*const ISharingConfigurationManager, @ptrCast(self)), dsid, pRole);
+        return self.vtable.GetSharePermissions(self, dsid, pRole);
     }
     pub fn SharePrinters(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).SharePrinters(@as(*const ISharingConfigurationManager, @ptrCast(self)));
+        return self.vtable.SharePrinters(self);
     }
     pub fn StopSharingPrinters(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).StopSharingPrinters(@as(*const ISharingConfigurationManager, @ptrCast(self)));
+        return self.vtable.StopSharingPrinters(self);
     }
     pub fn ArePrintersShared(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
-        return @as(*const ISharingConfigurationManager.VTable, @ptrCast(self.vtable)).ArePrintersShared(@as(*const ISharingConfigurationManager, @ptrCast(self)));
+        return self.vtable.ArePrintersShared(self);
     }
 };
 
@@ -13190,10 +13190,10 @@ pub const IRelatedItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemIDList(self: *const IRelatedItem, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IRelatedItem.VTable, @ptrCast(self.vtable)).GetItemIDList(@as(*const IRelatedItem, @ptrCast(self)), ppidl);
+        return self.vtable.GetItemIDList(self, ppidl);
     }
     pub fn GetItem(self: *const IRelatedItem, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IRelatedItem.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IRelatedItem, @ptrCast(self)), ppsi);
+        return self.vtable.GetItem(self, ppsi);
     }
 };
 
@@ -13324,7 +13324,7 @@ pub const IDestinationStreamFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDestinationStream(self: *const IDestinationStreamFactory, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDestinationStreamFactory.VTable, @ptrCast(self.vtable)).GetDestinationStream(@as(*const IDestinationStreamFactory, @ptrCast(self)), ppstm);
+        return self.vtable.GetDestinationStream(self, ppstm);
     }
 };
 
@@ -13399,25 +13399,25 @@ pub const ICreateProcessInputs = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCreateFlags(self: *const ICreateProcessInputs, pdwCreationFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).GetCreateFlags(@as(*const ICreateProcessInputs, @ptrCast(self)), pdwCreationFlags);
+        return self.vtable.GetCreateFlags(self, pdwCreationFlags);
     }
     pub fn SetCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).SetCreateFlags(@as(*const ICreateProcessInputs, @ptrCast(self)), dwCreationFlags);
+        return self.vtable.SetCreateFlags(self, dwCreationFlags);
     }
     pub fn AddCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).AddCreateFlags(@as(*const ICreateProcessInputs, @ptrCast(self)), dwCreationFlags);
+        return self.vtable.AddCreateFlags(self, dwCreationFlags);
     }
     pub fn SetHotKey(self: *const ICreateProcessInputs, wHotKey: u16) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).SetHotKey(@as(*const ICreateProcessInputs, @ptrCast(self)), wHotKey);
+        return self.vtable.SetHotKey(self, wHotKey);
     }
     pub fn AddStartupFlags(self: *const ICreateProcessInputs, dwStartupInfoFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).AddStartupFlags(@as(*const ICreateProcessInputs, @ptrCast(self)), dwStartupInfoFlags);
+        return self.vtable.AddStartupFlags(self, dwStartupInfoFlags);
     }
     pub fn SetTitle(self: *const ICreateProcessInputs, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const ICreateProcessInputs, @ptrCast(self)), pszTitle);
+        return self.vtable.SetTitle(self, pszTitle);
     }
     pub fn SetEnvironmentVariable(self: *const ICreateProcessInputs, pszName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICreateProcessInputs.VTable, @ptrCast(self.vtable)).SetEnvironmentVariable(@as(*const ICreateProcessInputs, @ptrCast(self)), pszName, pszValue);
+        return self.vtable.SetEnvironmentVariable(self, pszName, pszValue);
     }
 };
 
@@ -13443,7 +13443,7 @@ pub const ICreatingProcess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnCreating(self: *const ICreatingProcess, pcpi: ?*ICreateProcessInputs) callconv(.Inline) HRESULT {
-        return @as(*const ICreatingProcess.VTable, @ptrCast(self.vtable)).OnCreating(@as(*const ICreatingProcess, @ptrCast(self)), pcpi);
+        return self.vtable.OnCreating(self, pcpi);
     }
 };
 
@@ -13476,10 +13476,10 @@ pub const ILaunchUIContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAssociatedWindow(self: *const ILaunchUIContext, value: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchUIContext.VTable, @ptrCast(self.vtable)).SetAssociatedWindow(@as(*const ILaunchUIContext, @ptrCast(self)), value);
+        return self.vtable.SetAssociatedWindow(self, value);
     }
     pub fn SetTabGroupingPreference(self: *const ILaunchUIContext, value: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchUIContext.VTable, @ptrCast(self.vtable)).SetTabGroupingPreference(@as(*const ILaunchUIContext, @ptrCast(self)), value);
+        return self.vtable.SetTabGroupingPreference(self, value);
     }
 };
 
@@ -13504,7 +13504,7 @@ pub const ILaunchUIContextProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UpdateContext(self: *const ILaunchUIContextProvider, context: ?*ILaunchUIContext) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchUIContextProvider.VTable, @ptrCast(self.vtable)).UpdateContext(@as(*const ILaunchUIContextProvider, @ptrCast(self)), context);
+        return self.vtable.UpdateContext(self, context);
     }
 };
 
@@ -13555,10 +13555,10 @@ pub const INewMenuClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IncludeItems(self: *const INewMenuClient, pflags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const INewMenuClient.VTable, @ptrCast(self.vtable)).IncludeItems(@as(*const INewMenuClient, @ptrCast(self)), pflags);
+        return self.vtable.IncludeItems(self, pflags);
     }
     pub fn SelectAndEditItem(self: *const INewMenuClient, pidlItem: ?*ITEMIDLIST, flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewMenuClient.VTable, @ptrCast(self.vtable)).SelectAndEditItem(@as(*const INewMenuClient, @ptrCast(self)), pidlItem, flags);
+        return self.vtable.SelectAndEditItem(self, pidlItem, flags);
     }
 };
 
@@ -13584,7 +13584,7 @@ pub const IInitializeWithBindCtx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithBindCtx, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithBindCtx.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithBindCtx, @ptrCast(self)), pbc);
+        return self.vtable.Initialize(self, pbc);
     }
 };
 
@@ -13619,10 +13619,10 @@ pub const IShellItemFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IncludeItem(self: *const IShellItemFilter, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemFilter.VTable, @ptrCast(self.vtable)).IncludeItem(@as(*const IShellItemFilter, @ptrCast(self)), psi);
+        return self.vtable.IncludeItem(self, psi);
     }
     pub fn GetEnumFlagsForItem(self: *const IShellItemFilter, psi: ?*IShellItem, pgrfFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellItemFilter.VTable, @ptrCast(self.vtable)).GetEnumFlagsForItem(@as(*const IShellItemFilter, @ptrCast(self)), psi, pgrfFlags);
+        return self.vtable.GetEnumFlagsForItem(self, psi, pgrfFlags);
     }
 };
 
@@ -13916,61 +13916,61 @@ pub const INameSpaceTreeControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const INameSpaceTreeControl, hwndParent: ?HWND, prc: ?*RECT, nsctsFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INameSpaceTreeControl, @ptrCast(self)), hwndParent, prc, nsctsFlags);
+        return self.vtable.Initialize(self, hwndParent, prc, nsctsFlags);
     }
     pub fn TreeAdvise(self: *const INameSpaceTreeControl, punk: ?*IUnknown, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).TreeAdvise(@as(*const INameSpaceTreeControl, @ptrCast(self)), punk, pdwCookie);
+        return self.vtable.TreeAdvise(self, punk, pdwCookie);
     }
     pub fn TreeUnadvise(self: *const INameSpaceTreeControl, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).TreeUnadvise(@as(*const INameSpaceTreeControl, @ptrCast(self)), dwCookie);
+        return self.vtable.TreeUnadvise(self, dwCookie);
     }
     pub fn AppendRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).AppendRoot(@as(*const INameSpaceTreeControl, @ptrCast(self)), psiRoot, grfEnumFlags, grfRootStyle, pif);
+        return self.vtable.AppendRoot(self, psiRoot, grfEnumFlags, grfRootStyle, pif);
     }
     pub fn InsertRoot(self: *const INameSpaceTreeControl, iIndex: i32, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).InsertRoot(@as(*const INameSpaceTreeControl, @ptrCast(self)), iIndex, psiRoot, grfEnumFlags, grfRootStyle, pif);
+        return self.vtable.InsertRoot(self, iIndex, psiRoot, grfEnumFlags, grfRootStyle, pif);
     }
     pub fn RemoveRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).RemoveRoot(@as(*const INameSpaceTreeControl, @ptrCast(self)), psiRoot);
+        return self.vtable.RemoveRoot(self, psiRoot);
     }
     pub fn RemoveAllRoots(self: *const INameSpaceTreeControl) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).RemoveAllRoots(@as(*const INameSpaceTreeControl, @ptrCast(self)));
+        return self.vtable.RemoveAllRoots(self);
     }
     pub fn GetRootItems(self: *const INameSpaceTreeControl, ppsiaRootItems: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetRootItems(@as(*const INameSpaceTreeControl, @ptrCast(self)), ppsiaRootItems);
+        return self.vtable.GetRootItems(self, ppsiaRootItems);
     }
     pub fn SetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, nstcisFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).SetItemState(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, nstcisMask, nstcisFlags);
+        return self.vtable.SetItemState(self, psi, nstcisMask, nstcisFlags);
     }
     pub fn GetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, pnstcisFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetItemState(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, nstcisMask, pnstcisFlags);
+        return self.vtable.GetItemState(self, psi, nstcisMask, pnstcisFlags);
     }
     pub fn GetSelectedItems(self: *const INameSpaceTreeControl, psiaItems: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetSelectedItems(@as(*const INameSpaceTreeControl, @ptrCast(self)), psiaItems);
+        return self.vtable.GetSelectedItems(self, psiaItems);
     }
     pub fn GetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, piStateNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetItemCustomState(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, piStateNumber);
+        return self.vtable.GetItemCustomState(self, psi, piStateNumber);
     }
     pub fn SetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, iStateNumber: i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).SetItemCustomState(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, iStateNumber);
+        return self.vtable.SetItemCustomState(self, psi, iStateNumber);
     }
     pub fn EnsureItemVisible(self: *const INameSpaceTreeControl, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).EnsureItemVisible(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi);
+        return self.vtable.EnsureItemVisible(self, psi);
     }
     pub fn SetTheme(self: *const INameSpaceTreeControl, pszTheme: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).SetTheme(@as(*const INameSpaceTreeControl, @ptrCast(self)), pszTheme);
+        return self.vtable.SetTheme(self, pszTheme);
     }
     pub fn GetNextItem(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcgi: NSTCGNI, ppsiNext: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetNextItem(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, nstcgi, ppsiNext);
+        return self.vtable.GetNextItem(self, psi, nstcgi, ppsiNext);
     }
     pub fn HitTest(self: *const INameSpaceTreeControl, ppt: ?*POINT, ppsiOut: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).HitTest(@as(*const INameSpaceTreeControl, @ptrCast(self)), ppt, ppsiOut);
+        return self.vtable.HitTest(self, ppt, ppsiOut);
     }
     pub fn GetItemRect(self: *const INameSpaceTreeControl, psi: ?*IShellItem, prect: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).GetItemRect(@as(*const INameSpaceTreeControl, @ptrCast(self)), psi, prect);
+        return self.vtable.GetItemRect(self, psi, prect);
     }
     pub fn CollapseAll(self: *const INameSpaceTreeControl) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl.VTable, @ptrCast(self.vtable)).CollapseAll(@as(*const INameSpaceTreeControl, @ptrCast(self)));
+        return self.vtable.CollapseAll(self);
     }
 };
 
@@ -14006,7 +14006,7 @@ pub const INameSpaceTreeControlFolderCapabilities = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFolderCapabilities(self: *const INameSpaceTreeControlFolderCapabilities, nfcMask: NSTCFOLDERCAPABILITIES, pnfcValue: ?*NSTCFOLDERCAPABILITIES) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlFolderCapabilities.VTable, @ptrCast(self.vtable)).GetFolderCapabilities(@as(*const INameSpaceTreeControlFolderCapabilities, @ptrCast(self)), nfcMask, pnfcValue);
+        return self.vtable.GetFolderCapabilities(self, nfcMask, pnfcValue);
     }
 };
 
@@ -14078,25 +14078,25 @@ pub const IPreviewHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetWindow(self: *const IPreviewHandler, hwnd: ?HWND, prc: ?*const RECT) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).SetWindow(@as(*const IPreviewHandler, @ptrCast(self)), hwnd, prc);
+        return self.vtable.SetWindow(self, hwnd, prc);
     }
     pub fn SetRect(self: *const IPreviewHandler, prc: ?*const RECT) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).SetRect(@as(*const IPreviewHandler, @ptrCast(self)), prc);
+        return self.vtable.SetRect(self, prc);
     }
     pub fn DoPreview(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).DoPreview(@as(*const IPreviewHandler, @ptrCast(self)));
+        return self.vtable.DoPreview(self);
     }
     pub fn Unload(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).Unload(@as(*const IPreviewHandler, @ptrCast(self)));
+        return self.vtable.Unload(self);
     }
     pub fn SetFocus(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IPreviewHandler, @ptrCast(self)));
+        return self.vtable.SetFocus(self);
     }
     pub fn QueryFocus(self: *const IPreviewHandler, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).QueryFocus(@as(*const IPreviewHandler, @ptrCast(self)), phwnd);
+        return self.vtable.QueryFocus(self, phwnd);
     }
     pub fn TranslateAccelerator(self: *const IPreviewHandler, pmsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandler.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPreviewHandler, @ptrCast(self)), pmsg);
+        return self.vtable.TranslateAccelerator(self, pmsg);
     }
 };
 
@@ -14135,10 +14135,10 @@ pub const IPreviewHandlerFrame = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWindowContext(self: *const IPreviewHandlerFrame, pinfo: ?*PREVIEWHANDLERFRAMEINFO) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandlerFrame.VTable, @ptrCast(self.vtable)).GetWindowContext(@as(*const IPreviewHandlerFrame, @ptrCast(self)), pinfo);
+        return self.vtable.GetWindowContext(self, pinfo);
     }
     pub fn TranslateAccelerator(self: *const IPreviewHandlerFrame, pmsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IPreviewHandlerFrame.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPreviewHandlerFrame, @ptrCast(self)), pmsg);
+        return self.vtable.TranslateAccelerator(self, pmsg);
     }
 };
 
@@ -14180,7 +14180,7 @@ pub const IExplorerPaneVisibility = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPaneState(self: *const IExplorerPaneVisibility, ep: ?*const Guid, peps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerPaneVisibility.VTable, @ptrCast(self.vtable)).GetPaneState(@as(*const IExplorerPaneVisibility, @ptrCast(self)), ep, peps);
+        return self.vtable.GetPaneState(self, ep, peps);
     }
 };
 
@@ -14211,7 +14211,7 @@ pub const IContextMenuCB = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CallBack(self: *const IContextMenuCB, psf: ?*IShellFolder, hwndOwner: ?HWND, pdtobj: ?*IDataObject, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IContextMenuCB.VTable, @ptrCast(self.vtable)).CallBack(@as(*const IContextMenuCB, @ptrCast(self)), psf, hwndOwner, pdtobj, uMsg, wParam, lParam);
+        return self.vtable.CallBack(self, psf, hwndOwner, pdtobj, uMsg, wParam, lParam);
     }
 };
 
@@ -14281,22 +14281,22 @@ pub const IDefaultExtractIconInit = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFlags(self: *const IDefaultExtractIconInit, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IDefaultExtractIconInit, @ptrCast(self)), uFlags);
+        return self.vtable.SetFlags(self, uFlags);
     }
     pub fn SetKey(self: *const IDefaultExtractIconInit, hkey: ?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetKey(@as(*const IDefaultExtractIconInit, @ptrCast(self)), hkey);
+        return self.vtable.SetKey(self, hkey);
     }
     pub fn SetNormalIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetNormalIcon(@as(*const IDefaultExtractIconInit, @ptrCast(self)), pszFile, iIcon);
+        return self.vtable.SetNormalIcon(self, pszFile, iIcon);
     }
     pub fn SetOpenIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetOpenIcon(@as(*const IDefaultExtractIconInit, @ptrCast(self)), pszFile, iIcon);
+        return self.vtable.SetOpenIcon(self, pszFile, iIcon);
     }
     pub fn SetShortcutIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetShortcutIcon(@as(*const IDefaultExtractIconInit, @ptrCast(self)), pszFile, iIcon);
+        return self.vtable.SetShortcutIcon(self, pszFile, iIcon);
     }
     pub fn SetDefaultIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultExtractIconInit.VTable, @ptrCast(self.vtable)).SetDefaultIcon(@as(*const IDefaultExtractIconInit, @ptrCast(self)), pszFile, iIcon);
+        return self.vtable.SetDefaultIcon(self, pszFile, iIcon);
     }
 };
 
@@ -14424,28 +14424,28 @@ pub const IExplorerCommand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTitle(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const IExplorerCommand, @ptrCast(self)), psiItemArray, ppszName);
+        return self.vtable.GetTitle(self, psiItemArray, ppszName);
     }
     pub fn GetIcon(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszIcon: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IExplorerCommand, @ptrCast(self)), psiItemArray, ppszIcon);
+        return self.vtable.GetIcon(self, psiItemArray, ppszIcon);
     }
     pub fn GetToolTip(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszInfotip: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetToolTip(@as(*const IExplorerCommand, @ptrCast(self)), psiItemArray, ppszInfotip);
+        return self.vtable.GetToolTip(self, psiItemArray, ppszInfotip);
     }
     pub fn GetCanonicalName(self: *const IExplorerCommand, pguidCommandName: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetCanonicalName(@as(*const IExplorerCommand, @ptrCast(self)), pguidCommandName);
+        return self.vtable.GetCanonicalName(self, pguidCommandName);
     }
     pub fn GetState(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetState(@as(*const IExplorerCommand, @ptrCast(self)), psiItemArray, fOkToBeSlow, pCmdState);
+        return self.vtable.GetState(self, psiItemArray, fOkToBeSlow, pCmdState);
     }
     pub fn Invoke(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IExplorerCommand, @ptrCast(self)), psiItemArray, pbc);
+        return self.vtable.Invoke(self, psiItemArray, pbc);
     }
     pub fn GetFlags(self: *const IExplorerCommand, pFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IExplorerCommand, @ptrCast(self)), pFlags);
+        return self.vtable.GetFlags(self, pFlags);
     }
     pub fn EnumSubCommands(self: *const IExplorerCommand, ppEnum: ?*?*IEnumExplorerCommand) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommand.VTable, @ptrCast(self.vtable)).EnumSubCommands(@as(*const IExplorerCommand, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumSubCommands(self, ppEnum);
     }
 };
 
@@ -14473,7 +14473,7 @@ pub const IExplorerCommandState = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetState(self: *const IExplorerCommandState, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommandState.VTable, @ptrCast(self.vtable)).GetState(@as(*const IExplorerCommandState, @ptrCast(self)), psiItemArray, fOkToBeSlow, pCmdState);
+        return self.vtable.GetState(self, psiItemArray, fOkToBeSlow, pCmdState);
     }
 };
 
@@ -14500,7 +14500,7 @@ pub const IInitializeCommand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeCommand, pszCommandName: ?[*:0]const u16, ppb: ?*IPropertyBag) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeCommand.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeCommand, @ptrCast(self)), pszCommandName, ppb);
+        return self.vtable.Initialize(self, pszCommandName, ppb);
     }
 };
 
@@ -14551,16 +14551,16 @@ pub const IEnumExplorerCommand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumExplorerCommand, celt: u32, pUICommand: [*]?*IExplorerCommand, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExplorerCommand.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumExplorerCommand, @ptrCast(self)), celt, pUICommand, pceltFetched);
+        return self.vtable.Next(self, celt, pUICommand, pceltFetched);
     }
     pub fn Skip(self: *const IEnumExplorerCommand, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExplorerCommand.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumExplorerCommand, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumExplorerCommand) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExplorerCommand.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumExplorerCommand, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumExplorerCommand, ppenum: ?*?*IEnumExplorerCommand) callconv(.Inline) HRESULT {
-        return @as(*const IEnumExplorerCommand.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumExplorerCommand, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -14598,10 +14598,10 @@ pub const IExplorerCommandProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCommands(self: *const IExplorerCommandProvider, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommandProvider.VTable, @ptrCast(self.vtable)).GetCommands(@as(*const IExplorerCommandProvider, @ptrCast(self)), punkSite, riid, ppv);
+        return self.vtable.GetCommands(self, punkSite, riid, ppv);
     }
     pub fn GetCommand(self: *const IExplorerCommandProvider, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IExplorerCommandProvider.VTable, @ptrCast(self.vtable)).GetCommand(@as(*const IExplorerCommandProvider, @ptrCast(self)), rguidCommandId, riid, ppv);
+        return self.vtable.GetCommand(self, rguidCommandId, riid, ppv);
     }
 };
 
@@ -14658,13 +14658,13 @@ pub const IOpenControlPanel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPage: ?[*:0]const u16, punkSite: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IOpenControlPanel.VTable, @ptrCast(self.vtable)).Open(@as(*const IOpenControlPanel, @ptrCast(self)), pszName, pszPage, punkSite);
+        return self.vtable.Open(self, pszName, pszPage, punkSite);
     }
     pub fn GetPath(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPath: [*:0]u16, cchPath: u32) callconv(.Inline) HRESULT {
-        return @as(*const IOpenControlPanel.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IOpenControlPanel, @ptrCast(self)), pszName, pszPath, cchPath);
+        return self.vtable.GetPath(self, pszName, pszPath, cchPath);
     }
     pub fn GetCurrentView(self: *const IOpenControlPanel, pView: ?*CPVIEW) callconv(.Inline) HRESULT {
-        return @as(*const IOpenControlPanel.VTable, @ptrCast(self.vtable)).GetCurrentView(@as(*const IOpenControlPanel, @ptrCast(self)), pView);
+        return self.vtable.GetCurrentView(self, pView);
     }
 };
 
@@ -14698,10 +14698,10 @@ pub const IFileSystemBindData = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFindData(self: *const IFileSystemBindData, pfd: ?*const WIN32_FIND_DATAW) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData.VTable, @ptrCast(self.vtable)).SetFindData(@as(*const IFileSystemBindData, @ptrCast(self)), pfd);
+        return self.vtable.SetFindData(self, pfd);
     }
     pub fn GetFindData(self: *const IFileSystemBindData, pfd: ?*WIN32_FIND_DATAW) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData.VTable, @ptrCast(self.vtable)).GetFindData(@as(*const IFileSystemBindData, @ptrCast(self)), pfd);
+        return self.vtable.GetFindData(self, pfd);
     }
 };
 
@@ -14751,16 +14751,16 @@ pub const IFileSystemBindData2 = extern union {
     };}
     pub usingnamespace IFileSystemBindData.MethodMixin(@This());
     pub fn SetFileID(self: *const IFileSystemBindData2, liFileID: LARGE_INTEGER) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData2.VTable, @ptrCast(self.vtable)).SetFileID(@as(*const IFileSystemBindData2, @ptrCast(self)), liFileID);
+        return self.vtable.SetFileID(self, liFileID);
     }
     pub fn GetFileID(self: *const IFileSystemBindData2, pliFileID: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData2.VTable, @ptrCast(self.vtable)).GetFileID(@as(*const IFileSystemBindData2, @ptrCast(self)), pliFileID);
+        return self.vtable.GetFileID(self, pliFileID);
     }
     pub fn SetJunctionCLSID(self: *const IFileSystemBindData2, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData2.VTable, @ptrCast(self.vtable)).SetJunctionCLSID(@as(*const IFileSystemBindData2, @ptrCast(self)), clsid);
+        return self.vtable.SetJunctionCLSID(self, clsid);
     }
     pub fn GetJunctionCLSID(self: *const IFileSystemBindData2, pclsid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemBindData2.VTable, @ptrCast(self.vtable)).GetJunctionCLSID(@as(*const IFileSystemBindData2, @ptrCast(self)), pclsid);
+        return self.vtable.GetJunctionCLSID(self, pclsid);
     }
 };
 
@@ -14859,31 +14859,31 @@ pub const ICustomDestinationList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAppID(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).SetAppID(@as(*const ICustomDestinationList, @ptrCast(self)), pszAppID);
+        return self.vtable.SetAppID(self, pszAppID);
     }
     pub fn BeginList(self: *const ICustomDestinationList, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).BeginList(@as(*const ICustomDestinationList, @ptrCast(self)), pcMinSlots, riid, ppv);
+        return self.vtable.BeginList(self, pcMinSlots, riid, ppv);
     }
     pub fn AppendCategory(self: *const ICustomDestinationList, pszCategory: ?[*:0]const u16, poa: ?*IObjectArray) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).AppendCategory(@as(*const ICustomDestinationList, @ptrCast(self)), pszCategory, poa);
+        return self.vtable.AppendCategory(self, pszCategory, poa);
     }
     pub fn AppendKnownCategory(self: *const ICustomDestinationList, category: KNOWNDESTCATEGORY) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).AppendKnownCategory(@as(*const ICustomDestinationList, @ptrCast(self)), category);
+        return self.vtable.AppendKnownCategory(self, category);
     }
     pub fn AddUserTasks(self: *const ICustomDestinationList, poa: ?*IObjectArray) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).AddUserTasks(@as(*const ICustomDestinationList, @ptrCast(self)), poa);
+        return self.vtable.AddUserTasks(self, poa);
     }
     pub fn CommitList(self: *const ICustomDestinationList) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).CommitList(@as(*const ICustomDestinationList, @ptrCast(self)));
+        return self.vtable.CommitList(self);
     }
     pub fn GetRemovedDestinations(self: *const ICustomDestinationList, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).GetRemovedDestinations(@as(*const ICustomDestinationList, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetRemovedDestinations(self, riid, ppv);
     }
     pub fn DeleteList(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).DeleteList(@as(*const ICustomDestinationList, @ptrCast(self)), pszAppID);
+        return self.vtable.DeleteList(self, pszAppID);
     }
     pub fn AbortList(self: *const ICustomDestinationList) callconv(.Inline) HRESULT {
-        return @as(*const ICustomDestinationList.VTable, @ptrCast(self.vtable)).AbortList(@as(*const ICustomDestinationList, @ptrCast(self)));
+        return self.vtable.AbortList(self);
     }
 };
 
@@ -14924,13 +14924,13 @@ pub const IApplicationDestinations = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAppID(self: *const IApplicationDestinations, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDestinations.VTable, @ptrCast(self.vtable)).SetAppID(@as(*const IApplicationDestinations, @ptrCast(self)), pszAppID);
+        return self.vtable.SetAppID(self, pszAppID);
     }
     pub fn RemoveDestination(self: *const IApplicationDestinations, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDestinations.VTable, @ptrCast(self.vtable)).RemoveDestination(@as(*const IApplicationDestinations, @ptrCast(self)), punk);
+        return self.vtable.RemoveDestination(self, punk);
     }
     pub fn RemoveAllDestinations(self: *const IApplicationDestinations) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDestinations.VTable, @ptrCast(self.vtable)).RemoveAllDestinations(@as(*const IApplicationDestinations, @ptrCast(self)));
+        return self.vtable.RemoveAllDestinations(self);
     }
 };
 
@@ -14974,10 +14974,10 @@ pub const IApplicationDocumentLists = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAppID(self: *const IApplicationDocumentLists, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDocumentLists.VTable, @ptrCast(self.vtable)).SetAppID(@as(*const IApplicationDocumentLists, @ptrCast(self)), pszAppID);
+        return self.vtable.SetAppID(self, pszAppID);
     }
     pub fn GetList(self: *const IApplicationDocumentLists, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDocumentLists.VTable, @ptrCast(self.vtable)).GetList(@as(*const IApplicationDocumentLists, @ptrCast(self)), listtype, cItemsDesired, riid, ppv);
+        return self.vtable.GetList(self, listtype, cItemsDesired, riid, ppv);
     }
 };
 
@@ -15011,10 +15011,10 @@ pub const IObjectWithAppUserModelID = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAppID(self: *const IObjectWithAppUserModelID, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithAppUserModelID.VTable, @ptrCast(self.vtable)).SetAppID(@as(*const IObjectWithAppUserModelID, @ptrCast(self)), pszAppID);
+        return self.vtable.SetAppID(self, pszAppID);
     }
     pub fn GetAppID(self: *const IObjectWithAppUserModelID, ppszAppID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithAppUserModelID.VTable, @ptrCast(self.vtable)).GetAppID(@as(*const IObjectWithAppUserModelID, @ptrCast(self)), ppszAppID);
+        return self.vtable.GetAppID(self, ppszAppID);
     }
 };
 
@@ -15048,10 +15048,10 @@ pub const IObjectWithProgID = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetProgID(self: *const IObjectWithProgID, pszProgID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithProgID.VTable, @ptrCast(self.vtable)).SetProgID(@as(*const IObjectWithProgID, @ptrCast(self)), pszProgID);
+        return self.vtable.SetProgID(self, pszProgID);
     }
     pub fn GetProgID(self: *const IObjectWithProgID, ppszProgID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IObjectWithProgID.VTable, @ptrCast(self.vtable)).GetProgID(@as(*const IObjectWithProgID, @ptrCast(self)), ppszProgID);
+        return self.vtable.GetProgID(self, ppszProgID);
     }
 };
 
@@ -15079,7 +15079,7 @@ pub const IUpdateIDList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Update(self: *const IUpdateIDList, pbc: ?*IBindCtx, pidlIn: ?*ITEMIDLIST, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IUpdateIDList.VTable, @ptrCast(self.vtable)).Update(@as(*const IUpdateIDList, @ptrCast(self)), pbc, pidlIn, ppidlOut);
+        return self.vtable.Update(self, pbc, pidlIn, ppidlOut);
     }
 };
 
@@ -15268,52 +15268,52 @@ pub const IDesktopWallpaper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).SetWallpaper(@as(*const IDesktopWallpaper, @ptrCast(self)), monitorID, wallpaper);
+        return self.vtable.SetWallpaper(self, monitorID, wallpaper);
     }
     pub fn GetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetWallpaper(@as(*const IDesktopWallpaper, @ptrCast(self)), monitorID, wallpaper);
+        return self.vtable.GetWallpaper(self, monitorID, wallpaper);
     }
     pub fn GetMonitorDevicePathAt(self: *const IDesktopWallpaper, monitorIndex: u32, monitorID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetMonitorDevicePathAt(@as(*const IDesktopWallpaper, @ptrCast(self)), monitorIndex, monitorID);
+        return self.vtable.GetMonitorDevicePathAt(self, monitorIndex, monitorID);
     }
     pub fn GetMonitorDevicePathCount(self: *const IDesktopWallpaper, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetMonitorDevicePathCount(@as(*const IDesktopWallpaper, @ptrCast(self)), count);
+        return self.vtable.GetMonitorDevicePathCount(self, count);
     }
     pub fn GetMonitorRECT(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, displayRect: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetMonitorRECT(@as(*const IDesktopWallpaper, @ptrCast(self)), monitorID, displayRect);
+        return self.vtable.GetMonitorRECT(self, monitorID, displayRect);
     }
     pub fn SetBackgroundColor(self: *const IDesktopWallpaper, color: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IDesktopWallpaper, @ptrCast(self)), color);
+        return self.vtable.SetBackgroundColor(self, color);
     }
     pub fn GetBackgroundColor(self: *const IDesktopWallpaper, color: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IDesktopWallpaper, @ptrCast(self)), color);
+        return self.vtable.GetBackgroundColor(self, color);
     }
     pub fn SetPosition(self: *const IDesktopWallpaper, position: DESKTOP_WALLPAPER_POSITION) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IDesktopWallpaper, @ptrCast(self)), position);
+        return self.vtable.SetPosition(self, position);
     }
     pub fn GetPosition(self: *const IDesktopWallpaper, position: ?*DESKTOP_WALLPAPER_POSITION) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IDesktopWallpaper, @ptrCast(self)), position);
+        return self.vtable.GetPosition(self, position);
     }
     pub fn SetSlideshow(self: *const IDesktopWallpaper, items: ?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).SetSlideshow(@as(*const IDesktopWallpaper, @ptrCast(self)), items);
+        return self.vtable.SetSlideshow(self, items);
     }
     pub fn GetSlideshow(self: *const IDesktopWallpaper, items: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetSlideshow(@as(*const IDesktopWallpaper, @ptrCast(self)), items);
+        return self.vtable.GetSlideshow(self, items);
     }
     pub fn SetSlideshowOptions(self: *const IDesktopWallpaper, options: DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).SetSlideshowOptions(@as(*const IDesktopWallpaper, @ptrCast(self)), options, slideshowTick);
+        return self.vtable.SetSlideshowOptions(self, options, slideshowTick);
     }
     pub fn GetSlideshowOptions(self: *const IDesktopWallpaper, options: ?*DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetSlideshowOptions(@as(*const IDesktopWallpaper, @ptrCast(self)), options, slideshowTick);
+        return self.vtable.GetSlideshowOptions(self, options, slideshowTick);
     }
     pub fn AdvanceSlideshow(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, direction: DESKTOP_SLIDESHOW_DIRECTION) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).AdvanceSlideshow(@as(*const IDesktopWallpaper, @ptrCast(self)), monitorID, direction);
+        return self.vtable.AdvanceSlideshow(self, monitorID, direction);
     }
     pub fn GetStatus(self: *const IDesktopWallpaper, state: ?*DESKTOP_SLIDESHOW_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDesktopWallpaper, @ptrCast(self)), state);
+        return self.vtable.GetStatus(self, state);
     }
     pub fn Enable(self: *const IDesktopWallpaper, enable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopWallpaper.VTable, @ptrCast(self.vtable)).Enable(@as(*const IDesktopWallpaper, @ptrCast(self)), enable);
+        return self.vtable.Enable(self, enable);
     }
 };
 
@@ -15363,10 +15363,10 @@ pub const IHomeGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMember(self: *const IHomeGroup, member: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IHomeGroup.VTable, @ptrCast(self.vtable)).IsMember(@as(*const IHomeGroup, @ptrCast(self)), member);
+        return self.vtable.IsMember(self, member);
     }
     pub fn ShowSharingWizard(self: *const IHomeGroup, owner: ?HWND, sharingchoices: ?*HOMEGROUPSHARINGCHOICES) callconv(.Inline) HRESULT {
-        return @as(*const IHomeGroup.VTable, @ptrCast(self.vtable)).ShowSharingWizard(@as(*const IHomeGroup, @ptrCast(self)), owner, sharingchoices);
+        return self.vtable.ShowSharingWizard(self, owner, sharingchoices);
     }
 };
 
@@ -15392,7 +15392,7 @@ pub const IInitializeWithPropertyStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithPropertyStore, pps: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithPropertyStore.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithPropertyStore, @ptrCast(self)), pps);
+        return self.vtable.Initialize(self, pps);
     }
 };
 
@@ -15423,7 +15423,7 @@ pub const IOpenSearchSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResults(self: *const IOpenSearchSource, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IOpenSearchSource.VTable, @ptrCast(self.vtable)).GetResults(@as(*const IOpenSearchSource, @ptrCast(self)), hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
+        return self.vtable.GetResults(self, hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
     }
 };
 
@@ -15629,55 +15629,55 @@ pub const IShellLibrary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadLibraryFromItem(self: *const IShellLibrary, psiLibrary: ?*IShellItem, grfMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).LoadLibraryFromItem(@as(*const IShellLibrary, @ptrCast(self)), psiLibrary, grfMode);
+        return self.vtable.LoadLibraryFromItem(self, psiLibrary, grfMode);
     }
     pub fn LoadLibraryFromKnownFolder(self: *const IShellLibrary, kfidLibrary: ?*const Guid, grfMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).LoadLibraryFromKnownFolder(@as(*const IShellLibrary, @ptrCast(self)), kfidLibrary, grfMode);
+        return self.vtable.LoadLibraryFromKnownFolder(self, kfidLibrary, grfMode);
     }
     pub fn AddFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).AddFolder(@as(*const IShellLibrary, @ptrCast(self)), psiLocation);
+        return self.vtable.AddFolder(self, psiLocation);
     }
     pub fn RemoveFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).RemoveFolder(@as(*const IShellLibrary, @ptrCast(self)), psiLocation);
+        return self.vtable.RemoveFolder(self, psiLocation);
     }
     pub fn GetFolders(self: *const IShellLibrary, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).GetFolders(@as(*const IShellLibrary, @ptrCast(self)), lff, riid, ppv);
+        return self.vtable.GetFolders(self, lff, riid, ppv);
     }
     pub fn ResolveFolder(self: *const IShellLibrary, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).ResolveFolder(@as(*const IShellLibrary, @ptrCast(self)), psiFolderToResolve, dwTimeout, riid, ppv);
+        return self.vtable.ResolveFolder(self, psiFolderToResolve, dwTimeout, riid, ppv);
     }
     pub fn GetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).GetDefaultSaveFolder(@as(*const IShellLibrary, @ptrCast(self)), dsft, riid, ppv);
+        return self.vtable.GetDefaultSaveFolder(self, dsft, riid, ppv);
     }
     pub fn SetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).SetDefaultSaveFolder(@as(*const IShellLibrary, @ptrCast(self)), dsft, psi);
+        return self.vtable.SetDefaultSaveFolder(self, dsft, psi);
     }
     pub fn GetOptions(self: *const IShellLibrary, plofOptions: ?*LIBRARYOPTIONFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IShellLibrary, @ptrCast(self)), plofOptions);
+        return self.vtable.GetOptions(self, plofOptions);
     }
     pub fn SetOptions(self: *const IShellLibrary, lofMask: LIBRARYOPTIONFLAGS, lofOptions: LIBRARYOPTIONFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IShellLibrary, @ptrCast(self)), lofMask, lofOptions);
+        return self.vtable.SetOptions(self, lofMask, lofOptions);
     }
     pub fn GetFolderType(self: *const IShellLibrary, pftid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).GetFolderType(@as(*const IShellLibrary, @ptrCast(self)), pftid);
+        return self.vtable.GetFolderType(self, pftid);
     }
     pub fn SetFolderType(self: *const IShellLibrary, ftid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).SetFolderType(@as(*const IShellLibrary, @ptrCast(self)), ftid);
+        return self.vtable.SetFolderType(self, ftid);
     }
     pub fn GetIcon(self: *const IShellLibrary, ppszIcon: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IShellLibrary, @ptrCast(self)), ppszIcon);
+        return self.vtable.GetIcon(self, ppszIcon);
     }
     pub fn SetIcon(self: *const IShellLibrary, pszIcon: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).SetIcon(@as(*const IShellLibrary, @ptrCast(self)), pszIcon);
+        return self.vtable.SetIcon(self, pszIcon);
     }
     pub fn Commit(self: *const IShellLibrary) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).Commit(@as(*const IShellLibrary, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
     pub fn Save(self: *const IShellLibrary, psiFolderToSaveIn: ?*IShellItem, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).Save(@as(*const IShellLibrary, @ptrCast(self)), psiFolderToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
+        return self.vtable.Save(self, psiFolderToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
     }
     pub fn SaveInKnownFolder(self: *const IShellLibrary, kfidToSaveIn: ?*const Guid, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLibrary.VTable, @ptrCast(self.vtable)).SaveInKnownFolder(@as(*const IShellLibrary, @ptrCast(self)), kfidToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
+        return self.vtable.SaveInKnownFolder(self, kfidToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
     }
 };
 
@@ -15761,16 +15761,16 @@ pub const IDefaultFolderMenuInitialize = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDefaultFolderMenuInitialize, hwnd: ?HWND, pcmcb: ?*IContextMenuCB, pidlFolder: ?*ITEMIDLIST, psf: ?*IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, punkAssociation: ?*IUnknown, cKeys: u32, aKeys: ?*const ?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultFolderMenuInitialize.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDefaultFolderMenuInitialize, @ptrCast(self)), hwnd, pcmcb, pidlFolder, psf, cidl, apidl, punkAssociation, cKeys, aKeys);
+        return self.vtable.Initialize(self, hwnd, pcmcb, pidlFolder, psf, cidl, apidl, punkAssociation, cKeys, aKeys);
     }
     pub fn SetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrValues: DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultFolderMenuInitialize.VTable, @ptrCast(self.vtable)).SetMenuRestrictions(@as(*const IDefaultFolderMenuInitialize, @ptrCast(self)), dfmrValues);
+        return self.vtable.SetMenuRestrictions(self, dfmrValues);
     }
     pub fn GetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrMask: DEFAULT_FOLDER_MENU_RESTRICTIONS, pdfmrValues: ?*DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultFolderMenuInitialize.VTable, @ptrCast(self.vtable)).GetMenuRestrictions(@as(*const IDefaultFolderMenuInitialize, @ptrCast(self)), dfmrMask, pdfmrValues);
+        return self.vtable.GetMenuRestrictions(self, dfmrMask, pdfmrValues);
     }
     pub fn SetHandlerClsid(self: *const IDefaultFolderMenuInitialize, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultFolderMenuInitialize.VTable, @ptrCast(self.vtable)).SetHandlerClsid(@as(*const IDefaultFolderMenuInitialize, @ptrCast(self)), rclsid);
+        return self.vtable.SetHandlerClsid(self, rclsid);
     }
 };
 
@@ -15833,13 +15833,13 @@ pub const IApplicationActivationManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ActivateApplication(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, options: ACTIVATEOPTIONS, processId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationActivationManager.VTable, @ptrCast(self.vtable)).ActivateApplication(@as(*const IApplicationActivationManager, @ptrCast(self)), appUserModelId, arguments, options, processId);
+        return self.vtable.ActivateApplication(self, appUserModelId, arguments, options, processId);
     }
     pub fn ActivateForFile(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, verb: ?[*:0]const u16, processId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationActivationManager.VTable, @ptrCast(self.vtable)).ActivateForFile(@as(*const IApplicationActivationManager, @ptrCast(self)), appUserModelId, itemArray, verb, processId);
+        return self.vtable.ActivateForFile(self, appUserModelId, itemArray, verb, processId);
     }
     pub fn ActivateForProtocol(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, processId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationActivationManager.VTable, @ptrCast(self.vtable)).ActivateForProtocol(@as(*const IApplicationActivationManager, @ptrCast(self)), appUserModelId, itemArray, processId);
+        return self.vtable.ActivateForProtocol(self, appUserModelId, itemArray, processId);
     }
 };
 
@@ -15884,13 +15884,13 @@ pub const IVirtualDesktopManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsWindowOnCurrentVirtualDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, onCurrentDesktop: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVirtualDesktopManager.VTable, @ptrCast(self.vtable)).IsWindowOnCurrentVirtualDesktop(@as(*const IVirtualDesktopManager, @ptrCast(self)), topLevelWindow, onCurrentDesktop);
+        return self.vtable.IsWindowOnCurrentVirtualDesktop(self, topLevelWindow, onCurrentDesktop);
     }
     pub fn GetWindowDesktopId(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVirtualDesktopManager.VTable, @ptrCast(self.vtable)).GetWindowDesktopId(@as(*const IVirtualDesktopManager, @ptrCast(self)), topLevelWindow, desktopId);
+        return self.vtable.GetWindowDesktopId(self, topLevelWindow, desktopId);
     }
     pub fn MoveWindowToDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVirtualDesktopManager.VTable, @ptrCast(self.vtable)).MoveWindowToDesktop(@as(*const IVirtualDesktopManager, @ptrCast(self)), topLevelWindow, desktopId);
+        return self.vtable.MoveWindowToDesktop(self, topLevelWindow, desktopId);
     }
 };
 
@@ -15929,10 +15929,10 @@ pub const IAssocHandlerInvoker = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SupportsSelection(self: *const IAssocHandlerInvoker) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandlerInvoker.VTable, @ptrCast(self.vtable)).SupportsSelection(@as(*const IAssocHandlerInvoker, @ptrCast(self)));
+        return self.vtable.SupportsSelection(self);
     }
     pub fn Invoke(self: *const IAssocHandlerInvoker) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandlerInvoker.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IAssocHandlerInvoker, @ptrCast(self)));
+        return self.vtable.Invoke(self);
     }
 };
 
@@ -16026,25 +16026,25 @@ pub const IAssocHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).GetName(@as(*const IAssocHandler, @ptrCast(self)), ppsz);
+        return self.vtable.GetName(self, ppsz);
     }
     pub fn GetUIName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).GetUIName(@as(*const IAssocHandler, @ptrCast(self)), ppsz);
+        return self.vtable.GetUIName(self, ppsz);
     }
     pub fn GetIconLocation(self: *const IAssocHandler, ppszPath: ?*?PWSTR, pIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IAssocHandler, @ptrCast(self)), ppszPath, pIndex);
+        return self.vtable.GetIconLocation(self, ppszPath, pIndex);
     }
     pub fn IsRecommended(self: *const IAssocHandler) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).IsRecommended(@as(*const IAssocHandler, @ptrCast(self)));
+        return self.vtable.IsRecommended(self);
     }
     pub fn MakeDefault(self: *const IAssocHandler, pszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).MakeDefault(@as(*const IAssocHandler, @ptrCast(self)), pszDescription);
+        return self.vtable.MakeDefault(self, pszDescription);
     }
     pub fn Invoke(self: *const IAssocHandler, pdo: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IAssocHandler, @ptrCast(self)), pdo);
+        return self.vtable.Invoke(self, pdo);
     }
     pub fn CreateInvoker(self: *const IAssocHandler, pdo: ?*IDataObject, ppInvoker: ?*?*IAssocHandlerInvoker) callconv(.Inline) HRESULT {
-        return @as(*const IAssocHandler.VTable, @ptrCast(self.vtable)).CreateInvoker(@as(*const IAssocHandler, @ptrCast(self)), pdo, ppInvoker);
+        return self.vtable.CreateInvoker(self, pdo, ppInvoker);
     }
 };
 
@@ -16072,7 +16072,7 @@ pub const IEnumAssocHandlers = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumAssocHandlers, celt: u32, rgelt: [*]?*IAssocHandler, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumAssocHandlers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumAssocHandlers, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
 };
 
@@ -16113,10 +16113,10 @@ pub const IDataObjectProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDataObject(self: *const IDataObjectProvider, dataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectProvider.VTable, @ptrCast(self.vtable)).GetDataObject(@as(*const IDataObjectProvider, @ptrCast(self)), dataObject);
+        return self.vtable.GetDataObject(self, dataObject);
     }
     pub fn SetDataObject(self: *const IDataObjectProvider, dataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectProvider.VTable, @ptrCast(self.vtable)).SetDataObject(@as(*const IDataObjectProvider, @ptrCast(self)), dataObject);
+        return self.vtable.SetDataObject(self, dataObject);
     }
 };
 
@@ -16152,10 +16152,10 @@ pub const IDataTransferManagerInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDataTransferManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IDataTransferManagerInterop, @ptrCast(self)), appWindow, riid, dataTransferManager);
+        return self.vtable.GetForWindow(self, appWindow, riid, dataTransferManager);
     }
     pub fn ShowShareUIForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IDataTransferManagerInterop.VTable, @ptrCast(self.vtable)).ShowShareUIForWindow(@as(*const IDataTransferManagerInterop, @ptrCast(self)), appWindow);
+        return self.vtable.ShowShareUIForWindow(self, appWindow);
     }
 };
 
@@ -16190,10 +16190,10 @@ pub const IFrameworkInputPaneHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Showing(self: *const IFrameworkInputPaneHandler, prcInputPaneScreenLocation: ?*RECT, fEnsureFocusedElementInView: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPaneHandler.VTable, @ptrCast(self.vtable)).Showing(@as(*const IFrameworkInputPaneHandler, @ptrCast(self)), prcInputPaneScreenLocation, fEnsureFocusedElementInView);
+        return self.vtable.Showing(self, prcInputPaneScreenLocation, fEnsureFocusedElementInView);
     }
     pub fn Hiding(self: *const IFrameworkInputPaneHandler, fEnsureFocusedElementInView: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPaneHandler.VTable, @ptrCast(self.vtable)).Hiding(@as(*const IFrameworkInputPaneHandler, @ptrCast(self)), fEnsureFocusedElementInView);
+        return self.vtable.Hiding(self, fEnsureFocusedElementInView);
     }
 };
 
@@ -16247,16 +16247,16 @@ pub const IFrameworkInputPane = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const IFrameworkInputPane, pWindow: ?*IUnknown, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPane.VTable, @ptrCast(self.vtable)).Advise(@as(*const IFrameworkInputPane, @ptrCast(self)), pWindow, pHandler, pdwCookie);
+        return self.vtable.Advise(self, pWindow, pHandler, pdwCookie);
     }
     pub fn AdviseWithHWND(self: *const IFrameworkInputPane, hwnd: ?HWND, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPane.VTable, @ptrCast(self.vtable)).AdviseWithHWND(@as(*const IFrameworkInputPane, @ptrCast(self)), hwnd, pHandler, pdwCookie);
+        return self.vtable.AdviseWithHWND(self, hwnd, pHandler, pdwCookie);
     }
     pub fn Unadvise(self: *const IFrameworkInputPane, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPane.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IFrameworkInputPane, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
     pub fn Location(self: *const IFrameworkInputPane, prcInputPaneScreenLocation: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IFrameworkInputPane.VTable, @ptrCast(self.vtable)).Location(@as(*const IFrameworkInputPane, @ptrCast(self)), prcInputPaneScreenLocation);
+        return self.vtable.Location(self, prcInputPaneScreenLocation);
     }
 };
 
@@ -16301,10 +16301,10 @@ pub const IAppVisibilityEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AppVisibilityOnMonitorChanged(self: *const IAppVisibilityEvents, hMonitor: ?HMONITOR, previousMode: MONITOR_APP_VISIBILITY, currentMode: MONITOR_APP_VISIBILITY) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibilityEvents.VTable, @ptrCast(self.vtable)).AppVisibilityOnMonitorChanged(@as(*const IAppVisibilityEvents, @ptrCast(self)), hMonitor, previousMode, currentMode);
+        return self.vtable.AppVisibilityOnMonitorChanged(self, hMonitor, previousMode, currentMode);
     }
     pub fn LauncherVisibilityChange(self: *const IAppVisibilityEvents, currentVisibleState: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibilityEvents.VTable, @ptrCast(self.vtable)).LauncherVisibilityChange(@as(*const IAppVisibilityEvents, @ptrCast(self)), currentVisibleState);
+        return self.vtable.LauncherVisibilityChange(self, currentVisibleState);
     }
 };
 
@@ -16356,16 +16356,16 @@ pub const IAppVisibility = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppVisibilityOnMonitor(self: *const IAppVisibility, hMonitor: ?HMONITOR, pMode: ?*MONITOR_APP_VISIBILITY) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibility.VTable, @ptrCast(self.vtable)).GetAppVisibilityOnMonitor(@as(*const IAppVisibility, @ptrCast(self)), hMonitor, pMode);
+        return self.vtable.GetAppVisibilityOnMonitor(self, hMonitor, pMode);
     }
     pub fn IsLauncherVisible(self: *const IAppVisibility, pfVisible: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibility.VTable, @ptrCast(self.vtable)).IsLauncherVisible(@as(*const IAppVisibility, @ptrCast(self)), pfVisible);
+        return self.vtable.IsLauncherVisible(self, pfVisible);
     }
     pub fn Advise(self: *const IAppVisibility, pCallback: ?*IAppVisibilityEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibility.VTable, @ptrCast(self.vtable)).Advise(@as(*const IAppVisibility, @ptrCast(self)), pCallback, pdwCookie);
+        return self.vtable.Advise(self, pCallback, pdwCookie);
     }
     pub fn Unadvise(self: *const IAppVisibility, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAppVisibility.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IAppVisibility, @ptrCast(self)), dwCookie);
+        return self.vtable.Unadvise(self, dwCookie);
     }
 };
 
@@ -16405,7 +16405,7 @@ pub const IPackageExecutionStateChangeNotification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStateChanged(self: *const IPackageExecutionStateChangeNotification, pszPackageFullName: ?[*:0]const u16, pesNewState: PACKAGE_EXECUTION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPackageExecutionStateChangeNotification.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const IPackageExecutionStateChangeNotification, @ptrCast(self)), pszPackageFullName, pesNewState);
+        return self.vtable.OnStateChanged(self, pszPackageFullName, pesNewState);
     }
 };
 
@@ -16552,49 +16552,49 @@ pub const IPackageDebugSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, debuggerCommandLine: ?[*:0]const u16, environment: ?[*]u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).EnableDebugging(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName, debuggerCommandLine, environment);
+        return self.vtable.EnableDebugging(self, packageFullName, debuggerCommandLine, environment);
     }
     pub fn DisableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).DisableDebugging(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.DisableDebugging(self, packageFullName);
     }
     pub fn Suspend(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.Suspend(self, packageFullName);
     }
     pub fn Resume(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).Resume(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.Resume(self, packageFullName);
     }
     pub fn TerminateAllProcesses(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).TerminateAllProcesses(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.TerminateAllProcesses(self, packageFullName);
     }
     pub fn SetTargetSessionId(self: *const IPackageDebugSettings, sessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).SetTargetSessionId(@as(*const IPackageDebugSettings, @ptrCast(self)), sessionId);
+        return self.vtable.SetTargetSessionId(self, sessionId);
     }
     pub fn EnumerateBackgroundTasks(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, taskCount: ?*u32, taskIds: ?*?*Guid, taskNames: ?*?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).EnumerateBackgroundTasks(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName, taskCount, taskIds, taskNames);
+        return self.vtable.EnumerateBackgroundTasks(self, packageFullName, taskCount, taskIds, taskNames);
     }
     pub fn ActivateBackgroundTask(self: *const IPackageDebugSettings, taskId: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).ActivateBackgroundTask(@as(*const IPackageDebugSettings, @ptrCast(self)), taskId);
+        return self.vtable.ActivateBackgroundTask(self, taskId);
     }
     pub fn StartServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).StartServicing(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.StartServicing(self, packageFullName);
     }
     pub fn StopServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).StopServicing(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.StopServicing(self, packageFullName);
     }
     pub fn StartSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, sessionId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).StartSessionRedirection(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName, sessionId);
+        return self.vtable.StartSessionRedirection(self, packageFullName, sessionId);
     }
     pub fn StopSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).StopSessionRedirection(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName);
+        return self.vtable.StopSessionRedirection(self, packageFullName);
     }
     pub fn GetPackageExecutionState(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, packageExecutionState: ?*PACKAGE_EXECUTION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).GetPackageExecutionState(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName, packageExecutionState);
+        return self.vtable.GetPackageExecutionState(self, packageFullName, packageExecutionState);
     }
     pub fn RegisterForPackageStateChanges(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, pPackageExecutionStateChangeNotification: ?*IPackageExecutionStateChangeNotification, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).RegisterForPackageStateChanges(@as(*const IPackageDebugSettings, @ptrCast(self)), packageFullName, pPackageExecutionStateChangeNotification, pdwCookie);
+        return self.vtable.RegisterForPackageStateChanges(self, packageFullName, pPackageExecutionStateChangeNotification, pdwCookie);
     }
     pub fn UnregisterForPackageStateChanges(self: *const IPackageDebugSettings, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings.VTable, @ptrCast(self.vtable)).UnregisterForPackageStateChanges(@as(*const IPackageDebugSettings, @ptrCast(self)), dwCookie);
+        return self.vtable.UnregisterForPackageStateChanges(self, dwCookie);
     }
 };
 
@@ -16622,7 +16622,7 @@ pub const IPackageDebugSettings2 = extern union {
     };}
     pub usingnamespace IPackageDebugSettings.MethodMixin(@This());
     pub fn EnumerateApps(self: *const IPackageDebugSettings2, packageFullName: ?[*:0]const u16, appCount: ?*u32, appUserModelIds: ?*?*?PWSTR, appDisplayNames: ?*?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPackageDebugSettings2.VTable, @ptrCast(self.vtable)).EnumerateApps(@as(*const IPackageDebugSettings2, @ptrCast(self)), packageFullName, appCount, appUserModelIds, appDisplayNames);
+        return self.vtable.EnumerateApps(self, packageFullName, appCount, appUserModelIds, appDisplayNames);
     }
 };
 
@@ -16664,13 +16664,13 @@ pub const ISuspensionDependencyManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterAsChild(self: *const ISuspensionDependencyManager, processHandle: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const ISuspensionDependencyManager.VTable, @ptrCast(self.vtable)).RegisterAsChild(@as(*const ISuspensionDependencyManager, @ptrCast(self)), processHandle);
+        return self.vtable.RegisterAsChild(self, processHandle);
     }
     pub fn GroupChildWithParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const ISuspensionDependencyManager.VTable, @ptrCast(self.vtable)).GroupChildWithParent(@as(*const ISuspensionDependencyManager, @ptrCast(self)), childProcessHandle);
+        return self.vtable.GroupChildWithParent(self, childProcessHandle);
     }
     pub fn UngroupChildFromParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const ISuspensionDependencyManager.VTable, @ptrCast(self.vtable)).UngroupChildFromParent(@as(*const ISuspensionDependencyManager, @ptrCast(self)), childProcessHandle);
+        return self.vtable.UngroupChildFromParent(self, childProcessHandle);
     }
 };
 
@@ -16703,7 +16703,7 @@ pub const IExecuteCommandApplicationHostEnvironment = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetValue(self: *const IExecuteCommandApplicationHostEnvironment, pahe: ?*AHE_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommandApplicationHostEnvironment.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IExecuteCommandApplicationHostEnvironment, @ptrCast(self)), pahe);
+        return self.vtable.GetValue(self, pahe);
     }
 };
 
@@ -16738,7 +16738,7 @@ pub const IExecuteCommandHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUIMode(self: *const IExecuteCommandHost, pUIMode: ?*EC_HOST_UI_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IExecuteCommandHost.VTable, @ptrCast(self.vtable)).GetUIMode(@as(*const IExecuteCommandHost, @ptrCast(self)), pUIMode);
+        return self.vtable.GetUIMode(self, pUIMode);
     }
 };
 
@@ -16827,22 +16827,22 @@ pub const IApplicationDesignModeSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetNativeDisplaySize(self: *const IApplicationDesignModeSettings, nativeDisplaySizePixels: SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).SetNativeDisplaySize(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), nativeDisplaySizePixels);
+        return self.vtable.SetNativeDisplaySize(self, nativeDisplaySizePixels);
     }
     pub fn SetScaleFactor(self: *const IApplicationDesignModeSettings, scaleFactor: DEVICE_SCALE_FACTOR) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).SetScaleFactor(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), scaleFactor);
+        return self.vtable.SetScaleFactor(self, scaleFactor);
     }
     pub fn SetApplicationViewState(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).SetApplicationViewState(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), viewState);
+        return self.vtable.SetApplicationViewState(self, viewState);
     }
     pub fn ComputeApplicationSize(self: *const IApplicationDesignModeSettings, applicationSizePixels: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).ComputeApplicationSize(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), applicationSizePixels);
+        return self.vtable.ComputeApplicationSize(self, applicationSizePixels);
     }
     pub fn IsApplicationViewStateSupported(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE, nativeDisplaySizePixels: SIZE, scaleFactor: DEVICE_SCALE_FACTOR, supported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).IsApplicationViewStateSupported(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), viewState, nativeDisplaySizePixels, scaleFactor, supported);
+        return self.vtable.IsApplicationViewStateSupported(self, viewState, nativeDisplaySizePixels, scaleFactor, supported);
     }
     pub fn TriggerEdgeGesture(self: *const IApplicationDesignModeSettings, edgeGestureKind: EDGE_GESTURE_KIND) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings.VTable, @ptrCast(self.vtable)).TriggerEdgeGesture(@as(*const IApplicationDesignModeSettings, @ptrCast(self)), edgeGestureKind);
+        return self.vtable.TriggerEdgeGesture(self, edgeGestureKind);
     }
 };
 
@@ -16950,25 +16950,25 @@ pub const IApplicationDesignModeSettings2 = extern union {
     };}
     pub usingnamespace IApplicationDesignModeSettings.MethodMixin(@This());
     pub fn SetNativeDisplayOrientation(self: *const IApplicationDesignModeSettings2, nativeDisplayOrientation: NATIVE_DISPLAY_ORIENTATION) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).SetNativeDisplayOrientation(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), nativeDisplayOrientation);
+        return self.vtable.SetNativeDisplayOrientation(self, nativeDisplayOrientation);
     }
     pub fn SetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, viewOrientation: APPLICATION_VIEW_ORIENTATION) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).SetApplicationViewOrientation(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), viewOrientation);
+        return self.vtable.SetApplicationViewOrientation(self, viewOrientation);
     }
     pub fn SetAdjacentDisplayEdges(self: *const IApplicationDesignModeSettings2, adjacentDisplayEdges: ADJACENT_DISPLAY_EDGES) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).SetAdjacentDisplayEdges(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), adjacentDisplayEdges);
+        return self.vtable.SetAdjacentDisplayEdges(self, adjacentDisplayEdges);
     }
     pub fn SetIsOnLockScreen(self: *const IApplicationDesignModeSettings2, isOnLockScreen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).SetIsOnLockScreen(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), isOnLockScreen);
+        return self.vtable.SetIsOnLockScreen(self, isOnLockScreen);
     }
     pub fn SetApplicationViewMinWidth(self: *const IApplicationDesignModeSettings2, viewMinWidth: APPLICATION_VIEW_MIN_WIDTH) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).SetApplicationViewMinWidth(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), viewMinWidth);
+        return self.vtable.SetApplicationViewMinWidth(self, viewMinWidth);
     }
     pub fn GetApplicationSizeBounds(self: *const IApplicationDesignModeSettings2, minApplicationSizePixels: ?*SIZE, maxApplicationSizePixels: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).GetApplicationSizeBounds(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), minApplicationSizePixels, maxApplicationSizePixels);
+        return self.vtable.GetApplicationSizeBounds(self, minApplicationSizePixels, maxApplicationSizePixels);
     }
     pub fn GetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, applicationSizePixels: SIZE, viewOrientation: ?*APPLICATION_VIEW_ORIENTATION) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationDesignModeSettings2.VTable, @ptrCast(self.vtable)).GetApplicationViewOrientation(@as(*const IApplicationDesignModeSettings2, @ptrCast(self)), applicationSizePixels, viewOrientation);
+        return self.vtable.GetApplicationViewOrientation(self, applicationSizePixels, viewOrientation);
     }
 };
 
@@ -16994,7 +16994,7 @@ pub const ILaunchTargetMonitor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMonitor(self: *const ILaunchTargetMonitor, monitor: ?*?HMONITOR) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchTargetMonitor.VTable, @ptrCast(self.vtable)).GetMonitor(@as(*const ILaunchTargetMonitor, @ptrCast(self)), monitor);
+        return self.vtable.GetMonitor(self, monitor);
     }
 };
 
@@ -17045,10 +17045,10 @@ pub const ILaunchSourceViewSizePreference = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSourceViewToPosition(self: *const ILaunchSourceViewSizePreference, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchSourceViewSizePreference.VTable, @ptrCast(self.vtable)).GetSourceViewToPosition(@as(*const ILaunchSourceViewSizePreference, @ptrCast(self)), hwnd);
+        return self.vtable.GetSourceViewToPosition(self, hwnd);
     }
     pub fn GetSourceViewSizePreference(self: *const ILaunchSourceViewSizePreference, sourceSizeAfterLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchSourceViewSizePreference.VTable, @ptrCast(self.vtable)).GetSourceViewSizePreference(@as(*const ILaunchSourceViewSizePreference, @ptrCast(self)), sourceSizeAfterLaunch);
+        return self.vtable.GetSourceViewSizePreference(self, sourceSizeAfterLaunch);
     }
 };
 
@@ -17074,7 +17074,7 @@ pub const ILaunchTargetViewSizePreference = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTargetViewSizePreference(self: *const ILaunchTargetViewSizePreference, targetSizeOnLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchTargetViewSizePreference.VTable, @ptrCast(self.vtable)).GetTargetViewSizePreference(@as(*const ILaunchTargetViewSizePreference, @ptrCast(self)), targetSizeOnLaunch);
+        return self.vtable.GetTargetViewSizePreference(self, targetSizeOnLaunch);
     }
 };
 
@@ -17100,7 +17100,7 @@ pub const ILaunchSourceAppUserModelId = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppUserModelId(self: *const ILaunchSourceAppUserModelId, launchingApp: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ILaunchSourceAppUserModelId.VTable, @ptrCast(self.vtable)).GetAppUserModelId(@as(*const ILaunchSourceAppUserModelId, @ptrCast(self)), launchingApp);
+        return self.vtable.GetAppUserModelId(self, launchingApp);
     }
 };
 
@@ -17126,7 +17126,7 @@ pub const IInitializeWithWindow = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeWithWindow, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeWithWindow.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithWindow, @ptrCast(self)), hwnd);
+        return self.vtable.Initialize(self, hwnd);
     }
 };
 
@@ -17168,13 +17168,13 @@ pub const IHandlerInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetApplicationDisplayName(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerInfo.VTable, @ptrCast(self.vtable)).GetApplicationDisplayName(@as(*const IHandlerInfo, @ptrCast(self)), value);
+        return self.vtable.GetApplicationDisplayName(self, value);
     }
     pub fn GetApplicationPublisher(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerInfo.VTable, @ptrCast(self.vtable)).GetApplicationPublisher(@as(*const IHandlerInfo, @ptrCast(self)), value);
+        return self.vtable.GetApplicationPublisher(self, value);
     }
     pub fn GetApplicationIconReference(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerInfo.VTable, @ptrCast(self.vtable)).GetApplicationIconReference(@as(*const IHandlerInfo, @ptrCast(self)), value);
+        return self.vtable.GetApplicationIconReference(self, value);
     }
 };
 
@@ -17199,7 +17199,7 @@ pub const IHandlerInfo2 = extern union {
     };}
     pub usingnamespace IHandlerInfo.MethodMixin(@This());
     pub fn GetApplicationId(self: *const IHandlerInfo2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerInfo2.VTable, @ptrCast(self.vtable)).GetApplicationId(@as(*const IHandlerInfo2, @ptrCast(self)), value);
+        return self.vtable.GetApplicationId(self, value);
     }
 };
 
@@ -17237,10 +17237,10 @@ pub const IHandlerActivationHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeforeCoCreateInstance(self: *const IHandlerActivationHost, clsidHandler: ?*const Guid, itemsBeingActivated: ?*IShellItemArray, handlerInfo: ?*IHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerActivationHost.VTable, @ptrCast(self.vtable)).BeforeCoCreateInstance(@as(*const IHandlerActivationHost, @ptrCast(self)), clsidHandler, itemsBeingActivated, handlerInfo);
+        return self.vtable.BeforeCoCreateInstance(self, clsidHandler, itemsBeingActivated, handlerInfo);
     }
     pub fn BeforeCreateProcess(self: *const IHandlerActivationHost, applicationPath: ?[*:0]const u16, commandLine: ?[*:0]const u16, handlerInfo: ?*IHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const IHandlerActivationHost.VTable, @ptrCast(self.vtable)).BeforeCreateProcess(@as(*const IHandlerActivationHost, @ptrCast(self)), applicationPath, commandLine, handlerInfo);
+        return self.vtable.BeforeCreateProcess(self, applicationPath, commandLine, handlerInfo);
     }
 };
 
@@ -17297,19 +17297,19 @@ pub const IAppActivationUIInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMonitor(self: *const IAppActivationUIInfo, value: ?*?HMONITOR) callconv(.Inline) HRESULT {
-        return @as(*const IAppActivationUIInfo.VTable, @ptrCast(self.vtable)).GetMonitor(@as(*const IAppActivationUIInfo, @ptrCast(self)), value);
+        return self.vtable.GetMonitor(self, value);
     }
     pub fn GetInvokePoint(self: *const IAppActivationUIInfo, value: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IAppActivationUIInfo.VTable, @ptrCast(self.vtable)).GetInvokePoint(@as(*const IAppActivationUIInfo, @ptrCast(self)), value);
+        return self.vtable.GetInvokePoint(self, value);
     }
     pub fn GetShowCommand(self: *const IAppActivationUIInfo, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IAppActivationUIInfo.VTable, @ptrCast(self.vtable)).GetShowCommand(@as(*const IAppActivationUIInfo, @ptrCast(self)), value);
+        return self.vtable.GetShowCommand(self, value);
     }
     pub fn GetShowUI(self: *const IAppActivationUIInfo, value: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAppActivationUIInfo.VTable, @ptrCast(self.vtable)).GetShowUI(@as(*const IAppActivationUIInfo, @ptrCast(self)), value);
+        return self.vtable.GetShowUI(self, value);
     }
     pub fn GetKeyState(self: *const IAppActivationUIInfo, value: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAppActivationUIInfo.VTable, @ptrCast(self.vtable)).GetKeyState(@as(*const IAppActivationUIInfo, @ptrCast(self)), value);
+        return self.vtable.GetKeyState(self, value);
     }
 };
 
@@ -17351,7 +17351,7 @@ pub const IContactManagerInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShowContactCardForWindow(self: *const IContactManagerInterop, appWindow: ?HWND, contact: ?*IUnknown, selection: ?*const RECT, preferredPlacement: FLYOUT_PLACEMENT) callconv(.Inline) HRESULT {
-        return @as(*const IContactManagerInterop.VTable, @ptrCast(self.vtable)).ShowContactCardForWindow(@as(*const IContactManagerInterop, @ptrCast(self)), appWindow, contact, selection, preferredPlacement);
+        return self.vtable.ShowContactCardForWindow(self, appWindow, contact, selection, preferredPlacement);
     }
 };
 
@@ -17397,13 +17397,13 @@ pub const IShellIconOverlayIdentifier = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMemberOf(self: *const IShellIconOverlayIdentifier, pwszPath: ?[*:0]const u16, dwAttrib: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayIdentifier.VTable, @ptrCast(self.vtable)).IsMemberOf(@as(*const IShellIconOverlayIdentifier, @ptrCast(self)), pwszPath, dwAttrib);
+        return self.vtable.IsMemberOf(self, pwszPath, dwAttrib);
     }
     pub fn GetOverlayInfo(self: *const IShellIconOverlayIdentifier, pwszIconFile: [*:0]u16, cchMax: i32, pIndex: ?*i32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayIdentifier.VTable, @ptrCast(self.vtable)).GetOverlayInfo(@as(*const IShellIconOverlayIdentifier, @ptrCast(self)), pwszIconFile, cchMax, pIndex, pdwFlags);
+        return self.vtable.GetOverlayInfo(self, pwszIconFile, cchMax, pIndex, pdwFlags);
     }
     pub fn GetPriority(self: *const IShellIconOverlayIdentifier, pPriority: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayIdentifier.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IShellIconOverlayIdentifier, @ptrCast(self)), pPriority);
+        return self.vtable.GetPriority(self, pPriority);
     }
 };
 
@@ -17449,7 +17449,7 @@ pub const IBannerNotificationHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBannerEvent(self: *const IBannerNotificationHandler, notification: ?*const BANNER_NOTIFICATION) callconv(.Inline) HRESULT {
-        return @as(*const IBannerNotificationHandler.VTable, @ptrCast(self.vtable)).OnBannerEvent(@as(*const IBannerNotificationHandler, @ptrCast(self)), notification);
+        return self.vtable.OnBannerEvent(self, notification);
     }
 };
 
@@ -17498,13 +17498,13 @@ pub const ISortColumnArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const ISortColumnArray, columnCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISortColumnArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISortColumnArray, @ptrCast(self)), columnCount);
+        return self.vtable.GetCount(self, columnCount);
     }
     pub fn GetAt(self: *const ISortColumnArray, index: u32, sortcolumn: ?*SORTCOLUMN) callconv(.Inline) HRESULT {
-        return @as(*const ISortColumnArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISortColumnArray, @ptrCast(self)), index, sortcolumn);
+        return self.vtable.GetAt(self, index, sortcolumn);
     }
     pub fn GetSortType(self: *const ISortColumnArray, @"type": ?*SORT_ORDER_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISortColumnArray.VTable, @ptrCast(self.vtable)).GetSortType(@as(*const ISortColumnArray, @ptrCast(self)), @"type");
+        return self.vtable.GetSortType(self, @"type");
     }
 };
 
@@ -17570,22 +17570,22 @@ pub const IPropertyKeyStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetKeyCount(self: *const IPropertyKeyStore, keyCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).GetKeyCount(@as(*const IPropertyKeyStore, @ptrCast(self)), keyCount);
+        return self.vtable.GetKeyCount(self, keyCount);
     }
     pub fn GetKeyAt(self: *const IPropertyKeyStore, index: i32, pkey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).GetKeyAt(@as(*const IPropertyKeyStore, @ptrCast(self)), index, pkey);
+        return self.vtable.GetKeyAt(self, index, pkey);
     }
     pub fn AppendKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).AppendKey(@as(*const IPropertyKeyStore, @ptrCast(self)), key);
+        return self.vtable.AppendKey(self, key);
     }
     pub fn DeleteKey(self: *const IPropertyKeyStore, index: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const IPropertyKeyStore, @ptrCast(self)), index);
+        return self.vtable.DeleteKey(self, index);
     }
     pub fn IsKeyInStore(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).IsKeyInStore(@as(*const IPropertyKeyStore, @ptrCast(self)), key);
+        return self.vtable.IsKeyInStore(self, key);
     }
     pub fn RemoveKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-        return @as(*const IPropertyKeyStore.VTable, @ptrCast(self.vtable)).RemoveKey(@as(*const IPropertyKeyStore, @ptrCast(self)), key);
+        return self.vtable.RemoveKey(self, key);
     }
 };
 
@@ -17619,10 +17619,10 @@ pub const IQueryCodePage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCodePage(self: *const IQueryCodePage, puiCodePage: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryCodePage.VTable, @ptrCast(self.vtable)).GetCodePage(@as(*const IQueryCodePage, @ptrCast(self)), puiCodePage);
+        return self.vtable.GetCodePage(self, puiCodePage);
     }
     pub fn SetCodePage(self: *const IQueryCodePage, uiCodePage: u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryCodePage.VTable, @ptrCast(self.vtable)).SetCodePage(@as(*const IQueryCodePage, @ptrCast(self)), uiCodePage);
+        return self.vtable.SetCodePage(self, uiCodePage);
     }
 };
 
@@ -17674,10 +17674,10 @@ pub const IFolderViewOptions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFolderViewOptions(self: *const IFolderViewOptions, fvoMask: FOLDERVIEWOPTIONS, fvoFlags: FOLDERVIEWOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewOptions.VTable, @ptrCast(self.vtable)).SetFolderViewOptions(@as(*const IFolderViewOptions, @ptrCast(self)), fvoMask, fvoFlags);
+        return self.vtable.SetFolderViewOptions(self, fvoMask, fvoFlags);
     }
     pub fn GetFolderViewOptions(self: *const IFolderViewOptions, pfvoFlags: ?*FOLDERVIEWOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewOptions.VTable, @ptrCast(self.vtable)).GetFolderViewOptions(@as(*const IFolderViewOptions, @ptrCast(self)), pfvoFlags);
+        return self.vtable.GetFolderViewOptions(self, pfvoFlags);
     }
 };
 
@@ -17722,7 +17722,7 @@ pub const IShellView3 = extern union {
     };}
     pub usingnamespace IShellView2.MethodMixin(@This());
     pub fn CreateViewWindow3(self: *const IShellView3, psbOwner: ?*IShellBrowser, psvPrev: ?*IShellView, dwViewFlags: u32, dwMask: FOLDERFLAGS, dwFlags: FOLDERFLAGS, fvMode: FOLDERVIEWMODE, pvid: ?*const Guid, prcView: ?*const RECT, phwndView: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IShellView3.VTable, @ptrCast(self.vtable)).CreateViewWindow3(@as(*const IShellView3, @ptrCast(self)), psbOwner, psvPrev, dwViewFlags, dwMask, dwFlags, fvMode, pvid, prcView, phwndView);
+        return self.vtable.CreateViewWindow3(self, psbOwner, psvPrev, dwViewFlags, dwMask, dwFlags, fvMode, pvid, prcView, phwndView);
     }
 };
 
@@ -17757,10 +17757,10 @@ pub const ISearchBoxInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCondition(self: *const ISearchBoxInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISearchBoxInfo.VTable, @ptrCast(self.vtable)).GetCondition(@as(*const ISearchBoxInfo, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetCondition(self, riid, ppv);
     }
     pub fn GetText(self: *const ISearchBoxInfo, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISearchBoxInfo.VTable, @ptrCast(self.vtable)).GetText(@as(*const ISearchBoxInfo, @ptrCast(self)), ppsz);
+        return self.vtable.GetText(self, ppsz);
     }
 };
 
@@ -17867,28 +17867,28 @@ pub const IVisualProperties = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetWatermark(self: *const IVisualProperties, hbmp: ?HBITMAP, vpwf: VPWATERMARKFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).SetWatermark(@as(*const IVisualProperties, @ptrCast(self)), hbmp, vpwf);
+        return self.vtable.SetWatermark(self, hbmp, vpwf);
     }
     pub fn SetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, cr: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IVisualProperties, @ptrCast(self)), vpcf, cr);
+        return self.vtable.SetColor(self, vpcf, cr);
     }
     pub fn GetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, pcr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IVisualProperties, @ptrCast(self)), vpcf, pcr);
+        return self.vtable.GetColor(self, vpcf, pcr);
     }
     pub fn SetItemHeight(self: *const IVisualProperties, cyItemInPixels: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).SetItemHeight(@as(*const IVisualProperties, @ptrCast(self)), cyItemInPixels);
+        return self.vtable.SetItemHeight(self, cyItemInPixels);
     }
     pub fn GetItemHeight(self: *const IVisualProperties, cyItemInPixels: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).GetItemHeight(@as(*const IVisualProperties, @ptrCast(self)), cyItemInPixels);
+        return self.vtable.GetItemHeight(self, cyItemInPixels);
     }
     pub fn SetFont(self: *const IVisualProperties, plf: ?*const LOGFONTW, bRedraw: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).SetFont(@as(*const IVisualProperties, @ptrCast(self)), plf, bRedraw);
+        return self.vtable.SetFont(self, plf, bRedraw);
     }
     pub fn GetFont(self: *const IVisualProperties, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IVisualProperties, @ptrCast(self)), plf);
+        return self.vtable.GetFont(self, plf);
     }
     pub fn SetTheme(self: *const IVisualProperties, pszSubAppName: ?[*:0]const u16, pszSubIdList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVisualProperties.VTable, @ptrCast(self.vtable)).SetTheme(@as(*const IVisualProperties, @ptrCast(self)), pszSubAppName, pszSubIdList);
+        return self.vtable.SetTheme(self, pszSubAppName, pszSubIdList);
     }
 };
 
@@ -17932,13 +17932,13 @@ pub const ICommDlgBrowser3 = extern union {
     };}
     pub usingnamespace ICommDlgBrowser2.MethodMixin(@This());
     pub fn OnColumnClicked(self: *const ICommDlgBrowser3, ppshv: ?*IShellView, iColumn: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser3.VTable, @ptrCast(self.vtable)).OnColumnClicked(@as(*const ICommDlgBrowser3, @ptrCast(self)), ppshv, iColumn);
+        return self.vtable.OnColumnClicked(self, ppshv, iColumn);
     }
     pub fn GetCurrentFilter(self: *const ICommDlgBrowser3, pszFileSpec: [*:0]u16, cchFileSpec: i32) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser3.VTable, @ptrCast(self.vtable)).GetCurrentFilter(@as(*const ICommDlgBrowser3, @ptrCast(self)), pszFileSpec, cchFileSpec);
+        return self.vtable.GetCurrentFilter(self, pszFileSpec, cchFileSpec);
     }
     pub fn OnPreViewCreated(self: *const ICommDlgBrowser3, ppshv: ?*IShellView) callconv(.Inline) HRESULT {
-        return @as(*const ICommDlgBrowser3.VTable, @ptrCast(self.vtable)).OnPreViewCreated(@as(*const ICommDlgBrowser3, @ptrCast(self)), ppshv);
+        return self.vtable.OnPreViewCreated(self, ppshv);
     }
 };
 
@@ -17964,7 +17964,7 @@ pub const IUserAccountChangeCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnPictureChange(self: *const IUserAccountChangeCallback, pszUserName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUserAccountChangeCallback.VTable, @ptrCast(self.vtable)).OnPictureChange(@as(*const IUserAccountChangeCallback, @ptrCast(self)), pszUserName);
+        return self.vtable.OnPictureChange(self, pszUserName);
     }
 };
 
@@ -18023,16 +18023,16 @@ pub const IStreamAsync = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn ReadAsync(self: *const IStreamAsync, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
-        return @as(*const IStreamAsync.VTable, @ptrCast(self.vtable)).ReadAsync(@as(*const IStreamAsync, @ptrCast(self)), pv, cb, pcbRead, lpOverlapped);
+        return self.vtable.ReadAsync(self, pv, cb, pcbRead, lpOverlapped);
     }
     pub fn WriteAsync(self: *const IStreamAsync, lpBuffer: ?*const anyopaque, cb: u32, pcbWritten: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
-        return @as(*const IStreamAsync.VTable, @ptrCast(self.vtable)).WriteAsync(@as(*const IStreamAsync, @ptrCast(self)), lpBuffer, cb, pcbWritten, lpOverlapped);
+        return self.vtable.WriteAsync(self, lpBuffer, cb, pcbWritten, lpOverlapped);
     }
     pub fn OverlappedResult(self: *const IStreamAsync, lpOverlapped: ?*OVERLAPPED, lpNumberOfBytesTransferred: ?*u32, bWait: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IStreamAsync.VTable, @ptrCast(self.vtable)).OverlappedResult(@as(*const IStreamAsync, @ptrCast(self)), lpOverlapped, lpNumberOfBytesTransferred, bWait);
+        return self.vtable.OverlappedResult(self, lpOverlapped, lpNumberOfBytesTransferred, bWait);
     }
     pub fn CancelIo(self: *const IStreamAsync) callconv(.Inline) HRESULT {
-        return @as(*const IStreamAsync.VTable, @ptrCast(self.vtable)).CancelIo(@as(*const IStreamAsync, @ptrCast(self)));
+        return self.vtable.CancelIo(self);
     }
 };
 
@@ -18058,7 +18058,7 @@ pub const IStreamUnbufferedInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSectorSize(self: *const IStreamUnbufferedInfo, pcbSectorSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamUnbufferedInfo.VTable, @ptrCast(self.vtable)).GetSectorSize(@as(*const IStreamUnbufferedInfo, @ptrCast(self)), pcbSectorSize);
+        return self.vtable.GetSectorSize(self, pcbSectorSize);
     }
 };
 
@@ -18089,7 +18089,7 @@ pub const IDragSourceHelper2 = extern union {
     };}
     pub usingnamespace IDragSourceHelper.MethodMixin(@This());
     pub fn SetFlags(self: *const IDragSourceHelper2, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDragSourceHelper2.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IDragSourceHelper2, @ptrCast(self)), dwFlags);
+        return self.vtable.SetFlags(self, dwFlags);
     }
 };
 
@@ -18137,13 +18137,13 @@ pub const IHWEventHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IHWEventHandler, pszParams: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHWEventHandler.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IHWEventHandler, @ptrCast(self)), pszParams);
+        return self.vtable.Initialize(self, pszParams);
     }
     pub fn HandleEvent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHWEventHandler.VTable, @ptrCast(self.vtable)).HandleEvent(@as(*const IHWEventHandler, @ptrCast(self)), pszDeviceID, pszAltDeviceID, pszEventType);
+        return self.vtable.HandleEvent(self, pszDeviceID, pszAltDeviceID, pszEventType);
     }
     pub fn HandleEventWithContent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, pszContentTypeHandler: ?[*:0]const u16, pdataobject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IHWEventHandler.VTable, @ptrCast(self.vtable)).HandleEventWithContent(@as(*const IHWEventHandler, @ptrCast(self)), pszDeviceID, pszAltDeviceID, pszEventType, pszContentTypeHandler, pdataobject);
+        return self.vtable.HandleEventWithContent(self, pszDeviceID, pszAltDeviceID, pszEventType, pszContentTypeHandler, pdataobject);
     }
 };
 
@@ -18172,7 +18172,7 @@ pub const IHWEventHandler2 = extern union {
     };}
     pub usingnamespace IHWEventHandler.MethodMixin(@This());
     pub fn HandleEventWithHWND(self: *const IHWEventHandler2, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IHWEventHandler2.VTable, @ptrCast(self.vtable)).HandleEventWithHWND(@as(*const IHWEventHandler2, @ptrCast(self)), pszDeviceID, pszAltDeviceID, pszEventType, hwndOwner);
+        return self.vtable.HandleEventWithHWND(self, pszDeviceID, pszAltDeviceID, pszEventType, hwndOwner);
     }
 };
 
@@ -18201,7 +18201,7 @@ pub const IQueryCancelAutoPlay = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AllowAutoPlay(self: *const IQueryCancelAutoPlay, pszPath: ?[*:0]const u16, dwContentType: u32, pszLabel: ?[*:0]const u16, dwSerialNumber: u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryCancelAutoPlay.VTable, @ptrCast(self.vtable)).AllowAutoPlay(@as(*const IQueryCancelAutoPlay, @ptrCast(self)), pszPath, dwContentType, pszLabel, dwSerialNumber);
+        return self.vtable.AllowAutoPlay(self, pszPath, dwContentType, pszLabel, dwSerialNumber);
     }
 };
 
@@ -18229,7 +18229,7 @@ pub const IDynamicHWHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDynamicInfo(self: *const IDynamicHWHandler, pszDeviceID: ?[*:0]const u16, dwContentType: u32, ppszAction: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDynamicHWHandler.VTable, @ptrCast(self.vtable)).GetDynamicInfo(@as(*const IDynamicHWHandler, @ptrCast(self)), pszDeviceID, dwContentType, ppszAction);
+        return self.vtable.GetDynamicInfo(self, pszDeviceID, dwContentType, ppszAction);
     }
 };
 
@@ -18271,13 +18271,13 @@ pub const IUserNotificationCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBalloonUserClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotificationCallback.VTable, @ptrCast(self.vtable)).OnBalloonUserClick(@as(*const IUserNotificationCallback, @ptrCast(self)), pt);
+        return self.vtable.OnBalloonUserClick(self, pt);
     }
     pub fn OnLeftClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotificationCallback.VTable, @ptrCast(self.vtable)).OnLeftClick(@as(*const IUserNotificationCallback, @ptrCast(self)), pt);
+        return self.vtable.OnLeftClick(self, pt);
     }
     pub fn OnContextMenu(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotificationCallback.VTable, @ptrCast(self.vtable)).OnContextMenu(@as(*const IUserNotificationCallback, @ptrCast(self)), pt);
+        return self.vtable.OnContextMenu(self, pt);
     }
 };
 
@@ -18342,19 +18342,19 @@ pub const IUserNotification2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBalloonInfo(self: *const IUserNotification2, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification2.VTable, @ptrCast(self.vtable)).SetBalloonInfo(@as(*const IUserNotification2, @ptrCast(self)), pszTitle, pszText, dwInfoFlags);
+        return self.vtable.SetBalloonInfo(self, pszTitle, pszText, dwInfoFlags);
     }
     pub fn SetBalloonRetry(self: *const IUserNotification2, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification2.VTable, @ptrCast(self.vtable)).SetBalloonRetry(@as(*const IUserNotification2, @ptrCast(self)), dwShowTime, dwInterval, cRetryCount);
+        return self.vtable.SetBalloonRetry(self, dwShowTime, dwInterval, cRetryCount);
     }
     pub fn SetIconInfo(self: *const IUserNotification2, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification2.VTable, @ptrCast(self.vtable)).SetIconInfo(@as(*const IUserNotification2, @ptrCast(self)), hIcon, pszToolTip);
+        return self.vtable.SetIconInfo(self, hIcon, pszToolTip);
     }
     pub fn Show(self: *const IUserNotification2, pqc: ?*IQueryContinue, dwContinuePollInterval: u32, pSink: ?*IUserNotificationCallback) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification2.VTable, @ptrCast(self.vtable)).Show(@as(*const IUserNotification2, @ptrCast(self)), pqc, dwContinuePollInterval, pSink);
+        return self.vtable.Show(self, pqc, dwContinuePollInterval, pSink);
     }
     pub fn PlaySound(self: *const IUserNotification2, pszSoundName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IUserNotification2.VTable, @ptrCast(self.vtable)).PlaySound(@as(*const IUserNotification2, @ptrCast(self)), pszSoundName);
+        return self.vtable.PlaySound(self, pszSoundName);
     }
 };
 
@@ -18396,13 +18396,13 @@ pub const IDeskBand2 = extern union {
     };}
     pub usingnamespace IDeskBand.MethodMixin(@This());
     pub fn CanRenderComposited(self: *const IDeskBand2, pfCanRenderComposited: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBand2.VTable, @ptrCast(self.vtable)).CanRenderComposited(@as(*const IDeskBand2, @ptrCast(self)), pfCanRenderComposited);
+        return self.vtable.CanRenderComposited(self, pfCanRenderComposited);
     }
     pub fn SetCompositionState(self: *const IDeskBand2, fCompositionEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBand2.VTable, @ptrCast(self.vtable)).SetCompositionState(@as(*const IDeskBand2, @ptrCast(self)), fCompositionEnabled);
+        return self.vtable.SetCompositionState(self, fCompositionEnabled);
     }
     pub fn GetCompositionState(self: *const IDeskBand2, pfCompositionEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBand2.VTable, @ptrCast(self.vtable)).GetCompositionState(@as(*const IDeskBand2, @ptrCast(self)), pfCompositionEnabled);
+        return self.vtable.GetCompositionState(self, pfCompositionEnabled);
     }
 };
 
@@ -18428,7 +18428,7 @@ pub const IStartMenuPinnedList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RemoveFromList(self: *const IStartMenuPinnedList, pitem: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IStartMenuPinnedList.VTable, @ptrCast(self.vtable)).RemoveFromList(@as(*const IStartMenuPinnedList, @ptrCast(self)), pitem);
+        return self.vtable.RemoveFromList(self, pitem);
     }
 };
 
@@ -18471,13 +18471,13 @@ pub const ICDBurn = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRecorderDriveLetter(self: *const ICDBurn, pszDrive: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICDBurn.VTable, @ptrCast(self.vtable)).GetRecorderDriveLetter(@as(*const ICDBurn, @ptrCast(self)), pszDrive, cch);
+        return self.vtable.GetRecorderDriveLetter(self, pszDrive, cch);
     }
     pub fn Burn(self: *const ICDBurn, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ICDBurn.VTable, @ptrCast(self.vtable)).Burn(@as(*const ICDBurn, @ptrCast(self)), hwnd);
+        return self.vtable.Burn(self, hwnd);
     }
     pub fn HasRecordableDrive(self: *const ICDBurn, pfHasRecorder: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ICDBurn.VTable, @ptrCast(self.vtable)).HasRecordableDrive(@as(*const ICDBurn, @ptrCast(self)), pfHasRecorder);
+        return self.vtable.HasRecordableDrive(self, pfHasRecorder);
     }
 };
 
@@ -18519,13 +18519,13 @@ pub const IWizardSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPreviousPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
-        return @as(*const IWizardSite.VTable, @ptrCast(self.vtable)).GetPreviousPage(@as(*const IWizardSite, @ptrCast(self)), phpage);
+        return self.vtable.GetPreviousPage(self, phpage);
     }
     pub fn GetNextPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
-        return @as(*const IWizardSite.VTable, @ptrCast(self.vtable)).GetNextPage(@as(*const IWizardSite, @ptrCast(self)), phpage);
+        return self.vtable.GetNextPage(self, phpage);
     }
     pub fn GetCancelledPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
-        return @as(*const IWizardSite.VTable, @ptrCast(self.vtable)).GetCancelledPage(@as(*const IWizardSite, @ptrCast(self)), phpage);
+        return self.vtable.GetCancelledPage(self, phpage);
     }
 };
 
@@ -18569,13 +18569,13 @@ pub const IWizardExtension = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddPages(self: *const IWizardExtension, aPages: [*]?HPROPSHEETPAGE, cPages: u32, pnPagesAdded: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWizardExtension.VTable, @ptrCast(self.vtable)).AddPages(@as(*const IWizardExtension, @ptrCast(self)), aPages, cPages, pnPagesAdded);
+        return self.vtable.AddPages(self, aPages, cPages, pnPagesAdded);
     }
     pub fn GetFirstPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
-        return @as(*const IWizardExtension.VTable, @ptrCast(self.vtable)).GetFirstPage(@as(*const IWizardExtension, @ptrCast(self)), phpage);
+        return self.vtable.GetFirstPage(self, phpage);
     }
     pub fn GetLastPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
-        return @as(*const IWizardExtension.VTable, @ptrCast(self.vtable)).GetLastPage(@as(*const IWizardExtension, @ptrCast(self)), phpage);
+        return self.vtable.GetLastPage(self, phpage);
     }
 };
 
@@ -18609,10 +18609,10 @@ pub const IWebWizardExtension = extern union {
     };}
     pub usingnamespace IWizardExtension.MethodMixin(@This());
     pub fn SetInitialURL(self: *const IWebWizardExtension, pszURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardExtension.VTable, @ptrCast(self.vtable)).SetInitialURL(@as(*const IWebWizardExtension, @ptrCast(self)), pszURL);
+        return self.vtable.SetInitialURL(self, pszURL);
     }
     pub fn SetErrorURL(self: *const IWebWizardExtension, pszErrorURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardExtension.VTable, @ptrCast(self.vtable)).SetErrorURL(@as(*const IWebWizardExtension, @ptrCast(self)), pszErrorURL);
+        return self.vtable.SetErrorURL(self, pszErrorURL);
     }
 };
 
@@ -18649,10 +18649,10 @@ pub const IPublishingWizard = extern union {
     };}
     pub usingnamespace IWizardExtension.MethodMixin(@This());
     pub fn Initialize(self: *const IPublishingWizard, pdo: ?*IDataObject, dwOptions: u32, pszServiceScope: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPublishingWizard.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPublishingWizard, @ptrCast(self)), pdo, dwOptions, pszServiceScope);
+        return self.vtable.Initialize(self, pdo, dwOptions, pszServiceScope);
     }
     pub fn GetTransferManifest(self: *const IPublishingWizard, phrFromTransfer: ?*HRESULT, pdocManifest: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
-        return @as(*const IPublishingWizard.VTable, @ptrCast(self.vtable)).GetTransferManifest(@as(*const IPublishingWizard, @ptrCast(self)), phrFromTransfer, pdocManifest);
+        return self.vtable.GetTransferManifest(self, phrFromTransfer, pdocManifest);
     }
 };
 
@@ -18680,7 +18680,7 @@ pub const IFolderViewHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IFolderViewHost, hwndParent: ?HWND, pdo: ?*IDataObject, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewHost.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IFolderViewHost, @ptrCast(self)), hwndParent, pdo, prc);
+        return self.vtable.Initialize(self, hwndParent, pdo, prc);
     }
 };
 
@@ -18706,7 +18706,7 @@ pub const IAccessibleObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAccessibleName(self: *const IAccessibleObject, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAccessibleObject.VTable, @ptrCast(self.vtable)).SetAccessibleName(@as(*const IAccessibleObject, @ptrCast(self)), pszName);
+        return self.vtable.SetAccessibleName(self, pszName);
     }
 };
 
@@ -18764,19 +18764,19 @@ pub const IResultsFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IResultsFolder.VTable, @ptrCast(self.vtable)).AddItem(@as(*const IResultsFolder, @ptrCast(self)), psi);
+        return self.vtable.AddItem(self, psi);
     }
     pub fn AddIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST, ppidlAdded: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IResultsFolder.VTable, @ptrCast(self.vtable)).AddIDList(@as(*const IResultsFolder, @ptrCast(self)), pidl, ppidlAdded);
+        return self.vtable.AddIDList(self, pidl, ppidlAdded);
     }
     pub fn RemoveItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IResultsFolder.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const IResultsFolder, @ptrCast(self)), psi);
+        return self.vtable.RemoveItem(self, psi);
     }
     pub fn RemoveIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IResultsFolder.VTable, @ptrCast(self.vtable)).RemoveIDList(@as(*const IResultsFolder, @ptrCast(self)), pidl);
+        return self.vtable.RemoveIDList(self, pidl);
     }
     pub fn RemoveAll(self: *const IResultsFolder) callconv(.Inline) HRESULT {
-        return @as(*const IResultsFolder.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IResultsFolder, @ptrCast(self)));
+        return self.vtable.RemoveAll(self);
     }
 };
 
@@ -18810,10 +18810,10 @@ pub const IAutoCompleteDropDown = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDropDownStatus(self: *const IAutoCompleteDropDown, pdwFlags: ?*u32, ppwszString: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAutoCompleteDropDown.VTable, @ptrCast(self.vtable)).GetDropDownStatus(@as(*const IAutoCompleteDropDown, @ptrCast(self)), pdwFlags, ppwszString);
+        return self.vtable.GetDropDownStatus(self, pdwFlags, ppwszString);
     }
     pub fn ResetEnumerator(self: *const IAutoCompleteDropDown) callconv(.Inline) HRESULT {
-        return @as(*const IAutoCompleteDropDown.VTable, @ptrCast(self.vtable)).ResetEnumerator(@as(*const IAutoCompleteDropDown, @ptrCast(self)));
+        return self.vtable.ResetEnumerator(self);
     }
 };
 
@@ -18857,7 +18857,7 @@ pub const ICDBurnExt = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedActionTypes(self: *const ICDBurnExt, pdwActions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICDBurnExt.VTable, @ptrCast(self.vtable)).GetSupportedActionTypes(@as(*const ICDBurnExt, @ptrCast(self)), pdwActions);
+        return self.vtable.GetSupportedActionTypes(self, pdwActions);
     }
 };
 
@@ -18882,7 +18882,7 @@ pub const IEnumReadyCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumReady(self: *const IEnumReadyCallback) callconv(.Inline) HRESULT {
-        return @as(*const IEnumReadyCallback.VTable, @ptrCast(self.vtable)).EnumReady(@as(*const IEnumReadyCallback, @ptrCast(self)));
+        return self.vtable.EnumReady(self);
     }
 };
 
@@ -18918,10 +18918,10 @@ pub const IEnumerableView = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetEnumReadyCallback(self: *const IEnumerableView, percb: ?*IEnumReadyCallback) callconv(.Inline) HRESULT {
-        return @as(*const IEnumerableView.VTable, @ptrCast(self.vtable)).SetEnumReadyCallback(@as(*const IEnumerableView, @ptrCast(self)), percb);
+        return self.vtable.SetEnumReadyCallback(self, percb);
     }
     pub fn CreateEnumIDListFromContents(self: *const IEnumerableView, pidlFolder: ?*ITEMIDLIST, dwEnumFlags: u32, ppEnumIDList: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
-        return @as(*const IEnumerableView.VTable, @ptrCast(self.vtable)).CreateEnumIDListFromContents(@as(*const IEnumerableView, @ptrCast(self)), pidlFolder, dwEnumFlags, ppEnumIDList);
+        return self.vtable.CreateEnumIDListFromContents(self, pidlFolder, dwEnumFlags, ppEnumIDList);
     }
 };
 
@@ -18947,7 +18947,7 @@ pub const IInsertItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InsertItem(self: *const IInsertItem, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IInsertItem.VTable, @ptrCast(self.vtable)).InsertItem(@as(*const IInsertItem, @ptrCast(self)), pidl);
+        return self.vtable.InsertItem(self, pidl);
     }
 };
 
@@ -18997,16 +18997,16 @@ pub const IFolderBandPriv = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetCascade(self: *const IFolderBandPriv, fCascade: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderBandPriv.VTable, @ptrCast(self.vtable)).SetCascade(@as(*const IFolderBandPriv, @ptrCast(self)), fCascade);
+        return self.vtable.SetCascade(self, fCascade);
     }
     pub fn SetAccelerators(self: *const IFolderBandPriv, fAccelerators: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderBandPriv.VTable, @ptrCast(self.vtable)).SetAccelerators(@as(*const IFolderBandPriv, @ptrCast(self)), fAccelerators);
+        return self.vtable.SetAccelerators(self, fAccelerators);
     }
     pub fn SetNoIcons(self: *const IFolderBandPriv, fNoIcons: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderBandPriv.VTable, @ptrCast(self.vtable)).SetNoIcons(@as(*const IFolderBandPriv, @ptrCast(self)), fNoIcons);
+        return self.vtable.SetNoIcons(self, fNoIcons);
     }
     pub fn SetNoText(self: *const IFolderBandPriv, fNoText: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFolderBandPriv.VTable, @ptrCast(self.vtable)).SetNoText(@as(*const IFolderBandPriv, @ptrCast(self)), fNoText);
+        return self.vtable.SetNoText(self, fNoText);
     }
 };
 
@@ -19037,7 +19037,7 @@ pub const IImageRecompress = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RecompressImage(self: *const IImageRecompress, psi: ?*IShellItem, cx: i32, cy: i32, iQuality: i32, pstg: ?*IStorage, ppstrmOut: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IImageRecompress.VTable, @ptrCast(self.vtable)).RecompressImage(@as(*const IImageRecompress, @ptrCast(self)), psi, cx, cy, iQuality, pstg, ppstrmOut);
+        return self.vtable.RecompressImage(self, psi, cx, cy, iQuality, pstg, ppstrmOut);
     }
 };
 
@@ -19093,16 +19093,16 @@ pub const IFileDialogControlEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnItemSelected(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogControlEvents.VTable, @ptrCast(self.vtable)).OnItemSelected(@as(*const IFileDialogControlEvents, @ptrCast(self)), pfdc, dwIDCtl, dwIDItem);
+        return self.vtable.OnItemSelected(self, pfdc, dwIDCtl, dwIDItem);
     }
     pub fn OnButtonClicked(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogControlEvents.VTable, @ptrCast(self.vtable)).OnButtonClicked(@as(*const IFileDialogControlEvents, @ptrCast(self)), pfdc, dwIDCtl);
+        return self.vtable.OnButtonClicked(self, pfdc, dwIDCtl);
     }
     pub fn OnCheckButtonToggled(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogControlEvents.VTable, @ptrCast(self.vtable)).OnCheckButtonToggled(@as(*const IFileDialogControlEvents, @ptrCast(self)), pfdc, dwIDCtl, bChecked);
+        return self.vtable.OnCheckButtonToggled(self, pfdc, dwIDCtl, bChecked);
     }
     pub fn OnControlActivating(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialogControlEvents.VTable, @ptrCast(self.vtable)).OnControlActivating(@as(*const IFileDialogControlEvents, @ptrCast(self)), pfdc, dwIDCtl);
+        return self.vtable.OnControlActivating(self, pfdc, dwIDCtl);
     }
 };
 
@@ -19136,10 +19136,10 @@ pub const IFileDialog2 = extern union {
     };}
     pub usingnamespace IFileDialog.MethodMixin(@This());
     pub fn SetCancelButtonLabel(self: *const IFileDialog2, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog2.VTable, @ptrCast(self.vtable)).SetCancelButtonLabel(@as(*const IFileDialog2, @ptrCast(self)), pszLabel);
+        return self.vtable.SetCancelButtonLabel(self, pszLabel);
     }
     pub fn SetNavigationRoot(self: *const IFileDialog2, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileDialog2.VTable, @ptrCast(self.vtable)).SetNavigationRoot(@as(*const IFileDialog2, @ptrCast(self)), psi);
+        return self.vtable.SetNavigationRoot(self, psi);
     }
 };
 
@@ -19165,7 +19165,7 @@ pub const IApplicationAssociationRegistrationUI = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LaunchAdvancedAssociationUI(self: *const IApplicationAssociationRegistrationUI, pszAppRegistryName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IApplicationAssociationRegistrationUI.VTable, @ptrCast(self.vtable)).LaunchAdvancedAssociationUI(@as(*const IApplicationAssociationRegistrationUI, @ptrCast(self)), pszAppRegistryName);
+        return self.vtable.LaunchAdvancedAssociationUI(self, pszAppRegistryName);
     }
 };
 
@@ -19191,7 +19191,7 @@ pub const IShellRunDll = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Run(self: *const IShellRunDll, pszArgs: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IShellRunDll.VTable, @ptrCast(self.vtable)).Run(@as(*const IShellRunDll, @ptrCast(self)), pszArgs);
+        return self.vtable.Run(self, pszArgs);
     }
 };
 
@@ -19219,7 +19219,7 @@ pub const IPreviousVersionsInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AreSnapshotsAvailable(self: *const IPreviousVersionsInfo, pszPath: ?[*:0]const u16, fOkToBeSlow: BOOL, pfAvailable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPreviousVersionsInfo.VTable, @ptrCast(self.vtable)).AreSnapshotsAvailable(@as(*const IPreviousVersionsInfo, @ptrCast(self)), pszPath, fOkToBeSlow, pfAvailable);
+        return self.vtable.AreSnapshotsAvailable(self, pszPath, fOkToBeSlow, pfAvailable);
     }
 };
 
@@ -19305,16 +19305,16 @@ pub const INameSpaceTreeControl2 = extern union {
     };}
     pub usingnamespace INameSpaceTreeControl.MethodMixin(@This());
     pub fn SetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, nstcsStyle: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl2.VTable, @ptrCast(self.vtable)).SetControlStyle(@as(*const INameSpaceTreeControl2, @ptrCast(self)), nstcsMask, nstcsStyle);
+        return self.vtable.SetControlStyle(self, nstcsMask, nstcsStyle);
     }
     pub fn GetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, pnstcsStyle: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl2.VTable, @ptrCast(self.vtable)).GetControlStyle(@as(*const INameSpaceTreeControl2, @ptrCast(self)), nstcsMask, pnstcsStyle);
+        return self.vtable.GetControlStyle(self, nstcsMask, pnstcsStyle);
     }
     pub fn SetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, nstcsStyle: NSTCSTYLE2) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl2.VTable, @ptrCast(self.vtable)).SetControlStyle2(@as(*const INameSpaceTreeControl2, @ptrCast(self)), nstcsMask, nstcsStyle);
+        return self.vtable.SetControlStyle2(self, nstcsMask, nstcsStyle);
     }
     pub fn GetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, pnstcsStyle: ?*NSTCSTYLE2) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControl2.VTable, @ptrCast(self.vtable)).GetControlStyle2(@as(*const INameSpaceTreeControl2, @ptrCast(self)), nstcsMask, pnstcsStyle);
+        return self.vtable.GetControlStyle2(self, nstcsMask, pnstcsStyle);
     }
 };
 
@@ -19529,58 +19529,58 @@ pub const INameSpaceTreeControlEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnItemClick(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstceHitTest: u32, nstceClickType: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnItemClick(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, nstceHitTest, nstceClickType);
+        return self.vtable.OnItemClick(self, psi, nstceHitTest, nstceClickType);
     }
     pub fn OnPropertyItemCommit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnPropertyItemCommit(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnPropertyItemCommit(self, psi);
     }
     pub fn OnItemStateChanging(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnItemStateChanging(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, nstcisMask, nstcisState);
+        return self.vtable.OnItemStateChanging(self, psi, nstcisMask, nstcisState);
     }
     pub fn OnItemStateChanged(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnItemStateChanged(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, nstcisMask, nstcisState);
+        return self.vtable.OnItemStateChanged(self, psi, nstcisMask, nstcisState);
     }
     pub fn OnSelectionChanged(self: *const INameSpaceTreeControlEvents, psiaSelection: ?*IShellItemArray) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnSelectionChanged(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psiaSelection);
+        return self.vtable.OnSelectionChanged(self, psiaSelection);
     }
     pub fn OnKeyboardInput(self: *const INameSpaceTreeControlEvents, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnKeyboardInput(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), uMsg, wParam, lParam);
+        return self.vtable.OnKeyboardInput(self, uMsg, wParam, lParam);
     }
     pub fn OnBeforeExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnBeforeExpand(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnBeforeExpand(self, psi);
     }
     pub fn OnAfterExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnAfterExpand(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnAfterExpand(self, psi);
     }
     pub fn OnBeginLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnBeginLabelEdit(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnBeginLabelEdit(self, psi);
     }
     pub fn OnEndLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnEndLabelEdit(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnEndLabelEdit(self, psi);
     }
     pub fn OnGetToolTip(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pszTip: [*:0]u16, cchTip: i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnGetToolTip(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, pszTip, cchTip);
+        return self.vtable.OnGetToolTip(self, psi, pszTip, cchTip);
     }
     pub fn OnBeforeItemDelete(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnBeforeItemDelete(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnBeforeItemDelete(self, psi);
     }
     pub fn OnItemAdded(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnItemAdded(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, fIsRoot);
+        return self.vtable.OnItemAdded(self, psi, fIsRoot);
     }
     pub fn OnItemDeleted(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnItemDeleted(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, fIsRoot);
+        return self.vtable.OnItemDeleted(self, psi, fIsRoot);
     }
     pub fn OnBeforeContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnBeforeContextMenu(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, riid, ppv);
+        return self.vtable.OnBeforeContextMenu(self, psi, riid, ppv);
     }
     pub fn OnAfterContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pcmIn: ?*IContextMenu, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnAfterContextMenu(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, pcmIn, riid, ppv);
+        return self.vtable.OnAfterContextMenu(self, psi, pcmIn, riid, ppv);
     }
     pub fn OnBeforeStateImageChange(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnBeforeStateImageChange(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi);
+        return self.vtable.OnBeforeStateImageChange(self, psi);
     }
     pub fn OnGetDefaultIconIndex(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, piDefaultIcon: ?*i32, piOpenIcon: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlEvents.VTable, @ptrCast(self.vtable)).OnGetDefaultIconIndex(@as(*const INameSpaceTreeControlEvents, @ptrCast(self)), psi, piDefaultIcon, piOpenIcon);
+        return self.vtable.OnGetDefaultIconIndex(self, psi, piDefaultIcon, piOpenIcon);
     }
 };
 
@@ -19663,22 +19663,22 @@ pub const INameSpaceTreeControlDropHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnDragEnter(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, fOutsideSource: BOOL, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDragEnter(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver, psiaData, fOutsideSource, grfKeyState, pdwEffect);
+        return self.vtable.OnDragEnter(self, psiOver, psiaData, fOutsideSource, grfKeyState, pdwEffect);
     }
     pub fn OnDragOver(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDragOver(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver, psiaData, grfKeyState, pdwEffect);
+        return self.vtable.OnDragOver(self, psiOver, psiaData, grfKeyState, pdwEffect);
     }
     pub fn OnDragPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDragPosition(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver, psiaData, iNewPosition, iOldPosition);
+        return self.vtable.OnDragPosition(self, psiOver, psiaData, iNewPosition, iOldPosition);
     }
     pub fn OnDrop(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iPosition: i32, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDrop(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver, psiaData, iPosition, grfKeyState, pdwEffect);
+        return self.vtable.OnDrop(self, psiOver, psiaData, iPosition, grfKeyState, pdwEffect);
     }
     pub fn OnDropPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDropPosition(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver, psiaData, iNewPosition, iOldPosition);
+        return self.vtable.OnDropPosition(self, psiOver, psiaData, iNewPosition, iOldPosition);
     }
     pub fn OnDragLeave(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlDropHandler.VTable, @ptrCast(self.vtable)).OnDragLeave(@as(*const INameSpaceTreeControlDropHandler, @ptrCast(self)), psiOver);
+        return self.vtable.OnDragLeave(self, psiOver);
     }
 };
 
@@ -19722,13 +19722,13 @@ pub const INameSpaceTreeAccessible = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnGetDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pbstrDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeAccessible.VTable, @ptrCast(self.vtable)).OnGetDefaultAccessibilityAction(@as(*const INameSpaceTreeAccessible, @ptrCast(self)), psi, pbstrDefaultAction);
+        return self.vtable.OnGetDefaultAccessibilityAction(self, psi, pbstrDefaultAction);
     }
     pub fn OnDoDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeAccessible.VTable, @ptrCast(self.vtable)).OnDoDefaultAccessibilityAction(@as(*const INameSpaceTreeAccessible, @ptrCast(self)), psi);
+        return self.vtable.OnDoDefaultAccessibilityAction(self, psi);
     }
     pub fn OnGetAccessibilityRole(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pvarRole: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeAccessible.VTable, @ptrCast(self.vtable)).OnGetAccessibilityRole(@as(*const INameSpaceTreeAccessible, @ptrCast(self)), psi, pvarRole);
+        return self.vtable.OnGetAccessibilityRole(self, psi, pvarRole);
     }
 };
 
@@ -19799,16 +19799,16 @@ pub const INameSpaceTreeControlCustomDraw = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, plres: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlCustomDraw.VTable, @ptrCast(self.vtable)).PrePaint(@as(*const INameSpaceTreeControlCustomDraw, @ptrCast(self)), hdc, prc, plres);
+        return self.vtable.PrePaint(self, hdc, prc, plres);
     }
     pub fn PostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlCustomDraw.VTable, @ptrCast(self.vtable)).PostPaint(@as(*const INameSpaceTreeControlCustomDraw, @ptrCast(self)), hdc, prc);
+        return self.vtable.PostPaint(self, hdc, prc);
     }
     pub fn ItemPrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW, pclrText: ?*u32, pclrTextBk: ?*u32, plres: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlCustomDraw.VTable, @ptrCast(self.vtable)).ItemPrePaint(@as(*const INameSpaceTreeControlCustomDraw, @ptrCast(self)), hdc, prc, pnstccdItem, pclrText, pclrTextBk, plres);
+        return self.vtable.ItemPrePaint(self, hdc, prc, pnstccdItem, pclrText, pclrTextBk, plres);
     }
     pub fn ItemPostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW) callconv(.Inline) HRESULT {
-        return @as(*const INameSpaceTreeControlCustomDraw.VTable, @ptrCast(self.vtable)).ItemPostPaint(@as(*const INameSpaceTreeControlCustomDraw, @ptrCast(self)), hdc, prc, pnstccdItem);
+        return self.vtable.ItemPostPaint(self, hdc, prc, pnstccdItem);
     }
 };
 
@@ -19857,16 +19857,16 @@ pub const ITrayDeskBand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShowDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITrayDeskBand.VTable, @ptrCast(self.vtable)).ShowDeskBand(@as(*const ITrayDeskBand, @ptrCast(self)), clsid);
+        return self.vtable.ShowDeskBand(self, clsid);
     }
     pub fn HideDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITrayDeskBand.VTable, @ptrCast(self.vtable)).HideDeskBand(@as(*const ITrayDeskBand, @ptrCast(self)), clsid);
+        return self.vtable.HideDeskBand(self, clsid);
     }
     pub fn IsDeskBandShown(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITrayDeskBand.VTable, @ptrCast(self.vtable)).IsDeskBandShown(@as(*const ITrayDeskBand, @ptrCast(self)), clsid);
+        return self.vtable.IsDeskBandShown(self, clsid);
     }
     pub fn DeskBandRegistrationChanged(self: *const ITrayDeskBand) callconv(.Inline) HRESULT {
-        return @as(*const ITrayDeskBand.VTable, @ptrCast(self.vtable)).DeskBandRegistrationChanged(@as(*const ITrayDeskBand, @ptrCast(self)));
+        return self.vtable.DeskBandRegistrationChanged(self);
     }
 };
 
@@ -19913,13 +19913,13 @@ pub const IBandHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateBand(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IBandHost.VTable, @ptrCast(self.vtable)).CreateBand(@as(*const IBandHost, @ptrCast(self)), rclsidBand, fAvailable, fVisible, riid, ppv);
+        return self.vtable.CreateBand(self, rclsidBand, fAvailable, fVisible, riid, ppv);
     }
     pub fn SetBandAvailability(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBandHost.VTable, @ptrCast(self.vtable)).SetBandAvailability(@as(*const IBandHost, @ptrCast(self)), rclsidBand, fAvailable);
+        return self.vtable.SetBandAvailability(self, rclsidBand, fAvailable);
     }
     pub fn DestroyBand(self: *const IBandHost, rclsidBand: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IBandHost.VTable, @ptrCast(self.vtable)).DestroyBand(@as(*const IBandHost, @ptrCast(self)), rclsidBand);
+        return self.vtable.DestroyBand(self, rclsidBand);
     }
 };
 
@@ -19944,7 +19944,7 @@ pub const IComputerInfoChangeNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ComputerInfoChanged(self: *const IComputerInfoChangeNotify) callconv(.Inline) HRESULT {
-        return @as(*const IComputerInfoChangeNotify.VTable, @ptrCast(self.vtable)).ComputerInfoChanged(@as(*const IComputerInfoChangeNotify, @ptrCast(self)));
+        return self.vtable.ComputerInfoChanged(self);
     }
 };
 
@@ -19970,7 +19970,7 @@ pub const IDesktopGadget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RunGadget(self: *const IDesktopGadget, gadgetPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IDesktopGadget.VTable, @ptrCast(self.vtable)).RunGadget(@as(*const IDesktopGadget, @ptrCast(self)), gadgetPath);
+        return self.vtable.RunGadget(self, gadgetPath);
     }
 };
 
@@ -20002,7 +20002,7 @@ pub const IAccessibilityDockingServiceCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Undocked(self: *const IAccessibilityDockingServiceCallback, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
-        return @as(*const IAccessibilityDockingServiceCallback.VTable, @ptrCast(self.vtable)).Undocked(@as(*const IAccessibilityDockingServiceCallback, @ptrCast(self)), undockReason);
+        return self.vtable.Undocked(self, undockReason);
     }
 };
 
@@ -20048,13 +20048,13 @@ pub const IAccessibilityDockingService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAvailableSize(self: *const IAccessibilityDockingService, hMonitor: ?HMONITOR, pcxFixed: ?*u32, pcyMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAccessibilityDockingService.VTable, @ptrCast(self.vtable)).GetAvailableSize(@as(*const IAccessibilityDockingService, @ptrCast(self)), hMonitor, pcxFixed, pcyMax);
+        return self.vtable.GetAvailableSize(self, hMonitor, pcxFixed, pcyMax);
     }
     pub fn DockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND, hMonitor: ?HMONITOR, cyRequested: u32, pCallback: ?*IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
-        return @as(*const IAccessibilityDockingService.VTable, @ptrCast(self.vtable)).DockWindow(@as(*const IAccessibilityDockingService, @ptrCast(self)), hwnd, hMonitor, cyRequested, pCallback);
+        return self.vtable.DockWindow(self, hwnd, hMonitor, cyRequested, pCallback);
     }
     pub fn UndockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IAccessibilityDockingService.VTable, @ptrCast(self.vtable)).UndockWindow(@as(*const IAccessibilityDockingService, @ptrCast(self)), hwnd);
+        return self.vtable.UndockWindow(self, hwnd);
     }
 };
 
@@ -20108,16 +20108,16 @@ pub const IStorageProviderBanners = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderBanners.VTable, @ptrCast(self.vtable)).SetBanner(@as(*const IStorageProviderBanners, @ptrCast(self)), providerIdentity, subscriptionId, contentId);
+        return self.vtable.SetBanner(self, providerIdentity, subscriptionId, contentId);
     }
     pub fn ClearBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderBanners.VTable, @ptrCast(self.vtable)).ClearBanner(@as(*const IStorageProviderBanners, @ptrCast(self)), providerIdentity, subscriptionId);
+        return self.vtable.ClearBanner(self, providerIdentity, subscriptionId);
     }
     pub fn ClearAllBanners(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderBanners.VTable, @ptrCast(self.vtable)).ClearAllBanners(@as(*const IStorageProviderBanners, @ptrCast(self)), providerIdentity);
+        return self.vtable.ClearAllBanners(self, providerIdentity);
     }
     pub fn GetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderBanners.VTable, @ptrCast(self.vtable)).GetBanner(@as(*const IStorageProviderBanners, @ptrCast(self)), providerIdentity, subscriptionId, contentId);
+        return self.vtable.GetBanner(self, providerIdentity, subscriptionId, contentId);
     }
 };
 
@@ -20149,7 +20149,7 @@ pub const IStorageProviderCopyHook = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CopyCallback(self: *const IStorageProviderCopyHook, hwnd: ?HWND, operation: u32, flags: u32, srcFile: ?[*:0]const u16, srcAttribs: u32, destFile: ?[*:0]const u16, destAttribs: u32, result: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderCopyHook.VTable, @ptrCast(self.vtable)).CopyCallback(@as(*const IStorageProviderCopyHook, @ptrCast(self)), hwnd, operation, flags, srcFile, srcAttribs, destFile, destAttribs, result);
+        return self.vtable.CopyCallback(self, hwnd, operation, flags, srcFile, srcAttribs, destFile, destAttribs, result);
     }
 };
 
@@ -20537,79 +20537,79 @@ pub const IWebBrowser = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GoBack(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).GoBack(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.GoBack(self);
     }
     pub fn GoForward(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).GoForward(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.GoForward(self);
     }
     pub fn GoHome(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).GoHome(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.GoHome(self);
     }
     pub fn GoSearch(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).GoSearch(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.GoSearch(self);
     }
     pub fn Navigate(self: *const IWebBrowser, URL: ?BSTR, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IWebBrowser, @ptrCast(self)), URL, Flags, TargetFrameName, PostData, Headers);
+        return self.vtable.Navigate(self, URL, Flags, TargetFrameName, PostData, Headers);
     }
     pub fn Refresh(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn Refresh2(self: *const IWebBrowser, Level: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).Refresh2(@as(*const IWebBrowser, @ptrCast(self)), Level);
+        return self.vtable.Refresh2(self, Level);
     }
     pub fn Stop(self: *const IWebBrowser) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWebBrowser, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn get_Application(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Application(@as(*const IWebBrowser, @ptrCast(self)), ppDisp);
+        return self.vtable.get_Application(self, ppDisp);
     }
     pub fn get_Parent(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const IWebBrowser, @ptrCast(self)), ppDisp);
+        return self.vtable.get_Parent(self, ppDisp);
     }
     pub fn get_Container(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Container(@as(*const IWebBrowser, @ptrCast(self)), ppDisp);
+        return self.vtable.get_Container(self, ppDisp);
     }
     pub fn get_Document(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Document(@as(*const IWebBrowser, @ptrCast(self)), ppDisp);
+        return self.vtable.get_Document(self, ppDisp);
     }
     pub fn get_TopLevelContainer(self: *const IWebBrowser, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_TopLevelContainer(@as(*const IWebBrowser, @ptrCast(self)), pBool);
+        return self.vtable.get_TopLevelContainer(self, pBool);
     }
     pub fn get_Type(self: *const IWebBrowser, Type: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IWebBrowser, @ptrCast(self)), Type);
+        return self.vtable.get_Type(self, Type);
     }
     pub fn get_Left(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Left(@as(*const IWebBrowser, @ptrCast(self)), pl);
+        return self.vtable.get_Left(self, pl);
     }
     pub fn put_Left(self: *const IWebBrowser, Left: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).put_Left(@as(*const IWebBrowser, @ptrCast(self)), Left);
+        return self.vtable.put_Left(self, Left);
     }
     pub fn get_Top(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Top(@as(*const IWebBrowser, @ptrCast(self)), pl);
+        return self.vtable.get_Top(self, pl);
     }
     pub fn put_Top(self: *const IWebBrowser, Top: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).put_Top(@as(*const IWebBrowser, @ptrCast(self)), Top);
+        return self.vtable.put_Top(self, Top);
     }
     pub fn get_Width(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IWebBrowser, @ptrCast(self)), pl);
+        return self.vtable.get_Width(self, pl);
     }
     pub fn put_Width(self: *const IWebBrowser, Width: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).put_Width(@as(*const IWebBrowser, @ptrCast(self)), Width);
+        return self.vtable.put_Width(self, Width);
     }
     pub fn get_Height(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IWebBrowser, @ptrCast(self)), pl);
+        return self.vtable.get_Height(self, pl);
     }
     pub fn put_Height(self: *const IWebBrowser, Height: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).put_Height(@as(*const IWebBrowser, @ptrCast(self)), Height);
+        return self.vtable.put_Height(self, Height);
     }
     pub fn get_LocationName(self: *const IWebBrowser, LocationName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_LocationName(@as(*const IWebBrowser, @ptrCast(self)), LocationName);
+        return self.vtable.get_LocationName(self, LocationName);
     }
     pub fn get_LocationURL(self: *const IWebBrowser, LocationURL: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_LocationURL(@as(*const IWebBrowser, @ptrCast(self)), LocationURL);
+        return self.vtable.get_LocationURL(self, LocationURL);
     }
     pub fn get_Busy(self: *const IWebBrowser, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser.VTable, @ptrCast(self.vtable)).get_Busy(@as(*const IWebBrowser, @ptrCast(self)), pBool);
+        return self.vtable.get_Busy(self, pBool);
     }
 };
 
@@ -20818,64 +20818,64 @@ pub const IWebBrowserApp = extern union {
     };}
     pub usingnamespace IWebBrowser.MethodMixin(@This());
     pub fn Quit(self: *const IWebBrowserApp) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).Quit(@as(*const IWebBrowserApp, @ptrCast(self)));
+        return self.vtable.Quit(self);
     }
     pub fn ClientToWindow(self: *const IWebBrowserApp, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).ClientToWindow(@as(*const IWebBrowserApp, @ptrCast(self)), pcx, pcy);
+        return self.vtable.ClientToWindow(self, pcx, pcy);
     }
     pub fn PutProperty(self: *const IWebBrowserApp, Property: ?BSTR, vtValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IWebBrowserApp, @ptrCast(self)), Property, vtValue);
+        return self.vtable.PutProperty(self, Property, vtValue);
     }
     pub fn GetProperty(self: *const IWebBrowserApp, Property: ?BSTR, pvtValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWebBrowserApp, @ptrCast(self)), Property, pvtValue);
+        return self.vtable.GetProperty(self, Property, pvtValue);
     }
     pub fn get_Name(self: *const IWebBrowserApp, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWebBrowserApp, @ptrCast(self)), Name);
+        return self.vtable.get_Name(self, Name);
     }
     pub fn get_HWND(self: *const IWebBrowserApp, pHWND: ?*SHANDLE_PTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_HWND(@as(*const IWebBrowserApp, @ptrCast(self)), pHWND);
+        return self.vtable.get_HWND(self, pHWND);
     }
     pub fn get_FullName(self: *const IWebBrowserApp, FullName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_FullName(@as(*const IWebBrowserApp, @ptrCast(self)), FullName);
+        return self.vtable.get_FullName(self, FullName);
     }
     pub fn get_Path(self: *const IWebBrowserApp, Path: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IWebBrowserApp, @ptrCast(self)), Path);
+        return self.vtable.get_Path(self, Path);
     }
     pub fn get_Visible(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const IWebBrowserApp, @ptrCast(self)), pBool);
+        return self.vtable.get_Visible(self, pBool);
     }
     pub fn put_Visible(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.put_Visible(self, Value);
     }
     pub fn get_StatusBar(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_StatusBar(@as(*const IWebBrowserApp, @ptrCast(self)), pBool);
+        return self.vtable.get_StatusBar(self, pBool);
     }
     pub fn put_StatusBar(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_StatusBar(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.put_StatusBar(self, Value);
     }
     pub fn get_StatusText(self: *const IWebBrowserApp, StatusText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IWebBrowserApp, @ptrCast(self)), StatusText);
+        return self.vtable.get_StatusText(self, StatusText);
     }
     pub fn put_StatusText(self: *const IWebBrowserApp, StatusText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_StatusText(@as(*const IWebBrowserApp, @ptrCast(self)), StatusText);
+        return self.vtable.put_StatusText(self, StatusText);
     }
     pub fn get_ToolBar(self: *const IWebBrowserApp, Value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_ToolBar(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.get_ToolBar(self, Value);
     }
     pub fn put_ToolBar(self: *const IWebBrowserApp, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_ToolBar(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.put_ToolBar(self, Value);
     }
     pub fn get_MenuBar(self: *const IWebBrowserApp, Value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_MenuBar(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.get_MenuBar(self, Value);
     }
     pub fn put_MenuBar(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_MenuBar(@as(*const IWebBrowserApp, @ptrCast(self)), Value);
+        return self.vtable.put_MenuBar(self, Value);
     }
     pub fn get_FullScreen(self: *const IWebBrowserApp, pbFullScreen: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).get_FullScreen(@as(*const IWebBrowserApp, @ptrCast(self)), pbFullScreen);
+        return self.vtable.get_FullScreen(self, pbFullScreen);
     }
     pub fn put_FullScreen(self: *const IWebBrowserApp, bFullScreen: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowserApp.VTable, @ptrCast(self.vtable)).put_FullScreen(@as(*const IWebBrowserApp, @ptrCast(self)), bFullScreen);
+        return self.vtable.put_FullScreen(self, bFullScreen);
     }
 };
 
@@ -21070,61 +21070,61 @@ pub const IWebBrowser2 = extern union {
     };}
     pub usingnamespace IWebBrowserApp.MethodMixin(@This());
     pub fn Navigate2(self: *const IWebBrowser2, URL: ?*VARIANT, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).Navigate2(@as(*const IWebBrowser2, @ptrCast(self)), URL, Flags, TargetFrameName, PostData, Headers);
+        return self.vtable.Navigate2(self, URL, Flags, TargetFrameName, PostData, Headers);
     }
     pub fn QueryStatusWB(self: *const IWebBrowser2, cmdID: OLECMDID, pcmdf: ?*OLECMDF) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).QueryStatusWB(@as(*const IWebBrowser2, @ptrCast(self)), cmdID, pcmdf);
+        return self.vtable.QueryStatusWB(self, cmdID, pcmdf);
     }
     pub fn ExecWB(self: *const IWebBrowser2, cmdID: OLECMDID, cmdexecopt: OLECMDEXECOPT, pvaIn: ?*VARIANT, pvaOut: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).ExecWB(@as(*const IWebBrowser2, @ptrCast(self)), cmdID, cmdexecopt, pvaIn, pvaOut);
+        return self.vtable.ExecWB(self, cmdID, cmdexecopt, pvaIn, pvaOut);
     }
     pub fn ShowBrowserBar(self: *const IWebBrowser2, pvaClsid: ?*VARIANT, pvarShow: ?*VARIANT, pvarSize: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).ShowBrowserBar(@as(*const IWebBrowser2, @ptrCast(self)), pvaClsid, pvarShow, pvarSize);
+        return self.vtable.ShowBrowserBar(self, pvaClsid, pvarShow, pvarSize);
     }
     pub fn get_ReadyState(self: *const IWebBrowser2, plReadyState: ?*READYSTATE) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_ReadyState(@as(*const IWebBrowser2, @ptrCast(self)), plReadyState);
+        return self.vtable.get_ReadyState(self, plReadyState);
     }
     pub fn get_Offline(self: *const IWebBrowser2, pbOffline: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_Offline(@as(*const IWebBrowser2, @ptrCast(self)), pbOffline);
+        return self.vtable.get_Offline(self, pbOffline);
     }
     pub fn put_Offline(self: *const IWebBrowser2, bOffline: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_Offline(@as(*const IWebBrowser2, @ptrCast(self)), bOffline);
+        return self.vtable.put_Offline(self, bOffline);
     }
     pub fn get_Silent(self: *const IWebBrowser2, pbSilent: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IWebBrowser2, @ptrCast(self)), pbSilent);
+        return self.vtable.get_Silent(self, pbSilent);
     }
     pub fn put_Silent(self: *const IWebBrowser2, bSilent: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IWebBrowser2, @ptrCast(self)), bSilent);
+        return self.vtable.put_Silent(self, bSilent);
     }
     pub fn get_RegisterAsBrowser(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_RegisterAsBrowser(@as(*const IWebBrowser2, @ptrCast(self)), pbRegister);
+        return self.vtable.get_RegisterAsBrowser(self, pbRegister);
     }
     pub fn put_RegisterAsBrowser(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_RegisterAsBrowser(@as(*const IWebBrowser2, @ptrCast(self)), bRegister);
+        return self.vtable.put_RegisterAsBrowser(self, bRegister);
     }
     pub fn get_RegisterAsDropTarget(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_RegisterAsDropTarget(@as(*const IWebBrowser2, @ptrCast(self)), pbRegister);
+        return self.vtable.get_RegisterAsDropTarget(self, pbRegister);
     }
     pub fn put_RegisterAsDropTarget(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_RegisterAsDropTarget(@as(*const IWebBrowser2, @ptrCast(self)), bRegister);
+        return self.vtable.put_RegisterAsDropTarget(self, bRegister);
     }
     pub fn get_TheaterMode(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_TheaterMode(@as(*const IWebBrowser2, @ptrCast(self)), pbRegister);
+        return self.vtable.get_TheaterMode(self, pbRegister);
     }
     pub fn put_TheaterMode(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_TheaterMode(@as(*const IWebBrowser2, @ptrCast(self)), bRegister);
+        return self.vtable.put_TheaterMode(self, bRegister);
     }
     pub fn get_AddressBar(self: *const IWebBrowser2, Value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_AddressBar(@as(*const IWebBrowser2, @ptrCast(self)), Value);
+        return self.vtable.get_AddressBar(self, Value);
     }
     pub fn put_AddressBar(self: *const IWebBrowser2, Value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_AddressBar(@as(*const IWebBrowser2, @ptrCast(self)), Value);
+        return self.vtable.put_AddressBar(self, Value);
     }
     pub fn get_Resizable(self: *const IWebBrowser2, Value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).get_Resizable(@as(*const IWebBrowser2, @ptrCast(self)), Value);
+        return self.vtable.get_Resizable(self, Value);
     }
     pub fn put_Resizable(self: *const IWebBrowser2, Value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebBrowser2.VTable, @ptrCast(self.vtable)).put_Resizable(@as(*const IWebBrowser2, @ptrCast(self)), Value);
+        return self.vtable.put_Resizable(self, Value);
     }
 };
 
@@ -21274,37 +21274,37 @@ pub const IShellWindows = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IShellWindows, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IShellWindows, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const IShellWindows, index: VARIANT, _param_Folder: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).Item(@as(*const IShellWindows, @ptrCast(self)), index, _param_Folder);
+        return self.vtable.Item(self, index, _param_Folder);
     }
     pub fn _NewEnum(self: *const IShellWindows, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const IShellWindows, @ptrCast(self)), ppunk);
+        return self.vtable._NewEnum(self, ppunk);
     }
     pub fn Register(self: *const IShellWindows, pid: ?*IDispatch, hwnd: i32, swClass: i32, plCookie: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).Register(@as(*const IShellWindows, @ptrCast(self)), pid, hwnd, swClass, plCookie);
+        return self.vtable.Register(self, pid, hwnd, swClass, plCookie);
     }
     pub fn RegisterPending(self: *const IShellWindows, lThreadId: i32, pvarloc: ?*VARIANT, pvarlocRoot: ?*VARIANT, swClass: i32, plCookie: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).RegisterPending(@as(*const IShellWindows, @ptrCast(self)), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+        return self.vtable.RegisterPending(self, lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
     }
     pub fn Revoke(self: *const IShellWindows, lCookie: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).Revoke(@as(*const IShellWindows, @ptrCast(self)), lCookie);
+        return self.vtable.Revoke(self, lCookie);
     }
     pub fn OnNavigate(self: *const IShellWindows, lCookie: i32, pvarLoc: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).OnNavigate(@as(*const IShellWindows, @ptrCast(self)), lCookie, pvarLoc);
+        return self.vtable.OnNavigate(self, lCookie, pvarLoc);
     }
     pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).OnActivated(@as(*const IShellWindows, @ptrCast(self)), lCookie, fActive);
+        return self.vtable.OnActivated(self, lCookie, fActive);
     }
     pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: i32, phwnd: ?*i32, swfwOptions: i32, ppdispOut: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).FindWindowSW(@as(*const IShellWindows, @ptrCast(self)), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
+        return self.vtable.FindWindowSW(self, pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
     }
     pub fn OnCreated(self: *const IShellWindows, lCookie: i32, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).OnCreated(@as(*const IShellWindows, @ptrCast(self)), lCookie, punk);
+        return self.vtable.OnCreated(self, lCookie, punk);
     }
     pub fn ProcessAttachDetach(self: *const IShellWindows, fAttach: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellWindows.VTable, @ptrCast(self.vtable)).ProcessAttachDetach(@as(*const IShellWindows, @ptrCast(self)), fAttach);
+        return self.vtable.ProcessAttachDetach(self, fAttach);
     }
 };
 
@@ -21436,43 +21436,43 @@ pub const IShellUIHelper = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn ResetFirstBootMode(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).ResetFirstBootMode(@as(*const IShellUIHelper, @ptrCast(self)));
+        return self.vtable.ResetFirstBootMode(self);
     }
     pub fn ResetSafeMode(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).ResetSafeMode(@as(*const IShellUIHelper, @ptrCast(self)));
+        return self.vtable.ResetSafeMode(self);
     }
     pub fn RefreshOfflineDesktop(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).RefreshOfflineDesktop(@as(*const IShellUIHelper, @ptrCast(self)));
+        return self.vtable.RefreshOfflineDesktop(self);
     }
     pub fn AddFavorite(self: *const IShellUIHelper, URL: ?BSTR, Title: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AddFavorite(@as(*const IShellUIHelper, @ptrCast(self)), URL, Title);
+        return self.vtable.AddFavorite(self, URL, Title);
     }
     pub fn AddChannel(self: *const IShellUIHelper, URL: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AddChannel(@as(*const IShellUIHelper, @ptrCast(self)), URL);
+        return self.vtable.AddChannel(self, URL);
     }
     pub fn AddDesktopComponent(self: *const IShellUIHelper, URL: ?BSTR, Type: ?BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AddDesktopComponent(@as(*const IShellUIHelper, @ptrCast(self)), URL, Type, Left, Top, Width, Height);
+        return self.vtable.AddDesktopComponent(self, URL, Type, Left, Top, Width, Height);
     }
     pub fn IsSubscribed(self: *const IShellUIHelper, URL: ?BSTR, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).IsSubscribed(@as(*const IShellUIHelper, @ptrCast(self)), URL, pBool);
+        return self.vtable.IsSubscribed(self, URL, pBool);
     }
     pub fn NavigateAndFind(self: *const IShellUIHelper, URL: ?BSTR, strQuery: ?BSTR, varTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).NavigateAndFind(@as(*const IShellUIHelper, @ptrCast(self)), URL, strQuery, varTargetFrame);
+        return self.vtable.NavigateAndFind(self, URL, strQuery, varTargetFrame);
     }
     pub fn ImportExportFavorites(self: *const IShellUIHelper, fImport: i16, strImpExpPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).ImportExportFavorites(@as(*const IShellUIHelper, @ptrCast(self)), fImport, strImpExpPath);
+        return self.vtable.ImportExportFavorites(self, fImport, strImpExpPath);
     }
     pub fn AutoCompleteSaveForm(self: *const IShellUIHelper, Form: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AutoCompleteSaveForm(@as(*const IShellUIHelper, @ptrCast(self)), Form);
+        return self.vtable.AutoCompleteSaveForm(self, Form);
     }
     pub fn AutoScan(self: *const IShellUIHelper, strSearch: ?BSTR, strFailureUrl: ?BSTR, pvarTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AutoScan(@as(*const IShellUIHelper, @ptrCast(self)), strSearch, strFailureUrl, pvarTargetFrame);
+        return self.vtable.AutoScan(self, strSearch, strFailureUrl, pvarTargetFrame);
     }
     pub fn AutoCompleteAttach(self: *const IShellUIHelper, Reserved: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).AutoCompleteAttach(@as(*const IShellUIHelper, @ptrCast(self)), Reserved);
+        return self.vtable.AutoCompleteAttach(self, Reserved);
     }
     pub fn ShowBrowserUI(self: *const IShellUIHelper, bstrName: ?BSTR, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper.VTable, @ptrCast(self.vtable)).ShowBrowserUI(@as(*const IShellUIHelper, @ptrCast(self)), bstrName, pvarIn, pvarOut);
+        return self.vtable.ShowBrowserUI(self, bstrName, pvarIn, pvarOut);
     }
 };
 
@@ -21616,52 +21616,52 @@ pub const IShellUIHelper2 = extern union {
     };}
     pub usingnamespace IShellUIHelper.MethodMixin(@This());
     pub fn AddSearchProvider(self: *const IShellUIHelper2, URL: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).AddSearchProvider(@as(*const IShellUIHelper2, @ptrCast(self)), URL);
+        return self.vtable.AddSearchProvider(self, URL);
     }
     pub fn RunOnceShown(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).RunOnceShown(@as(*const IShellUIHelper2, @ptrCast(self)));
+        return self.vtable.RunOnceShown(self);
     }
     pub fn SkipRunOnce(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).SkipRunOnce(@as(*const IShellUIHelper2, @ptrCast(self)));
+        return self.vtable.SkipRunOnce(self);
     }
     pub fn CustomizeSettings(self: *const IShellUIHelper2, fSQM: i16, fPhishing: i16, bstrLocale: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).CustomizeSettings(@as(*const IShellUIHelper2, @ptrCast(self)), fSQM, fPhishing, bstrLocale);
+        return self.vtable.CustomizeSettings(self, fSQM, fPhishing, bstrLocale);
     }
     pub fn SqmEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).SqmEnabled(@as(*const IShellUIHelper2, @ptrCast(self)), pfEnabled);
+        return self.vtable.SqmEnabled(self, pfEnabled);
     }
     pub fn PhishingEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).PhishingEnabled(@as(*const IShellUIHelper2, @ptrCast(self)), pfEnabled);
+        return self.vtable.PhishingEnabled(self, pfEnabled);
     }
     pub fn BrandImageUri(self: *const IShellUIHelper2, pbstrUri: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).BrandImageUri(@as(*const IShellUIHelper2, @ptrCast(self)), pbstrUri);
+        return self.vtable.BrandImageUri(self, pbstrUri);
     }
     pub fn SkipTabsWelcome(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).SkipTabsWelcome(@as(*const IShellUIHelper2, @ptrCast(self)));
+        return self.vtable.SkipTabsWelcome(self);
     }
     pub fn DiagnoseConnection(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).DiagnoseConnection(@as(*const IShellUIHelper2, @ptrCast(self)));
+        return self.vtable.DiagnoseConnection(self);
     }
     pub fn CustomizeClearType(self: *const IShellUIHelper2, fSet: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).CustomizeClearType(@as(*const IShellUIHelper2, @ptrCast(self)), fSet);
+        return self.vtable.CustomizeClearType(self, fSet);
     }
     pub fn IsSearchProviderInstalled(self: *const IShellUIHelper2, URL: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).IsSearchProviderInstalled(@as(*const IShellUIHelper2, @ptrCast(self)), URL, pdwResult);
+        return self.vtable.IsSearchProviderInstalled(self, URL, pdwResult);
     }
     pub fn IsSearchMigrated(self: *const IShellUIHelper2, pfMigrated: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).IsSearchMigrated(@as(*const IShellUIHelper2, @ptrCast(self)), pfMigrated);
+        return self.vtable.IsSearchMigrated(self, pfMigrated);
     }
     pub fn DefaultSearchProvider(self: *const IShellUIHelper2, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).DefaultSearchProvider(@as(*const IShellUIHelper2, @ptrCast(self)), pbstrName);
+        return self.vtable.DefaultSearchProvider(self, pbstrName);
     }
     pub fn RunOnceRequiredSettingsComplete(self: *const IShellUIHelper2, fComplete: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).RunOnceRequiredSettingsComplete(@as(*const IShellUIHelper2, @ptrCast(self)), fComplete);
+        return self.vtable.RunOnceRequiredSettingsComplete(self, fComplete);
     }
     pub fn RunOnceHasShown(self: *const IShellUIHelper2, pfShown: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).RunOnceHasShown(@as(*const IShellUIHelper2, @ptrCast(self)), pfShown);
+        return self.vtable.RunOnceHasShown(self, pfShown);
     }
     pub fn SearchGuideUrl(self: *const IShellUIHelper2, pbstrUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper2.VTable, @ptrCast(self.vtable)).SearchGuideUrl(@as(*const IShellUIHelper2, @ptrCast(self)), pbstrUrl);
+        return self.vtable.SearchGuideUrl(self, pbstrUrl);
     }
 };
 
@@ -21782,43 +21782,43 @@ pub const IShellUIHelper3 = extern union {
     };}
     pub usingnamespace IShellUIHelper2.MethodMixin(@This());
     pub fn AddService(self: *const IShellUIHelper3, URL: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).AddService(@as(*const IShellUIHelper3, @ptrCast(self)), URL);
+        return self.vtable.AddService(self, URL);
     }
     pub fn IsServiceInstalled(self: *const IShellUIHelper3, URL: ?BSTR, Verb: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).IsServiceInstalled(@as(*const IShellUIHelper3, @ptrCast(self)), URL, Verb, pdwResult);
+        return self.vtable.IsServiceInstalled(self, URL, Verb, pdwResult);
     }
     pub fn InPrivateFilteringEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).InPrivateFilteringEnabled(@as(*const IShellUIHelper3, @ptrCast(self)), pfEnabled);
+        return self.vtable.InPrivateFilteringEnabled(self, pfEnabled);
     }
     pub fn AddToFavoritesBar(self: *const IShellUIHelper3, URL: ?BSTR, Title: ?BSTR, Type: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).AddToFavoritesBar(@as(*const IShellUIHelper3, @ptrCast(self)), URL, Title, Type);
+        return self.vtable.AddToFavoritesBar(self, URL, Title, Type);
     }
     pub fn BuildNewTabPage(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).BuildNewTabPage(@as(*const IShellUIHelper3, @ptrCast(self)));
+        return self.vtable.BuildNewTabPage(self);
     }
     pub fn SetRecentlyClosedVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).SetRecentlyClosedVisible(@as(*const IShellUIHelper3, @ptrCast(self)), fVisible);
+        return self.vtable.SetRecentlyClosedVisible(self, fVisible);
     }
     pub fn SetActivitiesVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).SetActivitiesVisible(@as(*const IShellUIHelper3, @ptrCast(self)), fVisible);
+        return self.vtable.SetActivitiesVisible(self, fVisible);
     }
     pub fn ContentDiscoveryReset(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).ContentDiscoveryReset(@as(*const IShellUIHelper3, @ptrCast(self)));
+        return self.vtable.ContentDiscoveryReset(self);
     }
     pub fn IsSuggestedSitesEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).IsSuggestedSitesEnabled(@as(*const IShellUIHelper3, @ptrCast(self)), pfEnabled);
+        return self.vtable.IsSuggestedSitesEnabled(self, pfEnabled);
     }
     pub fn EnableSuggestedSites(self: *const IShellUIHelper3, fEnable: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).EnableSuggestedSites(@as(*const IShellUIHelper3, @ptrCast(self)), fEnable);
+        return self.vtable.EnableSuggestedSites(self, fEnable);
     }
     pub fn NavigateToSuggestedSites(self: *const IShellUIHelper3, bstrRelativeUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).NavigateToSuggestedSites(@as(*const IShellUIHelper3, @ptrCast(self)), bstrRelativeUrl);
+        return self.vtable.NavigateToSuggestedSites(self, bstrRelativeUrl);
     }
     pub fn ShowTabsHelp(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).ShowTabsHelp(@as(*const IShellUIHelper3, @ptrCast(self)));
+        return self.vtable.ShowTabsHelp(self);
     }
     pub fn ShowInPrivateHelp(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper3.VTable, @ptrCast(self.vtable)).ShowInPrivateHelp(@as(*const IShellUIHelper3, @ptrCast(self)));
+        return self.vtable.ShowInPrivateHelp(self);
     }
 };
 
@@ -21987,58 +21987,58 @@ pub const IShellUIHelper4 = extern union {
     };}
     pub usingnamespace IShellUIHelper3.MethodMixin(@This());
     pub fn msIsSiteMode(self: *const IShellUIHelper4, pfSiteMode: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msIsSiteMode(@as(*const IShellUIHelper4, @ptrCast(self)), pfSiteMode);
+        return self.vtable.msIsSiteMode(self, pfSiteMode);
     }
     pub fn msSiteModeShowThumbBar(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeShowThumbBar(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msSiteModeShowThumbBar(self);
     }
     pub fn msSiteModeAddThumbBarButton(self: *const IShellUIHelper4, bstrIconURL: ?BSTR, bstrTooltip: ?BSTR, pvarButtonID: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeAddThumbBarButton(@as(*const IShellUIHelper4, @ptrCast(self)), bstrIconURL, bstrTooltip, pvarButtonID);
+        return self.vtable.msSiteModeAddThumbBarButton(self, bstrIconURL, bstrTooltip, pvarButtonID);
     }
     pub fn msSiteModeUpdateThumbBarButton(self: *const IShellUIHelper4, ButtonID: VARIANT, fEnabled: i16, fVisible: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeUpdateThumbBarButton(@as(*const IShellUIHelper4, @ptrCast(self)), ButtonID, fEnabled, fVisible);
+        return self.vtable.msSiteModeUpdateThumbBarButton(self, ButtonID, fEnabled, fVisible);
     }
     pub fn msSiteModeSetIconOverlay(self: *const IShellUIHelper4, IconUrl: ?BSTR, pvarDescription: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeSetIconOverlay(@as(*const IShellUIHelper4, @ptrCast(self)), IconUrl, pvarDescription);
+        return self.vtable.msSiteModeSetIconOverlay(self, IconUrl, pvarDescription);
     }
     pub fn msSiteModeClearIconOverlay(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeClearIconOverlay(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msSiteModeClearIconOverlay(self);
     }
     pub fn msAddSiteMode(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msAddSiteMode(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msAddSiteMode(self);
     }
     pub fn msSiteModeCreateJumpList(self: *const IShellUIHelper4, bstrHeader: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeCreateJumpList(@as(*const IShellUIHelper4, @ptrCast(self)), bstrHeader);
+        return self.vtable.msSiteModeCreateJumpList(self, bstrHeader);
     }
     pub fn msSiteModeAddJumpListItem(self: *const IShellUIHelper4, bstrName: ?BSTR, bstrActionUri: ?BSTR, bstrIconUri: ?BSTR, pvarWindowType: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeAddJumpListItem(@as(*const IShellUIHelper4, @ptrCast(self)), bstrName, bstrActionUri, bstrIconUri, pvarWindowType);
+        return self.vtable.msSiteModeAddJumpListItem(self, bstrName, bstrActionUri, bstrIconUri, pvarWindowType);
     }
     pub fn msSiteModeClearJumpList(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeClearJumpList(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msSiteModeClearJumpList(self);
     }
     pub fn msSiteModeShowJumpList(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeShowJumpList(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msSiteModeShowJumpList(self);
     }
     pub fn msSiteModeAddButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, bstrIconUrl: ?BSTR, bstrTooltip: ?BSTR, pvarStyleID: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeAddButtonStyle(@as(*const IShellUIHelper4, @ptrCast(self)), uiButtonID, bstrIconUrl, bstrTooltip, pvarStyleID);
+        return self.vtable.msSiteModeAddButtonStyle(self, uiButtonID, bstrIconUrl, bstrTooltip, pvarStyleID);
     }
     pub fn msSiteModeShowButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, uiStyleID: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeShowButtonStyle(@as(*const IShellUIHelper4, @ptrCast(self)), uiButtonID, uiStyleID);
+        return self.vtable.msSiteModeShowButtonStyle(self, uiButtonID, uiStyleID);
     }
     pub fn msSiteModeActivate(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msSiteModeActivate(@as(*const IShellUIHelper4, @ptrCast(self)));
+        return self.vtable.msSiteModeActivate(self);
     }
     pub fn msIsSiteModeFirstRun(self: *const IShellUIHelper4, fPreserveState: i16, puiFirstRun: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msIsSiteModeFirstRun(@as(*const IShellUIHelper4, @ptrCast(self)), fPreserveState, puiFirstRun);
+        return self.vtable.msIsSiteModeFirstRun(self, fPreserveState, puiFirstRun);
     }
     pub fn msAddTrackingProtectionList(self: *const IShellUIHelper4, URL: ?BSTR, bstrFilterName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msAddTrackingProtectionList(@as(*const IShellUIHelper4, @ptrCast(self)), URL, bstrFilterName);
+        return self.vtable.msAddTrackingProtectionList(self, URL, bstrFilterName);
     }
     pub fn msTrackingProtectionEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msTrackingProtectionEnabled(@as(*const IShellUIHelper4, @ptrCast(self)), pfEnabled);
+        return self.vtable.msTrackingProtectionEnabled(self, pfEnabled);
     }
     pub fn msActiveXFilteringEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper4.VTable, @ptrCast(self.vtable)).msActiveXFilteringEnabled(@as(*const IShellUIHelper4, @ptrCast(self)), pfEnabled);
+        return self.vtable.msActiveXFilteringEnabled(self, pfEnabled);
     }
 };
 
@@ -22107,25 +22107,25 @@ pub const IShellUIHelper5 = extern union {
     };}
     pub usingnamespace IShellUIHelper4.MethodMixin(@This());
     pub fn msProvisionNetworks(self: *const IShellUIHelper5, bstrProvisioningXml: ?BSTR, puiResult: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msProvisionNetworks(@as(*const IShellUIHelper5, @ptrCast(self)), bstrProvisioningXml, puiResult);
+        return self.vtable.msProvisionNetworks(self, bstrProvisioningXml, puiResult);
     }
     pub fn msReportSafeUrl(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msReportSafeUrl(@as(*const IShellUIHelper5, @ptrCast(self)));
+        return self.vtable.msReportSafeUrl(self);
     }
     pub fn msSiteModeRefreshBadge(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msSiteModeRefreshBadge(@as(*const IShellUIHelper5, @ptrCast(self)));
+        return self.vtable.msSiteModeRefreshBadge(self);
     }
     pub fn msSiteModeClearBadge(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msSiteModeClearBadge(@as(*const IShellUIHelper5, @ptrCast(self)));
+        return self.vtable.msSiteModeClearBadge(self);
     }
     pub fn msDiagnoseConnectionUILess(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msDiagnoseConnectionUILess(@as(*const IShellUIHelper5, @ptrCast(self)));
+        return self.vtable.msDiagnoseConnectionUILess(self);
     }
     pub fn msLaunchNetworkClientHelp(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msLaunchNetworkClientHelp(@as(*const IShellUIHelper5, @ptrCast(self)));
+        return self.vtable.msLaunchNetworkClientHelp(self);
     }
     pub fn msChangeDefaultBrowser(self: *const IShellUIHelper5, fChange: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper5.VTable, @ptrCast(self.vtable)).msChangeDefaultBrowser(@as(*const IShellUIHelper5, @ptrCast(self)), fChange);
+        return self.vtable.msChangeDefaultBrowser(self, fChange);
     }
 };
 
@@ -22260,46 +22260,46 @@ pub const IShellUIHelper6 = extern union {
     };}
     pub usingnamespace IShellUIHelper5.MethodMixin(@This());
     pub fn msStopPeriodicTileUpdate(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msStopPeriodicTileUpdate(@as(*const IShellUIHelper6, @ptrCast(self)));
+        return self.vtable.msStopPeriodicTileUpdate(self);
     }
     pub fn msStartPeriodicTileUpdate(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msStartPeriodicTileUpdate(@as(*const IShellUIHelper6, @ptrCast(self)), pollingUris, startTime, uiUpdateRecurrence);
+        return self.vtable.msStartPeriodicTileUpdate(self, pollingUris, startTime, uiUpdateRecurrence);
     }
     pub fn msStartPeriodicTileUpdateBatch(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msStartPeriodicTileUpdateBatch(@as(*const IShellUIHelper6, @ptrCast(self)), pollingUris, startTime, uiUpdateRecurrence);
+        return self.vtable.msStartPeriodicTileUpdateBatch(self, pollingUris, startTime, uiUpdateRecurrence);
     }
     pub fn msClearTile(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msClearTile(@as(*const IShellUIHelper6, @ptrCast(self)));
+        return self.vtable.msClearTile(self);
     }
     pub fn msEnableTileNotificationQueue(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msEnableTileNotificationQueue(@as(*const IShellUIHelper6, @ptrCast(self)), fChange);
+        return self.vtable.msEnableTileNotificationQueue(self, fChange);
     }
     pub fn msPinnedSiteState(self: *const IShellUIHelper6, pvarSiteState: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msPinnedSiteState(@as(*const IShellUIHelper6, @ptrCast(self)), pvarSiteState);
+        return self.vtable.msPinnedSiteState(self, pvarSiteState);
     }
     pub fn msEnableTileNotificationQueueForSquare150x150(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msEnableTileNotificationQueueForSquare150x150(@as(*const IShellUIHelper6, @ptrCast(self)), fChange);
+        return self.vtable.msEnableTileNotificationQueueForSquare150x150(self, fChange);
     }
     pub fn msEnableTileNotificationQueueForWide310x150(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msEnableTileNotificationQueueForWide310x150(@as(*const IShellUIHelper6, @ptrCast(self)), fChange);
+        return self.vtable.msEnableTileNotificationQueueForWide310x150(self, fChange);
     }
     pub fn msEnableTileNotificationQueueForSquare310x310(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msEnableTileNotificationQueueForSquare310x310(@as(*const IShellUIHelper6, @ptrCast(self)), fChange);
+        return self.vtable.msEnableTileNotificationQueueForSquare310x310(self, fChange);
     }
     pub fn msScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationXml: ?BSTR, bstrNotificationId: ?BSTR, bstrNotificationTag: ?BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msScheduledTileNotification(@as(*const IShellUIHelper6, @ptrCast(self)), bstrNotificationXml, bstrNotificationId, bstrNotificationTag, startTime, expirationTime);
+        return self.vtable.msScheduledTileNotification(self, bstrNotificationXml, bstrNotificationId, bstrNotificationTag, startTime, expirationTime);
     }
     pub fn msRemoveScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msRemoveScheduledTileNotification(@as(*const IShellUIHelper6, @ptrCast(self)), bstrNotificationId);
+        return self.vtable.msRemoveScheduledTileNotification(self, bstrNotificationId);
     }
     pub fn msStartPeriodicBadgeUpdate(self: *const IShellUIHelper6, pollingUri: ?BSTR, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msStartPeriodicBadgeUpdate(@as(*const IShellUIHelper6, @ptrCast(self)), pollingUri, startTime, uiUpdateRecurrence);
+        return self.vtable.msStartPeriodicBadgeUpdate(self, pollingUri, startTime, uiUpdateRecurrence);
     }
     pub fn msStopPeriodicBadgeUpdate(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msStopPeriodicBadgeUpdate(@as(*const IShellUIHelper6, @ptrCast(self)));
+        return self.vtable.msStopPeriodicBadgeUpdate(self);
     }
     pub fn msLaunchInternetOptions(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper6.VTable, @ptrCast(self.vtable)).msLaunchInternetOptions(@as(*const IShellUIHelper6, @ptrCast(self)));
+        return self.vtable.msLaunchInternetOptions(self);
     }
 };
 
@@ -22395,31 +22395,31 @@ pub const IShellUIHelper7 = extern union {
     };}
     pub usingnamespace IShellUIHelper6.MethodMixin(@This());
     pub fn SetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).SetExperimentalFlag(@as(*const IShellUIHelper7, @ptrCast(self)), bstrFlagString, vfFlag);
+        return self.vtable.SetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
     pub fn GetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).GetExperimentalFlag(@as(*const IShellUIHelper7, @ptrCast(self)), bstrFlagString, vfFlag);
+        return self.vtable.GetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
     pub fn SetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).SetExperimentalValue(@as(*const IShellUIHelper7, @ptrCast(self)), bstrValueString, dwValue);
+        return self.vtable.SetExperimentalValue(self, bstrValueString, dwValue);
     }
     pub fn GetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, pdwValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).GetExperimentalValue(@as(*const IShellUIHelper7, @ptrCast(self)), bstrValueString, pdwValue);
+        return self.vtable.GetExperimentalValue(self, bstrValueString, pdwValue);
     }
     pub fn ResetAllExperimentalFlagsAndValues(self: *const IShellUIHelper7) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).ResetAllExperimentalFlagsAndValues(@as(*const IShellUIHelper7, @ptrCast(self)));
+        return self.vtable.ResetAllExperimentalFlagsAndValues(self);
     }
     pub fn GetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).GetNeedIEAutoLaunchFlag(@as(*const IShellUIHelper7, @ptrCast(self)), bstrUrl, flag);
+        return self.vtable.GetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
     pub fn SetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).SetNeedIEAutoLaunchFlag(@as(*const IShellUIHelper7, @ptrCast(self)), bstrUrl, flag);
+        return self.vtable.SetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
     pub fn HasNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, exists: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).HasNeedIEAutoLaunchFlag(@as(*const IShellUIHelper7, @ptrCast(self)), bstrUrl, exists);
+        return self.vtable.HasNeedIEAutoLaunchFlag(self, bstrUrl, exists);
     }
     pub fn LaunchIE(self: *const IShellUIHelper7, bstrUrl: ?BSTR, automated: i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper7.VTable, @ptrCast(self.vtable)).LaunchIE(@as(*const IShellUIHelper7, @ptrCast(self)), bstrUrl, automated);
+        return self.vtable.LaunchIE(self, bstrUrl, automated);
     }
 };
 
@@ -22490,25 +22490,25 @@ pub const IShellUIHelper8 = extern union {
     };}
     pub usingnamespace IShellUIHelper7.MethodMixin(@This());
     pub fn GetCVListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).GetCVListData(@as(*const IShellUIHelper8, @ptrCast(self)), pbstrResult);
+        return self.vtable.GetCVListData(self, pbstrResult);
     }
     pub fn GetCVListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).GetCVListLocalData(@as(*const IShellUIHelper8, @ptrCast(self)), pbstrResult);
+        return self.vtable.GetCVListLocalData(self, pbstrResult);
     }
     pub fn GetEMIEListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).GetEMIEListData(@as(*const IShellUIHelper8, @ptrCast(self)), pbstrResult);
+        return self.vtable.GetEMIEListData(self, pbstrResult);
     }
     pub fn GetEMIEListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).GetEMIEListLocalData(@as(*const IShellUIHelper8, @ptrCast(self)), pbstrResult);
+        return self.vtable.GetEMIEListLocalData(self, pbstrResult);
     }
     pub fn OpenFavoritesPane(self: *const IShellUIHelper8) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).OpenFavoritesPane(@as(*const IShellUIHelper8, @ptrCast(self)));
+        return self.vtable.OpenFavoritesPane(self);
     }
     pub fn OpenFavoritesSettings(self: *const IShellUIHelper8) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).OpenFavoritesSettings(@as(*const IShellUIHelper8, @ptrCast(self)));
+        return self.vtable.OpenFavoritesSettings(self);
     }
     pub fn LaunchInHVSI(self: *const IShellUIHelper8, bstrUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper8.VTable, @ptrCast(self.vtable)).LaunchInHVSI(@as(*const IShellUIHelper8, @ptrCast(self)), bstrUrl);
+        return self.vtable.LaunchInHVSI(self, bstrUrl);
     }
 };
 
@@ -22533,7 +22533,7 @@ pub const IShellUIHelper9 = extern union {
     };}
     pub usingnamespace IShellUIHelper8.MethodMixin(@This());
     pub fn GetOSSku(self: *const IShellUIHelper9, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellUIHelper9.VTable, @ptrCast(self.vtable)).GetOSSku(@as(*const IShellUIHelper9, @ptrCast(self)), pdwResult);
+        return self.vtable.GetOSSku(self, pdwResult);
     }
 };
 
@@ -22661,43 +22661,43 @@ pub const IShellFavoritesNameSpace = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn MoveSelectionUp(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).MoveSelectionUp(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.MoveSelectionUp(self);
     }
     pub fn MoveSelectionDown(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).MoveSelectionDown(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.MoveSelectionDown(self);
     }
     pub fn ResetSort(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).ResetSort(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.ResetSort(self);
     }
     pub fn NewFolder(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).NewFolder(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.NewFolder(self);
     }
     pub fn Synchronize(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).Synchronize(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.Synchronize(self);
     }
     pub fn Import(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).Import(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.Import(self);
     }
     pub fn Export(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).Export(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.Export(self);
     }
     pub fn InvokeContextMenuCommand(self: *const IShellFavoritesNameSpace, strCommand: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).InvokeContextMenuCommand(@as(*const IShellFavoritesNameSpace, @ptrCast(self)), strCommand);
+        return self.vtable.InvokeContextMenuCommand(self, strCommand);
     }
     pub fn MoveSelectionTo(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).MoveSelectionTo(@as(*const IShellFavoritesNameSpace, @ptrCast(self)));
+        return self.vtable.MoveSelectionTo(self);
     }
     pub fn get_SubscriptionsEnabled(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).get_SubscriptionsEnabled(@as(*const IShellFavoritesNameSpace, @ptrCast(self)), pBool);
+        return self.vtable.get_SubscriptionsEnabled(self, pBool);
     }
     pub fn CreateSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).CreateSubscriptionForSelection(@as(*const IShellFavoritesNameSpace, @ptrCast(self)), pBool);
+        return self.vtable.CreateSubscriptionForSelection(self, pBool);
     }
     pub fn DeleteSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).DeleteSubscriptionForSelection(@as(*const IShellFavoritesNameSpace, @ptrCast(self)), pBool);
+        return self.vtable.DeleteSubscriptionForSelection(self, pBool);
     }
     pub fn SetRoot(self: *const IShellFavoritesNameSpace, bstrFullPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFavoritesNameSpace.VTable, @ptrCast(self.vtable)).SetRoot(@as(*const IShellFavoritesNameSpace, @ptrCast(self)), bstrFullPath);
+        return self.vtable.SetRoot(self, bstrFullPath);
     }
 };
 
@@ -22899,67 +22899,67 @@ pub const IShellNameSpace = extern union {
     };}
     pub usingnamespace IShellFavoritesNameSpace.MethodMixin(@This());
     pub fn get_EnumOptions(self: *const IShellNameSpace, pgrfEnumFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_EnumOptions(@as(*const IShellNameSpace, @ptrCast(self)), pgrfEnumFlags);
+        return self.vtable.get_EnumOptions(self, pgrfEnumFlags);
     }
     pub fn put_EnumOptions(self: *const IShellNameSpace, lVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_EnumOptions(@as(*const IShellNameSpace, @ptrCast(self)), lVal);
+        return self.vtable.put_EnumOptions(self, lVal);
     }
     pub fn get_SelectedItem(self: *const IShellNameSpace, pItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_SelectedItem(@as(*const IShellNameSpace, @ptrCast(self)), pItem);
+        return self.vtable.get_SelectedItem(self, pItem);
     }
     pub fn put_SelectedItem(self: *const IShellNameSpace, pItem: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_SelectedItem(@as(*const IShellNameSpace, @ptrCast(self)), pItem);
+        return self.vtable.put_SelectedItem(self, pItem);
     }
     pub fn get_Root(self: *const IShellNameSpace, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_Root(@as(*const IShellNameSpace, @ptrCast(self)), pvar);
+        return self.vtable.get_Root(self, pvar);
     }
     pub fn put_Root(self: *const IShellNameSpace, @"var": VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_Root(@as(*const IShellNameSpace, @ptrCast(self)), @"var");
+        return self.vtable.put_Root(self, @"var");
     }
     pub fn get_Depth(self: *const IShellNameSpace, piDepth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_Depth(@as(*const IShellNameSpace, @ptrCast(self)), piDepth);
+        return self.vtable.get_Depth(self, piDepth);
     }
     pub fn put_Depth(self: *const IShellNameSpace, iDepth: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_Depth(@as(*const IShellNameSpace, @ptrCast(self)), iDepth);
+        return self.vtable.put_Depth(self, iDepth);
     }
     pub fn get_Mode(self: *const IShellNameSpace, puMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_Mode(@as(*const IShellNameSpace, @ptrCast(self)), puMode);
+        return self.vtable.get_Mode(self, puMode);
     }
     pub fn put_Mode(self: *const IShellNameSpace, uMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_Mode(@as(*const IShellNameSpace, @ptrCast(self)), uMode);
+        return self.vtable.put_Mode(self, uMode);
     }
     pub fn get_Flags(self: *const IShellNameSpace, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IShellNameSpace, @ptrCast(self)), pdwFlags);
+        return self.vtable.get_Flags(self, pdwFlags);
     }
     pub fn put_Flags(self: *const IShellNameSpace, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IShellNameSpace, @ptrCast(self)), dwFlags);
+        return self.vtable.put_Flags(self, dwFlags);
     }
     pub fn put_TVFlags(self: *const IShellNameSpace, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_TVFlags(@as(*const IShellNameSpace, @ptrCast(self)), dwFlags);
+        return self.vtable.put_TVFlags(self, dwFlags);
     }
     pub fn get_TVFlags(self: *const IShellNameSpace, dwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_TVFlags(@as(*const IShellNameSpace, @ptrCast(self)), dwFlags);
+        return self.vtable.get_TVFlags(self, dwFlags);
     }
     pub fn get_Columns(self: *const IShellNameSpace, bstrColumns: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_Columns(@as(*const IShellNameSpace, @ptrCast(self)), bstrColumns);
+        return self.vtable.get_Columns(self, bstrColumns);
     }
     pub fn put_Columns(self: *const IShellNameSpace, bstrColumns: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).put_Columns(@as(*const IShellNameSpace, @ptrCast(self)), bstrColumns);
+        return self.vtable.put_Columns(self, bstrColumns);
     }
     pub fn get_CountViewTypes(self: *const IShellNameSpace, piTypes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).get_CountViewTypes(@as(*const IShellNameSpace, @ptrCast(self)), piTypes);
+        return self.vtable.get_CountViewTypes(self, piTypes);
     }
     pub fn SetViewType(self: *const IShellNameSpace, iType: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).SetViewType(@as(*const IShellNameSpace, @ptrCast(self)), iType);
+        return self.vtable.SetViewType(self, iType);
     }
     pub fn SelectedItems(self: *const IShellNameSpace, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).SelectedItems(@as(*const IShellNameSpace, @ptrCast(self)), ppid);
+        return self.vtable.SelectedItems(self, ppid);
     }
     pub fn Expand(self: *const IShellNameSpace, @"var": VARIANT, iDepth: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).Expand(@as(*const IShellNameSpace, @ptrCast(self)), @"var", iDepth);
+        return self.vtable.Expand(self, @"var", iDepth);
     }
     pub fn UnselectAll(self: *const IShellNameSpace) callconv(.Inline) HRESULT {
-        return @as(*const IShellNameSpace.VTable, @ptrCast(self.vtable)).UnselectAll(@as(*const IShellNameSpace, @ptrCast(self)));
+        return self.vtable.UnselectAll(self);
     }
 };
 
@@ -23086,46 +23086,46 @@ pub const IScriptErrorList = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn advanceError(self: *const IScriptErrorList) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).advanceError(@as(*const IScriptErrorList, @ptrCast(self)));
+        return self.vtable.advanceError(self);
     }
     pub fn retreatError(self: *const IScriptErrorList) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).retreatError(@as(*const IScriptErrorList, @ptrCast(self)));
+        return self.vtable.retreatError(self);
     }
     pub fn canAdvanceError(self: *const IScriptErrorList, pfCanAdvance: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).canAdvanceError(@as(*const IScriptErrorList, @ptrCast(self)), pfCanAdvance);
+        return self.vtable.canAdvanceError(self, pfCanAdvance);
     }
     pub fn canRetreatError(self: *const IScriptErrorList, pfCanRetreat: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).canRetreatError(@as(*const IScriptErrorList, @ptrCast(self)), pfCanRetreat);
+        return self.vtable.canRetreatError(self, pfCanRetreat);
     }
     pub fn getErrorLine(self: *const IScriptErrorList, plLine: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getErrorLine(@as(*const IScriptErrorList, @ptrCast(self)), plLine);
+        return self.vtable.getErrorLine(self, plLine);
     }
     pub fn getErrorChar(self: *const IScriptErrorList, plChar: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getErrorChar(@as(*const IScriptErrorList, @ptrCast(self)), plChar);
+        return self.vtable.getErrorChar(self, plChar);
     }
     pub fn getErrorCode(self: *const IScriptErrorList, plCode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getErrorCode(@as(*const IScriptErrorList, @ptrCast(self)), plCode);
+        return self.vtable.getErrorCode(self, plCode);
     }
     pub fn getErrorMsg(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getErrorMsg(@as(*const IScriptErrorList, @ptrCast(self)), pstr);
+        return self.vtable.getErrorMsg(self, pstr);
     }
     pub fn getErrorUrl(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getErrorUrl(@as(*const IScriptErrorList, @ptrCast(self)), pstr);
+        return self.vtable.getErrorUrl(self, pstr);
     }
     pub fn getAlwaysShowLockState(self: *const IScriptErrorList, pfAlwaysShowLocked: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getAlwaysShowLockState(@as(*const IScriptErrorList, @ptrCast(self)), pfAlwaysShowLocked);
+        return self.vtable.getAlwaysShowLockState(self, pfAlwaysShowLocked);
     }
     pub fn getDetailsPaneOpen(self: *const IScriptErrorList, pfDetailsPaneOpen: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getDetailsPaneOpen(@as(*const IScriptErrorList, @ptrCast(self)), pfDetailsPaneOpen);
+        return self.vtable.getDetailsPaneOpen(self, pfDetailsPaneOpen);
     }
     pub fn setDetailsPaneOpen(self: *const IScriptErrorList, fDetailsPaneOpen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).setDetailsPaneOpen(@as(*const IScriptErrorList, @ptrCast(self)), fDetailsPaneOpen);
+        return self.vtable.setDetailsPaneOpen(self, fDetailsPaneOpen);
     }
     pub fn getPerErrorDisplay(self: *const IScriptErrorList, pfPerErrorDisplay: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).getPerErrorDisplay(@as(*const IScriptErrorList, @ptrCast(self)), pfPerErrorDisplay);
+        return self.vtable.getPerErrorDisplay(self, pfPerErrorDisplay);
     }
     pub fn setPerErrorDisplay(self: *const IScriptErrorList, fPerErrorDisplay: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IScriptErrorList.VTable, @ptrCast(self.vtable)).setPerErrorDisplay(@as(*const IScriptErrorList, @ptrCast(self)), fPerErrorDisplay);
+        return self.vtable.setPerErrorDisplay(self, fPerErrorDisplay);
     }
 };
 
@@ -23280,7 +23280,7 @@ pub const IFolderViewOC = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SetFolderView(self: *const IFolderViewOC, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IFolderViewOC.VTable, @ptrCast(self.vtable)).SetFolderView(@as(*const IFolderViewOC, @ptrCast(self)), pdisp);
+        return self.vtable.SetFolderView(self, pdisp);
     }
 };
 
@@ -23329,10 +23329,10 @@ pub const DFConstraint = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const DFConstraint, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const DFConstraint.VTable, @ptrCast(self.vtable)).get_Name(@as(*const DFConstraint, @ptrCast(self)), pbs);
+        return self.vtable.get_Name(self, pbs);
     }
     pub fn get_Value(self: *const DFConstraint, pv: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const DFConstraint.VTable, @ptrCast(self.vtable)).get_Value(@as(*const DFConstraint, @ptrCast(self)), pv);
+        return self.vtable.get_Value(self, pv);
     }
 };
 
@@ -23500,55 +23500,55 @@ pub const FolderItem = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Application(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Application(@as(*const FolderItem, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const FolderItem, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn get_Name(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Name(@as(*const FolderItem, @ptrCast(self)), pbs);
+        return self.vtable.get_Name(self, pbs);
     }
     pub fn put_Name(self: *const FolderItem, bs: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).put_Name(@as(*const FolderItem, @ptrCast(self)), bs);
+        return self.vtable.put_Name(self, bs);
     }
     pub fn get_Path(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Path(@as(*const FolderItem, @ptrCast(self)), pbs);
+        return self.vtable.get_Path(self, pbs);
     }
     pub fn get_GetLink(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_GetLink(@as(*const FolderItem, @ptrCast(self)), ppid);
+        return self.vtable.get_GetLink(self, ppid);
     }
     pub fn get_GetFolder(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_GetFolder(@as(*const FolderItem, @ptrCast(self)), ppid);
+        return self.vtable.get_GetFolder(self, ppid);
     }
     pub fn get_IsLink(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_IsLink(@as(*const FolderItem, @ptrCast(self)), pb);
+        return self.vtable.get_IsLink(self, pb);
     }
     pub fn get_IsFolder(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_IsFolder(@as(*const FolderItem, @ptrCast(self)), pb);
+        return self.vtable.get_IsFolder(self, pb);
     }
     pub fn get_IsFileSystem(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_IsFileSystem(@as(*const FolderItem, @ptrCast(self)), pb);
+        return self.vtable.get_IsFileSystem(self, pb);
     }
     pub fn get_IsBrowsable(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_IsBrowsable(@as(*const FolderItem, @ptrCast(self)), pb);
+        return self.vtable.get_IsBrowsable(self, pb);
     }
     pub fn get_ModifyDate(self: *const FolderItem, pdt: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_ModifyDate(@as(*const FolderItem, @ptrCast(self)), pdt);
+        return self.vtable.get_ModifyDate(self, pdt);
     }
     pub fn put_ModifyDate(self: *const FolderItem, dt: f64) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).put_ModifyDate(@as(*const FolderItem, @ptrCast(self)), dt);
+        return self.vtable.put_ModifyDate(self, dt);
     }
     pub fn get_Size(self: *const FolderItem, pul: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Size(@as(*const FolderItem, @ptrCast(self)), pul);
+        return self.vtable.get_Size(self, pul);
     }
     pub fn get_Type(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).get_Type(@as(*const FolderItem, @ptrCast(self)), pbs);
+        return self.vtable.get_Type(self, pbs);
     }
     pub fn Verbs(self: *const FolderItem, ppfic: ?*?*FolderItemVerbs) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).Verbs(@as(*const FolderItem, @ptrCast(self)), ppfic);
+        return self.vtable.Verbs(self, ppfic);
     }
     pub fn InvokeVerb(self: *const FolderItem, vVerb: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem.VTable, @ptrCast(self.vtable)).InvokeVerb(@as(*const FolderItem, @ptrCast(self)), vVerb);
+        return self.vtable.InvokeVerb(self, vVerb);
     }
 };
 
@@ -23609,19 +23609,19 @@ pub const FolderItems = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const FolderItems, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems.VTable, @ptrCast(self.vtable)).get_Count(@as(*const FolderItems, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get_Application(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems.VTable, @ptrCast(self.vtable)).get_Application(@as(*const FolderItems, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const FolderItems, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn Item(self: *const FolderItems, index: VARIANT, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems.VTable, @ptrCast(self.vtable)).Item(@as(*const FolderItems, @ptrCast(self)), index, ppid);
+        return self.vtable.Item(self, index, ppid);
     }
     pub fn _NewEnum(self: *const FolderItems, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const FolderItems, @ptrCast(self)), ppunk);
+        return self.vtable._NewEnum(self, ppunk);
     }
 };
 
@@ -23672,16 +23672,16 @@ pub const FolderItemVerb = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Application(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerb.VTable, @ptrCast(self.vtable)).get_Application(@as(*const FolderItemVerb, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerb.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const FolderItemVerb, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn get_Name(self: *const FolderItemVerb, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerb.VTable, @ptrCast(self.vtable)).get_Name(@as(*const FolderItemVerb, @ptrCast(self)), pbs);
+        return self.vtable.get_Name(self, pbs);
     }
     pub fn DoIt(self: *const FolderItemVerb) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerb.VTable, @ptrCast(self.vtable)).DoIt(@as(*const FolderItemVerb, @ptrCast(self)));
+        return self.vtable.DoIt(self);
     }
 };
 
@@ -23742,19 +23742,19 @@ pub const FolderItemVerbs = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const FolderItemVerbs, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerbs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const FolderItemVerbs, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get_Application(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerbs.VTable, @ptrCast(self.vtable)).get_Application(@as(*const FolderItemVerbs, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerbs.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const FolderItemVerbs, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn Item(self: *const FolderItemVerbs, index: VARIANT, ppid: ?*?*FolderItemVerb) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerbs.VTable, @ptrCast(self.vtable)).Item(@as(*const FolderItemVerbs, @ptrCast(self)), index, ppid);
+        return self.vtable.Item(self, index, ppid);
     }
     pub fn _NewEnum(self: *const FolderItemVerbs, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const FolderItemVerbs.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const FolderItemVerbs, @ptrCast(self)), ppunk);
+        return self.vtable._NewEnum(self, ppunk);
     }
 };
 
@@ -23861,34 +23861,34 @@ pub const Folder = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Title(self: *const Folder, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).get_Title(@as(*const Folder, @ptrCast(self)), pbs);
+        return self.vtable.get_Title(self, pbs);
     }
     pub fn get_Application(self: *const Folder, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).get_Application(@as(*const Folder, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const Folder, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const Folder, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn get_ParentFolder(self: *const Folder, ppsf: ?*?*Folder) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).get_ParentFolder(@as(*const Folder, @ptrCast(self)), ppsf);
+        return self.vtable.get_ParentFolder(self, ppsf);
     }
     pub fn Items(self: *const Folder, ppid: ?*?*FolderItems) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).Items(@as(*const Folder, @ptrCast(self)), ppid);
+        return self.vtable.Items(self, ppid);
     }
     pub fn ParseName(self: *const Folder, bName: ?BSTR, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).ParseName(@as(*const Folder, @ptrCast(self)), bName, ppid);
+        return self.vtable.ParseName(self, bName, ppid);
     }
     pub fn NewFolder(self: *const Folder, bName: ?BSTR, vOptions: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).NewFolder(@as(*const Folder, @ptrCast(self)), bName, vOptions);
+        return self.vtable.NewFolder(self, bName, vOptions);
     }
     pub fn MoveHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).MoveHere(@as(*const Folder, @ptrCast(self)), vItem, vOptions);
+        return self.vtable.MoveHere(self, vItem, vOptions);
     }
     pub fn CopyHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).CopyHere(@as(*const Folder, @ptrCast(self)), vItem, vOptions);
+        return self.vtable.CopyHere(self, vItem, vOptions);
     }
     pub fn GetDetailsOf(self: *const Folder, vItem: VARIANT, iColumn: i32, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const Folder.VTable, @ptrCast(self.vtable)).GetDetailsOf(@as(*const Folder, @ptrCast(self)), vItem, iColumn, pbs);
+        return self.vtable.GetDetailsOf(self, vItem, iColumn, pbs);
     }
 };
 
@@ -23946,19 +23946,19 @@ pub const Folder2 = extern union {
     };}
     pub usingnamespace Folder.MethodMixin(@This());
     pub fn get_Self(self: *const Folder2, ppfi: ?*?*FolderItem) callconv(.Inline) HRESULT {
-        return @as(*const Folder2.VTable, @ptrCast(self.vtable)).get_Self(@as(*const Folder2, @ptrCast(self)), ppfi);
+        return self.vtable.get_Self(self, ppfi);
     }
     pub fn get_OfflineStatus(self: *const Folder2, pul: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const Folder2.VTable, @ptrCast(self.vtable)).get_OfflineStatus(@as(*const Folder2, @ptrCast(self)), pul);
+        return self.vtable.get_OfflineStatus(self, pul);
     }
     pub fn Synchronize(self: *const Folder2) callconv(.Inline) HRESULT {
-        return @as(*const Folder2.VTable, @ptrCast(self.vtable)).Synchronize(@as(*const Folder2, @ptrCast(self)));
+        return self.vtable.Synchronize(self);
     }
     pub fn get_HaveToShowWebViewBarricade(self: *const Folder2, pbHaveToShowWebViewBarricade: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const Folder2.VTable, @ptrCast(self.vtable)).get_HaveToShowWebViewBarricade(@as(*const Folder2, @ptrCast(self)), pbHaveToShowWebViewBarricade);
+        return self.vtable.get_HaveToShowWebViewBarricade(self, pbHaveToShowWebViewBarricade);
     }
     pub fn DismissedWebViewBarricade(self: *const Folder2) callconv(.Inline) HRESULT {
-        return @as(*const Folder2.VTable, @ptrCast(self.vtable)).DismissedWebViewBarricade(@as(*const Folder2, @ptrCast(self)));
+        return self.vtable.DismissedWebViewBarricade(self);
     }
 };
 
@@ -23993,10 +23993,10 @@ pub const Folder3 = extern union {
     };}
     pub usingnamespace Folder2.MethodMixin(@This());
     pub fn get_ShowWebViewBarricade(self: *const Folder3, pbShowWebViewBarricade: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const Folder3.VTable, @ptrCast(self.vtable)).get_ShowWebViewBarricade(@as(*const Folder3, @ptrCast(self)), pbShowWebViewBarricade);
+        return self.vtable.get_ShowWebViewBarricade(self, pbShowWebViewBarricade);
     }
     pub fn put_ShowWebViewBarricade(self: *const Folder3, bShowWebViewBarricade: i16) callconv(.Inline) HRESULT {
-        return @as(*const Folder3.VTable, @ptrCast(self.vtable)).put_ShowWebViewBarricade(@as(*const Folder3, @ptrCast(self)), bShowWebViewBarricade);
+        return self.vtable.put_ShowWebViewBarricade(self, bShowWebViewBarricade);
     }
 };
 
@@ -24031,10 +24031,10 @@ pub const FolderItem2 = extern union {
     };}
     pub usingnamespace FolderItem.MethodMixin(@This());
     pub fn InvokeVerbEx(self: *const FolderItem2, vVerb: VARIANT, vArgs: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem2.VTable, @ptrCast(self.vtable)).InvokeVerbEx(@as(*const FolderItem2, @ptrCast(self)), vVerb, vArgs);
+        return self.vtable.InvokeVerbEx(self, vVerb, vArgs);
     }
     pub fn ExtendedProperty(self: *const FolderItem2, bstrPropName: ?BSTR, pvRet: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const FolderItem2.VTable, @ptrCast(self.vtable)).ExtendedProperty(@as(*const FolderItem2, @ptrCast(self)), bstrPropName, pvRet);
+        return self.vtable.ExtendedProperty(self, bstrPropName, pvRet);
     }
 };
 
@@ -24060,7 +24060,7 @@ pub const FolderItems2 = extern union {
     };}
     pub usingnamespace FolderItems.MethodMixin(@This());
     pub fn InvokeVerbEx(self: *const FolderItems2, vVerb: VARIANT, vArgs: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems2.VTable, @ptrCast(self.vtable)).InvokeVerbEx(@as(*const FolderItems2, @ptrCast(self)), vVerb, vArgs);
+        return self.vtable.InvokeVerbEx(self, vVerb, vArgs);
     }
 };
 
@@ -24095,10 +24095,10 @@ pub const FolderItems3 = extern union {
     };}
     pub usingnamespace FolderItems2.MethodMixin(@This());
     pub fn Filter(self: *const FolderItems3, grfFlags: i32, bstrFileSpec: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems3.VTable, @ptrCast(self.vtable)).Filter(@as(*const FolderItems3, @ptrCast(self)), grfFlags, bstrFileSpec);
+        return self.vtable.Filter(self, grfFlags, bstrFileSpec);
     }
     pub fn get_Verbs(self: *const FolderItems3, ppfic: ?*?*FolderItemVerbs) callconv(.Inline) HRESULT {
-        return @as(*const FolderItems3.VTable, @ptrCast(self.vtable)).get_Verbs(@as(*const FolderItems3, @ptrCast(self)), ppfic);
+        return self.vtable.get_Verbs(self, ppfic);
     }
 };
 
@@ -24257,52 +24257,52 @@ pub const IShellLinkDual = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Path(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IShellLinkDual, @ptrCast(self)), pbs);
+        return self.vtable.get_Path(self, pbs);
     }
     pub fn put_Path(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_Path(@as(*const IShellLinkDual, @ptrCast(self)), bs);
+        return self.vtable.put_Path(self, bs);
     }
     pub fn get_Description(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IShellLinkDual, @ptrCast(self)), pbs);
+        return self.vtable.get_Description(self, pbs);
     }
     pub fn put_Description(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IShellLinkDual, @ptrCast(self)), bs);
+        return self.vtable.put_Description(self, bs);
     }
     pub fn get_WorkingDirectory(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_WorkingDirectory(@as(*const IShellLinkDual, @ptrCast(self)), pbs);
+        return self.vtable.get_WorkingDirectory(self, pbs);
     }
     pub fn put_WorkingDirectory(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_WorkingDirectory(@as(*const IShellLinkDual, @ptrCast(self)), bs);
+        return self.vtable.put_WorkingDirectory(self, bs);
     }
     pub fn get_Arguments(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_Arguments(@as(*const IShellLinkDual, @ptrCast(self)), pbs);
+        return self.vtable.get_Arguments(self, pbs);
     }
     pub fn put_Arguments(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_Arguments(@as(*const IShellLinkDual, @ptrCast(self)), bs);
+        return self.vtable.put_Arguments(self, bs);
     }
     pub fn get_Hotkey(self: *const IShellLinkDual, piHK: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_Hotkey(@as(*const IShellLinkDual, @ptrCast(self)), piHK);
+        return self.vtable.get_Hotkey(self, piHK);
     }
     pub fn put_Hotkey(self: *const IShellLinkDual, iHK: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_Hotkey(@as(*const IShellLinkDual, @ptrCast(self)), iHK);
+        return self.vtable.put_Hotkey(self, iHK);
     }
     pub fn get_ShowCommand(self: *const IShellLinkDual, piShowCommand: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).get_ShowCommand(@as(*const IShellLinkDual, @ptrCast(self)), piShowCommand);
+        return self.vtable.get_ShowCommand(self, piShowCommand);
     }
     pub fn put_ShowCommand(self: *const IShellLinkDual, iShowCommand: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).put_ShowCommand(@as(*const IShellLinkDual, @ptrCast(self)), iShowCommand);
+        return self.vtable.put_ShowCommand(self, iShowCommand);
     }
     pub fn Resolve(self: *const IShellLinkDual, fFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IShellLinkDual, @ptrCast(self)), fFlags);
+        return self.vtable.Resolve(self, fFlags);
     }
     pub fn GetIconLocation(self: *const IShellLinkDual, pbs: ?*?BSTR, piIcon: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IShellLinkDual, @ptrCast(self)), pbs, piIcon);
+        return self.vtable.GetIconLocation(self, pbs, piIcon);
     }
     pub fn SetIconLocation(self: *const IShellLinkDual, bs: ?BSTR, iIcon: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).SetIconLocation(@as(*const IShellLinkDual, @ptrCast(self)), bs, iIcon);
+        return self.vtable.SetIconLocation(self, bs, iIcon);
     }
     pub fn Save(self: *const IShellLinkDual, vWhere: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual.VTable, @ptrCast(self.vtable)).Save(@as(*const IShellLinkDual, @ptrCast(self)), vWhere);
+        return self.vtable.Save(self, vWhere);
     }
 };
 
@@ -24328,7 +24328,7 @@ pub const IShellLinkDual2 = extern union {
     };}
     pub usingnamespace IShellLinkDual.MethodMixin(@This());
     pub fn get_Target(self: *const IShellLinkDual2, ppfi: ?*?*FolderItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellLinkDual2.VTable, @ptrCast(self.vtable)).get_Target(@as(*const IShellLinkDual2, @ptrCast(self)), ppfi);
+        return self.vtable.get_Target(self, ppfi);
     }
 };
 
@@ -24428,31 +24428,31 @@ pub const IShellFolderViewDual = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Application(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_Application(@as(*const IShellFolderViewDual, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const IShellFolderViewDual, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn get_Folder(self: *const IShellFolderViewDual, ppid: ?*?*Folder) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_Folder(@as(*const IShellFolderViewDual, @ptrCast(self)), ppid);
+        return self.vtable.get_Folder(self, ppid);
     }
     pub fn SelectedItems(self: *const IShellFolderViewDual, ppid: ?*?*FolderItems) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).SelectedItems(@as(*const IShellFolderViewDual, @ptrCast(self)), ppid);
+        return self.vtable.SelectedItems(self, ppid);
     }
     pub fn get_FocusedItem(self: *const IShellFolderViewDual, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_FocusedItem(@as(*const IShellFolderViewDual, @ptrCast(self)), ppid);
+        return self.vtable.get_FocusedItem(self, ppid);
     }
     pub fn SelectItem(self: *const IShellFolderViewDual, pvfi: ?*VARIANT, dwFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).SelectItem(@as(*const IShellFolderViewDual, @ptrCast(self)), pvfi, dwFlags);
+        return self.vtable.SelectItem(self, pvfi, dwFlags);
     }
     pub fn PopupItemMenu(self: *const IShellFolderViewDual, pfi: ?*FolderItem, vx: VARIANT, vy: VARIANT, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).PopupItemMenu(@as(*const IShellFolderViewDual, @ptrCast(self)), pfi, vx, vy, pbs);
+        return self.vtable.PopupItemMenu(self, pfi, vx, vy, pbs);
     }
     pub fn get_Script(self: *const IShellFolderViewDual, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_Script(@as(*const IShellFolderViewDual, @ptrCast(self)), ppDisp);
+        return self.vtable.get_Script(self, ppDisp);
     }
     pub fn get_ViewOptions(self: *const IShellFolderViewDual, plViewOptions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual.VTable, @ptrCast(self.vtable)).get_ViewOptions(@as(*const IShellFolderViewDual, @ptrCast(self)), plViewOptions);
+        return self.vtable.get_ViewOptions(self, plViewOptions);
     }
 };
 
@@ -24496,13 +24496,13 @@ pub const IShellFolderViewDual2 = extern union {
     };}
     pub usingnamespace IShellFolderViewDual.MethodMixin(@This());
     pub fn get_CurrentViewMode(self: *const IShellFolderViewDual2, pViewMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual2.VTable, @ptrCast(self.vtable)).get_CurrentViewMode(@as(*const IShellFolderViewDual2, @ptrCast(self)), pViewMode);
+        return self.vtable.get_CurrentViewMode(self, pViewMode);
     }
     pub fn put_CurrentViewMode(self: *const IShellFolderViewDual2, ViewMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual2.VTable, @ptrCast(self.vtable)).put_CurrentViewMode(@as(*const IShellFolderViewDual2, @ptrCast(self)), ViewMode);
+        return self.vtable.put_CurrentViewMode(self, ViewMode);
     }
     pub fn SelectItemRelative(self: *const IShellFolderViewDual2, iRelative: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual2.VTable, @ptrCast(self.vtable)).SelectItemRelative(@as(*const IShellFolderViewDual2, @ptrCast(self)), iRelative);
+        return self.vtable.SelectItemRelative(self, iRelative);
     }
 };
 
@@ -24600,31 +24600,31 @@ pub const IShellFolderViewDual3 = extern union {
     };}
     pub usingnamespace IShellFolderViewDual2.MethodMixin(@This());
     pub fn get_GroupBy(self: *const IShellFolderViewDual3, pbstrGroupBy: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).get_GroupBy(@as(*const IShellFolderViewDual3, @ptrCast(self)), pbstrGroupBy);
+        return self.vtable.get_GroupBy(self, pbstrGroupBy);
     }
     pub fn put_GroupBy(self: *const IShellFolderViewDual3, bstrGroupBy: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).put_GroupBy(@as(*const IShellFolderViewDual3, @ptrCast(self)), bstrGroupBy);
+        return self.vtable.put_GroupBy(self, bstrGroupBy);
     }
     pub fn get_FolderFlags(self: *const IShellFolderViewDual3, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).get_FolderFlags(@as(*const IShellFolderViewDual3, @ptrCast(self)), pdwFlags);
+        return self.vtable.get_FolderFlags(self, pdwFlags);
     }
     pub fn put_FolderFlags(self: *const IShellFolderViewDual3, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).put_FolderFlags(@as(*const IShellFolderViewDual3, @ptrCast(self)), dwFlags);
+        return self.vtable.put_FolderFlags(self, dwFlags);
     }
     pub fn get_SortColumns(self: *const IShellFolderViewDual3, pbstrSortColumns: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).get_SortColumns(@as(*const IShellFolderViewDual3, @ptrCast(self)), pbstrSortColumns);
+        return self.vtable.get_SortColumns(self, pbstrSortColumns);
     }
     pub fn put_SortColumns(self: *const IShellFolderViewDual3, bstrSortColumns: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).put_SortColumns(@as(*const IShellFolderViewDual3, @ptrCast(self)), bstrSortColumns);
+        return self.vtable.put_SortColumns(self, bstrSortColumns);
     }
     pub fn put_IconSize(self: *const IShellFolderViewDual3, iIconSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).put_IconSize(@as(*const IShellFolderViewDual3, @ptrCast(self)), iIconSize);
+        return self.vtable.put_IconSize(self, iIconSize);
     }
     pub fn get_IconSize(self: *const IShellFolderViewDual3, piIconSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).get_IconSize(@as(*const IShellFolderViewDual3, @ptrCast(self)), piIconSize);
+        return self.vtable.get_IconSize(self, piIconSize);
     }
     pub fn FilterView(self: *const IShellFolderViewDual3, bstrFilterText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewDual3.VTable, @ptrCast(self.vtable)).FilterView(@as(*const IShellFolderViewDual3, @ptrCast(self)), bstrFilterText);
+        return self.vtable.FilterView(self, bstrFilterText);
     }
 };
 
@@ -24817,73 +24817,73 @@ pub const IShellDispatch = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Application(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).get_Application(@as(*const IShellDispatch, @ptrCast(self)), ppid);
+        return self.vtable.get_Application(self, ppid);
     }
     pub fn get_Parent(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const IShellDispatch, @ptrCast(self)), ppid);
+        return self.vtable.get_Parent(self, ppid);
     }
     pub fn NameSpace(self: *const IShellDispatch, vDir: VARIANT, ppsdf: ?*?*Folder) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).NameSpace(@as(*const IShellDispatch, @ptrCast(self)), vDir, ppsdf);
+        return self.vtable.NameSpace(self, vDir, ppsdf);
     }
     pub fn BrowseForFolder(self: *const IShellDispatch, Hwnd: i32, Title: ?BSTR, Options: i32, RootFolder: VARIANT, ppsdf: ?*?*Folder) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).BrowseForFolder(@as(*const IShellDispatch, @ptrCast(self)), Hwnd, Title, Options, RootFolder, ppsdf);
+        return self.vtable.BrowseForFolder(self, Hwnd, Title, Options, RootFolder, ppsdf);
     }
     pub fn Windows(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).Windows(@as(*const IShellDispatch, @ptrCast(self)), ppid);
+        return self.vtable.Windows(self, ppid);
     }
     pub fn Open(self: *const IShellDispatch, vDir: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).Open(@as(*const IShellDispatch, @ptrCast(self)), vDir);
+        return self.vtable.Open(self, vDir);
     }
     pub fn Explore(self: *const IShellDispatch, vDir: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).Explore(@as(*const IShellDispatch, @ptrCast(self)), vDir);
+        return self.vtable.Explore(self, vDir);
     }
     pub fn MinimizeAll(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).MinimizeAll(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.MinimizeAll(self);
     }
     pub fn UndoMinimizeALL(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).UndoMinimizeALL(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.UndoMinimizeALL(self);
     }
     pub fn FileRun(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).FileRun(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.FileRun(self);
     }
     pub fn CascadeWindows(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).CascadeWindows(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.CascadeWindows(self);
     }
     pub fn TileVertically(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).TileVertically(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.TileVertically(self);
     }
     pub fn TileHorizontally(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).TileHorizontally(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.TileHorizontally(self);
     }
     pub fn ShutdownWindows(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).ShutdownWindows(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.ShutdownWindows(self);
     }
     pub fn Suspend(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.Suspend(self);
     }
     pub fn EjectPC(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).EjectPC(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.EjectPC(self);
     }
     pub fn SetTime(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).SetTime(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.SetTime(self);
     }
     pub fn TrayProperties(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).TrayProperties(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.TrayProperties(self);
     }
     pub fn Help(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).Help(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.Help(self);
     }
     pub fn FindFiles(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).FindFiles(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.FindFiles(self);
     }
     pub fn FindComputer(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).FindComputer(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.FindComputer(self);
     }
     pub fn RefreshMenu(self: *const IShellDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).RefreshMenu(@as(*const IShellDispatch, @ptrCast(self)));
+        return self.vtable.RefreshMenu(self);
     }
     pub fn ControlPanelItem(self: *const IShellDispatch, bstrDir: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch.VTable, @ptrCast(self.vtable)).ControlPanelItem(@as(*const IShellDispatch, @ptrCast(self)), bstrDir);
+        return self.vtable.ControlPanelItem(self, bstrDir);
     }
 };
 
@@ -24989,31 +24989,31 @@ pub const IShellDispatch2 = extern union {
     };}
     pub usingnamespace IShellDispatch.MethodMixin(@This());
     pub fn IsRestricted(self: *const IShellDispatch2, Group: ?BSTR, Restriction: ?BSTR, plRestrictValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).IsRestricted(@as(*const IShellDispatch2, @ptrCast(self)), Group, Restriction, plRestrictValue);
+        return self.vtable.IsRestricted(self, Group, Restriction, plRestrictValue);
     }
     pub fn ShellExecute(self: *const IShellDispatch2, File: ?BSTR, vArgs: VARIANT, vDir: VARIANT, vOperation: VARIANT, vShow: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).ShellExecute(@as(*const IShellDispatch2, @ptrCast(self)), File, vArgs, vDir, vOperation, vShow);
+        return self.vtable.ShellExecute(self, File, vArgs, vDir, vOperation, vShow);
     }
     pub fn FindPrinter(self: *const IShellDispatch2, name: ?BSTR, location: ?BSTR, model: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).FindPrinter(@as(*const IShellDispatch2, @ptrCast(self)), name, location, model);
+        return self.vtable.FindPrinter(self, name, location, model);
     }
     pub fn GetSystemInformation(self: *const IShellDispatch2, name: ?BSTR, pv: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).GetSystemInformation(@as(*const IShellDispatch2, @ptrCast(self)), name, pv);
+        return self.vtable.GetSystemInformation(self, name, pv);
     }
     pub fn ServiceStart(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).ServiceStart(@as(*const IShellDispatch2, @ptrCast(self)), ServiceName, Persistent, pSuccess);
+        return self.vtable.ServiceStart(self, ServiceName, Persistent, pSuccess);
     }
     pub fn ServiceStop(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).ServiceStop(@as(*const IShellDispatch2, @ptrCast(self)), ServiceName, Persistent, pSuccess);
+        return self.vtable.ServiceStop(self, ServiceName, Persistent, pSuccess);
     }
     pub fn IsServiceRunning(self: *const IShellDispatch2, ServiceName: ?BSTR, pRunning: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).IsServiceRunning(@as(*const IShellDispatch2, @ptrCast(self)), ServiceName, pRunning);
+        return self.vtable.IsServiceRunning(self, ServiceName, pRunning);
     }
     pub fn CanStartStopService(self: *const IShellDispatch2, ServiceName: ?BSTR, pCanStartStop: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).CanStartStopService(@as(*const IShellDispatch2, @ptrCast(self)), ServiceName, pCanStartStop);
+        return self.vtable.CanStartStopService(self, ServiceName, pCanStartStop);
     }
     pub fn ShowBrowserBar(self: *const IShellDispatch2, bstrClsid: ?BSTR, bShow: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch2.VTable, @ptrCast(self.vtable)).ShowBrowserBar(@as(*const IShellDispatch2, @ptrCast(self)), bstrClsid, bShow, pSuccess);
+        return self.vtable.ShowBrowserBar(self, bstrClsid, bShow, pSuccess);
     }
 };
 
@@ -25039,7 +25039,7 @@ pub const IShellDispatch3 = extern union {
     };}
     pub usingnamespace IShellDispatch2.MethodMixin(@This());
     pub fn AddToRecent(self: *const IShellDispatch3, varFile: VARIANT, bstrCategory: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch3.VTable, @ptrCast(self.vtable)).AddToRecent(@as(*const IShellDispatch3, @ptrCast(self)), varFile, bstrCategory);
+        return self.vtable.AddToRecent(self, varFile, bstrCategory);
     }
 };
 
@@ -25088,16 +25088,16 @@ pub const IShellDispatch4 = extern union {
     };}
     pub usingnamespace IShellDispatch3.MethodMixin(@This());
     pub fn WindowsSecurity(self: *const IShellDispatch4) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch4.VTable, @ptrCast(self.vtable)).WindowsSecurity(@as(*const IShellDispatch4, @ptrCast(self)));
+        return self.vtable.WindowsSecurity(self);
     }
     pub fn ToggleDesktop(self: *const IShellDispatch4) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch4.VTable, @ptrCast(self.vtable)).ToggleDesktop(@as(*const IShellDispatch4, @ptrCast(self)));
+        return self.vtable.ToggleDesktop(self);
     }
     pub fn ExplorerPolicy(self: *const IShellDispatch4, bstrPolicyName: ?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch4.VTable, @ptrCast(self.vtable)).ExplorerPolicy(@as(*const IShellDispatch4, @ptrCast(self)), bstrPolicyName, pValue);
+        return self.vtable.ExplorerPolicy(self, bstrPolicyName, pValue);
     }
     pub fn GetSetting(self: *const IShellDispatch4, lSetting: i32, pResult: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch4.VTable, @ptrCast(self.vtable)).GetSetting(@as(*const IShellDispatch4, @ptrCast(self)), lSetting, pResult);
+        return self.vtable.GetSetting(self, lSetting, pResult);
     }
 };
 
@@ -25121,7 +25121,7 @@ pub const IShellDispatch5 = extern union {
     };}
     pub usingnamespace IShellDispatch4.MethodMixin(@This());
     pub fn WindowSwitcher(self: *const IShellDispatch5) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch5.VTable, @ptrCast(self.vtable)).WindowSwitcher(@as(*const IShellDispatch5, @ptrCast(self)));
+        return self.vtable.WindowSwitcher(self);
     }
 };
 
@@ -25145,7 +25145,7 @@ pub const IShellDispatch6 = extern union {
     };}
     pub usingnamespace IShellDispatch5.MethodMixin(@This());
     pub fn SearchCommand(self: *const IShellDispatch6) callconv(.Inline) HRESULT {
-        return @as(*const IShellDispatch6.VTable, @ptrCast(self.vtable)).SearchCommand(@as(*const IShellDispatch6, @ptrCast(self)));
+        return self.vtable.SearchCommand(self);
     }
 };
 
@@ -25207,19 +25207,19 @@ pub const IFileSearchBand = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SetFocus(self: *const IFileSearchBand) callconv(.Inline) HRESULT {
-        return @as(*const IFileSearchBand.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IFileSearchBand, @ptrCast(self)));
+        return self.vtable.SetFocus(self);
     }
     pub fn SetSearchParameters(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR, bNavToResults: i16, pvarScope: ?*VARIANT, pvarQueryFile: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFileSearchBand.VTable, @ptrCast(self.vtable)).SetSearchParameters(@as(*const IFileSearchBand, @ptrCast(self)), pbstrSearchID, bNavToResults, pvarScope, pvarQueryFile);
+        return self.vtable.SetSearchParameters(self, pbstrSearchID, bNavToResults, pvarScope, pvarQueryFile);
     }
     pub fn get_SearchID(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSearchBand.VTable, @ptrCast(self.vtable)).get_SearchID(@as(*const IFileSearchBand, @ptrCast(self)), pbstrSearchID);
+        return self.vtable.get_SearchID(self, pbstrSearchID);
     }
     pub fn get_Scope(self: *const IFileSearchBand, pvarScope: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFileSearchBand.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IFileSearchBand, @ptrCast(self)), pvarScope);
+        return self.vtable.get_Scope(self, pvarScope);
     }
     pub fn get_QueryFile(self: *const IFileSearchBand, pvarFile: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFileSearchBand.VTable, @ptrCast(self.vtable)).get_QueryFile(@as(*const IFileSearchBand, @ptrCast(self)), pvarFile);
+        return self.vtable.get_QueryFile(self, pvarFile);
     }
 };
 
@@ -25312,31 +25312,31 @@ pub const IWebWizardHost = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn FinalBack(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).FinalBack(@as(*const IWebWizardHost, @ptrCast(self)));
+        return self.vtable.FinalBack(self);
     }
     pub fn FinalNext(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).FinalNext(@as(*const IWebWizardHost, @ptrCast(self)));
+        return self.vtable.FinalNext(self);
     }
     pub fn Cancel(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWebWizardHost, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn put_Caption(self: *const IWebWizardHost, bstrCaption: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).put_Caption(@as(*const IWebWizardHost, @ptrCast(self)), bstrCaption);
+        return self.vtable.put_Caption(self, bstrCaption);
     }
     pub fn get_Caption(self: *const IWebWizardHost, pbstrCaption: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).get_Caption(@as(*const IWebWizardHost, @ptrCast(self)), pbstrCaption);
+        return self.vtable.get_Caption(self, pbstrCaption);
     }
     pub fn put_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).put_Property(@as(*const IWebWizardHost, @ptrCast(self)), bstrPropertyName, pvProperty);
+        return self.vtable.put_Property(self, bstrPropertyName, pvProperty);
     }
     pub fn get_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IWebWizardHost, @ptrCast(self)), bstrPropertyName, pvProperty);
+        return self.vtable.get_Property(self, bstrPropertyName, pvProperty);
     }
     pub fn SetWizardButtons(self: *const IWebWizardHost, vfEnableBack: i16, vfEnableNext: i16, vfLastPage: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).SetWizardButtons(@as(*const IWebWizardHost, @ptrCast(self)), vfEnableBack, vfEnableNext, vfLastPage);
+        return self.vtable.SetWizardButtons(self, vfEnableBack, vfEnableNext, vfLastPage);
     }
     pub fn SetHeaderText(self: *const IWebWizardHost, bstrHeaderTitle: ?BSTR, bstrHeaderSubtitle: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost.VTable, @ptrCast(self.vtable)).SetHeaderText(@as(*const IWebWizardHost, @ptrCast(self)), bstrHeaderTitle, bstrHeaderSubtitle);
+        return self.vtable.SetHeaderText(self, bstrHeaderTitle, bstrHeaderSubtitle);
     }
 };
 
@@ -25362,7 +25362,7 @@ pub const IWebWizardHost2 = extern union {
     };}
     pub usingnamespace IWebWizardHost.MethodMixin(@This());
     pub fn SignString(self: *const IWebWizardHost2, value: ?BSTR, signedValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWebWizardHost2.VTable, @ptrCast(self.vtable)).SignString(@as(*const IWebWizardHost2, @ptrCast(self)), value, signedValue);
+        return self.vtable.SignString(self, value, signedValue);
     }
 };
 
@@ -25388,7 +25388,7 @@ pub const INewWDEvents = extern union {
     };}
     pub usingnamespace IWebWizardHost.MethodMixin(@This());
     pub fn PassportAuthenticate(self: *const INewWDEvents, bstrSignInUrl: ?BSTR, pvfAuthenitcated: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INewWDEvents.VTable, @ptrCast(self.vtable)).PassportAuthenticate(@as(*const INewWDEvents, @ptrCast(self)), bstrSignInUrl, pvfAuthenitcated);
+        return self.vtable.PassportAuthenticate(self, bstrSignInUrl, pvfAuthenitcated);
     }
 };
 
@@ -25425,10 +25425,10 @@ pub const IAutoComplete = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IAutoComplete, hwndEdit: ?HWND, punkACL: ?*IUnknown, pwszRegKeyPath: ?[*:0]const u16, pwszQuickComplete: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAutoComplete.VTable, @ptrCast(self.vtable)).Init(@as(*const IAutoComplete, @ptrCast(self)), hwndEdit, punkACL, pwszRegKeyPath, pwszQuickComplete);
+        return self.vtable.Init(self, hwndEdit, punkACL, pwszRegKeyPath, pwszQuickComplete);
     }
     pub fn Enable(self: *const IAutoComplete, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAutoComplete.VTable, @ptrCast(self.vtable)).Enable(@as(*const IAutoComplete, @ptrCast(self)), fEnable);
+        return self.vtable.Enable(self, fEnable);
     }
 };
 
@@ -25485,10 +25485,10 @@ pub const IAutoComplete2 = extern union {
     };}
     pub usingnamespace IAutoComplete.MethodMixin(@This());
     pub fn SetOptions(self: *const IAutoComplete2, dwFlag: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAutoComplete2.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IAutoComplete2, @ptrCast(self)), dwFlag);
+        return self.vtable.SetOptions(self, dwFlag);
     }
     pub fn GetOptions(self: *const IAutoComplete2, pdwFlag: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAutoComplete2.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IAutoComplete2, @ptrCast(self)), pdwFlag);
+        return self.vtable.GetOptions(self, pdwFlag);
     }
 };
 
@@ -25540,13 +25540,13 @@ pub const IEnumACString = extern union {
     };}
     pub usingnamespace IEnumString.MethodMixin(@This());
     pub fn NextItem(self: *const IEnumACString, pszUrl: ?[*:0]u16, cchMax: u32, pulSortIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACString.VTable, @ptrCast(self.vtable)).NextItem(@as(*const IEnumACString, @ptrCast(self)), pszUrl, cchMax, pulSortIndex);
+        return self.vtable.NextItem(self, pszUrl, cchMax, pulSortIndex);
     }
     pub fn SetEnumOptions(self: *const IEnumACString, dwOptions: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACString.VTable, @ptrCast(self.vtable)).SetEnumOptions(@as(*const IEnumACString, @ptrCast(self)), dwOptions);
+        return self.vtable.SetEnumOptions(self, dwOptions);
     }
     pub fn GetEnumOptions(self: *const IEnumACString, pdwOptions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumACString.VTable, @ptrCast(self.vtable)).GetEnumOptions(@as(*const IEnumACString, @ptrCast(self)), pdwOptions);
+        return self.vtable.GetEnumOptions(self, pdwOptions);
     }
 };
 
@@ -25606,19 +25606,19 @@ pub const IDataObjectAsyncCapability = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAsyncMode(self: *const IDataObjectAsyncCapability, fDoOpAsync: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectAsyncCapability.VTable, @ptrCast(self.vtable)).SetAsyncMode(@as(*const IDataObjectAsyncCapability, @ptrCast(self)), fDoOpAsync);
+        return self.vtable.SetAsyncMode(self, fDoOpAsync);
     }
     pub fn GetAsyncMode(self: *const IDataObjectAsyncCapability, pfIsOpAsync: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectAsyncCapability.VTable, @ptrCast(self.vtable)).GetAsyncMode(@as(*const IDataObjectAsyncCapability, @ptrCast(self)), pfIsOpAsync);
+        return self.vtable.GetAsyncMode(self, pfIsOpAsync);
     }
     pub fn StartOperation(self: *const IDataObjectAsyncCapability, pbcReserved: ?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectAsyncCapability.VTable, @ptrCast(self.vtable)).StartOperation(@as(*const IDataObjectAsyncCapability, @ptrCast(self)), pbcReserved);
+        return self.vtable.StartOperation(self, pbcReserved);
     }
     pub fn InOperation(self: *const IDataObjectAsyncCapability, pfInAsyncOp: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectAsyncCapability.VTable, @ptrCast(self.vtable)).InOperation(@as(*const IDataObjectAsyncCapability, @ptrCast(self)), pfInAsyncOp);
+        return self.vtable.InOperation(self, pfInAsyncOp);
     }
     pub fn EndOperation(self: *const IDataObjectAsyncCapability, hResult: HRESULT, pbcReserved: ?*IBindCtx, dwEffects: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDataObjectAsyncCapability.VTable, @ptrCast(self.vtable)).EndOperation(@as(*const IDataObjectAsyncCapability, @ptrCast(self)), hResult, pbcReserved, dwEffects);
+        return self.vtable.EndOperation(self, hResult, pbcReserved, dwEffects);
     }
 };
 
@@ -25660,10 +25660,10 @@ pub const IExtractIconA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIconLocation(self: *const IExtractIconA, uFlags: u32, pszIconFile: [*:0]u8, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExtractIconA.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IExtractIconA, @ptrCast(self)), uFlags, pszIconFile, cchMax, piIndex, pwFlags);
+        return self.vtable.GetIconLocation(self, uFlags, pszIconFile, cchMax, piIndex, pwFlags);
     }
     pub fn Extract(self: *const IExtractIconA, pszFile: ?[*:0]const u8, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExtractIconA.VTable, @ptrCast(self.vtable)).Extract(@as(*const IExtractIconA, @ptrCast(self)), pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
+        return self.vtable.Extract(self, pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
     }
 };
 
@@ -25705,10 +25705,10 @@ pub const IExtractIconW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIconLocation(self: *const IExtractIconW, uFlags: u32, pszIconFile: [*:0]u16, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExtractIconW.VTable, @ptrCast(self.vtable)).GetIconLocation(@as(*const IExtractIconW, @ptrCast(self)), uFlags, pszIconFile, cchMax, piIndex, pwFlags);
+        return self.vtable.GetIconLocation(self, uFlags, pszIconFile, cchMax, piIndex, pwFlags);
     }
     pub fn Extract(self: *const IExtractIconW, pszFile: ?[*:0]const u16, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExtractIconW.VTable, @ptrCast(self.vtable)).Extract(@as(*const IExtractIconW, @ptrCast(self)), pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
+        return self.vtable.Extract(self, pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
     }
 };
 
@@ -25774,19 +25774,19 @@ pub const IShellIconOverlayManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFileOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayManager.VTable, @ptrCast(self.vtable)).GetFileOverlayInfo(@as(*const IShellIconOverlayManager, @ptrCast(self)), pwszPath, dwAttrib, pIndex, dwflags);
+        return self.vtable.GetFileOverlayInfo(self, pwszPath, dwAttrib, pIndex, dwflags);
     }
     pub fn GetReservedOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32, iReservedID: i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayManager.VTable, @ptrCast(self.vtable)).GetReservedOverlayInfo(@as(*const IShellIconOverlayManager, @ptrCast(self)), pwszPath, dwAttrib, pIndex, dwflags, iReservedID);
+        return self.vtable.GetReservedOverlayInfo(self, pwszPath, dwAttrib, pIndex, dwflags, iReservedID);
     }
     pub fn RefreshOverlayImages(self: *const IShellIconOverlayManager, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayManager.VTable, @ptrCast(self.vtable)).RefreshOverlayImages(@as(*const IShellIconOverlayManager, @ptrCast(self)), dwFlags);
+        return self.vtable.RefreshOverlayImages(self, dwFlags);
     }
     pub fn LoadNonloadedOverlayIdentifiers(self: *const IShellIconOverlayManager) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayManager.VTable, @ptrCast(self.vtable)).LoadNonloadedOverlayIdentifiers(@as(*const IShellIconOverlayManager, @ptrCast(self)));
+        return self.vtable.LoadNonloadedOverlayIdentifiers(self);
     }
     pub fn OverlayIndexFromImageIndex(self: *const IShellIconOverlayManager, iImage: i32, piIndex: ?*i32, fAdd: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlayManager.VTable, @ptrCast(self.vtable)).OverlayIndexFromImageIndex(@as(*const IShellIconOverlayManager, @ptrCast(self)), iImage, piIndex, fAdd);
+        return self.vtable.OverlayIndexFromImageIndex(self, iImage, piIndex, fAdd);
     }
 };
 
@@ -25822,10 +25822,10 @@ pub const IShellIconOverlay = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOverlayIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlay.VTable, @ptrCast(self.vtable)).GetOverlayIndex(@as(*const IShellIconOverlay, @ptrCast(self)), pidl, pIndex);
+        return self.vtable.GetOverlayIndex(self, pidl, pIndex);
     }
     pub fn GetOverlayIconIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIconIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IShellIconOverlay.VTable, @ptrCast(self.vtable)).GetOverlayIconIndex(@as(*const IShellIconOverlay, @ptrCast(self)), pidl, pIconIndex);
+        return self.vtable.GetOverlayIconIndex(self, pidl, pIconIndex);
     }
 };
 
@@ -25975,7 +25975,7 @@ pub const IURLSearchHook = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Translate(self: *const IURLSearchHook, pwszSearchURL: [*:0]u16, cchBufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IURLSearchHook.VTable, @ptrCast(self.vtable)).Translate(@as(*const IURLSearchHook, @ptrCast(self)), pwszSearchURL, cchBufferSize);
+        return self.vtable.Translate(self, pwszSearchURL, cchBufferSize);
     }
 };
 
@@ -26017,13 +26017,13 @@ pub const ISearchContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSearchUrl(self: *const ISearchContext, pbstrSearchUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISearchContext.VTable, @ptrCast(self.vtable)).GetSearchUrl(@as(*const ISearchContext, @ptrCast(self)), pbstrSearchUrl);
+        return self.vtable.GetSearchUrl(self, pbstrSearchUrl);
     }
     pub fn GetSearchText(self: *const ISearchContext, pbstrSearchText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISearchContext.VTable, @ptrCast(self.vtable)).GetSearchText(@as(*const ISearchContext, @ptrCast(self)), pbstrSearchText);
+        return self.vtable.GetSearchText(self, pbstrSearchText);
     }
     pub fn GetSearchStyle(self: *const ISearchContext, pdwSearchStyle: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISearchContext.VTable, @ptrCast(self.vtable)).GetSearchStyle(@as(*const ISearchContext, @ptrCast(self)), pdwSearchStyle);
+        return self.vtable.GetSearchStyle(self, pdwSearchStyle);
     }
 };
 
@@ -26051,7 +26051,7 @@ pub const IURLSearchHook2 = extern union {
     };}
     pub usingnamespace IURLSearchHook.MethodMixin(@This());
     pub fn TranslateWithSearchContext(self: *const IURLSearchHook2, pwszSearchURL: [*:0]u16, cchBufferSize: u32, pSearchContext: ?*ISearchContext) callconv(.Inline) HRESULT {
-        return @as(*const IURLSearchHook2.VTable, @ptrCast(self.vtable)).TranslateWithSearchContext(@as(*const IURLSearchHook2, @ptrCast(self)), pwszSearchURL, cchBufferSize, pSearchContext);
+        return self.vtable.TranslateWithSearchContext(self, pwszSearchURL, cchBufferSize, pSearchContext);
     }
 };
 
@@ -26176,10 +26176,10 @@ pub const IShellDetails = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDetailsOf(self: *const IShellDetails, pidl: ?*ITEMIDLIST, iColumn: u32, pDetails: ?*SHELLDETAILS) callconv(.Inline) HRESULT {
-        return @as(*const IShellDetails.VTable, @ptrCast(self.vtable)).GetDetailsOf(@as(*const IShellDetails, @ptrCast(self)), pidl, iColumn, pDetails);
+        return self.vtable.GetDetailsOf(self, pidl, iColumn, pDetails);
     }
     pub fn ColumnClick(self: *const IShellDetails, iColumn: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellDetails.VTable, @ptrCast(self.vtable)).ColumnClick(@as(*const IShellDetails, @ptrCast(self)), iColumn);
+        return self.vtable.ColumnClick(self, iColumn);
     }
 };
 
@@ -26213,10 +26213,10 @@ pub const IObjMgr = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Append(self: *const IObjMgr, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IObjMgr.VTable, @ptrCast(self.vtable)).Append(@as(*const IObjMgr, @ptrCast(self)), punk);
+        return self.vtable.Append(self, punk);
     }
     pub fn Remove(self: *const IObjMgr, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IObjMgr.VTable, @ptrCast(self.vtable)).Remove(@as(*const IObjMgr, @ptrCast(self)), punk);
+        return self.vtable.Remove(self, punk);
     }
 };
 
@@ -26242,7 +26242,7 @@ pub const IACList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Expand(self: *const IACList, pszExpand: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IACList.VTable, @ptrCast(self.vtable)).Expand(@as(*const IACList, @ptrCast(self)), pszExpand);
+        return self.vtable.Expand(self, pszExpand);
     }
 };
 
@@ -26295,10 +26295,10 @@ pub const IACList2 = extern union {
     };}
     pub usingnamespace IACList.MethodMixin(@This());
     pub fn SetOptions(self: *const IACList2, dwFlag: u32) callconv(.Inline) HRESULT {
-        return @as(*const IACList2.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IACList2, @ptrCast(self)), dwFlag);
+        return self.vtable.SetOptions(self, dwFlag);
     }
     pub fn GetOptions(self: *const IACList2, pdwFlag: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IACList2.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IACList2, @ptrCast(self)), pdwFlag);
+        return self.vtable.GetOptions(self, pdwFlag);
     }
 };
 
@@ -26405,34 +26405,34 @@ pub const IProgressDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartProgressDialog(self: *const IProgressDialog, hwndParent: ?HWND, punkEnableModless: ?*IUnknown, dwFlags: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).StartProgressDialog(@as(*const IProgressDialog, @ptrCast(self)), hwndParent, punkEnableModless, dwFlags, pvResevered);
+        return self.vtable.StartProgressDialog(self, hwndParent, punkEnableModless, dwFlags, pvResevered);
     }
     pub fn StopProgressDialog(self: *const IProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).StopProgressDialog(@as(*const IProgressDialog, @ptrCast(self)));
+        return self.vtable.StopProgressDialog(self);
     }
     pub fn SetTitle(self: *const IProgressDialog, pwzTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IProgressDialog, @ptrCast(self)), pwzTitle);
+        return self.vtable.SetTitle(self, pwzTitle);
     }
     pub fn SetAnimation(self: *const IProgressDialog, hInstAnimation: ?HINSTANCE, idAnimation: u32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetAnimation(@as(*const IProgressDialog, @ptrCast(self)), hInstAnimation, idAnimation);
+        return self.vtable.SetAnimation(self, hInstAnimation, idAnimation);
     }
     pub fn HasUserCancelled(self: *const IProgressDialog) callconv(.Inline) BOOL {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).HasUserCancelled(@as(*const IProgressDialog, @ptrCast(self)));
+        return self.vtable.HasUserCancelled(self);
     }
     pub fn SetProgress(self: *const IProgressDialog, dwCompleted: u32, dwTotal: u32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetProgress(@as(*const IProgressDialog, @ptrCast(self)), dwCompleted, dwTotal);
+        return self.vtable.SetProgress(self, dwCompleted, dwTotal);
     }
     pub fn SetProgress64(self: *const IProgressDialog, ullCompleted: u64, ullTotal: u64) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetProgress64(@as(*const IProgressDialog, @ptrCast(self)), ullCompleted, ullTotal);
+        return self.vtable.SetProgress64(self, ullCompleted, ullTotal);
     }
     pub fn SetLine(self: *const IProgressDialog, dwLineNum: u32, pwzString: ?[*:0]const u16, fCompactPath: BOOL, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetLine(@as(*const IProgressDialog, @ptrCast(self)), dwLineNum, pwzString, fCompactPath, pvResevered);
+        return self.vtable.SetLine(self, dwLineNum, pwzString, fCompactPath, pvResevered);
     }
     pub fn SetCancelMsg(self: *const IProgressDialog, pwzCancelMsg: ?[*:0]const u16, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).SetCancelMsg(@as(*const IProgressDialog, @ptrCast(self)), pwzCancelMsg, pvResevered);
+        return self.vtable.SetCancelMsg(self, pwzCancelMsg, pvResevered);
     }
     pub fn Timer(self: *const IProgressDialog, dwTimerAction: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IProgressDialog.VTable, @ptrCast(self.vtable)).Timer(@as(*const IProgressDialog, @ptrCast(self)), dwTimerAction, pvResevered);
+        return self.vtable.Timer(self, dwTimerAction, pvResevered);
     }
 };
 
@@ -26477,13 +26477,13 @@ pub const IDockingWindowSite = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn GetBorderDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, prcBorder: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowSite.VTable, @ptrCast(self.vtable)).GetBorderDW(@as(*const IDockingWindowSite, @ptrCast(self)), punkObj, prcBorder);
+        return self.vtable.GetBorderDW(self, punkObj, prcBorder);
     }
     pub fn RequestBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowSite.VTable, @ptrCast(self.vtable)).RequestBorderSpaceDW(@as(*const IDockingWindowSite, @ptrCast(self)), punkObj, pbw);
+        return self.vtable.RequestBorderSpaceDW(self, punkObj, pbw);
     }
     pub fn SetBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowSite.VTable, @ptrCast(self.vtable)).SetBorderSpaceDW(@as(*const IDockingWindowSite, @ptrCast(self)), punkObj, pbw);
+        return self.vtable.SetBorderSpaceDW(self, punkObj, pbw);
     }
 };
 
@@ -26624,7 +26624,7 @@ pub const IShellChangeNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnChange(self: *const IShellChangeNotify, lEvent: i32, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellChangeNotify.VTable, @ptrCast(self.vtable)).OnChange(@as(*const IShellChangeNotify, @ptrCast(self)), lEvent, pidl1, pidl2);
+        return self.vtable.OnChange(self, lEvent, pidl1, pidl2);
     }
 };
 
@@ -26659,10 +26659,10 @@ pub const IQueryInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInfoTip(self: *const IQueryInfo, dwFlags: QITIPF_FLAGS, ppwszTip: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IQueryInfo.VTable, @ptrCast(self.vtable)).GetInfoTip(@as(*const IQueryInfo, @ptrCast(self)), dwFlags, ppwszTip);
+        return self.vtable.GetInfoTip(self, dwFlags, ppwszTip);
     }
     pub fn GetInfoFlags(self: *const IQueryInfo, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryInfo.VTable, @ptrCast(self.vtable)).GetInfoFlags(@as(*const IQueryInfo, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetInfoFlags(self, pdwFlags);
     }
 };
 
@@ -27147,7 +27147,7 @@ pub const IShellFolderViewCB = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MessageSFVCB(self: *const IShellFolderViewCB, uMsg: SFVM_MESSAGE_ID, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderViewCB.VTable, @ptrCast(self.vtable)).MessageSFVCB(@as(*const IShellFolderViewCB, @ptrCast(self)), uMsg, wParam, lParam);
+        return self.vtable.MessageSFVCB(self, uMsg, wParam, lParam);
     }
 };
 
@@ -27440,88 +27440,88 @@ pub const IShellFolderView = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Rearrange(self: *const IShellFolderView, lParamSort: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).Rearrange(@as(*const IShellFolderView, @ptrCast(self)), lParamSort);
+        return self.vtable.Rearrange(self, lParamSort);
     }
     pub fn GetArrangeParam(self: *const IShellFolderView, plParamSort: ?*LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetArrangeParam(@as(*const IShellFolderView, @ptrCast(self)), plParamSort);
+        return self.vtable.GetArrangeParam(self, plParamSort);
     }
     pub fn ArrangeGrid(self: *const IShellFolderView) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).ArrangeGrid(@as(*const IShellFolderView, @ptrCast(self)));
+        return self.vtable.ArrangeGrid(self);
     }
     pub fn AutoArrange(self: *const IShellFolderView) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).AutoArrange(@as(*const IShellFolderView, @ptrCast(self)));
+        return self.vtable.AutoArrange(self);
     }
     pub fn GetAutoArrange(self: *const IShellFolderView) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetAutoArrange(@as(*const IShellFolderView, @ptrCast(self)));
+        return self.vtable.GetAutoArrange(self);
     }
     pub fn AddObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).AddObject(@as(*const IShellFolderView, @ptrCast(self)), pidl, puItem);
+        return self.vtable.AddObject(self, pidl, puItem);
     }
     pub fn GetObject(self: *const IShellFolderView, ppidl: ?*?*ITEMIDLIST, uItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IShellFolderView, @ptrCast(self)), ppidl, uItem);
+        return self.vtable.GetObject(self, ppidl, uItem);
     }
     pub fn RemoveObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).RemoveObject(@as(*const IShellFolderView, @ptrCast(self)), pidl, puItem);
+        return self.vtable.RemoveObject(self, pidl, puItem);
     }
     pub fn GetObjectCount(self: *const IShellFolderView, puCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetObjectCount(@as(*const IShellFolderView, @ptrCast(self)), puCount);
+        return self.vtable.GetObjectCount(self, puCount);
     }
     pub fn SetObjectCount(self: *const IShellFolderView, uCount: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetObjectCount(@as(*const IShellFolderView, @ptrCast(self)), uCount, dwFlags);
+        return self.vtable.SetObjectCount(self, uCount, dwFlags);
     }
     pub fn UpdateObject(self: *const IShellFolderView, pidlOld: ?*ITEMIDLIST, pidlNew: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).UpdateObject(@as(*const IShellFolderView, @ptrCast(self)), pidlOld, pidlNew, puItem);
+        return self.vtable.UpdateObject(self, pidlOld, pidlNew, puItem);
     }
     pub fn RefreshObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).RefreshObject(@as(*const IShellFolderView, @ptrCast(self)), pidl, puItem);
+        return self.vtable.RefreshObject(self, pidl, puItem);
     }
     pub fn SetRedraw(self: *const IShellFolderView, bRedraw: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetRedraw(@as(*const IShellFolderView, @ptrCast(self)), bRedraw);
+        return self.vtable.SetRedraw(self, bRedraw);
     }
     pub fn GetSelectedCount(self: *const IShellFolderView, puSelected: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetSelectedCount(@as(*const IShellFolderView, @ptrCast(self)), puSelected);
+        return self.vtable.GetSelectedCount(self, puSelected);
     }
     pub fn GetSelectedObjects(self: *const IShellFolderView, pppidl: ?*?*?*ITEMIDLIST, puItems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetSelectedObjects(@as(*const IShellFolderView, @ptrCast(self)), pppidl, puItems);
+        return self.vtable.GetSelectedObjects(self, pppidl, puItems);
     }
     pub fn IsDropOnSource(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).IsDropOnSource(@as(*const IShellFolderView, @ptrCast(self)), pDropTarget);
+        return self.vtable.IsDropOnSource(self, pDropTarget);
     }
     pub fn GetDragPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetDragPoint(@as(*const IShellFolderView, @ptrCast(self)), ppt);
+        return self.vtable.GetDragPoint(self, ppt);
     }
     pub fn GetDropPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetDropPoint(@as(*const IShellFolderView, @ptrCast(self)), ppt);
+        return self.vtable.GetDropPoint(self, ppt);
     }
     pub fn MoveIcons(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).MoveIcons(@as(*const IShellFolderView, @ptrCast(self)), pDataObject);
+        return self.vtable.MoveIcons(self, pDataObject);
     }
     pub fn SetItemPos(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetItemPos(@as(*const IShellFolderView, @ptrCast(self)), pidl, ppt);
+        return self.vtable.SetItemPos(self, pidl, ppt);
     }
     pub fn IsBkDropTarget(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).IsBkDropTarget(@as(*const IShellFolderView, @ptrCast(self)), pDropTarget);
+        return self.vtable.IsBkDropTarget(self, pDropTarget);
     }
     pub fn SetClipboard(self: *const IShellFolderView, bMove: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetClipboard(@as(*const IShellFolderView, @ptrCast(self)), bMove);
+        return self.vtable.SetClipboard(self, bMove);
     }
     pub fn SetPoints(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetPoints(@as(*const IShellFolderView, @ptrCast(self)), pDataObject);
+        return self.vtable.SetPoints(self, pDataObject);
     }
     pub fn GetItemSpacing(self: *const IShellFolderView, pSpacing: ?*ITEMSPACING) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).GetItemSpacing(@as(*const IShellFolderView, @ptrCast(self)), pSpacing);
+        return self.vtable.GetItemSpacing(self, pSpacing);
     }
     pub fn SetCallback(self: *const IShellFolderView, pNewCB: ?*IShellFolderViewCB, ppOldCB: ?*?*IShellFolderViewCB) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IShellFolderView, @ptrCast(self)), pNewCB, ppOldCB);
+        return self.vtable.SetCallback(self, pNewCB, ppOldCB);
     }
     pub fn Select(self: *const IShellFolderView, dwFlags: SFVS_SELECT) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).Select(@as(*const IShellFolderView, @ptrCast(self)), dwFlags);
+        return self.vtable.Select(self, dwFlags);
     }
     pub fn QuerySupport(self: *const IShellFolderView, pdwSupport: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).QuerySupport(@as(*const IShellFolderView, @ptrCast(self)), pdwSupport);
+        return self.vtable.QuerySupport(self, pdwSupport);
     }
     pub fn SetAutomationObject(self: *const IShellFolderView, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderView.VTable, @ptrCast(self.vtable)).SetAutomationObject(@as(*const IShellFolderView, @ptrCast(self)), pdisp);
+        return self.vtable.SetAutomationObject(self, pdisp);
     }
 };
 
@@ -27651,13 +27651,13 @@ pub const INamedPropertyBag = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReadPropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyBag.VTable, @ptrCast(self.vtable)).ReadPropertyNPB(@as(*const INamedPropertyBag, @ptrCast(self)), pszBagname, pszPropName, pVar);
+        return self.vtable.ReadPropertyNPB(self, pszBagname, pszPropName, pVar);
     }
     pub fn WritePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyBag.VTable, @ptrCast(self.vtable)).WritePropertyNPB(@as(*const INamedPropertyBag, @ptrCast(self)), pszBagname, pszPropName, pVar);
+        return self.vtable.WritePropertyNPB(self, pszBagname, pszPropName, pVar);
     }
     pub fn RemovePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INamedPropertyBag.VTable, @ptrCast(self.vtable)).RemovePropertyNPB(@as(*const INamedPropertyBag, @ptrCast(self)), pszBagname, pszPropName);
+        return self.vtable.RemovePropertyNPB(self, pszBagname, pszPropName);
     }
 };
 
@@ -27739,22 +27739,22 @@ pub const INewShortcutHookA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetReferent(self: *const INewShortcutHookA, pcszReferent: ?[*:0]const u8, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).SetReferent(@as(*const INewShortcutHookA, @ptrCast(self)), pcszReferent, hwnd);
+        return self.vtable.SetReferent(self, pcszReferent, hwnd);
     }
     pub fn GetReferent(self: *const INewShortcutHookA, pszReferent: [*:0]u8, cchReferent: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).GetReferent(@as(*const INewShortcutHookA, @ptrCast(self)), pszReferent, cchReferent);
+        return self.vtable.GetReferent(self, pszReferent, cchReferent);
     }
     pub fn SetFolder(self: *const INewShortcutHookA, pcszFolder: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).SetFolder(@as(*const INewShortcutHookA, @ptrCast(self)), pcszFolder);
+        return self.vtable.SetFolder(self, pcszFolder);
     }
     pub fn GetFolder(self: *const INewShortcutHookA, pszFolder: [*:0]u8, cchFolder: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).GetFolder(@as(*const INewShortcutHookA, @ptrCast(self)), pszFolder, cchFolder);
+        return self.vtable.GetFolder(self, pszFolder, cchFolder);
     }
     pub fn GetName(self: *const INewShortcutHookA, pszName: [*:0]u8, cchName: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).GetName(@as(*const INewShortcutHookA, @ptrCast(self)), pszName, cchName);
+        return self.vtable.GetName(self, pszName, cchName);
     }
     pub fn GetExtension(self: *const INewShortcutHookA, pszExtension: [*:0]u8, cchExtension: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookA.VTable, @ptrCast(self.vtable)).GetExtension(@as(*const INewShortcutHookA, @ptrCast(self)), pszExtension, cchExtension);
+        return self.vtable.GetExtension(self, pszExtension, cchExtension);
     }
 };
 
@@ -27825,22 +27825,22 @@ pub const INewShortcutHookW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetReferent(self: *const INewShortcutHookW, pcszReferent: ?[*:0]const u16, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).SetReferent(@as(*const INewShortcutHookW, @ptrCast(self)), pcszReferent, hwnd);
+        return self.vtable.SetReferent(self, pcszReferent, hwnd);
     }
     pub fn GetReferent(self: *const INewShortcutHookW, pszReferent: [*:0]u16, cchReferent: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).GetReferent(@as(*const INewShortcutHookW, @ptrCast(self)), pszReferent, cchReferent);
+        return self.vtable.GetReferent(self, pszReferent, cchReferent);
     }
     pub fn SetFolder(self: *const INewShortcutHookW, pcszFolder: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).SetFolder(@as(*const INewShortcutHookW, @ptrCast(self)), pcszFolder);
+        return self.vtable.SetFolder(self, pcszFolder);
     }
     pub fn GetFolder(self: *const INewShortcutHookW, pszFolder: [*:0]u16, cchFolder: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).GetFolder(@as(*const INewShortcutHookW, @ptrCast(self)), pszFolder, cchFolder);
+        return self.vtable.GetFolder(self, pszFolder, cchFolder);
     }
     pub fn GetName(self: *const INewShortcutHookW, pszName: [*:0]u16, cchName: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).GetName(@as(*const INewShortcutHookW, @ptrCast(self)), pszName, cchName);
+        return self.vtable.GetName(self, pszName, cchName);
     }
     pub fn GetExtension(self: *const INewShortcutHookW, pszExtension: [*:0]u16, cchExtension: i32) callconv(.Inline) HRESULT {
-        return @as(*const INewShortcutHookW.VTable, @ptrCast(self.vtable)).GetExtension(@as(*const INewShortcutHookW, @ptrCast(self)), pszExtension, cchExtension);
+        return self.vtable.GetExtension(self, pszExtension, cchExtension);
     }
 };
 
@@ -27871,7 +27871,7 @@ pub const ICopyHookA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CopyCallback(self: *const ICopyHookA, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u8, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u8, dwDestAttribs: u32) callconv(.Inline) u32 {
-        return @as(*const ICopyHookA.VTable, @ptrCast(self.vtable)).CopyCallback(@as(*const ICopyHookA, @ptrCast(self)), hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
+        return self.vtable.CopyCallback(self, hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
     }
 };
 
@@ -27902,7 +27902,7 @@ pub const ICopyHookW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CopyCallback(self: *const ICopyHookW, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u16, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u16, dwDestAttribs: u32) callconv(.Inline) u32 {
-        return @as(*const ICopyHookW.VTable, @ptrCast(self.vtable)).CopyCallback(@as(*const ICopyHookW, @ptrCast(self)), hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
+        return self.vtable.CopyCallback(self, hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
     }
 };
 
@@ -27937,10 +27937,10 @@ pub const ICurrentWorkingDirectory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: [*:0]u16, cchSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICurrentWorkingDirectory.VTable, @ptrCast(self.vtable)).GetDirectory(@as(*const ICurrentWorkingDirectory, @ptrCast(self)), pwzPath, cchSize);
+        return self.vtable.GetDirectory(self, pwzPath, cchSize);
     }
     pub fn SetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICurrentWorkingDirectory.VTable, @ptrCast(self.vtable)).SetDirectory(@as(*const ICurrentWorkingDirectory, @ptrCast(self)), pwzPath);
+        return self.vtable.SetDirectory(self, pwzPath);
     }
 };
 
@@ -27987,13 +27987,13 @@ pub const IDockingWindowFrame = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn AddToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, pwszItem: ?[*:0]const u16, dwAddFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowFrame.VTable, @ptrCast(self.vtable)).AddToolbar(@as(*const IDockingWindowFrame, @ptrCast(self)), punkSrc, pwszItem, dwAddFlags);
+        return self.vtable.AddToolbar(self, punkSrc, pwszItem, dwAddFlags);
     }
     pub fn RemoveToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, dwRemoveFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowFrame.VTable, @ptrCast(self.vtable)).RemoveToolbar(@as(*const IDockingWindowFrame, @ptrCast(self)), punkSrc, dwRemoveFlags);
+        return self.vtable.RemoveToolbar(self, punkSrc, dwRemoveFlags);
     }
     pub fn FindToolbar(self: *const IDockingWindowFrame, pwszItem: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDockingWindowFrame.VTable, @ptrCast(self.vtable)).FindToolbar(@as(*const IDockingWindowFrame, @ptrCast(self)), pwszItem, riid, ppv);
+        return self.vtable.FindToolbar(self, pwszItem, riid, ppv);
     }
 };
 
@@ -28021,7 +28021,7 @@ pub const IThumbnailCapture = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CaptureThumbnail(self: *const IThumbnailCapture, pMaxSize: ?*const SIZE, pHTMLDoc2: ?*IUnknown, phbmThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailCapture.VTable, @ptrCast(self.vtable)).CaptureThumbnail(@as(*const IThumbnailCapture, @ptrCast(self)), pMaxSize, pHTMLDoc2, phbmThumbnail);
+        return self.vtable.CaptureThumbnail(self, pMaxSize, pHTMLDoc2, phbmThumbnail);
     }
 };
 
@@ -28077,13 +28077,13 @@ pub const IShellFolderBand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeSFB(self: *const IShellFolderBand, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderBand.VTable, @ptrCast(self.vtable)).InitializeSFB(@as(*const IShellFolderBand, @ptrCast(self)), psf, pidl);
+        return self.vtable.InitializeSFB(self, psf, pidl);
     }
     pub fn SetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderBand.VTable, @ptrCast(self.vtable)).SetBandInfoSFB(@as(*const IShellFolderBand, @ptrCast(self)), pbi);
+        return self.vtable.SetBandInfoSFB(self, pbi);
     }
     pub fn GetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.Inline) HRESULT {
-        return @as(*const IShellFolderBand.VTable, @ptrCast(self.vtable)).GetBandInfoSFB(@as(*const IShellFolderBand, @ptrCast(self)), pbi);
+        return self.vtable.GetBandInfoSFB(self, pbi);
     }
 };
 
@@ -28133,16 +28133,16 @@ pub const IDeskBarClient = extern union {
     };}
     pub usingnamespace IOleWindow.MethodMixin(@This());
     pub fn SetDeskBarSite(self: *const IDeskBarClient, punkSite: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBarClient.VTable, @ptrCast(self.vtable)).SetDeskBarSite(@as(*const IDeskBarClient, @ptrCast(self)), punkSite);
+        return self.vtable.SetDeskBarSite(self, punkSite);
     }
     pub fn SetModeDBC(self: *const IDeskBarClient, dwMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBarClient.VTable, @ptrCast(self.vtable)).SetModeDBC(@as(*const IDeskBarClient, @ptrCast(self)), dwMode);
+        return self.vtable.SetModeDBC(self, dwMode);
     }
     pub fn UIActivateDBC(self: *const IDeskBarClient, dwState: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBarClient.VTable, @ptrCast(self.vtable)).UIActivateDBC(@as(*const IDeskBarClient, @ptrCast(self)), dwState);
+        return self.vtable.UIActivateDBC(self, dwState);
     }
     pub fn GetSize(self: *const IDeskBarClient, dwWhich: u32, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IDeskBarClient.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IDeskBarClient, @ptrCast(self)), dwWhich, prc);
+        return self.vtable.GetSize(self, dwWhich, prc);
     }
 };
 
@@ -28211,13 +28211,13 @@ pub const IColumnProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IColumnProvider, psci: ?*SHCOLUMNINIT) callconv(.Inline) HRESULT {
-        return @as(*const IColumnProvider.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IColumnProvider, @ptrCast(self)), psci);
+        return self.vtable.Initialize(self, psci);
     }
     pub fn GetColumnInfo(self: *const IColumnProvider, dwIndex: u32, psci: ?*SHCOLUMNINFO) callconv(.Inline) HRESULT {
-        return @as(*const IColumnProvider.VTable, @ptrCast(self.vtable)).GetColumnInfo(@as(*const IColumnProvider, @ptrCast(self)), dwIndex, psci);
+        return self.vtable.GetColumnInfo(self, dwIndex, psci);
     }
     pub fn GetItemData(self: *const IColumnProvider, pscid: ?*PROPERTYKEY, pscd: ?*SHCOLUMNDATA, pvarData: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IColumnProvider.VTable, @ptrCast(self.vtable)).GetItemData(@as(*const IColumnProvider, @ptrCast(self)), pscid, pscd, pvarData);
+        return self.vtable.GetItemData(self, pscid, pscd, pvarData);
     }
 };
 
@@ -28249,7 +28249,7 @@ pub const IDocViewSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSetTitle(self: *const IDocViewSite, pvTitle: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IDocViewSite.VTable, @ptrCast(self.vtable)).OnSetTitle(@as(*const IDocViewSite, @ptrCast(self)), pvTitle);
+        return self.vtable.OnSetTitle(self, pvTitle);
     }
 };
 
@@ -28273,7 +28273,7 @@ pub const IInitializeObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IInitializeObject) callconv(.Inline) HRESULT {
-        return @as(*const IInitializeObject.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeObject, @ptrCast(self)));
+        return self.vtable.Initialize(self);
     }
 };
 
@@ -28322,16 +28322,16 @@ pub const IBanneredBar = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetIconSize(self: *const IBanneredBar, iIcon: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBanneredBar.VTable, @ptrCast(self.vtable)).SetIconSize(@as(*const IBanneredBar, @ptrCast(self)), iIcon);
+        return self.vtable.SetIconSize(self, iIcon);
     }
     pub fn GetIconSize(self: *const IBanneredBar, piIcon: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBanneredBar.VTable, @ptrCast(self.vtable)).GetIconSize(@as(*const IBanneredBar, @ptrCast(self)), piIcon);
+        return self.vtable.GetIconSize(self, piIcon);
     }
     pub fn SetBitmap(self: *const IBanneredBar, hBitmap: ?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IBanneredBar.VTable, @ptrCast(self.vtable)).SetBitmap(@as(*const IBanneredBar, @ptrCast(self)), hBitmap);
+        return self.vtable.SetBitmap(self, hBitmap);
     }
     pub fn GetBitmap(self: *const IBanneredBar, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IBanneredBar.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IBanneredBar, @ptrCast(self)), phBitmap);
+        return self.vtable.GetBitmap(self, phBitmap);
     }
 };
 
@@ -29032,19 +29032,19 @@ pub const IQueryAssociations = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IQueryAssociations, flags: u32, pszAssoc: ?[*:0]const u16, hkProgid: ?HKEY, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IQueryAssociations.VTable, @ptrCast(self.vtable)).Init(@as(*const IQueryAssociations, @ptrCast(self)), flags, pszAssoc, hkProgid, hwnd);
+        return self.vtable.Init(self, flags, pszAssoc, hkProgid, hwnd);
     }
     pub fn GetString(self: *const IQueryAssociations, flags: u32, str: ASSOCSTR, pszExtra: ?[*:0]const u16, pszOut: ?[*:0]u16, pcchOut: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryAssociations.VTable, @ptrCast(self.vtable)).GetString(@as(*const IQueryAssociations, @ptrCast(self)), flags, str, pszExtra, pszOut, pcchOut);
+        return self.vtable.GetString(self, flags, str, pszExtra, pszOut, pcchOut);
     }
     pub fn GetKey(self: *const IQueryAssociations, flags: u32, key: ASSOCKEY, pszExtra: ?[*:0]const u16, phkeyOut: ?*?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const IQueryAssociations.VTable, @ptrCast(self.vtable)).GetKey(@as(*const IQueryAssociations, @ptrCast(self)), flags, key, pszExtra, phkeyOut);
+        return self.vtable.GetKey(self, flags, key, pszExtra, phkeyOut);
     }
     pub fn GetData(self: *const IQueryAssociations, flags: u32, data: ASSOCDATA, pszExtra: ?[*:0]const u16, pvOut: ?*anyopaque, pcbOut: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IQueryAssociations.VTable, @ptrCast(self.vtable)).GetData(@as(*const IQueryAssociations, @ptrCast(self)), flags, data, pszExtra, pvOut, pcbOut);
+        return self.vtable.GetData(self, flags, data, pszExtra, pvOut, pcbOut);
     }
     pub fn GetEnum(self: *const IQueryAssociations, flags: u32, assocenum: ASSOCENUM, pszExtra: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IQueryAssociations.VTable, @ptrCast(self.vtable)).GetEnum(@as(*const IQueryAssociations, @ptrCast(self)), flags, assocenum, pszExtra, riid, ppvOut);
+        return self.vtable.GetEnum(self, flags, assocenum, pszExtra, riid, ppvOut);
     }
 };
 
@@ -29337,19 +29337,19 @@ pub const IShellApp = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppInfo(self: *const IShellApp, pai: ?*APPINFODATA) callconv(.Inline) HRESULT {
-        return @as(*const IShellApp.VTable, @ptrCast(self.vtable)).GetAppInfo(@as(*const IShellApp, @ptrCast(self)), pai);
+        return self.vtable.GetAppInfo(self, pai);
     }
     pub fn GetPossibleActions(self: *const IShellApp, pdwActions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellApp.VTable, @ptrCast(self.vtable)).GetPossibleActions(@as(*const IShellApp, @ptrCast(self)), pdwActions);
+        return self.vtable.GetPossibleActions(self, pdwActions);
     }
     pub fn GetSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.Inline) HRESULT {
-        return @as(*const IShellApp.VTable, @ptrCast(self.vtable)).GetSlowAppInfo(@as(*const IShellApp, @ptrCast(self)), psaid);
+        return self.vtable.GetSlowAppInfo(self, psaid);
     }
     pub fn GetCachedSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.Inline) HRESULT {
-        return @as(*const IShellApp.VTable, @ptrCast(self.vtable)).GetCachedSlowAppInfo(@as(*const IShellApp, @ptrCast(self)), psaid);
+        return self.vtable.GetCachedSlowAppInfo(self, psaid);
     }
     pub fn IsInstalled(self: *const IShellApp) callconv(.Inline) HRESULT {
-        return @as(*const IShellApp.VTable, @ptrCast(self.vtable)).IsInstalled(@as(*const IShellApp, @ptrCast(self)));
+        return self.vtable.IsInstalled(self);
     }
 };
 
@@ -29413,13 +29413,13 @@ pub const IPublishedApp = extern union {
     };}
     pub usingnamespace IShellApp.MethodMixin(@This());
     pub fn Install(self: *const IPublishedApp, pstInstall: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const IPublishedApp.VTable, @ptrCast(self.vtable)).Install(@as(*const IPublishedApp, @ptrCast(self)), pstInstall);
+        return self.vtable.Install(self, pstInstall);
     }
     pub fn GetPublishedAppInfo(self: *const IPublishedApp, ppai: ?*PUBAPPINFO) callconv(.Inline) HRESULT {
-        return @as(*const IPublishedApp.VTable, @ptrCast(self.vtable)).GetPublishedAppInfo(@as(*const IPublishedApp, @ptrCast(self)), ppai);
+        return self.vtable.GetPublishedAppInfo(self, ppai);
     }
     pub fn Unschedule(self: *const IPublishedApp) callconv(.Inline) HRESULT {
-        return @as(*const IPublishedApp.VTable, @ptrCast(self.vtable)).Unschedule(@as(*const IPublishedApp, @ptrCast(self)));
+        return self.vtable.Unschedule(self);
     }
 };
 
@@ -29446,7 +29446,7 @@ pub const IPublishedApp2 = extern union {
     };}
     pub usingnamespace IPublishedApp.MethodMixin(@This());
     pub fn Install2(self: *const IPublishedApp2, pstInstall: ?*SYSTEMTIME, hwndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPublishedApp2.VTable, @ptrCast(self.vtable)).Install2(@as(*const IPublishedApp2, @ptrCast(self)), pstInstall, hwndParent);
+        return self.vtable.Install2(self, pstInstall, hwndParent);
     }
 };
 
@@ -29479,10 +29479,10 @@ pub const IEnumPublishedApps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumPublishedApps, pia: ?*?*IPublishedApp) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPublishedApps.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumPublishedApps, @ptrCast(self)), pia);
+        return self.vtable.Next(self, pia);
     }
     pub fn Reset(self: *const IEnumPublishedApps) callconv(.Inline) HRESULT {
-        return @as(*const IEnumPublishedApps.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumPublishedApps, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
 };
 
@@ -29533,16 +29533,16 @@ pub const IAppPublisher = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNumberOfCategories(self: *const IAppPublisher, pdwCat: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAppPublisher.VTable, @ptrCast(self.vtable)).GetNumberOfCategories(@as(*const IAppPublisher, @ptrCast(self)), pdwCat);
+        return self.vtable.GetNumberOfCategories(self, pdwCat);
     }
     pub fn GetCategories(self: *const IAppPublisher, pAppCategoryList: ?*APPCATEGORYINFOLIST) callconv(.Inline) HRESULT {
-        return @as(*const IAppPublisher.VTable, @ptrCast(self.vtable)).GetCategories(@as(*const IAppPublisher, @ptrCast(self)), pAppCategoryList);
+        return self.vtable.GetCategories(self, pAppCategoryList);
     }
     pub fn GetNumberOfApps(self: *const IAppPublisher, pdwApps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAppPublisher.VTable, @ptrCast(self.vtable)).GetNumberOfApps(@as(*const IAppPublisher, @ptrCast(self)), pdwApps);
+        return self.vtable.GetNumberOfApps(self, pdwApps);
     }
     pub fn EnumApps(self: *const IAppPublisher, pAppCategoryId: ?*Guid, ppepa: ?*?*IEnumPublishedApps) callconv(.Inline) HRESULT {
-        return @as(*const IAppPublisher.VTable, @ptrCast(self.vtable)).EnumApps(@as(*const IAppPublisher, @ptrCast(self)), pAppCategoryId, ppepa);
+        return self.vtable.EnumApps(self, pAppCategoryId, ppepa);
     }
 };
 
@@ -29882,55 +29882,55 @@ pub const ICredentialProviderCredential = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const ICredentialProviderCredential, pcpce: ?*ICredentialProviderCredentialEvents) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).Advise(@as(*const ICredentialProviderCredential, @ptrCast(self)), pcpce);
+        return self.vtable.Advise(self, pcpce);
     }
     pub fn UnAdvise(self: *const ICredentialProviderCredential) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const ICredentialProviderCredential, @ptrCast(self)));
+        return self.vtable.UnAdvise(self);
     }
     pub fn SetSelected(self: *const ICredentialProviderCredential, pbAutoLogon: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).SetSelected(@as(*const ICredentialProviderCredential, @ptrCast(self)), pbAutoLogon);
+        return self.vtable.SetSelected(self, pbAutoLogon);
     }
     pub fn SetDeselected(self: *const ICredentialProviderCredential) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).SetDeselected(@as(*const ICredentialProviderCredential, @ptrCast(self)));
+        return self.vtable.SetDeselected(self);
     }
     pub fn GetFieldState(self: *const ICredentialProviderCredential, dwFieldID: u32, pcpfs: ?*CREDENTIAL_PROVIDER_FIELD_STATE, pcpfis: ?*CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetFieldState(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, pcpfs, pcpfis);
+        return self.vtable.GetFieldState(self, dwFieldID, pcpfs, pcpfis);
     }
     pub fn GetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, ppsz);
+        return self.vtable.GetStringValue(self, dwFieldID, ppsz);
     }
     pub fn GetBitmapValue(self: *const ICredentialProviderCredential, dwFieldID: u32, phbmp: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetBitmapValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, phbmp);
+        return self.vtable.GetBitmapValue(self, dwFieldID, phbmp);
     }
     pub fn GetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pbChecked: ?*BOOL, ppszLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetCheckboxValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, pbChecked, ppszLabel);
+        return self.vtable.GetCheckboxValue(self, dwFieldID, pbChecked, ppszLabel);
     }
     pub fn GetSubmitButtonValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pdwAdjacentTo: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetSubmitButtonValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, pdwAdjacentTo);
+        return self.vtable.GetSubmitButtonValue(self, dwFieldID, pdwAdjacentTo);
     }
     pub fn GetComboBoxValueCount(self: *const ICredentialProviderCredential, dwFieldID: u32, pcItems: ?*u32, pdwSelectedItem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetComboBoxValueCount(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, pcItems, pdwSelectedItem);
+        return self.vtable.GetComboBoxValueCount(self, dwFieldID, pcItems, pdwSelectedItem);
     }
     pub fn GetComboBoxValueAt(self: *const ICredentialProviderCredential, dwFieldID: u32, dwItem: u32, ppszItem: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetComboBoxValueAt(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, dwItem, ppszItem);
+        return self.vtable.GetComboBoxValueAt(self, dwFieldID, dwItem, ppszItem);
     }
     pub fn SetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, psz);
+        return self.vtable.SetStringValue(self, dwFieldID, psz);
     }
     pub fn SetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).SetCheckboxValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, bChecked);
+        return self.vtable.SetCheckboxValue(self, dwFieldID, bChecked);
     }
     pub fn SetComboBoxSelectedValue(self: *const ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).SetComboBoxSelectedValue(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID, dwSelectedItem);
+        return self.vtable.SetComboBoxSelectedValue(self, dwFieldID, dwSelectedItem);
     }
     pub fn CommandLinkClicked(self: *const ICredentialProviderCredential, dwFieldID: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).CommandLinkClicked(@as(*const ICredentialProviderCredential, @ptrCast(self)), dwFieldID);
+        return self.vtable.CommandLinkClicked(self, dwFieldID);
     }
     pub fn GetSerialization(self: *const ICredentialProviderCredential, pcpgsr: ?*CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE, pcpcs: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).GetSerialization(@as(*const ICredentialProviderCredential, @ptrCast(self)), pcpgsr, pcpcs, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
+        return self.vtable.GetSerialization(self, pcpgsr, pcpcs, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
     }
     pub fn ReportResult(self: *const ICredentialProviderCredential, ntsStatus: NTSTATUS, ntsSubstatus: NTSTATUS, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential.VTable, @ptrCast(self.vtable)).ReportResult(@as(*const ICredentialProviderCredential, @ptrCast(self)), ntsStatus, ntsSubstatus, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
+        return self.vtable.ReportResult(self, ntsStatus, ntsSubstatus, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
     }
 };
 
@@ -29956,7 +29956,7 @@ pub const IQueryContinueWithStatus = extern union {
     };}
     pub usingnamespace IQueryContinue.MethodMixin(@This());
     pub fn SetStatusMessage(self: *const IQueryContinueWithStatus, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IQueryContinueWithStatus.VTable, @ptrCast(self.vtable)).SetStatusMessage(@as(*const IQueryContinueWithStatus, @ptrCast(self)), psz);
+        return self.vtable.SetStatusMessage(self, psz);
     }
 };
 
@@ -29989,10 +29989,10 @@ pub const IConnectableCredentialProviderCredential = extern union {
     };}
     pub usingnamespace ICredentialProviderCredential.MethodMixin(@This());
     pub fn Connect(self: *const IConnectableCredentialProviderCredential, pqcws: ?*IQueryContinueWithStatus) callconv(.Inline) HRESULT {
-        return @as(*const IConnectableCredentialProviderCredential.VTable, @ptrCast(self.vtable)).Connect(@as(*const IConnectableCredentialProviderCredential, @ptrCast(self)), pqcws);
+        return self.vtable.Connect(self, pqcws);
     }
     pub fn Disconnect(self: *const IConnectableCredentialProviderCredential) callconv(.Inline) HRESULT {
-        return @as(*const IConnectableCredentialProviderCredential.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IConnectableCredentialProviderCredential, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
 };
 
@@ -30109,34 +30109,34 @@ pub const ICredentialProviderCredentialEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFieldState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfs: CREDENTIAL_PROVIDER_FIELD_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldState(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, cpfs);
+        return self.vtable.SetFieldState(self, pcpc, dwFieldID, cpfs);
     }
     pub fn SetFieldInteractiveState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfis: CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldInteractiveState(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, cpfis);
+        return self.vtable.SetFieldInteractiveState(self, pcpc, dwFieldID, cpfis);
     }
     pub fn SetFieldString(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldString(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, psz);
+        return self.vtable.SetFieldString(self, pcpc, dwFieldID, psz);
     }
     pub fn SetFieldCheckbox(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldCheckbox(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, bChecked, pszLabel);
+        return self.vtable.SetFieldCheckbox(self, pcpc, dwFieldID, bChecked, pszLabel);
     }
     pub fn SetFieldBitmap(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, hbmp: ?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldBitmap(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, hbmp);
+        return self.vtable.SetFieldBitmap(self, pcpc, dwFieldID, hbmp);
     }
     pub fn SetFieldComboBoxSelectedItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldComboBoxSelectedItem(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, dwSelectedItem);
+        return self.vtable.SetFieldComboBoxSelectedItem(self, pcpc, dwFieldID, dwSelectedItem);
     }
     pub fn DeleteFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwItem: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).DeleteFieldComboBoxItem(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, dwItem);
+        return self.vtable.DeleteFieldComboBoxItem(self, pcpc, dwFieldID, dwItem);
     }
     pub fn AppendFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, pszItem: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).AppendFieldComboBoxItem(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, pszItem);
+        return self.vtable.AppendFieldComboBoxItem(self, pcpc, dwFieldID, pszItem);
     }
     pub fn SetFieldSubmitButton(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwAdjacentTo: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).SetFieldSubmitButton(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), pcpc, dwFieldID, dwAdjacentTo);
+        return self.vtable.SetFieldSubmitButton(self, pcpc, dwFieldID, dwAdjacentTo);
     }
     pub fn OnCreatingWindow(self: *const ICredentialProviderCredentialEvents, phwndOwner: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents.VTable, @ptrCast(self.vtable)).OnCreatingWindow(@as(*const ICredentialProviderCredentialEvents, @ptrCast(self)), phwndOwner);
+        return self.vtable.OnCreatingWindow(self, phwndOwner);
     }
 };
 
@@ -30223,28 +30223,28 @@ pub const ICredentialProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUsageScenario(self: *const ICredentialProvider, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).SetUsageScenario(@as(*const ICredentialProvider, @ptrCast(self)), cpus, dwFlags);
+        return self.vtable.SetUsageScenario(self, cpus, dwFlags);
     }
     pub fn SetSerialization(self: *const ICredentialProvider, pcpcs: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).SetSerialization(@as(*const ICredentialProvider, @ptrCast(self)), pcpcs);
+        return self.vtable.SetSerialization(self, pcpcs);
     }
     pub fn Advise(self: *const ICredentialProvider, pcpe: ?*ICredentialProviderEvents, upAdviseContext: usize) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).Advise(@as(*const ICredentialProvider, @ptrCast(self)), pcpe, upAdviseContext);
+        return self.vtable.Advise(self, pcpe, upAdviseContext);
     }
     pub fn UnAdvise(self: *const ICredentialProvider) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const ICredentialProvider, @ptrCast(self)));
+        return self.vtable.UnAdvise(self);
     }
     pub fn GetFieldDescriptorCount(self: *const ICredentialProvider, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).GetFieldDescriptorCount(@as(*const ICredentialProvider, @ptrCast(self)), pdwCount);
+        return self.vtable.GetFieldDescriptorCount(self, pdwCount);
     }
     pub fn GetFieldDescriptorAt(self: *const ICredentialProvider, dwIndex: u32, ppcpfd: ?*?*CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).GetFieldDescriptorAt(@as(*const ICredentialProvider, @ptrCast(self)), dwIndex, ppcpfd);
+        return self.vtable.GetFieldDescriptorAt(self, dwIndex, ppcpfd);
     }
     pub fn GetCredentialCount(self: *const ICredentialProvider, pdwCount: ?*u32, pdwDefault: ?*u32, pbAutoLogonWithDefault: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).GetCredentialCount(@as(*const ICredentialProvider, @ptrCast(self)), pdwCount, pdwDefault, pbAutoLogonWithDefault);
+        return self.vtable.GetCredentialCount(self, pdwCount, pdwDefault, pbAutoLogonWithDefault);
     }
     pub fn GetCredentialAt(self: *const ICredentialProvider, dwIndex: u32, ppcpc: ?*?*ICredentialProviderCredential) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProvider.VTable, @ptrCast(self.vtable)).GetCredentialAt(@as(*const ICredentialProvider, @ptrCast(self)), dwIndex, ppcpc);
+        return self.vtable.GetCredentialAt(self, dwIndex, ppcpc);
     }
 };
 
@@ -30270,7 +30270,7 @@ pub const ICredentialProviderEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CredentialsChanged(self: *const ICredentialProviderEvents, upAdviseContext: usize) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderEvents.VTable, @ptrCast(self.vtable)).CredentialsChanged(@as(*const ICredentialProviderEvents, @ptrCast(self)), upAdviseContext);
+        return self.vtable.CredentialsChanged(self, upAdviseContext);
     }
 };
 
@@ -30309,10 +30309,10 @@ pub const ICredentialProviderFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Filter(self: *const ICredentialProviderFilter, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32, rgclsidProviders: [*]Guid, rgbAllow: [*]BOOL, cProviders: u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderFilter.VTable, @ptrCast(self.vtable)).Filter(@as(*const ICredentialProviderFilter, @ptrCast(self)), cpus, dwFlags, rgclsidProviders, rgbAllow, cProviders);
+        return self.vtable.Filter(self, cpus, dwFlags, rgclsidProviders, rgbAllow, cProviders);
     }
     pub fn UpdateRemoteCredential(self: *const ICredentialProviderFilter, pcpcsIn: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, pcpcsOut: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderFilter.VTable, @ptrCast(self.vtable)).UpdateRemoteCredential(@as(*const ICredentialProviderFilter, @ptrCast(self)), pcpcsIn, pcpcsOut);
+        return self.vtable.UpdateRemoteCredential(self, pcpcsIn, pcpcsOut);
     }
 };
 
@@ -30338,7 +30338,7 @@ pub const ICredentialProviderCredential2 = extern union {
     };}
     pub usingnamespace ICredentialProviderCredential.MethodMixin(@This());
     pub fn GetUserSid(self: *const ICredentialProviderCredential2, sid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredential2.VTable, @ptrCast(self.vtable)).GetUserSid(@as(*const ICredentialProviderCredential2, @ptrCast(self)), sid);
+        return self.vtable.GetUserSid(self, sid);
     }
 };
 
@@ -30365,7 +30365,7 @@ pub const ICredentialProviderCredentialWithFieldOptions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFieldOptions(self: *const ICredentialProviderCredentialWithFieldOptions, fieldID: u32, options: ?*CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialWithFieldOptions.VTable, @ptrCast(self.vtable)).GetFieldOptions(@as(*const ICredentialProviderCredentialWithFieldOptions, @ptrCast(self)), fieldID, options);
+        return self.vtable.GetFieldOptions(self, fieldID, options);
     }
 };
 
@@ -30407,13 +30407,13 @@ pub const ICredentialProviderCredentialEvents2 = extern union {
     };}
     pub usingnamespace ICredentialProviderCredentialEvents.MethodMixin(@This());
     pub fn BeginFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents2.VTable, @ptrCast(self.vtable)).BeginFieldUpdates(@as(*const ICredentialProviderCredentialEvents2, @ptrCast(self)));
+        return self.vtable.BeginFieldUpdates(self);
     }
     pub fn EndFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents2.VTable, @ptrCast(self.vtable)).EndFieldUpdates(@as(*const ICredentialProviderCredentialEvents2, @ptrCast(self)));
+        return self.vtable.EndFieldUpdates(self);
     }
     pub fn SetFieldOptions(self: *const ICredentialProviderCredentialEvents2, credential: ?*ICredentialProviderCredential, fieldID: u32, options: CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderCredentialEvents2.VTable, @ptrCast(self.vtable)).SetFieldOptions(@as(*const ICredentialProviderCredentialEvents2, @ptrCast(self)), credential, fieldID, options);
+        return self.vtable.SetFieldOptions(self, credential, fieldID, options);
     }
 };
 
@@ -30465,16 +30465,16 @@ pub const ICredentialProviderUser = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSid(self: *const ICredentialProviderUser, sid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUser.VTable, @ptrCast(self.vtable)).GetSid(@as(*const ICredentialProviderUser, @ptrCast(self)), sid);
+        return self.vtable.GetSid(self, sid);
     }
     pub fn GetProviderID(self: *const ICredentialProviderUser, providerID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUser.VTable, @ptrCast(self.vtable)).GetProviderID(@as(*const ICredentialProviderUser, @ptrCast(self)), providerID);
+        return self.vtable.GetProviderID(self, providerID);
     }
     pub fn GetStringValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, stringValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUser.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ICredentialProviderUser, @ptrCast(self)), key, stringValue);
+        return self.vtable.GetStringValue(self, key, stringValue);
     }
     pub fn GetValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUser.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICredentialProviderUser, @ptrCast(self)), key, value);
+        return self.vtable.GetValue(self, key, value);
     }
 };
 
@@ -30525,16 +30525,16 @@ pub const ICredentialProviderUserArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetProviderFilter(self: *const ICredentialProviderUserArray, guidProviderToFilterTo: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUserArray.VTable, @ptrCast(self.vtable)).SetProviderFilter(@as(*const ICredentialProviderUserArray, @ptrCast(self)), guidProviderToFilterTo);
+        return self.vtable.SetProviderFilter(self, guidProviderToFilterTo);
     }
     pub fn GetAccountOptions(self: *const ICredentialProviderUserArray, credentialProviderAccountOptions: ?*CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUserArray.VTable, @ptrCast(self.vtable)).GetAccountOptions(@as(*const ICredentialProviderUserArray, @ptrCast(self)), credentialProviderAccountOptions);
+        return self.vtable.GetAccountOptions(self, credentialProviderAccountOptions);
     }
     pub fn GetCount(self: *const ICredentialProviderUserArray, userCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUserArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICredentialProviderUserArray, @ptrCast(self)), userCount);
+        return self.vtable.GetCount(self, userCount);
     }
     pub fn GetAt(self: *const ICredentialProviderUserArray, userIndex: u32, user: ?*?*ICredentialProviderUser) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderUserArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ICredentialProviderUserArray, @ptrCast(self)), userIndex, user);
+        return self.vtable.GetAt(self, userIndex, user);
     }
 };
 
@@ -30560,7 +30560,7 @@ pub const ICredentialProviderSetUserArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUserArray(self: *const ICredentialProviderSetUserArray, users: ?*ICredentialProviderUserArray) callconv(.Inline) HRESULT {
-        return @as(*const ICredentialProviderSetUserArray.VTable, @ptrCast(self.vtable)).SetUserArray(@as(*const ICredentialProviderSetUserArray, @ptrCast(self)), users);
+        return self.vtable.SetUserArray(self, users);
     }
 };
 
@@ -30620,10 +30620,10 @@ pub const ISyncMgrHandlerCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHandlerEnumerator(self: *const ISyncMgrHandlerCollection, ppenum: ?*?*IEnumString) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerCollection.VTable, @ptrCast(self.vtable)).GetHandlerEnumerator(@as(*const ISyncMgrHandlerCollection, @ptrCast(self)), ppenum);
+        return self.vtable.GetHandlerEnumerator(self, ppenum);
     }
     pub fn BindToHandler(self: *const ISyncMgrHandlerCollection, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerCollection.VTable, @ptrCast(self.vtable)).BindToHandler(@as(*const ISyncMgrHandlerCollection, @ptrCast(self)), pszHandlerID, riid, ppv);
+        return self.vtable.BindToHandler(self, pszHandlerID, riid, ppv);
     }
 };
 
@@ -30773,28 +30773,28 @@ pub const ISyncMgrHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const ISyncMgrHandler, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).GetName(@as(*const ISyncMgrHandler, @ptrCast(self)), ppszName);
+        return self.vtable.GetName(self, ppszName);
     }
     pub fn GetHandlerInfo(self: *const ISyncMgrHandler, ppHandlerInfo: ?*?*ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).GetHandlerInfo(@as(*const ISyncMgrHandler, @ptrCast(self)), ppHandlerInfo);
+        return self.vtable.GetHandlerInfo(self, ppHandlerInfo);
     }
     pub fn GetObject(self: *const ISyncMgrHandler, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).GetObject(@as(*const ISyncMgrHandler, @ptrCast(self)), rguidObjectID, riid, ppv);
+        return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
     pub fn GetCapabilities(self: *const ISyncMgrHandler, pmCapabilities: ?*SYNCMGR_HANDLER_CAPABILITIES) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const ISyncMgrHandler, @ptrCast(self)), pmCapabilities);
+        return self.vtable.GetCapabilities(self, pmCapabilities);
     }
     pub fn GetPolicies(self: *const ISyncMgrHandler, pmPolicies: ?*SYNCMGR_HANDLER_POLICIES) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).GetPolicies(@as(*const ISyncMgrHandler, @ptrCast(self)), pmPolicies);
+        return self.vtable.GetPolicies(self, pmPolicies);
     }
     pub fn Activate(self: *const ISyncMgrHandler, fActivate: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).Activate(@as(*const ISyncMgrHandler, @ptrCast(self)), fActivate);
+        return self.vtable.Activate(self, fActivate);
     }
     pub fn Enable(self: *const ISyncMgrHandler, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).Enable(@as(*const ISyncMgrHandler, @ptrCast(self)), fEnable);
+        return self.vtable.Enable(self, fEnable);
     }
     pub fn Synchronize(self: *const ISyncMgrHandler, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, pSessionCreator: ?*ISyncMgrSessionCreator, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandler.VTable, @ptrCast(self.vtable)).Synchronize(@as(*const ISyncMgrHandler, @ptrCast(self)), ppszItemIDs, cItems, hwndOwner, pSessionCreator, punk);
+        return self.vtable.Synchronize(self, ppszItemIDs, cItems, hwndOwner, pSessionCreator, punk);
     }
 };
 
@@ -30884,25 +30884,25 @@ pub const ISyncMgrHandlerInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetType(self: *const ISyncMgrHandlerInfo, pnType: ?*SYNCMGR_HANDLER_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).GetType(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)), pnType);
+        return self.vtable.GetType(self, pnType);
     }
     pub fn GetTypeLabel(self: *const ISyncMgrHandlerInfo, ppszTypeLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).GetTypeLabel(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)), ppszTypeLabel);
+        return self.vtable.GetTypeLabel(self, ppszTypeLabel);
     }
     pub fn GetComment(self: *const ISyncMgrHandlerInfo, ppszComment: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).GetComment(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)), ppszComment);
+        return self.vtable.GetComment(self, ppszComment);
     }
     pub fn GetLastSyncTime(self: *const ISyncMgrHandlerInfo, pftLastSync: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).GetLastSyncTime(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)), pftLastSync);
+        return self.vtable.GetLastSyncTime(self, pftLastSync);
     }
     pub fn IsActive(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).IsActive(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)));
+        return self.vtable.IsActive(self);
     }
     pub fn IsEnabled(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)));
+        return self.vtable.IsEnabled(self);
     }
     pub fn IsConnected(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrHandlerInfo.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const ISyncMgrHandlerInfo, @ptrCast(self)));
+        return self.vtable.IsConnected(self);
     }
 };
 
@@ -30945,13 +30945,13 @@ pub const ISyncMgrSyncItemContainer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSyncItem(self: *const ISyncMgrSyncItemContainer, pszItemID: ?[*:0]const u16, ppItem: ?*?*ISyncMgrSyncItem) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemContainer.VTable, @ptrCast(self.vtable)).GetSyncItem(@as(*const ISyncMgrSyncItemContainer, @ptrCast(self)), pszItemID, ppItem);
+        return self.vtable.GetSyncItem(self, pszItemID, ppItem);
     }
     pub fn GetSyncItemEnumerator(self: *const ISyncMgrSyncItemContainer, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemContainer.VTable, @ptrCast(self.vtable)).GetSyncItemEnumerator(@as(*const ISyncMgrSyncItemContainer, @ptrCast(self)), ppenum);
+        return self.vtable.GetSyncItemEnumerator(self, ppenum);
     }
     pub fn GetSyncItemCount(self: *const ISyncMgrSyncItemContainer, pcItems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemContainer.VTable, @ptrCast(self.vtable)).GetSyncItemCount(@as(*const ISyncMgrSyncItemContainer, @ptrCast(self)), pcItems);
+        return self.vtable.GetSyncItemCount(self, pcItems);
     }
 };
 
@@ -31086,28 +31086,28 @@ pub const ISyncMgrSyncItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemID(self: *const ISyncMgrSyncItem, ppszItemID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetItemID(@as(*const ISyncMgrSyncItem, @ptrCast(self)), ppszItemID);
+        return self.vtable.GetItemID(self, ppszItemID);
     }
     pub fn GetName(self: *const ISyncMgrSyncItem, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetName(@as(*const ISyncMgrSyncItem, @ptrCast(self)), ppszName);
+        return self.vtable.GetName(self, ppszName);
     }
     pub fn GetItemInfo(self: *const ISyncMgrSyncItem, ppItemInfo: ?*?*ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetItemInfo(@as(*const ISyncMgrSyncItem, @ptrCast(self)), ppItemInfo);
+        return self.vtable.GetItemInfo(self, ppItemInfo);
     }
     pub fn GetObject(self: *const ISyncMgrSyncItem, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetObject(@as(*const ISyncMgrSyncItem, @ptrCast(self)), rguidObjectID, riid, ppv);
+        return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
     pub fn GetCapabilities(self: *const ISyncMgrSyncItem, pmCapabilities: ?*SYNCMGR_ITEM_CAPABILITIES) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const ISyncMgrSyncItem, @ptrCast(self)), pmCapabilities);
+        return self.vtable.GetCapabilities(self, pmCapabilities);
     }
     pub fn GetPolicies(self: *const ISyncMgrSyncItem, pmPolicies: ?*SYNCMGR_ITEM_POLICIES) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).GetPolicies(@as(*const ISyncMgrSyncItem, @ptrCast(self)), pmPolicies);
+        return self.vtable.GetPolicies(self, pmPolicies);
     }
     pub fn Enable(self: *const ISyncMgrSyncItem, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).Enable(@as(*const ISyncMgrSyncItem, @ptrCast(self)), fEnable);
+        return self.vtable.Enable(self, fEnable);
     }
     pub fn Delete(self: *const ISyncMgrSyncItem) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItem.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISyncMgrSyncItem, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
 };
 
@@ -31163,19 +31163,19 @@ pub const ISyncMgrSyncItemInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTypeLabel(self: *const ISyncMgrSyncItemInfo, ppszTypeLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemInfo.VTable, @ptrCast(self.vtable)).GetTypeLabel(@as(*const ISyncMgrSyncItemInfo, @ptrCast(self)), ppszTypeLabel);
+        return self.vtable.GetTypeLabel(self, ppszTypeLabel);
     }
     pub fn GetComment(self: *const ISyncMgrSyncItemInfo, ppszComment: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemInfo.VTable, @ptrCast(self.vtable)).GetComment(@as(*const ISyncMgrSyncItemInfo, @ptrCast(self)), ppszComment);
+        return self.vtable.GetComment(self, ppszComment);
     }
     pub fn GetLastSyncTime(self: *const ISyncMgrSyncItemInfo, pftLastSync: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemInfo.VTable, @ptrCast(self.vtable)).GetLastSyncTime(@as(*const ISyncMgrSyncItemInfo, @ptrCast(self)), pftLastSync);
+        return self.vtable.GetLastSyncTime(self, pftLastSync);
     }
     pub fn IsEnabled(self: *const ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemInfo.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const ISyncMgrSyncItemInfo, @ptrCast(self)));
+        return self.vtable.IsEnabled(self);
     }
     pub fn IsConnected(self: *const ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncItemInfo.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const ISyncMgrSyncItemInfo, @ptrCast(self)));
+        return self.vtable.IsConnected(self);
     }
 };
 
@@ -31226,16 +31226,16 @@ pub const IEnumSyncMgrSyncItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncMgrSyncItems, celt: u32, rgelt: [*]?*ISyncMgrSyncItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrSyncItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncMgrSyncItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumSyncMgrSyncItems, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrSyncItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncMgrSyncItems, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrSyncItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncMgrSyncItems, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumSyncMgrSyncItems, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrSyncItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncMgrSyncItems, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -31310,7 +31310,7 @@ pub const ISyncMgrSessionCreator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSession(self: *const ISyncMgrSessionCreator, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, ppCallback: ?*?*ISyncMgrSyncCallback) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSessionCreator.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const ISyncMgrSessionCreator, @ptrCast(self)), pszHandlerID, ppszItemIDs, cItems, ppCallback);
+        return self.vtable.CreateSession(self, pszHandlerID, ppszItemIDs, cItems, ppCallback);
     }
 };
 
@@ -31422,34 +31422,34 @@ pub const ISyncMgrSyncCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReportProgress(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, pszProgressText: ?[*:0]const u16, nStatus: SYNCMGR_PROGRESS_STATUS, uCurrentStep: u32, uMaxStep: u32, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszItemID, pszProgressText, nStatus, uCurrentStep, uMaxStep, pnCancelRequest);
+        return self.vtable.ReportProgress(self, pszItemID, pszProgressText, nStatus, uCurrentStep, uMaxStep, pnCancelRequest);
     }
     pub fn SetHandlerProgressText(self: *const ISyncMgrSyncCallback, pszProgressText: ?[*:0]const u16, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).SetHandlerProgressText(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszProgressText, pnCancelRequest);
+        return self.vtable.SetHandlerProgressText(self, pszProgressText, pnCancelRequest);
     }
     pub fn ReportEvent(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, nLevel: SYNCMGR_EVENT_LEVEL, nFlags: SYNCMGR_EVENT_FLAGS, pszName: ?[*:0]const u16, pszDescription: ?[*:0]const u16, pszLinkText: ?[*:0]const u16, pszLinkReference: ?[*:0]const u16, pszContext: ?[*:0]const u16, pguidEventID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).ReportEvent(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszItemID, nLevel, nFlags, pszName, pszDescription, pszLinkText, pszLinkReference, pszContext, pguidEventID);
+        return self.vtable.ReportEvent(self, pszItemID, nLevel, nFlags, pszName, pszDescription, pszLinkText, pszLinkReference, pszContext, pguidEventID);
     }
     pub fn CanContinue(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).CanContinue(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszItemID);
+        return self.vtable.CanContinue(self, pszItemID);
     }
     pub fn QueryForAdditionalItems(self: *const ISyncMgrSyncCallback, ppenumItemIDs: ?*?*IEnumString, ppenumPunks: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).QueryForAdditionalItems(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), ppenumItemIDs, ppenumPunks);
+        return self.vtable.QueryForAdditionalItems(self, ppenumItemIDs, ppenumPunks);
     }
     pub fn AddItemToSession(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).AddItemToSession(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszItemID);
+        return self.vtable.AddItemToSession(self, pszItemID);
     }
     pub fn AddIUnknownToSession(self: *const ISyncMgrSyncCallback, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).AddIUnknownToSession(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), punk);
+        return self.vtable.AddIUnknownToSession(self, punk);
     }
     pub fn ProposeItem(self: *const ISyncMgrSyncCallback, pNewItem: ?*ISyncMgrSyncItem) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).ProposeItem(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pNewItem);
+        return self.vtable.ProposeItem(self, pNewItem);
     }
     pub fn CommitItem(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).CommitItem(@as(*const ISyncMgrSyncCallback, @ptrCast(self)), pszItemID);
+        return self.vtable.CommitItem(self, pszItemID);
     }
     pub fn ReportManualSync(self: *const ISyncMgrSyncCallback) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncCallback.VTable, @ptrCast(self.vtable)).ReportManualSync(@as(*const ISyncMgrSyncCallback, @ptrCast(self)));
+        return self.vtable.ReportManualSync(self);
     }
 };
 
@@ -31475,7 +31475,7 @@ pub const ISyncMgrUIOperation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Run(self: *const ISyncMgrUIOperation, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrUIOperation.VTable, @ptrCast(self.vtable)).Run(@as(*const ISyncMgrUIOperation, @ptrCast(self)), hwndOwner);
+        return self.vtable.Run(self, hwndOwner);
     }
 };
 
@@ -31502,7 +31502,7 @@ pub const ISyncMgrEventLinkUIOperation = extern union {
     };}
     pub usingnamespace ISyncMgrUIOperation.MethodMixin(@This());
     pub fn Init(self: *const ISyncMgrEventLinkUIOperation, rguidEventID: ?*const Guid, pEvent: ?*ISyncMgrEvent) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEventLinkUIOperation.VTable, @ptrCast(self.vtable)).Init(@as(*const ISyncMgrEventLinkUIOperation, @ptrCast(self)), rguidEventID, pEvent);
+        return self.vtable.Init(self, rguidEventID, pEvent);
     }
 };
 
@@ -31528,7 +31528,7 @@ pub const ISyncMgrScheduleWizardUIOperation = extern union {
     };}
     pub usingnamespace ISyncMgrUIOperation.MethodMixin(@This());
     pub fn InitWizard(self: *const ISyncMgrScheduleWizardUIOperation, pszHandlerID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrScheduleWizardUIOperation.VTable, @ptrCast(self.vtable)).InitWizard(@as(*const ISyncMgrScheduleWizardUIOperation, @ptrCast(self)), pszHandlerID);
+        return self.vtable.InitWizard(self, pszHandlerID);
     }
 };
 
@@ -31556,7 +31556,7 @@ pub const ISyncMgrSyncResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Result(self: *const ISyncMgrSyncResult, nStatus: SYNCMGR_PROGRESS_STATUS, cError: u32, cConflicts: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSyncResult.VTable, @ptrCast(self.vtable)).Result(@as(*const ISyncMgrSyncResult, @ptrCast(self)), nStatus, cError, cConflicts);
+        return self.vtable.Result(self, nStatus, cError, cConflicts);
     }
 };
 
@@ -31759,49 +31759,49 @@ pub const ISyncMgrControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StartHandlerSync(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, hwndOwner, punk, nSyncControlFlags, pResult);
+        return self.vtable.StartHandlerSync(self, pszHandlerID, hwndOwner, punk, nSyncControlFlags, pResult);
     }
     pub fn StartItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StartItemSync(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, ppszItemIDs, cItems, hwndOwner, punk, nSyncControlFlags, pResult);
+        return self.vtable.StartItemSync(self, pszHandlerID, ppszItemIDs, cItems, hwndOwner, punk, nSyncControlFlags, pResult);
     }
     pub fn StartSyncAll(self: *const ISyncMgrControl, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StartSyncAll(@as(*const ISyncMgrControl, @ptrCast(self)), hwndOwner);
+        return self.vtable.StartSyncAll(self, hwndOwner);
     }
     pub fn StopHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StopHandlerSync(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID);
+        return self.vtable.StopHandlerSync(self, pszHandlerID);
     }
     pub fn StopItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StopItemSync(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, ppszItemIDs, cItems);
+        return self.vtable.StopItemSync(self, pszHandlerID, ppszItemIDs, cItems);
     }
     pub fn StopSyncAll(self: *const ISyncMgrControl) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).StopSyncAll(@as(*const ISyncMgrControl, @ptrCast(self)));
+        return self.vtable.StopSyncAll(self);
     }
     pub fn UpdateHandlerCollection(self: *const ISyncMgrControl, rclsidCollectionID: ?*const Guid, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateHandlerCollection(@as(*const ISyncMgrControl, @ptrCast(self)), rclsidCollectionID, nControlFlags);
+        return self.vtable.UpdateHandlerCollection(self, rclsidCollectionID, nControlFlags);
     }
     pub fn UpdateHandler(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateHandler(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, nControlFlags);
+        return self.vtable.UpdateHandler(self, pszHandlerID, nControlFlags);
     }
     pub fn UpdateItem(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateItem(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, pszItemID, nControlFlags);
+        return self.vtable.UpdateItem(self, pszHandlerID, pszItemID, nControlFlags);
     }
     pub fn UpdateEvents(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateEvents(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, pszItemID, nControlFlags);
+        return self.vtable.UpdateEvents(self, pszHandlerID, pszItemID, nControlFlags);
     }
     pub fn UpdateConflict(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pConflict: ?*ISyncMgrConflict, nReason: SYNCMGR_UPDATE_REASON) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateConflict(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, pszItemID, pConflict, nReason);
+        return self.vtable.UpdateConflict(self, pszHandlerID, pszItemID, pConflict, nReason);
     }
     pub fn UpdateConflicts(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).UpdateConflicts(@as(*const ISyncMgrControl, @ptrCast(self)), pszHandlerID, pszItemID, nControlFlags);
+        return self.vtable.UpdateConflicts(self, pszHandlerID, pszItemID, nControlFlags);
     }
     pub fn ActivateHandler(self: *const ISyncMgrControl, fActivate: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).ActivateHandler(@as(*const ISyncMgrControl, @ptrCast(self)), fActivate, pszHandlerID, hwndOwner, nControlFlags);
+        return self.vtable.ActivateHandler(self, fActivate, pszHandlerID, hwndOwner, nControlFlags);
     }
     pub fn EnableHandler(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).EnableHandler(@as(*const ISyncMgrControl, @ptrCast(self)), fEnable, pszHandlerID, hwndOwner, nControlFlags);
+        return self.vtable.EnableHandler(self, fEnable, pszHandlerID, hwndOwner, nControlFlags);
     }
     pub fn EnableItem(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrControl.VTable, @ptrCast(self.vtable)).EnableItem(@as(*const ISyncMgrControl, @ptrCast(self)), fEnable, pszHandlerID, pszItemID, hwndOwner, nControlFlags);
+        return self.vtable.EnableItem(self, fEnable, pszHandlerID, pszItemID, hwndOwner, nControlFlags);
     }
 };
 
@@ -31853,16 +31853,16 @@ pub const ISyncMgrEventStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEventEnumerator(self: *const ISyncMgrEventStore, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEventStore.VTable, @ptrCast(self.vtable)).GetEventEnumerator(@as(*const ISyncMgrEventStore, @ptrCast(self)), ppenum);
+        return self.vtable.GetEventEnumerator(self, ppenum);
     }
     pub fn GetEventCount(self: *const ISyncMgrEventStore, pcEvents: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEventStore.VTable, @ptrCast(self.vtable)).GetEventCount(@as(*const ISyncMgrEventStore, @ptrCast(self)), pcEvents);
+        return self.vtable.GetEventCount(self, pcEvents);
     }
     pub fn GetEvent(self: *const ISyncMgrEventStore, rguidEventID: ?*const Guid, ppEvent: ?*?*ISyncMgrEvent) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEventStore.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const ISyncMgrEventStore, @ptrCast(self)), rguidEventID, ppEvent);
+        return self.vtable.GetEvent(self, rguidEventID, ppEvent);
     }
     pub fn RemoveEvent(self: *const ISyncMgrEventStore, pguidEventIDs: [*]Guid, cEvents: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEventStore.VTable, @ptrCast(self.vtable)).RemoveEvent(@as(*const ISyncMgrEventStore, @ptrCast(self)), pguidEventIDs, cEvents);
+        return self.vtable.RemoveEvent(self, pguidEventIDs, cEvents);
     }
 };
 
@@ -31968,37 +31968,37 @@ pub const ISyncMgrEvent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEventID(self: *const ISyncMgrEvent, pguidEventID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetEventID(@as(*const ISyncMgrEvent, @ptrCast(self)), pguidEventID);
+        return self.vtable.GetEventID(self, pguidEventID);
     }
     pub fn GetHandlerID(self: *const ISyncMgrEvent, ppszHandlerID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetHandlerID(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszHandlerID);
+        return self.vtable.GetHandlerID(self, ppszHandlerID);
     }
     pub fn GetItemID(self: *const ISyncMgrEvent, ppszItemID: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetItemID(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszItemID);
+        return self.vtable.GetItemID(self, ppszItemID);
     }
     pub fn GetLevel(self: *const ISyncMgrEvent, pnLevel: ?*SYNCMGR_EVENT_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetLevel(@as(*const ISyncMgrEvent, @ptrCast(self)), pnLevel);
+        return self.vtable.GetLevel(self, pnLevel);
     }
     pub fn GetFlags(self: *const ISyncMgrEvent, pnFlags: ?*SYNCMGR_EVENT_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncMgrEvent, @ptrCast(self)), pnFlags);
+        return self.vtable.GetFlags(self, pnFlags);
     }
     pub fn GetTime(self: *const ISyncMgrEvent, pfCreationTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetTime(@as(*const ISyncMgrEvent, @ptrCast(self)), pfCreationTime);
+        return self.vtable.GetTime(self, pfCreationTime);
     }
     pub fn GetName(self: *const ISyncMgrEvent, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetName(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszName);
+        return self.vtable.GetName(self, ppszName);
     }
     pub fn GetDescription(self: *const ISyncMgrEvent, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszDescription);
+        return self.vtable.GetDescription(self, ppszDescription);
     }
     pub fn GetLinkText(self: *const ISyncMgrEvent, ppszLinkText: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetLinkText(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszLinkText);
+        return self.vtable.GetLinkText(self, ppszLinkText);
     }
     pub fn GetLinkReference(self: *const ISyncMgrEvent, ppszLinkReference: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetLinkReference(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszLinkReference);
+        return self.vtable.GetLinkReference(self, ppszLinkReference);
     }
     pub fn GetContext(self: *const ISyncMgrEvent, ppszContext: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEvent.VTable, @ptrCast(self.vtable)).GetContext(@as(*const ISyncMgrEvent, @ptrCast(self)), ppszContext);
+        return self.vtable.GetContext(self, ppszContext);
     }
 };
 
@@ -32049,16 +32049,16 @@ pub const IEnumSyncMgrEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncMgrEvents, celt: u32, rgelt: [*]?*ISyncMgrEvent, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrEvents.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncMgrEvents, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumSyncMgrEvents, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrEvents.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncMgrEvents, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrEvents.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncMgrEvents, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumSyncMgrEvents, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrEvents.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncMgrEvents, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -32120,16 +32120,16 @@ pub const ISyncMgrConflictStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumConflicts(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, ppEnum: ?*?*IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictStore.VTable, @ptrCast(self.vtable)).EnumConflicts(@as(*const ISyncMgrConflictStore, @ptrCast(self)), pszHandlerID, pszItemID, ppEnum);
+        return self.vtable.EnumConflicts(self, pszHandlerID, pszItemID, ppEnum);
     }
     pub fn BindToConflict(self: *const ISyncMgrConflictStore, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictStore.VTable, @ptrCast(self.vtable)).BindToConflict(@as(*const ISyncMgrConflictStore, @ptrCast(self)), pConflictIdInfo, riid, ppv);
+        return self.vtable.BindToConflict(self, pConflictIdInfo, riid, ppv);
     }
     pub fn RemoveConflicts(self: *const ISyncMgrConflictStore, rgConflictIdInfo: [*]const SYNCMGR_CONFLICT_ID_INFO, cConflicts: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictStore.VTable, @ptrCast(self.vtable)).RemoveConflicts(@as(*const ISyncMgrConflictStore, @ptrCast(self)), rgConflictIdInfo, cConflicts);
+        return self.vtable.RemoveConflicts(self, rgConflictIdInfo, cConflicts);
     }
     pub fn GetCount(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pnConflicts: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictStore.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISyncMgrConflictStore, @ptrCast(self)), pszHandlerID, pszItemID, pnConflicts);
+        return self.vtable.GetCount(self, pszHandlerID, pszItemID, pnConflicts);
     }
 };
 
@@ -32180,16 +32180,16 @@ pub const IEnumSyncMgrConflict = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncMgrConflict, celt: u32, rgelt: [*]?*ISyncMgrConflict, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrConflict.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncMgrConflict, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumSyncMgrConflict, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrConflict.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncMgrConflict, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrConflict.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncMgrConflict, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumSyncMgrConflict, ppenum: ?*?*IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSyncMgrConflict.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncMgrConflict, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -32256,19 +32256,19 @@ pub const ISyncMgrConflict = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperty(self: *const ISyncMgrConflict, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflict.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ISyncMgrConflict, @ptrCast(self)), propkey, ppropvar);
+        return self.vtable.GetProperty(self, propkey, ppropvar);
     }
     pub fn GetConflictIdInfo(self: *const ISyncMgrConflict, pConflictIdInfo: ?*SYNCMGR_CONFLICT_ID_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflict.VTable, @ptrCast(self.vtable)).GetConflictIdInfo(@as(*const ISyncMgrConflict, @ptrCast(self)), pConflictIdInfo);
+        return self.vtable.GetConflictIdInfo(self, pConflictIdInfo);
     }
     pub fn GetItemsArray(self: *const ISyncMgrConflict, ppArray: ?*?*ISyncMgrConflictItems) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflict.VTable, @ptrCast(self.vtable)).GetItemsArray(@as(*const ISyncMgrConflict, @ptrCast(self)), ppArray);
+        return self.vtable.GetItemsArray(self, ppArray);
     }
     pub fn Resolve(self: *const ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflict.VTable, @ptrCast(self.vtable)).Resolve(@as(*const ISyncMgrConflict, @ptrCast(self)), pResolveInfo);
+        return self.vtable.Resolve(self, pResolveInfo);
     }
     pub fn GetResolutionHandler(self: *const ISyncMgrConflict, riid: ?*const Guid, ppvResolutionHandler: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflict.VTable, @ptrCast(self.vtable)).GetResolutionHandler(@as(*const ISyncMgrConflict, @ptrCast(self)), riid, ppvResolutionHandler);
+        return self.vtable.GetResolutionHandler(self, riid, ppvResolutionHandler);
     }
 };
 
@@ -32352,19 +32352,19 @@ pub const ISyncMgrResolutionHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryAbilities(self: *const ISyncMgrResolutionHandler, pdwAbilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrResolutionHandler.VTable, @ptrCast(self.vtable)).QueryAbilities(@as(*const ISyncMgrResolutionHandler, @ptrCast(self)), pdwAbilities);
+        return self.vtable.QueryAbilities(self, pdwAbilities);
     }
     pub fn KeepOther(self: *const ISyncMgrResolutionHandler, psiOther: ?*IShellItem, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrResolutionHandler.VTable, @ptrCast(self.vtable)).KeepOther(@as(*const ISyncMgrResolutionHandler, @ptrCast(self)), psiOther, pFeedback);
+        return self.vtable.KeepOther(self, psiOther, pFeedback);
     }
     pub fn KeepRecent(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrResolutionHandler.VTable, @ptrCast(self.vtable)).KeepRecent(@as(*const ISyncMgrResolutionHandler, @ptrCast(self)), pFeedback);
+        return self.vtable.KeepRecent(self, pFeedback);
     }
     pub fn RemoveFromSyncSet(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrResolutionHandler.VTable, @ptrCast(self.vtable)).RemoveFromSyncSet(@as(*const ISyncMgrResolutionHandler, @ptrCast(self)), pFeedback);
+        return self.vtable.RemoveFromSyncSet(self, pFeedback);
     }
     pub fn KeepItems(self: *const ISyncMgrResolutionHandler, pArray: ?*ISyncMgrConflictResolutionItems, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrResolutionHandler.VTable, @ptrCast(self.vtable)).KeepItems(@as(*const ISyncMgrResolutionHandler, @ptrCast(self)), pArray, pFeedback);
+        return self.vtable.KeepItems(self, pArray, pFeedback);
     }
 };
 
@@ -32391,7 +32391,7 @@ pub const ISyncMgrConflictPresenter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PresentConflict(self: *const ISyncMgrConflictPresenter, pConflict: ?*ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictPresenter.VTable, @ptrCast(self.vtable)).PresentConflict(@as(*const ISyncMgrConflictPresenter, @ptrCast(self)), pConflict, pResolveInfo);
+        return self.vtable.PresentConflict(self, pConflict, pResolveInfo);
     }
 };
 
@@ -32503,28 +32503,28 @@ pub const ISyncMgrConflictResolveInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIterationInfo(self: *const ISyncMgrConflictResolveInfo, pnCurrentConflict: ?*u32, pcConflicts: ?*u32, pcRemainingForApplyToAll: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).GetIterationInfo(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), pnCurrentConflict, pcConflicts, pcRemainingForApplyToAll);
+        return self.vtable.GetIterationInfo(self, pnCurrentConflict, pcConflicts, pcRemainingForApplyToAll);
     }
     pub fn GetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, pnPresenterNextStep: ?*SYNCMGR_PRESENTER_NEXT_STEP) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).GetPresenterNextStep(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), pnPresenterNextStep);
+        return self.vtable.GetPresenterNextStep(self, pnPresenterNextStep);
     }
     pub fn GetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, pnPresenterChoice: ?*SYNCMGR_PRESENTER_CHOICE, pfApplyToAll: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).GetPresenterChoice(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), pnPresenterChoice, pfApplyToAll);
+        return self.vtable.GetPresenterChoice(self, pnPresenterChoice, pfApplyToAll);
     }
     pub fn GetItemChoiceCount(self: *const ISyncMgrConflictResolveInfo, pcChoices: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).GetItemChoiceCount(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), pcChoices);
+        return self.vtable.GetItemChoiceCount(self, pcChoices);
     }
     pub fn GetItemChoice(self: *const ISyncMgrConflictResolveInfo, iChoice: u32, piChoiceIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).GetItemChoice(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), iChoice, piChoiceIndex);
+        return self.vtable.GetItemChoice(self, iChoice, piChoiceIndex);
     }
     pub fn SetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, nPresenterNextStep: SYNCMGR_PRESENTER_NEXT_STEP) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).SetPresenterNextStep(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), nPresenterNextStep);
+        return self.vtable.SetPresenterNextStep(self, nPresenterNextStep);
     }
     pub fn SetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, nPresenterChoice: SYNCMGR_PRESENTER_CHOICE, fApplyToAll: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).SetPresenterChoice(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), nPresenterChoice, fApplyToAll);
+        return self.vtable.SetPresenterChoice(self, nPresenterChoice, fApplyToAll);
     }
     pub fn SetItemChoices(self: *const ISyncMgrConflictResolveInfo, prgiConflictItemIndexes: ?*u32, cChoices: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolveInfo.VTable, @ptrCast(self.vtable)).SetItemChoices(@as(*const ISyncMgrConflictResolveInfo, @ptrCast(self)), prgiConflictItemIndexes, cChoices);
+        return self.vtable.SetItemChoices(self, prgiConflictItemIndexes, cChoices);
     }
 };
 
@@ -32551,7 +32551,7 @@ pub const ISyncMgrConflictFolder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConflictIDList(self: *const ISyncMgrConflictFolder, pConflict: ?*ISyncMgrConflict, ppidlConflict: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictFolder.VTable, @ptrCast(self.vtable)).GetConflictIDList(@as(*const ISyncMgrConflictFolder, @ptrCast(self)), pConflict, ppidlConflict);
+        return self.vtable.GetConflictIDList(self, pConflict, ppidlConflict);
     }
 };
 
@@ -32600,10 +32600,10 @@ pub const ISyncMgrConflictItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const ISyncMgrConflictItems, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictItems.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISyncMgrConflictItems, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn GetItem(self: *const ISyncMgrConflictItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_ITEM) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictItems.VTable, @ptrCast(self.vtable)).GetItem(@as(*const ISyncMgrConflictItems, @ptrCast(self)), iIndex, pItemInfo);
+        return self.vtable.GetItem(self, iIndex, pItemInfo);
     }
 };
 
@@ -32638,10 +32638,10 @@ pub const ISyncMgrConflictResolutionItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const ISyncMgrConflictResolutionItems, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolutionItems.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISyncMgrConflictResolutionItems, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn GetItem(self: *const ISyncMgrConflictResolutionItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_RESULT_INFO) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrConflictResolutionItems.VTable, @ptrCast(self.vtable)).GetItem(@as(*const ISyncMgrConflictResolutionItems, @ptrCast(self)), iIndex, pItemInfo);
+        return self.vtable.GetItem(self, iIndex, pItemInfo);
     }
 };
 
@@ -32669,7 +32669,7 @@ pub const IInputPanelConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableFocusTracking(self: *const IInputPanelConfiguration) callconv(.Inline) HRESULT {
-        return @as(*const IInputPanelConfiguration.VTable, @ptrCast(self.vtable)).EnableFocusTracking(@as(*const IInputPanelConfiguration, @ptrCast(self)));
+        return self.vtable.EnableFocusTracking(self);
     }
 };
 
@@ -32694,7 +32694,7 @@ pub const IInputPanelInvocationConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequireTouchInEditControl(self: *const IInputPanelInvocationConfiguration) callconv(.Inline) HRESULT {
-        return @as(*const IInputPanelInvocationConfiguration.VTable, @ptrCast(self.vtable)).RequireTouchInEditControl(@as(*const IInputPanelInvocationConfiguration, @ptrCast(self)));
+        return self.vtable.RequireTouchInEditControl(self);
     }
 };
 
@@ -32831,19 +32831,19 @@ pub const ISharedBitmap = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSharedBitmap(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const ISharedBitmap.VTable, @ptrCast(self.vtable)).GetSharedBitmap(@as(*const ISharedBitmap, @ptrCast(self)), phbm);
+        return self.vtable.GetSharedBitmap(self, phbm);
     }
     pub fn GetSize(self: *const ISharedBitmap, pSize: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const ISharedBitmap.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ISharedBitmap, @ptrCast(self)), pSize);
+        return self.vtable.GetSize(self, pSize);
     }
     pub fn GetFormat(self: *const ISharedBitmap, pat: ?*WTS_ALPHATYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISharedBitmap.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISharedBitmap, @ptrCast(self)), pat);
+        return self.vtable.GetFormat(self, pat);
     }
     pub fn InitializeBitmap(self: *const ISharedBitmap, hbm: ?HBITMAP, wtsAT: WTS_ALPHATYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISharedBitmap.VTable, @ptrCast(self.vtable)).InitializeBitmap(@as(*const ISharedBitmap, @ptrCast(self)), hbm, wtsAT);
+        return self.vtable.InitializeBitmap(self, hbm, wtsAT);
     }
     pub fn Detach(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const ISharedBitmap.VTable, @ptrCast(self.vtable)).Detach(@as(*const ISharedBitmap, @ptrCast(self)), phbm);
+        return self.vtable.Detach(self, phbm);
     }
 };
 
@@ -32885,10 +32885,10 @@ pub const IThumbnailCache = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetThumbnail(self: *const IThumbnailCache, pShellItem: ?*IShellItem, cxyRequestedThumbSize: u32, flags: WTS_FLAGS, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS, pThumbnailID: ?*WTS_THUMBNAILID) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailCache.VTable, @ptrCast(self.vtable)).GetThumbnail(@as(*const IThumbnailCache, @ptrCast(self)), pShellItem, cxyRequestedThumbSize, flags, ppvThumb, pOutFlags, pThumbnailID);
+        return self.vtable.GetThumbnail(self, pShellItem, cxyRequestedThumbSize, flags, ppvThumb, pOutFlags, pThumbnailID);
     }
     pub fn GetThumbnailByID(self: *const IThumbnailCache, thumbnailID: WTS_THUMBNAILID, cxyRequestedThumbSize: u32, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailCache.VTable, @ptrCast(self.vtable)).GetThumbnailByID(@as(*const IThumbnailCache, @ptrCast(self)), thumbnailID, cxyRequestedThumbSize, ppvThumb, pOutFlags);
+        return self.vtable.GetThumbnailByID(self, thumbnailID, cxyRequestedThumbSize, ppvThumb, pOutFlags);
     }
 };
 
@@ -32916,7 +32916,7 @@ pub const IThumbnailProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetThumbnail(self: *const IThumbnailProvider, cx: u32, phbmp: ?*?HBITMAP, pdwAlpha: ?*WTS_ALPHATYPE) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailProvider.VTable, @ptrCast(self.vtable)).GetThumbnail(@as(*const IThumbnailProvider, @ptrCast(self)), cx, phbmp, pdwAlpha);
+        return self.vtable.GetThumbnail(self, cx, phbmp, pdwAlpha);
     }
 };
 
@@ -32942,7 +32942,7 @@ pub const IThumbnailSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetContext(self: *const IThumbnailSettings, dwContext: WTS_CONTEXTFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailSettings.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IThumbnailSettings, @ptrCast(self)), dwContext);
+        return self.vtable.SetContext(self, dwContext);
     }
 };
 
@@ -32970,7 +32970,7 @@ pub const IThumbnailCachePrimer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PageInThumbnail(self: *const IThumbnailCachePrimer, psi: ?*IShellItem, wtsFlags: WTS_FLAGS, cxyRequestedThumbSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailCachePrimer.VTable, @ptrCast(self.vtable)).PageInThumbnail(@as(*const IThumbnailCachePrimer, @ptrCast(self)), psi, wtsFlags, cxyRequestedThumbSize);
+        return self.vtable.PageInThumbnail(self, psi, wtsFlags, cxyRequestedThumbSize);
     }
 };
 
@@ -33026,16 +33026,16 @@ pub const IShellImageDataFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateIShellImageData(self: *const IShellImageDataFactory, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageDataFactory.VTable, @ptrCast(self.vtable)).CreateIShellImageData(@as(*const IShellImageDataFactory, @ptrCast(self)), ppshimg);
+        return self.vtable.CreateIShellImageData(self, ppshimg);
     }
     pub fn CreateImageFromFile(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageDataFactory.VTable, @ptrCast(self.vtable)).CreateImageFromFile(@as(*const IShellImageDataFactory, @ptrCast(self)), pszPath, ppshimg);
+        return self.vtable.CreateImageFromFile(self, pszPath, ppshimg);
     }
     pub fn CreateImageFromStream(self: *const IShellImageDataFactory, pStream: ?*IStream, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageDataFactory.VTable, @ptrCast(self.vtable)).CreateImageFromStream(@as(*const IShellImageDataFactory, @ptrCast(self)), pStream, ppshimg);
+        return self.vtable.CreateImageFromStream(self, pStream, ppshimg);
     }
     pub fn GetDataFormatFromPath(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, pDataFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageDataFactory.VTable, @ptrCast(self.vtable)).GetDataFormatFromPath(@as(*const IShellImageDataFactory, @ptrCast(self)), pszPath, pDataFormat);
+        return self.vtable.GetDataFormatFromPath(self, pszPath, pDataFormat);
     }
 };
 
@@ -33293,94 +33293,94 @@ pub const IShellImageData = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Decode(self: *const IShellImageData, dwFlags: u32, cxDesired: u32, cyDesired: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).Decode(@as(*const IShellImageData, @ptrCast(self)), dwFlags, cxDesired, cyDesired);
+        return self.vtable.Decode(self, dwFlags, cxDesired, cyDesired);
     }
     pub fn Draw(self: *const IShellImageData, hdc: ?HDC, prcDest: ?*RECT, prcSrc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).Draw(@as(*const IShellImageData, @ptrCast(self)), hdc, prcDest, prcSrc);
+        return self.vtable.Draw(self, hdc, prcDest, prcSrc);
     }
     pub fn NextFrame(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).NextFrame(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.NextFrame(self);
     }
     pub fn NextPage(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).NextPage(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.NextPage(self);
     }
     pub fn PrevPage(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).PrevPage(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.PrevPage(self);
     }
     pub fn IsTransparent(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsTransparent(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsTransparent(self);
     }
     pub fn IsAnimated(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsAnimated(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsAnimated(self);
     }
     pub fn IsVector(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsVector(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsVector(self);
     }
     pub fn IsMultipage(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsMultipage(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsMultipage(self);
     }
     pub fn IsEditable(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsEditable(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsEditable(self);
     }
     pub fn IsPrintable(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsPrintable(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsPrintable(self);
     }
     pub fn IsDecoded(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).IsDecoded(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.IsDecoded(self);
     }
     pub fn GetCurrentPage(self: *const IShellImageData, pnPage: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetCurrentPage(@as(*const IShellImageData, @ptrCast(self)), pnPage);
+        return self.vtable.GetCurrentPage(self, pnPage);
     }
     pub fn GetPageCount(self: *const IShellImageData, pcPages: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetPageCount(@as(*const IShellImageData, @ptrCast(self)), pcPages);
+        return self.vtable.GetPageCount(self, pcPages);
     }
     pub fn SelectPage(self: *const IShellImageData, iPage: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).SelectPage(@as(*const IShellImageData, @ptrCast(self)), iPage);
+        return self.vtable.SelectPage(self, iPage);
     }
     pub fn GetSize(self: *const IShellImageData, pSize: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IShellImageData, @ptrCast(self)), pSize);
+        return self.vtable.GetSize(self, pSize);
     }
     pub fn GetRawDataFormat(self: *const IShellImageData, pDataFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetRawDataFormat(@as(*const IShellImageData, @ptrCast(self)), pDataFormat);
+        return self.vtable.GetRawDataFormat(self, pDataFormat);
     }
     pub fn GetPixelFormat(self: *const IShellImageData, pFormat: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IShellImageData, @ptrCast(self)), pFormat);
+        return self.vtable.GetPixelFormat(self, pFormat);
     }
     pub fn GetDelay(self: *const IShellImageData, pdwDelay: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetDelay(@as(*const IShellImageData, @ptrCast(self)), pdwDelay);
+        return self.vtable.GetDelay(self, pdwDelay);
     }
     pub fn GetProperties(self: *const IShellImageData, dwMode: u32, ppPropSet: ?*?*IPropertySetStorage) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IShellImageData, @ptrCast(self)), dwMode, ppPropSet);
+        return self.vtable.GetProperties(self, dwMode, ppPropSet);
     }
     pub fn Rotate(self: *const IShellImageData, dwAngle: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).Rotate(@as(*const IShellImageData, @ptrCast(self)), dwAngle);
+        return self.vtable.Rotate(self, dwAngle);
     }
     pub fn Scale(self: *const IShellImageData, cx: u32, cy: u32, hints: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).Scale(@as(*const IShellImageData, @ptrCast(self)), cx, cy, hints);
+        return self.vtable.Scale(self, cx, cy, hints);
     }
     pub fn DiscardEdit(self: *const IShellImageData) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).DiscardEdit(@as(*const IShellImageData, @ptrCast(self)));
+        return self.vtable.DiscardEdit(self);
     }
     pub fn SetEncoderParams(self: *const IShellImageData, pbagEnc: ?*IPropertyBag) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).SetEncoderParams(@as(*const IShellImageData, @ptrCast(self)), pbagEnc);
+        return self.vtable.SetEncoderParams(self, pbagEnc);
     }
     pub fn DisplayName(self: *const IShellImageData, wszName: ?PWSTR, cch: u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).DisplayName(@as(*const IShellImageData, @ptrCast(self)), wszName, cch);
+        return self.vtable.DisplayName(self, wszName, cch);
     }
     pub fn GetResolution(self: *const IShellImageData, puResolutionX: ?*u32, puResolutionY: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetResolution(@as(*const IShellImageData, @ptrCast(self)), puResolutionX, puResolutionY);
+        return self.vtable.GetResolution(self, puResolutionX, puResolutionY);
     }
     pub fn GetEncoderParams(self: *const IShellImageData, pguidFmt: ?*Guid, ppEncParams: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).GetEncoderParams(@as(*const IShellImageData, @ptrCast(self)), pguidFmt, ppEncParams);
+        return self.vtable.GetEncoderParams(self, pguidFmt, ppEncParams);
     }
     pub fn RegisterAbort(self: *const IShellImageData, pAbort: ?*IShellImageDataAbort, ppAbortPrev: ?*?*IShellImageDataAbort) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).RegisterAbort(@as(*const IShellImageData, @ptrCast(self)), pAbort, ppAbortPrev);
+        return self.vtable.RegisterAbort(self, pAbort, ppAbortPrev);
     }
     pub fn CloneFrame(self: *const IShellImageData, ppImg: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).CloneFrame(@as(*const IShellImageData, @ptrCast(self)), ppImg);
+        return self.vtable.CloneFrame(self, ppImg);
     }
     pub fn ReplaceFrame(self: *const IShellImageData, pImg: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageData.VTable, @ptrCast(self.vtable)).ReplaceFrame(@as(*const IShellImageData, @ptrCast(self)), pImg);
+        return self.vtable.ReplaceFrame(self, pImg);
     }
 };
 
@@ -33405,7 +33405,7 @@ pub const IShellImageDataAbort = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryAbort(self: *const IShellImageDataAbort) callconv(.Inline) HRESULT {
-        return @as(*const IShellImageDataAbort.VTable, @ptrCast(self.vtable)).QueryAbort(@as(*const IShellImageDataAbort, @ptrCast(self)));
+        return self.vtable.QueryAbort(self);
     }
 };
 
@@ -33440,10 +33440,10 @@ pub const IStorageProviderPropertyHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RetrieveProperties(self: *const IStorageProviderPropertyHandler, propertiesToRetrieve: [*]const PROPERTYKEY, propertiesToRetrieveCount: u32, retrievedProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderPropertyHandler.VTable, @ptrCast(self.vtable)).RetrieveProperties(@as(*const IStorageProviderPropertyHandler, @ptrCast(self)), propertiesToRetrieve, propertiesToRetrieveCount, retrievedProperties);
+        return self.vtable.RetrieveProperties(self, propertiesToRetrieve, propertiesToRetrieveCount, retrievedProperties);
     }
     pub fn SaveProperties(self: *const IStorageProviderPropertyHandler, propertiesToSave: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderPropertyHandler.VTable, @ptrCast(self.vtable)).SaveProperties(@as(*const IStorageProviderPropertyHandler, @ptrCast(self)), propertiesToSave);
+        return self.vtable.SaveProperties(self, propertiesToSave);
     }
 };
 
@@ -33487,13 +33487,13 @@ pub const IStorageProviderHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyHandlerFromPath(self: *const IStorageProviderHandler, path: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderHandler.VTable, @ptrCast(self.vtable)).GetPropertyHandlerFromPath(@as(*const IStorageProviderHandler, @ptrCast(self)), path, propertyHandler);
+        return self.vtable.GetPropertyHandlerFromPath(self, path, propertyHandler);
     }
     pub fn GetPropertyHandlerFromUri(self: *const IStorageProviderHandler, uri: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderHandler.VTable, @ptrCast(self.vtable)).GetPropertyHandlerFromUri(@as(*const IStorageProviderHandler, @ptrCast(self)), uri, propertyHandler);
+        return self.vtable.GetPropertyHandlerFromUri(self, uri, propertyHandler);
     }
     pub fn GetPropertyHandlerFromFileId(self: *const IStorageProviderHandler, fileId: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
-        return @as(*const IStorageProviderHandler.VTable, @ptrCast(self.vtable)).GetPropertyHandlerFromFileId(@as(*const IStorageProviderHandler, @ptrCast(self)), fileId, propertyHandler);
+        return self.vtable.GetPropertyHandlerFromFileId(self, fileId, propertyHandler);
     }
 };
 
@@ -33649,31 +33649,31 @@ pub const ISyncMgrSynchronizeCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShowPropertiesCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).ShowPropertiesCompleted(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), hr);
+        return self.vtable.ShowPropertiesCompleted(self, hr);
     }
     pub fn PrepareForSyncCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).PrepareForSyncCompleted(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), hr);
+        return self.vtable.PrepareForSyncCompleted(self, hr);
     }
     pub fn SynchronizeCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).SynchronizeCompleted(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), hr);
+        return self.vtable.SynchronizeCompleted(self, hr);
     }
     pub fn ShowErrorCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT, cItems: u32, pItemIDs: [*]const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).ShowErrorCompleted(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), hr, cItems, pItemIDs);
+        return self.vtable.ShowErrorCompleted(self, hr, cItems, pItemIDs);
     }
     pub fn EnableModeless(self: *const ISyncMgrSynchronizeCallback, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), fEnable);
+        return self.vtable.EnableModeless(self, fEnable);
     }
     pub fn Progress(self: *const ISyncMgrSynchronizeCallback, ItemID: ?*const Guid, pSyncProgressItem: ?*const SYNCMGRPROGRESSITEM) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).Progress(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), ItemID, pSyncProgressItem);
+        return self.vtable.Progress(self, ItemID, pSyncProgressItem);
     }
     pub fn LogError(self: *const ISyncMgrSynchronizeCallback, dwErrorLevel: u32, pszErrorText: ?[*:0]const u16, pSyncLogError: ?*const SYNCMGRLOGERRORINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).LogError(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), dwErrorLevel, pszErrorText, pSyncLogError);
+        return self.vtable.LogError(self, dwErrorLevel, pszErrorText, pSyncLogError);
     }
     pub fn DeleteLogError(self: *const ISyncMgrSynchronizeCallback, ErrorID: ?*const Guid, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).DeleteLogError(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), ErrorID, dwReserved);
+        return self.vtable.DeleteLogError(self, ErrorID, dwReserved);
     }
     pub fn EstablishConnection(self: *const ISyncMgrSynchronizeCallback, pwszConnection: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeCallback.VTable, @ptrCast(self.vtable)).EstablishConnection(@as(*const ISyncMgrSynchronizeCallback, @ptrCast(self)), pwszConnection, dwReserved);
+        return self.vtable.EstablishConnection(self, pwszConnection, dwReserved);
     }
 };
 
@@ -33749,16 +33749,16 @@ pub const ISyncMgrEnumItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const ISyncMgrEnumItems, celt: u32, rgelt: [*]SYNCMGRITEM, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEnumItems.VTable, @ptrCast(self.vtable)).Next(@as(*const ISyncMgrEnumItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const ISyncMgrEnumItems, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEnumItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const ISyncMgrEnumItems, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const ISyncMgrEnumItems) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEnumItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISyncMgrEnumItems, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const ISyncMgrEnumItems, ppenum: ?*?*ISyncMgrEnumItems) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrEnumItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISyncMgrEnumItems, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -33913,34 +33913,34 @@ pub const ISyncMgrSynchronize = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const ISyncMgrSynchronize, dwReserved: u32, dwSyncMgrFlags: u32, cbCookie: u32, lpCookie: [*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISyncMgrSynchronize, @ptrCast(self)), dwReserved, dwSyncMgrFlags, cbCookie, lpCookie);
+        return self.vtable.Initialize(self, dwReserved, dwSyncMgrFlags, cbCookie, lpCookie);
     }
     pub fn GetHandlerInfo(self: *const ISyncMgrSynchronize, ppSyncMgrHandlerInfo: ?*?*SYNCMGRHANDLERINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).GetHandlerInfo(@as(*const ISyncMgrSynchronize, @ptrCast(self)), ppSyncMgrHandlerInfo);
+        return self.vtable.GetHandlerInfo(self, ppSyncMgrHandlerInfo);
     }
     pub fn EnumSyncMgrItems(self: *const ISyncMgrSynchronize, ppSyncMgrEnumItems: ?*?*ISyncMgrEnumItems) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).EnumSyncMgrItems(@as(*const ISyncMgrSynchronize, @ptrCast(self)), ppSyncMgrEnumItems);
+        return self.vtable.EnumSyncMgrItems(self, ppSyncMgrEnumItems);
     }
     pub fn GetItemObject(self: *const ISyncMgrSynchronize, ItemID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).GetItemObject(@as(*const ISyncMgrSynchronize, @ptrCast(self)), ItemID, riid, ppv);
+        return self.vtable.GetItemObject(self, ItemID, riid, ppv);
     }
     pub fn ShowProperties(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ItemID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).ShowProperties(@as(*const ISyncMgrSynchronize, @ptrCast(self)), hWndParent, ItemID);
+        return self.vtable.ShowProperties(self, hWndParent, ItemID);
     }
     pub fn SetProgressCallback(self: *const ISyncMgrSynchronize, lpCallBack: ?*ISyncMgrSynchronizeCallback) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).SetProgressCallback(@as(*const ISyncMgrSynchronize, @ptrCast(self)), lpCallBack);
+        return self.vtable.SetProgressCallback(self, lpCallBack);
     }
     pub fn PrepareForSync(self: *const ISyncMgrSynchronize, cbNumItems: u32, pItemIDs: [*]Guid, hWndParent: ?HWND, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).PrepareForSync(@as(*const ISyncMgrSynchronize, @ptrCast(self)), cbNumItems, pItemIDs, hWndParent, dwReserved);
+        return self.vtable.PrepareForSync(self, cbNumItems, pItemIDs, hWndParent, dwReserved);
     }
     pub fn Synchronize(self: *const ISyncMgrSynchronize, hWndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).Synchronize(@as(*const ISyncMgrSynchronize, @ptrCast(self)), hWndParent);
+        return self.vtable.Synchronize(self, hWndParent);
     }
     pub fn SetItemStatus(self: *const ISyncMgrSynchronize, pItemID: ?*const Guid, dwSyncMgrStatus: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).SetItemStatus(@as(*const ISyncMgrSynchronize, @ptrCast(self)), pItemID, dwSyncMgrStatus);
+        return self.vtable.SetItemStatus(self, pItemID, dwSyncMgrStatus);
     }
     pub fn ShowError(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ErrorID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronize.VTable, @ptrCast(self.vtable)).ShowError(@as(*const ISyncMgrSynchronize, @ptrCast(self)), hWndParent, ErrorID);
+        return self.vtable.ShowError(self, hWndParent, ErrorID);
     }
 };
 
@@ -33983,10 +33983,10 @@ pub const ISyncMgrSynchronizeInvoke = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UpdateItems(self: *const ISyncMgrSynchronizeInvoke, dwInvokeFlags: u32, clsid: ?*const Guid, cbCookie: u32, pCookie: [*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeInvoke.VTable, @ptrCast(self.vtable)).UpdateItems(@as(*const ISyncMgrSynchronizeInvoke, @ptrCast(self)), dwInvokeFlags, clsid, cbCookie, pCookie);
+        return self.vtable.UpdateItems(self, dwInvokeFlags, clsid, cbCookie, pCookie);
     }
     pub fn UpdateAll(self: *const ISyncMgrSynchronizeInvoke) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrSynchronizeInvoke.VTable, @ptrCast(self.vtable)).UpdateAll(@as(*const ISyncMgrSynchronizeInvoke, @ptrCast(self)));
+        return self.vtable.UpdateAll(self);
     }
 };
 
@@ -34041,13 +34041,13 @@ pub const ISyncMgrRegister = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pwszDescription: ?[*:0]const u16, dwSyncMgrRegisterFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrRegister.VTable, @ptrCast(self.vtable)).RegisterSyncMgrHandler(@as(*const ISyncMgrRegister, @ptrCast(self)), clsidHandler, pwszDescription, dwSyncMgrRegisterFlags);
+        return self.vtable.RegisterSyncMgrHandler(self, clsidHandler, pwszDescription, dwSyncMgrRegisterFlags);
     }
     pub fn UnregisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrRegister.VTable, @ptrCast(self.vtable)).UnregisterSyncMgrHandler(@as(*const ISyncMgrRegister, @ptrCast(self)), clsidHandler, dwReserved);
+        return self.vtable.UnregisterSyncMgrHandler(self, clsidHandler, dwReserved);
     }
     pub fn GetHandlerRegistrationInfo(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pdwSyncMgrRegisterFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISyncMgrRegister.VTable, @ptrCast(self.vtable)).GetHandlerRegistrationInfo(@as(*const ISyncMgrRegister, @ptrCast(self)), clsidHandler, pdwSyncMgrRegisterFlags);
+        return self.vtable.GetHandlerRegistrationInfo(self, clsidHandler, pdwSyncMgrRegisterFlags);
     }
 };
 
@@ -34103,10 +34103,10 @@ pub const IThumbnailStreamCache = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, options: ThumbnailStreamCacheOptions, requestedThumbnailSize: u32, thumbnailSize: ?*SIZE, thumbnailStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailStreamCache.VTable, @ptrCast(self.vtable)).GetThumbnailStream(@as(*const IThumbnailStreamCache, @ptrCast(self)), path, cacheId, options, requestedThumbnailSize, thumbnailSize, thumbnailStream);
+        return self.vtable.GetThumbnailStream(self, path, cacheId, options, requestedThumbnailSize, thumbnailSize, thumbnailStream);
     }
     pub fn SetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, thumbnailSize: SIZE, thumbnailStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IThumbnailStreamCache.VTable, @ptrCast(self.vtable)).SetThumbnailStream(@as(*const IThumbnailStreamCache, @ptrCast(self)), path, cacheId, thumbnailSize, thumbnailStream);
+        return self.vtable.SetThumbnailStream(self, path, cacheId, thumbnailSize, thumbnailStream);
     }
 };
 
@@ -34151,10 +34151,10 @@ pub const ITravelLogEntry = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTitle(self: *const ITravelLogEntry, ppszTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogEntry.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const ITravelLogEntry, @ptrCast(self)), ppszTitle);
+        return self.vtable.GetTitle(self, ppszTitle);
     }
     pub fn GetURL(self: *const ITravelLogEntry, ppszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogEntry.VTable, @ptrCast(self.vtable)).GetURL(@as(*const ITravelLogEntry, @ptrCast(self)), ppszURL);
+        return self.vtable.GetURL(self, ppszURL);
     }
 };
 
@@ -34198,13 +34198,13 @@ pub const ITravelLogClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindWindowByIndex(self: *const ITravelLogClient, dwID: u32, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogClient.VTable, @ptrCast(self.vtable)).FindWindowByIndex(@as(*const ITravelLogClient, @ptrCast(self)), dwID, ppunk);
+        return self.vtable.FindWindowByIndex(self, dwID, ppunk);
     }
     pub fn GetWindowData(self: *const ITravelLogClient, pStream: ?*IStream, pWinData: ?*WINDOWDATA) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogClient.VTable, @ptrCast(self.vtable)).GetWindowData(@as(*const ITravelLogClient, @ptrCast(self)), pStream, pWinData);
+        return self.vtable.GetWindowData(self, pStream, pWinData);
     }
     pub fn LoadHistoryPosition(self: *const ITravelLogClient, pszUrlLocation: ?PWSTR, dwPosition: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogClient.VTable, @ptrCast(self.vtable)).LoadHistoryPosition(@as(*const ITravelLogClient, @ptrCast(self)), pszUrlLocation, dwPosition);
+        return self.vtable.LoadHistoryPosition(self, pszUrlLocation, dwPosition);
     }
 };
 
@@ -34254,16 +34254,16 @@ pub const IEnumTravelLogEntry = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumTravelLogEntry, cElt: u32, rgElt: [*]?*ITravelLogEntry, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTravelLogEntry.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumTravelLogEntry, @ptrCast(self)), cElt, rgElt, pcEltFetched);
+        return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
     pub fn Skip(self: *const IEnumTravelLogEntry, cElt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTravelLogEntry.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumTravelLogEntry, @ptrCast(self)), cElt);
+        return self.vtable.Skip(self, cElt);
     }
     pub fn Reset(self: *const IEnumTravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTravelLogEntry.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumTravelLogEntry, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumTravelLogEntry, ppEnum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const IEnumTravelLogEntry.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumTravelLogEntry, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -34362,25 +34362,25 @@ pub const ITravelLogStg = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateEntry(self: *const ITravelLogStg, pszUrl: ?[*:0]const u16, pszTitle: ?[*:0]const u16, ptleRelativeTo: ?*ITravelLogEntry, fPrepend: BOOL, pptle: ?*?*ITravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).CreateEntry(@as(*const ITravelLogStg, @ptrCast(self)), pszUrl, pszTitle, ptleRelativeTo, fPrepend, pptle);
+        return self.vtable.CreateEntry(self, pszUrl, pszTitle, ptleRelativeTo, fPrepend, pptle);
     }
     pub fn TravelTo(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).TravelTo(@as(*const ITravelLogStg, @ptrCast(self)), ptle);
+        return self.vtable.TravelTo(self, ptle);
     }
     pub fn EnumEntries(self: *const ITravelLogStg, flags: TLENUMF, ppenum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).EnumEntries(@as(*const ITravelLogStg, @ptrCast(self)), flags, ppenum);
+        return self.vtable.EnumEntries(self, flags, ppenum);
     }
     pub fn FindEntries(self: *const ITravelLogStg, flags: TLENUMF, pszUrl: ?[*:0]const u16, ppenum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).FindEntries(@as(*const ITravelLogStg, @ptrCast(self)), flags, pszUrl, ppenum);
+        return self.vtable.FindEntries(self, flags, pszUrl, ppenum);
     }
     pub fn GetCount(self: *const ITravelLogStg, flags: TLENUMF, pcEntries: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ITravelLogStg, @ptrCast(self)), flags, pcEntries);
+        return self.vtable.GetCount(self, flags, pcEntries);
     }
     pub fn RemoveEntry(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).RemoveEntry(@as(*const ITravelLogStg, @ptrCast(self)), ptle);
+        return self.vtable.RemoveEntry(self, ptle);
     }
     pub fn GetRelativeEntry(self: *const ITravelLogStg, iOffset: i32, ptle: ?*?*ITravelLogEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLogStg.VTable, @ptrCast(self.vtable)).GetRelativeEntry(@as(*const ITravelLogStg, @ptrCast(self)), iOffset, ptle);
+        return self.vtable.GetRelativeEntry(self, iOffset, ptle);
     }
 };
 
@@ -34654,46 +34654,46 @@ pub const IHlink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHlinkSite(self: *const IHlink, pihlSite: ?*IHlinkSite, dwSiteData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetHlinkSite(@as(*const IHlink, @ptrCast(self)), pihlSite, dwSiteData);
+        return self.vtable.SetHlinkSite(self, pihlSite, dwSiteData);
     }
     pub fn GetHlinkSite(self: *const IHlink, ppihlSite: ?*?*IHlinkSite, pdwSiteData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetHlinkSite(@as(*const IHlink, @ptrCast(self)), ppihlSite, pdwSiteData);
+        return self.vtable.GetHlinkSite(self, ppihlSite, pdwSiteData);
     }
     pub fn SetMonikerReference(self: *const IHlink, grfHLSETF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetMonikerReference(@as(*const IHlink, @ptrCast(self)), grfHLSETF, pimkTarget, pwzLocation);
+        return self.vtable.SetMonikerReference(self, grfHLSETF, pimkTarget, pwzLocation);
     }
     pub fn GetMonikerReference(self: *const IHlink, dwWhichRef: u32, ppimkTarget: ?*?*IMoniker, ppwzLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetMonikerReference(@as(*const IHlink, @ptrCast(self)), dwWhichRef, ppimkTarget, ppwzLocation);
+        return self.vtable.GetMonikerReference(self, dwWhichRef, ppimkTarget, ppwzLocation);
     }
     pub fn SetStringReference(self: *const IHlink, grfHLSETF: u32, pwzTarget: ?[*:0]const u16, pwzLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetStringReference(@as(*const IHlink, @ptrCast(self)), grfHLSETF, pwzTarget, pwzLocation);
+        return self.vtable.SetStringReference(self, grfHLSETF, pwzTarget, pwzLocation);
     }
     pub fn GetStringReference(self: *const IHlink, dwWhichRef: u32, ppwzTarget: ?*?PWSTR, ppwzLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetStringReference(@as(*const IHlink, @ptrCast(self)), dwWhichRef, ppwzTarget, ppwzLocation);
+        return self.vtable.GetStringReference(self, dwWhichRef, ppwzTarget, ppwzLocation);
     }
     pub fn SetFriendlyName(self: *const IHlink, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IHlink, @ptrCast(self)), pwzFriendlyName);
+        return self.vtable.SetFriendlyName(self, pwzFriendlyName);
     }
     pub fn GetFriendlyName(self: *const IHlink, grfHLFNAMEF: u32, ppwzFriendlyName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IHlink, @ptrCast(self)), grfHLFNAMEF, ppwzFriendlyName);
+        return self.vtable.GetFriendlyName(self, grfHLFNAMEF, ppwzFriendlyName);
     }
     pub fn SetTargetFrameName(self: *const IHlink, pwzTargetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetTargetFrameName(@as(*const IHlink, @ptrCast(self)), pwzTargetFrameName);
+        return self.vtable.SetTargetFrameName(self, pwzTargetFrameName);
     }
     pub fn GetTargetFrameName(self: *const IHlink, ppwzTargetFrameName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetTargetFrameName(@as(*const IHlink, @ptrCast(self)), ppwzTargetFrameName);
+        return self.vtable.GetTargetFrameName(self, ppwzTargetFrameName);
     }
     pub fn GetMiscStatus(self: *const IHlink, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetMiscStatus(@as(*const IHlink, @ptrCast(self)), pdwStatus);
+        return self.vtable.GetMiscStatus(self, pdwStatus);
     }
     pub fn Navigate(self: *const IHlink, grfHLNF: u32, pibc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IHlink, @ptrCast(self)), grfHLNF, pibc, pibsc, pihlbc);
+        return self.vtable.Navigate(self, grfHLNF, pibc, pibsc, pihlbc);
     }
     pub fn SetAdditionalParams(self: *const IHlink, pwzAdditionalParams: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).SetAdditionalParams(@as(*const IHlink, @ptrCast(self)), pwzAdditionalParams);
+        return self.vtable.SetAdditionalParams(self, pwzAdditionalParams);
     }
     pub fn GetAdditionalParams(self: *const IHlink, ppwzAdditionalParams: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlink.VTable, @ptrCast(self.vtable)).GetAdditionalParams(@as(*const IHlink, @ptrCast(self)), ppwzAdditionalParams);
+        return self.vtable.GetAdditionalParams(self, ppwzAdditionalParams);
     }
 };
 
@@ -34759,16 +34759,16 @@ pub const IHlinkSite = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryService(self: *const IHlinkSite, dwSiteData: u32, guidService: ?*const Guid, riid: ?*const Guid, ppiunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkSite.VTable, @ptrCast(self.vtable)).QueryService(@as(*const IHlinkSite, @ptrCast(self)), dwSiteData, guidService, riid, ppiunk);
+        return self.vtable.QueryService(self, dwSiteData, guidService, riid, ppiunk);
     }
     pub fn GetMoniker(self: *const IHlinkSite, dwSiteData: u32, dwAssign: u32, dwWhich: u32, ppimk: ?*?*IMoniker) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkSite.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IHlinkSite, @ptrCast(self)), dwSiteData, dwAssign, dwWhich, ppimk);
+        return self.vtable.GetMoniker(self, dwSiteData, dwAssign, dwWhich, ppimk);
     }
     pub fn ReadyToNavigate(self: *const IHlinkSite, dwSiteData: u32, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkSite.VTable, @ptrCast(self.vtable)).ReadyToNavigate(@as(*const IHlinkSite, @ptrCast(self)), dwSiteData, dwReserved);
+        return self.vtable.ReadyToNavigate(self, dwSiteData, dwReserved);
     }
     pub fn OnNavigationComplete(self: *const IHlinkSite, dwSiteData: u32, dwreserved: u32, hrError: HRESULT, pwzError: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkSite.VTable, @ptrCast(self.vtable)).OnNavigationComplete(@as(*const IHlinkSite, @ptrCast(self)), dwSiteData, dwreserved, hrError, pwzError);
+        return self.vtable.OnNavigationComplete(self, dwSiteData, dwreserved, hrError, pwzError);
     }
 };
 
@@ -34829,19 +34829,19 @@ pub const IHlinkTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBrowseContext(self: *const IHlinkTarget, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkTarget.VTable, @ptrCast(self.vtable)).SetBrowseContext(@as(*const IHlinkTarget, @ptrCast(self)), pihlbc);
+        return self.vtable.SetBrowseContext(self, pihlbc);
     }
     pub fn GetBrowseContext(self: *const IHlinkTarget, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkTarget.VTable, @ptrCast(self.vtable)).GetBrowseContext(@as(*const IHlinkTarget, @ptrCast(self)), ppihlbc);
+        return self.vtable.GetBrowseContext(self, ppihlbc);
     }
     pub fn Navigate(self: *const IHlinkTarget, grfHLNF: u32, pwzJumpLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkTarget.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IHlinkTarget, @ptrCast(self)), grfHLNF, pwzJumpLocation);
+        return self.vtable.Navigate(self, grfHLNF, pwzJumpLocation);
     }
     pub fn GetMoniker(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, dwAssign: u32, ppimkLocation: ?*?*IMoniker) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkTarget.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IHlinkTarget, @ptrCast(self)), pwzLocation, dwAssign, ppimkLocation);
+        return self.vtable.GetMoniker(self, pwzLocation, dwAssign, ppimkLocation);
     }
     pub fn GetFriendlyName(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, ppwzFriendlyName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkTarget.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IHlinkTarget, @ptrCast(self)), pwzLocation, ppwzFriendlyName);
+        return self.vtable.GetFriendlyName(self, pwzLocation, ppwzFriendlyName);
     }
 };
 
@@ -34908,19 +34908,19 @@ pub const IHlinkFrame = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBrowseContext(self: *const IHlinkFrame, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkFrame.VTable, @ptrCast(self.vtable)).SetBrowseContext(@as(*const IHlinkFrame, @ptrCast(self)), pihlbc);
+        return self.vtable.SetBrowseContext(self, pihlbc);
     }
     pub fn GetBrowseContext(self: *const IHlinkFrame, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkFrame.VTable, @ptrCast(self.vtable)).GetBrowseContext(@as(*const IHlinkFrame, @ptrCast(self)), ppihlbc);
+        return self.vtable.GetBrowseContext(self, ppihlbc);
     }
     pub fn Navigate(self: *const IHlinkFrame, grfHLNF: u32, pbc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlNavigate: ?*IHlink) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkFrame.VTable, @ptrCast(self.vtable)).Navigate(@as(*const IHlinkFrame, @ptrCast(self)), grfHLNF, pbc, pibsc, pihlNavigate);
+        return self.vtable.Navigate(self, grfHLNF, pbc, pibsc, pihlNavigate);
     }
     pub fn OnNavigate(self: *const IHlinkFrame, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, dwreserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkFrame.VTable, @ptrCast(self.vtable)).OnNavigate(@as(*const IHlinkFrame, @ptrCast(self)), grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, dwreserved);
+        return self.vtable.OnNavigate(self, grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, dwreserved);
     }
     pub fn UpdateHlink(self: *const IHlinkFrame, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkFrame.VTable, @ptrCast(self.vtable)).UpdateHlink(@as(*const IHlinkFrame, @ptrCast(self)), uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
+        return self.vtable.UpdateHlink(self, uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
     }
 };
 
@@ -34975,16 +34975,16 @@ pub const IEnumHLITEM = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumHLITEM, celt: u32, rgelt: ?*HLITEM, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumHLITEM.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumHLITEM, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumHLITEM, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumHLITEM.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumHLITEM, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumHLITEM) callconv(.Inline) HRESULT {
-        return @as(*const IEnumHLITEM.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumHLITEM, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumHLITEM, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.Inline) HRESULT {
-        return @as(*const IEnumHLITEM.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumHLITEM, @ptrCast(self)), ppienumhlitem);
+        return self.vtable.Clone(self, ppienumhlitem);
     }
 };
 
@@ -35222,46 +35222,46 @@ pub const IHlinkBrowseContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Register(self: *const IHlinkBrowseContext, reserved: u32, piunk: ?*IUnknown, pimk: ?*IMoniker, pdwRegister: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).Register(@as(*const IHlinkBrowseContext, @ptrCast(self)), reserved, piunk, pimk, pdwRegister);
+        return self.vtable.Register(self, reserved, piunk, pimk, pdwRegister);
     }
     pub fn GetObject(self: *const IHlinkBrowseContext, pimk: ?*IMoniker, fBindIfRootRegistered: BOOL, ppiunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IHlinkBrowseContext, @ptrCast(self)), pimk, fBindIfRootRegistered, ppiunk);
+        return self.vtable.GetObject(self, pimk, fBindIfRootRegistered, ppiunk);
     }
     pub fn Revoke(self: *const IHlinkBrowseContext, dwRegister: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).Revoke(@as(*const IHlinkBrowseContext, @ptrCast(self)), dwRegister);
+        return self.vtable.Revoke(self, dwRegister);
     }
     pub fn SetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).SetBrowseWindowInfo(@as(*const IHlinkBrowseContext, @ptrCast(self)), phlbwi);
+        return self.vtable.SetBrowseWindowInfo(self, phlbwi);
     }
     pub fn GetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).GetBrowseWindowInfo(@as(*const IHlinkBrowseContext, @ptrCast(self)), phlbwi);
+        return self.vtable.GetBrowseWindowInfo(self, phlbwi);
     }
     pub fn SetInitialHlink(self: *const IHlinkBrowseContext, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).SetInitialHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), pimkTarget, pwzLocation, pwzFriendlyName);
+        return self.vtable.SetInitialHlink(self, pimkTarget, pwzLocation, pwzFriendlyName);
     }
     pub fn OnNavigateHlink(self: *const IHlinkBrowseContext, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, puHLID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).OnNavigateHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, puHLID);
+        return self.vtable.OnNavigateHlink(self, grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, puHLID);
     }
     pub fn UpdateHlink(self: *const IHlinkBrowseContext, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).UpdateHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
+        return self.vtable.UpdateHlink(self, uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
     }
     pub fn EnumNavigationStack(self: *const IHlinkBrowseContext, dwReserved: u32, grfHLFNAMEF: u32, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).EnumNavigationStack(@as(*const IHlinkBrowseContext, @ptrCast(self)), dwReserved, grfHLFNAMEF, ppienumhlitem);
+        return self.vtable.EnumNavigationStack(self, dwReserved, grfHLFNAMEF, ppienumhlitem);
     }
     pub fn QueryHlink(self: *const IHlinkBrowseContext, grfHLQF: u32, uHLID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).QueryHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), grfHLQF, uHLID);
+        return self.vtable.QueryHlink(self, grfHLQF, uHLID);
     }
     pub fn GetHlink(self: *const IHlinkBrowseContext, uHLID: u32, ppihl: ?*?*IHlink) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).GetHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), uHLID, ppihl);
+        return self.vtable.GetHlink(self, uHLID, ppihl);
     }
     pub fn SetCurrentHlink(self: *const IHlinkBrowseContext, uHLID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).SetCurrentHlink(@as(*const IHlinkBrowseContext, @ptrCast(self)), uHLID);
+        return self.vtable.SetCurrentHlink(self, uHLID);
     }
     pub fn Clone(self: *const IHlinkBrowseContext, piunkOuter: ?*IUnknown, riid: ?*const Guid, ppiunkObj: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).Clone(@as(*const IHlinkBrowseContext, @ptrCast(self)), piunkOuter, riid, ppiunkObj);
+        return self.vtable.Clone(self, piunkOuter, riid, ppiunkObj);
     }
     pub fn Close(self: *const IHlinkBrowseContext, reserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IHlinkBrowseContext.VTable, @ptrCast(self.vtable)).Close(@as(*const IHlinkBrowseContext, @ptrCast(self)), reserved);
+        return self.vtable.Close(self, reserved);
     }
 };
 
@@ -35296,10 +35296,10 @@ pub const IExtensionServices = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAdditionalHeaders(self: *const IExtensionServices, pwzAdditionalHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExtensionServices.VTable, @ptrCast(self.vtable)).SetAdditionalHeaders(@as(*const IExtensionServices, @ptrCast(self)), pwzAdditionalHeaders);
+        return self.vtable.SetAdditionalHeaders(self, pwzAdditionalHeaders);
     }
     pub fn SetAuthenticateData(self: *const IExtensionServices, phwnd: ?HWND, pwzUsername: ?[*:0]const u16, pwzPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IExtensionServices.VTable, @ptrCast(self.vtable)).SetAuthenticateData(@as(*const IExtensionServices, @ptrCast(self)), phwnd, pwzUsername, pwzPassword);
+        return self.vtable.SetAuthenticateData(self, phwnd, pwzUsername, pwzPassword);
     }
 };
 
@@ -35341,13 +35341,13 @@ pub const ITravelEntry = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const ITravelEntry, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITravelEntry.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ITravelEntry, @ptrCast(self)), punk);
+        return self.vtable.Invoke(self, punk);
     }
     pub fn Update(self: *const ITravelEntry, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITravelEntry.VTable, @ptrCast(self.vtable)).Update(@as(*const ITravelEntry, @ptrCast(self)), punk, fIsLocalAnchor);
+        return self.vtable.Update(self, punk, fIsLocalAnchor);
     }
     pub fn GetPidl(self: *const ITravelEntry, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ITravelEntry.VTable, @ptrCast(self.vtable)).GetPidl(@as(*const ITravelEntry, @ptrCast(self)), ppidl);
+        return self.vtable.GetPidl(self, ppidl);
     }
 };
 
@@ -35468,37 +35468,37 @@ pub const ITravelLog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const ITravelLog, @ptrCast(self)), punk, fIsLocalAnchor);
+        return self.vtable.AddEntry(self, punk, fIsLocalAnchor);
     }
     pub fn UpdateEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).UpdateEntry(@as(*const ITravelLog, @ptrCast(self)), punk, fIsLocalAnchor);
+        return self.vtable.UpdateEntry(self, punk, fIsLocalAnchor);
     }
     pub fn UpdateExternal(self: *const ITravelLog, punk: ?*IUnknown, punkHLBrowseContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).UpdateExternal(@as(*const ITravelLog, @ptrCast(self)), punk, punkHLBrowseContext);
+        return self.vtable.UpdateExternal(self, punk, punkHLBrowseContext);
     }
     pub fn Travel(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).Travel(@as(*const ITravelLog, @ptrCast(self)), punk, iOffset);
+        return self.vtable.Travel(self, punk, iOffset);
     }
     pub fn GetTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, ppte: ?*?*ITravelEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).GetTravelEntry(@as(*const ITravelLog, @ptrCast(self)), punk, iOffset, ppte);
+        return self.vtable.GetTravelEntry(self, punk, iOffset, ppte);
     }
     pub fn FindTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, pidl: ?*ITEMIDLIST, ppte: ?*?*ITravelEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).FindTravelEntry(@as(*const ITravelLog, @ptrCast(self)), punk, pidl, ppte);
+        return self.vtable.FindTravelEntry(self, punk, pidl, ppte);
     }
     pub fn GetToolTipText(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, idsTemplate: i32, pwzText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).GetToolTipText(@as(*const ITravelLog, @ptrCast(self)), punk, iOffset, idsTemplate, pwzText, cchText);
+        return self.vtable.GetToolTipText(self, punk, iOffset, idsTemplate, pwzText, cchText);
     }
     pub fn InsertMenuEntries(self: *const ITravelLog, punk: ?*IUnknown, hmenu: ?HMENU, nPos: i32, idFirst: i32, idLast: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).InsertMenuEntries(@as(*const ITravelLog, @ptrCast(self)), punk, hmenu, nPos, idFirst, idLast, dwFlags);
+        return self.vtable.InsertMenuEntries(self, punk, hmenu, nPos, idFirst, idLast, dwFlags);
     }
     pub fn Clone(self: *const ITravelLog, pptl: ?*?*ITravelLog) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).Clone(@as(*const ITravelLog, @ptrCast(self)), pptl);
+        return self.vtable.Clone(self, pptl);
     }
     pub fn CountEntries(self: *const ITravelLog, punk: ?*IUnknown) callconv(.Inline) u32 {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).CountEntries(@as(*const ITravelLog, @ptrCast(self)), punk);
+        return self.vtable.CountEntries(self, punk);
     }
     pub fn Revert(self: *const ITravelLog) callconv(.Inline) HRESULT {
-        return @as(*const ITravelLog.VTable, @ptrCast(self.vtable)).Revert(@as(*const ITravelLog, @ptrCast(self)));
+        return self.vtable.Revert(self);
     }
 };
 
@@ -35534,10 +35534,10 @@ pub const CIE4ConnectionPoint = extern union {
     };}
     pub usingnamespace IConnectionPoint.MethodMixin(@This());
     pub fn DoInvokeIE4(self: *const CIE4ConnectionPoint, pf: ?*BOOL, ppv: ?*?*anyopaque, dispid: i32, pdispparams: ?*DISPPARAMS) callconv(.Inline) HRESULT {
-        return @as(*const CIE4ConnectionPoint.VTable, @ptrCast(self.vtable)).DoInvokeIE4(@as(*const CIE4ConnectionPoint, @ptrCast(self)), pf, ppv, dispid, pdispparams);
+        return self.vtable.DoInvokeIE4(self, pf, ppv, dispid, pdispparams);
     }
     pub fn DoInvokePIDLIE4(self: *const CIE4ConnectionPoint, dispid: i32, pidl: ?*ITEMIDLIST, fCanCancel: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const CIE4ConnectionPoint.VTable, @ptrCast(self.vtable)).DoInvokePIDLIE4(@as(*const CIE4ConnectionPoint, @ptrCast(self)), dispid, pidl, fCanCancel);
+        return self.vtable.DoInvokePIDLIE4(self, dispid, pidl, fCanCancel);
     }
 };
 
@@ -35588,13 +35588,13 @@ pub const IExpDispSupportXP = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindCIE4ConnectionPoint(self: *const IExpDispSupportXP, riid: ?*const Guid, ppccp: ?*?*CIE4ConnectionPoint) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupportXP.VTable, @ptrCast(self.vtable)).FindCIE4ConnectionPoint(@as(*const IExpDispSupportXP, @ptrCast(self)), riid, ppccp);
+        return self.vtable.FindCIE4ConnectionPoint(self, riid, ppccp);
     }
     pub fn OnTranslateAccelerator(self: *const IExpDispSupportXP, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupportXP.VTable, @ptrCast(self.vtable)).OnTranslateAccelerator(@as(*const IExpDispSupportXP, @ptrCast(self)), pMsg, grfModifiers);
+        return self.vtable.OnTranslateAccelerator(self, pMsg, grfModifiers);
     }
     pub fn OnInvoke(self: *const IExpDispSupportXP, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupportXP.VTable, @ptrCast(self.vtable)).OnInvoke(@as(*const IExpDispSupportXP, @ptrCast(self)), dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
+        return self.vtable.OnInvoke(self, dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
     }
 };
 
@@ -35644,13 +35644,13 @@ pub const IExpDispSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindConnectionPoint(self: *const IExpDispSupport, riid: ?*const Guid, ppccp: ?*?*IConnectionPoint) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupport.VTable, @ptrCast(self.vtable)).FindConnectionPoint(@as(*const IExpDispSupport, @ptrCast(self)), riid, ppccp);
+        return self.vtable.FindConnectionPoint(self, riid, ppccp);
     }
     pub fn OnTranslateAccelerator(self: *const IExpDispSupport, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupport.VTable, @ptrCast(self.vtable)).OnTranslateAccelerator(@as(*const IExpDispSupport, @ptrCast(self)), pMsg, grfModifiers);
+        return self.vtable.OnTranslateAccelerator(self, pMsg, grfModifiers);
     }
     pub fn OnInvoke(self: *const IExpDispSupport, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IExpDispSupport.VTable, @ptrCast(self.vtable)).OnInvoke(@as(*const IExpDispSupport, @ptrCast(self)), dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
+        return self.vtable.OnInvoke(self, dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
     }
 };
 
@@ -35946,94 +35946,94 @@ pub const IBrowserService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetParentSite(self: *const IBrowserService, ppipsite: ?*?*IOleInPlaceSite) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetParentSite(@as(*const IBrowserService, @ptrCast(self)), ppipsite);
+        return self.vtable.GetParentSite(self, ppipsite);
     }
     pub fn SetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IBrowserService, @ptrCast(self)), psv, pszName);
+        return self.vtable.SetTitle(self, psv, pszName);
     }
     pub fn GetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: [*:0]u16, cchName: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const IBrowserService, @ptrCast(self)), psv, pszName, cchName);
+        return self.vtable.GetTitle(self, psv, pszName, cchName);
     }
     pub fn GetOleObject(self: *const IBrowserService, ppobjv: ?*?*IOleObject) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetOleObject(@as(*const IBrowserService, @ptrCast(self)), ppobjv);
+        return self.vtable.GetOleObject(self, ppobjv);
     }
     pub fn GetTravelLog(self: *const IBrowserService, pptl: ?*?*ITravelLog) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetTravelLog(@as(*const IBrowserService, @ptrCast(self)), pptl);
+        return self.vtable.GetTravelLog(self, pptl);
     }
     pub fn ShowControlWindow(self: *const IBrowserService, id: u32, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).ShowControlWindow(@as(*const IBrowserService, @ptrCast(self)), id, fShow);
+        return self.vtable.ShowControlWindow(self, id, fShow);
     }
     pub fn IsControlWindowShown(self: *const IBrowserService, id: u32, pfShown: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).IsControlWindowShown(@as(*const IBrowserService, @ptrCast(self)), id, pfShown);
+        return self.vtable.IsControlWindowShown(self, id, pfShown);
     }
     pub fn IEGetDisplayName(self: *const IBrowserService, pidl: ?*ITEMIDLIST, pwszName: ?PWSTR, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).IEGetDisplayName(@as(*const IBrowserService, @ptrCast(self)), pidl, pwszName, uFlags);
+        return self.vtable.IEGetDisplayName(self, pidl, pwszName, uFlags);
     }
     pub fn IEParseDisplayName(self: *const IBrowserService, uiCP: u32, pwszPath: ?[*:0]const u16, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).IEParseDisplayName(@as(*const IBrowserService, @ptrCast(self)), uiCP, pwszPath, ppidlOut);
+        return self.vtable.IEParseDisplayName(self, uiCP, pwszPath, ppidlOut);
     }
     pub fn DisplayParseError(self: *const IBrowserService, hres: HRESULT, pwszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).DisplayParseError(@as(*const IBrowserService, @ptrCast(self)), hres, pwszPath);
+        return self.vtable.DisplayParseError(self, hres, pwszPath);
     }
     pub fn NavigateToPidl(self: *const IBrowserService, pidl: ?*ITEMIDLIST, grfHLNF: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).NavigateToPidl(@as(*const IBrowserService, @ptrCast(self)), pidl, grfHLNF);
+        return self.vtable.NavigateToPidl(self, pidl, grfHLNF);
     }
     pub fn SetNavigateState(self: *const IBrowserService, bnstate: BNSTATE) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).SetNavigateState(@as(*const IBrowserService, @ptrCast(self)), bnstate);
+        return self.vtable.SetNavigateState(self, bnstate);
     }
     pub fn GetNavigateState(self: *const IBrowserService, pbnstate: ?*BNSTATE) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetNavigateState(@as(*const IBrowserService, @ptrCast(self)), pbnstate);
+        return self.vtable.GetNavigateState(self, pbnstate);
     }
     pub fn NotifyRedirect(self: *const IBrowserService, psv: ?*IShellView, pidl: ?*ITEMIDLIST, pfDidBrowse: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).NotifyRedirect(@as(*const IBrowserService, @ptrCast(self)), psv, pidl, pfDidBrowse);
+        return self.vtable.NotifyRedirect(self, psv, pidl, pfDidBrowse);
     }
     pub fn UpdateWindowList(self: *const IBrowserService) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).UpdateWindowList(@as(*const IBrowserService, @ptrCast(self)));
+        return self.vtable.UpdateWindowList(self);
     }
     pub fn UpdateBackForwardState(self: *const IBrowserService) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).UpdateBackForwardState(@as(*const IBrowserService, @ptrCast(self)));
+        return self.vtable.UpdateBackForwardState(self);
     }
     pub fn SetFlags(self: *const IBrowserService, dwFlags: u32, dwFlagMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IBrowserService, @ptrCast(self)), dwFlags, dwFlagMask);
+        return self.vtable.SetFlags(self, dwFlags, dwFlagMask);
     }
     pub fn GetFlags(self: *const IBrowserService, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IBrowserService, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn CanNavigateNow(self: *const IBrowserService) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).CanNavigateNow(@as(*const IBrowserService, @ptrCast(self)));
+        return self.vtable.CanNavigateNow(self);
     }
     pub fn GetPidl(self: *const IBrowserService, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetPidl(@as(*const IBrowserService, @ptrCast(self)), ppidl);
+        return self.vtable.GetPidl(self, ppidl);
     }
     pub fn SetReferrer(self: *const IBrowserService, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).SetReferrer(@as(*const IBrowserService, @ptrCast(self)), pidl);
+        return self.vtable.SetReferrer(self, pidl);
     }
     pub fn GetBrowserIndex(self: *const IBrowserService) callconv(.Inline) u32 {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetBrowserIndex(@as(*const IBrowserService, @ptrCast(self)));
+        return self.vtable.GetBrowserIndex(self);
     }
     pub fn GetBrowserByIndex(self: *const IBrowserService, dwID: u32, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetBrowserByIndex(@as(*const IBrowserService, @ptrCast(self)), dwID, ppunk);
+        return self.vtable.GetBrowserByIndex(self, dwID, ppunk);
     }
     pub fn GetHistoryObject(self: *const IBrowserService, ppole: ?*?*IOleObject, pstm: ?*?*IStream, ppbc: ?*?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetHistoryObject(@as(*const IBrowserService, @ptrCast(self)), ppole, pstm, ppbc);
+        return self.vtable.GetHistoryObject(self, ppole, pstm, ppbc);
     }
     pub fn SetHistoryObject(self: *const IBrowserService, pole: ?*IOleObject, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).SetHistoryObject(@as(*const IBrowserService, @ptrCast(self)), pole, fIsLocalAnchor);
+        return self.vtable.SetHistoryObject(self, pole, fIsLocalAnchor);
     }
     pub fn CacheOLEServer(self: *const IBrowserService, pole: ?*IOleObject) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).CacheOLEServer(@as(*const IBrowserService, @ptrCast(self)), pole);
+        return self.vtable.CacheOLEServer(self, pole);
     }
     pub fn GetSetCodePage(self: *const IBrowserService, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetSetCodePage(@as(*const IBrowserService, @ptrCast(self)), pvarIn, pvarOut);
+        return self.vtable.GetSetCodePage(self, pvarIn, pvarOut);
     }
     pub fn OnHttpEquiv(self: *const IBrowserService, psv: ?*IShellView, fDone: BOOL, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).OnHttpEquiv(@as(*const IBrowserService, @ptrCast(self)), psv, fDone, pvarargIn, pvarargOut);
+        return self.vtable.OnHttpEquiv(self, psv, fDone, pvarargIn, pvarargOut);
     }
     pub fn GetPalette(self: *const IBrowserService, hpal: ?*?HPALETTE) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IBrowserService, @ptrCast(self)), hpal);
+        return self.vtable.GetPalette(self, hpal);
     }
     pub fn RegisterWindow(self: *const IBrowserService, fForceRegister: BOOL, swc: i32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService.VTable, @ptrCast(self.vtable)).RegisterWindow(@as(*const IBrowserService, @ptrCast(self)), fForceRegister, swc);
+        return self.vtable.RegisterWindow(self, fForceRegister, swc);
     }
 };
 
@@ -36058,7 +36058,7 @@ pub const IShellService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOwner(self: *const IShellService, punkOwner: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IShellService.VTable, @ptrCast(self.vtable)).SetOwner(@as(*const IShellService, @ptrCast(self)), punkOwner);
+        return self.vtable.SetOwner(self, punkOwner);
     }
 };
 
@@ -36699,190 +36699,190 @@ pub const IBrowserService2 = extern union {
     };}
     pub usingnamespace IBrowserService.MethodMixin(@This());
     pub fn WndProcBS(self: *const IBrowserService2, hwnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).WndProcBS(@as(*const IBrowserService2, @ptrCast(self)), hwnd, uMsg, wParam, lParam);
+        return self.vtable.WndProcBS(self, hwnd, uMsg, wParam, lParam);
     }
     pub fn SetAsDefFolderSettings(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).SetAsDefFolderSettings(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.SetAsDefFolderSettings(self);
     }
     pub fn GetViewRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).GetViewRect(@as(*const IBrowserService2, @ptrCast(self)), prc);
+        return self.vtable.GetViewRect(self, prc);
     }
     pub fn OnSize(self: *const IBrowserService2, wParam: WPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnSize(@as(*const IBrowserService2, @ptrCast(self)), wParam);
+        return self.vtable.OnSize(self, wParam);
     }
     pub fn OnCreate(self: *const IBrowserService2, pcs: ?*CREATESTRUCTW) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnCreate(@as(*const IBrowserService2, @ptrCast(self)), pcs);
+        return self.vtable.OnCreate(self, pcs);
     }
     pub fn OnCommand(self: *const IBrowserService2, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnCommand(@as(*const IBrowserService2, @ptrCast(self)), wParam, lParam);
+        return self.vtable.OnCommand(self, wParam, lParam);
     }
     pub fn OnDestroy(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnDestroy(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.OnDestroy(self);
     }
     pub fn OnNotify(self: *const IBrowserService2, pnm: ?*NMHDR) callconv(.Inline) LRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IBrowserService2, @ptrCast(self)), pnm);
+        return self.vtable.OnNotify(self, pnm);
     }
     pub fn OnSetFocus(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnSetFocus(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.OnSetFocus(self);
     }
     pub fn OnFrameWindowActivateBS(self: *const IBrowserService2, fActive: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).OnFrameWindowActivateBS(@as(*const IBrowserService2, @ptrCast(self)), fActive);
+        return self.vtable.OnFrameWindowActivateBS(self, fActive);
     }
     pub fn ReleaseShellView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).ReleaseShellView(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.ReleaseShellView(self);
     }
     pub fn ActivatePendingView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).ActivatePendingView(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.ActivatePendingView(self);
     }
     pub fn CreateViewWindow(self: *const IBrowserService2, psvNew: ?*IShellView, psvOld: ?*IShellView, prcView: ?*RECT, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).CreateViewWindow(@as(*const IBrowserService2, @ptrCast(self)), psvNew, psvOld, prcView, phwnd);
+        return self.vtable.CreateViewWindow(self, psvNew, psvOld, prcView, phwnd);
     }
     pub fn CreateBrowserPropSheetExt(self: *const IBrowserService2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).CreateBrowserPropSheetExt(@as(*const IBrowserService2, @ptrCast(self)), riid, ppv);
+        return self.vtable.CreateBrowserPropSheetExt(self, riid, ppv);
     }
     pub fn GetViewWindow(self: *const IBrowserService2, phwndView: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).GetViewWindow(@as(*const IBrowserService2, @ptrCast(self)), phwndView);
+        return self.vtable.GetViewWindow(self, phwndView);
     }
     pub fn GetBaseBrowserData(self: *const IBrowserService2, pbbd: ?*?*BASEBROWSERDATALH) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).GetBaseBrowserData(@as(*const IBrowserService2, @ptrCast(self)), pbbd);
+        return self.vtable.GetBaseBrowserData(self, pbbd);
     }
     pub fn PutBaseBrowserData(self: *const IBrowserService2) callconv(.Inline) ?*BASEBROWSERDATALH {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).PutBaseBrowserData(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.PutBaseBrowserData(self);
     }
     pub fn InitializeTravelLog(self: *const IBrowserService2, ptl: ?*ITravelLog, dw: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).InitializeTravelLog(@as(*const IBrowserService2, @ptrCast(self)), ptl, dw);
+        return self.vtable.InitializeTravelLog(self, ptl, dw);
     }
     pub fn SetTopBrowser(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).SetTopBrowser(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.SetTopBrowser(self);
     }
     pub fn Offline(self: *const IBrowserService2, iCmd: i32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).Offline(@as(*const IBrowserService2, @ptrCast(self)), iCmd);
+        return self.vtable.Offline(self, iCmd);
     }
     pub fn AllowViewResize(self: *const IBrowserService2, f: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).AllowViewResize(@as(*const IBrowserService2, @ptrCast(self)), f);
+        return self.vtable.AllowViewResize(self, f);
     }
     pub fn SetActivateState(self: *const IBrowserService2, u: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).SetActivateState(@as(*const IBrowserService2, @ptrCast(self)), u);
+        return self.vtable.SetActivateState(self, u);
     }
     pub fn UpdateSecureLockIcon(self: *const IBrowserService2, eSecureLock: i32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).UpdateSecureLockIcon(@as(*const IBrowserService2, @ptrCast(self)), eSecureLock);
+        return self.vtable.UpdateSecureLockIcon(self, eSecureLock);
     }
     pub fn InitializeDownloadManager(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).InitializeDownloadManager(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.InitializeDownloadManager(self);
     }
     pub fn InitializeTransitionSite(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).InitializeTransitionSite(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable.InitializeTransitionSite(self);
     }
     pub fn _Initialize(self: *const IBrowserService2, hwnd: ?HWND, pauto: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._Initialize(@as(*const IBrowserService2, @ptrCast(self)), hwnd, pauto);
+        return self.vtable._Initialize(self, hwnd, pauto);
     }
     pub fn _CancelPendingNavigationAsync(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._CancelPendingNavigationAsync(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._CancelPendingNavigationAsync(self);
     }
     pub fn _CancelPendingView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._CancelPendingView(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._CancelPendingView(self);
     }
     pub fn _MaySaveChanges(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._MaySaveChanges(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._MaySaveChanges(self);
     }
     pub fn _PauseOrResumeView(self: *const IBrowserService2, fPaused: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._PauseOrResumeView(@as(*const IBrowserService2, @ptrCast(self)), fPaused);
+        return self.vtable._PauseOrResumeView(self, fPaused);
     }
     pub fn _DisableModeless(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._DisableModeless(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._DisableModeless(self);
     }
     pub fn _NavigateToPidl2(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfHLNF: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._NavigateToPidl2(@as(*const IBrowserService2, @ptrCast(self)), pidl, grfHLNF, dwFlags);
+        return self.vtable._NavigateToPidl2(self, pidl, grfHLNF, dwFlags);
     }
     pub fn _TryShell2Rename(self: *const IBrowserService2, psv: ?*IShellView, pidlNew: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._TryShell2Rename(@as(*const IBrowserService2, @ptrCast(self)), psv, pidlNew);
+        return self.vtable._TryShell2Rename(self, psv, pidlNew);
     }
     pub fn _SwitchActivationNow(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._SwitchActivationNow(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._SwitchActivationNow(self);
     }
     pub fn _ExecChildren(self: *const IBrowserService2, punkBar: ?*IUnknown, fBroadcast: BOOL, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._ExecChildren(@as(*const IBrowserService2, @ptrCast(self)), punkBar, fBroadcast, pguidCmdGroup, nCmdID, nCmdexecopt, pvarargIn, pvarargOut);
+        return self.vtable._ExecChildren(self, punkBar, fBroadcast, pguidCmdGroup, nCmdID, nCmdexecopt, pvarargIn, pvarargOut);
     }
     pub fn _SendChildren(self: *const IBrowserService2, hwndBar: ?HWND, fBroadcast: BOOL, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._SendChildren(@as(*const IBrowserService2, @ptrCast(self)), hwndBar, fBroadcast, uMsg, wParam, lParam);
+        return self.vtable._SendChildren(self, hwndBar, fBroadcast, uMsg, wParam, lParam);
     }
     pub fn GetFolderSetData(self: *const IBrowserService2, pfsd: ?*FOLDERSETDATA) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).GetFolderSetData(@as(*const IBrowserService2, @ptrCast(self)), pfsd);
+        return self.vtable.GetFolderSetData(self, pfsd);
     }
     pub fn _OnFocusChange(self: *const IBrowserService2, itb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._OnFocusChange(@as(*const IBrowserService2, @ptrCast(self)), itb);
+        return self.vtable._OnFocusChange(self, itb);
     }
     pub fn v_ShowHideChildWindows(self: *const IBrowserService2, fChildOnly: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).v_ShowHideChildWindows(@as(*const IBrowserService2, @ptrCast(self)), fChildOnly);
+        return self.vtable.v_ShowHideChildWindows(self, fChildOnly);
     }
     pub fn _get_itbLastFocus(self: *const IBrowserService2) callconv(.Inline) u32 {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._get_itbLastFocus(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._get_itbLastFocus(self);
     }
     pub fn _put_itbLastFocus(self: *const IBrowserService2, itbLastFocus: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._put_itbLastFocus(@as(*const IBrowserService2, @ptrCast(self)), itbLastFocus);
+        return self.vtable._put_itbLastFocus(self, itbLastFocus);
     }
     pub fn _UIActivateView(self: *const IBrowserService2, uState: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._UIActivateView(@as(*const IBrowserService2, @ptrCast(self)), uState);
+        return self.vtable._UIActivateView(self, uState);
     }
     pub fn _GetViewBorderRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._GetViewBorderRect(@as(*const IBrowserService2, @ptrCast(self)), prc);
+        return self.vtable._GetViewBorderRect(self, prc);
     }
     pub fn _UpdateViewRectSize(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._UpdateViewRectSize(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._UpdateViewRectSize(self);
     }
     pub fn _ResizeNextBorder(self: *const IBrowserService2, itb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._ResizeNextBorder(@as(*const IBrowserService2, @ptrCast(self)), itb);
+        return self.vtable._ResizeNextBorder(self, itb);
     }
     pub fn _ResizeView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._ResizeView(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._ResizeView(self);
     }
     pub fn _GetEffectiveClientArea(self: *const IBrowserService2, lprectBorder: ?*RECT, hmon: ?HMONITOR) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._GetEffectiveClientArea(@as(*const IBrowserService2, @ptrCast(self)), lprectBorder, hmon);
+        return self.vtable._GetEffectiveClientArea(self, lprectBorder, hmon);
     }
     pub fn v_GetViewStream(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfMode: u32, pwszName: ?[*:0]const u16) callconv(.Inline) ?*IStream {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).v_GetViewStream(@as(*const IBrowserService2, @ptrCast(self)), pidl, grfMode, pwszName);
+        return self.vtable.v_GetViewStream(self, pidl, grfMode, pwszName);
     }
     pub fn ForwardViewMsg(self: *const IBrowserService2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).ForwardViewMsg(@as(*const IBrowserService2, @ptrCast(self)), uMsg, wParam, lParam);
+        return self.vtable.ForwardViewMsg(self, uMsg, wParam, lParam);
     }
     pub fn SetAcceleratorMenu(self: *const IBrowserService2, hacc: ?HACCEL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).SetAcceleratorMenu(@as(*const IBrowserService2, @ptrCast(self)), hacc);
+        return self.vtable.SetAcceleratorMenu(self, hacc);
     }
     pub fn _GetToolbarCount(self: *const IBrowserService2) callconv(.Inline) i32 {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._GetToolbarCount(@as(*const IBrowserService2, @ptrCast(self)));
+        return self.vtable._GetToolbarCount(self);
     }
     pub fn _GetToolbarItem(self: *const IBrowserService2, itb: i32) callconv(.Inline) ?*TOOLBARITEM {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._GetToolbarItem(@as(*const IBrowserService2, @ptrCast(self)), itb);
+        return self.vtable._GetToolbarItem(self, itb);
     }
     pub fn _SaveToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._SaveToolbars(@as(*const IBrowserService2, @ptrCast(self)), pstm);
+        return self.vtable._SaveToolbars(self, pstm);
     }
     pub fn _LoadToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._LoadToolbars(@as(*const IBrowserService2, @ptrCast(self)), pstm);
+        return self.vtable._LoadToolbars(self, pstm);
     }
     pub fn _CloseAndReleaseToolbars(self: *const IBrowserService2, fClose: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._CloseAndReleaseToolbars(@as(*const IBrowserService2, @ptrCast(self)), fClose);
+        return self.vtable._CloseAndReleaseToolbars(self, fClose);
     }
     pub fn v_MayGetNextToolbarFocus(self: *const IBrowserService2, lpMsg: ?*MSG, itbNext: u32, citb: i32, pptbi: ?*?*TOOLBARITEM, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).v_MayGetNextToolbarFocus(@as(*const IBrowserService2, @ptrCast(self)), lpMsg, itbNext, citb, pptbi, phwnd);
+        return self.vtable.v_MayGetNextToolbarFocus(self, lpMsg, itbNext, citb, pptbi, phwnd);
     }
     pub fn _ResizeNextBorderHelper(self: *const IBrowserService2, itb: u32, bUseHmonitor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._ResizeNextBorderHelper(@as(*const IBrowserService2, @ptrCast(self)), itb, bUseHmonitor);
+        return self.vtable._ResizeNextBorderHelper(self, itb, bUseHmonitor);
     }
     pub fn _FindTBar(self: *const IBrowserService2, punkSrc: ?*IUnknown) callconv(.Inline) u32 {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._FindTBar(@as(*const IBrowserService2, @ptrCast(self)), punkSrc);
+        return self.vtable._FindTBar(self, punkSrc);
     }
     pub fn _SetFocus(self: *const IBrowserService2, ptbi: ?*TOOLBARITEM, hwnd: ?HWND, lpMsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._SetFocus(@as(*const IBrowserService2, @ptrCast(self)), ptbi, hwnd, lpMsg);
+        return self.vtable._SetFocus(self, ptbi, hwnd, lpMsg);
     }
     pub fn v_MayTranslateAccelerator(self: *const IBrowserService2, pmsg: ?*MSG) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).v_MayTranslateAccelerator(@as(*const IBrowserService2, @ptrCast(self)), pmsg);
+        return self.vtable.v_MayTranslateAccelerator(self, pmsg);
     }
     pub fn _GetBorderDWHelper(self: *const IBrowserService2, punkSrc: ?*IUnknown, lprectBorder: ?*RECT, bUseHmonitor: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable))._GetBorderDWHelper(@as(*const IBrowserService2, @ptrCast(self)), punkSrc, lprectBorder, bUseHmonitor);
+        return self.vtable._GetBorderDWHelper(self, punkSrc, lprectBorder, bUseHmonitor);
     }
     pub fn v_CheckZoneCrossing(self: *const IBrowserService2, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService2.VTable, @ptrCast(self.vtable)).v_CheckZoneCrossing(@as(*const IBrowserService2, @ptrCast(self)), pidl);
+        return self.vtable.v_CheckZoneCrossing(self, pidl);
     }
 };
 
@@ -36925,10 +36925,10 @@ pub const IBrowserService3 = extern union {
     };}
     pub usingnamespace IBrowserService2.MethodMixin(@This());
     pub fn _PositionViewWindow(self: *const IBrowserService3, hwnd: ?HWND, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService3.VTable, @ptrCast(self.vtable))._PositionViewWindow(@as(*const IBrowserService3, @ptrCast(self)), hwnd, prc);
+        return self.vtable._PositionViewWindow(self, hwnd, prc);
     }
     pub fn IEParseDisplayNameEx(self: *const IBrowserService3, uiCP: u32, pwszPath: ?[*:0]const u16, dwFlags: u32, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService3.VTable, @ptrCast(self.vtable)).IEParseDisplayNameEx(@as(*const IBrowserService3, @ptrCast(self)), uiCP, pwszPath, dwFlags, ppidlOut);
+        return self.vtable.IEParseDisplayNameEx(self, uiCP, pwszPath, dwFlags, ppidlOut);
     }
 };
 
@@ -36968,13 +36968,13 @@ pub const IBrowserService4 = extern union {
     };}
     pub usingnamespace IBrowserService3.MethodMixin(@This());
     pub fn ActivateView(self: *const IBrowserService4, fPendingView: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService4.VTable, @ptrCast(self.vtable)).ActivateView(@as(*const IBrowserService4, @ptrCast(self)), fPendingView);
+        return self.vtable.ActivateView(self, fPendingView);
     }
     pub fn SaveViewState(self: *const IBrowserService4) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService4.VTable, @ptrCast(self.vtable)).SaveViewState(@as(*const IBrowserService4, @ptrCast(self)));
+        return self.vtable.SaveViewState(self);
     }
     pub fn _ResizeAllBorders(self: *const IBrowserService4) callconv(.Inline) HRESULT {
-        return @as(*const IBrowserService4.VTable, @ptrCast(self.vtable))._ResizeAllBorders(@as(*const IBrowserService4, @ptrCast(self)));
+        return self.vtable._ResizeAllBorders(self);
     }
 };
 
@@ -37013,10 +37013,10 @@ pub const ITrackShellMenu = extern union {
     };}
     pub usingnamespace IShellMenu.MethodMixin(@This());
     pub fn SetObscured(self: *const ITrackShellMenu, hwndTB: ?HWND, punkBand: ?*IUnknown, dwSMSetFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITrackShellMenu.VTable, @ptrCast(self.vtable)).SetObscured(@as(*const ITrackShellMenu, @ptrCast(self)), hwndTB, punkBand, dwSMSetFlags);
+        return self.vtable.SetObscured(self, hwndTB, punkBand, dwSMSetFlags);
     }
     pub fn Popup(self: *const ITrackShellMenu, hwnd: ?HWND, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITrackShellMenu.VTable, @ptrCast(self.vtable)).Popup(@as(*const ITrackShellMenu, @ptrCast(self)), hwnd, ppt, prcExclude, dwFlags);
+        return self.vtable.Popup(self, hwnd, ppt, prcExclude, dwFlags);
     }
 };
 
@@ -37058,7 +37058,7 @@ pub const ITranscodeImage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TranscodeImage(self: *const ITranscodeImage, pShellItem: ?*IShellItem, uiMaxWidth: u32, uiMaxHeight: u32, flags: u32, pvImage: ?*IStream, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITranscodeImage.VTable, @ptrCast(self.vtable)).TranscodeImage(@as(*const ITranscodeImage, @ptrCast(self)), pShellItem, uiMaxWidth, uiMaxHeight, flags, pvImage, puiWidth, puiHeight);
+        return self.vtable.TranscodeImage(self, pShellItem, uiMaxWidth, uiMaxHeight, flags, pvImage, puiWidth, puiHeight);
     }
 };
 
@@ -37235,13 +37235,13 @@ pub const IUniformResourceLocatorA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetURL(self: *const IUniformResourceLocatorA, pcszURL: ?[*:0]const u8, dwInFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorA.VTable, @ptrCast(self.vtable)).SetURL(@as(*const IUniformResourceLocatorA, @ptrCast(self)), pcszURL, dwInFlags);
+        return self.vtable.SetURL(self, pcszURL, dwInFlags);
     }
     pub fn GetURL(self: *const IUniformResourceLocatorA, ppszURL: ?*?PSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorA.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IUniformResourceLocatorA, @ptrCast(self)), ppszURL);
+        return self.vtable.GetURL(self, ppszURL);
     }
     pub fn InvokeCommand(self: *const IUniformResourceLocatorA, purlici: ?*urlinvokecommandinfoA) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorA.VTable, @ptrCast(self.vtable)).InvokeCommand(@as(*const IUniformResourceLocatorA, @ptrCast(self)), purlici);
+        return self.vtable.InvokeCommand(self, purlici);
     }
 };
 
@@ -37283,13 +37283,13 @@ pub const IUniformResourceLocatorW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetURL(self: *const IUniformResourceLocatorW, pcszURL: ?[*:0]const u16, dwInFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorW.VTable, @ptrCast(self.vtable)).SetURL(@as(*const IUniformResourceLocatorW, @ptrCast(self)), pcszURL, dwInFlags);
+        return self.vtable.SetURL(self, pcszURL, dwInFlags);
     }
     pub fn GetURL(self: *const IUniformResourceLocatorW, ppszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorW.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IUniformResourceLocatorW, @ptrCast(self)), ppszURL);
+        return self.vtable.GetURL(self, ppszURL);
     }
     pub fn InvokeCommand(self: *const IUniformResourceLocatorW, purlici: ?*urlinvokecommandinfoW) callconv(.Inline) HRESULT {
-        return @as(*const IUniformResourceLocatorW.VTable, @ptrCast(self.vtable)).InvokeCommand(@as(*const IUniformResourceLocatorW, @ptrCast(self)), purlici);
+        return self.vtable.InvokeCommand(self, purlici);
     }
 };
 
@@ -37350,7 +37350,7 @@ pub const IInputPaneAnimationCoordinator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAnimation(self: *const IInputPaneAnimationCoordinator, device: ?*IUnknown, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IInputPaneAnimationCoordinator.VTable, @ptrCast(self.vtable)).AddAnimation(@as(*const IInputPaneAnimationCoordinator, @ptrCast(self)), device, animation);
+        return self.vtable.AddAnimation(self, device, animation);
     }
 };
 
