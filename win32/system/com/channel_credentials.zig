@@ -77,50 +77,7 @@ pub const IChannelCredentials = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetWindowsCredential(self: *const T, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetWindowsCredential(@as(*const IChannelCredentials, @ptrCast(self)), domain, username, password, impersonationLevel, allowNtlm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetUserNameCredential(self: *const T, username: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetUserNameCredential(@as(*const IChannelCredentials, @ptrCast(self)), username, password);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findYype, findValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findType, findValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetServiceCertificateAuthentication(self: *const T, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetServiceCertificateAuthentication(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, revocationMode, certificateValidationMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetIssuedToken(self: *const T, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetIssuedToken(@as(*const IChannelCredentials, @ptrCast(self)), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetWindowsCredential(self: *const IChannelCredentials, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetWindowsCredential(self, domain, username, password, impersonationLevel, allowNtlm);
     }
@@ -172,13 +129,14 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
+const IUnknown = @import("../../system/com.zig").IUnknown;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {

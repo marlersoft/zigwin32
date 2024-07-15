@@ -18,14 +18,6 @@ pub const ILearningModelOperatorProviderNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelOperatorProviderNative_GetRegistry(self: *const T, ppOperatorRegistry: ?*?*IMLOperatorRegistry) callconv(.Inline) HRESULT {
-            return @as(*const ILearningModelOperatorProviderNative.VTable, @ptrCast(self.vtable)).GetRegistry(@as(*const ILearningModelOperatorProviderNative, @ptrCast(self)), ppOperatorRegistry);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRegistry(self: *const ILearningModelOperatorProviderNative, ppOperatorRegistry: ?*?*IMLOperatorRegistry) callconv(.Inline) HRESULT {
         return self.vtable.GetRegistry(self, ppOperatorRegistry);
     }
@@ -48,18 +40,6 @@ pub const ITensorNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorNative_GetBuffer(self: *const T, value: [*]?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ITensorNative.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ITensorNative, @ptrCast(self)), value, capacity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorNative_GetD3D12Resource(self: *const T, result: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-            return @as(*const ITensorNative.VTable, @ptrCast(self.vtable)).GetD3D12Resource(@as(*const ITensorNative, @ptrCast(self)), result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBuffer(self: *const ITensorNative, value: [*]?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, value, capacity);
     }
@@ -83,14 +63,6 @@ pub const ITensorStaticsNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorStaticsNative_CreateFromD3D12Resource(self: *const T, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ITensorStaticsNative.VTable, @ptrCast(self.vtable)).CreateFromD3D12Resource(@as(*const ITensorStaticsNative, @ptrCast(self)), value, shape, shapeCount, result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateFromD3D12Resource(self: *const ITensorStaticsNative, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromD3D12Resource(self, value, shape, shapeCount, result);
     }
@@ -109,14 +81,6 @@ pub const ILearningModelDeviceFactoryNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelDeviceFactoryNative_CreateFromD3D12CommandQueue(self: *const T, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ILearningModelDeviceFactoryNative.VTable, @ptrCast(self.vtable)).CreateFromD3D12CommandQueue(@as(*const ILearningModelDeviceFactoryNative, @ptrCast(self)), value, result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateFromD3D12CommandQueue(self: *const ILearningModelDeviceFactoryNative, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromD3D12CommandQueue(self, value, result);
     }
@@ -134,14 +98,6 @@ pub const ILearningModelSessionOptionsNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelSessionOptionsNative_SetIntraOpNumThreadsOverride(self: *const T, intraOpNumThreads: u32) callconv(.Inline) HRESULT {
-            return @as(*const ILearningModelSessionOptionsNative.VTable, @ptrCast(self.vtable)).SetIntraOpNumThreadsOverride(@as(*const ILearningModelSessionOptionsNative, @ptrCast(self)), intraOpNumThreads);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetIntraOpNumThreadsOverride(self: *const ILearningModelSessionOptionsNative, intraOpNumThreads: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetIntraOpNumThreadsOverride(self, intraOpNumThreads);
     }

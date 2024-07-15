@@ -320,50 +320,6 @@ pub const IXAPO = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_GetRegistrationProperties(self: *const T, ppRegistrationProperties: ?*?*XAPO_REGISTRATION_PROPERTIES) callconv(.Inline) HRESULT {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).GetRegistrationProperties(@as(*const IXAPO, @ptrCast(self)), ppRegistrationProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_IsInputFormatSupported(self: *const T, pOutputFormat: ?*const WAVEFORMATEX, pRequestedInputFormat: ?*const WAVEFORMATEX, ppSupportedInputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).IsInputFormatSupported(@as(*const IXAPO, @ptrCast(self)), pOutputFormat, pRequestedInputFormat, ppSupportedInputFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_IsOutputFormatSupported(self: *const T, pInputFormat: ?*const WAVEFORMATEX, pRequestedOutputFormat: ?*const WAVEFORMATEX, ppSupportedOutputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).IsOutputFormatSupported(@as(*const IXAPO, @ptrCast(self)), pInputFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_Initialize(self: *const T, pData: ?*const anyopaque, DataByteSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IXAPO, @ptrCast(self)), pData, DataByteSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_Reset(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IXAPO, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_LockForProcess(self: *const T, InputLockedParameterCount: u32, pInputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS, OutputLockedParameterCount: u32, pOutputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS) callconv(.Inline) HRESULT {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).LockForProcess(@as(*const IXAPO, @ptrCast(self)), InputLockedParameterCount, pInputLockedParameters, OutputLockedParameterCount, pOutputLockedParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_UnlockForProcess(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).UnlockForProcess(@as(*const IXAPO, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_Process(self: *const T, InputProcessParameterCount: u32, pInputProcessParameters: ?[*]const XAPO_PROCESS_BUFFER_PARAMETERS, OutputProcessParameterCount: u32, pOutputProcessParameters: ?[*]XAPO_PROCESS_BUFFER_PARAMETERS, IsEnabled: BOOL) callconv(.Inline) void {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).Process(@as(*const IXAPO, @ptrCast(self)), InputProcessParameterCount, pInputProcessParameters, OutputProcessParameterCount, pOutputProcessParameters, IsEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_CalcInputFrames(self: *const T, OutputFrameCount: u32) callconv(.Inline) u32 {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).CalcInputFrames(@as(*const IXAPO, @ptrCast(self)), OutputFrameCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_CalcOutputFrames(self: *const T, InputFrameCount: u32) callconv(.Inline) u32 {
-            return @as(*const IXAPO.VTable, @ptrCast(self.vtable)).CalcOutputFrames(@as(*const IXAPO, @ptrCast(self)), InputFrameCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRegistrationProperties(self: *const IXAPO, ppRegistrationProperties: ?*?*XAPO_REGISTRATION_PROPERTIES) callconv(.Inline) HRESULT {
         return self.vtable.GetRegistrationProperties(self, ppRegistrationProperties);
     }
@@ -416,18 +372,6 @@ pub const IXAPOParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_SetParameters(self: *const T, pParameters: ?*const anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
-            return @as(*const IXAPOParameters.VTable, @ptrCast(self.vtable)).SetParameters(@as(*const IXAPOParameters, @ptrCast(self)), pParameters, ParameterByteSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_GetParameters(self: *const T, pParameters: ?*anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
-            return @as(*const IXAPOParameters.VTable, @ptrCast(self.vtable)).GetParameters(@as(*const IXAPOParameters, @ptrCast(self)), pParameters, ParameterByteSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetParameters(self: *const IXAPOParameters, pParameters: ?*const anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
         return self.vtable.SetParameters(self, pParameters, ParameterByteSize);
     }
@@ -646,50 +590,6 @@ pub const IXAudio2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_RegisterForCallbacks(self: *const T, pCallback: ?*IXAudio2EngineCallback) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).RegisterForCallbacks(@as(*const IXAudio2, @ptrCast(self)), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_UnregisterForCallbacks(self: *const T, pCallback: ?*IXAudio2EngineCallback) callconv(.Inline) void {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).UnregisterForCallbacks(@as(*const IXAudio2, @ptrCast(self)), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_CreateSourceVoice(self: *const T, ppSourceVoice: ?*?*IXAudio2SourceVoice, pSourceFormat: ?*const WAVEFORMATEX, Flags: u32, MaxFrequencyRatio: f32, pCallback: ?*IXAudio2VoiceCallback, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).CreateSourceVoice(@as(*const IXAudio2, @ptrCast(self)), ppSourceVoice, pSourceFormat, Flags, MaxFrequencyRatio, pCallback, pSendList, pEffectChain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_CreateSubmixVoice(self: *const T, ppSubmixVoice: ?*?*IXAudio2SubmixVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, ProcessingStage: u32, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).CreateSubmixVoice(@as(*const IXAudio2, @ptrCast(self)), ppSubmixVoice, InputChannels, InputSampleRate, Flags, ProcessingStage, pSendList, pEffectChain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_CreateMasteringVoice(self: *const T, ppMasteringVoice: ?*?*IXAudio2MasteringVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, szDeviceId: ?[*:0]const u16, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN, StreamCategory: AUDIO_STREAM_CATEGORY) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).CreateMasteringVoice(@as(*const IXAudio2, @ptrCast(self)), ppMasteringVoice, InputChannels, InputSampleRate, Flags, szDeviceId, pEffectChain, StreamCategory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_StartEngine(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).StartEngine(@as(*const IXAudio2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_StopEngine(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).StopEngine(@as(*const IXAudio2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_CommitChanges(self: *const T, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).CommitChanges(@as(*const IXAudio2, @ptrCast(self)), OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_GetPerformanceData(self: *const T, pPerfData: ?*XAUDIO2_PERFORMANCE_DATA) callconv(.Inline) void {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).GetPerformanceData(@as(*const IXAudio2, @ptrCast(self)), pPerfData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_SetDebugConfiguration(self: *const T, pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION, pReserved: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IXAudio2.VTable, @ptrCast(self.vtable)).SetDebugConfiguration(@as(*const IXAudio2, @ptrCast(self)), pDebugConfiguration, pReserved);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterForCallbacks(self: *const IXAudio2, pCallback: ?*IXAudio2EngineCallback) callconv(.Inline) HRESULT {
         return self.vtable.RegisterForCallbacks(self, pCallback);
     }
@@ -739,18 +639,6 @@ pub const IXAudio2Extension = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Extension_GetProcessingQuantum(self: *const T, quantumNumerator: ?*u32, quantumDenominator: ?*u32) callconv(.Inline) void {
-            return @as(*const IXAudio2Extension.VTable, @ptrCast(self.vtable)).GetProcessingQuantum(@as(*const IXAudio2Extension, @ptrCast(self)), quantumNumerator, quantumDenominator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Extension_GetProcessor(self: *const T, processor: ?*u32) callconv(.Inline) void {
-            return @as(*const IXAudio2Extension.VTable, @ptrCast(self.vtable)).GetProcessor(@as(*const IXAudio2Extension, @ptrCast(self)), processor);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProcessingQuantum(self: *const IXAudio2Extension, quantumNumerator: ?*u32, quantumDenominator: ?*u32) callconv(.Inline) void {
         return self.vtable.GetProcessingQuantum(self, quantumNumerator, quantumDenominator);
     }
@@ -863,84 +751,6 @@ pub const IXAudio2Voice = extern union {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetVoiceDetails(self: *const T, pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetVoiceDetails(@as(*const IXAudio2Voice, @ptrCast(self)), pVoiceDetails);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetOutputVoices(self: *const T, pSendList: ?*const XAUDIO2_VOICE_SENDS) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetOutputVoices(@as(*const IXAudio2Voice, @ptrCast(self)), pSendList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetEffectChain(self: *const T, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetEffectChain(@as(*const IXAudio2Voice, @ptrCast(self)), pEffectChain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_EnableEffect(self: *const T, EffectIndex: u32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).EnableEffect(@as(*const IXAudio2Voice, @ptrCast(self)), EffectIndex, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_DisableEffect(self: *const T, EffectIndex: u32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).DisableEffect(@as(*const IXAudio2Voice, @ptrCast(self)), EffectIndex, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetEffectState(self: *const T, EffectIndex: u32, pEnabled: ?*BOOL) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetEffectState(@as(*const IXAudio2Voice, @ptrCast(self)), EffectIndex, pEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*const anyopaque, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetEffectParameters(@as(*const IXAudio2Voice, @ptrCast(self)), EffectIndex, pParameters, ParametersByteSize, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*anyopaque, ParametersByteSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetEffectParameters(@as(*const IXAudio2Voice, @ptrCast(self)), EffectIndex, pParameters, ParametersByteSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetFilterParameters(self: *const T, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetFilterParameters(@as(*const IXAudio2Voice, @ptrCast(self)), pParameters, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetFilterParameters(self: *const T, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetFilterParameters(@as(*const IXAudio2Voice, @ptrCast(self)), pParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetOutputFilterParameters(self: *const T, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetOutputFilterParameters(@as(*const IXAudio2Voice, @ptrCast(self)), pDestinationVoice, pParameters, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetOutputFilterParameters(self: *const T, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetOutputFilterParameters(@as(*const IXAudio2Voice, @ptrCast(self)), pDestinationVoice, pParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetVolume(self: *const T, Volume: f32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IXAudio2Voice, @ptrCast(self)), Volume, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetVolume(self: *const T, pVolume: ?*f32) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IXAudio2Voice, @ptrCast(self)), pVolume);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetChannelVolumes(self: *const T, Channels: u32, pVolumes: [*]const f32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetChannelVolumes(@as(*const IXAudio2Voice, @ptrCast(self)), Channels, pVolumes, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetChannelVolumes(self: *const T, Channels: u32, pVolumes: [*]f32) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetChannelVolumes(@as(*const IXAudio2Voice, @ptrCast(self)), Channels, pVolumes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetOutputMatrix(self: *const T, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*const f32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).SetOutputMatrix(@as(*const IXAudio2Voice, @ptrCast(self)), pDestinationVoice, SourceChannels, DestinationChannels, pLevelMatrix, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetOutputMatrix(self: *const T, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*f32) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).GetOutputMatrix(@as(*const IXAudio2Voice, @ptrCast(self)), pDestinationVoice, SourceChannels, DestinationChannels, pLevelMatrix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_DestroyVoice(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2Voice.VTable, @ptrCast(self.vtable)).DestroyVoice(@as(*const IXAudio2Voice, @ptrCast(self)));
-        }
-    };}
     pub fn GetVoiceDetails(self: *const IXAudio2Voice, pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS) callconv(.Inline) void {
         return self.vtable.GetVoiceDetails(self, pVoiceDetails);
     }
@@ -1049,50 +859,6 @@ pub const IXAudio2SourceVoice = extern union {
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IXAudio2Voice.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_Start(self: *const T, Flags: u32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).Start(@as(*const IXAudio2SourceVoice, @ptrCast(self)), Flags, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_Stop(self: *const T, Flags: u32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).Stop(@as(*const IXAudio2SourceVoice, @ptrCast(self)), Flags, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_SubmitSourceBuffer(self: *const T, pBuffer: ?*const XAUDIO2_BUFFER, pBufferWMA: ?*const XAUDIO2_BUFFER_WMA) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).SubmitSourceBuffer(@as(*const IXAudio2SourceVoice, @ptrCast(self)), pBuffer, pBufferWMA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_FlushSourceBuffers(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).FlushSourceBuffers(@as(*const IXAudio2SourceVoice, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_Discontinuity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).Discontinuity(@as(*const IXAudio2SourceVoice, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_ExitLoop(self: *const T, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).ExitLoop(@as(*const IXAudio2SourceVoice, @ptrCast(self)), OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_GetState(self: *const T, pVoiceState: ?*XAUDIO2_VOICE_STATE, Flags: u32) callconv(.Inline) void {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).GetState(@as(*const IXAudio2SourceVoice, @ptrCast(self)), pVoiceState, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_SetFrequencyRatio(self: *const T, Ratio: f32, OperationSet: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).SetFrequencyRatio(@as(*const IXAudio2SourceVoice, @ptrCast(self)), Ratio, OperationSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_GetFrequencyRatio(self: *const T, pRatio: ?*f32) callconv(.Inline) void {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).GetFrequencyRatio(@as(*const IXAudio2SourceVoice, @ptrCast(self)), pRatio);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2SourceVoice_SetSourceSampleRate(self: *const T, NewSourceSampleRate: u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2SourceVoice.VTable, @ptrCast(self.vtable)).SetSourceSampleRate(@as(*const IXAudio2SourceVoice, @ptrCast(self)), NewSourceSampleRate);
-        }
-    };}
-    pub usingnamespace IXAudio2Voice.MethodMixin(@This());
     pub fn Start(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.Inline) HRESULT {
         return self.vtable.Start(self, Flags, OperationSet);
     }
@@ -1131,10 +897,6 @@ pub const IXAudio2SubmixVoice = extern union {
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IXAudio2Voice.MethodMixin(T);
-    };}
-    pub usingnamespace IXAudio2Voice.MethodMixin(@This());
 };
 
 pub const IXAudio2MasteringVoice = extern union {
@@ -1147,14 +909,6 @@ pub const IXAudio2MasteringVoice = extern union {
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IXAudio2Voice.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2MasteringVoice_GetChannelMask(self: *const T, pChannelmask: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IXAudio2MasteringVoice.VTable, @ptrCast(self.vtable)).GetChannelMask(@as(*const IXAudio2MasteringVoice, @ptrCast(self)), pChannelmask);
-        }
-    };}
-    pub usingnamespace IXAudio2Voice.MethodMixin(@This());
     pub fn GetChannelMask(self: *const IXAudio2MasteringVoice, pChannelmask: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetChannelMask(self, pChannelmask);
     }
@@ -1174,20 +928,6 @@ pub const IXAudio2EngineCallback = extern union {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2EngineCallback_OnProcessingPassStart(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2EngineCallback.VTable, @ptrCast(self.vtable)).OnProcessingPassStart(@as(*const IXAudio2EngineCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2EngineCallback_OnProcessingPassEnd(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2EngineCallback.VTable, @ptrCast(self.vtable)).OnProcessingPassEnd(@as(*const IXAudio2EngineCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2EngineCallback_OnCriticalError(self: *const T, Error: HRESULT) callconv(.Inline) void {
-            return @as(*const IXAudio2EngineCallback.VTable, @ptrCast(self.vtable)).OnCriticalError(@as(*const IXAudio2EngineCallback, @ptrCast(self)), Error);
-        }
-    };}
     pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.Inline) void {
         return self.vtable.OnProcessingPassStart(self);
     }
@@ -1230,36 +970,6 @@ pub const IXAudio2VoiceCallback = extern union {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnVoiceProcessingPassStart(self: *const T, BytesRequired: u32) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnVoiceProcessingPassStart(@as(*const IXAudio2VoiceCallback, @ptrCast(self)), BytesRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnVoiceProcessingPassEnd(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnVoiceProcessingPassEnd(@as(*const IXAudio2VoiceCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnStreamEnd(self: *const T) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnStreamEnd(@as(*const IXAudio2VoiceCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnBufferStart(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnBufferStart(@as(*const IXAudio2VoiceCallback, @ptrCast(self)), pBufferContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnBufferEnd(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnBufferEnd(@as(*const IXAudio2VoiceCallback, @ptrCast(self)), pBufferContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnLoopEnd(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnLoopEnd(@as(*const IXAudio2VoiceCallback, @ptrCast(self)), pBufferContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnVoiceError(self: *const T, pBufferContext: ?*anyopaque, Error: HRESULT) callconv(.Inline) void {
-            return @as(*const IXAudio2VoiceCallback.VTable, @ptrCast(self.vtable)).OnVoiceError(@as(*const IXAudio2VoiceCallback, @ptrCast(self)), pBufferContext, Error);
-        }
-    };}
     pub fn OnVoiceProcessingPassStart(self: *const IXAudio2VoiceCallback, BytesRequired: u32) callconv(.Inline) void {
         return self.vtable.OnVoiceProcessingPassStart(self, BytesRequired);
     }
@@ -1429,26 +1139,6 @@ pub const IXAPOHrtfParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOHrtfParameters_SetSourcePosition(self: *const T, position: ?*const HrtfPosition) callconv(.Inline) HRESULT {
-            return @as(*const IXAPOHrtfParameters.VTable, @ptrCast(self.vtable)).SetSourcePosition(@as(*const IXAPOHrtfParameters, @ptrCast(self)), position);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOHrtfParameters_SetSourceOrientation(self: *const T, orientation: ?*const HrtfOrientation) callconv(.Inline) HRESULT {
-            return @as(*const IXAPOHrtfParameters.VTable, @ptrCast(self.vtable)).SetSourceOrientation(@as(*const IXAPOHrtfParameters, @ptrCast(self)), orientation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOHrtfParameters_SetSourceGain(self: *const T, gain: f32) callconv(.Inline) HRESULT {
-            return @as(*const IXAPOHrtfParameters.VTable, @ptrCast(self.vtable)).SetSourceGain(@as(*const IXAPOHrtfParameters, @ptrCast(self)), gain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOHrtfParameters_SetEnvironment(self: *const T, environment: HrtfEnvironment) callconv(.Inline) HRESULT {
-            return @as(*const IXAPOHrtfParameters.VTable, @ptrCast(self.vtable)).SetEnvironment(@as(*const IXAPOHrtfParameters, @ptrCast(self)), environment);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSourcePosition(self: *const IXAPOHrtfParameters, position: ?*const HrtfPosition) callconv(.Inline) HRESULT {
         return self.vtable.SetSourcePosition(self, position);
     }

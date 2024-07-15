@@ -20,14 +20,7 @@ pub const ISoftwareBitmapNative = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISoftwareBitmapNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISoftwareBitmapNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISoftwareBitmapNative, @ptrCast(self)), riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetData(self: *const ISoftwareBitmapNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
@@ -59,18 +52,7 @@ pub const ISoftwareBitmapNativeFactory = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISoftwareBitmapNativeFactory_CreateFromWICBitmap(self: *const T, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromWICBitmap(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISoftwareBitmapNativeFactory_CreateFromMF2DBuffer2(self: *const T, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMF2DBuffer2(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateFromWICBitmap(self: *const ISoftwareBitmapNativeFactory, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromWICBitmap(self, data, forceReadOnly, riid, ppv);
     }
@@ -98,13 +80,14 @@ pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = @import("../../../foundation.zig").BOOL;
 const HRESULT = @import("../../../foundation.zig").HRESULT;
 const IInspectable = @import("../../../system/win_rt.zig").IInspectable;
 const IMF2DBuffer2 = @import("../../../media/media_foundation.zig").IMF2DBuffer2;
+const IUnknown = @import("../../../system/com.zig").IUnknown;
 const IWICBitmap = @import("../../../graphics/imaging.zig").IWICBitmap;
 const MFVideoArea = @import("../../../media/media_foundation.zig").MFVideoArea;
 

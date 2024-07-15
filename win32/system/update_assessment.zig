@@ -79,14 +79,6 @@ pub const IWaaSAssessor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
-            return @as(*const IWaaSAssessor.VTable, @ptrCast(self.vtable)).GetOSUpdateAssessment(@as(*const IWaaSAssessor, @ptrCast(self)), result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
         return self.vtable.GetOSUpdateAssessment(self, result);
     }

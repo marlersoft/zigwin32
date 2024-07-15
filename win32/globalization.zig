@@ -1676,26 +1676,6 @@ pub const ISpellingError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellingError_get_StartIndex(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_StartIndex(@as(*const ISpellingError, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellingError_get_Length(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISpellingError, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellingError_get_CorrectiveAction(self: *const T, value: ?*CORRECTIVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_CorrectiveAction(@as(*const ISpellingError, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellingError_get_Replacement(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellingError.VTable, @ptrCast(self.vtable)).get_Replacement(@as(*const ISpellingError, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_StartIndex(self, value);
     }
@@ -1723,14 +1703,6 @@ pub const IEnumSpellingError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSpellingError_Next(self: *const T, value: ?*?*ISpellingError) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSpellingError.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSpellingError, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, value);
     }
@@ -1765,26 +1737,6 @@ pub const IOptionDescription = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOptionDescription_get_Id(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IOptionDescription, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOptionDescription_get_Heading(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Heading(@as(*const IOptionDescription, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOptionDescription_get_Description(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IOptionDescription, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOptionDescription_get_Labels(self: *const T, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const IOptionDescription.VTable, @ptrCast(self.vtable)).get_Labels(@as(*const IOptionDescription, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Id(self, value);
     }
@@ -1812,14 +1764,6 @@ pub const ISpellCheckerChangedEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckerChangedEventHandler_Invoke(self: *const T, sender: ?*ISpellChecker) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckerChangedEventHandler.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISpellCheckerChangedEventHandler, @ptrCast(self)), sender);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, sender);
     }
@@ -1901,66 +1845,6 @@ pub const ISpellChecker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_get_LanguageTag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_LanguageTag(@as(*const ISpellChecker, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_Check(self: *const T, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Check(@as(*const ISpellChecker, @ptrCast(self)), text, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_Suggest(self: *const T, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Suggest(@as(*const ISpellChecker, @ptrCast(self)), word, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_Add(self: *const T, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Add(@as(*const ISpellChecker, @ptrCast(self)), word);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_Ignore(self: *const T, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).Ignore(@as(*const ISpellChecker, @ptrCast(self)), word);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_AutoCorrect(self: *const T, from: ?[*:0]const u16, to: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).AutoCorrect(@as(*const ISpellChecker, @ptrCast(self)), from, to);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_GetOptionValue(self: *const T, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).GetOptionValue(@as(*const ISpellChecker, @ptrCast(self)), optionId, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_get_OptionIds(self: *const T, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_OptionIds(@as(*const ISpellChecker, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_get_Id(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpellChecker, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_get_LocalizedName(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).get_LocalizedName(@as(*const ISpellChecker, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_add_SpellCheckerChanged(self: *const T, handler: ?*ISpellCheckerChangedEventHandler, eventCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).add_SpellCheckerChanged(@as(*const ISpellChecker, @ptrCast(self)), handler, eventCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_remove_SpellCheckerChanged(self: *const T, eventCookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).remove_SpellCheckerChanged(@as(*const ISpellChecker, @ptrCast(self)), eventCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_GetOptionDescription(self: *const T, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).GetOptionDescription(@as(*const ISpellChecker, @ptrCast(self)), optionId, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker_ComprehensiveCheck(self: *const T, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const ISpellChecker, @ptrCast(self)), text, value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
@@ -2018,14 +1902,7 @@ pub const ISpellChecker2 = extern union {
     };
     vtable: *const VTable,
     ISpellChecker: ISpellChecker,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpellChecker.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellChecker2_Remove(self: *const T, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISpellChecker2.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpellChecker2, @ptrCast(self)), word);
-        }
-    };}
-    pub usingnamespace ISpellChecker.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Remove(self: *const ISpellChecker2, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Remove(self, word);
     }
@@ -2055,22 +1932,6 @@ pub const ISpellCheckerFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckerFactory_get_SupportedLanguages(self: *const T, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpellCheckerFactory, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckerFactory_IsSupported(self: *const T, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ISpellCheckerFactory, @ptrCast(self)), languageTag, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckerFactory_CreateSpellChecker(self: *const T, languageTag: ?[*:0]const u16, value: ?*?*ISpellChecker) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckerFactory.VTable, @ptrCast(self.vtable)).CreateSpellChecker(@as(*const ISpellCheckerFactory, @ptrCast(self)), languageTag, value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SupportedLanguages(self: *const ISpellCheckerFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
         return self.vtable.get_SupportedLanguages(self, value);
     }
@@ -2101,18 +1962,6 @@ pub const IUserDictionariesRegistrar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserDictionariesRegistrar_RegisterUserDictionary(self: *const T, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IUserDictionariesRegistrar.VTable, @ptrCast(self.vtable)).RegisterUserDictionary(@as(*const IUserDictionariesRegistrar, @ptrCast(self)), dictionaryPath, languageTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserDictionariesRegistrar_UnregisterUserDictionary(self: *const T, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IUserDictionariesRegistrar.VTable, @ptrCast(self.vtable)).UnregisterUserDictionary(@as(*const IUserDictionariesRegistrar, @ptrCast(self)), dictionaryPath, languageTag);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.RegisterUserDictionary(self, dictionaryPath, languageTag);
     }
@@ -2180,50 +2029,6 @@ pub const ISpellCheckProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_get_LanguageTag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_LanguageTag(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_Check(self: *const T, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).Check(@as(*const ISpellCheckProvider, @ptrCast(self)), text, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_Suggest(self: *const T, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).Suggest(@as(*const ISpellCheckProvider, @ptrCast(self)), word, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_GetOptionValue(self: *const T, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).GetOptionValue(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_SetOptionValue(self: *const T, optionId: ?[*:0]const u16, value: u8) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).SetOptionValue(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_get_OptionIds(self: *const T, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_OptionIds(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_get_Id(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_get_LocalizedName(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).get_LocalizedName(@as(*const ISpellCheckProvider, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_GetOptionDescription(self: *const T, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).GetOptionDescription(@as(*const ISpellCheckProvider, @ptrCast(self)), optionId, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProvider_InitializeWordlist(self: *const T, wordlistType: WORDLIST_TYPE, words: ?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProvider.VTable, @ptrCast(self.vtable)).InitializeWordlist(@as(*const ISpellCheckProvider, @ptrCast(self)), wordlistType, words);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
@@ -2269,14 +2074,6 @@ pub const IComprehensiveSpellCheckProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComprehensiveSpellCheckProvider_ComprehensiveCheck(self: *const T, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
-            return @as(*const IComprehensiveSpellCheckProvider.VTable, @ptrCast(self.vtable)).ComprehensiveCheck(@as(*const IComprehensiveSpellCheckProvider, @ptrCast(self)), text, value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
         return self.vtable.ComprehensiveCheck(self, text, value);
     }
@@ -2306,22 +2103,6 @@ pub const ISpellCheckProviderFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProviderFactory_get_SupportedLanguages(self: *const T, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProviderFactory_IsSupported(self: *const T, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), languageTag, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpellCheckProviderFactory_CreateSpellCheckProvider(self: *const T, languageTag: ?[*:0]const u16, value: ?*?*ISpellCheckProvider) callconv(.Inline) HRESULT {
-            return @as(*const ISpellCheckProviderFactory.VTable, @ptrCast(self.vtable)).CreateSpellCheckProvider(@as(*const ISpellCheckProviderFactory, @ptrCast(self)), languageTag, value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SupportedLanguages(self: *const ISpellCheckProviderFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
         return self.vtable.get_SupportedLanguages(self, value);
     }
@@ -7311,30 +7092,6 @@ pub const IMLangStringBufW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufW_GetStatus(self: *const T, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMLangStringBufW, @ptrCast(self)), plFlags, pcchBuf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufW_LockBuf(self: *const T, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).LockBuf(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchMaxLock, ppszBuf, pcchBuf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufW_UnlockBuf(self: *const T, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).UnlockBuf(@as(*const IMLangStringBufW, @ptrCast(self)), pszBuf, cchOffset, cchWrite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufW_Insert(self: *const T, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).Insert(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchMaxInsert, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufW_Delete(self: *const T, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufW.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufW, @ptrCast(self)), cchOffset, cchDelete);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.GetStatus(self, plFlags, pcchBuf);
     }
@@ -7389,30 +7146,6 @@ pub const IMLangStringBufA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufA_GetStatus(self: *const T, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMLangStringBufA, @ptrCast(self)), plFlags, pcchBuf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufA_LockBuf(self: *const T, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).LockBuf(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchMaxLock, ppszBuf, pcchBuf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufA_UnlockBuf(self: *const T, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).UnlockBuf(@as(*const IMLangStringBufA, @ptrCast(self)), pszBuf, cchOffset, cchWrite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufA_Insert(self: *const T, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).Insert(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchMaxInsert, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringBufA_Delete(self: *const T, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringBufA.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMLangStringBufA, @ptrCast(self)), cchOffset, cchDelete);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.GetStatus(self, plFlags, pcchBuf);
     }
@@ -7465,26 +7198,6 @@ pub const IMLangString = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangString_Sync(self: *const T, fNoAccess: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).Sync(@as(*const IMLangString, @ptrCast(self)), fNoAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangString_GetLength(self: *const T, plLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMLangString, @ptrCast(self)), plLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangString_SetMLStr(self: *const T, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).SetMLStr(@as(*const IMLangString, @ptrCast(self)), lDestPos, lDestLen, pSrcMLStr, lSrcPos, lSrcLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangString_GetMLStr(self: *const T, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangString.VTable, @ptrCast(self.vtable)).GetMLStr(@as(*const IMLangString, @ptrCast(self)), lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.Sync(self, fNoAccess);
     }
@@ -7571,42 +7284,7 @@ pub const IMLangStringWStr = extern union {
     };
     vtable: *const VTable,
     IMLangString: IMLangString,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMLangString.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_SetWStr(self: *const T, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_SetStrBufW(self: *const T, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetStrBufW(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, pSrcBuf, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_GetWStr(self: *const T, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcLen, pszDest, cchDest, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_GetStrBufW(self: *const T, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetStrBufW(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_LockWStr(self: *const T, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).LockWStr(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_UnlockWStr(self: *const T, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).UnlockWStr(@as(*const IMLangStringWStr, @ptrCast(self)), pszSrc, cchSrc, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_SetLocale(self: *const T, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).SetLocale(@as(*const IMLangStringWStr, @ptrCast(self)), lDestPos, lDestLen, locale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringWStr_GetLocale(self: *const T, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringWStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringWStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
-        }
-    };}
-    pub usingnamespace IMLangString.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.SetWStr(self, lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
     }
@@ -7712,42 +7390,7 @@ pub const IMLangStringAStr = extern union {
     };
     vtable: *const VTable,
     IMLangString: IMLangString,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMLangString.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_SetAStr(self: *const T, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_SetStrBufA(self: *const T, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetStrBufA(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, uCodePage, pSrcBuf, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_GetAStr(self: *const T, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcLen, uCodePageIn, puCodePageOut, pszDest, cchDest, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_GetStrBufA(self: *const T, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetStrBufA(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_LockAStr(self: *const T, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).LockAStr(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_UnlockAStr(self: *const T, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).UnlockAStr(@as(*const IMLangStringAStr, @ptrCast(self)), pszSrc, cchSrc, pcchActual, plActualLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_SetLocale(self: *const T, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).SetLocale(@as(*const IMLangStringAStr, @ptrCast(self)), lDestPos, lDestLen, locale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangStringAStr_GetLocale(self: *const T, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangStringAStr.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IMLangStringAStr, @ptrCast(self)), lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
-        }
-    };}
-    pub usingnamespace IMLangString.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.SetAStr(self, lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
     }
@@ -7811,22 +7454,6 @@ pub const IMLangLineBreakConsole = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangLineBreakConsole_BreakLineML(self: *const T, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineML(@as(*const IMLangLineBreakConsole, @ptrCast(self)), pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangLineBreakConsole_BreakLineW(self: *const T, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineW(@as(*const IMLangLineBreakConsole, @ptrCast(self)), locale, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangLineBreakConsole_BreakLineA(self: *const T, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangLineBreakConsole.VTable, @ptrCast(self.vtable)).BreakLineA(@as(*const IMLangLineBreakConsole, @ptrCast(self)), locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.BreakLineML(self, pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
     }
@@ -7911,26 +7538,6 @@ pub const IEnumCodePage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumCodePage_Clone(self: *const T, ppEnum: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
-            return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCodePage, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumCodePage_Next(self: *const T, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCodePage, @ptrCast(self)), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumCodePage_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCodePage, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumCodePage_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumCodePage.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCodePage, @ptrCast(self)), celt);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
@@ -7976,26 +7583,6 @@ pub const IEnumRfc1766 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRfc1766_Clone(self: *const T, ppEnum: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRfc1766, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRfc1766_Next(self: *const T, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRfc1766, @ptrCast(self)), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRfc1766_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRfc1766, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRfc1766_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRfc1766.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRfc1766, @ptrCast(self)), celt);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
@@ -8134,26 +7721,6 @@ pub const IEnumScript = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumScript_Clone(self: *const T, ppEnum: ?*?*IEnumScript) callconv(.Inline) HRESULT {
-            return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumScript, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumScript_Next(self: *const T, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumScript, @ptrCast(self)), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumScript_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumScript, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumScript_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumScript.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumScript, @ptrCast(self)), celt);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
@@ -8255,38 +7822,6 @@ pub const IMLangConvertCharset = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_Initialize(self: *const T, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMLangConvertCharset, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_GetSourceCodePage(self: *const T, puiSrcCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetSourceCodePage(@as(*const IMLangConvertCharset, @ptrCast(self)), puiSrcCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_GetDestinationCodePage(self: *const T, puiDstCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetDestinationCodePage(@as(*const IMLangConvertCharset, @ptrCast(self)), puiDstCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_GetProperty(self: *const T, pdwProperty: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IMLangConvertCharset, @ptrCast(self)), pdwProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_DoConversion(self: *const T, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversion(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_DoConversionToUnicode(self: *const T, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversionToUnicode(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangConvertCharset_DoConversionFromUnicode(self: *const T, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangConvertCharset.VTable, @ptrCast(self.vtable)).DoConversionFromUnicode(@as(*const IMLangConvertCharset, @ptrCast(self)), pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, uiSrcCodePage, uiDstCodePage, dwProperty);
     }
@@ -8408,70 +7943,6 @@ pub const IMultiLanguage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetNumberOfCodePageInfo(self: *const T, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetNumberOfCodePageInfo(@as(*const IMultiLanguage, @ptrCast(self)), pcCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetCodePageInfo(self: *const T, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetCodePageInfo(@as(*const IMultiLanguage, @ptrCast(self)), uiCodePage, pCodePageInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetFamilyCodePage(self: *const T, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetFamilyCodePage(@as(*const IMultiLanguage, @ptrCast(self)), uiCodePage, puiFamilyCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_EnumCodePages(self: *const T, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).EnumCodePages(@as(*const IMultiLanguage, @ptrCast(self)), grfFlags, ppEnumCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetCharsetInfo(self: *const T, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetCharsetInfo(@as(*const IMultiLanguage, @ptrCast(self)), Charset, pCharsetInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_IsConvertible(self: *const T, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).IsConvertible(@as(*const IMultiLanguage, @ptrCast(self)), dwSrcEncoding, dwDstEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_ConvertString(self: *const T, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertString(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_ConvertStringToUnicode(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringToUnicode(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_ConvertStringFromUnicode(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicode(@as(*const IMultiLanguage, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_ConvertStringReset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).ConvertStringReset(@as(*const IMultiLanguage, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetRfc1766FromLcid(self: *const T, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetRfc1766FromLcid(@as(*const IMultiLanguage, @ptrCast(self)), Locale, pbstrRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetLcidFromRfc1766(self: *const T, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetLcidFromRfc1766(@as(*const IMultiLanguage, @ptrCast(self)), pLocale, bstrRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_EnumRfc1766(self: *const T, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).EnumRfc1766(@as(*const IMultiLanguage, @ptrCast(self)), ppEnumRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_GetRfc1766Info(self: *const T, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).GetRfc1766Info(@as(*const IMultiLanguage, @ptrCast(self)), Locale, pRfc1766Info);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage_CreateConvertCharset(self: *const T, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage.VTable, @ptrCast(self.vtable)).CreateConvertCharset(@as(*const IMultiLanguage, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
     }
@@ -8749,118 +8220,6 @@ pub const IMultiLanguage2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetNumberOfCodePageInfo(self: *const T, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetNumberOfCodePageInfo(@as(*const IMultiLanguage2, @ptrCast(self)), pcCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetCodePageInfo(self: *const T, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCodePageInfo(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, LangId, pCodePageInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetFamilyCodePage(self: *const T, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetFamilyCodePage(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, puiFamilyCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_EnumCodePages(self: *const T, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumCodePages(@as(*const IMultiLanguage2, @ptrCast(self)), grfFlags, LangId, ppEnumCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetCharsetInfo(self: *const T, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCharsetInfo(@as(*const IMultiLanguage2, @ptrCast(self)), Charset, pCharsetInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_IsConvertible(self: *const T, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).IsConvertible(@as(*const IMultiLanguage2, @ptrCast(self)), dwSrcEncoding, dwDstEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertString(self: *const T, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertString(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringToUnicode(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringToUnicode(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringFromUnicode(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicode(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringReset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringReset(@as(*const IMultiLanguage2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetRfc1766FromLcid(self: *const T, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetRfc1766FromLcid(@as(*const IMultiLanguage2, @ptrCast(self)), Locale, pbstrRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetLcidFromRfc1766(self: *const T, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetLcidFromRfc1766(@as(*const IMultiLanguage2, @ptrCast(self)), pLocale, bstrRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_EnumRfc1766(self: *const T, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumRfc1766(@as(*const IMultiLanguage2, @ptrCast(self)), LangId, ppEnumRfc1766);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetRfc1766Info(self: *const T, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetRfc1766Info(@as(*const IMultiLanguage2, @ptrCast(self)), Locale, LangId, pRfc1766Info);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_CreateConvertCharset(self: *const T, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).CreateConvertCharset(@as(*const IMultiLanguage2, @ptrCast(self)), uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringInIStream(self: *const T, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringInIStream(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringToUnicodeEx(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringToUnicodeEx(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ConvertStringFromUnicodeEx(self: *const T, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ConvertStringFromUnicodeEx(@as(*const IMultiLanguage2, @ptrCast(self)), pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_DetectCodepageInIStream(self: *const T, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).DetectCodepageInIStream(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_DetectInputCodepage(self: *const T, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).DetectInputCodepage(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ValidateCodePage(self: *const T, uiCodePage: u32, hwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ValidateCodePage(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetCodePageDescription(self: *const T, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetCodePageDescription(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, lcid, lpWideCharStr, cchWideChar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_IsCodePageInstallable(self: *const T, uiCodePage: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).IsCodePageInstallable(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_SetMimeDBSource(self: *const T, dwSource: MIMECONTF) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).SetMimeDBSource(@as(*const IMultiLanguage2, @ptrCast(self)), dwSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_GetNumberOfScripts(self: *const T, pnScripts: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).GetNumberOfScripts(@as(*const IMultiLanguage2, @ptrCast(self)), pnScripts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_EnumScripts(self: *const T, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).EnumScripts(@as(*const IMultiLanguage2, @ptrCast(self)), dwFlags, LangId, ppEnumScript);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage2_ValidateCodePageEx(self: *const T, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage2.VTable, @ptrCast(self.vtable)).ValidateCodePageEx(@as(*const IMultiLanguage2, @ptrCast(self)), uiCodePage, hwnd, dwfIODControl);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
     }
@@ -8976,26 +8335,6 @@ pub const IMLangCodePages = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangCodePages_GetCharCodePages(self: *const T, chSrc: u16, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).GetCharCodePages(@as(*const IMLangCodePages, @ptrCast(self)), chSrc, pdwCodePages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangCodePages_GetStrCodePages(self: *const T, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).GetStrCodePages(@as(*const IMLangCodePages, @ptrCast(self)), pszSrc, cchSrc, dwPriorityCodePages, pdwCodePages, pcchCodePages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangCodePages_CodePageToCodePages(self: *const T, uCodePage: u32, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).CodePageToCodePages(@as(*const IMLangCodePages, @ptrCast(self)), uCodePage, pdwCodePages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangCodePages_CodePagesToCodePage(self: *const T, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangCodePages.VTable, @ptrCast(self.vtable)).CodePagesToCodePage(@as(*const IMLangCodePages, @ptrCast(self)), dwCodePages, uDefaultCodePage, puCodePage);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCharCodePages(self, chSrc, pdwCodePages);
     }
@@ -9038,26 +8377,7 @@ pub const IMLangFontLink = extern union {
     };
     vtable: *const VTable,
     IMLangCodePages: IMLangCodePages,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMLangCodePages.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink_GetFontCodePages(self: *const T, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).GetFontCodePages(@as(*const IMLangFontLink, @ptrCast(self)), hDC, hFont, pdwCodePages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink_MapFont(self: *const T, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).MapFont(@as(*const IMLangFontLink, @ptrCast(self)), hDC, dwCodePages, hSrcFont, phDestFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink_ReleaseFont(self: *const T, hFont: ?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).ReleaseFont(@as(*const IMLangFontLink, @ptrCast(self)), hFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink_ResetFontMapping(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink.VTable, @ptrCast(self.vtable)).ResetFontMapping(@as(*const IMLangFontLink, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IMLangCodePages.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
     }
@@ -9123,38 +8443,7 @@ pub const IMLangFontLink2 = extern union {
     };
     vtable: *const VTable,
     IMLangCodePages: IMLangCodePages,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMLangCodePages.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_GetFontCodePages(self: *const T, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetFontCodePages(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, hFont, pdwCodePages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_ReleaseFont(self: *const T, hFont: ?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).ReleaseFont(@as(*const IMLangFontLink2, @ptrCast(self)), hFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_ResetFontMapping(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).ResetFontMapping(@as(*const IMLangFontLink2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_MapFont(self: *const T, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).MapFont(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, dwCodePages, chSrc, pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_GetFontUnicodeRanges(self: *const T, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetFontUnicodeRanges(@as(*const IMLangFontLink2, @ptrCast(self)), hDC, puiRanges, pUranges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_GetScriptFontInfo(self: *const T, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).GetScriptFontInfo(@as(*const IMLangFontLink2, @ptrCast(self)), sid, dwFlags, puiFonts, pScriptFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLangFontLink2_CodePageToScriptID(self: *const T, uiCodePage: u32, pSid: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IMLangFontLink2.VTable, @ptrCast(self.vtable)).CodePageToScriptID(@as(*const IMLangFontLink2, @ptrCast(self)), uiCodePage, pSid);
-        }
-    };}
-    pub usingnamespace IMLangCodePages.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
     }
@@ -9207,18 +8496,7 @@ pub const IMultiLanguage3 = extern union {
     };
     vtable: *const VTable,
     IMultiLanguage2: IMultiLanguage2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMultiLanguage2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage3_DetectOutboundCodePage(self: *const T, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage3.VTable, @ptrCast(self.vtable)).DetectOutboundCodePage(@as(*const IMultiLanguage3, @ptrCast(self)), dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultiLanguage3_DetectOutboundCodePageInIStream(self: *const T, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IMultiLanguage3.VTable, @ptrCast(self.vtable)).DetectOutboundCodePageInIStream(@as(*const IMultiLanguage3, @ptrCast(self)), dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
-        }
-    };}
-    pub usingnamespace IMultiLanguage2.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.DetectOutboundCodePage(self, dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
     }

@@ -94,38 +94,7 @@ pub const IWscProduct = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductName(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductState(self: *const T, pVal: ?*WSC_SECURITY_PRODUCT_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductState(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_SignatureStatus(self: *const T, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_SignatureStatus(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_RemediationPath(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_RemediationPath(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductStateTimestamp(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductGuid(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductGuid(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductIsDefault(self: *const T, pVal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductIsDefault(@as(*const IWscProduct, @ptrCast(self)), pVal);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ProductName(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ProductName(self, pVal);
     }
@@ -187,34 +156,8 @@ pub const IWscProduct2 = extern union {
     };
     vtable: *const VTable,
     IWscProduct: IWscProduct,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWscProduct.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusScanSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusScanSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusSettingsSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusSettingsSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusProtectionUpdateSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusProtectionUpdateSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallDomainProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallDomainProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallPrivateProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPrivateProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallPublicProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPublicProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
-        }
-    };}
-    pub usingnamespace IWscProduct.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_AntivirusScanSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
         return self.vtable.get_AntivirusScanSubstatus(self, peStatus);
     }
@@ -248,14 +191,9 @@ pub const IWscProduct3 = extern union {
     };
     vtable: *const VTable,
     IWscProduct2: IWscProduct2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWscProduct2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct3_get_AntivirusDaysUntilExpired(self: *const T, pdwDays: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWscProduct3.VTable, @ptrCast(self.vtable)).get_AntivirusDaysUntilExpired(@as(*const IWscProduct3, @ptrCast(self)), pdwDays);
-        }
-    };}
-    pub usingnamespace IWscProduct2.MethodMixin(@This());
+    IWscProduct: IWscProduct,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_AntivirusDaysUntilExpired(self: *const IWscProduct3, pdwDays: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_AntivirusDaysUntilExpired(self, pdwDays);
     }
@@ -284,22 +222,7 @@ pub const IWSCProductList = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_Initialize(self: *const T, provider: WSC_SECURITY_PROVIDER) callconv(.Inline) HRESULT {
-            return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWSCProductList, @ptrCast(self)), provider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWSCProductList, @ptrCast(self)), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
-            return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWSCProductList, @ptrCast(self)), index, pVal);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Initialize(self: *const IWSCProductList, provider: WSC_SECURITY_PROVIDER) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, provider);
     }
@@ -324,14 +247,7 @@ pub const IWSCDefaultProduct = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCDefaultProduct_SetDefaultProduct(self: *const T, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWSCDefaultProduct.VTable, @ptrCast(self.vtable)).SetDefaultProduct(@as(*const IWSCDefaultProduct, @ptrCast(self)), eType, pGuid);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.SetDefaultProduct(self, eType, pGuid);
     }
@@ -417,7 +333,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -425,6 +341,7 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START_ROUTINE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

@@ -95,18 +95,6 @@ pub const IFhTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhTarget_GetStringProperty(self: *const T, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetStringProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhTarget_GetNumericalProperty(self: *const T, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IFhTarget.VTable, @ptrCast(self.vtable)).GetNumericalProperty(@as(*const IFhTarget, @ptrCast(self)), PropertyType, PropertyValue);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStringProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetStringProperty(self, PropertyType, PropertyValue);
     }
@@ -131,18 +119,6 @@ pub const IFhScopeIterator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhScopeIterator_MoveToNextItem(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).MoveToNextItem(@as(*const IFhScopeIterator, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhScopeIterator_GetItem(self: *const T, Item: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhScopeIterator.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IFhScopeIterator, @ptrCast(self)), Item);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MoveToNextItem(self: *const IFhScopeIterator) callconv(.Inline) HRESULT {
         return self.vtable.MoveToNextItem(self);
     }
@@ -286,66 +262,6 @@ pub const IFhConfigMgr = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_LoadConfiguration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).LoadConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_CreateDefaultConfiguration(self: *const T, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).CreateDefaultConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)), OverwriteIfExists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_SaveConfiguration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SaveConfiguration(@as(*const IFhConfigMgr, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_AddRemoveExcludeRule(self: *const T, Add: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Item: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).AddRemoveExcludeRule(@as(*const IFhConfigMgr, @ptrCast(self)), Add, Category, Item);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_GetIncludeExcludeRules(self: *const T, Include: BOOL, Category: FH_PROTECTED_ITEM_CATEGORY, Iterator: ?*?*IFhScopeIterator) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetIncludeExcludeRules(@as(*const IFhConfigMgr, @ptrCast(self)), Include, Category, Iterator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_GetLocalPolicy(self: *const T, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_SetLocalPolicy(self: *const T, LocalPolicyType: FH_LOCAL_POLICY_TYPE, PolicyValue: u64) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetLocalPolicy(@as(*const IFhConfigMgr, @ptrCast(self)), LocalPolicyType, PolicyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_GetBackupStatus(self: *const T, BackupStatus: ?*FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_SetBackupStatus(self: *const T, BackupStatus: FH_BACKUP_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).SetBackupStatus(@as(*const IFhConfigMgr, @ptrCast(self)), BackupStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_GetDefaultTarget(self: *const T, DefaultTarget: ?*?*IFhTarget) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).GetDefaultTarget(@as(*const IFhConfigMgr, @ptrCast(self)), DefaultTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_ValidateTarget(self: *const T, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, ValidationResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_ProvisionAndSetNewTarget(self: *const T, TargetUrl: ?BSTR, TargetName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ProvisionAndSetNewTarget(@as(*const IFhConfigMgr, @ptrCast(self)), TargetUrl, TargetName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_ChangeDefaultTargetRecommendation(self: *const T, Recommend: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).ChangeDefaultTargetRecommendation(@as(*const IFhConfigMgr, @ptrCast(self)), Recommend);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhConfigMgr_QueryProtectionStatus(self: *const T, ProtectionState: ?*u32, ProtectedUntilTime: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhConfigMgr.VTable, @ptrCast(self.vtable)).QueryProtectionStatus(@as(*const IFhConfigMgr, @ptrCast(self)), ProtectionState, ProtectedUntilTime);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadConfiguration(self: *const IFhConfigMgr) callconv(.Inline) HRESULT {
         return self.vtable.LoadConfiguration(self);
     }
@@ -423,30 +339,6 @@ pub const IFhReassociation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhReassociation_ValidateTarget(self: *const T, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
-            return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ValidateTarget(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl, ValidationResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhReassociation_ScanTargetForConfigurations(self: *const T, TargetUrl: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).ScanTargetForConfigurations(@as(*const IFhReassociation, @ptrCast(self)), TargetUrl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhReassociation_GetConfigurationDetails(self: *const T, Index: u32, UserName: ?*?BSTR, PcName: ?*?BSTR, BackupTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).GetConfigurationDetails(@as(*const IFhReassociation, @ptrCast(self)), Index, UserName, PcName, BackupTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhReassociation_SelectConfiguration(self: *const T, Index: u32) callconv(.Inline) HRESULT {
-            return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).SelectConfiguration(@as(*const IFhReassociation, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFhReassociation_PerformReassociation(self: *const T, OverwriteIfExists: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFhReassociation.VTable, @ptrCast(self.vtable)).PerformReassociation(@as(*const IFhReassociation, @ptrCast(self)), OverwriteIfExists);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ValidateTarget(self: *const IFhReassociation, TargetUrl: ?BSTR, ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
         return self.vtable.ValidateTarget(self, TargetUrl, ValidationResult);
     }

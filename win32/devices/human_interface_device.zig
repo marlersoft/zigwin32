@@ -2589,50 +2589,6 @@ pub const IDirectInputEffect = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_GetEffectGuid(self: *const T, param0: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetEffectGuid(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_GetParameters(self: *const T, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetParameters(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_SetParameters(self: *const T, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).SetParameters(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Start(self: *const T, param0: u32, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Start(@as(*const IDirectInputEffect, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectInputEffect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_GetEffectStatus(self: *const T, param0: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).GetEffectStatus(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Download(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Download(@as(*const IDirectInputEffect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Unload(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Unload(@as(*const IDirectInputEffect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffect_Escape(self: *const T, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffect.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputEffect, @ptrCast(self)), param0);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDirectInputEffect, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
@@ -3105,70 +3061,6 @@ pub const IDirectInputDeviceW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetCapabilities(self: *const T, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_SetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDeviceW, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDeviceW, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_SetDataFormat(self: *const T, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_SetEventNotification(self: *const T, param0: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetObjectInfo(self: *const T, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetDeviceInfo(self: *const T, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceW, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IDirectInputDeviceW, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
@@ -3296,70 +3188,6 @@ pub const IDirectInputDeviceA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetCapabilities(self: *const T, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_SetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDeviceA, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDeviceA, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_SetDataFormat(self: *const T, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_SetEventNotification(self: *const T, param0: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetObjectInfo(self: *const T, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetDeviceInfo(self: *const T, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDeviceA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDeviceA, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IDirectInputDeviceA, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
@@ -3494,46 +3322,7 @@ pub const IDirectInputDevice2W = extern union {
     };
     vtable: *const VTable,
     IDirectInputDeviceW: IDirectInputDeviceW,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputDeviceW.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_CreateEffect(self: *const T, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_GetEffectInfo(self: *const T, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_GetForceFeedbackState(self: *const T, param0: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_SendForceFeedbackCommand(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_Escape(self: *const T, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_Poll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice2W, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_SendDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2W.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInputDeviceW.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateEffect(self: *const IDirectInputDevice2W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
@@ -3617,46 +3406,7 @@ pub const IDirectInputDevice2A = extern union {
     };
     vtable: *const VTable,
     IDirectInputDeviceA: IDirectInputDeviceA,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputDeviceA.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_CreateEffect(self: *const T, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_GetEffectInfo(self: *const T, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_GetForceFeedbackState(self: *const T, param0: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_SendForceFeedbackCommand(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_Escape(self: *const T, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_Poll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice2A, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_SendDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice2A.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice2A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInputDeviceA.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateEffect(self: *const IDirectInputDevice2A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
@@ -3708,18 +3458,8 @@ pub const IDirectInputDevice7W = extern union {
     };
     vtable: *const VTable,
     IDirectInputDevice2W: IDirectInputDevice2W,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputDevice2W.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice7W.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice7W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7W_WriteEffectToFile(self: *const T, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice7W.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInputDevice2W.MethodMixin(@This());
+    IDirectInputDeviceW: IDirectInputDeviceW,
+    IUnknown: IUnknown,
     pub fn EnumEffectsInFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
@@ -3750,18 +3490,8 @@ pub const IDirectInputDevice7A = extern union {
     };
     vtable: *const VTable,
     IDirectInputDevice2A: IDirectInputDevice2A,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputDevice2A.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice7A.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice7A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7A_WriteEffectToFile(self: *const T, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice7A.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice7A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInputDevice2A.MethodMixin(@This());
+    IDirectInputDeviceA: IDirectInputDeviceA,
+    IUnknown: IUnknown,
     pub fn EnumEffectsInFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
@@ -3926,126 +3656,6 @@ pub const IDirectInputDevice8W = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetCapabilities(self: *const T, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDevice8W, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDevice8W, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SetDataFormat(self: *const T, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SetEventNotification(self: *const T, param0: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetObjectInfo(self: *const T, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetDeviceInfo(self: *const T, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_CreateEffect(self: *const T, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetEffectInfo(self: *const T, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetForceFeedbackState(self: *const T, param0: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SendForceFeedbackCommand(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_Escape(self: *const T, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_Poll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice8W, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SendDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_WriteEffectToFile(self: *const T, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_BuildActionMap(self: *const T, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).BuildActionMap(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_SetActionMap(self: *const T, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).SetActionMap(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetImageInfo(self: *const T, param0: ?*DIDEVICEIMAGEINFOHEADERW) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8W.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8W, @ptrCast(self)), param0);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IDirectInputDevice8W, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
@@ -4291,126 +3901,6 @@ pub const IDirectInputDevice8A = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetCapabilities(self: *const T, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SetProperty(self: *const T, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputDevice8A, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputDevice8A, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceData(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SetDataFormat(self: *const T, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetDataFormat(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SetEventNotification(self: *const T, param0: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetEventNotification(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetObjectInfo(self: *const T, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetDeviceInfo(self: *const T, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_CreateEffect(self: *const T, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumEffects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetEffectInfo(self: *const T, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetEffectInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetForceFeedbackState(self: *const T, param0: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SendForceFeedbackCommand(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumCreatedEffectObjects(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_Escape(self: *const T, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_Poll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).Poll(@as(*const IDirectInputDevice8A, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SendDeviceData(self: *const T, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SendDeviceData(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).EnumEffectsInFile(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_WriteEffectToFile(self: *const T, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).WriteEffectToFile(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_BuildActionMap(self: *const T, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).BuildActionMap(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_SetActionMap(self: *const T, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).SetActionMap(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetImageInfo(self: *const T, param0: ?*DIDEVICEIMAGEINFOHEADERA) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputDevice8A.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IDirectInputDevice8A, @ptrCast(self)), param0);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IDirectInputDevice8A, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
@@ -4625,30 +4115,6 @@ pub const IDirectInputW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_CreateDevice(self: *const T, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceW, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInputW, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInputW, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_GetDeviceStatus(self: *const T, param0: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInputW, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputW, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputW, @ptrCast(self)), param0, param1);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDevice(self: *const IDirectInputW, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceW, param2: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
@@ -4701,30 +4167,6 @@ pub const IDirectInputA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_CreateDevice(self: *const T, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceA, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInputA, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInputA, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_GetDeviceStatus(self: *const T, param0: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInputA, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInputA, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputA.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInputA, @ptrCast(self)), param0, param1);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDevice(self: *const IDirectInputA, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceA, param2: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
@@ -4756,14 +4198,7 @@ pub const IDirectInput2W = extern union {
     };
     vtable: *const VTable,
     IDirectInputW: IDirectInputW,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputW.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput2W_FindDevice(self: *const T, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput2W.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2W, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IDirectInputW.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn FindDevice(self: *const IDirectInput2W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
@@ -4783,14 +4218,7 @@ pub const IDirectInput2A = extern union {
     };
     vtable: *const VTable,
     IDirectInputA: IDirectInputA,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInputA.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput2A_FindDevice(self: *const T, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput2A.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput2A, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IDirectInputA.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn FindDevice(self: *const IDirectInput2A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
@@ -4811,14 +4239,8 @@ pub const IDirectInput7W = extern union {
     };
     vtable: *const VTable,
     IDirectInput2W: IDirectInput2W,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInput2W.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput7W_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput7W.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInput2W.MethodMixin(@This());
+    IDirectInputW: IDirectInputW,
+    IUnknown: IUnknown,
     pub fn CreateDeviceEx(self: *const IDirectInput7W, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeviceEx(self, param0, param1, param2, param3);
     }
@@ -4839,14 +4261,8 @@ pub const IDirectInput7A = extern union {
     };
     vtable: *const VTable,
     IDirectInput2A: IDirectInput2A,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectInput2A.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput7A_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput7A.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirectInput7A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IDirectInput2A.MethodMixin(@This());
+    IDirectInputA: IDirectInputA,
+    IUnknown: IUnknown,
     pub fn CreateDeviceEx(self: *const IDirectInput7A, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeviceEx(self, param0, param1, param2, param3);
     }
@@ -4908,42 +4324,6 @@ pub const IDirectInput8W = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_CreateDevice(self: *const T, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8W, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_GetDeviceStatus(self: *const T, param0: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInput8W, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_FindDevice(self: *const T, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).EnumDevicesBySemantics(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3, param4);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8W.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8W, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8W, param2: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
@@ -5026,42 +4406,6 @@ pub const IDirectInput8A = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_CreateDevice(self: *const T, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8A, param2: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).EnumDevices(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_GetDeviceStatus(self: *const T, param0: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const IDirectInput8A, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_RunControlPanel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).RunControlPanel(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_Initialize(self: *const T, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_FindDevice(self: *const T, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).FindDevice(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).EnumDevicesBySemantics(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3, param4);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInput8A.VTable, @ptrCast(self.vtable)).ConfigureDevices(@as(*const IDirectInput8A, @ptrCast(self)), param0, param1, param2, param3);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8A, param2: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
@@ -5219,54 +4563,6 @@ pub const IDirectInputEffectDriver = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_DeviceID(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DeviceID(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3, param4);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_GetVersions(self: *const T, param0: ?*DIDRIVERVERSIONS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetVersions(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_Escape(self: *const T, param0: u32, param1: u32, param2: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).Escape(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_SetGain(self: *const T, param0: u32, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).SetGain(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_SendForceFeedbackCommand(self: *const T, param0: u32, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).SendForceFeedbackCommand(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_GetForceFeedbackState(self: *const T, param0: u32, param1: ?*DIDEVICESTATE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetForceFeedbackState(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_DownloadEffect(self: *const T, param0: u32, param1: u32, param2: ?*u32, param3: ?*DIEFFECT, param4: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DownloadEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3, param4);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_DestroyEffect(self: *const T, param0: u32, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).DestroyEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_StartEffect(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).StartEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_StopEffect(self: *const T, param0: u32, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).StopEffect(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_GetEffectStatus(self: *const T, param0: u32, param1: u32, param2: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputEffectDriver.VTable, @ptrCast(self.vtable)).GetEffectStatus(@as(*const IDirectInputEffectDriver, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeviceID(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.DeviceID(self, param0, param1, param2, param3, param4);
     }
@@ -5498,74 +4794,6 @@ pub const IDirectInputJoyConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_SendNotify(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SendNotify(@as(*const IDirectInputJoyConfig, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).EnumTypes(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_GetTypeInfo(self: *const T, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_SetTypeInfo(self: *const T, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetTypeInfo(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_DeleteType(self: *const T, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).DeleteType(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_GetConfig(self: *const T, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_SetConfig(self: *const T, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_DeleteConfig(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).DeleteConfig(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_GetUserValues(self: *const T, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).GetUserValues(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_SetUserValues(self: *const T, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).SetUserValues(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_AddNewHardware(self: *const T, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).AddNewHardware(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_OpenTypeKey(self: *const T, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).OpenTypeKey(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_OpenConfigKey(self: *const T, param0: u32, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig.VTable, @ptrCast(self.vtable)).OpenConfigKey(@as(*const IDirectInputJoyConfig, @ptrCast(self)), param0, param1, param2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Acquire(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
         return self.vtable.Acquire(self);
     }
@@ -5701,74 +4929,6 @@ pub const IDirectInputJoyConfig8 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_Acquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_Unacquire(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).Unacquire(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_SendNotify(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SendNotify(@as(*const IDirectInputJoyConfig8, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).EnumTypes(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_GetTypeInfo(self: *const T, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_SetTypeInfo(self: *const T, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetTypeInfo(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2, param3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_DeleteType(self: *const T, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).DeleteType(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_GetConfig(self: *const T, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_SetConfig(self: *const T, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_DeleteConfig(self: *const T, param0: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).DeleteConfig(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_GetUserValues(self: *const T, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).GetUserValues(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_SetUserValues(self: *const T, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).SetUserValues(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_AddNewHardware(self: *const T, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).AddNewHardware(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_OpenTypeKey(self: *const T, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).OpenTypeKey(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0, param1, param2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_OpenAppStatusKey(self: *const T, param0: ?*?HKEY) callconv(.Inline) HRESULT {
-            return @as(*const IDirectInputJoyConfig8.VTable, @ptrCast(self.vtable)).OpenAppStatusKey(@as(*const IDirectInputJoyConfig8, @ptrCast(self)), param0);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Acquire(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
         return self.vtable.Acquire(self);
     }

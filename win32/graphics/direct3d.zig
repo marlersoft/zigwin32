@@ -571,18 +571,6 @@ pub const ID3DBlob = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*anyopaque {
-            return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferPointer(@as(*const ID3DBlob, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DBlob_GetBufferSize(self: *const T) callconv(.Inline) usize {
-            return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const ID3DBlob, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.Inline) ?*anyopaque {
         return self.vtable.GetBufferPointer(self);
     }
@@ -615,18 +603,6 @@ pub const ID3DDestructionNotifier = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).RegisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackFn, pData, pCallbackID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DDestructionNotifier_UnregisterDestructionCallback(self: *const T, callbackID: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).UnregisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.RegisterDestructionCallback(self, callbackFn, pData, pCallbackID);
     }
@@ -665,16 +641,6 @@ pub const ID3DInclude = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Open(@as(*const ID3DInclude, @ptrCast(self)), IncludeType, pFileName, pParentData, ppData, pBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Close(self: *const T, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3DInclude, @ptrCast(self)), pData);
-        }
-    };}
     pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, IncludeType, pFileName, pParentData, ppData, pBytes);
     }

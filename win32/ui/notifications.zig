@@ -27,14 +27,6 @@ pub const INotificationActivationCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
-            return @as(*const INotificationActivationCallback.VTable, @ptrCast(self.vtable)).Activate(@as(*const INotificationActivationCallback, @ptrCast(self)), appUserModelId, invokedArgs, data, count);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Activate(self: *const INotificationActivationCallback, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
         return self.vtable.Activate(self, appUserModelId, invokedArgs, data, count);
     }

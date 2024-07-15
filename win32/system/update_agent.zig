@@ -720,14 +720,6 @@ pub const IUpdateLockdown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateLockdown_LockDown(self: *const T, flags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateLockdown.VTable, @ptrCast(self.vtable)).LockDown(@as(*const IUpdateLockdown, @ptrCast(self)), flags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LockDown(self: *const IUpdateLockdown, flags: i32) callconv(.Inline) HRESULT {
         return self.vtable.LockDown(self, flags);
     }
@@ -788,50 +780,7 @@ pub const IStringCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_get_Item(self: *const T, index: i32, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IStringCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_put_Item(self: *const T, index: i32, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).put_Item(@as(*const IStringCollection, @ptrCast(self)), index, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IStringCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IStringCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_get_ReadOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IStringCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_Add(self: *const T, value: ?BSTR, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IStringCollection, @ptrCast(self)), value, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IStringCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_Copy(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Copy(@as(*const IStringCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_Insert(self: *const T, index: i32, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IStringCollection, @ptrCast(self)), index, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStringCollection_RemoveAt(self: *const T, index: i32) callconv(.Inline) HRESULT {
-            return @as(*const IStringCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IStringCollection, @ptrCast(self)), index);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IStringCollection, index: i32, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -942,66 +891,7 @@ pub const IWebProxy = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_Address(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_put_Address(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_Address(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_BypassList(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_BypassList(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_put_BypassList(self: *const T, value: ?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_BypassList(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_BypassProxyOnLocal(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_BypassProxyOnLocal(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_put_BypassProxyOnLocal(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_BypassProxyOnLocal(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_ReadOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_UserName(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_put_UserName(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_UserName(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_SetPassword(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_PromptForCredentials(self: *const T, parentWindow: ?*IUnknown, title: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).PromptForCredentials(@as(*const IWebProxy, @ptrCast(self)), parentWindow, title);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_PromptForCredentialsFromHwnd(self: *const T, parentWindow: ?HWND, title: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).PromptForCredentialsFromHwnd(@as(*const IWebProxy, @ptrCast(self)), parentWindow, title);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_get_AutoDetect(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).get_AutoDetect(@as(*const IWebProxy, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebProxy_put_AutoDetect(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWebProxy.VTable, @ptrCast(self.vtable)).put_AutoDetect(@as(*const IWebProxy, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Address(self: *const IWebProxy, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Address(self, retval);
     }
@@ -1065,18 +955,7 @@ pub const ISystemInformation = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISystemInformation_get_OemHardwareSupportLink(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISystemInformation.VTable, @ptrCast(self.vtable)).get_OemHardwareSupportLink(@as(*const ISystemInformation, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISystemInformation_get_RebootRequired(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISystemInformation.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const ISystemInformation, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_OemHardwareSupportLink(self: *const ISystemInformation, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_OemHardwareSupportLink(self, retval);
     }
@@ -1099,14 +978,7 @@ pub const IWindowsUpdateAgentInfo = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsUpdateAgentInfo_GetInfo(self: *const T, varInfoIdentifier: VARIANT, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsUpdateAgentInfo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWindowsUpdateAgentInfo, @ptrCast(self)), varInfoIdentifier, retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetInfo(self: *const IWindowsUpdateAgentInfo, varInfoIdentifier: VARIANT, retval: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetInfo(self, varInfoIdentifier, retval);
     }
@@ -1131,18 +1003,7 @@ pub const IAutomaticUpdatesResults = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesResults_get_LastSearchSuccessDate(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesResults.VTable, @ptrCast(self.vtable)).get_LastSearchSuccessDate(@as(*const IAutomaticUpdatesResults, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesResults_get_LastInstallationSuccessDate(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesResults.VTable, @ptrCast(self.vtable)).get_LastInstallationSuccessDate(@as(*const IAutomaticUpdatesResults, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_LastSearchSuccessDate(self: *const IAutomaticUpdatesResults, retval: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_LastSearchSuccessDate(self, retval);
     }
@@ -1206,50 +1067,7 @@ pub const IAutomaticUpdatesSettings = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_get_NotificationLevel(self: *const T, retval: ?*AutomaticUpdatesNotificationLevel) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_NotificationLevel(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_put_NotificationLevel(self: *const T, value: AutomaticUpdatesNotificationLevel) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_NotificationLevel(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_get_ReadOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_get_Required(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_Required(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_get_ScheduledInstallationDay(self: *const T, retval: ?*AutomaticUpdatesScheduledInstallationDay) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ScheduledInstallationDay(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_put_ScheduledInstallationDay(self: *const T, value: AutomaticUpdatesScheduledInstallationDay) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_ScheduledInstallationDay(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_get_ScheduledInstallationTime(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).get_ScheduledInstallationTime(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_put_ScheduledInstallationTime(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).put_ScheduledInstallationTime(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings.VTable, @ptrCast(self.vtable)).Save(@as(*const IAutomaticUpdatesSettings, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_NotificationLevel(self: *const IAutomaticUpdatesSettings, retval: ?*AutomaticUpdatesNotificationLevel) callconv(.Inline) HRESULT {
         return self.vtable.get_NotificationLevel(self, retval);
     }
@@ -1307,22 +1125,8 @@ pub const IAutomaticUpdatesSettings2 = extern union {
     };
     vtable: *const VTable,
     IAutomaticUpdatesSettings: IAutomaticUpdatesSettings,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAutomaticUpdatesSettings.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings2_get_IncludeRecommendedUpdates(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).get_IncludeRecommendedUpdates(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings2_put_IncludeRecommendedUpdates(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).put_IncludeRecommendedUpdates(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings2_CheckPermission(self: *const T, userType: AutomaticUpdatesUserType, permissionType: AutomaticUpdatesPermissionType, userHasPermission: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings2.VTable, @ptrCast(self.vtable)).CheckPermission(@as(*const IAutomaticUpdatesSettings2, @ptrCast(self)), userType, permissionType, userHasPermission);
-        }
-    };}
-    pub usingnamespace IAutomaticUpdatesSettings.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_IncludeRecommendedUpdates(self: *const IAutomaticUpdatesSettings2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_IncludeRecommendedUpdates(self, retval);
     }
@@ -1363,26 +1167,9 @@ pub const IAutomaticUpdatesSettings3 = extern union {
     };
     vtable: *const VTable,
     IAutomaticUpdatesSettings2: IAutomaticUpdatesSettings2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAutomaticUpdatesSettings2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings3_get_NonAdministratorsElevated(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).get_NonAdministratorsElevated(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings3_put_NonAdministratorsElevated(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).put_NonAdministratorsElevated(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings3_get_FeaturedUpdatesEnabled(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).get_FeaturedUpdatesEnabled(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdatesSettings3_put_FeaturedUpdatesEnabled(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdatesSettings3.VTable, @ptrCast(self.vtable)).put_FeaturedUpdatesEnabled(@as(*const IAutomaticUpdatesSettings3, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IAutomaticUpdatesSettings2.MethodMixin(@This());
+    IAutomaticUpdatesSettings: IAutomaticUpdatesSettings,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_NonAdministratorsElevated(self: *const IAutomaticUpdatesSettings3, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_NonAdministratorsElevated(self, retval);
     }
@@ -1431,38 +1218,7 @@ pub const IAutomaticUpdates = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_DetectNow(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).DetectNow(@as(*const IAutomaticUpdates, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).Pause(@as(*const IAutomaticUpdates, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).Resume(@as(*const IAutomaticUpdates, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_ShowSettingsDialog(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).ShowSettingsDialog(@as(*const IAutomaticUpdates, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_get_Settings(self: *const T, retval: ?*?*IAutomaticUpdatesSettings) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).get_Settings(@as(*const IAutomaticUpdates, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_get_ServiceEnabled(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).get_ServiceEnabled(@as(*const IAutomaticUpdates, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates_EnableService(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates.VTable, @ptrCast(self.vtable)).EnableService(@as(*const IAutomaticUpdates, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn DetectNow(self: *const IAutomaticUpdates) callconv(.Inline) HRESULT {
         return self.vtable.DetectNow(self);
     }
@@ -1500,14 +1256,8 @@ pub const IAutomaticUpdates2 = extern union {
     };
     vtable: *const VTable,
     IAutomaticUpdates: IAutomaticUpdates,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAutomaticUpdates.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAutomaticUpdates2_get_Results(self: *const T, retval: ?*?*IAutomaticUpdatesResults) callconv(.Inline) HRESULT {
-            return @as(*const IAutomaticUpdates2.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IAutomaticUpdates2, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IAutomaticUpdates.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_Results(self: *const IAutomaticUpdates2, retval: ?*?*IAutomaticUpdatesResults) callconv(.Inline) HRESULT {
         return self.vtable.get_Results(self, retval);
     }
@@ -1532,18 +1282,7 @@ pub const IUpdateIdentity = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateIdentity_get_RevisionNumber(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateIdentity.VTable, @ptrCast(self.vtable)).get_RevisionNumber(@as(*const IUpdateIdentity, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateIdentity_get_UpdateID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateIdentity.VTable, @ptrCast(self.vtable)).get_UpdateID(@as(*const IUpdateIdentity, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_RevisionNumber(self: *const IUpdateIdentity, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_RevisionNumber(self, retval);
     }
@@ -1581,26 +1320,7 @@ pub const IImageInformation = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageInformation_get_AltText(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_AltText(@as(*const IImageInformation, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageInformation_get_Height(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IImageInformation, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageInformation_get_Source(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Source(@as(*const IImageInformation, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageInformation_get_Width(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IImageInformation.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IImageInformation, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AltText(self: *const IImageInformation, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_AltText(self, retval);
     }
@@ -1669,46 +1389,7 @@ pub const ICategory = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Name(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_CategoryID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_CategoryID(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Children(self: *const T, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Description(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Image(self: *const T, retval: ?*?*IImageInformation) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Image(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Order(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Order(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Parent(self: *const T, retval: ?*?*ICategory) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Type(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategory_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const ICategory.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const ICategory, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const ICategory, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, retval);
     }
@@ -1762,22 +1443,7 @@ pub const ICategoryCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategoryCollection_get_Item(self: *const T, index: i32, retval: ?*?*ICategory) callconv(.Inline) HRESULT {
-            return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICategoryCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategoryCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICategoryCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategoryCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ICategoryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICategoryCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const ICategoryCollection, index: i32, retval: ?*?*ICategory) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -1818,26 +1484,7 @@ pub const IInstallationBehavior = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationBehavior_get_CanRequestUserInput(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_CanRequestUserInput(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationBehavior_get_Impact(self: *const T, retval: ?*InstallationImpact) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_Impact(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationBehavior_get_RebootBehavior(self: *const T, retval: ?*InstallationRebootBehavior) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_RebootBehavior(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationBehavior_get_RequiresNetworkConnectivity(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationBehavior.VTable, @ptrCast(self.vtable)).get_RequiresNetworkConnectivity(@as(*const IInstallationBehavior, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_CanRequestUserInput(self: *const IInstallationBehavior, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_CanRequestUserInput(self, retval);
     }
@@ -1866,14 +1513,7 @@ pub const IUpdateDownloadContent = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadContent_get_DownloadUrl(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadContent.VTable, @ptrCast(self.vtable)).get_DownloadUrl(@as(*const IUpdateDownloadContent, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_DownloadUrl(self: *const IUpdateDownloadContent, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_DownloadUrl(self, retval);
     }
@@ -1893,14 +1533,8 @@ pub const IUpdateDownloadContent2 = extern union {
     };
     vtable: *const VTable,
     IUpdateDownloadContent: IUpdateDownloadContent,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateDownloadContent.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadContent2_get_IsDeltaCompressedContent(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadContent2.VTable, @ptrCast(self.vtable)).get_IsDeltaCompressedContent(@as(*const IUpdateDownloadContent2, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdateDownloadContent.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_IsDeltaCompressedContent(self: *const IUpdateDownloadContent2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_IsDeltaCompressedContent(self, retval);
     }
@@ -1930,22 +1564,7 @@ pub const IUpdateDownloadContentCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadContentCollection_get_Item(self: *const T, index: i32, retval: ?*?*IUpdateDownloadContent) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadContentCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadContentCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadContentCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateDownloadContentCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IUpdateDownloadContentCollection, index: i32, retval: ?*?*IUpdateDownloadContent) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -2189,190 +1808,7 @@ pub const IUpdate = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Title(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_AutoSelectOnWebSites(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_AutoSelectOnWebSites(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_BundledUpdates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_BundledUpdates(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_CanRequireSource(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_CanRequireSource(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Categories(self: *const T, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Categories(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Deadline(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Deadline(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_DeltaCompressedContentAvailable(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeltaCompressedContentAvailable(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_DeltaCompressedContentPreferred(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeltaCompressedContentPreferred(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Description(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_EulaAccepted(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_EulaAccepted(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_EulaText(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_EulaText(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_HandlerID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_HandlerID(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Identity(self: *const T, retval: ?*?*IUpdateIdentity) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Identity(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Image(self: *const T, retval: ?*?*IImageInformation) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Image(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_InstallationBehavior(self: *const T, retval: ?*?*IInstallationBehavior) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_InstallationBehavior(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsBeta(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsBeta(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsDownloaded(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsDownloaded(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsHidden(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsHidden(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_put_IsHidden(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).put_IsHidden(@as(*const IUpdate, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsInstalled(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsInstalled(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsMandatory(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsMandatory(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_IsUninstallable(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_IsUninstallable(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Languages(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Languages(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_LastDeploymentChangeTime(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_LastDeploymentChangeTime(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_MaxDownloadSize(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MaxDownloadSize(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_MinDownloadSize(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MinDownloadSize(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_MoreInfoUrls(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MoreInfoUrls(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_MsrcSeverity(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_MsrcSeverity(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_RecommendedCpuSpeed(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedCpuSpeed(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_RecommendedHardDiskSpace(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedHardDiskSpace(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_RecommendedMemory(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_RecommendedMemory(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_ReleaseNotes(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_ReleaseNotes(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_SecurityBulletinIDs(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SecurityBulletinIDs(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_SupersededUpdateIDs(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SupersededUpdateIDs(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_SupportUrl(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_SupportUrl(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_Type(self: *const T, retval: ?*UpdateType) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_UninstallationNotes(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationNotes(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_UninstallationBehavior(self: *const T, retval: ?*?*IInstallationBehavior) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationBehavior(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_UninstallationSteps(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_UninstallationSteps(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_KBArticleIDs(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_KBArticleIDs(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_AcceptEula(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).AcceptEula(@as(*const IUpdate, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_DeploymentAction(self: *const T, retval: ?*DeploymentAction) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DeploymentAction(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_CopyFromCache(self: *const T, path: ?BSTR, toExtractCabFiles: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).CopyFromCache(@as(*const IUpdate, @ptrCast(self)), path, toExtractCabFiles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_DownloadPriority(self: *const T, retval: ?*DownloadPriority) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DownloadPriority(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate_get_DownloadContents(self: *const T, retval: ?*?*IUpdateDownloadContentCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate.VTable, @ptrCast(self.vtable)).get_DownloadContents(@as(*const IUpdate, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Title(self: *const IUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Title(self, retval);
     }
@@ -2559,42 +1995,8 @@ pub const IWindowsDriverUpdate = extern union {
     };
     vtable: *const VTable,
     IUpdate: IUpdate,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdate.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverClass(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverClass(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverHardwareID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverHardwareID(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverManufacturer(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverManufacturer(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverModel(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverModel(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverProvider(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverProvider(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DriverVerDate(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DriverVerDate(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DeviceProblemNumber(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DeviceProblemNumber(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate_get_DeviceStatus(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdate, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdate.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_DriverClass(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_DriverClass(self, retval);
     }
@@ -2649,26 +2051,8 @@ pub const IUpdate2 = extern union {
     };
     vtable: *const VTable,
     IUpdate: IUpdate,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdate.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate2_get_RebootRequired(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate2_get_IsPresent(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_IsPresent(@as(*const IUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate2_get_CveIDs(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).get_CveIDs(@as(*const IUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate2_CopyToCache(self: *const T, pFiles: ?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IUpdate2, @ptrCast(self)), pFiles);
-        }
-    };}
-    pub usingnamespace IUpdate.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_RebootRequired(self: *const IUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_RebootRequired(self, retval);
     }
@@ -2697,14 +2081,9 @@ pub const IUpdate3 = extern union {
     };
     vtable: *const VTable,
     IUpdate2: IUpdate2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdate2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate3_get_BrowseOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IUpdate3, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdate2.MethodMixin(@This());
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_BrowseOnly(self: *const IUpdate3, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_BrowseOnly(self, retval);
     }
@@ -2724,14 +2103,10 @@ pub const IUpdate4 = extern union {
     };
     vtable: *const VTable,
     IUpdate3: IUpdate3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdate3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate4_get_PerUser(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IUpdate4, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdate3.MethodMixin(@This());
+    IUpdate2: IUpdate2,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_PerUser(self: *const IUpdate4, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_PerUser(self, retval);
     }
@@ -2756,18 +2131,11 @@ pub const IUpdate5 = extern union {
     };
     vtable: *const VTable,
     IUpdate4: IUpdate4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdate4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate5_get_AutoSelection(self: *const T, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate5.VTable, @ptrCast(self.vtable)).get_AutoSelection(@as(*const IUpdate5, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdate5_get_AutoDownload(self: *const T, retval: ?*AutoDownloadMode) callconv(.Inline) HRESULT {
-            return @as(*const IUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IUpdate5, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdate4.MethodMixin(@This());
+    IUpdate3: IUpdate3,
+    IUpdate2: IUpdate2,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_AutoSelection(self: *const IUpdate5, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
         return self.vtable.get_AutoSelection(self, retval);
     }
@@ -2804,26 +2172,9 @@ pub const IWindowsDriverUpdate2 = extern union {
     };
     vtable: *const VTable,
     IWindowsDriverUpdate: IWindowsDriverUpdate,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWindowsDriverUpdate.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate2_get_RebootRequired(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate2_get_IsPresent(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_IsPresent(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate2_get_CveIDs(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).get_CveIDs(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate2_CopyToCache(self: *const T, pFiles: ?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate2.VTable, @ptrCast(self.vtable)).CopyToCache(@as(*const IWindowsDriverUpdate2, @ptrCast(self)), pFiles);
-        }
-    };}
-    pub usingnamespace IWindowsDriverUpdate.MethodMixin(@This());
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_RebootRequired(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_RebootRequired(self, retval);
     }
@@ -2852,14 +2203,10 @@ pub const IWindowsDriverUpdate3 = extern union {
     };
     vtable: *const VTable,
     IWindowsDriverUpdate2: IWindowsDriverUpdate2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWindowsDriverUpdate2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate3_get_BrowseOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate3.VTable, @ptrCast(self.vtable)).get_BrowseOnly(@as(*const IWindowsDriverUpdate3, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IWindowsDriverUpdate2.MethodMixin(@This());
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_BrowseOnly(self: *const IWindowsDriverUpdate3, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_BrowseOnly(self, retval);
     }
@@ -2914,42 +2261,7 @@ pub const IWindowsDriverUpdateEntry = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverClass(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverClass(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverHardwareID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverHardwareID(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverManufacturer(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverManufacturer(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverModel(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverModel(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverProvider(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverProvider(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DriverVerDate(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DriverVerDate(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DeviceProblemNumber(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DeviceProblemNumber(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntry_get_DeviceStatus(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntry.VTable, @ptrCast(self.vtable)).get_DeviceStatus(@as(*const IWindowsDriverUpdateEntry, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_DriverClass(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_DriverClass(self, retval);
     }
@@ -3000,22 +2312,7 @@ pub const IWindowsDriverUpdateEntryCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntryCollection_get_Item(self: *const T, index: i32, retval: ?*?*IWindowsDriverUpdateEntry) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntryCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdateEntryCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdateEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsDriverUpdateEntryCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IWindowsDriverUpdateEntryCollection, index: i32, retval: ?*?*IWindowsDriverUpdateEntry) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -3046,18 +2343,11 @@ pub const IWindowsDriverUpdate4 = extern union {
     };
     vtable: *const VTable,
     IWindowsDriverUpdate3: IWindowsDriverUpdate3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWindowsDriverUpdate3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate4_get_WindowsDriverUpdateEntries(self: *const T, retval: ?*?*IWindowsDriverUpdateEntryCollection) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate4.VTable, @ptrCast(self.vtable)).get_WindowsDriverUpdateEntries(@as(*const IWindowsDriverUpdate4, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate4_get_PerUser(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate4.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IWindowsDriverUpdate4, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IWindowsDriverUpdate3.MethodMixin(@This());
+    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_WindowsDriverUpdateEntries(self: *const IWindowsDriverUpdate4, retval: ?*?*IWindowsDriverUpdateEntryCollection) callconv(.Inline) HRESULT {
         return self.vtable.get_WindowsDriverUpdateEntries(self, retval);
     }
@@ -3085,18 +2375,12 @@ pub const IWindowsDriverUpdate5 = extern union {
     };
     vtable: *const VTable,
     IWindowsDriverUpdate4: IWindowsDriverUpdate4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWindowsDriverUpdate4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate5_get_AutoSelection(self: *const T, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate5.VTable, @ptrCast(self.vtable)).get_AutoSelection(@as(*const IWindowsDriverUpdate5, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDriverUpdate5_get_AutoDownload(self: *const T, retval: ?*AutoDownloadMode) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsDriverUpdate5.VTable, @ptrCast(self.vtable)).get_AutoDownload(@as(*const IWindowsDriverUpdate5, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IWindowsDriverUpdate4.MethodMixin(@This());
+    IWindowsDriverUpdate3: IWindowsDriverUpdate3,
+    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_AutoSelection(self: *const IWindowsDriverUpdate5, retval: ?*AutoSelectionMode) callconv(.Inline) HRESULT {
         return self.vtable.get_AutoSelection(self, retval);
     }
@@ -3160,50 +2444,7 @@ pub const IUpdateCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_get_Item(self: *const T, index: i32, retval: ?*?*IUpdate) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_put_Item(self: *const T, index: i32, value: ?*IUpdate) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).put_Item(@as(*const IUpdateCollection, @ptrCast(self)), index, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_get_ReadOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IUpdateCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_Add(self: *const T, value: ?*IUpdate, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IUpdateCollection, @ptrCast(self)), value, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IUpdateCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_Copy(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Copy(@as(*const IUpdateCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_Insert(self: *const T, index: i32, value: ?*IUpdate) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IUpdateCollection, @ptrCast(self)), index, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateCollection_RemoveAt(self: *const T, index: i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUpdateCollection, @ptrCast(self)), index);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IUpdateCollection, index: i32, retval: ?*?*IUpdate) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -3260,22 +2501,7 @@ pub const IUpdateException = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateException_get_Message(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IUpdateException, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateException_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateException, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateException_get_Context(self: *const T, retval: ?*UpdateExceptionContext) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateException.VTable, @ptrCast(self.vtable)).get_Context(@as(*const IUpdateException, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Message(self: *const IUpdateException, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Message(self, retval);
     }
@@ -3301,14 +2527,8 @@ pub const IInvalidProductLicenseException = extern union {
     };
     vtable: *const VTable,
     IUpdateException: IUpdateException,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateException.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInvalidProductLicenseException_get_Product(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IInvalidProductLicenseException.VTable, @ptrCast(self.vtable)).get_Product(@as(*const IInvalidProductLicenseException, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdateException.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_Product(self: *const IInvalidProductLicenseException, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Product(self, retval);
     }
@@ -3338,22 +2558,7 @@ pub const IUpdateExceptionCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateExceptionCollection_get_Item(self: *const T, index: i32, retval: ?*?*IUpdateException) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateExceptionCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateExceptionCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateExceptionCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateExceptionCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateExceptionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateExceptionCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IUpdateExceptionCollection, index: i32, retval: ?*?*IUpdateException) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -3394,26 +2599,7 @@ pub const ISearchResult = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchResult_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const ISearchResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchResult_get_RootCategories(self: *const T, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
-            return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_RootCategories(@as(*const ISearchResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchResult_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const ISearchResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchResult_get_Warnings(self: *const T, retval: ?*?*IUpdateExceptionCollection) callconv(.Inline) HRESULT {
-            return @as(*const ISearchResult.VTable, @ptrCast(self.vtable)).get_Warnings(@as(*const ISearchResult, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ResultCode(self: *const ISearchResult, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
         return self.vtable.get_ResultCode(self, retval);
     }
@@ -3453,26 +2639,7 @@ pub const ISearchJob = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchJob_get_AsyncState(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const ISearchJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchJob_get_IsCompleted(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const ISearchJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchJob_CleanUp(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const ISearchJob, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchJob_RequestAbort(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISearchJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const ISearchJob, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AsyncState(self: *const ISearchJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_AsyncState(self, retval);
     }
@@ -3496,10 +2663,7 @@ pub const ISearchCompletedCallbackArgs = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3516,14 +2680,6 @@ pub const ISearchCompletedCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchCompletedCallback_Invoke(self: *const T, searchJob: ?*ISearchJob, callbackArgs: ?*ISearchCompletedCallbackArgs) callconv(.Inline) HRESULT {
-            return @as(*const ISearchCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ISearchCompletedCallback, @ptrCast(self)), searchJob, callbackArgs);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const ISearchCompletedCallback, searchJob: ?*ISearchJob, callbackArgs: ?*ISearchCompletedCallbackArgs) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, searchJob, callbackArgs);
     }
@@ -3608,66 +2764,7 @@ pub const IUpdateHistoryEntry = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_Operation(self: *const T, retval: ?*UpdateOperation) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Operation(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_Date(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Date(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_UpdateIdentity(self: *const T, retval: ?*?*IUpdateIdentity) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UpdateIdentity(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_Title(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_Description(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_UnmappedResultCode(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UnmappedResultCode(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_ServerSelection(self: *const T, retval: ?*ServerSelection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ServerSelection(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_ServiceID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_UninstallationSteps(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UninstallationSteps(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_UninstallationNotes(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_UninstallationNotes(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry_get_SupportUrl(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry.VTable, @ptrCast(self.vtable)).get_SupportUrl(@as(*const IUpdateHistoryEntry, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Operation(self: *const IUpdateHistoryEntry, retval: ?*UpdateOperation) callconv(.Inline) HRESULT {
         return self.vtable.get_Operation(self, retval);
     }
@@ -3726,14 +2823,8 @@ pub const IUpdateHistoryEntry2 = extern union {
     };
     vtable: *const VTable,
     IUpdateHistoryEntry: IUpdateHistoryEntry,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateHistoryEntry.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntry2_get_Categories(self: *const T, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntry2.VTable, @ptrCast(self.vtable)).get_Categories(@as(*const IUpdateHistoryEntry2, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdateHistoryEntry.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_Categories(self: *const IUpdateHistoryEntry2, retval: ?*?*ICategoryCollection) callconv(.Inline) HRESULT {
         return self.vtable.get_Categories(self, retval);
     }
@@ -3763,22 +2854,7 @@ pub const IUpdateHistoryEntryCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntryCollection_get_Item(self: *const T, index: i32, retval: ?*?*IUpdateHistoryEntry) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntryCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateHistoryEntryCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateHistoryEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateHistoryEntryCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IUpdateHistoryEntryCollection, index: i32, retval: ?*?*IUpdateHistoryEntry) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -3891,82 +2967,7 @@ pub const IUpdateSearcher = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_CanAutomaticallyUpgradeService(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_CanAutomaticallyUpgradeService(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_CanAutomaticallyUpgradeService(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_CanAutomaticallyUpgradeService(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_ClientApplicationID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_IncludePotentiallySupersededUpdates(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_IncludePotentiallySupersededUpdates(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_IncludePotentiallySupersededUpdates(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_IncludePotentiallySupersededUpdates(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_ServerSelection(self: *const T, retval: ?*ServerSelection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ServerSelection(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_ServerSelection(self: *const T, value: ServerSelection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ServerSelection(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_BeginSearch(self: *const T, criteria: ?BSTR, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*ISearchJob) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).BeginSearch(@as(*const IUpdateSearcher, @ptrCast(self)), criteria, onCompleted, state, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_EndSearch(self: *const T, searchJob: ?*ISearchJob, retval: ?*?*ISearchResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).EndSearch(@as(*const IUpdateSearcher, @ptrCast(self)), searchJob, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_EscapeString(self: *const T, unescaped: ?BSTR, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).EscapeString(@as(*const IUpdateSearcher, @ptrCast(self)), unescaped, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_QueryHistory(self: *const T, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).QueryHistory(@as(*const IUpdateSearcher, @ptrCast(self)), startIndex, count, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_Search(self: *const T, criteria: ?BSTR, retval: ?*?*ISearchResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).Search(@as(*const IUpdateSearcher, @ptrCast(self)), criteria, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_Online(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_Online(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_Online(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_Online(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_GetTotalHistoryCount(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).GetTotalHistoryCount(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_get_ServiceID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateSearcher, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher_put_ServiceID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher.VTable, @ptrCast(self.vtable)).put_ServiceID(@as(*const IUpdateSearcher, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_CanAutomaticallyUpgradeService(self, retval);
     }
@@ -4042,18 +3043,8 @@ pub const IUpdateSearcher2 = extern union {
     };
     vtable: *const VTable,
     IUpdateSearcher: IUpdateSearcher,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateSearcher.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher2_get_IgnoreDownloadPriority(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher2.VTable, @ptrCast(self.vtable)).get_IgnoreDownloadPriority(@as(*const IUpdateSearcher2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher2_put_IgnoreDownloadPriority(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher2.VTable, @ptrCast(self.vtable)).put_IgnoreDownloadPriority(@as(*const IUpdateSearcher2, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUpdateSearcher.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_IgnoreDownloadPriority(self: *const IUpdateSearcher2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_IgnoreDownloadPriority(self, retval);
     }
@@ -4081,18 +3072,9 @@ pub const IUpdateSearcher3 = extern union {
     };
     vtable: *const VTable,
     IUpdateSearcher2: IUpdateSearcher2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateSearcher2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher3_get_SearchScope(self: *const T, retval: ?*SearchScope) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher3.VTable, @ptrCast(self.vtable)).get_SearchScope(@as(*const IUpdateSearcher3, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSearcher3_put_SearchScope(self: *const T, value: SearchScope) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSearcher3.VTable, @ptrCast(self.vtable)).put_SearchScope(@as(*const IUpdateSearcher3, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUpdateSearcher2.MethodMixin(@This());
+    IUpdateSearcher: IUpdateSearcher,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_SearchScope(self: *const IUpdateSearcher3, retval: ?*SearchScope) callconv(.Inline) HRESULT {
         return self.vtable.get_SearchScope(self, retval);
     }
@@ -4120,18 +3102,7 @@ pub const IUpdateDownloadResult = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadResult_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateDownloadResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloadResult_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloadResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateDownloadResult, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_HResult(self: *const IUpdateDownloadResult, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_HResult(self, retval);
     }
@@ -4164,22 +3135,7 @@ pub const IDownloadResult = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadResult_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IDownloadResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadResult_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IDownloadResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadResult_GetUpdateResult(self: *const T, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IDownloadResult, @ptrCast(self)), updateIndex, retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_HResult(self: *const IDownloadResult, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_HResult(self, retval);
     }
@@ -4245,46 +3201,7 @@ pub const IDownloadProgress = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_CurrentUpdateBytesDownloaded(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateBytesDownloaded(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_CurrentUpdateBytesToDownload(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateBytesToDownload(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_CurrentUpdateIndex(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateIndex(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_PercentComplete(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_PercentComplete(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_TotalBytesDownloaded(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_TotalBytesDownloaded(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_TotalBytesToDownload(self: *const T, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_TotalBytesToDownload(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_GetUpdateResult(self: *const T, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IDownloadProgress, @ptrCast(self)), updateIndex, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_CurrentUpdateDownloadPhase(self: *const T, retval: ?*DownloadPhase) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateDownloadPhase(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgress_get_CurrentUpdatePercentComplete(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdatePercentComplete(@as(*const IDownloadProgress, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_CurrentUpdateBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.Inline) HRESULT {
         return self.vtable.get_CurrentUpdateBytesDownloaded(self, retval);
     }
@@ -4348,34 +3265,7 @@ pub const IDownloadJob = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_get_AsyncState(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const IDownloadJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_get_IsCompleted(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const IDownloadJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IDownloadJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_CleanUp(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const IDownloadJob, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_GetProgress(self: *const T, retval: ?*?*IDownloadProgress) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IDownloadJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadJob_RequestAbort(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IDownloadJob, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AsyncState(self: *const IDownloadJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_AsyncState(self, retval);
     }
@@ -4405,10 +3295,7 @@ pub const IDownloadCompletedCallbackArgs = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4425,14 +3312,6 @@ pub const IDownloadCompletedCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadCompletedCallback_Invoke(self: *const T, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadCompletedCallbackArgs) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadCompletedCallback, @ptrCast(self)), downloadJob, callbackArgs);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IDownloadCompletedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadCompletedCallbackArgs) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, downloadJob, callbackArgs);
     }
@@ -4452,14 +3331,7 @@ pub const IDownloadProgressChangedCallbackArgs = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgressChangedCallbackArgs_get_Progress(self: *const T, retval: ?*?*IDownloadProgress) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IDownloadProgressChangedCallbackArgs, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Progress(self: *const IDownloadProgressChangedCallbackArgs, retval: ?*?*IDownloadProgress) callconv(.Inline) HRESULT {
         return self.vtable.get_Progress(self, retval);
     }
@@ -4479,14 +3351,6 @@ pub const IDownloadProgressChangedCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDownloadProgressChangedCallback_Invoke(self: *const T, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
-            return @as(*const IDownloadProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDownloadProgressChangedCallback, @ptrCast(self)), downloadJob, callbackArgs);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IDownloadProgressChangedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, downloadJob, callbackArgs);
     }
@@ -4557,54 +3421,7 @@ pub const IUpdateDownloader = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_put_ClientApplicationID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateDownloader, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_get_IsForced(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_IsForced(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_put_IsForced(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_IsForced(@as(*const IUpdateDownloader, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_get_Priority(self: *const T, retval: ?*DownloadPriority) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_put_Priority(self: *const T, value: DownloadPriority) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IUpdateDownloader, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_put_Updates(self: *const T, value: ?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).put_Updates(@as(*const IUpdateDownloader, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_BeginDownload(self: *const T, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IDownloadJob) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IUpdateDownloader, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_Download(self: *const T, retval: ?*?*IDownloadResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).Download(@as(*const IUpdateDownloader, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateDownloader_EndDownload(self: *const T, value: ?*IDownloadJob, retval: ?*?*IDownloadResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateDownloader.VTable, @ptrCast(self.vtable)).EndDownload(@as(*const IUpdateDownloader, @ptrCast(self)), value, retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ClientApplicationID(self: *const IUpdateDownloader, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ClientApplicationID(self, retval);
     }
@@ -4664,22 +3481,7 @@ pub const IUpdateInstallationResult = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstallationResult_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstallationResult_get_RebootRequired(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstallationResult_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstallationResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IUpdateInstallationResult, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_HResult(self: *const IUpdateInstallationResult, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_HResult(self, retval);
     }
@@ -4720,26 +3522,7 @@ pub const IInstallationResult = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationResult_get_HResult(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_HResult(@as(*const IInstallationResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationResult_get_RebootRequired(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_RebootRequired(@as(*const IInstallationResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationResult_get_ResultCode(self: *const T, retval: ?*OperationResultCode) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).get_ResultCode(@as(*const IInstallationResult, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationResult_GetUpdateResult(self: *const T, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationResult.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationResult, @ptrCast(self)), updateIndex, retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_HResult(self: *const IInstallationResult, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_HResult(self, retval);
     }
@@ -4783,26 +3566,7 @@ pub const IInstallationProgress = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgress_get_CurrentUpdateIndex(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdateIndex(@as(*const IInstallationProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgress_get_CurrentUpdatePercentComplete(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_CurrentUpdatePercentComplete(@as(*const IInstallationProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgress_get_PercentComplete(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).get_PercentComplete(@as(*const IInstallationProgress, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgress_GetUpdateResult(self: *const T, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgress.VTable, @ptrCast(self.vtable)).GetUpdateResult(@as(*const IInstallationProgress, @ptrCast(self)), updateIndex, retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_CurrentUpdateIndex(self: *const IInstallationProgress, retval: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_CurrentUpdateIndex(self, retval);
     }
@@ -4851,34 +3615,7 @@ pub const IInstallationJob = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_get_AsyncState(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_AsyncState(@as(*const IInstallationJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_get_IsCompleted(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_IsCompleted(@as(*const IInstallationJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IInstallationJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_CleanUp(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).CleanUp(@as(*const IInstallationJob, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_GetProgress(self: *const T, retval: ?*?*IInstallationProgress) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IInstallationJob, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationJob_RequestAbort(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationJob.VTable, @ptrCast(self.vtable)).RequestAbort(@as(*const IInstallationJob, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AsyncState(self: *const IInstallationJob, retval: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_AsyncState(self, retval);
     }
@@ -4908,10 +3645,7 @@ pub const IInstallationCompletedCallbackArgs = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4928,14 +3662,6 @@ pub const IInstallationCompletedCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationCompletedCallback_Invoke(self: *const T, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationCompletedCallbackArgs) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationCompletedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationCompletedCallback, @ptrCast(self)), installationJob, callbackArgs);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IInstallationCompletedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationCompletedCallbackArgs) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, installationJob, callbackArgs);
     }
@@ -4955,14 +3681,7 @@ pub const IInstallationProgressChangedCallbackArgs = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgressChangedCallbackArgs_get_Progress(self: *const T, retval: ?*?*IInstallationProgress) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgressChangedCallbackArgs.VTable, @ptrCast(self.vtable)).get_Progress(@as(*const IInstallationProgressChangedCallbackArgs, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Progress(self: *const IInstallationProgressChangedCallbackArgs, retval: ?*?*IInstallationProgress) callconv(.Inline) HRESULT {
         return self.vtable.get_Progress(self, retval);
     }
@@ -4982,14 +3701,6 @@ pub const IInstallationProgressChangedCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationProgressChangedCallback_Invoke(self: *const T, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationProgressChangedCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInstallationProgressChangedCallback, @ptrCast(self)), installationJob, callbackArgs);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IInstallationProgressChangedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationProgressChangedCallbackArgs) callconv(.Inline) HRESULT {
         return self.vtable.Invoke(self, installationJob, callbackArgs);
     }
@@ -5111,94 +3822,7 @@ pub const IUpdateInstaller = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_ClientApplicationID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_IsForced(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_IsForced(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_IsForced(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_IsForced(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_ParentHwnd(self: *const T, retval: ?*?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ParentHwnd(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_ParentHwnd(self: *const T, value: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ParentHwnd(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_ParentWindow(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_ParentWindow(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_Updates(self: *const T, retval: ?*?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_Updates(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_Updates(self: *const T, value: ?*IUpdateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_Updates(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_BeginInstall(self: *const T, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IInstallationJob) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).BeginInstall(@as(*const IUpdateInstaller, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_BeginUninstall(self: *const T, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IInstallationJob) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).BeginUninstall(@as(*const IUpdateInstaller, @ptrCast(self)), onProgressChanged, onCompleted, state, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_EndInstall(self: *const T, value: ?*IInstallationJob, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).EndInstall(@as(*const IUpdateInstaller, @ptrCast(self)), value, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_EndUninstall(self: *const T, value: ?*IInstallationJob, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).EndUninstall(@as(*const IUpdateInstaller, @ptrCast(self)), value, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_Install(self: *const T, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).Install(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_RunWizard(self: *const T, dialogTitle: ?BSTR, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).RunWizard(@as(*const IUpdateInstaller, @ptrCast(self)), dialogTitle, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_IsBusy(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_IsBusy(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_Uninstall(self: *const T, retval: ?*?*IInstallationResult) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).Uninstall(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_AllowSourcePrompts(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_AllowSourcePrompts(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_put_AllowSourcePrompts(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).put_AllowSourcePrompts(@as(*const IUpdateInstaller, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller_get_RebootRequiredBeforeInstallation(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller.VTable, @ptrCast(self.vtable)).get_RebootRequiredBeforeInstallation(@as(*const IUpdateInstaller, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ClientApplicationID(self: *const IUpdateInstaller, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ClientApplicationID(self, retval);
     }
@@ -5283,18 +3907,8 @@ pub const IUpdateInstaller2 = extern union {
     };
     vtable: *const VTable,
     IUpdateInstaller: IUpdateInstaller,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateInstaller.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller2_get_ForceQuiet(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller2.VTable, @ptrCast(self.vtable)).get_ForceQuiet(@as(*const IUpdateInstaller2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller2_put_ForceQuiet(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller2.VTable, @ptrCast(self.vtable)).put_ForceQuiet(@as(*const IUpdateInstaller2, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUpdateInstaller.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_ForceQuiet(self: *const IUpdateInstaller2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_ForceQuiet(self, retval);
     }
@@ -5322,18 +3936,9 @@ pub const IUpdateInstaller3 = extern union {
     };
     vtable: *const VTable,
     IUpdateInstaller2: IUpdateInstaller2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateInstaller2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller3_get_AttemptCloseAppsIfNecessary(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller3.VTable, @ptrCast(self.vtable)).get_AttemptCloseAppsIfNecessary(@as(*const IUpdateInstaller3, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller3_put_AttemptCloseAppsIfNecessary(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller3.VTable, @ptrCast(self.vtable)).put_AttemptCloseAppsIfNecessary(@as(*const IUpdateInstaller3, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUpdateInstaller2.MethodMixin(@This());
+    IUpdateInstaller: IUpdateInstaller,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_AttemptCloseAppsIfNecessary(self: *const IUpdateInstaller3, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_AttemptCloseAppsIfNecessary(self, retval);
     }
@@ -5355,14 +3960,10 @@ pub const IUpdateInstaller4 = extern union {
     };
     vtable: *const VTable,
     IUpdateInstaller3: IUpdateInstaller3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateInstaller3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateInstaller4_Commit(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateInstaller4.VTable, @ptrCast(self.vtable)).Commit(@as(*const IUpdateInstaller4, @ptrCast(self)), dwFlags);
-        }
-    };}
-    pub usingnamespace IUpdateInstaller3.MethodMixin(@This());
+    IUpdateInstaller2: IUpdateInstaller2,
+    IUpdateInstaller: IUpdateInstaller,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn Commit(self: *const IUpdateInstaller4, dwFlags: u32) callconv(.Inline) HRESULT {
         return self.vtable.Commit(self, dwFlags);
     }
@@ -5414,42 +4015,7 @@ pub const IUpdateSession = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_put_ClientApplicationID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateSession, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_get_ReadOnly(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_get_WebProxy(self: *const T, retval: ?*?*IWebProxy) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).get_WebProxy(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_put_WebProxy(self: *const T, value: ?*IWebProxy) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).put_WebProxy(@as(*const IUpdateSession, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_CreateUpdateSearcher(self: *const T, retval: ?*?*IUpdateSearcher) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateSearcher(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_CreateUpdateDownloader(self: *const T, retval: ?*?*IUpdateDownloader) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateDownloader(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession_CreateUpdateInstaller(self: *const T, retval: ?*?*IUpdateInstaller) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession.VTable, @ptrCast(self.vtable)).CreateUpdateInstaller(@as(*const IUpdateSession, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ClientApplicationID(self: *const IUpdateSession, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ClientApplicationID(self, retval);
     }
@@ -5495,18 +4061,8 @@ pub const IUpdateSession2 = extern union {
     };
     vtable: *const VTable,
     IUpdateSession: IUpdateSession,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateSession.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession2_get_UserLocale(self: *const T, retval: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession2.VTable, @ptrCast(self.vtable)).get_UserLocale(@as(*const IUpdateSession2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession2_put_UserLocale(self: *const T, lcid: u32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession2.VTable, @ptrCast(self.vtable)).put_UserLocale(@as(*const IUpdateSession2, @ptrCast(self)), lcid);
-        }
-    };}
-    pub usingnamespace IUpdateSession.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_UserLocale(self: *const IUpdateSession2, retval: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_UserLocale(self, retval);
     }
@@ -5535,18 +4091,9 @@ pub const IUpdateSession3 = extern union {
     };
     vtable: *const VTable,
     IUpdateSession2: IUpdateSession2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateSession2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession3_CreateUpdateServiceManager(self: *const T, retval: ?*?*IUpdateServiceManager2) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession3.VTable, @ptrCast(self.vtable)).CreateUpdateServiceManager(@as(*const IUpdateSession3, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateSession3_QueryHistory(self: *const T, criteria: ?BSTR, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateSession3.VTable, @ptrCast(self.vtable)).QueryHistory(@as(*const IUpdateSession3, @ptrCast(self)), criteria, startIndex, count, retval);
-        }
-    };}
-    pub usingnamespace IUpdateSession2.MethodMixin(@This());
+    IUpdateSession: IUpdateSession,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn CreateUpdateServiceManager(self: *const IUpdateSession3, retval: ?*?*IUpdateServiceManager2) callconv(.Inline) HRESULT {
         return self.vtable.CreateUpdateServiceManager(self, retval);
     }
@@ -5629,62 +4176,7 @@ pub const IUpdateService = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_Name(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_ContentValidationCert(self: *const T, retval: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ContentValidationCert(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_ExpirationDate(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ExpirationDate(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_IsManaged(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsManaged(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_IsRegisteredWithAU(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsRegisteredWithAU(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_IssueDate(self: *const T, retval: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IssueDate(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_OffersWindowsUpdates(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_OffersWindowsUpdates(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_RedirectUrls(self: *const T, retval: ?*?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_RedirectUrls(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_ServiceID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_IsScanPackageService(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_IsScanPackageService(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_CanRegisterWithAU(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_CanRegisterWithAU(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_ServiceUrl(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_ServiceUrl(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService_get_SetupPrefix(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService.VTable, @ptrCast(self.vtable)).get_SetupPrefix(@as(*const IUpdateService, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IUpdateService, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, retval);
     }
@@ -5740,14 +4232,8 @@ pub const IUpdateService2 = extern union {
     };
     vtable: *const VTable,
     IUpdateService: IUpdateService,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateService.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateService2_get_IsDefaultAUService(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateService2.VTable, @ptrCast(self.vtable)).get_IsDefaultAUService(@as(*const IUpdateService2, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IUpdateService.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_IsDefaultAUService(self: *const IUpdateService2, retval: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_IsDefaultAUService(self, retval);
     }
@@ -5777,22 +4263,7 @@ pub const IUpdateServiceCollection = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceCollection_get_Item(self: *const T, index: i32, retval: ?*?*IUpdateService) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUpdateServiceCollection, @ptrCast(self)), index, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceCollection_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUpdateServiceCollection, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceCollection_get_Count(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUpdateServiceCollection, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IUpdateServiceCollection, index: i32, retval: ?*?*IUpdateService) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
@@ -5833,26 +4304,7 @@ pub const IUpdateServiceRegistration = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceRegistration_get_RegistrationState(self: *const T, retval: ?*UpdateServiceRegistrationState) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_RegistrationState(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceRegistration_get_ServiceID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_ServiceID(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceRegistration_get_IsPendingRegistrationWithAU(self: *const T, retval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_IsPendingRegistrationWithAU(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceRegistration_get_Service(self: *const T, retval: ?*?*IUpdateService2) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceRegistration.VTable, @ptrCast(self.vtable)).get_Service(@as(*const IUpdateServiceRegistration, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_RegistrationState(self: *const IUpdateServiceRegistration, retval: ?*UpdateServiceRegistrationState) callconv(.Inline) HRESULT {
         return self.vtable.get_RegistrationState(self, retval);
     }
@@ -5911,38 +4363,7 @@ pub const IUpdateServiceManager = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_get_Services(self: *const T, retval: ?*?*IUpdateServiceCollection) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUpdateServiceManager, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_AddService(self: *const T, serviceID: ?BSTR, authorizationCabPath: ?BSTR, retval: ?*?*IUpdateService) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).AddService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID, authorizationCabPath, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_RegisterServiceWithAU(self: *const T, serviceID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).RegisterServiceWithAU(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_RemoveService(self: *const T, serviceID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).RemoveService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_UnregisterServiceWithAU(self: *const T, serviceID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).UnregisterServiceWithAU(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_AddScanPackageService(self: *const T, serviceName: ?BSTR, scanFileLocation: ?BSTR, flags: i32, ppService: ?*?*IUpdateService) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).AddScanPackageService(@as(*const IUpdateServiceManager, @ptrCast(self)), serviceName, scanFileLocation, flags, ppService);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager_SetOption(self: *const T, optionName: ?BSTR, optionValue: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager.VTable, @ptrCast(self.vtable)).SetOption(@as(*const IUpdateServiceManager, @ptrCast(self)), optionName, optionValue);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Services(self: *const IUpdateServiceManager, retval: ?*?*IUpdateServiceCollection) callconv(.Inline) HRESULT {
         return self.vtable.get_Services(self, retval);
     }
@@ -5997,26 +4418,8 @@ pub const IUpdateServiceManager2 = extern union {
     };
     vtable: *const VTable,
     IUpdateServiceManager: IUpdateServiceManager,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUpdateServiceManager.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager2_get_ClientApplicationID(self: *const T, retval: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).get_ClientApplicationID(@as(*const IUpdateServiceManager2, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager2_put_ClientApplicationID(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).put_ClientApplicationID(@as(*const IUpdateServiceManager2, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager2_QueryServiceRegistration(self: *const T, serviceID: ?BSTR, retval: ?*?*IUpdateServiceRegistration) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).QueryServiceRegistration(@as(*const IUpdateServiceManager2, @ptrCast(self)), serviceID, retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUpdateServiceManager2_AddService2(self: *const T, serviceID: ?BSTR, flags: i32, authorizationCabPath: ?BSTR, retval: ?*?*IUpdateServiceRegistration) callconv(.Inline) HRESULT {
-            return @as(*const IUpdateServiceManager2.VTable, @ptrCast(self.vtable)).AddService2(@as(*const IUpdateServiceManager2, @ptrCast(self)), serviceID, flags, authorizationCabPath, retval);
-        }
-    };}
-    pub usingnamespace IUpdateServiceManager.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_ClientApplicationID(self: *const IUpdateServiceManager2, retval: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ClientApplicationID(self, retval);
     }
@@ -6046,14 +4449,7 @@ pub const IInstallationAgent = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInstallationAgent_RecordInstallationResult(self: *const T, installationResultCookie: ?BSTR, hresult: i32, extendedReportingData: ?*IStringCollection) callconv(.Inline) HRESULT {
-            return @as(*const IInstallationAgent.VTable, @ptrCast(self.vtable)).RecordInstallationResult(@as(*const IInstallationAgent, @ptrCast(self)), installationResultCookie, hresult, extendedReportingData);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RecordInstallationResult(self: *const IInstallationAgent, installationResultCookie: ?BSTR, hresult: i32, extendedReportingData: ?*IStringCollection) callconv(.Inline) HRESULT {
         return self.vtable.RecordInstallationResult(self, installationResultCookie, hresult, extendedReportingData);
     }

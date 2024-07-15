@@ -4032,30 +4032,6 @@ pub const IDot11AdHocManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CreateNetwork(self: *const T, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).CreateNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).CommitCreatedNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocNetworks(self: *const T, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocNetworks(@as(*const IDot11AdHocManager, @ptrCast(self)), pContextGuid, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocInterfaces(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocInterfaces(@as(*const IDot11AdHocManager, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetNetwork(self: *const T, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManager.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const IDot11AdHocManager, @ptrCast(self)), NetworkSignature, pNetwork);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
         return self.vtable.CreateNetwork(self, Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
     }
@@ -4098,26 +4074,6 @@ pub const IDot11AdHocManagerNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkAdd(self: *const T, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnNetworkAdd(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), pIAdHocNetwork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnNetworkRemove(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), Signature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceAdd(self: *const T, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnInterfaceAdd(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), pIAdHocInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocManagerNotificationSink.VTable, @ptrCast(self.vtable)).OnInterfaceRemove(@as(*const IDot11AdHocManagerNotificationSink, @ptrCast(self)), Signature);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
         return self.vtable.OnNetworkAdd(self, pIAdHocNetwork);
     }
@@ -4158,26 +4114,6 @@ pub const IEnumDot11AdHocNetworks = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocNetworks.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocNetworks, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
@@ -4251,58 +4187,6 @@ pub const IDot11AdHocNetwork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetStatus(self: *const T, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDot11AdHocNetwork, @ptrCast(self)), eStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSSID(self: *const T, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSSID(@as(*const IDot11AdHocNetwork, @ptrCast(self)), ppszwSSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_HasProfile(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).HasProfile(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pf11d);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetProfileName(self: *const T, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetProfileName(@as(*const IDot11AdHocNetwork, @ptrCast(self)), ppszwProfileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_DeleteProfile(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).DeleteProfile(@as(*const IDot11AdHocNetwork, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignalQuality(self: *const T, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSignalQuality(@as(*const IDot11AdHocNetwork, @ptrCast(self)), puStrengthValue, puStrengthMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSecuritySetting(self: *const T, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSecuritySetting(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pAdHocSecuritySetting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetContextGuid(self: *const T, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetContextGuid(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pContextGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetInterface(self: *const T, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDot11AdHocNetwork, @ptrCast(self)), pAdHocInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).Connect(@as(*const IDot11AdHocNetwork, @ptrCast(self)), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetwork.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IDot11AdHocNetwork, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.GetStatus(self, eStatus);
     }
@@ -4358,18 +4242,6 @@ pub const IDot11AdHocNetworkNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetworkNotificationSink_OnStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetworkNotificationSink.VTable, @ptrCast(self.vtable)).OnStatusChange(@as(*const IDot11AdHocNetworkNotificationSink, @ptrCast(self)), eStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetworkNotificationSink_OnConnectFail(self: *const T, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocNetworkNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectFail(@as(*const IDot11AdHocNetworkNotificationSink, @ptrCast(self)), eFailReason);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.OnStatusChange(self, eStatus);
     }
@@ -4424,46 +4296,6 @@ pub const IDot11AdHocInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetDeviceSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetDeviceSignature(@as(*const IDot11AdHocInterface, @ptrCast(self)), pSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetFriendlyName(self: *const T, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsDot11d(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsDot11d(@as(*const IDot11AdHocInterface, @ptrCast(self)), pf11d);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsAdHocCapable(self: *const T, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsAdHocCapable(@as(*const IDot11AdHocInterface, @ptrCast(self)), pfAdHocCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsRadioOn(self: *const T, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).IsRadioOn(@as(*const IDot11AdHocInterface, @ptrCast(self)), pfIsRadioOn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetActiveNetwork(self: *const T, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetActiveNetwork(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppNetwork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumSecuritySettings(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetIEnumSecuritySettings(@as(*const IDot11AdHocInterface, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumDot11AdHocNetworks(self: *const T, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetIEnumDot11AdHocNetworks(@as(*const IDot11AdHocInterface, @ptrCast(self)), pFilterGuid, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetStatus(self: *const T, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterface.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDot11AdHocInterface, @ptrCast(self)), pState);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.GetDeviceSignature(self, pSignature);
     }
@@ -4519,26 +4351,6 @@ pub const IEnumDot11AdHocInterfaces = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocInterfaces.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocInterfaces, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
@@ -4579,26 +4391,6 @@ pub const IEnumDot11AdHocSecuritySettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDot11AdHocSecuritySettings, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
@@ -4630,18 +4422,6 @@ pub const IDot11AdHocSecuritySettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11AuthAlgorithm(self: *const T, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).GetDot11AuthAlgorithm(@as(*const IDot11AdHocSecuritySettings, @ptrCast(self)), pAuth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11CipherAlgorithm(self: *const T, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocSecuritySettings.VTable, @ptrCast(self.vtable)).GetDot11CipherAlgorithm(@as(*const IDot11AdHocSecuritySettings, @ptrCast(self)), pCipher);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
         return self.vtable.GetDot11AuthAlgorithm(self, pAuth);
     }
@@ -4663,14 +4443,6 @@ pub const IDot11AdHocInterfaceNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterfaceNotificationSink_OnConnectionStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDot11AdHocInterfaceNotificationSink.VTable, @ptrCast(self.vtable)).OnConnectionStatusChange(@as(*const IDot11AdHocInterfaceNotificationSink, @ptrCast(self)), eStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.OnConnectionStatusChange(self, eStatus);
     }

@@ -3310,70 +3310,6 @@ pub const IDiskQuotaUser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetID(self: *const T, pulID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetID(@as(*const IDiskQuotaUser, @ptrCast(self)), pulID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetName(@as(*const IDiskQuotaUser, @ptrCast(self)), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSidLength(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: ?*u8, cbSidBuffer: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSid(@as(*const IDiskQuotaUser, @ptrCast(self)), pbSidBuffer, cbSidBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), pllThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThresholdText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), pllLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimitText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsed(@as(*const IDiskQuotaUser, @ptrCast(self)), pllUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsedText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaInformation(@as(*const IDiskQuotaUser, @ptrCast(self)), pbQuotaInfo, cbQuotaInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_SetQuotaThreshold(self: *const T, llThreshold: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), llThreshold, fWriteThrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_SetQuotaLimit(self: *const T, llLimit: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), llLimit, fWriteThrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_Invalidate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IDiskQuotaUser, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetAccountStatus(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetID(self: *const IDiskQuotaUser, pulID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetID(self, pulID);
     }
@@ -3447,26 +3383,6 @@ pub const IEnumDiskQuotaUsers = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers, rgUsers, pcUsersFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Skip(self: *const T, cUsers: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
-            return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDiskQuotaUsers, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cUsers, rgUsers, pcUsersFetched);
     }
@@ -3504,26 +3420,6 @@ pub const IDiskQuotaUserBatch = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Add(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Add(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_RemoveAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_FlushToDisk(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).FlushToDisk(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Add(self: *const IDiskQuotaUserBatch, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
         return self.vtable.Add(self, pUser);
     }
@@ -3642,94 +3538,7 @@ pub const IDiskQuotaControl = extern union {
     };
     vtable: *const VTable,
     IConnectionPointContainer: IConnectionPointContainer,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IConnectionPointContainer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_Initialize(self: *const T, pszPath: ?[*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDiskQuotaControl, @ptrCast(self)), pszPath, bReadWrite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetQuotaState(self: *const T, dwState: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetQuotaLogFlags(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetDefaultQuotaThreshold(self: *const T, llThreshold: i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), llThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), pllThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThresholdText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetDefaultQuotaLimit(self: *const T, llLimit: i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), llLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), pllLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimitText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).DeleteUser(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateEnumUsers(@as(*const IDiskQuotaControl, @ptrCast(self)), rgpUserSids, cpSids, fNameResolution, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: ?*?*IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateUserBatch(@as(*const IDiskQuotaControl, @ptrCast(self)), ppBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_InvalidateSidNameCache(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).InvalidateSidNameCache(@as(*const IDiskQuotaControl, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GiveUserNameResolutionPriority(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_ShutdownNameResolution(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).ShutdownNameResolution(@as(*const IDiskQuotaControl, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IConnectionPointContainer.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Initialize(self: *const IDiskQuotaControl, pszPath: ?[*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pszPath, bReadWrite);
     }
@@ -3808,14 +3617,6 @@ pub const IDiskQuotaEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @as(*const IDiskQuotaEvents.VTable, @ptrCast(self.vtable)).OnUserNameChanged(@as(*const IDiskQuotaEvents, @ptrCast(self)), pUser);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUserNameChanged(self: *const IDiskQuotaEvents, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
         return self.vtable.OnUserNameChanged(self, pUser);
     }

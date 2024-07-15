@@ -47,18 +47,6 @@ pub const IEmptyVolumeCacheCallBack = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCacheCallBack_ScanProgress(self: *const T, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCacheCallBack.VTable, @ptrCast(self.vtable)).ScanProgress(@as(*const IEmptyVolumeCacheCallBack, @ptrCast(self)), dwlSpaceUsed, dwFlags, pcwszStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCacheCallBack_PurgeProgress(self: *const T, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCacheCallBack.VTable, @ptrCast(self.vtable)).PurgeProgress(@as(*const IEmptyVolumeCacheCallBack, @ptrCast(self)), dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ScanProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.ScanProgress(self, dwlSpaceUsed, dwFlags, pcwszStatus);
     }
@@ -102,30 +90,6 @@ pub const IEmptyVolumeCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Initialize(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IEmptyVolumeCache, @ptrCast(self)), hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_GetSpaceUsed(self: *const T, pdwlSpaceUsed: ?*u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).GetSpaceUsed(@as(*const IEmptyVolumeCache, @ptrCast(self)), pdwlSpaceUsed, picb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Purge(self: *const T, dwlSpaceToFree: u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Purge(@as(*const IEmptyVolumeCache, @ptrCast(self)), dwlSpaceToFree, picb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_ShowProperties(self: *const T, hwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).ShowProperties(@as(*const IEmptyVolumeCache, @ptrCast(self)), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Deactivate(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IEmptyVolumeCache, @ptrCast(self)), pdwFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IEmptyVolumeCache, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
     }
@@ -162,14 +126,7 @@ pub const IEmptyVolumeCache2 = extern union {
     };
     vtable: *const VTable,
     IEmptyVolumeCache: IEmptyVolumeCache,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEmptyVolumeCache.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache2_InitializeEx(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEmptyVolumeCache2.VTable, @ptrCast(self.vtable)).InitializeEx(@as(*const IEmptyVolumeCache2, @ptrCast(self)), hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
-        }
-    };}
-    pub usingnamespace IEmptyVolumeCache.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InitializeEx(self: *const IEmptyVolumeCache2, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.InitializeEx(self, hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
     }
@@ -193,18 +150,6 @@ pub const IReconcileInitiator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcileInitiator_SetAbortCallback(self: *const T, punkForAbort: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IReconcileInitiator.VTable, @ptrCast(self.vtable)).SetAbortCallback(@as(*const IReconcileInitiator, @ptrCast(self)), punkForAbort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcileInitiator_SetProgressFeedback(self: *const T, ulProgress: u32, ulProgressMax: u32) callconv(.Inline) HRESULT {
-            return @as(*const IReconcileInitiator.VTable, @ptrCast(self.vtable)).SetProgressFeedback(@as(*const IReconcileInitiator, @ptrCast(self)), ulProgress, ulProgressMax);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAbortCallback(self: *const IReconcileInitiator, punkForAbort: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetAbortCallback(self, punkForAbort);
     }
@@ -257,18 +202,6 @@ pub const IReconcilableObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcilableObject_Reconcile(self: *const T, pInitiator: ?*IReconcileInitiator, dwFlags: u32, hwndOwner: ?HWND, hwndProgressFeedback: ?HWND, ulcInput: u32, rgpmkOtherInput: [*]?*IMoniker, plOutIndex: ?*i32, pstgNewResidues: ?*IStorage, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IReconcilableObject.VTable, @ptrCast(self.vtable)).Reconcile(@as(*const IReconcilableObject, @ptrCast(self)), pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcilableObject_GetProgressFeedbackMaxEstimate(self: *const T, pulProgressMax: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IReconcilableObject.VTable, @ptrCast(self.vtable)).GetProgressFeedbackMaxEstimate(@as(*const IReconcilableObject, @ptrCast(self)), pulProgressMax);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reconcile(self: *const IReconcilableObject, pInitiator: ?*IReconcileInitiator, dwFlags: u32, hwndOwner: ?HWND, hwndProgressFeedback: ?HWND, ulcInput: u32, rgpmkOtherInput: [*]?*IMoniker, plOutIndex: ?*i32, pstgNewResidues: ?*IStorage, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Reconcile(self, pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
     }
@@ -289,14 +222,6 @@ pub const IBriefcaseInitiator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBriefcaseInitiator_IsMonikerInBriefcase(self: *const T, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IBriefcaseInitiator.VTable, @ptrCast(self.vtable)).IsMonikerInBriefcase(@as(*const IBriefcaseInitiator, @ptrCast(self)), pmk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMonikerInBriefcase(self: *const IBriefcaseInitiator, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
         return self.vtable.IsMonikerInBriefcase(self, pmk);
     }
@@ -329,26 +254,6 @@ pub const IActiveDesktopP = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetSafeMode(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).SetSafeMode(@as(*const IActiveDesktopP, @ptrCast(self)), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_EnsureUpdateHTML(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).EnsureUpdateHTML(@as(*const IActiveDesktopP, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetScheme(self: *const T, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).SetScheme(@as(*const IActiveDesktopP, @ptrCast(self)), pwszSchemeName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_GetScheme(self: *const T, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IActiveDesktopP.VTable, @ptrCast(self.vtable)).GetScheme(@as(*const IActiveDesktopP, @ptrCast(self)), pwszSchemeName, pdwcchBuffer, dwFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSafeMode(self: *const IActiveDesktopP, dwFlags: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetSafeMode(self, dwFlags);
     }
@@ -387,26 +292,6 @@ pub const IADesktopP2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_ReReadWallpaper(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).ReReadWallpaper(@as(*const IADesktopP2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_GetADObjectFlags(self: *const T, pdwFlags: ?*u32, dwMask: u32) callconv(.Inline) HRESULT {
-            return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).GetADObjectFlags(@as(*const IADesktopP2, @ptrCast(self)), pdwFlags, dwMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_UpdateAllDesktopSubscriptions(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).UpdateAllDesktopSubscriptions(@as(*const IADesktopP2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_MakeDynamicChanges(self: *const T, pOleObj: ?*IOleObject) callconv(.Inline) HRESULT {
-            return @as(*const IADesktopP2.VTable, @ptrCast(self.vtable)).MakeDynamicChanges(@as(*const IADesktopP2, @ptrCast(self)), pOleObj);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReReadWallpaper(self: *const IADesktopP2) callconv(.Inline) HRESULT {
         return self.vtable.ReReadWallpaper(self);
     }

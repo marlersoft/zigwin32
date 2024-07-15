@@ -1033,30 +1033,6 @@ pub const ICameraUIControlEventCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnStartupComplete(self: *const T) callconv(.Inline) void {
-            return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnStartupComplete(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnSuspendComplete(self: *const T) callconv(.Inline) void {
-            return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnSuspendComplete(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemCaptured(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
-            return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnItemCaptured(@as(*const ICameraUIControlEventCallback, @ptrCast(self)), pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemDeleted(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
-            return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnItemDeleted(@as(*const ICameraUIControlEventCallback, @ptrCast(self)), pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnClosed(self: *const T) callconv(.Inline) void {
-            return @as(*const ICameraUIControlEventCallback.VTable, @ptrCast(self.vtable)).OnClosed(@as(*const ICameraUIControlEventCallback, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStartupComplete(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
         return self.vtable.OnStartupComplete(self);
     }
@@ -1120,42 +1096,6 @@ pub const ICameraUIControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Show(self: *const T, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Show(@as(*const ICameraUIControl, @ptrCast(self)), pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Close(@as(*const ICameraUIControl, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Suspend(self: *const T, pbDeferralRequired: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Suspend(@as(*const ICameraUIControl, @ptrCast(self)), pbDeferralRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).Resume(@as(*const ICameraUIControl, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetCurrentViewType(self: *const T, pViewType: ?*CameraUIControlViewType) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetCurrentViewType(@as(*const ICameraUIControl, @ptrCast(self)), pViewType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetActiveItem(self: *const T, pbstrActiveItemPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetActiveItem(@as(*const ICameraUIControl, @ptrCast(self)), pbstrActiveItemPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetSelectedItems(self: *const T, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).GetSelectedItems(@as(*const ICameraUIControl, @ptrCast(self)), ppSelectedItemPaths);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_RemoveCapturedItem(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ICameraUIControl.VTable, @ptrCast(self.vtable)).RemoveCapturedItem(@as(*const ICameraUIControl, @ptrCast(self)), pszPath);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Show(self: *const ICameraUIControl, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
         return self.vtable.Show(self, pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
     }
@@ -1216,30 +1156,6 @@ pub const IEditionUpgradeHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_CanUpgrade(self: *const T, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).CanUpgrade(@as(*const IEditionUpgradeHelper, @ptrCast(self)), isAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_UpdateOperatingSystem(self: *const T, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).UpdateOperatingSystem(@as(*const IEditionUpgradeHelper, @ptrCast(self)), contentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_ShowProductKeyUI(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).ShowProductKeyUI(@as(*const IEditionUpgradeHelper, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetOsProductContentId(self: *const T, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).GetOsProductContentId(@as(*const IEditionUpgradeHelper, @ptrCast(self)), contentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetGenuineLocalStatus(self: *const T, isGenuine: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeHelper.VTable, @ptrCast(self.vtable)).GetGenuineLocalStatus(@as(*const IEditionUpgradeHelper, @ptrCast(self)), isGenuine);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CanUpgrade(self: *const IEditionUpgradeHelper, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.CanUpgrade(self, isAllowed);
     }
@@ -1269,14 +1185,6 @@ pub const IWindowsLockModeHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsLockModeHelper_GetSMode(self: *const T, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsLockModeHelper.VTable, @ptrCast(self.vtable)).GetSMode(@as(*const IWindowsLockModeHelper, @ptrCast(self)), isSmode);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSMode(self: *const IWindowsLockModeHelper, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.GetSMode(self, isSmode);
     }
@@ -1304,26 +1212,6 @@ pub const IEditionUpgradeBroker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_InitializeParentWindow(self: *const T, parentHandle: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).InitializeParentWindow(@as(*const IEditionUpgradeBroker, @ptrCast(self)), parentHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_UpdateOperatingSystem(self: *const T, parameter: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).UpdateOperatingSystem(@as(*const IEditionUpgradeBroker, @ptrCast(self)), parameter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_ShowProductKeyUI(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).ShowProductKeyUI(@as(*const IEditionUpgradeBroker, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_CanUpgrade(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEditionUpgradeBroker.VTable, @ptrCast(self.vtable)).CanUpgrade(@as(*const IEditionUpgradeBroker, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: u32) callconv(.Inline) HRESULT {
         return self.vtable.InitializeParentWindow(self, parentHandle);
     }
@@ -1350,14 +1238,6 @@ pub const IContainerActivationHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContainerActivationHelper_CanActivateClientVM(self: *const T, isAllowed: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IContainerActivationHelper.VTable, @ptrCast(self.vtable)).CanActivateClientVM(@as(*const IContainerActivationHelper, @ptrCast(self)), isAllowed);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.CanActivateClientVM(self, isAllowed);
     }
@@ -1379,14 +1259,6 @@ pub const IClipServiceNotificationHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClipServiceNotificationHelper_ShowToast(self: *const T, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IClipServiceNotificationHelper.VTable, @ptrCast(self.vtable)).ShowToast(@as(*const IClipServiceNotificationHelper, @ptrCast(self)), titleText, bodyText, packageName, appId, launchCommand);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShowToast(self: *const IClipServiceNotificationHelper, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.ShowToast(self, titleText, bodyText, packageName, appId, launchCommand);
     }
@@ -1888,14 +1760,6 @@ pub const IDefaultBrowserSyncSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultBrowserSyncSettings_IsEnabled(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDefaultBrowserSyncSettings.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const IDefaultBrowserSyncSettings, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsEnabled(self: *const IDefaultBrowserSyncSettings) callconv(.Inline) BOOL {
         return self.vtable.IsEnabled(self);
     }
@@ -1927,14 +1791,6 @@ pub const IDeleteBrowsingHistory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeleteBrowsingHistory_DeleteBrowsingHistory(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDeleteBrowsingHistory.VTable, @ptrCast(self.vtable)).DeleteBrowsingHistory(@as(*const IDeleteBrowsingHistory, @ptrCast(self)), dwFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeleteBrowsingHistory(self: *const IDeleteBrowsingHistory, dwFlags: u32) callconv(.Inline) HRESULT {
         return self.vtable.DeleteBrowsingHistory(self, dwFlags);
     }

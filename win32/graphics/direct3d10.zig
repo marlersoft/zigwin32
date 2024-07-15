@@ -527,26 +527,6 @@ pub const ID3D10DeviceChild = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_GetDevice(self: *const T, ppDevice: ?*?*ID3D10Device) callconv(.Inline) void {
-            return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10DeviceChild, @ptrCast(self)), ppDevice);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_GetPrivateData(self: *const T, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, pDataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_SetPrivateData(self: *const T, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10DeviceChild.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D10DeviceChild, @ptrCast(self)), guid, pData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDevice(self: *const ID3D10DeviceChild, ppDevice: ?*?*ID3D10Device) callconv(.Inline) void {
         return self.vtable.GetDevice(self, ppDevice);
     }
@@ -637,14 +617,7 @@ pub const ID3D10DepthStencilState = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DepthStencilState_GetDesc(self: *const T, pDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10DepthStencilState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilState, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10DepthStencilState, pDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -738,14 +711,7 @@ pub const ID3D10BlendState = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10BlendState_GetDesc(self: *const T, pDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10BlendState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10BlendState, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10BlendState, pDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -777,14 +743,7 @@ pub const ID3D10RasterizerState = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10RasterizerState_GetDesc(self: *const T, pDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10RasterizerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RasterizerState, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10RasterizerState, pDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -816,22 +775,7 @@ pub const ID3D10Resource = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Resource_GetType(self: *const T, rType: ?*D3D10_RESOURCE_DIMENSION) callconv(.Inline) void {
-            return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10Resource, @ptrCast(self)), rType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Resource_SetEvictionPriority(self: *const T, EvictionPriority: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).SetEvictionPriority(@as(*const ID3D10Resource, @ptrCast(self)), EvictionPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Resource_GetEvictionPriority(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Resource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const ID3D10Resource, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetType(self: *const ID3D10Resource, rType: ?*D3D10_RESOURCE_DIMENSION) callconv(.Inline) void {
         return self.vtable.GetType(self, rType);
     }
@@ -873,22 +817,8 @@ pub const ID3D10Buffer = extern union {
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Resource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Buffer_Map(self: *const T, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Buffer, @ptrCast(self)), MapType, MapFlags, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Buffer_Unmap(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Buffer, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Buffer_GetDesc(self: *const T, pDesc: ?*D3D10_BUFFER_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Buffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Buffer, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn Map(self: *const ID3D10Buffer, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Map(self, MapType, MapFlags, ppData);
     }
@@ -935,22 +865,8 @@ pub const ID3D10Texture1D = extern union {
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Resource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture1D_Map(self: *const T, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture1D, @ptrCast(self)), Subresource, MapType, MapFlags, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture1D_Unmap(self: *const T, Subresource: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture1D, @ptrCast(self)), Subresource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture1D_GetDesc(self: *const T, pDesc: ?*D3D10_TEXTURE1D_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Texture1D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture1D, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn Map(self: *const ID3D10Texture1D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, ppData);
     }
@@ -1004,22 +920,8 @@ pub const ID3D10Texture2D = extern union {
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Resource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture2D_Map(self: *const T, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture2D, @ptrCast(self)), Subresource, MapType, MapFlags, pMappedTex2D);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture2D_Unmap(self: *const T, Subresource: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture2D, @ptrCast(self)), Subresource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture2D_GetDesc(self: *const T, pDesc: ?*D3D10_TEXTURE2D_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Texture2D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture2D, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn Map(self: *const ID3D10Texture2D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D) callconv(.Inline) HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, pMappedTex2D);
     }
@@ -1073,22 +975,8 @@ pub const ID3D10Texture3D = extern union {
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Resource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture3D_Map(self: *const T, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D10Texture3D, @ptrCast(self)), Subresource, MapType, MapFlags, pMappedTex3D);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture3D_Unmap(self: *const T, Subresource: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D10Texture3D, @ptrCast(self)), Subresource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Texture3D_GetDesc(self: *const T, pDesc: ?*D3D10_TEXTURE3D_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Texture3D.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Texture3D, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Resource.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn Map(self: *const ID3D10Texture3D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D) callconv(.Inline) HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, pMappedTex3D);
     }
@@ -1128,14 +1016,7 @@ pub const ID3D10View = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10View_GetResource(self: *const T, ppResource: ?*?*ID3D10Resource) callconv(.Inline) void {
-            return @as(*const ID3D10View.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D10View, @ptrCast(self)), ppResource);
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetResource(self: *const ID3D10View, ppResource: ?*?*ID3D10Resource) callconv(.Inline) void {
         return self.vtable.GetResource(self, ppResource);
     }
@@ -1224,14 +1105,8 @@ pub const ID3D10ShaderResourceView = extern union {
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderResourceView_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10ShaderResourceView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderResourceView, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10View.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10ShaderResourceView, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -1311,14 +1186,8 @@ pub const ID3D10RenderTargetView = extern union {
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10RenderTargetView_GetDesc(self: *const T, pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10RenderTargetView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10RenderTargetView, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10View.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10RenderTargetView, pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -1379,14 +1248,8 @@ pub const ID3D10DepthStencilView = extern union {
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DepthStencilView_GetDesc(self: *const T, pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10DepthStencilView.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10DepthStencilView, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10View.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10DepthStencilView, pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -1401,10 +1264,7 @@ pub const ID3D10VertexShader = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -1416,10 +1276,7 @@ pub const ID3D10GeometryShader = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -1431,10 +1288,7 @@ pub const ID3D10PixelShader = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -1446,10 +1300,7 @@ pub const ID3D10InputLayout = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 pub const D3D10_FILTER = enum(i32) {
@@ -1539,14 +1390,7 @@ pub const ID3D10SamplerState = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10SamplerState_GetDesc(self: *const T, pDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10SamplerState.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10SamplerState, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10SamplerState, pDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -1630,26 +1474,7 @@ pub const ID3D10Asynchronous = extern union {
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Asynchronous_Begin(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).Begin(@as(*const ID3D10Asynchronous, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Asynchronous_End(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).End(@as(*const ID3D10Asynchronous, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Asynchronous_GetData(self: *const T, pData: ?*anyopaque, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).GetData(@as(*const ID3D10Asynchronous, @ptrCast(self)), pData, DataSize, GetDataFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Asynchronous_GetDataSize(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Asynchronous.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const ID3D10Asynchronous, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D10DeviceChild.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Begin(self: *const ID3D10Asynchronous) callconv(.Inline) void {
         return self.vtable.Begin(self);
     }
@@ -1711,14 +1536,8 @@ pub const ID3D10Query = extern union {
     };
     vtable: *const VTable,
     ID3D10Asynchronous: ID3D10Asynchronous,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Asynchronous.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Query_GetDesc(self: *const T, pDesc: ?*D3D10_QUERY_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Query.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Query, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Asynchronous.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10Query, pDesc: ?*D3D10_QUERY_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -1733,10 +1552,9 @@ pub const ID3D10Predicate = extern union {
     };
     vtable: *const VTable,
     ID3D10Query: ID3D10Query,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Query.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D10Query.MethodMixin(@This());
+    ID3D10Asynchronous: ID3D10Asynchronous,
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
 };
 
 pub const D3D10_QUERY_DATA_TIMESTAMP_DISJOINT = extern struct {
@@ -1836,14 +1654,8 @@ pub const ID3D10Counter = extern union {
     };
     vtable: *const VTable,
     ID3D10Asynchronous: ID3D10Asynchronous,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Asynchronous.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Counter_GetDesc(self: *const T, pDesc: ?*D3D10_COUNTER_DESC) callconv(.Inline) void {
-            return @as(*const ID3D10Counter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Counter, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10Asynchronous.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D10Counter, pDesc: ?*D3D10_COUNTER_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -2389,390 +2201,6 @@ pub const ID3D10Device = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetShader(self: *const T, pPixelShader: ?*ID3D10PixelShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pPixelShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetShader(self: *const T, pVertexShader: ?*ID3D10VertexShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pVertexShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_DrawIndexed(self: *const T, IndexCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawIndexed(@as(*const ID3D10Device, @ptrCast(self)), IndexCount, StartIndexLocation, BaseVertexLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_Draw(self: *const T, VertexCount: u32, StartVertexLocation: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID3D10Device, @ptrCast(self)), VertexCount, StartVertexLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IASetInputLayout(self: *const T, pInputLayout: ?*ID3D10InputLayout) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetInputLayout(@as(*const ID3D10Device, @ptrCast(self)), pInputLayout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IASetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetVertexBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IASetIndexBuffer(self: *const T, pIndexBuffer: ?*ID3D10Buffer, Format: DXGI_FORMAT, Offset: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetIndexBuffer(@as(*const ID3D10Device, @ptrCast(self)), pIndexBuffer, Format, Offset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_DrawIndexedInstanced(self: *const T, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawIndexedInstanced(@as(*const ID3D10Device, @ptrCast(self)), IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_DrawInstanced(self: *const T, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawInstanced(@as(*const ID3D10Device, @ptrCast(self)), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetShader(self: *const T, pShader: ?*ID3D10GeometryShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetShader(@as(*const ID3D10Device, @ptrCast(self)), pShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IASetPrimitiveTopology(self: *const T, Topology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IASetPrimitiveTopology(@as(*const ID3D10Device, @ptrCast(self)), Topology);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetPredication(self: *const T, pPredicate: ?*ID3D10Predicate, PredicateValue: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D10Device, @ptrCast(self)), pPredicate, PredicateValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSSetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMSetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetRenderTargets(@as(*const ID3D10Device, @ptrCast(self)), NumViews, ppRenderTargetViews, pDepthStencilView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMSetBlendState(self: *const T, pBlendState: ?*ID3D10BlendState, BlendFactor: ?*const f32, SampleMask: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetBlendState(@as(*const ID3D10Device, @ptrCast(self)), pBlendState, BlendFactor, SampleMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMSetDepthStencilState(self: *const T, pDepthStencilState: ?*ID3D10DepthStencilState, StencilRef: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMSetDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilState, StencilRef);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SOSetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SOSetTargets(@as(*const ID3D10Device, @ptrCast(self)), NumBuffers, ppSOTargets, pOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_DrawAuto(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).DrawAuto(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSSetState(self: *const T, pRasterizerState: ?*ID3D10RasterizerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetState(@as(*const ID3D10Device, @ptrCast(self)), pRasterizerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSSetViewports(self: *const T, NumViewports: u32, pViewports: ?[*]const D3D10_VIEWPORT) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetViewports(@as(*const ID3D10Device, @ptrCast(self)), NumViewports, pViewports);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSSetScissorRects(self: *const T, NumRects: u32, pRects: ?[*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSSetScissorRects(@as(*const ID3D10Device, @ptrCast(self)), NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CopySubresourceRegion(self: *const T, pDstResource: ?*ID3D10Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, pSrcBox: ?*const D3D10_BOX) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CopySubresourceRegion(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CopyResource(self: *const T, pDstResource: ?*ID3D10Resource, pSrcResource: ?*ID3D10Resource) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CopyResource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, pSrcResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_UpdateSubresource(self: *const T, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pDstBox: ?*const D3D10_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).UpdateSubresource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_ClearRenderTargetView(self: *const T, pRenderTargetView: ?*ID3D10RenderTargetView, ColorRGBA: ?*const f32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearRenderTargetView(@as(*const ID3D10Device, @ptrCast(self)), pRenderTargetView, ColorRGBA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_ClearDepthStencilView(self: *const T, pDepthStencilView: ?*ID3D10DepthStencilView, ClearFlags: u32, Depth: f32, Stencil: u8) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearDepthStencilView(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilView, ClearFlags, Depth, Stencil);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GenerateMips(self: *const T, pShaderResourceView: ?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GenerateMips(@as(*const ID3D10Device, @ptrCast(self)), pShaderResourceView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_ResolveSubresource(self: *const T, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ResolveSubresource(@as(*const ID3D10Device, @ptrCast(self)), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetShader(self: *const T, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppPixelShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetShader(self: *const T, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppVertexShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).PSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetInputLayout(self: *const T, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetInputLayout(@as(*const ID3D10Device, @ptrCast(self)), ppInputLayout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetVertexBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetIndexBuffer(self: *const T, pIndexBuffer: ?*?*ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetIndexBuffer(@as(*const ID3D10Device, @ptrCast(self)), pIndexBuffer, Format, Offset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetConstantBuffers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumBuffers, ppConstantBuffers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetShader(self: *const T, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetShader(@as(*const ID3D10Device, @ptrCast(self)), ppGeometryShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetPrimitiveTopology(self: *const T, pTopology: ?*D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).IAGetPrimitiveTopology(@as(*const ID3D10Device, @ptrCast(self)), pTopology);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).VSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetPredication(self: *const T, ppPredicate: ?*?*ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetPredication(@as(*const ID3D10Device, @ptrCast(self)), ppPredicate, pPredicateValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetShaderResources(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumViews, ppShaderResourceViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GSGetSamplers(@as(*const ID3D10Device, @ptrCast(self)), StartSlot, NumSamplers, ppSamplers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetRenderTargets(@as(*const ID3D10Device, @ptrCast(self)), NumViews, ppRenderTargetViews, ppDepthStencilView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetBlendState(self: *const T, ppBlendState: ?*?*ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetBlendState(@as(*const ID3D10Device, @ptrCast(self)), ppBlendState, BlendFactor, pSampleMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetDepthStencilState(self: *const T, ppDepthStencilState: ?*?*ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OMGetDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), ppDepthStencilState, pStencilRef);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SOGetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SOGetTargets(@as(*const ID3D10Device, @ptrCast(self)), NumBuffers, ppSOTargets, pOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSGetState(self: *const T, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetState(@as(*const ID3D10Device, @ptrCast(self)), ppRasterizerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSGetViewports(self: *const T, NumViewports: ?*u32, pViewports: ?[*]D3D10_VIEWPORT) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetViewports(@as(*const ID3D10Device, @ptrCast(self)), NumViewports, pViewports);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_RSGetScissorRects(self: *const T, NumRects: ?*u32, pRects: ?[*]RECT) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).RSGetScissorRects(@as(*const ID3D10Device, @ptrCast(self)), NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetDeviceRemovedReason(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetExceptionMode(self: *const T, RaiseFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetExceptionMode(@as(*const ID3D10Device, @ptrCast(self)), RaiseFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetExceptionMode(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetExceptionMode(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetPrivateData(self: *const T, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D10Device, @ptrCast(self)), guid, pDataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetPrivateData(self: *const T, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D10Device, @ptrCast(self)), guid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D10Device, @ptrCast(self)), guid, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_ClearState(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_Flush(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).Flush(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateBuffer(self: *const T, pDesc: ?*const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateBuffer(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateTexture1D(self: *const T, pDesc: ?*const D3D10_TEXTURE1D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D10Texture1D) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture1D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture1D);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateTexture2D(self: *const T, pDesc: ?*const D3D10_TEXTURE2D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D10Texture2D) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture2D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture2D);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateTexture3D(self: *const T, pDesc: ?*const D3D10_TEXTURE3D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D10Texture3D) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateTexture3D(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pInitialData, ppTexture3D);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateShaderResourceView(self: *const T, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateShaderResourceView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppSRView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateRenderTargetView(self: *const T, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateRenderTargetView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppRTView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateDepthStencilView(self: *const T, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilView(@as(*const ID3D10Device, @ptrCast(self)), pResource, pDesc, ppDepthStencilView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateInputLayout(self: *const T, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateInputLayout(@as(*const ID3D10Device, @ptrCast(self)), pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateVertexShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateVertexShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppVertexShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateGeometryShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppGeometryShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShaderWithStreamOutput(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateGeometryShaderWithStreamOutput(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, OutputStreamStride, ppGeometryShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreatePixelShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreatePixelShader(@as(*const ID3D10Device, @ptrCast(self)), pShaderBytecode, BytecodeLength, ppPixelShader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateBlendState(self: *const T, pBlendStateDesc: ?*const D3D10_BLEND_DESC, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateBlendState(@as(*const ID3D10Device, @ptrCast(self)), pBlendStateDesc, ppBlendState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateDepthStencilState(self: *const T, pDepthStencilDesc: ?*const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilState(@as(*const ID3D10Device, @ptrCast(self)), pDepthStencilDesc, ppDepthStencilState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateRasterizerState(self: *const T, pRasterizerDesc: ?*const D3D10_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateRasterizerState(@as(*const ID3D10Device, @ptrCast(self)), pRasterizerDesc, ppRasterizerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateSamplerState(self: *const T, pSamplerDesc: ?*const D3D10_SAMPLER_DESC, ppSamplerState: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateSamplerState(@as(*const ID3D10Device, @ptrCast(self)), pSamplerDesc, ppSamplerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateQuery(self: *const T, pQueryDesc: ?*const D3D10_QUERY_DESC, ppQuery: ?*?*ID3D10Query) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const ID3D10Device, @ptrCast(self)), pQueryDesc, ppQuery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreatePredicate(self: *const T, pPredicateDesc: ?*const D3D10_QUERY_DESC, ppPredicate: ?*?*ID3D10Predicate) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreatePredicate(@as(*const ID3D10Device, @ptrCast(self)), pPredicateDesc, ppPredicate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateCounter(self: *const T, pCounterDesc: ?*const D3D10_COUNTER_DESC, ppCounter: ?*?*ID3D10Counter) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CreateCounter(@as(*const ID3D10Device, @ptrCast(self)), pCounterDesc, ppCounter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CheckFormatSupport(self: *const T, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckFormatSupport(@as(*const ID3D10Device, @ptrCast(self)), Format, pFormatSupport);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CheckMultisampleQualityLevels(self: *const T, Format: DXGI_FORMAT, SampleCount: u32, pNumQualityLevels: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckMultisampleQualityLevels(@as(*const ID3D10Device, @ptrCast(self)), Format, SampleCount, pNumQualityLevels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CheckCounterInfo(self: *const T, pCounterInfo: ?*D3D10_COUNTER_INFO) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckCounterInfo(@as(*const ID3D10Device, @ptrCast(self)), pCounterInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CheckCounter(self: *const T, pDesc: ?*const D3D10_COUNTER_DESC, pType: ?*D3D10_COUNTER_TYPE, pActiveCounters: ?*u32, szName: ?[*:0]u8, pNameLength: ?*u32, szUnits: ?[*:0]u8, pUnitsLength: ?*u32, szDescription: ?[*:0]u8, pDescriptionLength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).CheckCounter(@as(*const ID3D10Device, @ptrCast(self)), pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetCreationFlags(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const ID3D10Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OpenSharedResource(self: *const T, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).OpenSharedResource(@as(*const ID3D10Device, @ptrCast(self)), hResource, ReturnedInterface, ppResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetTextFilterSize(self: *const T, Width: u32, Height: u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).SetTextFilterSize(@as(*const ID3D10Device, @ptrCast(self)), Width, Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetTextFilterSize(self: *const T, pWidth: ?*u32, pHeight: ?*u32) callconv(.Inline) void {
-            return @as(*const ID3D10Device.VTable, @ptrCast(self.vtable)).GetTextFilterSize(@as(*const ID3D10Device, @ptrCast(self)), pWidth, pHeight);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn VSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
         return self.vtable.VSSetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
@@ -3082,26 +2510,6 @@ pub const ID3D10Multithread = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Multithread_Enter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).Enter(@as(*const ID3D10Multithread, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Multithread_Leave(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID3D10Multithread, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Multithread_SetMultithreadProtected(self: *const T, bMTProtect: BOOL) callconv(.Inline) BOOL {
-            return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).SetMultithreadProtected(@as(*const ID3D10Multithread, @ptrCast(self)), bMTProtect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Multithread_GetMultithreadProtected(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID3D10Multithread, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Enter(self: *const ID3D10Multithread) callconv(.Inline) void {
         return self.vtable.Enter(self);
     }
@@ -3171,38 +2579,6 @@ pub const ID3D10Debug = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_SetFeatureMask(self: *const T, Mask: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D10Debug, @ptrCast(self)), Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_GetFeatureMask(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D10Debug, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_SetPresentPerRenderOpDelay(self: *const T, Milliseconds: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetPresentPerRenderOpDelay(@as(*const ID3D10Debug, @ptrCast(self)), Milliseconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_GetPresentPerRenderOpDelay(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetPresentPerRenderOpDelay(@as(*const ID3D10Debug, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_SetSwapChain(self: *const T, pSwapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ID3D10Debug, @ptrCast(self)), pSwapChain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_GetSwapChain(self: *const T, ppSwapChain: ?*?*IDXGISwapChain) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).GetSwapChain(@as(*const ID3D10Debug, @ptrCast(self)), ppSwapChain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Debug_Validate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Debug.VTable, @ptrCast(self.vtable)).Validate(@as(*const ID3D10Debug, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFeatureMask(self: *const ID3D10Debug, Mask: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetFeatureMask(self, Mask);
     }
@@ -3242,18 +2618,6 @@ pub const ID3D10SwitchToRef = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10SwitchToRef_SetUseRef(self: *const T, UseRef: BOOL) callconv(.Inline) BOOL {
-            return @as(*const ID3D10SwitchToRef.VTable, @ptrCast(self.vtable)).SetUseRef(@as(*const ID3D10SwitchToRef, @ptrCast(self)), UseRef);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10SwitchToRef_GetUseRef(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10SwitchToRef.VTable, @ptrCast(self.vtable)).GetUseRef(@as(*const ID3D10SwitchToRef, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUseRef(self: *const ID3D10SwitchToRef, UseRef: BOOL) callconv(.Inline) BOOL {
         return self.vtable.SetUseRef(self, UseRef);
     }
@@ -4484,150 +3848,6 @@ pub const ID3D10InfoQueue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_SetMessageCountLimit(self: *const T, MessageCountLimit: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)), MessageCountLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_ClearStoredMessages(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D10_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), MessageIndex, pMessage, pMessageByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetNumMessagesDeniedByStorageFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetNumStoredMessages(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetNumStoredMessagesAllowedByRetrievalFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetNumMessagesDiscardedByMessageCountLimit(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetMessageCountLimit(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_AddStorageFilterEntries(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_ClearStorageFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushEmptyStorageFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushCopyOfStorageFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushStorageFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PopStorageFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetStorageFilterStackSize(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_AddRetrievalFilterEntries(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_ClearRetrievalFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushEmptyRetrievalFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushCopyOfRetrievalFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PushRetrievalFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_PopRetrievalFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetRetrievalFilterStackSize(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_AddMessage(self: *const T, Category: D3D10_MESSAGE_CATEGORY, Severity: D3D10_MESSAGE_SEVERITY, ID: D3D10_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category, Severity, ID, pDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_AddApplicationMessage(self: *const T, Severity: D3D10_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity, pDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_SetBreakOnCategory(self: *const T, Category: D3D10_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_SetBreakOnSeverity(self: *const T, Severity: D3D10_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_SetBreakOnID(self: *const T, ID: D3D10_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const ID3D10InfoQueue, @ptrCast(self)), ID, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetBreakOnCategory(self: *const T, Category: D3D10_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const ID3D10InfoQueue, @ptrCast(self)), Category);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetBreakOnSeverity(self: *const T, Severity: D3D10_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const ID3D10InfoQueue, @ptrCast(self)), Severity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetBreakOnID(self: *const T, ID: D3D10_MESSAGE_ID) callconv(.Inline) BOOL {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const ID3D10InfoQueue, @ptrCast(self)), ID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_SetMuteDebugOutput(self: *const T, bMute: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const ID3D10InfoQueue, @ptrCast(self)), bMute);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetMuteDebugOutput(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D10InfoQueue, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMessageCountLimit(self: *const ID3D10InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
         return self.vtable.SetMessageCountLimit(self, MessageCountLimit);
     }
@@ -4849,24 +4069,6 @@ pub const ID3D10ShaderReflectionType = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionType_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionType_GetMemberTypeByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionType {
-            return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionType_GetMemberTypeByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionType {
-            return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionType_GetMemberTypeName(self: *const T, Index: u32) callconv(.Inline) ?PSTR {
-            return @as(*const ID3D10ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D10ShaderReflectionType, @ptrCast(self)), Index);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -4895,16 +4097,6 @@ pub const ID3D10ShaderReflectionVariable = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionType,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionVariable_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionVariable, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionVariable_GetType(self: *const T) callconv(.Inline) ?*ID3D10ShaderReflectionType {
-            return @as(*const ID3D10ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10ShaderReflectionVariable, @ptrCast(self)));
-        }
-    };}
     pub fn GetDesc(self: *const ID3D10ShaderReflectionVariable, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -4932,20 +4124,6 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionVariable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionConstantBuffer_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionConstantBuffer_GetVariableByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
-            return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflectionConstantBuffer_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
-            return @as(*const ID3D10ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D10ShaderReflectionConstantBuffer, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -4993,34 +4171,6 @@ pub const ID3D10ShaderReflection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetConstantBufferByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10ShaderReflection, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10ShaderReflection, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ResourceIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetInputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection_GetOutputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D10ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D10ShaderReflection, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -5141,26 +4291,6 @@ pub const ID3D10StateBlock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10StateBlock_Capture(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).Capture(@as(*const ID3D10StateBlock, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10StateBlock_Apply(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).Apply(@as(*const ID3D10StateBlock, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10StateBlock_ReleaseAllDeviceObjects(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).ReleaseAllDeviceObjects(@as(*const ID3D10StateBlock, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10StateBlock_GetDevice(self: *const T, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10StateBlock.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10StateBlock, @ptrCast(self)), ppDevice);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Capture(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
         return self.vtable.Capture(self);
     }
@@ -5222,36 +4352,6 @@ pub const ID3D10EffectType = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_IsValid(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectType, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetDesc(self: *const T, pDesc: ?*D3D10_EFFECT_TYPE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectType, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetMemberTypeByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectType {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetMemberTypeByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D10EffectType, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetMemberTypeBySemantic(self: *const T, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberTypeBySemantic(@as(*const ID3D10EffectType, @ptrCast(self)), Semantic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetMemberName(self: *const T, Index: u32) callconv(.Inline) ?PSTR {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberName(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectType_GetMemberSemantic(self: *const T, Index: u32) callconv(.Inline) ?PSTR {
-            return @as(*const ID3D10EffectType.VTable, @ptrCast(self.vtable)).GetMemberSemantic(@as(*const ID3D10EffectType, @ptrCast(self)), Index);
-        }
-    };}
     pub fn IsValid(self: *const ID3D10EffectType) callconv(.Inline) BOOL {
         return self.vtable.IsValid(self);
     }
@@ -5381,108 +4481,6 @@ pub const ID3D10EffectVariable = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_IsValid(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetType(self: *const T) callconv(.Inline) ?*ID3D10EffectType {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetDesc(self: *const T, pDesc: ?*D3D10_EFFECT_VARIABLE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectVariable, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetAnnotationByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetAnnotationByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectVariable, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetMemberByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberByIndex(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetMemberByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberByName(@as(*const ID3D10EffectVariable, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetMemberBySemantic(self: *const T, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetMemberBySemantic(@as(*const ID3D10EffectVariable, @ptrCast(self)), Semantic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetElement(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetElement(@as(*const ID3D10EffectVariable, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetParentConstantBuffer(self: *const T) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetParentConstantBuffer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsScalar(self: *const T) callconv(.Inline) ?*ID3D10EffectScalarVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsScalar(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsVector(self: *const T) callconv(.Inline) ?*ID3D10EffectVectorVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsVector(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsMatrix(self: *const T) callconv(.Inline) ?*ID3D10EffectMatrixVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsMatrix(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsString(self: *const T) callconv(.Inline) ?*ID3D10EffectStringVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsString(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsShaderResource(self: *const T) callconv(.Inline) ?*ID3D10EffectShaderResourceVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsShaderResource(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsRenderTargetView(self: *const T) callconv(.Inline) ?*ID3D10EffectRenderTargetViewVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsRenderTargetView(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsDepthStencilView(self: *const T) callconv(.Inline) ?*ID3D10EffectDepthStencilViewVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsDepthStencilView(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsConstantBuffer(self: *const T) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsConstantBuffer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsShader(self: *const T) callconv(.Inline) ?*ID3D10EffectShaderVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsShader(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsBlend(self: *const T) callconv(.Inline) ?*ID3D10EffectBlendVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsBlend(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsDepthStencil(self: *const T) callconv(.Inline) ?*ID3D10EffectDepthStencilVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsDepthStencil(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsRasterizer(self: *const T) callconv(.Inline) ?*ID3D10EffectRasterizerVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsRasterizer(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_AsSampler(self: *const T) callconv(.Inline) ?*ID3D10EffectSamplerVariable {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).AsSampler(@as(*const ID3D10EffectVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_SetRawValue(self: *const T, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).SetRawValue(@as(*const ID3D10EffectVariable, @ptrCast(self)), pData, Offset, ByteCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetRawValue(self: *const T, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVariable.VTable, @ptrCast(self.vtable)).GetRawValue(@as(*const ID3D10EffectVariable, @ptrCast(self)), pData, Offset, ByteCount);
-        }
-    };}
     pub fn IsValid(self: *const ID3D10EffectVariable) callconv(.Inline) BOOL {
         return self.vtable.IsValid(self);
     }
@@ -5629,58 +4627,6 @@ pub const ID3D10EffectScalarVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetFloat(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetFloat(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetFloat(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetFloat(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetFloatArray(self: *const T, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetFloatArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetFloatArray(self: *const T, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetFloatArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetInt(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetInt(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetInt(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetInt(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetIntArray(self: *const T, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetIntArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetIntArray(self: *const T, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetIntArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetBool(self: *const T, Value: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetBool(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetBool(self: *const T, pValue: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetBool(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_SetBoolArray(self: *const T, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).SetBoolArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectScalarVariable_GetBoolArray(self: *const T, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectScalarVariable.VTable, @ptrCast(self.vtable)).GetBoolArray(@as(*const ID3D10EffectScalarVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetFloat(self: *const ID3D10EffectScalarVariable, Value: f32) callconv(.Inline) HRESULT {
         return self.vtable.SetFloat(self, Value);
     }
@@ -5788,58 +4734,6 @@ pub const ID3D10EffectVectorVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetBoolVector(self: *const T, pData: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetBoolVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetIntVector(self: *const T, pData: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetIntVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetFloatVector(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetFloatVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetBoolVector(self: *const T, pData: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetBoolVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetIntVector(self: *const T, pData: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetIntVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetFloatVector(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetFloatVector(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetBoolVectorArray(self: *const T, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetBoolVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetIntVectorArray(self: *const T, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetIntVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_SetFloatVectorArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).SetFloatVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetBoolVectorArray(self: *const T, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetBoolVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetIntVectorArray(self: *const T, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetIntVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVectorVariable_GetFloatVectorArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectVectorVariable.VTable, @ptrCast(self.vtable)).GetFloatVectorArray(@as(*const ID3D10EffectVectorVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetBoolVector(self, pData);
     }
@@ -5927,42 +4821,6 @@ pub const ID3D10EffectMatrixVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_SetMatrix(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_GetMatrix(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrix(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_SetMatrixArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_GetMatrixArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_SetMatrixTranspose(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixTranspose(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_GetMatrixTranspose(self: *const T, pData: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixTranspose(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_SetMatrixTransposeArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).SetMatrixTransposeArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectMatrixVariable_GetMatrixTransposeArray(self: *const T, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectMatrixVariable.VTable, @ptrCast(self.vtable)).GetMatrixTransposeArray(@as(*const ID3D10EffectMatrixVariable, @ptrCast(self)), pData, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
         return self.vtable.SetMatrix(self, pData);
     }
@@ -6008,18 +4866,6 @@ pub const ID3D10EffectStringVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectStringVariable_GetString(self: *const T, ppString: ?*?PSTR) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectStringVariable.VTable, @ptrCast(self.vtable)).GetString(@as(*const ID3D10EffectStringVariable, @ptrCast(self)), ppString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectStringVariable_GetStringArray(self: *const T, ppStrings: [*]?PSTR, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectStringVariable.VTable, @ptrCast(self.vtable)).GetStringArray(@as(*const ID3D10EffectStringVariable, @ptrCast(self)), ppStrings, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?PSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetString(self, ppString);
     }
@@ -6057,26 +4903,6 @@ pub const ID3D10EffectShaderResourceVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderResourceVariable_SetResource(self: *const T, pResource: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).SetResource(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), pResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderResourceVariable_GetResource(self: *const T, ppResource: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderResourceVariable_SetResourceArray(self: *const T, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).SetResourceArray(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderResourceVariable_GetResourceArray(self: *const T, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderResourceVariable.VTable, @ptrCast(self.vtable)).GetResourceArray(@as(*const ID3D10EffectShaderResourceVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetResource(self: *const ID3D10EffectShaderResourceVariable, pResource: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
         return self.vtable.SetResource(self, pResource);
     }
@@ -6120,26 +4946,6 @@ pub const ID3D10EffectRenderTargetViewVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRenderTargetViewVariable_SetRenderTarget(self: *const T, pResource: ?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).SetRenderTarget(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), pResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRenderTargetViewVariable_GetRenderTarget(self: *const T, ppResource: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).GetRenderTarget(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRenderTargetViewVariable_SetRenderTargetArray(self: *const T, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).SetRenderTargetArray(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRenderTargetViewVariable_GetRenderTargetArray(self: *const T, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRenderTargetViewVariable.VTable, @ptrCast(self.vtable)).GetRenderTargetArray(@as(*const ID3D10EffectRenderTargetViewVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, pResource: ?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
         return self.vtable.SetRenderTarget(self, pResource);
     }
@@ -6183,26 +4989,6 @@ pub const ID3D10EffectDepthStencilViewVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilViewVariable_SetDepthStencil(self: *const T, pResource: ?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).SetDepthStencil(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), pResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilViewVariable_GetDepthStencil(self: *const T, ppResource: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).GetDepthStencil(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilViewVariable_SetDepthStencilArray(self: *const T, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).SetDepthStencilArray(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilViewVariable_GetDepthStencilArray(self: *const T, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilViewVariable.VTable, @ptrCast(self.vtable)).GetDepthStencilArray(@as(*const ID3D10EffectDepthStencilViewVariable, @ptrCast(self)), ppResources, Offset, Count);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, pResource: ?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
         return self.vtable.SetDepthStencil(self, pResource);
     }
@@ -6242,26 +5028,6 @@ pub const ID3D10EffectConstantBuffer = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectConstantBuffer_SetConstantBuffer(self: *const T, pConstantBuffer: ?*ID3D10Buffer) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).SetConstantBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), pConstantBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectConstantBuffer_GetConstantBuffer(self: *const T, ppConstantBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).GetConstantBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), ppConstantBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectConstantBuffer_SetTextureBuffer(self: *const T, pTextureBuffer: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).SetTextureBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), pTextureBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectConstantBuffer_GetTextureBuffer(self: *const T, ppTextureBuffer: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectConstantBuffer.VTable, @ptrCast(self.vtable)).GetTextureBuffer(@as(*const ID3D10EffectConstantBuffer, @ptrCast(self)), ppTextureBuffer);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn SetConstantBuffer(self: *const ID3D10EffectConstantBuffer, pConstantBuffer: ?*ID3D10Buffer) callconv(.Inline) HRESULT {
         return self.vtable.SetConstantBuffer(self, pConstantBuffer);
     }
@@ -6327,34 +5093,6 @@ pub const ID3D10EffectShaderVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetShaderDesc(self: *const T, ShaderIndex: u32, pDesc: ?*D3D10_EFFECT_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetShaderDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetVertexShader(self: *const T, ShaderIndex: u32, ppVS: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetVertexShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppVS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetGeometryShader(self: *const T, ShaderIndex: u32, ppGS: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetGeometryShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppGS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetPixelShader(self: *const T, ShaderIndex: u32, ppPS: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetPixelShader(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, ppPS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetInputSignatureElementDesc(self: *const T, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetInputSignatureElementDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, Element, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectShaderVariable_GetOutputSignatureElementDesc(self: *const T, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectShaderVariable.VTable, @ptrCast(self.vtable)).GetOutputSignatureElementDesc(@as(*const ID3D10EffectShaderVariable, @ptrCast(self)), ShaderIndex, Element, pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetShaderDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, pDesc: ?*D3D10_EFFECT_SHADER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetShaderDesc(self, ShaderIndex, pDesc);
     }
@@ -6394,18 +5132,6 @@ pub const ID3D10EffectBlendVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectBlendVariable_GetBlendState(self: *const T, Index: u32, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectBlendVariable.VTable, @ptrCast(self.vtable)).GetBlendState(@as(*const ID3D10EffectBlendVariable, @ptrCast(self)), Index, ppBlendState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectBlendVariable_GetBackingStore(self: *const T, Index: u32, pBlendDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectBlendVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectBlendVariable, @ptrCast(self)), Index, pBlendDesc);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetBlendState(self: *const ID3D10EffectBlendVariable, Index: u32, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
         return self.vtable.GetBlendState(self, Index, ppBlendState);
     }
@@ -6433,18 +5159,6 @@ pub const ID3D10EffectDepthStencilVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilVariable_GetDepthStencilState(self: *const T, Index: u32, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilVariable.VTable, @ptrCast(self.vtable)).GetDepthStencilState(@as(*const ID3D10EffectDepthStencilVariable, @ptrCast(self)), Index, ppDepthStencilState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectDepthStencilVariable_GetBackingStore(self: *const T, Index: u32, pDepthStencilDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectDepthStencilVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectDepthStencilVariable, @ptrCast(self)), Index, pDepthStencilDesc);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetDepthStencilState(self: *const ID3D10EffectDepthStencilVariable, Index: u32, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
         return self.vtable.GetDepthStencilState(self, Index, ppDepthStencilState);
     }
@@ -6472,18 +5186,6 @@ pub const ID3D10EffectRasterizerVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRasterizerVariable_GetRasterizerState(self: *const T, Index: u32, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRasterizerVariable.VTable, @ptrCast(self.vtable)).GetRasterizerState(@as(*const ID3D10EffectRasterizerVariable, @ptrCast(self)), Index, ppRasterizerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectRasterizerVariable_GetBackingStore(self: *const T, Index: u32, pRasterizerDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectRasterizerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectRasterizerVariable, @ptrCast(self)), Index, pRasterizerDesc);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetRasterizerState(self: *const ID3D10EffectRasterizerVariable, Index: u32, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
         return self.vtable.GetRasterizerState(self, Index, ppRasterizerState);
     }
@@ -6511,18 +5213,6 @@ pub const ID3D10EffectSamplerVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10EffectVariable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectSamplerVariable_GetSampler(self: *const T, Index: u32, ppSampler: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectSamplerVariable.VTable, @ptrCast(self.vtable)).GetSampler(@as(*const ID3D10EffectSamplerVariable, @ptrCast(self)), Index, ppSampler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectSamplerVariable_GetBackingStore(self: *const T, Index: u32, pSamplerDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectSamplerVariable.VTable, @ptrCast(self.vtable)).GetBackingStore(@as(*const ID3D10EffectSamplerVariable, @ptrCast(self)), Index, pSamplerDesc);
-        }
-    };}
-    pub usingnamespace ID3D10EffectVariable.MethodMixin(@This());
     pub fn GetSampler(self: *const ID3D10EffectSamplerVariable, Index: u32, ppSampler: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
         return self.vtable.GetSampler(self, Index, ppSampler);
     }
@@ -6588,44 +5278,6 @@ pub const ID3D10EffectPass = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_IsValid(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectPass, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetDesc(self: *const T, pDesc: ?*D3D10_PASS_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetVertexShaderDesc(self: *const T, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetVertexShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetGeometryShaderDesc(self: *const T, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetGeometryShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetPixelShaderDesc(self: *const T, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetPixelShaderDesc(@as(*const ID3D10EffectPass, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetAnnotationByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectPass, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_GetAnnotationByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectPass, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_Apply(self: *const T, Flags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).Apply(@as(*const ID3D10EffectPass, @ptrCast(self)), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPass_ComputeStateBlockMask(self: *const T, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectPass.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectPass, @ptrCast(self)), pStateBlockMask);
-        }
-    };}
     pub fn IsValid(self: *const ID3D10EffectPass) callconv(.Inline) BOOL {
         return self.vtable.IsValid(self);
     }
@@ -6695,36 +5347,6 @@ pub const ID3D10EffectTechnique = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_IsValid(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10EffectTechnique, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_GetDesc(self: *const T, pDesc: ?*D3D10_TECHNIQUE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10EffectTechnique, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_GetAnnotationByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetAnnotationByIndex(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_GetAnnotationByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetAnnotationByName(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_GetPassByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectPass {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetPassByIndex(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_GetPassByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectPass {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).GetPassByName(@as(*const ID3D10EffectTechnique, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectTechnique_ComputeStateBlockMask(self: *const T, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10EffectTechnique.VTable, @ptrCast(self.vtable)).ComputeStateBlockMask(@as(*const ID3D10EffectTechnique, @ptrCast(self)), pStateBlockMask);
-        }
-    };}
     pub fn IsValid(self: *const ID3D10EffectTechnique) callconv(.Inline) BOOL {
         return self.vtable.IsValid(self);
     }
@@ -6814,62 +5436,6 @@ pub const ID3D10Effect = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_IsValid(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsValid(@as(*const ID3D10Effect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_IsPool(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsPool(@as(*const ID3D10Effect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetDevice(self: *const T, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D10Effect, @ptrCast(self)), ppDevice);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetDesc(self: *const T, pDesc: ?*D3D10_EFFECT_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10Effect, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetConstantBufferByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetVariableByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetVariableBySemantic(self: *const T, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetVariableBySemantic(@as(*const ID3D10Effect, @ptrCast(self)), Semantic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetTechniqueByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10EffectTechnique {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetTechniqueByIndex(@as(*const ID3D10Effect, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_GetTechniqueByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectTechnique {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).GetTechniqueByName(@as(*const ID3D10Effect, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_Optimize(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).Optimize(@as(*const ID3D10Effect, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Effect_IsOptimized(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D10Effect.VTable, @ptrCast(self.vtable)).IsOptimized(@as(*const ID3D10Effect, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsValid(self: *const ID3D10Effect) callconv(.Inline) BOOL {
         return self.vtable.IsValid(self);
     }
@@ -6923,14 +5489,6 @@ pub const ID3D10EffectPool = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectPool_AsEffect(self: *const T) callconv(.Inline) ?*ID3D10Effect {
-            return @as(*const ID3D10EffectPool.VTable, @ptrCast(self.vtable)).AsEffect(@as(*const ID3D10EffectPool, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AsEffect(self: *const ID3D10EffectPool) callconv(.Inline) ?*ID3D10Effect {
         return self.vtable.AsEffect(self);
     }
@@ -6979,14 +5537,8 @@ pub const ID3D10BlendState1 = extern union {
     };
     vtable: *const VTable,
     ID3D10BlendState: ID3D10BlendState,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10BlendState.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10BlendState1_GetDesc1(self: *const T, pDesc: ?*D3D10_BLEND_DESC1) callconv(.Inline) void {
-            return @as(*const ID3D10BlendState1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10BlendState1, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10BlendState.MethodMixin(@This());
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc1(self: *const ID3D10BlendState1, pDesc: ?*D3D10_BLEND_DESC1) callconv(.Inline) void {
         return self.vtable.GetDesc1(self, pDesc);
     }
@@ -7029,14 +5581,9 @@ pub const ID3D10ShaderResourceView1 = extern union {
     };
     vtable: *const VTable,
     ID3D10ShaderResourceView: ID3D10ShaderResourceView,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10ShaderResourceView.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderResourceView1_GetDesc1(self: *const T, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1) callconv(.Inline) void {
-            return @as(*const ID3D10ShaderResourceView1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D10ShaderResourceView1, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D10ShaderResourceView.MethodMixin(@This());
+    ID3D10View: ID3D10View,
+    ID3D10DeviceChild: ID3D10DeviceChild,
+    IUnknown: IUnknown,
     pub fn GetDesc1(self: *const ID3D10ShaderResourceView1, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1) callconv(.Inline) void {
         return self.vtable.GetDesc1(self, pDesc);
     }
@@ -7072,22 +5619,7 @@ pub const ID3D10Device1 = extern union {
     };
     vtable: *const VTable,
     ID3D10Device: ID3D10Device,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D10Device.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device1_CreateShaderResourceView1(self: *const T, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).CreateShaderResourceView1(@as(*const ID3D10Device1, @ptrCast(self)), pResource, pDesc, ppSRView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device1_CreateBlendState1(self: *const T, pBlendStateDesc: ?*const D3D10_BLEND_DESC1, ppBlendState: ?*?*ID3D10BlendState1) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).CreateBlendState1(@as(*const ID3D10Device1, @ptrCast(self)), pBlendStateDesc, ppBlendState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device1_GetFeatureLevel(self: *const T) callconv(.Inline) D3D10_FEATURE_LEVEL1 {
-            return @as(*const ID3D10Device1.VTable, @ptrCast(self.vtable)).GetFeatureLevel(@as(*const ID3D10Device1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D10Device.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateShaderResourceView1(self: *const ID3D10Device1, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderResourceView1(self, pResource, pDesc, ppSRView);
     }
@@ -7347,70 +5879,6 @@ pub const ID3D10ShaderReflection1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetDesc(self: *const T, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetConstantBufferByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ResourceIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetInputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetOutputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetResourceBindingDescByName(self: *const T, Name: ?[*:0]const u8, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), Name, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetMovInstructionCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetMovInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetMovcInstructionCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetMovcInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetConversionInstructionCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetConversionInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetBitwiseInstructionCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetBitwiseInstructionCount(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_GetGSInputPrimitive(self: *const T, pPrim: ?*D3D_PRIMITIVE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).GetGSInputPrimitive(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pPrim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_IsLevel9Shader(self: *const T, pbLevel9Shader: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).IsLevel9Shader(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pbLevel9Shader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10ShaderReflection1_IsSampleFrequencyShader(self: *const T, pbSampleFrequency: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D10ShaderReflection1.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D10ShaderReflection1, @ptrCast(self)), pbSampleFrequency);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D10ShaderReflection1, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }

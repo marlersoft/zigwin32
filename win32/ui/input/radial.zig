@@ -21,14 +21,7 @@ pub const IRadialControllerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRadialControllerInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IRadialControllerInterop, @ptrCast(self)), hwnd, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
@@ -49,14 +42,7 @@ pub const IRadialControllerConfigurationInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerConfigurationInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRadialControllerConfigurationInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IRadialControllerConfigurationInterop, @ptrCast(self)), hwnd, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
@@ -76,14 +62,7 @@ pub const IRadialControllerIndependentInputSourceInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerIndependentInputSourceInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRadialControllerIndependentInputSourceInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IRadialControllerIndependentInputSourceInterop, @ptrCast(self)), hwnd, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
@@ -108,12 +87,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
+const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
     @setEvalBranchQuota(

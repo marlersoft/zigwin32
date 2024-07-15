@@ -19,14 +19,6 @@ pub const IIsolatedEnvironmentInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIsolatedEnvironmentInterop_GetHostHwndInterop(self: *const T, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IIsolatedEnvironmentInterop.VTable, @ptrCast(self.vtable)).GetHostHwndInterop(@as(*const IIsolatedEnvironmentInterop, @ptrCast(self)), containerHwnd, hostHwnd);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.GetHostHwndInterop(self, containerHwnd, hostHwnd);
     }

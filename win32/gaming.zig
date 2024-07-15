@@ -51,26 +51,6 @@ pub const IGameExplorer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer_AddGame(self: *const T, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).AddGame(@as(*const IGameExplorer, @ptrCast(self)), bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer_RemoveGame(self: *const T, guidInstanceID: Guid) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).RemoveGame(@as(*const IGameExplorer, @ptrCast(self)), guidInstanceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer_UpdateGame(self: *const T, guidInstanceID: Guid) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).UpdateGame(@as(*const IGameExplorer, @ptrCast(self)), guidInstanceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer_VerifyAccess(self: *const T, bstrGDFBinaryPath: ?BSTR, pfHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer.VTable, @ptrCast(self.vtable)).VerifyAccess(@as(*const IGameExplorer, @ptrCast(self)), bstrGDFBinaryPath, pfHasAccess);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddGame(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.AddGame(self, bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
     }
@@ -163,58 +143,6 @@ pub const IGameStatistics = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetMaxCategoryLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxCategoryLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetMaxNameLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxNameLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetMaxValueLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxValueLength(@as(*const IGameStatistics, @ptrCast(self)), cch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetMaxCategories(self: *const T, pMax: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxCategories(@as(*const IGameStatistics, @ptrCast(self)), pMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetMaxStatsPerCategory(self: *const T, pMax: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetMaxStatsPerCategory(@as(*const IGameStatistics, @ptrCast(self)), pMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_SetCategoryTitle(self: *const T, categoryIndex: u16, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetCategoryTitle(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, title);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetCategoryTitle(self: *const T, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetCategoryTitle(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, pTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetStatistic(self: *const T, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetStatistic(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, statIndex, pName, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_SetStatistic(self: *const T, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetStatistic(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex, statIndex, name, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_Save(self: *const T, trackChanges: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).Save(@as(*const IGameStatistics, @ptrCast(self)), trackChanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_SetLastPlayedCategory(self: *const T, categoryIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).SetLastPlayedCategory(@as(*const IGameStatistics, @ptrCast(self)), categoryIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatistics_GetLastPlayedCategory(self: *const T, pCategoryIndex: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatistics.VTable, @ptrCast(self.vtable)).GetLastPlayedCategory(@as(*const IGameStatistics, @ptrCast(self)), pCategoryIndex);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaxCategoryLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetMaxCategoryLength(self, cch);
     }
@@ -272,18 +200,6 @@ pub const IGameStatisticsMgr = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatisticsMgr_GetGameStatistics(self: *const T, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatisticsMgr.VTable, @ptrCast(self.vtable)).GetGameStatistics(@as(*const IGameStatisticsMgr, @ptrCast(self)), GDFBinaryPath, openType, pOpenResult, ppiStats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameStatisticsMgr_RemoveGameStatistics(self: *const T, GDFBinaryPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameStatisticsMgr.VTable, @ptrCast(self.vtable)).RemoveGameStatistics(@as(*const IGameStatisticsMgr, @ptrCast(self)), GDFBinaryPath);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.Inline) HRESULT {
         return self.vtable.GetGameStatistics(self, GDFBinaryPath, openType, pOpenResult, ppiStats);
     }
@@ -315,22 +231,6 @@ pub const IGameExplorer2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer2_InstallGame(self: *const T, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).InstallGame(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath, installDirectory, installScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer2_UninstallGame(self: *const T, binaryGDFPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).UninstallGame(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGameExplorer2_CheckAccess(self: *const T, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IGameExplorer2.VTable, @ptrCast(self.vtable)).CheckAccess(@as(*const IGameExplorer2, @ptrCast(self)), binaryGDFPath, pHasAccess);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.Inline) HRESULT {
         return self.vtable.InstallGame(self, binaryGDFPath, installDirectory, installScope);
     }
@@ -498,34 +398,6 @@ pub const IXblIdpAuthManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_SetGamerAccount(self: *const T, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).SetGamerAccount(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, xuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetGamerAccount(self: *const T, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetGamerAccount(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, xuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_SetAppViewInitialized(self: *const T, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).SetAppViewInitialized(@as(*const IXblIdpAuthManager, @ptrCast(self)), appSid, msaAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetEnvironment(self: *const T, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetEnvironment(@as(*const IXblIdpAuthManager, @ptrCast(self)), environment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetSandbox(self: *const T, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetSandbox(@as(*const IXblIdpAuthManager, @ptrCast(self)), sandbox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetTokenAndSignatureWithTokenResult(self: *const T, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthManager.VTable, @ptrCast(self.vtable)).GetTokenAndSignatureWithTokenResult(@as(*const IXblIdpAuthManager, @ptrCast(self)), msaAccountId, appSid, msaTarget, msaPolicy, httpMethod, uri, headers, body, bodySize, forceRefresh, result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetGamerAccount(self, msaAccountId, xuid);
     }
@@ -634,90 +506,6 @@ pub const IXblIdpAuthTokenResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetStatus(self: *const T, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetErrorCode(self: *const T, errorCode: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), errorCode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetToken(self: *const T, token: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetToken(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), token);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetSignature(self: *const T, signature: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), signature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetSandbox(self: *const T, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetSandbox(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), sandbox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetEnvironment(self: *const T, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetEnvironment(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), environment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaAccountId(self: *const T, msaAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaAccountId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetXuid(self: *const T, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetXuid(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), xuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetGamertag(self: *const T, gamertag: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetGamertag(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), gamertag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetAgeGroup(self: *const T, ageGroup: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetAgeGroup(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), ageGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetPrivileges(self: *const T, privileges: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetPrivileges(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), privileges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaTarget(self: *const T, msaTarget: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaTarget(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaPolicy(self: *const T, msaPolicy: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaPolicy(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaPolicy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaAppId(self: *const T, msaAppId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMsaAppId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), msaAppId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetRedirect(self: *const T, redirect: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetRedirect(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), redirect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMessage(self: *const T, message: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), message);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetHelpId(self: *const T, helpId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetHelpId(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), helpId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetEnforcementBans(self: *const T, enforcementBans: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetEnforcementBans(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), enforcementBans);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetRestrictions(self: *const T, restrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), restrictions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetTitleRestrictions(self: *const T, titleRestrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult.VTable, @ptrCast(self.vtable)).GetTitleRestrictions(@as(*const IXblIdpAuthTokenResult, @ptrCast(self)), titleRestrictions);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStatus(self: *const IXblIdpAuthTokenResult, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.GetStatus(self, status);
     }
@@ -800,22 +588,6 @@ pub const IXblIdpAuthTokenResult2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetModernGamertag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetModernGamertag(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetModernGamertagSuffix(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetModernGamertagSuffix(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetUniqueModernGamertag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IXblIdpAuthTokenResult2.VTable, @ptrCast(self.vtable)).GetUniqueModernGamertag(@as(*const IXblIdpAuthTokenResult2, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetModernGamertag(self, value);
     }

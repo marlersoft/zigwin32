@@ -55,26 +55,7 @@ pub const ICatalog = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_GetCollection(self: *const T, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).GetCollection(@as(*const ICatalog, @ptrCast(self)), bstrCollName, ppCatalogCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_Connect(self: *const T, bstrConnectString: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICatalog, @ptrCast(self)), bstrConnectString, ppCatalogCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_get_MajorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_get_MinorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetCollection(self: *const ICatalog, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
         return self.vtable.GetCollection(self, bstrCollName, ppCatalogCollection);
     }
@@ -117,26 +98,7 @@ pub const IComponentUtil = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_InstallComponent(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).InstallComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_ImportComponent(self: *const T, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrCLSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_ImportComponentByName(self: *const T, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponentByName(@as(*const IComponentUtil, @ptrCast(self)), bstrProgID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_GetCLSIDs(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, aCLSIDs: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).GetCLSIDs(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, aCLSIDs);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InstallComponent(self: *const IComponentUtil, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.InstallComponent(self, bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
     }
@@ -175,22 +137,7 @@ pub const IPackageUtil = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_InstallPackage(self: *const T, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).InstallPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageFile, bstrInstallPath, lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_ExportPackage(self: *const T, bstrPackageID: ?BSTR, bstrPackageFile: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ExportPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID, bstrPackageFile, lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_ShutdownPackage(self: *const T, bstrPackageID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ShutdownPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InstallPackage(self: *const IPackageUtil, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
         return self.vtable.InstallPackage(self, bstrPackageFile, bstrInstallPath, lOptions);
     }
@@ -222,18 +169,7 @@ pub const IRemoteComponentUtil = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteComponentUtil_InstallRemoteComponent(self: *const T, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponent(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageID, bstrCLSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteComponentUtil_InstallRemoteComponentByName(self: *const T, bstrServer: ?BSTR, bstrPackageName: ?BSTR, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponentByName(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageName, bstrProgID);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InstallRemoteComponent(self: *const IRemoteComponentUtil, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.InstallRemoteComponent(self, bstrServer, bstrPackageID, bstrCLSID);
     }
@@ -258,18 +194,7 @@ pub const IRoleAssociationUtil = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoleAssociationUtil_AssociateRole(self: *const T, bstrRoleID: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRole(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoleAssociationUtil_AssociateRoleByName(self: *const T, bstrRoleName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRoleByName(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleName);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AssociateRole(self: *const IRoleAssociationUtil, bstrRoleID: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.AssociateRole(self, bstrRoleID);
     }
@@ -400,12 +325,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 
 test {

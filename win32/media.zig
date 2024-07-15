@@ -246,26 +246,6 @@ pub const IReferenceClock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_GetTime(self: *const T, pTime: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IReferenceClock, @ptrCast(self)), pTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_AdviseTime(self: *const T, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdviseTime(@as(*const IReferenceClock, @ptrCast(self)), baseTime, streamTime, hEvent, pdwAdviseCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_AdvisePeriodic(self: *const T, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdvisePeriodic(@as(*const IReferenceClock, @ptrCast(self)), startTime, periodTime, hSemaphore, pdwAdviseCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_Unadvise(self: *const T, dwAdviseCookie: usize) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IReferenceClock, @ptrCast(self)), dwAdviseCookie);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTime(self: *const IReferenceClock, pTime: ?*i64) callconv(.Inline) HRESULT {
         return self.vtable.GetTime(self, pTime);
     }
@@ -297,18 +277,6 @@ pub const IReferenceClockTimerControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClockTimerControl_SetDefaultTimerResolution(self: *const T, timerResolution: i64) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).SetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), timerResolution);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClockTimerControl_GetDefaultTimerResolution(self: *const T, pTimerResolution: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).GetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), pTimerResolution);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDefaultTimerResolution(self: *const IReferenceClockTimerControl, timerResolution: i64) callconv(.Inline) HRESULT {
         return self.vtable.SetDefaultTimerResolution(self, timerResolution);
     }
@@ -325,10 +293,7 @@ pub const IReferenceClock2 = extern union {
     };
     vtable: *const VTable,
     IReferenceClock: IReferenceClock,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IReferenceClock.MethodMixin(T);
-    };}
-    pub usingnamespace IReferenceClock.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 pub const TIMECODE = extern union {

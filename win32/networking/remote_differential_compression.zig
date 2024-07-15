@@ -219,26 +219,6 @@ pub const IRdcGeneratorParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorParameters_GetGeneratorParametersType(self: *const T, parametersType: ?*GeneratorParametersType) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetGeneratorParametersType(@as(*const IRdcGeneratorParameters, @ptrCast(self)), parametersType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorParameters_GetParametersVersion(self: *const T, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetParametersVersion(@as(*const IRdcGeneratorParameters, @ptrCast(self)), currentVersion, minimumCompatibleAppVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorParameters_GetSerializeSize(self: *const T, size: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).GetSerializeSize(@as(*const IRdcGeneratorParameters, @ptrCast(self)), size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorParameters_Serialize(self: *const T, size: u32, parametersBlob: ?*u8, bytesWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorParameters.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IRdcGeneratorParameters, @ptrCast(self)), size, parametersBlob, bytesWritten);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGeneratorParametersType(self: *const IRdcGeneratorParameters, parametersType: ?*GeneratorParametersType) callconv(.Inline) HRESULT {
         return self.vtable.GetGeneratorParametersType(self, parametersType);
     }
@@ -278,26 +258,6 @@ pub const IRdcGeneratorFilterMaxParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorFilterMaxParameters_GetHorizonSize(self: *const T, horizonSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).GetHorizonSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), horizonSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorFilterMaxParameters_SetHorizonSize(self: *const T, horizonSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).SetHorizonSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), horizonSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorFilterMaxParameters_GetHashWindowSize(self: *const T, hashWindowSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).GetHashWindowSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), hashWindowSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGeneratorFilterMaxParameters_SetHashWindowSize(self: *const T, hashWindowSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGeneratorFilterMaxParameters.VTable, @ptrCast(self.vtable)).SetHashWindowSize(@as(*const IRdcGeneratorFilterMaxParameters, @ptrCast(self)), hashWindowSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetHorizonSize(self, horizonSize);
     }
@@ -335,18 +295,6 @@ pub const IRdcGenerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGenerator_GetGeneratorParameters(self: *const T, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGenerator.VTable, @ptrCast(self.vtable)).GetGeneratorParameters(@as(*const IRdcGenerator, @ptrCast(self)), level, iGeneratorParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcGenerator_Process(self: *const T, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, depth: u32, outputBuffers: [*]?*RdcBufferPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-            return @as(*const IRdcGenerator.VTable, @ptrCast(self.vtable)).Process(@as(*const IRdcGenerator, @ptrCast(self)), endOfInput, endOfOutput, inputBuffer, depth, outputBuffers, rdc_ErrorCode);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGeneratorParameters(self: *const IRdcGenerator, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
         return self.vtable.GetGeneratorParameters(self, level, iGeneratorParameters);
     }
@@ -380,22 +328,6 @@ pub const IRdcFileReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileReader_GetFileSize(self: *const T, fileSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IRdcFileReader, @ptrCast(self)), fileSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileReader_Read(self: *const T, offsetFileStart: u64, bytesToRead: u32, bytesActuallyRead: ?*u32, buffer: ?*u8, eof: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).Read(@as(*const IRdcFileReader, @ptrCast(self)), offsetFileStart, bytesToRead, bytesActuallyRead, buffer, eof);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileReader_GetFilePosition(self: *const T, offsetFromStart: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileReader.VTable, @ptrCast(self.vtable)).GetFilePosition(@as(*const IRdcFileReader, @ptrCast(self)), offsetFromStart);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFileSize(self: *const IRdcFileReader, fileSize: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetFileSize(self, fileSize);
     }
@@ -428,22 +360,7 @@ pub const IRdcFileWriter = extern union {
     };
     vtable: *const VTable,
     IRdcFileReader: IRdcFileReader,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IRdcFileReader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileWriter_Write(self: *const T, offsetFileStart: u64, bytesToWrite: u32, buffer: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).Write(@as(*const IRdcFileWriter, @ptrCast(self)), offsetFileStart, bytesToWrite, buffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileWriter_Truncate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).Truncate(@as(*const IRdcFileWriter, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcFileWriter_DeleteOnClose(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IRdcFileWriter.VTable, @ptrCast(self.vtable)).DeleteOnClose(@as(*const IRdcFileWriter, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IRdcFileReader.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Write(self: *const IRdcFileWriter, offsetFileStart: u64, bytesToWrite: u32, buffer: ?*u8) callconv(.Inline) HRESULT {
         return self.vtable.Write(self, offsetFileStart, bytesToWrite, buffer);
     }
@@ -473,18 +390,6 @@ pub const IRdcSignatureReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcSignatureReader_ReadHeader(self: *const T, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-            return @as(*const IRdcSignatureReader.VTable, @ptrCast(self.vtable)).ReadHeader(@as(*const IRdcSignatureReader, @ptrCast(self)), rdc_ErrorCode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcSignatureReader_ReadSignatures(self: *const T, rdcSignaturePointer: ?*RdcSignaturePointer, endOfOutput: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IRdcSignatureReader.VTable, @ptrCast(self.vtable)).ReadSignatures(@as(*const IRdcSignatureReader, @ptrCast(self)), rdcSignaturePointer, endOfOutput);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReadHeader(self: *const IRdcSignatureReader, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
         return self.vtable.ReadHeader(self, rdc_ErrorCode);
     }
@@ -510,14 +415,6 @@ pub const IRdcComparator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcComparator_Process(self: *const T, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, outputBuffer: ?*RdcNeedPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
-            return @as(*const IRdcComparator.VTable, @ptrCast(self.vtable)).Process(@as(*const IRdcComparator, @ptrCast(self)), endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Process(self: *const IRdcComparator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, outputBuffer: ?*RdcNeedPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.Inline) HRESULT {
         return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
     }
@@ -571,38 +468,6 @@ pub const IRdcLibrary = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_ComputeDefaultRecursionDepth(self: *const T, fileSize: u64, depth: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).ComputeDefaultRecursionDepth(@as(*const IRdcLibrary, @ptrCast(self)), fileSize, depth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_CreateGeneratorParameters(self: *const T, parametersType: GeneratorParametersType, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateGeneratorParameters(@as(*const IRdcLibrary, @ptrCast(self)), parametersType, level, iGeneratorParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_OpenGeneratorParameters(self: *const T, size: u32, parametersBlob: ?*const u8, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).OpenGeneratorParameters(@as(*const IRdcLibrary, @ptrCast(self)), size, parametersBlob, iGeneratorParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_CreateGenerator(self: *const T, depth: u32, iGeneratorParametersArray: [*]?*IRdcGeneratorParameters, iGenerator: ?*?*IRdcGenerator) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateGenerator(@as(*const IRdcLibrary, @ptrCast(self)), depth, iGeneratorParametersArray, iGenerator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_CreateComparator(self: *const T, iSeedSignaturesFile: ?*IRdcFileReader, comparatorBufferSize: u32, iComparator: ?*?*IRdcComparator) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateComparator(@as(*const IRdcLibrary, @ptrCast(self)), iSeedSignaturesFile, comparatorBufferSize, iComparator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_CreateSignatureReader(self: *const T, iFileReader: ?*IRdcFileReader, iSignatureReader: ?*?*IRdcSignatureReader) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).CreateSignatureReader(@as(*const IRdcLibrary, @ptrCast(self)), iFileReader, iSignatureReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcLibrary_GetRDCVersion(self: *const T, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRdcLibrary.VTable, @ptrCast(self.vtable)).GetRDCVersion(@as(*const IRdcLibrary, @ptrCast(self)), currentVersion, minimumCompatibleAppVersion);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ComputeDefaultRecursionDepth(self: *const IRdcLibrary, fileSize: u64, depth: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.ComputeDefaultRecursionDepth(self, fileSize, depth);
     }
@@ -639,14 +504,6 @@ pub const ISimilarityReportProgress = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityReportProgress_ReportProgress(self: *const T, percentCompleted: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityReportProgress.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const ISimilarityReportProgress, @ptrCast(self)), percentCompleted);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReportProgress(self: *const ISimilarityReportProgress, percentCompleted: u32) callconv(.Inline) HRESULT {
         return self.vtable.ReportProgress(self, percentCompleted);
     }
@@ -668,14 +525,6 @@ pub const ISimilarityTableDumpState = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTableDumpState_GetNextData(self: *const T, resultsSize: u32, resultsUsed: ?*u32, eof: ?*BOOL, results: ?*SimilarityDumpData) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTableDumpState.VTable, @ptrCast(self.vtable)).GetNextData(@as(*const ISimilarityTableDumpState, @ptrCast(self)), resultsSize, resultsUsed, eof, results);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextData(self: *const ISimilarityTableDumpState, resultsSize: u32, resultsUsed: ?*u32, eof: ?*BOOL, results: ?*SimilarityDumpData) callconv(.Inline) HRESULT {
         return self.vtable.GetNextData(self, resultsSize, resultsUsed, eof, results);
     }
@@ -708,26 +557,6 @@ pub const ISimilarityTraitsMappedView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMappedView_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Flush(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMappedView_Unmap(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMappedView_Get(self: *const T, index: u64, dirty: BOOL, numElements: u32, viewInfo: ?*SimilarityMappedViewInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).Get(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)), index, dirty, numElements, viewInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMappedView_GetView(self: *const T, mappedPageBegin: ?*const ?*u8, mappedPageEnd: ?*const ?*u8) callconv(.Inline) void {
-            return @as(*const ISimilarityTraitsMappedView.VTable, @ptrCast(self.vtable)).GetView(@as(*const ISimilarityTraitsMappedView, @ptrCast(self)), mappedPageBegin, mappedPageEnd);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Flush(self: *const ISimilarityTraitsMappedView) callconv(.Inline) HRESULT {
         return self.vtable.Flush(self);
     }
@@ -786,38 +615,6 @@ pub const ISimilarityTraitsMapping = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_CloseMapping(self: *const T) callconv(.Inline) void {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).CloseMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_SetFileSize(self: *const T, fileSize: u64) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).SetFileSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), fileSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_GetFileSize(self: *const T, fileSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), fileSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_OpenMapping(self: *const T, accessMode: RdcMappingAccessMode, begin: u64, end: u64, actualEnd: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).OpenMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), accessMode, begin, end, actualEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_ResizeMapping(self: *const T, accessMode: RdcMappingAccessMode, begin: u64, end: u64, actualEnd: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).ResizeMapping(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), accessMode, begin, end, actualEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_GetPageSize(self: *const T, pageSize: ?*u32) callconv(.Inline) void {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).GetPageSize(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), pageSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMapping_CreateView(self: *const T, minimumMappedPages: u32, accessMode: RdcMappingAccessMode, mappedView: ?*?*ISimilarityTraitsMappedView) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsMapping.VTable, @ptrCast(self.vtable)).CreateView(@as(*const ISimilarityTraitsMapping, @ptrCast(self)), minimumMappedPages, accessMode, mappedView);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CloseMapping(self: *const ISimilarityTraitsMapping) callconv(.Inline) void {
         return self.vtable.CloseMapping(self);
     }
@@ -888,38 +685,6 @@ pub const ISimilarityTraitsTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_CreateTable(self: *const T, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarityTraitsTable, @ptrCast(self)), path, truncate, securityDescriptor, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_CreateTableIndirect(self: *const T, mapping: ?*ISimilarityTraitsMapping, truncate: BOOL, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarityTraitsTable, @ptrCast(self)), mapping, truncate, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_CloseTable(self: *const T, isValid: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarityTraitsTable, @ptrCast(self)), isValid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_Append(self: *const T, data: ?*SimilarityData, fileIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarityTraitsTable, @ptrCast(self)), data, fileIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_FindSimilarFileIndex(self: *const T, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, findSimilarFileIndexResults: ?*FindSimilarFileIndexResults, resultsSize: u32, resultsUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).FindSimilarFileIndex(@as(*const ISimilarityTraitsTable, @ptrCast(self)), similarityData, numberOfMatchesRequired, findSimilarFileIndexResults, resultsSize, resultsUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_BeginDump(self: *const T, similarityTableDumpState: ?*?*ISimilarityTableDumpState) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).BeginDump(@as(*const ISimilarityTraitsTable, @ptrCast(self)), similarityTableDumpState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsTable_GetLastIndex(self: *const T, fileIndex: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityTraitsTable.VTable, @ptrCast(self.vtable)).GetLastIndex(@as(*const ISimilarityTraitsTable, @ptrCast(self)), fileIndex);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarityTraitsTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, isNew);
     }
@@ -989,38 +754,6 @@ pub const ISimilarityFileIdTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_CreateTable(self: *const T, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarityFileIdTable, @ptrCast(self)), path, truncate, securityDescriptor, recordSize, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_CreateTableIndirect(self: *const T, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarityFileIdTable, @ptrCast(self)), fileIdFile, truncate, recordSize, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_CloseTable(self: *const T, isValid: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarityFileIdTable, @ptrCast(self)), isValid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_Append(self: *const T, similarityFileId: ?*SimilarityFileId, similarityFileIndex: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileId, similarityFileIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_Lookup(self: *const T, similarityFileIndex: u32, similarityFileId: ?*SimilarityFileId) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Lookup(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileIndex, similarityFileId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_Invalidate(self: *const T, similarityFileIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const ISimilarityFileIdTable, @ptrCast(self)), similarityFileIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityFileIdTable_GetRecordCount(self: *const T, recordCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarityFileIdTable.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const ISimilarityFileIdTable, @ptrCast(self)), recordCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }
@@ -1060,18 +793,6 @@ pub const IRdcSimilarityGenerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcSimilarityGenerator_EnableSimilarity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IRdcSimilarityGenerator.VTable, @ptrCast(self.vtable)).EnableSimilarity(@as(*const IRdcSimilarityGenerator, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRdcSimilarityGenerator_Results(self: *const T, similarityData: ?*SimilarityData) callconv(.Inline) HRESULT {
-            return @as(*const IRdcSimilarityGenerator.VTable, @ptrCast(self.vtable)).Results(@as(*const IRdcSimilarityGenerator, @ptrCast(self)), similarityData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableSimilarity(self: *const IRdcSimilarityGenerator) callconv(.Inline) HRESULT {
         return self.vtable.EnableSimilarity(self);
     }
@@ -1098,18 +819,6 @@ pub const IFindSimilarResults = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFindSimilarResults_GetSize(self: *const T, size: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IFindSimilarResults.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IFindSimilarResults, @ptrCast(self)), size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFindSimilarResults_GetNextFileId(self: *const T, numTraitsMatched: ?*u32, similarityFileId: ?*SimilarityFileId) callconv(.Inline) HRESULT {
-            return @as(*const IFindSimilarResults.VTable, @ptrCast(self.vtable)).GetNextFileId(@as(*const IFindSimilarResults, @ptrCast(self)), numTraitsMatched, similarityFileId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSize(self: *const IFindSimilarResults, size: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetSize(self, size);
     }
@@ -1168,38 +877,6 @@ pub const ISimilarity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_CreateTable(self: *const T, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CreateTable(@as(*const ISimilarity, @ptrCast(self)), path, truncate, securityDescriptor, recordSize, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_CreateTableIndirect(self: *const T, mapping: ?*ISimilarityTraitsMapping, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CreateTableIndirect(@as(*const ISimilarity, @ptrCast(self)), mapping, fileIdFile, truncate, recordSize, isNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_CloseTable(self: *const T, isValid: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CloseTable(@as(*const ISimilarity, @ptrCast(self)), isValid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_Append(self: *const T, similarityFileId: ?*SimilarityFileId, similarityData: ?*SimilarityData) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).Append(@as(*const ISimilarity, @ptrCast(self)), similarityFileId, similarityData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_FindSimilarFileId(self: *const T, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, resultsSize: u32, findSimilarResults: ?*?*IFindSimilarResults) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).FindSimilarFileId(@as(*const ISimilarity, @ptrCast(self)), similarityData, numberOfMatchesRequired, resultsSize, findSimilarResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_CopyAndSwap(self: *const T, newSimilarityTables: ?*ISimilarity, reportProgress: ?*ISimilarityReportProgress) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).CopyAndSwap(@as(*const ISimilarity, @ptrCast(self)), newSimilarityTables, reportProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarity_GetRecordCount(self: *const T, recordCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimilarity.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const ISimilarity, @ptrCast(self)), recordCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTable(self: *const ISimilarity, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.Inline) HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }

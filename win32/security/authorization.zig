@@ -1239,214 +1239,7 @@ pub const IAzAuthorizationStore = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DomainTimeout(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DomainTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_DomainTimeout(self: *const T, lProp: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_DomainTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ScriptEngineTimeout(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ScriptEngineTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_ScriptEngineTimeout(self: *const T, lProp: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ScriptEngineTimeout(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_MaxScriptEngines(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_MaxScriptEngines(@as(*const IAzAuthorizationStore, @ptrCast(self)), plProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_MaxScriptEngines(self: *const T, lProp: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_MaxScriptEngines(@as(*const IAzAuthorizationStore, @ptrCast(self)), lProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_GenerateAudits(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_GenerateAudits(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_GenerateAudits(self: *const T, bProp: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_GenerateAudits(@as(*const IAzAuthorizationStore, @ptrCast(self)), bProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzAuthorizationStore, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPropertyItem(self: *const T, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzAuthorizationStore, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_Initialize(self: *const T, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAzAuthorizationStore, @ptrCast(self)), lFlags, bstrPolicyURL, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_UpdateCache(self: *const T, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).UpdateCache(@as(*const IAzAuthorizationStore, @ptrCast(self)), varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_Delete(self: *const T, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Delete(@as(*const IAzAuthorizationStore, @ptrCast(self)), varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Applications(self: *const T, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_Applications(@as(*const IAzAuthorizationStore, @ptrCast(self)), ppAppCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).OpenApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CreateApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzAuthorizationStore, @ptrCast(self)), ppGroupCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrGroupName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzAuthorizationStore, @ptrCast(self)), lFlags, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsers(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarDelegatedPolicyUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUser(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUser(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_TargetMachine(self: *const T, pbstrTargetMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_TargetMachine(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbstrTargetMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplyStoreSacl(self: *const T, pbApplyStoreSacl: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_ApplyStoreSacl(@as(*const IAzAuthorizationStore, @ptrCast(self)), pbApplyStoreSacl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_ApplyStoreSacl(self: *const T, bApplyStoreSacl: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).put_ApplyStoreSacl(@as(*const IAzAuthorizationStore, @ptrCast(self)), bApplyStoreSacl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsersName(@as(*const IAzAuthorizationStore, @ptrCast(self)), pvarDelegatedPolicyUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUserName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUserName(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CloseApplication(self: *const T, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore.VTable, @ptrCast(self.vtable)).CloseApplication(@as(*const IAzAuthorizationStore, @ptrCast(self)), bstrApplicationName, lFlag);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
@@ -1623,18 +1416,8 @@ pub const IAzAuthorizationStore2 = extern union {
     };
     vtable: *const VTable,
     IAzAuthorizationStore: IAzAuthorizationStore,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzAuthorizationStore.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_OpenApplication2(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore2.VTable, @ptrCast(self.vtable)).OpenApplication2(@as(*const IAzAuthorizationStore2, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_CreateApplication2(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore2.VTable, @ptrCast(self.vtable)).CreateApplication2(@as(*const IAzAuthorizationStore2, @ptrCast(self)), bstrApplicationName, varReserved, ppApplication);
-        }
-    };}
-    pub usingnamespace IAzAuthorizationStore.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
         return self.vtable.OpenApplication2(self, bstrApplicationName, varReserved, ppApplication);
     }
@@ -1674,30 +1457,9 @@ pub const IAzAuthorizationStore3 = extern union {
     };
     vtable: *const VTable,
     IAzAuthorizationStore2: IAzAuthorizationStore2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzAuthorizationStore2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_IsUpdateNeeded(self: *const T, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).IsUpdateNeeded(@as(*const IAzAuthorizationStore3, @ptrCast(self)), pbIsUpdateNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_BizruleGroupSupported(self: *const T, pbSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).BizruleGroupSupported(@as(*const IAzAuthorizationStore3, @ptrCast(self)), pbSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_UpgradeStoresFunctionalLevel(self: *const T, lFunctionalLevel: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).UpgradeStoresFunctionalLevel(@as(*const IAzAuthorizationStore3, @ptrCast(self)), lFunctionalLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_IsFunctionalLevelUpgradeSupported(self: *const T, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).IsFunctionalLevelUpgradeSupported(@as(*const IAzAuthorizationStore3, @ptrCast(self)), lFunctionalLevel, pbSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_GetSchemaVersion(self: *const T, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzAuthorizationStore3.VTable, @ptrCast(self.vtable)).GetSchemaVersion(@as(*const IAzAuthorizationStore3, @ptrCast(self)), plMajorVersion, plMinorVersion);
-        }
-    };}
-    pub usingnamespace IAzAuthorizationStore2.MethodMixin(@This());
+    IAzAuthorizationStore: IAzAuthorizationStore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
     }
@@ -2048,254 +1810,7 @@ pub const IAzApplication = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzApplication, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzApplication, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzApplication, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzApplication, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzApplication, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzApplication, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_AuthzInterfaceClsid(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_AuthzInterfaceClsid(@as(*const IAzApplication, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_AuthzInterfaceClsid(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_AuthzInterfaceClsid(@as(*const IAzApplication, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Version(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IAzApplication, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Version(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_Version(@as(*const IAzApplication, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_GenerateAudits(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_GenerateAudits(@as(*const IAzApplication, @ptrCast(self)), pbProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_GenerateAudits(self: *const T, bProp: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_GenerateAudits(@as(*const IAzApplication, @ptrCast(self)), bProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplyStoreSacl(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplyStoreSacl(@as(*const IAzApplication, @ptrCast(self)), pbProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_ApplyStoreSacl(self: *const T, bProp: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).put_ApplyStoreSacl(@as(*const IAzApplication, @ptrCast(self)), bProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzApplication, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzApplication, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzApplication, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzApplication, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Scopes(self: *const T, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Scopes(@as(*const IAzApplication, @ptrCast(self)), ppScopeCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved, ppScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved, ppScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteScope(@as(*const IAzApplication, @ptrCast(self)), bstrScopeName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Operations(self: *const T, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzApplication, @ptrCast(self)), ppOperationCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved, ppOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved, ppOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzApplication, @ptrCast(self)), bstrOperationName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzApplication, @ptrCast(self)), ppTaskCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzApplication, @ptrCast(self)), bstrTaskName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzApplication, @ptrCast(self)), ppGroupCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzApplication, @ptrCast(self)), bstrGroupName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_Roles(@as(*const IAzApplication, @ptrCast(self)), ppRoleCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).OpenRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).CreateRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteRole(@as(*const IAzApplication, @ptrCast(self)), bstrRoleName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromToken(self: *const T, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromToken(@as(*const IAzApplication, @ptrCast(self)), ullTokenHandle, varReserved, ppClientContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzApplication, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzApplication, @ptrCast(self)), lFlags, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromName(self: *const T, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromName(@as(*const IAzApplication, @ptrCast(self)), ClientName, DomainName, varReserved, ppClientContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsers(@as(*const IAzApplication, @ptrCast(self)), pvarDelegatedPolicyUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUser(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUser(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromStringSid(self: *const T, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).InitializeClientContextFromStringSid(@as(*const IAzApplication, @ptrCast(self)), SidString, lOptions, varReserved, ppClientContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzApplication, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzApplication, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzApplication, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzApplication, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).get_DelegatedPolicyUsersName(@as(*const IAzApplication, @ptrCast(self)), pvarDelegatedPolicyUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).AddDelegatedPolicyUserName(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication.VTable, @ptrCast(self.vtable)).DeleteDelegatedPolicyUserName(@as(*const IAzApplication, @ptrCast(self)), bstrDelegatedPolicyUser, varReserved);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -2503,18 +2018,8 @@ pub const IAzApplication2 = extern union {
     };
     vtable: *const VTable,
     IAzApplication: IAzApplication,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzApplication.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContextFromToken2(self: *const T, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication2.VTable, @ptrCast(self.vtable)).InitializeClientContextFromToken2(@as(*const IAzApplication2, @ptrCast(self)), ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContext2(self: *const T, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication2.VTable, @ptrCast(self.vtable)).InitializeClientContext2(@as(*const IAzApplication2, @ptrCast(self)), IdentifyingString, varReserved, ppClientContext);
-        }
-    };}
-    pub usingnamespace IAzApplication.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
         return self.vtable.InitializeClientContextFromToken2(self, ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
     }
@@ -2547,22 +2052,7 @@ pub const IAzApplications = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzApplications, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzApplications, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplications.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplications, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -2645,58 +2135,7 @@ pub const IAzOperation = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzOperation, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzOperation, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzOperation, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzOperation, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzOperation, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzOperation, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_OperationID(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_OperationID(@as(*const IAzOperation, @ptrCast(self)), plProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_OperationID(self: *const T, lProp: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).put_OperationID(@as(*const IAzOperation, @ptrCast(self)), lProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzOperation, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzOperation, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzOperation, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzOperation, @ptrCast(self)), lFlags, varReserved);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -2759,22 +2198,7 @@ pub const IAzOperations = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzOperations, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzOperations, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzOperations, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -2929,114 +2353,7 @@ pub const IAzTask = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzTask, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzTask, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzTask, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzTask, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzTask, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzTask, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRule(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRule(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRule(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRule(@as(*const IAzTask, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleLanguage(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRuleLanguage(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRuleLanguage(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRuleLanguage(@as(*const IAzTask, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_BizRuleImportedPath(@as(*const IAzTask, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRuleImportedPath(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_BizRuleImportedPath(@as(*const IAzTask, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_IsRoleDefinition(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_IsRoleDefinition(@as(*const IAzTask, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_IsRoleDefinition(self: *const T, fProp: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).put_IsRoleDefinition(@as(*const IAzTask, @ptrCast(self)), fProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Operations(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzTask, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Tasks(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzTask, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_AddOperation(self: *const T, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddOperation(@as(*const IAzTask, @ptrCast(self)), bstrOp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_DeleteOperation(self: *const T, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzTask, @ptrCast(self)), bstrOp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_AddTask(self: *const T, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddTask(@as(*const IAzTask, @ptrCast(self)), bstrTask, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_DeleteTask(self: *const T, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzTask, @ptrCast(self)), bstrTask, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzTask, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzTask, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_AddPropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzTask, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzTask, @ptrCast(self)), lFlags, varReserved);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -3141,22 +2458,7 @@ pub const IAzTasks = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzTasks, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzTasks, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzTasks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzTasks, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -3377,162 +2679,7 @@ pub const IAzScope = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzScope, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzScope, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzScope, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzScope, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzScope, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzScope, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzScope, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzScope, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzScope, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyAdministrators(@as(*const IAzScope, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyReaders(@as(*const IAzScope, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyAdministrator(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyAdministrator(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyReader(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyReader(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_ApplicationGroups(@as(*const IAzScope, @ptrCast(self)), ppGroupCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteApplicationGroup(@as(*const IAzScope, @ptrCast(self)), bstrGroupName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Roles(@as(*const IAzScope, @ptrCast(self)), ppRoleCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved, ppRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteRole(@as(*const IAzScope, @ptrCast(self)), bstrRoleName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzScope, @ptrCast(self)), ppTaskCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).OpenTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).CreateTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved, ppTask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzScope, @ptrCast(self)), bstrTaskName, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzScope, @ptrCast(self)), lFlags, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_CanBeDelegated(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_CanBeDelegated(@as(*const IAzScope, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_BizrulesWritable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_BizrulesWritable(@as(*const IAzScope, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyAdministratorsName(@as(*const IAzScope, @ptrCast(self)), pvarAdmins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).get_PolicyReadersName(@as(*const IAzScope, @ptrCast(self)), pvarReaders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyAdministratorName(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyAdministratorName(@as(*const IAzScope, @ptrCast(self)), bstrAdmin, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).AddPolicyReaderName(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope.VTable, @ptrCast(self.vtable)).DeletePolicyReaderName(@as(*const IAzScope, @ptrCast(self)), bstrReader, varReserved);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -3673,22 +2820,7 @@ pub const IAzScopes = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzScopes, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzScopes, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzScopes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzScopes, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -3873,138 +3005,7 @@ pub const IAzApplicationGroup = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Type(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IAzApplicationGroup, @ptrCast(self)), plProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_Type(self: *const T, lProp: i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IAzApplicationGroup, @ptrCast(self)), lProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_LdapQuery(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_LdapQuery(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_LdapQuery(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_LdapQuery(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_AppMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_AppMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_AppNonMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_AppNonMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Members(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_NonMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_NonMembers(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzApplicationGroup, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddAppMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteAppMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddAppNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddAppNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteAppNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteAppNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteNonMember(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzApplicationGroup, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddPropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzApplicationGroup, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzApplicationGroup, @ptrCast(self)), lFlags, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddNonMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).AddNonMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteNonMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).DeleteNonMemberName(@as(*const IAzApplicationGroup, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_MembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_MembersName(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_NonMembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup.VTable, @ptrCast(self.vtable)).get_NonMembersName(@as(*const IAzApplicationGroup, @ptrCast(self)), pvarProp);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -4127,22 +3128,7 @@ pub const IAzApplicationGroups = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzApplicationGroups, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzApplicationGroups, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzApplicationGroups, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -4302,118 +3288,7 @@ pub const IAzRole = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzRole, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IAzRole, @ptrCast(self)), bstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IAzRole, @ptrCast(self)), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IAzRole, @ptrCast(self)), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_ApplicationData(@as(*const IAzRole, @ptrCast(self)), pbstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).put_ApplicationData(@as(*const IAzRole, @ptrCast(self)), bstrApplicationData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddAppMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteAppMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddTask(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddTask(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteTask(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteTask(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddOperation(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddOperation(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteOperation(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteOperation(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteMember(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Writable(@as(*const IAzRole, @ptrCast(self)), pfProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzRole, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_SetProperty(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_AppMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_AppMembers(@as(*const IAzRole, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Members(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IAzRole, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Operations(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const IAzRole, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Tasks(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_Tasks(@as(*const IAzRole, @ptrCast(self)), pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddPropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddPropertyItem(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeletePropertyItem(self: *const T, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeletePropertyItem(@as(*const IAzRole, @ptrCast(self)), lPropId, varProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_Submit(self: *const T, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).Submit(@as(*const IAzRole, @ptrCast(self)), lFlags, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).AddMemberName(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).DeleteMemberName(@as(*const IAzRole, @ptrCast(self)), bstrProp, varReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_MembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRole.VTable, @ptrCast(self.vtable)).get_MembersName(@as(*const IAzRole, @ptrCast(self)), pvarProp);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
@@ -4521,22 +3396,7 @@ pub const IAzRoles = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoles, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoles, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoles.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoles, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -4629,62 +3489,7 @@ pub const IAzClientContext = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_AccessCheck(self: *const T, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).AccessCheck(@as(*const IAzClientContext, @ptrCast(self)), bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetBusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetBusinessRuleString(@as(*const IAzClientContext, @ptrCast(self)), pbstrBusinessRuleString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDn(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDn(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserSamCompat(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserSamCompat(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDisplay(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDisplay(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserGuid(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserGuid(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserCanonical(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserCanonical(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserUpn(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserUpn(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDnsSamCompat(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_UserDnsSamCompat(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IAzClientContext, @ptrCast(self)), lPropId, varReserved, pvarProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetRoles(self: *const T, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).GetRoles(@as(*const IAzClientContext, @ptrCast(self)), bstrScopeName, pvarRoleNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_RoleForAccessCheck(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).get_RoleForAccessCheck(@as(*const IAzClientContext, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_put_RoleForAccessCheck(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext.VTable, @ptrCast(self.vtable)).put_RoleForAccessCheck(@as(*const IAzClientContext, @ptrCast(self)), bstrProp);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.AccessCheck(self, bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
     }
@@ -4765,34 +3570,8 @@ pub const IAzClientContext2 = extern union {
     };
     vtable: *const VTable,
     IAzClientContext: IAzClientContext,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzClientContext.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_GetAssignedScopesPage(self: *const T, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).GetAssignedScopesPage(@as(*const IAzClientContext2, @ptrCast(self)), lOptions, PageSize, pvarCursor, pvarScopeNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_AddRoles(self: *const T, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddRoles(@as(*const IAzClientContext2, @ptrCast(self)), varRoles, bstrScopeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_AddApplicationGroups(self: *const T, varApplicationGroups: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddApplicationGroups(@as(*const IAzClientContext2, @ptrCast(self)), varApplicationGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_AddStringSids(self: *const T, varStringSids: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).AddStringSids(@as(*const IAzClientContext2, @ptrCast(self)), varStringSids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_put_LDAPQueryDN(self: *const T, bstrLDAPQueryDN: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).put_LDAPQueryDN(@as(*const IAzClientContext2, @ptrCast(self)), bstrLDAPQueryDN);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_get_LDAPQueryDN(self: *const T, pbstrLDAPQueryDN: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext2.VTable, @ptrCast(self.vtable)).get_LDAPQueryDN(@as(*const IAzClientContext2, @ptrCast(self)), pbstrLDAPQueryDN);
-        }
-    };}
-    pub usingnamespace IAzClientContext.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetAssignedScopesPage(self, lOptions, PageSize, pvarCursor, pvarScopeNames);
     }
@@ -4842,26 +3621,7 @@ pub const IAzBizRuleContext = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_put_BusinessRuleResult(self: *const T, bResult: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).put_BusinessRuleResult(@as(*const IAzBizRuleContext, @ptrCast(self)), bResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_put_BusinessRuleString(self: *const T, bstrBusinessRuleString: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).put_BusinessRuleString(@as(*const IAzBizRuleContext, @ptrCast(self)), bstrBusinessRuleString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_get_BusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).get_BusinessRuleString(@as(*const IAzBizRuleContext, @ptrCast(self)), pbstrBusinessRuleString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_GetParameter(self: *const T, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleContext.VTable, @ptrCast(self.vtable)).GetParameter(@as(*const IAzBizRuleContext, @ptrCast(self)), bstrParameterName, pvarParameterValue);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.put_BusinessRuleResult(self, bResult);
     }
@@ -4912,34 +3672,7 @@ pub const IAzBizRuleParameters = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_AddParameter(self: *const T, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).AddParameter(@as(*const IAzBizRuleParameters, @ptrCast(self)), bstrParameterName, varParameterValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_AddParameters(self: *const T, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).AddParameters(@as(*const IAzBizRuleParameters, @ptrCast(self)), varParameterNames, varParameterValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_GetParameterValue(self: *const T, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).GetParameterValue(@as(*const IAzBizRuleParameters, @ptrCast(self)), bstrParameterName, pvarParameterValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_Remove(self: *const T, varParameterName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAzBizRuleParameters, @ptrCast(self)), varParameterName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_RemoveAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IAzBizRuleParameters, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_get_Count(self: *const T, plCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleParameters.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleParameters, @ptrCast(self)), plCount);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.AddParameter(self, bstrParameterName, varParameterValue);
     }
@@ -4999,34 +3732,7 @@ pub const IAzBizRuleInterfaces = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_AddInterface(self: *const T, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).AddInterface(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName, lInterfaceFlag, varInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_AddInterfaces(self: *const T, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).AddInterfaces(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), varInterfaceNames, varInterfaceFlags, varInterfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_GetInterfaceValue(self: *const T, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).GetInterfaceValue(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName, lInterfaceFlag, varInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_Remove(self: *const T, bstrInterfaceName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), bstrInterfaceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_RemoveAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IAzBizRuleInterfaces, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_get_Count(self: *const T, plCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IAzBizRuleInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzBizRuleInterfaces, @ptrCast(self)), plCount);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.AddInterface(self, bstrInterfaceName, lInterfaceFlag, varInterface);
     }
@@ -5100,42 +3806,9 @@ pub const IAzClientContext3 = extern union {
     };
     vtable: *const VTable,
     IAzClientContext2: IAzClientContext2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzClientContext2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_AccessCheck2(self: *const T, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).AccessCheck2(@as(*const IAzClientContext3, @ptrCast(self)), bstrObjectName, bstrScopeName, lOperation, plResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_IsInRoleAssignment(self: *const T, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).IsInRoleAssignment(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, bstrRoleName, pbIsInRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetOperations(self: *const T, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetOperations(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ppOperationCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetTasks(self: *const T, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetTasks(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ppTaskCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleParameters(self: *const T, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_BizRuleParameters(@as(*const IAzClientContext3, @ptrCast(self)), ppBizRuleParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleInterfaces(self: *const T, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_BizRuleInterfaces(@as(*const IAzClientContext3, @ptrCast(self)), ppBizRuleInterfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetGroups(self: *const T, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).GetGroups(@as(*const IAzClientContext3, @ptrCast(self)), bstrScopeName, ulOptions, pGroupArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_Sids(self: *const T, pStringSidArray: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzClientContext3.VTable, @ptrCast(self.vtable)).get_Sids(@as(*const IAzClientContext3, @ptrCast(self)), pStringSidArray);
-        }
-    };}
-    pub usingnamespace IAzClientContext2.MethodMixin(@This());
+    IAzClientContext: IAzClientContext,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
     }
@@ -5209,42 +3882,8 @@ pub const IAzScope2 = extern union {
     };
     vtable: *const VTable,
     IAzScope: IAzScope,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzScope.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzScope2, @ptrCast(self)), ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).CreateRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).OpenRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzScope2, @ptrCast(self)), bstrRoleDefinitionName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).get_RoleAssignments(@as(*const IAzScope2, @ptrCast(self)), ppRoleAssignments);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).CreateRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).OpenRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzScope2.VTable, @ptrCast(self.vtable)).DeleteRoleAssignment(@as(*const IAzScope2, @ptrCast(self)), bstrRoleAssignmentName);
-        }
-    };}
-    pub usingnamespace IAzScope.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
@@ -5347,66 +3986,9 @@ pub const IAzApplication3 = extern union {
     };
     vtable: *const VTable,
     IAzApplication2: IAzApplication2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzApplication2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_ScopeExists(self: *const T, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).ScopeExists(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, pbExist);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenScope2(self: *const T, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, ppScope2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateScope2(self: *const T, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName, ppScope2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteScope2(self: *const T, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteScope2(@as(*const IAzApplication3, @ptrCast(self)), bstrScopeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzApplication3, @ptrCast(self)), ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName, ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleDefinitionName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_RoleAssignments(@as(*const IAzApplication3, @ptrCast(self)), ppRoleAssignments);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).CreateRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).OpenRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName, ppRoleAssignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).DeleteRoleAssignment(@as(*const IAzApplication3, @ptrCast(self)), bstrRoleAssignmentName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_BizRulesEnabled(self: *const T, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).get_BizRulesEnabled(@as(*const IAzApplication3, @ptrCast(self)), pbEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_put_BizRulesEnabled(self: *const T, bEnabled: i16) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplication3.VTable, @ptrCast(self.vtable)).put_BizRulesEnabled(@as(*const IAzApplication3, @ptrCast(self)), bEnabled);
-        }
-    };}
-    pub usingnamespace IAzApplication2.MethodMixin(@This());
+    IAzApplication: IAzApplication,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
     }
@@ -5466,14 +4048,8 @@ pub const IAzOperation2 = extern union {
     };
     vtable: *const VTable,
     IAzOperation: IAzOperation,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzOperation.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzOperation2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzOperation2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
-        }
-    };}
-    pub usingnamespace IAzOperation.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
@@ -5503,22 +4079,7 @@ pub const IAzRoleDefinitions = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoleDefinitions, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoleDefinitions, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleDefinitions, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -5558,26 +4119,8 @@ pub const IAzRoleDefinition = extern union {
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzTask.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_AddRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).AddRoleDefinition(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrRoleDefinition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzRoleDefinition, @ptrCast(self)), bstrRoleDefinition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleDefinition.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzRoleDefinition, @ptrCast(self)), ppRoleDefinitions);
-        }
-    };}
-    pub usingnamespace IAzTask.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
@@ -5619,26 +4162,8 @@ pub const IAzRoleAssignment = extern union {
     };
     vtable: *const VTable,
     IAzRole: IAzRole,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzRole.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_AddRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).AddRoleDefinition(@as(*const IAzRoleAssignment, @ptrCast(self)), bstrRoleDefinition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).DeleteRoleDefinition(@as(*const IAzRoleAssignment, @ptrCast(self)), bstrRoleDefinition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).get_RoleDefinitions(@as(*const IAzRoleAssignment, @ptrCast(self)), ppRoleDefinitions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_Scope(self: *const T, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignment.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IAzRoleAssignment, @ptrCast(self)), ppScope);
-        }
-    };}
-    pub usingnamespace IAzRole.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
     }
@@ -5677,22 +4202,7 @@ pub const IAzRoleAssignments = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IAzRoleAssignments, @ptrCast(self)), Index, pvarObtPtr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAzRoleAssignments, @ptrCast(self)), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IAzRoleAssignments.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAzRoleAssignments, @ptrCast(self)), ppEnumPtr);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
@@ -5723,18 +4233,7 @@ pub const IAzPrincipalLocator = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_NameResolver(self: *const T, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
-            return @as(*const IAzPrincipalLocator.VTable, @ptrCast(self.vtable)).get_NameResolver(@as(*const IAzPrincipalLocator, @ptrCast(self)), ppNameResolver);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_ObjectPicker(self: *const T, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
-            return @as(*const IAzPrincipalLocator.VTable, @ptrCast(self.vtable)).get_ObjectPicker(@as(*const IAzPrincipalLocator, @ptrCast(self)), ppObjectPicker);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
         return self.vtable.get_NameResolver(self, ppNameResolver);
     }
@@ -5764,18 +4263,7 @@ pub const IAzNameResolver = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzNameResolver_NameFromSid(self: *const T, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzNameResolver.VTable, @ptrCast(self.vtable)).NameFromSid(@as(*const IAzNameResolver, @ptrCast(self)), bstrSid, pSidType, pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzNameResolver_NamesFromSids(self: *const T, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzNameResolver.VTable, @ptrCast(self.vtable)).NamesFromSids(@as(*const IAzNameResolver, @ptrCast(self)), vSids, pvSidTypes, pvNames);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.NameFromSid(self, bstrSid, pSidType, pbstrName);
     }
@@ -5806,18 +4294,7 @@ pub const IAzObjectPicker = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzObjectPicker_GetPrincipals(self: *const T, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IAzObjectPicker.VTable, @ptrCast(self.vtable)).GetPrincipals(@as(*const IAzObjectPicker, @ptrCast(self)), hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzObjectPicker_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzObjectPicker.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IAzObjectPicker, @ptrCast(self)), pbstrName);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetPrincipals(self, hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
     }
@@ -5871,38 +4348,8 @@ pub const IAzApplicationGroup2 = extern union {
     };
     vtable: *const VTable,
     IAzApplicationGroup: IAzApplicationGroup,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzApplicationGroup.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRule(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRule(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRule(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRule(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleLanguage(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRuleLanguage(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRuleLanguage(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRuleLanguage(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).get_BizRuleImportedPath(@as(*const IAzApplicationGroup2, @ptrCast(self)), pbstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRuleImportedPath(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).put_BizRuleImportedPath(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrProp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzApplicationGroup2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzApplicationGroup2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
-        }
-    };}
-    pub usingnamespace IAzApplicationGroup.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
@@ -5941,14 +4388,8 @@ pub const IAzTask2 = extern union {
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAzTask.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
-            return @as(*const IAzTask2.VTable, @ptrCast(self.vtable)).RoleAssignments(@as(*const IAzTask2, @ptrCast(self)), bstrScopeName, bRecursive, ppRoleAssignments);
-        }
-    };}
-    pub usingnamespace IAzTask.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }

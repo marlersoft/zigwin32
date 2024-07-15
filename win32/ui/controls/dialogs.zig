@@ -622,22 +622,6 @@ pub const IPrintDialogCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).InitDone(@as(*const IPrintDialogCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).SelectionChange(@as(*const IPrintDialogCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogCallback.VTable, @ptrCast(self.vtable)).HandleMessage(@as(*const IPrintDialogCallback, @ptrCast(self)), hDlg, uMsg, wParam, lParam, pResult);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitDone(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
         return self.vtable.InitDone(self);
     }
@@ -673,22 +657,6 @@ pub const IPrintDialogServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentDevMode(@as(*const IPrintDialogServices, @ptrCast(self)), pDevMode, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentPrinterName(@as(*const IPrintDialogServices, @ptrCast(self)), pPrinterName, pcchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPrintDialogServices.VTable, @ptrCast(self.vtable)).GetCurrentPortName(@as(*const IPrintDialogServices, @ptrCast(self)), pPortName, pcchSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
     }

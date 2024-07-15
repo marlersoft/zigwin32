@@ -4164,18 +4164,7 @@ pub const IContentPrefetcherTaskTrigger = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).TriggerContentPrefetcherTask(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).IsRegisteredForContentPrefetch(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName, isRegistered);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn TriggerContentPrefetcherTask(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.TriggerContentPrefetcherTask(self, packageFullName);
     }
@@ -6099,7 +6088,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6110,6 +6099,7 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const NCRYPT_KEY_HANDLE = @import("../security/cryptography.zig").NCRYPT_KEY_HANDLE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;

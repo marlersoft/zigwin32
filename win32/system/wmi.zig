@@ -1803,50 +1803,6 @@ pub const IWbemPathKeyList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetCount(self: *const T, puKeyCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IWbemPathKeyList, @ptrCast(self)), puKeyCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_SetKey(self: *const T, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).SetKey(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags, uCimType, pKeyVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_SetKey2(self: *const T, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).SetKey2(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags, uCimType, pKeyVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetKey(self: *const T, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*anyopaque, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetKey(@as(*const IWbemPathKeyList, @ptrCast(self)), uKeyIx, uFlags, puNameBufSize, pszKeyName, puKeyValBufSize, pKeyVal, puApparentCimType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetKey2(self: *const T, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, pKeyValue: ?*VARIANT, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetKey2(@as(*const IWbemPathKeyList, @ptrCast(self)), uKeyIx, uFlags, puNameBufSize, pszKeyName, pKeyValue, puApparentCimType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_RemoveKey(self: *const T, wszName: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).RemoveKey(@as(*const IWbemPathKeyList, @ptrCast(self)), wszName, uFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_RemoveAllKeys(self: *const T, uFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).RemoveAllKeys(@as(*const IWbemPathKeyList, @ptrCast(self)), uFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_MakeSingleton(self: *const T, bSet: u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).MakeSingleton(@as(*const IWbemPathKeyList, @ptrCast(self)), bSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetInfo(self: *const T, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWbemPathKeyList, @ptrCast(self)), uRequestedInfo, puResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetText(self: *const T, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPathKeyList.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemPathKeyList, @ptrCast(self)), lFlags, puBuffLength, pszText);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IWbemPathKeyList, puKeyCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, puKeyCount);
     }
@@ -2010,114 +1966,6 @@ pub const IWbemPath = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetText(self: *const T, uMode: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetText(@as(*const IWbemPath, @ptrCast(self)), uMode, pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetText(self: *const T, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemPath, @ptrCast(self)), lFlags, puBuffLength, pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetInfo(self: *const T, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IWbemPath, @ptrCast(self)), uRequestedInfo, puResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetServer(self: *const T, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetServer(@as(*const IWbemPath, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetServer(self: *const T, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetServer(@as(*const IWbemPath, @ptrCast(self)), puNameBufLength, pName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetNamespaceCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetNamespaceCount(@as(*const IWbemPath, @ptrCast(self)), puCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetNamespaceAt(self: *const T, uIndex: u32, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetNamespaceAt(self: *const T, uIndex: u32, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex, puNameBufLength, pName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_RemoveNamespaceAt(self: *const T, uIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveNamespaceAt(@as(*const IWbemPath, @ptrCast(self)), uIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_RemoveAllNamespaces(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveAllNamespaces(@as(*const IWbemPath, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetScopeCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScopeCount(@as(*const IWbemPath, @ptrCast(self)), puCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetScope(self: *const T, uIndex: u32, pszClass: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetScope(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetScopeFromText(self: *const T, uIndex: u32, pszText: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetScopeFromText(@as(*const IWbemPath, @ptrCast(self)), uIndex, pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetScope(self: *const T, uIndex: u32, puClassNameBufSize: ?*u32, pszClass: [*:0]u16, pKeyList: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScope(@as(*const IWbemPath, @ptrCast(self)), uIndex, puClassNameBufSize, pszClass, pKeyList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetScopeAsText(self: *const T, uIndex: u32, puTextBufSize: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetScopeAsText(@as(*const IWbemPath, @ptrCast(self)), uIndex, puTextBufSize, pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_RemoveScope(self: *const T, uIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveScope(@as(*const IWbemPath, @ptrCast(self)), uIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_RemoveAllScopes(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).RemoveAllScopes(@as(*const IWbemPath, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_SetClassName(self: *const T, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).SetClassName(@as(*const IWbemPath, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetClassName(self: *const T, puBuffLength: ?*u32, pszName: ?[*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetClassName(@as(*const IWbemPath, @ptrCast(self)), puBuffLength, pszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetKeyList(self: *const T, pOut: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).GetKeyList(@as(*const IWbemPath, @ptrCast(self)), pOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_CreateClassPart(self: *const T, lFlags: i32, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).CreateClassPart(@as(*const IWbemPath, @ptrCast(self)), lFlags, Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_DeleteClassPart(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).DeleteClassPart(@as(*const IWbemPath, @ptrCast(self)), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_IsRelative(self: *const T, wszMachine: ?PWSTR, wszNamespace: ?PWSTR) callconv(.Inline) BOOL {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsRelative(@as(*const IWbemPath, @ptrCast(self)), wszMachine, wszNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_IsRelativeOrChild(self: *const T, wszMachine: ?PWSTR, wszNamespace: ?PWSTR, lFlags: i32) callconv(.Inline) BOOL {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsRelativeOrChild(@as(*const IWbemPath, @ptrCast(self)), wszMachine, wszNamespace, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_IsLocal(self: *const T, wszMachine: ?[*:0]const u16) callconv(.Inline) BOOL {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsLocal(@as(*const IWbemPath, @ptrCast(self)), wszMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_IsSameClassName(self: *const T, wszClass: ?[*:0]const u16) callconv(.Inline) BOOL {
-            return @as(*const IWbemPath.VTable, @ptrCast(self.vtable)).IsSameClassName(@as(*const IWbemPath, @ptrCast(self)), wszClass);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetText(self: *const IWbemPath, uMode: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetText(self, uMode, pszPath);
     }
@@ -2245,38 +2093,6 @@ pub const IWbemQuery = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_Empty(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).Empty(@as(*const IWbemQuery, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_SetLanguageFeatures(self: *const T, uFlags: u32, uArraySize: u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).SetLanguageFeatures(@as(*const IWbemQuery, @ptrCast(self)), uFlags, uArraySize, puFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_TestLanguageFeatures(self: *const T, uFlags: u32, uArraySize: ?*u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).TestLanguageFeatures(@as(*const IWbemQuery, @ptrCast(self)), uFlags, uArraySize, puFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_Parse(self: *const T, pszLang: ?[*:0]const u16, pszQuery: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).Parse(@as(*const IWbemQuery, @ptrCast(self)), pszLang, pszQuery, uFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_GetAnalysis(self: *const T, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).GetAnalysis(@as(*const IWbemQuery, @ptrCast(self)), uAnalysisType, uFlags, pAnalysis);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_FreeMemory(self: *const T, pMem: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).FreeMemory(@as(*const IWbemQuery, @ptrCast(self)), pMem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_GetQueryInfo(self: *const T, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQuery.VTable, @ptrCast(self.vtable)).GetQueryInfo(@as(*const IWbemQuery, @ptrCast(self)), uAnalysisType, uInfoId, uBufSize, pDestBuf);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Empty(self: *const IWbemQuery) callconv(.Inline) HRESULT {
         return self.vtable.Empty(self);
     }
@@ -3466,106 +3282,6 @@ pub const IWbemClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetQualifierSet(self: *const T, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), ppQualSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_Get(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Get(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pVal, pType, plFlavor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_Put(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, Type: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Put(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pVal, Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_Delete(self: *const T, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWbemClassObject, @ptrCast(self)), wszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetNames(self: *const T, wszQualifierName: ?[*:0]const u16, lFlags: i32, pQualifierVal: ?*VARIANT, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemClassObject, @ptrCast(self)), wszQualifierName, lFlags, pQualifierVal, pNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_BeginEnumeration(self: *const T, lEnumFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemClassObject, @ptrCast(self)), lEnumFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_Next(self: *const T, lFlags: i32, strName: ?*?BSTR, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, strName, pVal, pType, plFlavor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_EndEnumeration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemClassObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetPropertyQualifierSet(self: *const T, wszProperty: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetPropertyQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), wszProperty, ppQualSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_Clone(self: *const T, ppCopy: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWbemClassObject, @ptrCast(self)), ppCopy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetObjectText(self: *const T, lFlags: i32, pstrObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetObjectText(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pstrObjectText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_SpawnDerivedClass(self: *const T, lFlags: i32, ppNewClass: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).SpawnDerivedClass(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, ppNewClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_SpawnInstance(self: *const T, lFlags: i32, ppNewInstance: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).SpawnInstance(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, ppNewInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_CompareTo(self: *const T, lFlags: i32, pCompareTo: ?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).CompareTo(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pCompareTo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetPropertyOrigin(self: *const T, wszName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetPropertyOrigin(@as(*const IWbemClassObject, @ptrCast(self)), wszName, pstrClassName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_InheritsFrom(self: *const T, strAncestor: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).InheritsFrom(@as(*const IWbemClassObject, @ptrCast(self)), strAncestor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetMethod(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, ppInSignature, ppOutSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_PutMethod(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pInSignature: ?*IWbemClassObject, pOutSignature: ?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).PutMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName, lFlags, pInSignature, pOutSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_DeleteMethod(self: *const T, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).DeleteMethod(@as(*const IWbemClassObject, @ptrCast(self)), wszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_BeginMethodEnumeration(self: *const T, lEnumFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).BeginMethodEnumeration(@as(*const IWbemClassObject, @ptrCast(self)), lEnumFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_NextMethod(self: *const T, lFlags: i32, pstrName: ?*?BSTR, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).NextMethod(@as(*const IWbemClassObject, @ptrCast(self)), lFlags, pstrName, ppInSignature, ppOutSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_EndMethodEnumeration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).EndMethodEnumeration(@as(*const IWbemClassObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetMethodQualifierSet(self: *const T, wszMethod: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethodQualifierSet(@as(*const IWbemClassObject, @ptrCast(self)), wszMethod, ppQualSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClassObject_GetMethodOrigin(self: *const T, wszMethodName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClassObject.VTable, @ptrCast(self.vtable)).GetMethodOrigin(@as(*const IWbemClassObject, @ptrCast(self)), wszMethodName, pstrClassName);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetQualifierSet(self: *const IWbemClassObject, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
         return self.vtable.GetQualifierSet(self, ppQualSet);
     }
@@ -3702,50 +3418,7 @@ pub const IWbemObjectAccess = extern union {
     };
     vtable: *const VTable,
     IWbemClassObject: IWbemClassObject,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWbemClassObject.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_GetPropertyHandle(self: *const T, wszPropertyName: ?[*:0]const u16, pType: ?*i32, plHandle: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).GetPropertyHandle(@as(*const IWbemObjectAccess, @ptrCast(self)), wszPropertyName, pType, plHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_WritePropertyValue(self: *const T, lHandle: i32, lNumBytes: i32, aData: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WritePropertyValue(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, lNumBytes, aData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_ReadPropertyValue(self: *const T, lHandle: i32, lBufferSize: i32, plNumBytes: ?*i32, aData: [*:0]u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadPropertyValue(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, lBufferSize, plNumBytes, aData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_ReadDWORD(self: *const T, lHandle: i32, pdw: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadDWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pdw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_WriteDWORD(self: *const T, lHandle: i32, dw: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WriteDWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, dw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_ReadQWORD(self: *const T, lHandle: i32, pqw: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).ReadQWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pqw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_WriteQWORD(self: *const T, lHandle: i32, pw: u64) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).WriteQWORD(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_GetPropertyInfoByHandle(self: *const T, lHandle: i32, pstrName: ?*?BSTR, pType: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).GetPropertyInfoByHandle(@as(*const IWbemObjectAccess, @ptrCast(self)), lHandle, pstrName, pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_Lock(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).Lock(@as(*const IWbemObjectAccess, @ptrCast(self)), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectAccess_Unlock(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectAccess.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IWbemObjectAccess, @ptrCast(self)), lFlags);
-        }
-    };}
-    pub usingnamespace IWbemClassObject.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetPropertyHandle(self: *const IWbemObjectAccess, wszPropertyName: ?[*:0]const u16, pType: ?*i32, plHandle: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyHandle(self, wszPropertyName, pType, plHandle);
     }
@@ -3823,38 +3496,6 @@ pub const IWbemQualifierSet = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_Get(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Get(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName, lFlags, pVal, plFlavor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_Put(self: *const T, wszName: ?[*:0]const u16, pVal: ?*VARIANT, lFlavor: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Put(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName, pVal, lFlavor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_Delete(self: *const T, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWbemQualifierSet, @ptrCast(self)), wszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_GetNames(self: *const T, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags, pNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_BeginEnumeration(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_Next(self: *const T, lFlags: i32, pstrName: ?*?BSTR, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemQualifierSet, @ptrCast(self)), lFlags, pstrName, pVal, plFlavor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQualifierSet_EndEnumeration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemQualifierSet.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemQualifierSet, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Get(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.Get(self, wszName, lFlags, pVal, plFlavor);
     }
@@ -4054,102 +3695,6 @@ pub const IWbemServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_OpenNamespace(self: *const T, strNamespace: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).OpenNamespace(@as(*const IWbemServices, @ptrCast(self)), strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_CancelAsyncCall(self: *const T, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IWbemServices, @ptrCast(self)), pSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_QueryObjectSink(self: *const T, lFlags: i32, ppResponseHandler: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).QueryObjectSink(@as(*const IWbemServices, @ptrCast(self)), lFlags, ppResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_GetObject(self: *const T, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppObject: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, ppObject, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_GetObjectAsync(self: *const T, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).GetObjectAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutClass(self: *const T, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutClass(@as(*const IWbemServices, @ptrCast(self)), pObject, lFlags, pCtx, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutClassAsync(self: *const T, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutClassAsync(@as(*const IWbemServices, @ptrCast(self)), pObject, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteClass(self: *const T, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteClass(@as(*const IWbemServices, @ptrCast(self)), strClass, lFlags, pCtx, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteClassAsync(self: *const T, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteClassAsync(@as(*const IWbemServices, @ptrCast(self)), strClass, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_CreateClassEnum(self: *const T, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateClassEnum(@as(*const IWbemServices, @ptrCast(self)), strSuperclass, lFlags, pCtx, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_CreateClassEnumAsync(self: *const T, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateClassEnumAsync(@as(*const IWbemServices, @ptrCast(self)), strSuperclass, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutInstance(self: *const T, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutInstance(@as(*const IWbemServices, @ptrCast(self)), pInst, lFlags, pCtx, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutInstanceAsync(self: *const T, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).PutInstanceAsync(@as(*const IWbemServices, @ptrCast(self)), pInst, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteInstance(self: *const T, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteInstance(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteInstanceAsync(self: *const T, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).DeleteInstanceAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_CreateInstanceEnum(self: *const T, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateInstanceEnum(@as(*const IWbemServices, @ptrCast(self)), strFilter, lFlags, pCtx, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_CreateInstanceEnumAsync(self: *const T, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).CreateInstanceEnumAsync(@as(*const IWbemServices, @ptrCast(self)), strFilter, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecQuery(self: *const T, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecQuery(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecQueryAsync(self: *const T, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecQueryAsync(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecNotificationQuery(self: *const T, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQuery(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecNotificationQueryAsync(self: *const T, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQueryAsync(@as(*const IWbemServices, @ptrCast(self)), strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecMethod(self: *const T, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, ppOutParams: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecMethod(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, strMethodName, lFlags, pCtx, pInParams, ppOutParams, ppCallResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecMethodAsync(self: *const T, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemServices.VTable, @ptrCast(self.vtable)).ExecMethodAsync(@as(*const IWbemServices, @ptrCast(self)), strObjectPath, strMethodName, lFlags, pCtx, pInParams, pResponseHandler);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OpenNamespace(self: *const IWbemServices, strNamespace: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
         return self.vtable.OpenNamespace(self, strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
     }
@@ -4241,14 +3786,6 @@ pub const IWbemLocator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemLocator_ConnectServer(self: *const T, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemLocator.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemLocator, @ptrCast(self)), strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectServer(self: *const IWbemLocator, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
         return self.vtable.ConnectServer(self, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
     }
@@ -4275,18 +3812,6 @@ pub const IWbemObjectSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSink_Indicate(self: *const T, lObjectCount: i32, apObjArray: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSink.VTable, @ptrCast(self.vtable)).Indicate(@as(*const IWbemObjectSink, @ptrCast(self)), lObjectCount, apObjArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSink_SetStatus(self: *const T, lFlags: i32, hResult: HRESULT, strParam: ?BSTR, pObjParam: ?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemObjectSink, @ptrCast(self)), lFlags, hResult, strParam, pObjParam);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Indicate(self: *const IWbemObjectSink, lObjectCount: i32, apObjArray: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.Indicate(self, lObjectCount, apObjArray);
     }
@@ -4328,30 +3853,6 @@ pub const IEnumWbemClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWbemClassObject_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWbemClassObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWbemClassObject_Next(self: *const T, lTimeout: i32, uCount: u32, apObjects: [*]?*IWbemClassObject, puReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWbemClassObject, @ptrCast(self)), lTimeout, uCount, apObjects, puReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWbemClassObject_NextAsync(self: *const T, uCount: u32, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).NextAsync(@as(*const IEnumWbemClassObject, @ptrCast(self)), uCount, pSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWbemClassObject_Clone(self: *const T, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWbemClassObject, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWbemClassObject_Skip(self: *const T, lTimeout: i32, nCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumWbemClassObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWbemClassObject, @ptrCast(self)), lTimeout, nCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reset(self: *const IEnumWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
@@ -4398,26 +3899,6 @@ pub const IWbemCallResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemCallResult_GetResultObject(self: *const T, lTimeout: i32, ppResultObject: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultObject(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, ppResultObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemCallResult_GetResultString(self: *const T, lTimeout: i32, pstrResultString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultString(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, pstrResultString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemCallResult_GetResultServices(self: *const T, lTimeout: i32, ppServices: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetResultServices(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, ppServices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemCallResult_GetCallStatus(self: *const T, lTimeout: i32, plStatus: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemCallResult.VTable, @ptrCast(self.vtable)).GetCallStatus(@as(*const IWbemCallResult, @ptrCast(self)), lTimeout, plStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResultObject(self: *const IWbemCallResult, lTimeout: i32, ppResultObject: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.GetResultObject(self, lTimeout, ppResultObject);
     }
@@ -4483,46 +3964,6 @@ pub const IWbemContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_Clone(self: *const T, ppNewCopy: ?*?*IWbemContext) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWbemContext, @ptrCast(self)), ppNewCopy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_GetNames(self: *const T, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).GetNames(@as(*const IWbemContext, @ptrCast(self)), lFlags, pNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_BeginEnumeration(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).BeginEnumeration(@as(*const IWbemContext, @ptrCast(self)), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_Next(self: *const T, lFlags: i32, pstrName: ?*?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).Next(@as(*const IWbemContext, @ptrCast(self)), lFlags, pstrName, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_EndEnumeration(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IWbemContext, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_SetValue(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_GetValue(self: *const T, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_DeleteValue(self: *const T, wszName: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const IWbemContext, @ptrCast(self)), wszName, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemContext_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemContext.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const IWbemContext, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IWbemContext, ppNewCopy: ?*?*IWbemContext) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, ppNewCopy);
     }
@@ -4566,14 +4007,6 @@ pub const IUnsecuredApartment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUnsecuredApartment_CreateObjectStub(self: *const T, pObject: ?*IUnknown, ppStub: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateObjectStub(@as(*const IUnsecuredApartment, @ptrCast(self)), pObject, ppStub);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateObjectStub(self: *const IUnsecuredApartment, pObject: ?*IUnknown, ppStub: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateObjectStub(self, pObject, ppStub);
     }
@@ -4595,14 +4028,7 @@ pub const IWbemUnsecuredApartment = extern union {
     };
     vtable: *const VTable,
     IUnsecuredApartment: IUnsecuredApartment,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnsecuredApartment.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemUnsecuredApartment_CreateSinkStub(self: *const T, pSink: ?*IWbemObjectSink, dwFlags: u32, wszReserved: ?[*:0]const u16, ppStub: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemUnsecuredApartment.VTable, @ptrCast(self.vtable)).CreateSinkStub(@as(*const IWbemUnsecuredApartment, @ptrCast(self)), pSink, dwFlags, wszReserved, ppStub);
-        }
-    };}
-    pub usingnamespace IUnsecuredApartment.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateSinkStub(self: *const IWbemUnsecuredApartment, pSink: ?*IWbemObjectSink, dwFlags: u32, wszReserved: ?[*:0]const u16, ppStub: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
         return self.vtable.CreateSinkStub(self, pSink, dwFlags, wszReserved, ppStub);
     }
@@ -4631,18 +4057,6 @@ pub const IWbemStatusCodeText = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemStatusCodeText_GetErrorCodeText(self: *const T, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemStatusCodeText.VTable, @ptrCast(self.vtable)).GetErrorCodeText(@as(*const IWbemStatusCodeText, @ptrCast(self)), hRes, LocaleId, lFlags, MessageText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemStatusCodeText_GetFacilityCodeText(self: *const T, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemStatusCodeText.VTable, @ptrCast(self.vtable)).GetFacilityCodeText(@as(*const IWbemStatusCodeText, @ptrCast(self)), hRes, LocaleId, lFlags, MessageText);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetErrorCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetErrorCodeText(self, hRes, LocaleId, lFlags, MessageText);
     }
@@ -4670,18 +4084,6 @@ pub const IWbemBackupRestore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemBackupRestore_Backup(self: *const T, strBackupToFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemBackupRestore.VTable, @ptrCast(self.vtable)).Backup(@as(*const IWbemBackupRestore, @ptrCast(self)), strBackupToFile, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemBackupRestore_Restore(self: *const T, strRestoreFromFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemBackupRestore.VTable, @ptrCast(self.vtable)).Restore(@as(*const IWbemBackupRestore, @ptrCast(self)), strRestoreFromFile, lFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Backup(self: *const IWbemBackupRestore, strBackupToFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
         return self.vtable.Backup(self, strBackupToFile, lFlags);
     }
@@ -4705,18 +4107,7 @@ pub const IWbemBackupRestoreEx = extern union {
     };
     vtable: *const VTable,
     IWbemBackupRestore: IWbemBackupRestore,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWbemBackupRestore.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemBackupRestoreEx_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemBackupRestoreEx.VTable, @ptrCast(self.vtable)).Pause(@as(*const IWbemBackupRestoreEx, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemBackupRestoreEx_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemBackupRestoreEx.VTable, @ptrCast(self.vtable)).Resume(@as(*const IWbemBackupRestoreEx, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IWbemBackupRestore.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Pause(self: *const IWbemBackupRestoreEx) callconv(.Inline) HRESULT {
         return self.vtable.Pause(self);
     }
@@ -4738,14 +4129,6 @@ pub const IWbemRefresher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemRefresher_Refresh(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemRefresher.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWbemRefresher, @ptrCast(self)), lFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Refresh(self: *const IWbemRefresher, lFlags: i32) callconv(.Inline) HRESULT {
         return self.vtable.Refresh(self, lFlags);
     }
@@ -4784,26 +4167,6 @@ pub const IWbemHiPerfEnum = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfEnum_AddObjects(self: *const T, lFlags: i32, uNumObjects: u32, apIds: [*]i32, apObj: [*]?*IWbemObjectAccess) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).AddObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apIds, apObj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfEnum_RemoveObjects(self: *const T, lFlags: i32, uNumObjects: u32, apIds: [*]i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).RemoveObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apIds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfEnum_GetObjects(self: *const T, lFlags: i32, uNumObjects: u32, apObj: [*]?*IWbemObjectAccess, puReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).GetObjects(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags, uNumObjects, apObj, puReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfEnum_RemoveAll(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfEnum.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IWbemHiPerfEnum, @ptrCast(self)), lFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32, apObj: [*]?*IWbemObjectAccess) callconv(.Inline) HRESULT {
         return self.vtable.AddObjects(self, lFlags, uNumObjects, apIds, apObj);
     }
@@ -4865,30 +4228,6 @@ pub const IWbemConfigureRefresher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConfigureRefresher_AddObjectByPath(self: *const T, pNamespace: ?*IWbemServices, wszPath: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddObjectByPath(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, wszPath, lFlags, pContext, ppRefreshable, plId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConfigureRefresher_AddObjectByTemplate(self: *const T, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemClassObject, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddObjectByTemplate(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, pTemplate, lFlags, pContext, ppRefreshable, plId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConfigureRefresher_AddRefresher(self: *const T, pRefresher: ?*IWbemRefresher, lFlags: i32, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddRefresher(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pRefresher, lFlags, plId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConfigureRefresher_Remove(self: *const T, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).Remove(@as(*const IWbemConfigureRefresher, @ptrCast(self)), lId, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConfigureRefresher_AddEnum(self: *const T, pNamespace: ?*IWbemServices, wszClassName: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppEnum: ?*?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConfigureRefresher.VTable, @ptrCast(self.vtable)).AddEnum(@as(*const IWbemConfigureRefresher, @ptrCast(self)), pNamespace, wszClassName, lFlags, pContext, ppEnum, plId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddObjectByPath(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszPath: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.AddObjectByPath(self, pNamespace, wszPath, lFlags, pContext, ppRefreshable, plId);
     }
@@ -4946,30 +4285,7 @@ pub const IWbemObjectSinkEx = extern union {
     };
     vtable: *const VTable,
     IWbemObjectSink: IWbemObjectSink,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWbemObjectSink.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSinkEx_WriteMessage(self: *const T, uChannel: u32, strMessage: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteMessage(@as(*const IWbemObjectSinkEx, @ptrCast(self)), uChannel, strMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSinkEx_WriteError(self: *const T, pObjError: ?*IWbemClassObject, puReturned: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteError(@as(*const IWbemObjectSinkEx, @ptrCast(self)), pObjError, puReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSinkEx_PromptUser(self: *const T, strMessage: ?BSTR, uPromptType: u8, puReturned: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).PromptUser(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strMessage, uPromptType, puReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSinkEx_WriteProgress(self: *const T, strActivity: ?BSTR, strCurrentOperation: ?BSTR, strStatusDescription: ?BSTR, uPercentComplete: u32, uSecondsRemaining: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteProgress(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strActivity, strCurrentOperation, strStatusDescription, uPercentComplete, uSecondsRemaining);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectSinkEx_WriteStreamParameter(self: *const T, strName: ?BSTR, vtValue: ?*VARIANT, ulType: u32, ulFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectSinkEx.VTable, @ptrCast(self.vtable)).WriteStreamParameter(@as(*const IWbemObjectSinkEx, @ptrCast(self)), strName, vtValue, ulType, ulFlags);
-        }
-    };}
-    pub usingnamespace IWbemObjectSink.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn WriteMessage(self: *const IWbemObjectSinkEx, uChannel: u32, strMessage: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.WriteMessage(self, uChannel, strMessage);
     }
@@ -5002,14 +4318,6 @@ pub const IWbemShutdown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemShutdown_Shutdown(self: *const T, uReason: i32, uMaxMilliseconds: u32, pCtx: ?*IWbemContext) callconv(.Inline) HRESULT {
-            return @as(*const IWbemShutdown.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IWbemShutdown, @ptrCast(self)), uReason, uMaxMilliseconds, pCtx);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Shutdown(self: *const IWbemShutdown, uReason: i32, uMaxMilliseconds: u32, pCtx: ?*IWbemContext) callconv(.Inline) HRESULT {
         return self.vtable.Shutdown(self, uReason, uMaxMilliseconds, pCtx);
     }
@@ -5069,18 +4377,6 @@ pub const IWbemObjectTextSrc = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectTextSrc_GetText(self: *const T, lFlags: i32, pObj: ?*IWbemClassObject, uObjTextFormat: u32, pCtx: ?*IWbemContext, strText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectTextSrc.VTable, @ptrCast(self.vtable)).GetText(@as(*const IWbemObjectTextSrc, @ptrCast(self)), lFlags, pObj, uObjTextFormat, pCtx, strText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemObjectTextSrc_CreateFromText(self: *const T, lFlags: i32, strText: ?BSTR, uObjTextFormat: u32, pCtx: ?*IWbemContext, pNewObj: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemObjectTextSrc.VTable, @ptrCast(self.vtable)).CreateFromText(@as(*const IWbemObjectTextSrc, @ptrCast(self)), lFlags, strText, uObjTextFormat, pCtx, pNewObj);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetText(self: *const IWbemObjectTextSrc, lFlags: i32, pObj: ?*IWbemClassObject, uObjTextFormat: u32, pCtx: ?*IWbemContext, strText: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetText(self, lFlags, pObj, uObjTextFormat, pCtx, strText);
     }
@@ -5169,22 +4465,6 @@ pub const IMofCompiler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMofCompiler_CompileFile(self: *const T, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CompileFile(@as(*const IMofCompiler, @ptrCast(self)), FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMofCompiler_CompileBuffer(self: *const T, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CompileBuffer(@as(*const IMofCompiler, @ptrCast(self)), BuffSize, pBuffer, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMofCompiler_CreateBMOF(self: *const T, TextFileName: ?PWSTR, BMOFFileName: ?PWSTR, ServerAndNamespace: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMofCompiler.VTable, @ptrCast(self.vtable)).CreateBMOF(@as(*const IMofCompiler, @ptrCast(self)), TextFileName, BMOFFileName, ServerAndNamespace, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CompileFile(self: *const IMofCompiler, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
         return self.vtable.CompileFile(self, FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
@@ -5263,18 +4543,6 @@ pub const IWbemPropertyProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPropertyProvider_GetProperty(self: *const T, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPropertyProvider.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWbemPropertyProvider, @ptrCast(self)), lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPropertyProvider_PutProperty(self: *const T, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*const VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWbemPropertyProvider.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IWbemPropertyProvider, @ptrCast(self)), lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetProperty(self, lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
     }
@@ -5298,14 +4566,6 @@ pub const IWbemUnboundObjectSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemUnboundObjectSink_IndicateToConsumer(self: *const T, pLogicalConsumer: ?*IWbemClassObject, lNumObjects: i32, apObjects: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemUnboundObjectSink.VTable, @ptrCast(self.vtable)).IndicateToConsumer(@as(*const IWbemUnboundObjectSink, @ptrCast(self)), pLogicalConsumer, lNumObjects, apObjects);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IndicateToConsumer(self: *const IWbemUnboundObjectSink, pLogicalConsumer: ?*IWbemClassObject, lNumObjects: i32, apObjects: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.IndicateToConsumer(self, pLogicalConsumer, lNumObjects, apObjects);
     }
@@ -5325,14 +4585,6 @@ pub const IWbemEventProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventProvider_ProvideEvents(self: *const T, pSink: ?*IWbemObjectSink, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventProvider.VTable, @ptrCast(self.vtable)).ProvideEvents(@as(*const IWbemEventProvider, @ptrCast(self)), pSink, lFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ProvideEvents(self: *const IWbemEventProvider, pSink: ?*IWbemObjectSink, lFlags: i32) callconv(.Inline) HRESULT {
         return self.vtable.ProvideEvents(self, pSink, lFlags);
     }
@@ -5357,18 +4609,6 @@ pub const IWbemEventProviderQuerySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventProviderQuerySink_NewQuery(self: *const T, dwId: u32, wszQueryLanguage: ?*u16, wszQuery: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventProviderQuerySink.VTable, @ptrCast(self.vtable)).NewQuery(@as(*const IWbemEventProviderQuerySink, @ptrCast(self)), dwId, wszQueryLanguage, wszQuery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventProviderQuerySink_CancelQuery(self: *const T, dwId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventProviderQuerySink.VTable, @ptrCast(self.vtable)).CancelQuery(@as(*const IWbemEventProviderQuerySink, @ptrCast(self)), dwId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NewQuery(self: *const IWbemEventProviderQuerySink, dwId: u32, wszQueryLanguage: ?*u16, wszQuery: ?*u16) callconv(.Inline) HRESULT {
         return self.vtable.NewQuery(self, dwId, wszQueryLanguage, wszQuery);
     }
@@ -5393,14 +4633,6 @@ pub const IWbemEventProviderSecurity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventProviderSecurity_AccessCheck(self: *const T, wszQueryLanguage: ?*u16, wszQuery: ?*u16, lSidLength: i32, pSid: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventProviderSecurity.VTable, @ptrCast(self.vtable)).AccessCheck(@as(*const IWbemEventProviderSecurity, @ptrCast(self)), wszQueryLanguage, wszQuery, lSidLength, pSid);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AccessCheck(self: *const IWbemEventProviderSecurity, wszQueryLanguage: ?*u16, wszQuery: ?*u16, lSidLength: i32, pSid: [*:0]const u8) callconv(.Inline) HRESULT {
         return self.vtable.AccessCheck(self, wszQueryLanguage, wszQuery, lSidLength, pSid);
     }
@@ -5420,14 +4652,6 @@ pub const IWbemEventConsumerProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventConsumerProvider_FindConsumer(self: *const T, pLogicalConsumer: ?*IWbemClassObject, ppConsumer: ?*?*IWbemUnboundObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventConsumerProvider.VTable, @ptrCast(self.vtable)).FindConsumer(@as(*const IWbemEventConsumerProvider, @ptrCast(self)), pLogicalConsumer, ppConsumer);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindConsumer(self: *const IWbemEventConsumerProvider, pLogicalConsumer: ?*IWbemClassObject, ppConsumer: ?*?*IWbemUnboundObjectSink) callconv(.Inline) HRESULT {
         return self.vtable.FindConsumer(self, pLogicalConsumer, ppConsumer);
     }
@@ -5447,14 +4671,6 @@ pub const IWbemProviderInitSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemProviderInitSink_SetStatus(self: *const T, lStatus: i32, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemProviderInitSink.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IWbemProviderInitSink, @ptrCast(self)), lStatus, lFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetStatus(self: *const IWbemProviderInitSink, lStatus: i32, lFlags: i32) callconv(.Inline) HRESULT {
         return self.vtable.SetStatus(self, lStatus, lFlags);
     }
@@ -5479,14 +4695,6 @@ pub const IWbemProviderInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemProviderInit_Initialize(self: *const T, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemProviderInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemProviderInit, @ptrCast(self)), wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
     }
@@ -5549,34 +4757,6 @@ pub const IWbemHiPerfProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_QueryInstances(self: *const T, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).QueryInstances(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, wszClass, lFlags, pCtx, pSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_CreateRefresher(self: *const T, pNamespace: ?*IWbemServices, lFlags: i32, ppRefresher: ?*?*IWbemRefresher) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefresher(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, lFlags, ppRefresher);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_CreateRefreshableObject(self: *const T, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemObjectAccess, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemObjectAccess, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefreshableObject(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, pTemplate, pRefresher, lFlags, pContext, ppRefreshable, plId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_StopRefreshing(self: *const T, pRefresher: ?*IWbemRefresher, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).StopRefreshing(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pRefresher, lId, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_CreateRefreshableEnum(self: *const T, pNamespace: ?*IWbemServices, wszClass: ?[*:0]const u16, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, pHiPerfEnum: ?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).CreateRefreshableEnum(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, wszClass, pRefresher, lFlags, pContext, pHiPerfEnum, plId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemHiPerfProvider_GetObjects(self: *const T, pNamespace: ?*IWbemServices, lNumObjects: i32, apObj: [*]?*IWbemObjectAccess, lFlags: i32, pContext: ?*IWbemContext) callconv(.Inline) HRESULT {
-            return @as(*const IWbemHiPerfProvider.VTable, @ptrCast(self.vtable)).GetObjects(@as(*const IWbemHiPerfProvider, @ptrCast(self)), pNamespace, lNumObjects, apObj, lFlags, pContext);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
         return self.vtable.QueryInstances(self, pNamespace, wszClass, lFlags, pCtx, pSink);
     }
@@ -5619,18 +4799,6 @@ pub const IWbemDecoupledRegistrar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemDecoupledRegistrar_Register(self: *const T, a_Flags: i32, a_Context: ?*IWbemContext, a_User: ?[*:0]const u16, a_Locale: ?[*:0]const u16, a_Scope: ?[*:0]const u16, a_Registration: ?[*:0]const u16, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IWbemDecoupledRegistrar.VTable, @ptrCast(self.vtable)).Register(@as(*const IWbemDecoupledRegistrar, @ptrCast(self)), a_Flags, a_Context, a_User, a_Locale, a_Scope, a_Registration, pIUnknown);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemDecoupledRegistrar_UnRegister(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemDecoupledRegistrar.VTable, @ptrCast(self.vtable)).UnRegister(@as(*const IWbemDecoupledRegistrar, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Register(self: *const IWbemDecoupledRegistrar, a_Flags: i32, a_Context: ?*IWbemContext, a_User: ?[*:0]const u16, a_Locale: ?[*:0]const u16, a_Scope: ?[*:0]const u16, a_Registration: ?[*:0]const u16, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.Register(self, a_Flags, a_Context, a_User, a_Locale, a_Scope, a_Registration, pIUnknown);
     }
@@ -5653,14 +4821,6 @@ pub const IWbemProviderIdentity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemProviderIdentity_SetRegistrationObject(self: *const T, lFlags: i32, pProvReg: ?*IWbemClassObject) callconv(.Inline) HRESULT {
-            return @as(*const IWbemProviderIdentity.VTable, @ptrCast(self.vtable)).SetRegistrationObject(@as(*const IWbemProviderIdentity, @ptrCast(self)), lFlags, pProvReg);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetRegistrationObject(self: *const IWbemProviderIdentity, lFlags: i32, pProvReg: ?*IWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.SetRegistrationObject(self, lFlags, pProvReg);
     }
@@ -5707,18 +4867,7 @@ pub const IWbemDecoupledBasicEventProvider = extern union {
     };
     vtable: *const VTable,
     IWbemDecoupledRegistrar: IWbemDecoupledRegistrar,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWbemDecoupledRegistrar.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemDecoupledBasicEventProvider_GetSink(self: *const T, a_Flags: i32, a_Context: ?*IWbemContext, a_Sink: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemDecoupledBasicEventProvider.VTable, @ptrCast(self.vtable)).GetSink(@as(*const IWbemDecoupledBasicEventProvider, @ptrCast(self)), a_Flags, a_Context, a_Sink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemDecoupledBasicEventProvider_GetService(self: *const T, a_Flags: i32, a_Context: ?*IWbemContext, a_Service: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemDecoupledBasicEventProvider.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWbemDecoupledBasicEventProvider, @ptrCast(self)), a_Flags, a_Context, a_Service);
-        }
-    };}
-    pub usingnamespace IWbemDecoupledRegistrar.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetSink(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Sink: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
         return self.vtable.GetSink(self, a_Flags, a_Context, a_Sink);
     }
@@ -5766,26 +4915,7 @@ pub const IWbemEventSink = extern union {
     };
     vtable: *const VTable,
     IWbemObjectSink: IWbemObjectSink,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWbemObjectSink.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventSink_SetSinkSecurity(self: *const T, lSDLength: i32, pSD: [*:0]u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).SetSinkSecurity(@as(*const IWbemEventSink, @ptrCast(self)), lSDLength, pSD);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventSink_IsActive(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).IsActive(@as(*const IWbemEventSink, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventSink_GetRestrictedSink(self: *const T, lNumQueries: i32, awszQueries: [*]const ?[*:0]const u16, pCallback: ?*IUnknown, ppSink: ?*?*IWbemEventSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).GetRestrictedSink(@as(*const IWbemEventSink, @ptrCast(self)), lNumQueries, awszQueries, pCallback, ppSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemEventSink_SetBatchingParameters(self: *const T, lFlags: i32, dwMaxBufferSize: u32, dwMaxSendLatency: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemEventSink.VTable, @ptrCast(self.vtable)).SetBatchingParameters(@as(*const IWbemEventSink, @ptrCast(self)), lFlags, dwMaxBufferSize, dwMaxSendLatency);
-        }
-    };}
-    pub usingnamespace IWbemObjectSink.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetSinkSecurity(self: *const IWbemEventSink, lSDLength: i32, pSD: [*:0]u8) callconv(.Inline) HRESULT {
         return self.vtable.SetSinkSecurity(self, lSDLength, pSD);
     }
@@ -6532,86 +5662,7 @@ pub const ISWbemServices = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_Get(self: *const T, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).Get(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, iFlags, objWbemNamedValueSet, objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_GetAsync(self: *const T, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).GetAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_Delete(self: *const T, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, iFlags, objWbemNamedValueSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_DeleteAsync(self: *const T, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).DeleteAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_InstancesOf(self: *const T, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).InstancesOf(@as(*const ISWbemServices, @ptrCast(self)), strClass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_InstancesOfAsync(self: *const T, objWbemSink: ?*IDispatch, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).InstancesOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strClass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_SubclassesOf(self: *const T, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).SubclassesOf(@as(*const ISWbemServices, @ptrCast(self)), strSuperclass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_SubclassesOfAsync(self: *const T, objWbemSink: ?*IDispatch, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).SubclassesOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strSuperclass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecQuery(self: *const T, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecQuery(@as(*const ISWbemServices, @ptrCast(self)), strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecQueryAsync(self: *const T, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, lFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecQueryAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strQuery, strQueryLanguage, lFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_AssociatorsOf(self: *const T, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).AssociatorsOf(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_AssociatorsOfAsync(self: *const T, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).AssociatorsOfAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ReferencesTo(self: *const T, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ReferencesTo(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ReferencesToAsync(self: *const T, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ReferencesToAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecNotificationQuery(self: *const T, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemEventSource: ?*?*ISWbemEventSource) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQuery(@as(*const ISWbemServices, @ptrCast(self)), strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemEventSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecNotificationQueryAsync(self: *const T, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecNotificationQueryAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecMethod(self: *const T, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecMethod(@as(*const ISWbemServices, @ptrCast(self)), strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_ExecMethodAsync(self: *const T, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).ExecMethodAsync(@as(*const ISWbemServices, @ptrCast(self)), objWbemSink, strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServices_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServices.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemServices, @ptrCast(self)), objWbemSecurity);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Get(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
         return self.vtable.Get(self, strObjectPath, iFlags, objWbemNamedValueSet, objWbemObject);
     }
@@ -6696,18 +5747,7 @@ pub const ISWbemLocator = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemLocator_ConnectServer(self: *const T, strServer: ?BSTR, strNamespace: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, strAuthority: ?BSTR, iSecurityFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemLocator.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const ISWbemLocator, @ptrCast(self)), strServer, strNamespace, strUser, strPassword, strLocale, strAuthority, iSecurityFlags, objWbemNamedValueSet, objWbemServices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemLocator_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemLocator.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemLocator, @ptrCast(self)), objWbemSecurity);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn ConnectServer(self: *const ISWbemLocator, strServer: ?BSTR, strNamespace: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, strAuthority: ?BSTR, iSecurityFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
         return self.vtable.ConnectServer(self, strServer, strNamespace, strUser, strPassword, strLocale, strAuthority, iSecurityFlags, objWbemNamedValueSet, objWbemServices);
     }
@@ -6899,110 +5939,7 @@ pub const ISWbemObject = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Put_(self: *const T, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Put_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_PutAsync_(self: *const T, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).PutAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Delete_(self: *const T, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Delete_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_DeleteAsync_(self: *const T, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).DeleteAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Instances_(self: *const T, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Instances_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_InstancesAsync_(self: *const T, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).InstancesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Subclasses_(self: *const T, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Subclasses_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_SubclassesAsync_(self: *const T, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SubclassesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Associators_(self: *const T, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Associators_(@as(*const ISWbemObject, @ptrCast(self)), strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_AssociatorsAsync_(self: *const T, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).AssociatorsAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_References_(self: *const T, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).References_(@as(*const ISWbemObject, @ptrCast(self)), strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_ReferencesAsync_(self: *const T, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ReferencesAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_ExecMethod_(self: *const T, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ExecMethod_(@as(*const ISWbemObject, @ptrCast(self)), strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_ExecMethodAsync_(self: *const T, objWbemSink: ?*IDispatch, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).ExecMethodAsync_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSink, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_Clone_(self: *const T, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).Clone_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_GetObjectText_(self: *const T, iFlags: i32, strObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).GetObjectText_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, strObjectText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_SpawnDerivedClass_(self: *const T, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SpawnDerivedClass_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_SpawnInstance_(self: *const T, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).SpawnInstance_(@as(*const ISWbemObject, @ptrCast(self)), iFlags, objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_CompareTo_(self: *const T, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).CompareTo_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObject, iFlags, bResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Qualifiers_(self: *const T, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemObject, @ptrCast(self)), objWbemQualifierSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Properties_(self: *const T, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Properties_(@as(*const ISWbemObject, @ptrCast(self)), objWbemPropertySet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Methods_(self: *const T, objWbemMethodSet: ?*?*ISWbemMethodSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Methods_(@as(*const ISWbemObject, @ptrCast(self)), objWbemMethodSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Derivation_(self: *const T, strClassNameArray: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Derivation_(@as(*const ISWbemObject, @ptrCast(self)), strClassNameArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Path_(self: *const T, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Path_(@as(*const ISWbemObject, @ptrCast(self)), objWbemObjectPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObject_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObject.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObject, @ptrCast(self)), objWbemSecurity);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Put_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
         return self.vtable.Put_(self, iFlags, objWbemNamedValueSet, objWbemObjectPath);
     }
@@ -7114,30 +6051,7 @@ pub const ISWbemObjectSet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectSet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemObjectSet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectSet_Item(self: *const T, strObjectPath: ?BSTR, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemObjectSet, @ptrCast(self)), strObjectPath, iFlags, objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectSet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemObjectSet, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectSet_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObjectSet, @ptrCast(self)), objWbemSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectSet_ItemIndex(self: *const T, lIndex: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectSet.VTable, @ptrCast(self.vtable)).ItemIndex(@as(*const ISWbemObjectSet, @ptrCast(self)), lIndex, objWbemObject);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemObjectSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -7178,22 +6092,7 @@ pub const ISWbemNamedValue = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValue_get_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemNamedValue, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValue_put_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemNamedValue, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValue_get_Name(self: *const T, strName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemNamedValue, @ptrCast(self)), strName);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
@@ -7248,38 +6147,7 @@ pub const ISWbemNamedValueSet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemNamedValueSet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_Item(self: *const T, strName: ?BSTR, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, iFlags, objWbemNamedValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemNamedValueSet, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_Add(self: *const T, strName: ?BSTR, varValue: ?*VARIANT, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, varValue, iFlags, objWbemNamedValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_Remove(self: *const T, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemNamedValueSet, @ptrCast(self)), strName, iFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_Clone(self: *const T, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISWbemNamedValueSet, @ptrCast(self)), objWbemNamedValueSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemNamedValueSet_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemNamedValueSet.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemNamedValueSet, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemNamedValueSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -7366,54 +6234,7 @@ pub const ISWbemQualifier = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemQualifier, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_put_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemQualifier, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_Name(self: *const T, strName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemQualifier, @ptrCast(self)), strName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_IsLocal(self: *const T, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const ISWbemQualifier, @ptrCast(self)), bIsLocal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_PropagatesToSubclass(self: *const T, bPropagatesToSubclass: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_PropagatesToSubclass(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToSubclass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_put_PropagatesToSubclass(self: *const T, bPropagatesToSubclass: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_PropagatesToSubclass(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToSubclass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_PropagatesToInstance(self: *const T, bPropagatesToInstance: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_PropagatesToInstance(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_put_PropagatesToInstance(self: *const T, bPropagatesToInstance: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_PropagatesToInstance(@as(*const ISWbemQualifier, @ptrCast(self)), bPropagatesToInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_IsOverridable(self: *const T, bIsOverridable: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsOverridable(@as(*const ISWbemQualifier, @ptrCast(self)), bIsOverridable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_put_IsOverridable(self: *const T, bIsOverridable: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).put_IsOverridable(@as(*const ISWbemQualifier, @ptrCast(self)), bIsOverridable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifier_get_IsAmended(self: *const T, bIsAmended: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifier.VTable, @ptrCast(self.vtable)).get_IsAmended(@as(*const ISWbemQualifier, @ptrCast(self)), bIsAmended);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
@@ -7488,30 +6309,7 @@ pub const ISWbemQualifierSet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifierSet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemQualifierSet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifierSet_Item(self: *const T, name: ?BSTR, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemQualifierSet, @ptrCast(self)), name, iFlags, objWbemQualifier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifierSet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemQualifierSet, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifierSet_Add(self: *const T, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: i16, bPropagatesToInstance: i16, bIsOverridable: i16, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemQualifierSet, @ptrCast(self)), strName, varVal, bPropagatesToSubclass, bPropagatesToInstance, bIsOverridable, iFlags, objWbemQualifier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemQualifierSet_Remove(self: *const T, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemQualifierSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemQualifierSet, @ptrCast(self)), strName, iFlags);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemQualifierSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -7577,42 +6375,7 @@ pub const ISWbemProperty = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemProperty, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_put_Value(self: *const T, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemProperty, @ptrCast(self)), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_Name(self: *const T, strName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemProperty, @ptrCast(self)), strName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_IsLocal(self: *const T, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const ISWbemProperty, @ptrCast(self)), bIsLocal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_Origin(self: *const T, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Origin(@as(*const ISWbemProperty, @ptrCast(self)), strOrigin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_CIMType(self: *const T, iCimType: ?*WbemCimtypeEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_CIMType(@as(*const ISWbemProperty, @ptrCast(self)), iCimType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_Qualifiers_(self: *const T, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemProperty, @ptrCast(self)), objWbemQualifierSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemProperty_get_IsArray(self: *const T, bIsArray: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemProperty.VTable, @ptrCast(self.vtable)).get_IsArray(@as(*const ISWbemProperty, @ptrCast(self)), bIsArray);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
@@ -7676,30 +6439,7 @@ pub const ISWbemPropertySet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPropertySet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemPropertySet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPropertySet_Item(self: *const T, strName: ?BSTR, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iFlags, objWbemProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPropertySet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemPropertySet, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPropertySet_Add(self: *const T, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: i16, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iCIMType, bIsArray, iFlags, objWbemProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPropertySet_Remove(self: *const T, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPropertySet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemPropertySet, @ptrCast(self)), strName, iFlags);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemPropertySet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -7750,30 +6490,7 @@ pub const ISWbemMethod = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethod_get_Name(self: *const T, strName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemMethod, @ptrCast(self)), strName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethod_get_Origin(self: *const T, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Origin(@as(*const ISWbemMethod, @ptrCast(self)), strOrigin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethod_get_InParameters(self: *const T, objWbemInParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_InParameters(@as(*const ISWbemMethod, @ptrCast(self)), objWbemInParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethod_get_OutParameters(self: *const T, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_OutParameters(@as(*const ISWbemMethod, @ptrCast(self)), objWbemOutParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethod_get_Qualifiers_(self: *const T, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethod.VTable, @ptrCast(self.vtable)).get_Qualifiers_(@as(*const ISWbemMethod, @ptrCast(self)), objWbemQualifierSet);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const ISWbemMethod, strName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, strName);
     }
@@ -7815,22 +6532,7 @@ pub const ISWbemMethodSet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethodSet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemMethodSet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethodSet_Item(self: *const T, strName: ?BSTR, iFlags: i32, objWbemMethod: ?*?*ISWbemMethod) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemMethodSet, @ptrCast(self)), strName, iFlags, objWbemMethod);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemMethodSet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemMethodSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemMethodSet, @ptrCast(self)), iCount);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemMethodSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -7860,18 +6562,7 @@ pub const ISWbemEventSource = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemEventSource_NextEvent(self: *const T, iTimeoutMs: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemEventSource.VTable, @ptrCast(self.vtable)).NextEvent(@as(*const ISWbemEventSource, @ptrCast(self)), iTimeoutMs, objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemEventSource_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemEventSource.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemEventSource, @ptrCast(self)), objWbemSecurity);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn NextEvent(self: *const ISWbemEventSource, iTimeoutMs: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
         return self.vtable.NextEvent(self, iTimeoutMs, objWbemObject);
     }
@@ -7999,102 +6690,7 @@ pub const ISWbemObjectPath = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Path(self: *const T, strPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ISWbemObjectPath, @ptrCast(self)), strPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Path(self: *const T, strPath: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Path(@as(*const ISWbemObjectPath, @ptrCast(self)), strPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_RelPath(self: *const T, strRelPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_RelPath(@as(*const ISWbemObjectPath, @ptrCast(self)), strRelPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_RelPath(self: *const T, strRelPath: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_RelPath(@as(*const ISWbemObjectPath, @ptrCast(self)), strRelPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Server(self: *const T, strServer: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Server(@as(*const ISWbemObjectPath, @ptrCast(self)), strServer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Server(self: *const T, strServer: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Server(@as(*const ISWbemObjectPath, @ptrCast(self)), strServer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Namespace(self: *const T, strNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Namespace(self: *const T, strNamespace: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Namespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_ParentNamespace(self: *const T, strParentNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_ParentNamespace(@as(*const ISWbemObjectPath, @ptrCast(self)), strParentNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_DisplayName(self: *const T, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ISWbemObjectPath, @ptrCast(self)), strDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_DisplayName(self: *const T, strDisplayName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const ISWbemObjectPath, @ptrCast(self)), strDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Class(self: *const T, strClass: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Class(@as(*const ISWbemObjectPath, @ptrCast(self)), strClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Class(self: *const T, strClass: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Class(@as(*const ISWbemObjectPath, @ptrCast(self)), strClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_IsClass(self: *const T, bIsClass: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_IsClass(@as(*const ISWbemObjectPath, @ptrCast(self)), bIsClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_SetAsClass(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).SetAsClass(@as(*const ISWbemObjectPath, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_IsSingleton(self: *const T, bIsSingleton: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_IsSingleton(@as(*const ISWbemObjectPath, @ptrCast(self)), bIsSingleton);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_SetAsSingleton(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).SetAsSingleton(@as(*const ISWbemObjectPath, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Keys(self: *const T, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Keys(@as(*const ISWbemObjectPath, @ptrCast(self)), objWbemNamedValueSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Security_(self: *const T, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Security_(@as(*const ISWbemObjectPath, @ptrCast(self)), objWbemSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Locale(self: *const T, strLocale: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Locale(@as(*const ISWbemObjectPath, @ptrCast(self)), strLocale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Locale(self: *const T, strLocale: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Locale(@as(*const ISWbemObjectPath, @ptrCast(self)), strLocale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_get_Authority(self: *const T, strAuthority: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).get_Authority(@as(*const ISWbemObjectPath, @ptrCast(self)), strAuthority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectPath_put_Authority(self: *const T, strAuthority: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectPath.VTable, @ptrCast(self.vtable)).put_Authority(@as(*const ISWbemObjectPath, @ptrCast(self)), strAuthority);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Path(self: *const ISWbemObjectPath, strPath: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Path(self, strPath);
     }
@@ -8174,10 +6770,8 @@ pub const ISWbemLastError = extern union {
     };
     vtable: *const VTable,
     ISWbemObject: ISWbemObject,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISWbemObject.MethodMixin(T);
-    };}
-    pub usingnamespace ISWbemObject.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
 const IID_ISWbemSinkEvents_Value = Guid.initString("75718ca0-f029-11d1-a1ac-00c04fb6c223");
@@ -8188,10 +6782,7 @@ pub const ISWbemSinkEvents = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 const IID_ISWbemSink_Value = Guid.initString("75718c9f-f029-11d1-a1ac-00c04fb6c223");
@@ -8205,14 +6796,7 @@ pub const ISWbemSink = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSink_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSink.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ISWbemSink, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Cancel(self: *const ISWbemSink) callconv(.Inline) HRESULT {
         return self.vtable.Cancel(self);
     }
@@ -8251,30 +6835,7 @@ pub const ISWbemSecurity = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSecurity_get_ImpersonationLevel(self: *const T, iImpersonationLevel: ?*WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_ImpersonationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iImpersonationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSecurity_put_ImpersonationLevel(self: *const T, iImpersonationLevel: WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).put_ImpersonationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iImpersonationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSecurity_get_AuthenticationLevel(self: *const T, iAuthenticationLevel: ?*WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_AuthenticationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iAuthenticationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSecurity_put_AuthenticationLevel(self: *const T, iAuthenticationLevel: WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).put_AuthenticationLevel(@as(*const ISWbemSecurity, @ptrCast(self)), iAuthenticationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemSecurity_get_Privileges(self: *const T, objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemSecurity.VTable, @ptrCast(self.vtable)).get_Privileges(@as(*const ISWbemSecurity, @ptrCast(self)), objWbemPrivilegeSet);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: ?*WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
         return self.vtable.get_ImpersonationLevel(self, iImpersonationLevel);
     }
@@ -8325,30 +6886,7 @@ pub const ISWbemPrivilege = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilege_get_IsEnabled(self: *const T, bIsEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_IsEnabled(@as(*const ISWbemPrivilege, @ptrCast(self)), bIsEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilege_put_IsEnabled(self: *const T, bIsEnabled: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).put_IsEnabled(@as(*const ISWbemPrivilege, @ptrCast(self)), bIsEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilege_get_Name(self: *const T, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISWbemPrivilege, @ptrCast(self)), strDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilege_get_DisplayName(self: *const T, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ISWbemPrivilege, @ptrCast(self)), strDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilege_get_Identifier(self: *const T, iPrivilege: ?*WbemPrivilegeEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilege.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const ISWbemPrivilege, @ptrCast(self)), iPrivilege);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.get_IsEnabled(self, bIsEnabled);
     }
@@ -8408,38 +6946,7 @@ pub const ISWbemPrivilegeSet = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_Item(self: *const T, iPrivilege: WbemPrivilegeEnum, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege, objWbemPrivilege);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_Add(self: *const T, iPrivilege: WbemPrivilegeEnum, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege, bIsEnabled, objWbemPrivilege);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_Remove(self: *const T, iPrivilege: WbemPrivilegeEnum) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), iPrivilege);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemPrivilegeSet, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemPrivilegeSet_AddAsString(self: *const T, strPrivilege: ?BSTR, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemPrivilegeSet.VTable, @ptrCast(self.vtable)).AddAsString(@as(*const ISWbemPrivilegeSet, @ptrCast(self)), strPrivilege, bIsEnabled, objWbemPrivilege);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemPrivilegeSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -8486,18 +6993,8 @@ pub const ISWbemServicesEx = extern union {
     };
     vtable: *const VTable,
     ISWbemServices: ISWbemServices,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISWbemServices.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServicesEx_Put(self: *const T, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServicesEx.VTable, @ptrCast(self.vtable)).Put(@as(*const ISWbemServicesEx, @ptrCast(self)), objWbemObject, iFlags, objWbemNamedValueSet, objWbemObjectPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemServicesEx_PutAsync(self: *const T, objWbemSink: ?*ISWbemSink, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemServicesEx.VTable, @ptrCast(self.vtable)).PutAsync(@as(*const ISWbemServicesEx, @ptrCast(self)), objWbemSink, objWbemObject, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
-        }
-    };}
-    pub usingnamespace ISWbemServices.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn Put(self: *const ISWbemServicesEx, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
         return self.vtable.Put(self, objWbemObject, iFlags, objWbemNamedValueSet, objWbemObjectPath);
     }
@@ -8538,26 +7035,8 @@ pub const ISWbemObjectEx = extern union {
     };
     vtable: *const VTable,
     ISWbemObject: ISWbemObject,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISWbemObject.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectEx_Refresh_(self: *const T, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).Refresh_(@as(*const ISWbemObjectEx, @ptrCast(self)), iFlags, objWbemNamedValueSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectEx_get_SystemProperties_(self: *const T, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).get_SystemProperties_(@as(*const ISWbemObjectEx, @ptrCast(self)), objWbemPropertySet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectEx_GetText_(self: *const T, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, bsText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).GetText_(@as(*const ISWbemObjectEx, @ptrCast(self)), iObjectTextFormat, iFlags, objWbemNamedValueSet, bsText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemObjectEx_SetFromText_(self: *const T, bsText: ?BSTR, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemObjectEx.VTable, @ptrCast(self.vtable)).SetFromText_(@as(*const ISWbemObjectEx, @ptrCast(self)), bsText, iObjectTextFormat, iFlags, objWbemNamedValueSet);
-        }
-    };}
-    pub usingnamespace ISWbemObject.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn Refresh_(self: *const ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
         return self.vtable.Refresh_(self, iFlags, objWbemNamedValueSet);
     }
@@ -8780,170 +7259,7 @@ pub const ISWbemDateTime = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Value(self: *const T, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISWbemDateTime, @ptrCast(self)), strValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Value(self: *const T, strValue: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISWbemDateTime, @ptrCast(self)), strValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Year(self: *const T, iYear: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Year(@as(*const ISWbemDateTime, @ptrCast(self)), iYear);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Year(self: *const T, iYear: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Year(@as(*const ISWbemDateTime, @ptrCast(self)), iYear);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_YearSpecified(self: *const T, bYearSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_YearSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bYearSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_YearSpecified(self: *const T, bYearSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_YearSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bYearSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Month(self: *const T, iMonth: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Month(@as(*const ISWbemDateTime, @ptrCast(self)), iMonth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Month(self: *const T, iMonth: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Month(@as(*const ISWbemDateTime, @ptrCast(self)), iMonth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_MonthSpecified(self: *const T, bMonthSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MonthSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMonthSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_MonthSpecified(self: *const T, bMonthSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MonthSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMonthSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Day(self: *const T, iDay: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Day(@as(*const ISWbemDateTime, @ptrCast(self)), iDay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Day(self: *const T, iDay: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Day(@as(*const ISWbemDateTime, @ptrCast(self)), iDay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_DaySpecified(self: *const T, bDaySpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_DaySpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bDaySpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_DaySpecified(self: *const T, bDaySpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_DaySpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bDaySpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Hours(self: *const T, iHours: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Hours(@as(*const ISWbemDateTime, @ptrCast(self)), iHours);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Hours(self: *const T, iHours: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Hours(@as(*const ISWbemDateTime, @ptrCast(self)), iHours);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_HoursSpecified(self: *const T, bHoursSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_HoursSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bHoursSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_HoursSpecified(self: *const T, bHoursSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_HoursSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bHoursSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Minutes(self: *const T, iMinutes: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Minutes(@as(*const ISWbemDateTime, @ptrCast(self)), iMinutes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Minutes(self: *const T, iMinutes: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Minutes(@as(*const ISWbemDateTime, @ptrCast(self)), iMinutes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_MinutesSpecified(self: *const T, bMinutesSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MinutesSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMinutesSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_MinutesSpecified(self: *const T, bMinutesSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MinutesSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMinutesSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Seconds(self: *const T, iSeconds: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Seconds(@as(*const ISWbemDateTime, @ptrCast(self)), iSeconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Seconds(self: *const T, iSeconds: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Seconds(@as(*const ISWbemDateTime, @ptrCast(self)), iSeconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_SecondsSpecified(self: *const T, bSecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_SecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bSecondsSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_SecondsSpecified(self: *const T, bSecondsSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_SecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bSecondsSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_Microseconds(self: *const T, iMicroseconds: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_Microseconds(@as(*const ISWbemDateTime, @ptrCast(self)), iMicroseconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_Microseconds(self: *const T, iMicroseconds: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_Microseconds(@as(*const ISWbemDateTime, @ptrCast(self)), iMicroseconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_MicrosecondsSpecified(self: *const T, bMicrosecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_MicrosecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMicrosecondsSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_MicrosecondsSpecified(self: *const T, bMicrosecondsSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_MicrosecondsSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bMicrosecondsSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_UTC(self: *const T, iUTC: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_UTC(@as(*const ISWbemDateTime, @ptrCast(self)), iUTC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_UTC(self: *const T, iUTC: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_UTC(@as(*const ISWbemDateTime, @ptrCast(self)), iUTC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_UTCSpecified(self: *const T, bUTCSpecified: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_UTCSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bUTCSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_UTCSpecified(self: *const T, bUTCSpecified: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_UTCSpecified(@as(*const ISWbemDateTime, @ptrCast(self)), bUTCSpecified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_get_IsInterval(self: *const T, bIsInterval: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).get_IsInterval(@as(*const ISWbemDateTime, @ptrCast(self)), bIsInterval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_put_IsInterval(self: *const T, bIsInterval: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).put_IsInterval(@as(*const ISWbemDateTime, @ptrCast(self)), bIsInterval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_GetVarDate(self: *const T, bIsLocal: i16, dVarDate: ?*f64) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).GetVarDate(@as(*const ISWbemDateTime, @ptrCast(self)), bIsLocal, dVarDate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_SetVarDate(self: *const T, dVarDate: f64, bIsLocal: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).SetVarDate(@as(*const ISWbemDateTime, @ptrCast(self)), dVarDate, bIsLocal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_GetFileTime(self: *const T, bIsLocal: i16, strFileTime: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).GetFileTime(@as(*const ISWbemDateTime, @ptrCast(self)), bIsLocal, strFileTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemDateTime_SetFileTime(self: *const T, strFileTime: ?BSTR, bIsLocal: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemDateTime.VTable, @ptrCast(self.vtable)).SetFileTime(@as(*const ISWbemDateTime, @ptrCast(self)), strFileTime, bIsLocal);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Value(self: *const ISWbemDateTime, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Value(self, strValue);
     }
@@ -9127,50 +7443,7 @@ pub const ISWbemRefresher = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_get__NewEnum(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISWbemRefresher, @ptrCast(self)), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_Item(self: *const T, iIndex: i32, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Item(@as(*const ISWbemRefresher, @ptrCast(self)), iIndex, objWbemRefreshableItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_get_Count(self: *const T, iCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISWbemRefresher, @ptrCast(self)), iCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_Add(self: *const T, objWbemServices: ?*ISWbemServicesEx, bsInstancePath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Add(@as(*const ISWbemRefresher, @ptrCast(self)), objWbemServices, bsInstancePath, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_AddEnum(self: *const T, objWbemServices: ?*ISWbemServicesEx, bsClassName: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).AddEnum(@as(*const ISWbemRefresher, @ptrCast(self)), objWbemServices, bsClassName, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_Remove(self: *const T, iIndex: i32, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemRefresher, @ptrCast(self)), iIndex, iFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_Refresh(self: *const T, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISWbemRefresher, @ptrCast(self)), iFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_get_AutoReconnect(self: *const T, bCount: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).get_AutoReconnect(@as(*const ISWbemRefresher, @ptrCast(self)), bCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_put_AutoReconnect(self: *const T, bCount: i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).put_AutoReconnect(@as(*const ISWbemRefresher, @ptrCast(self)), bCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefresher_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefresher.VTable, @ptrCast(self.vtable)).DeleteAll(@as(*const ISWbemRefresher, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get__NewEnum(self: *const ISWbemRefresher, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
@@ -9240,34 +7513,7 @@ pub const ISWbemRefreshableItem = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_get_Index(self: *const T, iIndex: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Index(@as(*const ISWbemRefreshableItem, @ptrCast(self)), iIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_get_Refresher(self: *const T, objWbemRefresher: ?*?*ISWbemRefresher) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Refresher(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemRefresher);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_get_IsSet(self: *const T, bIsSet: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_IsSet(@as(*const ISWbemRefreshableItem, @ptrCast(self)), bIsSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_get_Object(self: *const T, objWbemObject: ?*?*ISWbemObjectEx) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_Object(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_get_ObjectSet(self: *const T, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).get_ObjectSet(@as(*const ISWbemRefreshableItem, @ptrCast(self)), objWbemObjectSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISWbemRefreshableItem_Remove(self: *const T, iFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ISWbemRefreshableItem.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISWbemRefreshableItem, @ptrCast(self)), iFlags);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Index(self: *const ISWbemRefreshableItem, iIndex: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.get_Index(self, iIndex);
     }
@@ -9312,22 +7558,7 @@ pub const IWMIExtension = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIExtension_get_WMIObjectPath(self: *const T, strWMIObjectPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).get_WMIObjectPath(@as(*const IWMIExtension, @ptrCast(self)), strWMIObjectPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIExtension_GetWMIObject(self: *const T, objWMIObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
-            return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).GetWMIObject(@as(*const IWMIExtension, @ptrCast(self)), objWMIObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIExtension_GetWMIServices(self: *const T, objWMIServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWMIExtension.VTable, @ptrCast(self.vtable)).GetWMIServices(@as(*const IWMIExtension, @ptrCast(self)), objWMIServices);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_WMIObjectPath(self: *const IWMIExtension, strWMIObjectPath: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_WMIObjectPath(self, strWMIObjectPath);
     }
@@ -9375,14 +7606,6 @@ pub const IWbemTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemTransport_Initialize(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWbemTransport.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWbemTransport, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWbemTransport) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self);
     }
@@ -9424,26 +7647,6 @@ pub const IWbemLevel1Login = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemLevel1Login_EstablishPosition(self: *const T, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).EstablishPosition(@as(*const IWbemLevel1Login, @ptrCast(self)), wszLocaleList, dwNumLocales, reserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemLevel1Login_RequestChallenge(self: *const T, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).RequestChallenge(@as(*const IWbemLevel1Login, @ptrCast(self)), wszNetworkResource, wszUser, Nonce);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemLevel1Login_WBEMLogin(self: *const T, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).WBEMLogin(@as(*const IWbemLevel1Login, @ptrCast(self)), wszPreferredLocale, AccessToken, lFlags, pCtx, ppNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemLevel1Login_NTLMLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemLevel1Login.VTable, @ptrCast(self.vtable)).NTLMLogin(@as(*const IWbemLevel1Login, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.EstablishPosition(self, wszLocaleList, dwNumLocales, reserved);
     }
@@ -9475,14 +7678,6 @@ pub const IWbemConnectorLogin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConnectorLogin_ConnectorLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConnectorLogin.VTable, @ptrCast(self.vtable)).ConnectorLogin(@as(*const IWbemConnectorLogin, @ptrCast(self)), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ConnectorLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
     }
@@ -9503,14 +7698,6 @@ pub const IWbemAddressResolution = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemAddressResolution_Resolve(self: *const T, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IWbemAddressResolution.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IWbemAddressResolution, @ptrCast(self)), wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
     }
@@ -9538,14 +7725,6 @@ pub const IWbemClientTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClientTransport_ConnectServer(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClientTransport.VTable, @ptrCast(self.vtable)).ConnectServer(@as(*const IWbemClientTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectServer(self: *const IWbemClientTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
         return self.vtable.ConnectServer(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
     }
@@ -9593,22 +7772,6 @@ pub const IWbemClientConnectionTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClientConnectionTransport_Open(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).Open(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClientConnectionTransport_OpenAsync(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).OpenAsync(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pResponseHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClientConnectionTransport_Cancel(self: *const T, lFlags: i32, pHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
-            return @as(*const IWbemClientConnectionTransport.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWbemClientConnectionTransport, @ptrCast(self)), lFlags, pHandler);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
     }
@@ -9649,26 +7812,6 @@ pub const IWbemConstructClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConstructClassObject_SetInheritanceChain(self: *const T, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetInheritanceChain(@as(*const IWbemConstructClassObject, @ptrCast(self)), lNumAntecedents, awszAntecedents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConstructClassObject_SetPropertyOrigin(self: *const T, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetPropertyOrigin(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszPropertyName, lOriginIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConstructClassObject_SetMethodOrigin(self: *const T, wszMethodName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetMethodOrigin(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszMethodName, lOriginIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConstructClassObject_SetServerNamespace(self: *const T, wszServer: ?[*:0]const u16, wszNamespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWbemConstructClassObject.VTable, @ptrCast(self.vtable)).SetServerNamespace(@as(*const IWbemConstructClassObject, @ptrCast(self)), wszServer, wszNamespace);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.SetInheritanceChain(self, lNumAntecedents, awszAntecedents);
     }

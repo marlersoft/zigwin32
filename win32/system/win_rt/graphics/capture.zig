@@ -26,18 +26,6 @@ pub const IGraphicsCaptureItemInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsCaptureItemInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), window, riid, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsCaptureItemInterop_CreateForMonitor(self: *const T, monitor: ?HMONITOR, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForMonitor(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), monitor, riid, result);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateForWindow(self: *const IGraphicsCaptureItemInterop, window: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, window, riid, result);
     }

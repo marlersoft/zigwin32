@@ -584,18 +584,6 @@ pub const IRouterProtocolConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @as(*const IRouterProtocolConfig.VTable, @ptrCast(self.vtable)).AddProtocol(@as(*const IRouterProtocolConfig, @ptrCast(self)), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @as(*const IRouterProtocolConfig.VTable, @ptrCast(self.vtable)).RemoveProtocol(@as(*const IRouterProtocolConfig, @ptrCast(self)), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddProtocol(self: *const IRouterProtocolConfig, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
         return self.vtable.AddProtocol(self, pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
     }
@@ -641,30 +629,6 @@ pub const IAuthenticationProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IAuthenticationProviderConfig.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAuthenticationProviderConfig, @ptrCast(self)), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAuthenticationProviderConfig.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IAuthenticationProviderConfig, @ptrCast(self)), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAuthenticationProviderConfig.VTable, @ptrCast(self.vtable)).Configure(@as(*const IAuthenticationProviderConfig, @ptrCast(self)), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAuthenticationProviderConfig.VTable, @ptrCast(self.vtable)).Activate(@as(*const IAuthenticationProviderConfig, @ptrCast(self)), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAuthenticationProviderConfig.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IAuthenticationProviderConfig, @ptrCast(self)), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IAuthenticationProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pszMachineName, puConnectionParam);
     }
@@ -719,30 +683,6 @@ pub const IAccountingProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IAccountingProviderConfig.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAccountingProviderConfig, @ptrCast(self)), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAccountingProviderConfig.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IAccountingProviderConfig, @ptrCast(self)), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAccountingProviderConfig.VTable, @ptrCast(self.vtable)).Configure(@as(*const IAccountingProviderConfig, @ptrCast(self)), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAccountingProviderConfig.VTable, @ptrCast(self.vtable)).Activate(@as(*const IAccountingProviderConfig, @ptrCast(self)), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IAccountingProviderConfig.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IAccountingProviderConfig, @ptrCast(self)), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IAccountingProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pszMachineName, puConnectionParam);
     }
@@ -812,30 +752,6 @@ pub const IEAPProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IEAPProviderConfig, @ptrCast(self)), pszMachineName, dwEapTypeId, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Uninitialize(self: *const T, dwEapTypeId: u32, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IEAPProviderConfig, @ptrCast(self)), dwEapTypeId, uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig.VTable, @ptrCast(self.vtable)).ServerInvokeConfigUI(@as(*const IEAPProviderConfig, @ptrCast(self)), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig.VTable, @ptrCast(self.vtable)).RouterInvokeConfigUI(@as(*const IEAPProviderConfig, @ptrCast(self)), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig.VTable, @ptrCast(self.vtable)).RouterInvokeCredentialsUI(@as(*const IEAPProviderConfig, @ptrCast(self)), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IEAPProviderConfig, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pszMachineName, dwEapTypeId, puConnectionParam);
     }
@@ -877,18 +793,7 @@ pub const IEAPProviderConfig2 = extern union {
     };
     vtable: *const VTable,
     IEAPProviderConfig: IEAPProviderConfig,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig2.VTable, @ptrCast(self.vtable)).ServerInvokeConfigUI2(@as(*const IEAPProviderConfig2, @ptrCast(self)), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig2.VTable, @ptrCast(self.vtable)).GetGlobalConfig(@as(*const IEAPProviderConfig2, @ptrCast(self)), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-    };}
-    pub usingnamespace IEAPProviderConfig.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn ServerInvokeConfigUI2(self: *const IEAPProviderConfig2, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.ServerInvokeConfigUI2(self, dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
     }
@@ -916,14 +821,8 @@ pub const IEAPProviderConfig3 = extern union {
     };
     vtable: *const VTable,
     IEAPProviderConfig2: IEAPProviderConfig2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.Inline) HRESULT {
-            return @as(*const IEAPProviderConfig3.VTable, @ptrCast(self.vtable)).ServerInvokeCertificateConfigUI(@as(*const IEAPProviderConfig3, @ptrCast(self)), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
-        }
-    };}
-    pub usingnamespace IEAPProviderConfig2.MethodMixin(@This());
+    IEAPProviderConfig: IEAPProviderConfig,
+    IUnknown: IUnknown,
     pub fn ServerInvokeCertificateConfigUI(self: *const IEAPProviderConfig3, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.Inline) HRESULT {
         return self.vtable.ServerInvokeCertificateConfigUI(self, dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
     }

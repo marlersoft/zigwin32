@@ -19,14 +19,6 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDxgiInterfaceAccess_GetInterface(self: *const T, iid: ?*const Guid, p: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirect3DDxgiInterfaceAccess.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDirect3DDxgiInterfaceAccess, @ptrCast(self)), iid, p);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInterface(self: *const IDirect3DDxgiInterfaceAccess, iid: ?*const Guid, p: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetInterface(self, iid, p);
     }

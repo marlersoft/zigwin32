@@ -606,46 +606,6 @@ pub const IDirectMusic = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumPort(self: *const T, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).EnumPort(@as(*const IDirectMusic, @ptrCast(self)), dwIndex, pPortCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreateMusicBuffer(self: *const T, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).CreateMusicBuffer(@as(*const IDirectMusic, @ptrCast(self)), pBufferDesc, ppBuffer, pUnkOuter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreatePort(self: *const T, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).CreatePort(@as(*const IDirectMusic, @ptrCast(self)), rclsidPort, pPortParams, ppPort, pUnkOuter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumMasterClock(self: *const T, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).EnumMasterClock(@as(*const IDirectMusic, @ptrCast(self)), dwIndex, lpClockInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetMasterClock(self: *const T, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).GetMasterClock(@as(*const IDirectMusic, @ptrCast(self)), pguidClock, ppReferenceClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetMasterClock(self: *const T, rguidClock: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).SetMasterClock(@as(*const IDirectMusic, @ptrCast(self)), rguidClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).Activate(@as(*const IDirectMusic, @ptrCast(self)), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetDefaultPort(self: *const T, pguidPort: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).GetDefaultPort(@as(*const IDirectMusic, @ptrCast(self)), pguidPort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, hWnd: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic.VTable, @ptrCast(self.vtable)).SetDirectSound(@as(*const IDirectMusic, @ptrCast(self)), pDirectSound, hWnd);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumPort(self: *const IDirectMusic, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
         return self.vtable.EnumPort(self, dwIndex, pPortCaps);
     }
@@ -687,14 +647,7 @@ pub const IDirectMusic8 = extern union {
     };
     vtable: *const VTable,
     IDirectMusic: IDirectMusic,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectMusic.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic8_SetExternalMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusic8.VTable, @ptrCast(self.vtable)).SetExternalMasterClock(@as(*const IDirectMusic8, @ptrCast(self)), pClock);
-        }
-    };}
-    pub usingnamespace IDirectMusic.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetExternalMasterClock(self: *const IDirectMusic8, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
         return self.vtable.SetExternalMasterClock(self, pClock);
     }
@@ -766,62 +719,6 @@ pub const IDirectMusicBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).Flush(@as(*const IDirectMusicBuffer, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_TotalTime(self: *const T, prtTime: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).TotalTime(@as(*const IDirectMusicBuffer, @ptrCast(self)), prtTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_PackStructured(self: *const T, rt: i64, dwChannelGroup: u32, dwChannelMessage: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).PackStructured(@as(*const IDirectMusicBuffer, @ptrCast(self)), rt, dwChannelGroup, dwChannelMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_PackUnstructured(self: *const T, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).PackUnstructured(@as(*const IDirectMusicBuffer, @ptrCast(self)), rt, dwChannelGroup, cb, lpb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_ResetReadPtr(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).ResetReadPtr(@as(*const IDirectMusicBuffer, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetNextEvent(self: *const T, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetNextEvent(@as(*const IDirectMusicBuffer, @ptrCast(self)), prt, pdwChannelGroup, pdwLength, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetRawBufferPtr(self: *const T, ppData: ?*?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetRawBufferPtr(@as(*const IDirectMusicBuffer, @ptrCast(self)), ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetStartTime(self: *const T, prt: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetStartTime(@as(*const IDirectMusicBuffer, @ptrCast(self)), prt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetUsedBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetUsedBytes(@as(*const IDirectMusicBuffer, @ptrCast(self)), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetMaxBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetMaxBytes(@as(*const IDirectMusicBuffer, @ptrCast(self)), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetBufferFormat(self: *const T, pGuidFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).GetBufferFormat(@as(*const IDirectMusicBuffer, @ptrCast(self)), pGuidFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_SetStartTime(self: *const T, rt: i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).SetStartTime(@as(*const IDirectMusicBuffer, @ptrCast(self)), rt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_SetUsedBytes(self: *const T, cb: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicBuffer.VTable, @ptrCast(self.vtable)).SetUsedBytes(@as(*const IDirectMusicBuffer, @ptrCast(self)), cb);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Flush(self: *const IDirectMusicBuffer) callconv(.Inline) HRESULT {
         return self.vtable.Flush(self);
     }
@@ -879,18 +776,6 @@ pub const IDirectMusicInstrument = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicInstrument_GetPatch(self: *const T, pdwPatch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicInstrument.VTable, @ptrCast(self.vtable)).GetPatch(@as(*const IDirectMusicInstrument, @ptrCast(self)), pdwPatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicInstrument_SetPatch(self: *const T, dwPatch: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicInstrument.VTable, @ptrCast(self.vtable)).SetPatch(@as(*const IDirectMusicInstrument, @ptrCast(self)), dwPatch);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPatch(self: *const IDirectMusicInstrument, pdwPatch: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetPatch(self, pdwPatch);
     }
@@ -907,10 +792,6 @@ pub const IDirectMusicDownloadedInstrument = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 const IID_IDirectMusicCollection_Value = Guid.initString("d2ac287c-b39b-11d1-8704-00600893b1bd");
@@ -933,18 +814,6 @@ pub const IDirectMusicCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_GetInstrument(self: *const T, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicCollection.VTable, @ptrCast(self.vtable)).GetInstrument(@as(*const IDirectMusicCollection, @ptrCast(self)), dwPatch, ppInstrument);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_EnumInstrument(self: *const T, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicCollection.VTable, @ptrCast(self.vtable)).EnumInstrument(@as(*const IDirectMusicCollection, @ptrCast(self)), dwIndex, pdwPatch, pwszName, dwNameLen);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInstrument(self: *const IDirectMusicCollection, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.Inline) HRESULT {
         return self.vtable.GetInstrument(self, dwPatch, ppInstrument);
     }
@@ -966,14 +835,6 @@ pub const IDirectMusicDownload = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicDownload.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDirectMusicDownload, @ptrCast(self)), ppvBuffer, pdwSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBuffer(self: *const IDirectMusicDownload, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, ppvBuffer, pdwSize);
     }
@@ -1014,34 +875,6 @@ pub const IDirectMusicPortDownload = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetBuffer(self: *const T, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDirectMusicPortDownload, @ptrCast(self)), dwDLId, ppIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_AllocateBuffer(self: *const T, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).AllocateBuffer(@as(*const IDirectMusicPortDownload, @ptrCast(self)), dwSize, ppIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetDLId(self: *const T, pdwStartDLId: ?*u32, dwCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).GetDLId(@as(*const IDirectMusicPortDownload, @ptrCast(self)), pdwStartDLId, dwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).GetAppend(@as(*const IDirectMusicPortDownload, @ptrCast(self)), pdwAppend);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Download(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).Download(@as(*const IDirectMusicPortDownload, @ptrCast(self)), pIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Unload(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPortDownload.VTable, @ptrCast(self.vtable)).Unload(@as(*const IDirectMusicPortDownload, @ptrCast(self)), pIDMDownload);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBuffer(self: *const IDirectMusicPortDownload, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, dwDLId, ppIDMDownload);
     }
@@ -1153,78 +986,6 @@ pub const IDirectMusicPort = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_PlayBuffer(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).PlayBuffer(@as(*const IDirectMusicPort, @ptrCast(self)), pBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetReadNotificationHandle(self: *const T, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).SetReadNotificationHandle(@as(*const IDirectMusicPort, @ptrCast(self)), hEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Read(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).Read(@as(*const IDirectMusicPort, @ptrCast(self)), pBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DownloadInstrument(self: *const T, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).DownloadInstrument(@as(*const IDirectMusicPort, @ptrCast(self)), pInstrument, ppDownloadedInstrument, pNoteRanges, dwNumNoteRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_UnloadInstrument(self: *const T, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).UnloadInstrument(@as(*const IDirectMusicPort, @ptrCast(self)), pDownloadedInstrument);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetLatencyClock(@as(*const IDirectMusicPort, @ptrCast(self)), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetRunningStats(@as(*const IDirectMusicPort, @ptrCast(self)), pStats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Compact(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectMusicPort, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetCaps(self: *const T, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectMusicPort, @ptrCast(self)), pPortCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).DeviceIoControl(@as(*const IDirectMusicPort, @ptrCast(self)), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetNumChannelGroups(self: *const T, dwChannelGroups: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).SetNumChannelGroups(@as(*const IDirectMusicPort, @ptrCast(self)), dwChannelGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetNumChannelGroups(self: *const T, pdwChannelGroups: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetNumChannelGroups(@as(*const IDirectMusicPort, @ptrCast(self)), pdwChannelGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Activate(self: *const T, fActive: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).Activate(@as(*const IDirectMusicPort, @ptrCast(self)), fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).SetChannelPriority(@as(*const IDirectMusicPort, @ptrCast(self)), dwChannelGroup, dwChannel, dwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetChannelPriority(@as(*const IDirectMusicPort, @ptrCast(self)), dwChannelGroup, dwChannel, pdwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).SetDirectSound(@as(*const IDirectMusicPort, @ptrCast(self)), pDirectSound, pDirectSoundBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicPort.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectMusicPort, @ptrCast(self)), pWaveFormatEx, pdwWaveFormatExSize, pdwBufferSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PlayBuffer(self: *const IDirectMusicPort, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
         return self.vtable.PlayBuffer(self, pBuffer);
     }
@@ -1294,14 +1055,6 @@ pub const IDirectMusicThru = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicThru_ThruChannel(self: *const T, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicThru.VTable, @ptrCast(self.vtable)).ThruChannel(@as(*const IDirectMusicThru, @ptrCast(self)), dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ThruChannel(self: *const IDirectMusicThru, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.Inline) HRESULT {
         return self.vtable.ThruChannel(self, dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
     }
@@ -1400,78 +1153,6 @@ pub const IDirectMusicSynth = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Open(self: *const T, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Open(@as(*const IDirectMusicSynth, @ptrCast(self)), pPortParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Close(@as(*const IDirectMusicSynth, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetNumChannelGroups(self: *const T, dwGroups: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).SetNumChannelGroups(@as(*const IDirectMusicSynth, @ptrCast(self)), dwGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Download(@as(*const IDirectMusicSynth, @ptrCast(self)), phDownload, pvData, pbFree);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Unload(@as(*const IDirectMusicSynth, @ptrCast(self)), hDownload, lpFreeHandle, hUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_PlayBuffer(self: *const T, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).PlayBuffer(@as(*const IDirectMusicSynth, @ptrCast(self)), rt, pbBuffer, cbBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetRunningStats(@as(*const IDirectMusicSynth, @ptrCast(self)), pStats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetPortCaps(self: *const T, pCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetPortCaps(@as(*const IDirectMusicSynth, @ptrCast(self)), pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).SetMasterClock(@as(*const IDirectMusicSynth, @ptrCast(self)), pClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetLatencyClock(@as(*const IDirectMusicSynth, @ptrCast(self)), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Activate(@as(*const IDirectMusicSynth, @ptrCast(self)), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetSynthSink(self: *const T, pSynthSink: ?*IDirectMusicSynthSink) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).SetSynthSink(@as(*const IDirectMusicSynth, @ptrCast(self)), pSynthSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Render(self: *const T, pBuffer: ?*i16, dwLength: u32, llPosition: i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).Render(@as(*const IDirectMusicSynth, @ptrCast(self)), pBuffer, dwLength, llPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).SetChannelPriority(@as(*const IDirectMusicSynth, @ptrCast(self)), dwChannelGroup, dwChannel, dwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetChannelPriority(@as(*const IDirectMusicSynth, @ptrCast(self)), dwChannelGroup, dwChannel, pdwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectMusicSynth, @ptrCast(self)), pWaveFormatEx, pdwWaveFormatExSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth.VTable, @ptrCast(self.vtable)).GetAppend(@as(*const IDirectMusicSynth, @ptrCast(self)), pdwAppend);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IDirectMusicSynth, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, pPortParams);
     }
@@ -1569,30 +1250,7 @@ pub const IDirectMusicSynth8 = extern union {
     };
     vtable: *const VTable,
     IDirectMusicSynth: IDirectMusicSynth,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectMusicSynth.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_PlayVoice(self: *const T, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth8.VTable, @ptrCast(self.vtable)).PlayVoice(@as(*const IDirectMusicSynth8, @ptrCast(self)), rt, dwVoiceId, dwChannelGroup, dwChannel, dwDLId, prPitch, vrVolume, stVoiceStart, stLoopStart, stLoopEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_StopVoice(self: *const T, rt: i64, dwVoiceId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth8.VTable, @ptrCast(self.vtable)).StopVoice(@as(*const IDirectMusicSynth8, @ptrCast(self)), rt, dwVoiceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_GetVoiceState(self: *const T, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth8.VTable, @ptrCast(self.vtable)).GetVoiceState(@as(*const IDirectMusicSynth8, @ptrCast(self)), dwVoice, cbVoice, dwVoiceState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_Refresh(self: *const T, dwDownloadID: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth8.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IDirectMusicSynth8, @ptrCast(self)), dwDownloadID, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_AssignChannelToBuses(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynth8.VTable, @ptrCast(self.vtable)).AssignChannelToBuses(@as(*const IDirectMusicSynth8, @ptrCast(self)), dwChannelGroup, dwChannel, pdwBuses, cBuses);
-        }
-    };}
-    pub usingnamespace IDirectMusicSynth.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn PlayVoice(self: *const IDirectMusicSynth8, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) callconv(.Inline) HRESULT {
         return self.vtable.PlayVoice(self, rt, dwVoiceId, dwChannelGroup, dwChannel, dwDLId, prPitch, vrVolume, stVoiceStart, stLoopStart, stLoopEnd);
     }
@@ -1653,42 +1311,6 @@ pub const IDirectMusicSynthSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_Init(self: *const T, pSynth: ?*IDirectMusicSynth) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).Init(@as(*const IDirectMusicSynthSink, @ptrCast(self)), pSynth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).SetMasterClock(@as(*const IDirectMusicSynthSink, @ptrCast(self)), pClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).GetLatencyClock(@as(*const IDirectMusicSynthSink, @ptrCast(self)), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).Activate(@as(*const IDirectMusicSynthSink, @ptrCast(self)), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SampleToRefTime(self: *const T, llSampleTime: i64, prfTime: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).SampleToRefTime(@as(*const IDirectMusicSynthSink, @ptrCast(self)), llSampleTime, prfTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_RefTimeToSample(self: *const T, rfTime: i64, pllSampleTime: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).RefTimeToSample(@as(*const IDirectMusicSynthSink, @ptrCast(self)), rfTime, pllSampleTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).SetDirectSound(@as(*const IDirectMusicSynthSink, @ptrCast(self)), pDirectSound, pDirectSoundBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetDesiredBufferSize(self: *const T, pdwBufferSizeInSamples: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectMusicSynthSink.VTable, @ptrCast(self.vtable)).GetDesiredBufferSize(@as(*const IDirectMusicSynthSink, @ptrCast(self)), pdwBufferSizeInSamples);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IDirectMusicSynthSink, pSynth: ?*IDirectMusicSynth) callconv(.Inline) HRESULT {
         return self.vtable.Init(self, pSynth);
     }
