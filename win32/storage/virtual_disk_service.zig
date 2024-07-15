@@ -1531,8 +1531,8 @@ pub const IVdsProviderPrivate = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsProviderPrivate_GetObject(self: *const T, ObjectId: Guid, type_: VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IVdsProviderPrivate, @ptrCast(self)), ObjectId, type_, ppObjectUnk);
+        pub fn IVdsProviderPrivate_GetObject(self: *const T, ObjectId: Guid, @"type": VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IVdsProviderPrivate, @ptrCast(self)), ObjectId, @"type", ppObjectUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVdsProviderPrivate_OnLoad(self: *const T, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) callconv(.Inline) HRESULT {
@@ -2312,12 +2312,12 @@ pub const IVdsHwProviderStoragePools = extern union {
             return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryStoragePools(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsHwProviderStoragePools_CreateLunInStoragePool(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-            return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).CreateLunInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), type_, ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
+        pub fn IVdsHwProviderStoragePools_CreateLunInStoragePool(self: *const T, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
+            return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).CreateLunInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsHwProviderStoragePools_QueryMaxLunCreateSizeInStoragePool(self: *const T, type_: VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSizeInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), type_, StoragePoolId, pHints2, pullMaxLunSize);
+        pub fn IVdsHwProviderStoragePools_QueryMaxLunCreateSizeInStoragePool(self: *const T, @"type": VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
+            return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSizeInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), @"type", StoragePoolId, pHints2, pullMaxLunSize);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2430,8 +2430,8 @@ pub const IVdsSubSystem = extern union {
             return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetControllerStatus(@as(*const IVdsSubSystem, @ptrCast(self)), pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_CreateLun(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-            return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).CreateLun(@as(*const IVdsSubSystem, @ptrCast(self)), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
+        pub fn IVdsSubSystem_CreateLun(self: *const T, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
+            return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).CreateLun(@as(*const IVdsSubSystem, @ptrCast(self)), @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVdsSubSystem_ReplaceDrive(self: *const T, DriveToBeReplaced: Guid, ReplacementDrive: Guid) callconv(.Inline) HRESULT {
@@ -2442,8 +2442,8 @@ pub const IVdsSubSystem = extern union {
             return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsSubSystem, @ptrCast(self)), status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_QueryMaxLunCreateSize(self: *const T, type_: VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize(@as(*const IVdsSubSystem, @ptrCast(self)), type_, pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
+        pub fn IVdsSubSystem_QueryMaxLunCreateSize(self: *const T, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
+            return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize(@as(*const IVdsSubSystem, @ptrCast(self)), @"type", pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2498,12 +2498,12 @@ pub const IVdsSubSystem2 = extern union {
             return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).GetDrive2(@as(*const IVdsSubSystem2, @ptrCast(self)), sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem2_CreateLun2(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-            return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).CreateLun2(@as(*const IVdsSubSystem2, @ptrCast(self)), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
+        pub fn IVdsSubSystem2_CreateLun2(self: *const T, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
+            return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).CreateLun2(@as(*const IVdsSubSystem2, @ptrCast(self)), @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem2_QueryMaxLunCreateSize2(self: *const T, type_: VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize2(@as(*const IVdsSubSystem2, @ptrCast(self)), type_, pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
+        pub fn IVdsSubSystem2_QueryMaxLunCreateSize2(self: *const T, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
+            return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize2(@as(*const IVdsSubSystem2, @ptrCast(self)), @"type", pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3674,8 +3674,8 @@ pub const IVdsAdmin = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsAdmin_RegisterProvider(self: *const T, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, type_: VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.Inline) HRESULT {
-            return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId, providerClsid, pwszName, type_, pwszMachineName, pwszVersion, guidVersionId);
+        pub fn IVdsAdmin_RegisterProvider(self: *const T, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.Inline) HRESULT {
+            return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVdsAdmin_UnregisterProvider(self: *const T, providerId: Guid) callconv(.Inline) HRESULT {

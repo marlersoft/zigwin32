@@ -4783,8 +4783,8 @@ pub const IUIAutomationPatternInstance = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, type_: UIAutomationType, pPtr: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IUIAutomationPatternInstance.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IUIAutomationPatternInstance, @ptrCast(self)), index, cached, type_, pPtr);
+        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, @"type": UIAutomationType, pPtr: ?*anyopaque) callconv(.Inline) HRESULT {
+            return @as(*const IUIAutomationPatternInstance.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IUIAutomationPatternInstance, @ptrCast(self)), index, cached, @"type", pPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IUIAutomationPatternInstance_CallMethod(self: *const T, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {

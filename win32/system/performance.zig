@@ -1606,8 +1606,8 @@ pub const IDataCollector = extern union {
             return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_DataCollectorSet(@as(*const IDataCollector, @ptrCast(self)), group);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollector_get_DataCollectorType(self: *const T, type_: ?*DataCollectorType) callconv(.Inline) HRESULT {
-            return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorType(@as(*const IDataCollector, @ptrCast(self)), type_);
+        pub fn IDataCollector_get_DataCollectorType(self: *const T, @"type": ?*DataCollectorType) callconv(.Inline) HRESULT {
+            return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorType(@as(*const IDataCollector, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDataCollector_get_FileName(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
@@ -3375,12 +3375,12 @@ pub const IValueMapItem = extern union {
             return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMapItem, @ptrCast(self)), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMapItem_get_ValueMapType(self: *const T, type_: ?*ValueMapType) callconv(.Inline) HRESULT {
-            return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), type_);
+        pub fn IValueMapItem_get_ValueMapType(self: *const T, @"type": ?*ValueMapType) callconv(.Inline) HRESULT {
+            return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMapItem_put_ValueMapType(self: *const T, type_: ValueMapType) callconv(.Inline) HRESULT {
-            return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), type_);
+        pub fn IValueMapItem_put_ValueMapType(self: *const T, @"type": ValueMapType) callconv(.Inline) HRESULT {
+            return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), @"type");
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3490,12 +3490,12 @@ pub const IValueMap = extern union {
             return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMap, @ptrCast(self)), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_get_ValueMapType(self: *const T, type_: ?*ValueMapType) callconv(.Inline) HRESULT {
-            return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMap, @ptrCast(self)), type_);
+        pub fn IValueMap_get_ValueMapType(self: *const T, @"type": ?*ValueMapType) callconv(.Inline) HRESULT {
+            return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMap, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_put_ValueMapType(self: *const T, type_: ValueMapType) callconv(.Inline) HRESULT {
-            return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMap, @ptrCast(self)), type_);
+        pub fn IValueMap_put_ValueMapType(self: *const T, @"type": ValueMapType) callconv(.Inline) HRESULT {
+            return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMap, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IValueMap_Add(self: *const T, value: VARIANT) callconv(.Inline) HRESULT {

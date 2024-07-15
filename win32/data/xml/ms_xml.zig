@@ -858,8 +858,8 @@ pub const IXMLDOMNode = extern union {
             return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_nodeValue(@as(*const IXMLDOMNode, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLDOMNode_get_nodeType(self: *const T, type_: ?*DOMNodeType) callconv(.Inline) HRESULT {
-            return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeType(@as(*const IXMLDOMNode, @ptrCast(self)), type_);
+        pub fn IXMLDOMNode_get_nodeType(self: *const T, @"type": ?*DOMNodeType) callconv(.Inline) HRESULT {
+            return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeType(@as(*const IXMLDOMNode, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXMLDOMNode_get_parentNode(self: *const T, parent: ?*?*IXMLDOMNode) callconv(.Inline) HRESULT {
@@ -6628,8 +6628,8 @@ pub const ISchemaAttribute = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISchemaItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaAttribute_get_type(self: *const T, type_: ?*?*ISchemaType) callconv(.Inline) HRESULT {
-            return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaAttribute, @ptrCast(self)), type_);
+        pub fn ISchemaAttribute_get_type(self: *const T, @"type": ?*?*ISchemaType) callconv(.Inline) HRESULT {
+            return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaAttribute, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISchemaAttribute_get_scope(self: *const T, scope: ?*?*ISchemaComplexType) callconv(.Inline) HRESULT {
@@ -6721,8 +6721,8 @@ pub const ISchemaElement = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISchemaParticle.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaElement_get_type(self: *const T, type_: ?*?*ISchemaType) callconv(.Inline) HRESULT {
-            return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaElement, @ptrCast(self)), type_);
+        pub fn ISchemaElement_get_type(self: *const T, @"type": ?*?*ISchemaType) callconv(.Inline) HRESULT {
+            return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaElement, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISchemaElement_get_scope(self: *const T, scope: ?*?*ISchemaComplexType) callconv(.Inline) HRESULT {

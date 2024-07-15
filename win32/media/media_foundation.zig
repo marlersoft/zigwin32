@@ -25133,8 +25133,8 @@ pub const IMFMediaEngine = extern union {
             return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFMediaEngine, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngine_CanPlayType(self: *const T, type_: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
-            return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngine, @ptrCast(self)), type_, pAnswer);
+        pub fn IMFMediaEngine_CanPlayType(self: *const T, @"type": ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
+            return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngine, @ptrCast(self)), @"type", pAnswer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFMediaEngine_GetReadyState(self: *const T) callconv(.Inline) u16 {
@@ -25694,8 +25694,8 @@ pub const IMFMediaEngineExtension = extern union {
             return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngineExtension, @ptrCast(self)), AudioOnly, MimeType, pAnswer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineExtension_BeginCreateObject(self: *const T, bstrURL: ?BSTR, pByteStream: ?*IMFByteStream, type_: MF_OBJECT_TYPE, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), bstrURL, pByteStream, type_, ppIUnknownCancelCookie, pCallback, punkState);
+        pub fn IMFMediaEngineExtension_BeginCreateObject(self: *const T, bstrURL: ?BSTR, pByteStream: ?*IMFByteStream, @"type": MF_OBJECT_TYPE, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), bstrURL, pByteStream, @"type", ppIUnknownCancelCookie, pCallback, punkState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFMediaEngineExtension_CancelObjectCreation(self: *const T, pIUnknownCancelCookie: ?*IUnknown) callconv(.Inline) HRESULT {
@@ -26246,8 +26246,8 @@ pub const IMFMediaSourceExtension = extern union {
             return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetDuration(@as(*const IMFMediaSourceExtension, @ptrCast(self)), duration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaSourceExtension_AddSourceBuffer(self: *const T, type_: ?BSTR, pNotify: ?*IMFSourceBufferNotify, ppSourceBuffer: ?*?*IMFSourceBuffer) callconv(.Inline) HRESULT {
-            return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).AddSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), type_, pNotify, ppSourceBuffer);
+        pub fn IMFMediaSourceExtension_AddSourceBuffer(self: *const T, @"type": ?BSTR, pNotify: ?*IMFSourceBufferNotify, ppSourceBuffer: ?*?*IMFSourceBuffer) callconv(.Inline) HRESULT {
+            return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).AddSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"type", pNotify, ppSourceBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFMediaSourceExtension_RemoveSourceBuffer(self: *const T, pSourceBuffer: ?*IMFSourceBuffer) callconv(.Inline) HRESULT {
@@ -26258,8 +26258,8 @@ pub const IMFMediaSourceExtension = extern union {
             return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetEndOfStream(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"error");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaSourceExtension_IsTypeSupported(self: *const T, type_: ?BSTR) callconv(.Inline) BOOL {
-            return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaSourceExtension, @ptrCast(self)), type_);
+        pub fn IMFMediaSourceExtension_IsTypeSupported(self: *const T, @"type": ?BSTR) callconv(.Inline) BOOL {
+            return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFMediaSourceExtension_GetSourceBuffer(self: *const T, dwStreamIndex: u32) callconv(.Inline) ?*IMFSourceBuffer {
@@ -26773,8 +26773,8 @@ pub const IMFMediaEngineClassFactoryEx = extern union {
             return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).CreateMediaKeys(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), keySystem, cdmStorePath, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineClassFactoryEx_IsTypeSupported(self: *const T, type_: ?BSTR, keySystem: ?BSTR, isSupported: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), type_, keySystem, isSupported);
+        pub fn IMFMediaEngineClassFactoryEx_IsTypeSupported(self: *const T, @"type": ?BSTR, keySystem: ?BSTR, isSupported: ?*BOOL) callconv(.Inline) HRESULT {
+            return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), @"type", keySystem, isSupported);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -26823,8 +26823,8 @@ pub const IMFExtendedDRMTypeSupport = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFExtendedDRMTypeSupport_IsTypeSupportedEx(self: *const T, type_: ?BSTR, keySystem: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
-            return @as(*const IMFExtendedDRMTypeSupport.VTable, @ptrCast(self.vtable)).IsTypeSupportedEx(@as(*const IMFExtendedDRMTypeSupport, @ptrCast(self)), type_, keySystem, pAnswer);
+        pub fn IMFExtendedDRMTypeSupport_IsTypeSupportedEx(self: *const T, @"type": ?BSTR, keySystem: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
+            return @as(*const IMFExtendedDRMTypeSupport.VTable, @ptrCast(self.vtable)).IsTypeSupportedEx(@as(*const IMFExtendedDRMTypeSupport, @ptrCast(self)), @"type", keySystem, pAnswer);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -30867,8 +30867,8 @@ pub const IMFSpatialAudioObjectBuffer = extern union {
             return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetID(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), pu32ID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSpatialAudioObjectBuffer_SetType(self: *const T, type_: AudioObjectType) callconv(.Inline) HRESULT {
-            return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), type_);
+        pub fn IMFSpatialAudioObjectBuffer_SetType(self: *const T, @"type": AudioObjectType) callconv(.Inline) HRESULT {
+            return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFSpatialAudioObjectBuffer_GetType(self: *const T, pType: ?*AudioObjectType) callconv(.Inline) HRESULT {

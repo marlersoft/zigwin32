@@ -3841,12 +3841,12 @@ pub const IFsrmPropertyCondition = extern union {
             return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmPropertyCondition, @ptrCast(self)), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_get_Type(self: *const T, type_: ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
-            return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), type_);
+        pub fn IFsrmPropertyCondition_get_Type(self: *const T, @"type": ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+            return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_put_Type(self: *const T, type_: FsrmPropertyConditionType) callconv(.Inline) HRESULT {
-            return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), type_);
+        pub fn IFsrmPropertyCondition_put_Type(self: *const T, @"type": FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+            return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsrmPropertyCondition_get_Value(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
@@ -4069,12 +4069,12 @@ pub const IFsrmPropertyDefinition = extern union {
             return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, type_: ?*FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
-            return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), type_);
+        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, @"type": ?*FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+            return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_Type(self: *const T, type_: FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
-            return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), type_);
+        pub fn IFsrmPropertyDefinition_put_Type(self: *const T, @"type": FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+            return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsrmPropertyDefinition_get_PossibleValues(self: *const T, possibleValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {

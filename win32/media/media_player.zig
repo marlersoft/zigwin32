@@ -9161,8 +9161,8 @@ pub const IWMPContentPartnerCallback = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPContentPartnerCallback_Notify(self: *const T, type_: WMPCallbackNotification, pContext: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWMPContentPartnerCallback.VTable, @ptrCast(self.vtable)).Notify(@as(*const IWMPContentPartnerCallback, @ptrCast(self)), type_, pContext);
+        pub fn IWMPContentPartnerCallback_Notify(self: *const T, @"type": WMPCallbackNotification, pContext: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @as(*const IWMPContentPartnerCallback.VTable, @ptrCast(self.vtable)).Notify(@as(*const IWMPContentPartnerCallback, @ptrCast(self)), @"type", pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWMPContentPartnerCallback_BuyComplete(self: *const T, hrResult: HRESULT, dwBuyCookie: u32) callconv(.Inline) HRESULT {
@@ -9381,8 +9381,8 @@ pub const IWMPContentPartner = extern union {
             return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IWMPContentPartner, @ptrCast(self)), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPContentPartner_Notify(self: *const T, type_: WMPPartnerNotification, pContext: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).Notify(@as(*const IWMPContentPartner, @ptrCast(self)), type_, pContext);
+        pub fn IWMPContentPartner_Notify(self: *const T, @"type": WMPPartnerNotification, pContext: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).Notify(@as(*const IWMPContentPartner, @ptrCast(self)), @"type", pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWMPContentPartner_GetItemInfo(self: *const T, bstrInfoName: ?BSTR, pContext: ?*VARIANT, pData: ?*VARIANT) callconv(.Inline) HRESULT {
@@ -9421,8 +9421,8 @@ pub const IWMPContentPartner = extern union {
             return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).DownloadTrackComplete(@as(*const IWMPContentPartner, @ptrCast(self)), hrResult, contentID, downloadTrackParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPContentPartner_RefreshLicense(self: *const T, dwCookie: u32, fLocal: i16, bstrURL: ?BSTR, type_: WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).RefreshLicense(@as(*const IWMPContentPartner, @ptrCast(self)), dwCookie, fLocal, bstrURL, type_, contentID, bstrRefreshReason, pReasonContext);
+        pub fn IWMPContentPartner_RefreshLicense(self: *const T, dwCookie: u32, fLocal: i16, bstrURL: ?BSTR, @"type": WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).RefreshLicense(@as(*const IWMPContentPartner, @ptrCast(self)), dwCookie, fLocal, bstrURL, @"type", contentID, bstrRefreshReason, pReasonContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWMPContentPartner_GetCatalogURL(self: *const T, dwCatalogVersion: u32, dwCatalogSchemaVersion: u32, catalogLCID: u32, pdwNewCatalogVersion: ?*u32, pbstrCatalogURL: ?*?BSTR, pExpirationDate: ?*VARIANT) callconv(.Inline) HRESULT {

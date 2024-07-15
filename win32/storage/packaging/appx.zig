@@ -357,8 +357,8 @@ pub const IAppxPackageReader = extern union {
             return @as(*const IAppxPackageReader.VTable, @ptrCast(self.vtable)).GetBlockMap(@as(*const IAppxPackageReader, @ptrCast(self)), blockMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, type_: APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
-            return @as(*const IAppxPackageReader.VTable, @ptrCast(self.vtable)).GetFootprintFile(@as(*const IAppxPackageReader, @ptrCast(self)), type_, file);
+        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+            return @as(*const IAppxPackageReader.VTable, @ptrCast(self.vtable)).GetFootprintFile(@as(*const IAppxPackageReader, @ptrCast(self)), @"type", file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IAppxPackageReader_GetPayloadFile(self: *const T, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
